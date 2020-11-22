@@ -78,11 +78,7 @@ public class DirectorioActivo
             SimpleDateFormat format = new SimpleDateFormat( "yyyyMMddHHmm" );
             BasicAttributes entry = new BasicAttributes();
             entry.put( oc );
-            entry.put( new BasicAttribute( "cn", user.getCorreoelectronico() ) );
-            entry.put( new BasicAttribute( "sn", user.getCorreoelectronico() ) );
-            entry.put( new BasicAttribute( "userpassword", user.getContrasena() ) );
             entry.put( new BasicAttribute( "pwdLastSuccess", format.format( new Date() ) + "Z" ) );
-            _ldapContext.createSubcontext( String.format( _userDirectory + "," + _directory, user.getCorreoelectronico()), entry );
 
         }
         catch(Exception exception)
@@ -99,7 +95,6 @@ public class DirectorioActivo
         try
         {
             connectLDAP( _user, _password );
-            _ldapContext.destroySubcontext( String.format(_userDirectory + "," + _directory, user.getCorreoelectronico()));
         }
         catch ( Exception exception )
         {
@@ -121,22 +116,8 @@ public class DirectorioActivo
             connectLDAP( _user, _password );
             SearchControls searcCon = new SearchControls();
             searcCon.setSearchScope( SearchControls.SUBTREE_SCOPE );
-            NamingEnumeration results =
-                    _ldapContext.search( _directory, String.format(_userDirectory, user.getCorreoelectronico()), searcCon );
-            if ( results != null )
-            {
-                while ( results.hasMore() )
-                {
-                    SearchResult res = ( SearchResult ) results.next();
-                    Attributes atbs = res.getAttributes();
-                    Attribute atb = atbs.get( "cn" );
-                    String name = ( String ) atb.get();
-                }
-            }
-            else
-            {
-                System.out.println( "fail" );
-            }
+
+
         }
         catch ( Exception exception )
         {
@@ -160,8 +141,6 @@ public class DirectorioActivo
             Attribute atb = new BasicAttribute("mail","java2db@mai.com");
             atbs.put(atb);
 
-            _ldapContext.modifyAttributes( String.format(_userDirectory + "," + _directory, user.getCorreoelectronico())
-                    , DirContext.REPLACE_ATTRIBUTE,atbs );
         }
         catch(Exception exception)
         {
@@ -180,14 +159,7 @@ public class DirectorioActivo
         {
             connectLDAP( _user, _password );
             ModificationItem[] modificationItems = new ModificationItem[ 2 ];
-            modificationItems[ 0 ] = new ModificationItem( DirContext.REPLACE_ATTRIBUTE,
-                                                           new BasicAttribute( "userpassword", user.getContrasena()
-                                                           ) );
-            modificationItems[ 1 ] = new ModificationItem( DirContext.REPLACE_ATTRIBUTE,
-                                                           new BasicAttribute( "description", "NUEVO"
-                                                           ) );
-            _ldapContext.modifyAttributes(String.format(_userDirectory + "," + _directory, user.getCorreoelectronico
-                    ()), modificationItems );
+
         }
         catch(Exception exception)
         {
@@ -203,12 +175,12 @@ public class DirectorioActivo
     {
         try
         {
-            connectLDAP( user.getCorreoelectronico(), user.getContrasena() );
+
             SimpleDateFormat format = new SimpleDateFormat( "yyyyMMddHHmm" );
             ModificationItem[] modificationItems = new ModificationItem[ 1 ];
             modificationItems[ 0 ] = new ModificationItem( DirContext.REPLACE_ATTRIBUTE, new BasicAttribute(
                     "pwdLastSuccess", format.format( new Date() ) + "Z" ) );
-            _ldapContext.modifyAttributes(String.format(_userDirectory + "," + _directory, user.getCorreoelectronico()), modificationItems );
+
         }
         catch(Exception exception)
         {

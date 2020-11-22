@@ -16,15 +16,6 @@ public class EntidadBase implements Serializable
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private long _id;
 
-
-    @Column( name = "estatus" )
-    private String _estatus;
-
-    //endregion
-
-    //region Method
-
-
     public EntidadBase( long id )
     {
         _id = id;
@@ -34,20 +25,22 @@ public class EntidadBase implements Serializable
     {
     }
 
-
     public long get_id()
     {
         return _id;
     }
 
-    public String get_estatus()
+    @Column( name = "estado" )
+    private String _estado;
+
+    public String get_estado()
     {
-        return _estatus;
+        return _estado;
     }
 
-    public void set_estatus( String _estatus )
+    public void set_estado( String _estado )
     {
-        this._estatus = _estatus;
+        this._estado = _estado;
     }
 
 

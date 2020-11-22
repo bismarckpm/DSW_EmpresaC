@@ -14,73 +14,47 @@ import java.util.List;
 @Table( name = "usuario" )
 public class Usuario extends EntidadBase
 {
-    @Column( name = "nombre" )
-    private String _nombre;
+    @Column( name = "usuario" )
+    private String _usuario;
 
-    public String get_nombre()
+    public String get_usuario()
     {
-        return _nombre;
+        return _usuario;
     }
 
-    public void set_nombre( String _nombre )
+    public void set_usuario( String _usuario )
     {
-        this._nombre = _nombre;
+        this._usuario = _usuario;
     }
 
-    public String get_apellido()
-    {
-        return _apellido;
-    }
-
-    public void set_apellido( String _apellido )
-    {
-        this._apellido = _apellido;
-    }
-
-    public String get_correoelectronico()
-    {
-        return _correoelectronico;
-    }
-
-    public void set_correoelectronico( String _correoelectronico )
-    {
-        this._correoelectronico = _correoelectronico;
-    }
-
-    public TipoUsuario get_tipousuario()
-    {
-        return _tipousuario;
-    }
-
-    public void set_tipousuario( TipoUsuario _tipousuario )
-    {
-        this._tipousuario = _tipousuario;
-    }
-
-    @Column( name = "apellido" )
-    private String _apellido;
-
-    @Column( name = "correoelectronico" )
-    private String _correoelectronico;
+    @Column( name = "estado" )
+    private String _estado;
 
     @Override
-    public String get_estatus()
+    public String get_estado()
     {
-        return _estatus;
+        return _estado;
     }
 
     @Override
-    public void set_estatus( String _estatus )
+    public void set_estado( String _estado )
     {
-        this._estatus = _estatus;
+        this._estado = _estado;
     }
 
-    @Column( name = "estatus" )
-    private String _estatus;
 
-    @ManyToOne
-    @JoinColumn( name = "idTipoUsuario" )
-    private TipoUsuario _tipousuario;
+    @Column( name = "rol" )
+    private String _rol;
+
+    public String get_rol()
+    {
+        return _rol;
+    }
+
+    public void set_rol( String _rol )
+    {
+        this._rol = _rol;
+    }
 
 
     public Usuario( long id )

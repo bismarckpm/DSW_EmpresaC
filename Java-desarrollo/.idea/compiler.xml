@@ -21,6 +21,7 @@
       <module name="entidades" target="1.8" />
       <module name="excepciones" target="1.8" />
       <module name="Java-desarrollo" target="1.8" />
+      <module name="orm" target="1.8" />
       <module name="servicio" target="1.8" />
     </bytecodeTargetLevel>
   </component>
