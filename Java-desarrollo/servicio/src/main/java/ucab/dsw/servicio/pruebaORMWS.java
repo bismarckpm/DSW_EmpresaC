@@ -26,7 +26,7 @@ public class pruebaORMWS extends AplicacionBase
             DaoUsuario dao = new DaoUsuario();
             Usuario usuario = new Usuario();
             usuario.set_usuario( usuarioDto.getUsuario() );
-            usuario.set_estado( usuarioDto.getEstado() );
+            usuario.set_estados( usuarioDto.getEstados() );
             usuario.set_rol( usuarioDto.getRol() );
             Usuario resul = dao.insert( usuario );
             resultado.setId( resul.get_id() );

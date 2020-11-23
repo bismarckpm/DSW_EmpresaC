@@ -13,12 +13,12 @@ public class UsuarioDto extends DtoBase
 
     private String estado;
 
-    public String getEstado()
+    public String getEstados()
     {
         return estado;
     }
 
-    public void setEstado( String estado )
+    public void setEstados( String estado )
     {
         this.estado = estado;
     }

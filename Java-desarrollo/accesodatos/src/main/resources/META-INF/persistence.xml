@@ -4,6 +4,12 @@
 
     <persistence-unit name="ormprueba">
         <class>ucab.dsw.entidades.Usuario</class>
+        <class>ucab.dsw.entidades.Cliente</class>
+        <class>ucab.dsw.entidades.Pais</class>
+        <class>ucab.dsw.entidades.Estado</class>
+        <class>ucab.dsw.entidades.Ciudad</class>
+        <class>ucab.dsw.entidades.Parroquia</class>
+        <class>ucab.dsw.entidades.Nivel_Academico</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

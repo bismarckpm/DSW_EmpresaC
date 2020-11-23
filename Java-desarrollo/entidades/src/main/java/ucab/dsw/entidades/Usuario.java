@@ -31,13 +31,13 @@ public class Usuario extends EntidadBase
     private String _estado;
 
     @Override
-    public String get_estado()
+    public String get_estados()
     {
         return _estado;
     }
 
     @Override
-    public void set_estado( String _estado )
+    public void set_estados( String _estado )
     {
         this._estado = _estado;
     }
@@ -55,6 +55,34 @@ public class Usuario extends EntidadBase
     {
         this._rol = _rol;
     }
+
+
+    @OneToMany( mappedBy = "_usuario_cliente", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    private List<Cliente> _cliente;
+
+    public List<Cliente> get_cliente()
+    {
+        return _cliente;
+    }
+
+    public void set_cliente( List<Cliente> _cliente )
+    {
+        this._cliente = _cliente;
+    }
+
+    @OneToMany( mappedBy = "_usuario_encuestado", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    private List<Encuestado> _encuestado;
+
+    public List<Encuestado> get_encuestado()
+    {
+        return _encuestado;
+    }
+
+    public void set_encuestado( List<Encuestado> _encuestado )
+    {
+        this._encuestado = _encuestado;
+    }
+
 
 
     public Usuario( long id )

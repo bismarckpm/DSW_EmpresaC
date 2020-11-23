@@ -31,16 +31,16 @@ public class EntidadBase implements Serializable
     }
 
     @Column( name = "estado" )
-    private String _estado;
+    private String _estados;
 
-    public String get_estado()
+    public String get_estados()
     {
-        return _estado;
+        return _estados;
     }
 
-    public void set_estado( String _estado )
+    public void set_estados( String _estados )
     {
-        this._estado = _estado;
+        this._estados = _estados;
     }
 
 
