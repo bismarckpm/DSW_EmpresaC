@@ -108,6 +108,55 @@ public class Encuestado extends EntidadBase
         this._genero = _genero;
     }
 
+    @OneToMany( mappedBy = "_encuestado_telefono", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    private List<Telefono> _telefono;
+
+    public List<Telefono> get_telefono()
+    {
+        return _telefono;
+    }
+
+    public void set_telefono( List<Telefono> _telefono )
+    {
+        this._telefono = _telefono;
+    }
+
+    @OneToMany( mappedBy = "_encuestado_hijo", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    private List<Hijo> _hijo;
+
+    public List<Hijo> get_hijo()
+    {
+        return _hijo;
+    }
+
+    public void set_hijo( List<Hijo> _hijo )
+    {
+        this._hijo = _hijo;
+    }
+
+    @OneToMany( mappedBy = "_encuestado_metodo_conexion", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    private List<Metodo_Conexion_Encuestado> _metodo_Conexion_Encuestado;
+
+    public List<Metodo_Conexion_Encuestado> get_metodo_Conexion_Encuestado() { return _metodo_Conexion_Encuestado; }
+
+    public void set_metodo_Conexion_Encuestado( List<Metodo_Conexion_Encuestado> _metodo_Conexion_Encuestado )
+    {
+        this._metodo_Conexion_Encuestado = _metodo_Conexion_Encuestado;
+    }
+
+    @OneToMany( mappedBy = "_encuestado_ocupacion", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    private List<Ocupacion_Encuestado> _ocupacion_Encuestado;
+
+    public List<Ocupacion_Encuestado> get_ocupacion_Encuestado()
+    {
+        return _ocupacion_Encuestado;
+    }
+
+    public void set_ocupacion_Encuestado( List<Ocupacion_Encuestado> _ocupacion_Encuestado )
+    {
+        this._ocupacion_Encuestado = _ocupacion_Encuestado;
+    }
+
     @ManyToOne
     @JoinColumn( name = "idParroquia" )
     private Parroquia _Parroquia_encuestado;

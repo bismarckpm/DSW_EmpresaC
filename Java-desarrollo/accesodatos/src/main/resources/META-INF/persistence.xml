@@ -11,6 +11,14 @@
         <class>ucab.dsw.entidades.Parroquia</class>
         <class>ucab.dsw.entidades.Nivel_Academico</class>
         <class>ucab.dsw.entidades.Encuestado</class>
+        <class>ucab.dsw.entidades.Telefono</class>
+        <class>ucab.dsw.entidades.Hijo</class>
+        <class>ucab.dsw.entidades.Ocupacion</class>
+        <class>ucab.dsw.entidades.Ocupacion_Encuestado</class>
+        <class>ucab.dsw.entidades.Metodo_conexion</class>
+        <class>ucab.dsw.entidades.Metodo_Conexion_Encuestado</class>
+        <class>ucab.dsw.entidades.Caracteristica_Demografica</class>
+
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

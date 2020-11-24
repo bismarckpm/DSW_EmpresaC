@@ -37,6 +37,19 @@ public class Nivel_Academico extends EntidadBase
         this._encuestado = _encuestado;
     }
 
+    @OneToMany( mappedBy = "_nivel_academico_demografia", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    private List<Caracteristica_Demografica> _caracteristica_Demografica;
+
+    public List<Caracteristica_Demografica> get_caracteristica_Demografica()
+    {
+        return _caracteristica_Demografica;
+    }
+
+    public void set_caracteristica_Demografica( List<Caracteristica_Demografica> _caracteristica_Demografica )
+    {
+        this._caracteristica_Demografica = _caracteristica_Demografica;
+    }
+
     public Nivel_Academico( long id )
     {
         super( id );

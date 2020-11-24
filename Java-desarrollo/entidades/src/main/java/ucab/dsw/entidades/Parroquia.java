@@ -49,9 +49,17 @@ public class Parroquia extends EntidadBase
         return _encuestado;
     }
 
-    public void set_encuestado( List<Encuestado> _encuestado )
+    @OneToMany( mappedBy = "_Parroquia_demografia", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    private List<Caracteristica_Demografica> _caracteristica_Demografica;
+
+    public List<Caracteristica_Demografica> get_caracteristica_Demografica()
     {
-        this._encuestado = _encuestado;
+        return _caracteristica_Demografica;
+    }
+
+    public void set_caracteristica_Demografica( List<Caracteristica_Demografica> _caracteristica_Demografica )
+    {
+        this._caracteristica_Demografica = _caracteristica_Demografica;
     }
 
     public Parroquia( long id )
