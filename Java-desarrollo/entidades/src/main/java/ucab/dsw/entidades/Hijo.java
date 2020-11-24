@@ -59,7 +59,7 @@ public class Hijo extends EntidadBase {
 
 
     @ManyToOne
-    @JoinColumn( name = "idEncuestado" )
+    @JoinColumn( name = "Encuestado_id" )
     private Encuestado _encuestado_hijo;
 
     public Encuestado get_encuestado_hijo()

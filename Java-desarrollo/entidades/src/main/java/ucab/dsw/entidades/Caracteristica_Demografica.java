@@ -80,7 +80,7 @@ public class Caracteristica_Demografica extends EntidadBase{
     public void set_genero( String _genero ) { this._genero = _genero; }
 
     @ManyToOne
-    @JoinColumn( name = "idParroquia" )
+    @JoinColumn( name = "Parroquia_id" )
     private Parroquia _Parroquia_demografia;
 
     public Parroquia get_Parroquia_demografia()
@@ -94,7 +94,7 @@ public class Caracteristica_Demografica extends EntidadBase{
     }
 
     @ManyToOne
-    @JoinColumn( name = "idNivel_Academico" )
+    @JoinColumn( name = "Nivel_academico_id" )
     private Nivel_Academico _nivel_academico_demografia;
 
     public Nivel_Academico get_nivel_academico_demografia()
@@ -106,6 +106,9 @@ public class Caracteristica_Demografica extends EntidadBase{
     {
         this._nivel_academico_demografia = _nivel_academico_demografia;
     }
+
+    @OneToMany( mappedBy = "_caracteristicademografica", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    private List<SolicitudEstudio> _solicitudestudio;
 
     public Caracteristica_Demografica( long id )
     {

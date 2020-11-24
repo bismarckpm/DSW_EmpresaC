@@ -158,7 +158,7 @@ public class Encuestado extends EntidadBase
     }
 
     @ManyToOne
-    @JoinColumn( name = "idParroquia" )
+    @JoinColumn( name = "Parroquia_id" )
     private Parroquia _Parroquia_encuestado;
 
     public Parroquia get_Parroquia_encuestado()
@@ -172,7 +172,7 @@ public class Encuestado extends EntidadBase
     }
 
     @ManyToOne
-    @JoinColumn( name = "idNivel_Academico" )
+    @JoinColumn( name = "Nivel_academico_id" )
     private Nivel_Academico _nivel_academico_encuestado;
 
     public Nivel_Academico get_nivel_academico_encuestado()
@@ -186,7 +186,7 @@ public class Encuestado extends EntidadBase
     }
 
     @ManyToOne
-    @JoinColumn( name = "idUsuario" )
+    @JoinColumn( name = "Usuario_id" )
     private Usuario _usuario_encuestado;
 
     public Usuario get_usuario_encuestado()
@@ -198,4 +198,7 @@ public class Encuestado extends EntidadBase
     {
         this._usuario_encuestado = _usuario_encuestado;
     }
+
+    @OneToMany( mappedBy = "_encuestado", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    private List<Participacion> _participacion;
 }

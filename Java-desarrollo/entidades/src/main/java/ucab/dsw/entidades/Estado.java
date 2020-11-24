@@ -1,6 +1,6 @@
 package ucab.dsw.entidades;
 
-import ucab.dsw.dtos.DtoBase;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -44,7 +44,7 @@ public class Estado extends EntidadBase
     }
 
     @ManyToOne
-    @JoinColumn( name = "idPais" )
+    @JoinColumn( name = "Pais_id" )
     private Pais _pais;
 
     public Pais get_pais()

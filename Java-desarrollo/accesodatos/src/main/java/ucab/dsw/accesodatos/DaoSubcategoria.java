@@ -1,17 +1,14 @@
 package ucab.dsw.accesodatos;
 
-import ucab.dsw.entidades.Caracteristica_Demografica;
+import ucab.dsw.entidades.Subcategoria;
 
 import javax.persistence.EntityManager;
-
-public class DaoCaracteristica_Demografica extends Dao<Caracteristica_Demografica>
-{
+public class DaoSubcategoria extends Dao<Subcategoria>{
     private EntityManager _em;
     static DaoHandler _handler = new DaoHandler();
 
 
-
-    public DaoCaracteristica_Demografica( )
+    public DaoSubcategoria( )
     {
         super( _handler );
     }

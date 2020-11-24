@@ -26,6 +26,32 @@ public class Encuesta extends EntidadBase{
     @OneToMany( mappedBy = "_encuesta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<PreguntaEncuesta> _preguntaencuesta;
 
+    @OneToMany( mappedBy = "_encuesta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    private List<SolicitudEstudio> _solicitudestudio;
 
+    public Marca get_marca() {
+        return _marca;
+    }
 
+    public void set_marca(Marca _marca) {
+        this._marca = _marca;
+    }
+
+    public String get_nombre() {
+        return _nombre;
+    }
+
+    public void set_nombre(String _nombre) {
+        this._nombre = _nombre;
+    }
+
+    public Encuesta(long id )
+    {
+        super( id );
+    }
+
+    public Encuesta( )
+    {
+
+    }
 }

@@ -37,7 +37,7 @@ public class Presentacion extends EntidadBase{
         this._tipo = _tipo;
     }
 
-    public Presentacion( long id )
+    public Presentacion(long id )
     {
         super( id );
     }

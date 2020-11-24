@@ -31,13 +31,7 @@ public class Marca extends EntidadBase{
         this._nombre = _nombre;
     }
 
-    public Subcategoria get_subcategoria() {
-        return _subcategoria;
-    }
 
-    public void set_subcategoria(Subcategoria _subcategoria) {
-        this._subcategoria = _subcategoria;
-    }
 
     public Marca( long id )
     {

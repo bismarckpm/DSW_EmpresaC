@@ -42,7 +42,7 @@ public class Ciudad extends EntidadBase
     }
 
     @ManyToOne
-    @JoinColumn( name = "idEstado" )
+    @JoinColumn( name = "Estado_id" )
     private Estado _estado;
 
     public Estado get_estado()

@@ -81,7 +81,8 @@ public class Usuario extends EntidadBase
         this._encuestado = _encuestado;
     }
 
-
+    @OneToMany( mappedBy = "_usuario", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    private List<SolicitudEstudio> _solicitudestudio;
 
     public Usuario( long id )
     {

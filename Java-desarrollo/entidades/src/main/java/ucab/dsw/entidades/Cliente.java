@@ -52,7 +52,7 @@ public class Cliente extends EntidadBase
     }
 
     @ManyToOne
-    @JoinColumn( name = "idUsuario" )
+    @JoinColumn( name = "Usuario_id" )
     private Usuario _usuario_cliente;
 
     public Usuario get_usuario_cliente()
@@ -64,6 +64,9 @@ public class Cliente extends EntidadBase
     {
         this._usuario_cliente = _usuario_cliente;
     }
+
+    @OneToMany( mappedBy = "_cliente", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    private List<SolicitudEstudio> _solicitudestudio;
 
     public Cliente( long id )
     {

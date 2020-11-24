@@ -28,7 +28,7 @@ public class Parroquia extends EntidadBase
     }
 
     @ManyToOne
-    @JoinColumn( name = "idCiudad" )
+    @JoinColumn( name = "Ciudad_id" )
     private Ciudad _ciudad;
 
     public Ciudad get_ciudad()

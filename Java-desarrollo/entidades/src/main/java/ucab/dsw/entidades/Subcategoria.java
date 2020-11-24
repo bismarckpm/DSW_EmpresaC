@@ -23,6 +23,14 @@ public class Subcategoria extends EntidadBase{
     @OneToMany( mappedBy = "_subcategoria", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<Marca> _marca;
 
+    public Categoria get_categoria() {
+        return _categoria;
+    }
+
+    public void set_categoria(Categoria _categoria) {
+        this._categoria = _categoria;
+    }
+
     public String get_nombre() {
         return _nombre;
     }
@@ -31,13 +39,6 @@ public class Subcategoria extends EntidadBase{
         this._nombre = _nombre;
     }
 
-    public Categoria get_categoria() {
-        return _categoria;
-    }
-
-    public void set_categoria(Categoria _categoria) {
-        this._categoria = _categoria;
-    }
 
     public Subcategoria( long id )
     {

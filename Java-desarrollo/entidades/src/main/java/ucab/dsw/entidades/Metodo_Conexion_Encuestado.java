@@ -17,7 +17,7 @@ public class Metodo_Conexion_Encuestado extends EntidadBase{
 
 
     @ManyToOne
-    @JoinColumn( name = "idMetodo_Conexion" )
+    @JoinColumn( name = "Metodo_conexion_id" )
     private Metodo_conexion _metodo_conexion;
 
     public Metodo_conexion get_metodo_conexion() { return _metodo_conexion; }
@@ -25,7 +25,7 @@ public class Metodo_Conexion_Encuestado extends EntidadBase{
     public void set_metodo_conexion( Metodo_conexion _metodo_conexion ) { this._metodo_conexion = _metodo_conexion; }
 
     @ManyToOne
-    @JoinColumn( name = "idEncuestado" )
+    @JoinColumn( name = "Encuestado_id" )
     private Encuestado _encuestado_metodo_conexion;
 
     public Encuestado get_encuestado_metodo_conexion()

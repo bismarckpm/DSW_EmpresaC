@@ -1,17 +1,15 @@
 package ucab.dsw.accesodatos;
 
-import ucab.dsw.entidades.Caracteristica_Demografica;
+import ucab.dsw.entidades.RespuestaOpcion;
 
 import javax.persistence.EntityManager;
+public class DaoRespuestaOpcion extends Dao<RespuestaOpcion>{
 
-public class DaoCaracteristica_Demografica extends Dao<Caracteristica_Demografica>
-{
     private EntityManager _em;
     static DaoHandler _handler = new DaoHandler();
 
 
-
-    public DaoCaracteristica_Demografica( )
+    public DaoRespuestaOpcion( )
     {
         super( _handler );
     }
