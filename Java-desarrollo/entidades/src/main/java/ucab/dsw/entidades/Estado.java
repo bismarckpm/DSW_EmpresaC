@@ -1,5 +1,7 @@
 package ucab.dsw.entidades;
 
+import ucab.dsw.dtos.DtoBase;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +14,8 @@ import java.util.List;
 
 @Entity
 @Table( name = "estado" )
-public class Estado {
+public class Estado extends EntidadBase
+{
 
     @Column( name = "nombre" )
     private String _nombre;
@@ -54,5 +57,13 @@ public class Estado {
         this._pais = _pais;
     }
 
+    public Estado( long id )
+    {
+        super( id );
+    }
 
+    public Estado()
+    {
+
+    }
 }

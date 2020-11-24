@@ -30,14 +30,12 @@ public class Usuario extends EntidadBase
     @Column( name = "estado" )
     private String _estado;
 
-    @Override
-    public String get_estados()
+    public String get_estado()
     {
         return _estado;
     }
 
-    @Override
-    public void set_estados( String _estado )
+    public void set_estado( String _estado )
     {
         this._estado = _estado;
     }

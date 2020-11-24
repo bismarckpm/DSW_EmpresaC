@@ -30,18 +30,6 @@ public class EntidadBase implements Serializable
         return _id;
     }
 
-    @Column( name = "estado" )
-    private String _estados;
-
-    public String get_estados()
-    {
-        return _estados;
-    }
-
-    public void set_estados( String _estados )
-    {
-        this._estados = _estados;
-    }
 
 
 }
