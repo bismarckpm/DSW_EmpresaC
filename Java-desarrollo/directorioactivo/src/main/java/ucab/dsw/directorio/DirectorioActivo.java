@@ -1,3 +1,5 @@
+package ucab.dsw.directorio;
+
 import ucab.dsw.dtos.UsuarioDto;
 
 import javax.naming.Context;
@@ -199,24 +201,56 @@ public class DirectorioActivo
         }
     }
 
-    public void userAuthentication(UsuarioDto user)
+    public long userAuthentication(UsuarioDto user)
     {
         try
         {
-            connectLDAP( user.getCorreoelectronico(), user.getContrasena() );
-            SimpleDateFormat format = new SimpleDateFormat( "yyyyMMddHHmm" );
-            ModificationItem[] modificationItems = new ModificationItem[ 1 ];
-            modificationItems[ 0 ] = new ModificationItem( DirContext.REPLACE_ATTRIBUTE, new BasicAttribute(
-                    "pwdLastSuccess", format.format( new Date() ) + "Z" ) );
-            _ldapContext.modifyAttributes(String.format(_userDirectory + "," + _directory, user.getCorreoelectronico()), modificationItems );
+            connectLDAP( _user, _password );
+            if(this.validateUser(user)){
+                SimpleDateFormat format = new SimpleDateFormat( "yyyyMMddHHmm" );
+                ModificationItem[] modificationItems = new ModificationItem[ 1 ];
+                modificationItems[ 0 ] = new ModificationItem( DirContext.REPLACE_ATTRIBUTE, new BasicAttribute(
+                        "pwdLastSuccess", format.format( new Date() ) + "Z" ) );
+                _ldapContext.modifyAttributes(String.format(_userDirectory + "," + _directory, user.getCorreoelectronico()), modificationItems );
+                System.out.println("Credenciales correctas");
+                return 1;
+            }
+            else{
+                System.out.println("Credenciales incorrectas");
+                return 0;
+            }
         }
         catch(Exception exception)
         {
             exception.printStackTrace();
+            return 0;
         }
         finally
         {
             disconnectLDAP();
+        }
+    }
+
+    public Boolean validateUser(UsuarioDto user){
+        try
+        {
+            Hashtable<String, String> environment = new Hashtable<String, String>();
+            environment.put( Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory" );
+            environment.put( Context.PROVIDER_URL, _url );
+            environment.put( Context.SECURITY_AUTHENTICATION, _connType );
+            environment.put( Context.SECURITY_PRINCIPAL, String.format( "cn=%s,ou=users,o=pruebaucab", user.getCorreoelectronico() ) );
+            environment.put( Context.SECURITY_CREDENTIALS, user.getContrasena());
+            DirContext userContext = new InitialDirContext( environment );
+
+            if(userContext!=null){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        catch ( Exception e )
+        {
+            return false;
         }
     }
 }
