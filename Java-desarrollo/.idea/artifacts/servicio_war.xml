@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="servicio:war">
+    <output-path>$PROJECT_DIR$/servicio/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>servicio</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="pruebaORM-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="servicio:war exploded" />
+    </root>
+  </artifact>
+</component>
