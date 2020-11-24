@@ -123,6 +123,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -140,10 +146,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All in servicio" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="pruebaORMWS_Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="MAIN_CLASS_NAME" value="pruebaORMWS_Test" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -262,6 +269,7 @@
     </state>
     <state x="436" y="255" key="#Assign_Data_Sources/0.0.1024.728@0.0.1024.728" timestamp="1606186099123" />
     <state x="582" y="255" key="#Assign_Data_Sources/0.0.1366.728@0.0.1366.728" timestamp="1605755498498" />
+    <state x="654" y="289" key="#Assign_Data_Sources/0.0.1536.824@0.0.1536.824" timestamp="1606106263749" />
     <state x="550" y="45" key="#Template" timestamp="1605756469644">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -334,5 +342,13 @@
     </state>
     <state x="0" y="0" key="SettingsEditor/0.0.1024.728@0.0.1024.728" timestamp="1606234490644" />
     <state x="124" y="69" key="SettingsEditor/0.0.1280.980@0.0.1280.980" timestamp="1606021555871" />
+    <state x="668" y="289" key="com.intellij.database.actions.DdlActions$CreateObject$1" timestamp="1606069075245">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="668" y="289" key="com.intellij.database.actions.DdlActions$CreateObject$1/0.0.1536.824@0.0.1536.824" timestamp="1606069075245" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1606103331733">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1606103331733" />
   </component>
 </project>

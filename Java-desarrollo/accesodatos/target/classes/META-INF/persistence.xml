@@ -3,14 +3,28 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
     <persistence-unit name="ormprueba">
-        <class>ucab.dsw.entidades.TipoUsuario</class>
         <class>ucab.dsw.entidades.Usuario</class>
+        <class>ucab.dsw.entidades.Cliente</class>
+        <class>ucab.dsw.entidades.Pais</class>
+        <class>ucab.dsw.entidades.Estado</class>
+        <class>ucab.dsw.entidades.Ciudad</class>
+        <class>ucab.dsw.entidades.Parroquia</class>
+        <class>ucab.dsw.entidades.Nivel_Academico</class>
+        <class>ucab.dsw.entidades.Encuestado</class>
+        <class>ucab.dsw.entidades.Telefono</class>
+        <class>ucab.dsw.entidades.Hijo</class>
+        <class>ucab.dsw.entidades.Ocupacion</class>
+        <class>ucab.dsw.entidades.Ocupacion_Encuestado</class>
+        <class>ucab.dsw.entidades.Metodo_conexion</class>
+        <class>ucab.dsw.entidades.Metodo_Conexion_Encuestado</class>
+        <class>ucab.dsw.entidades.Caracteristica_Demografica</class>
+
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mydb?serverTimezone=UTC"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
-            <property name="javax.persistence.jdbc.password" value="101010bry"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/desarrollo_bd?serverTimezone=UTC"/>
+            <property name="javax.persistence.jdbc.password" value="2519384"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="eclipselink.logging.level" value="FINE"/>
         </properties>

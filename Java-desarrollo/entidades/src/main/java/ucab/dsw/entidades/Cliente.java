@@ -10,10 +10,68 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 
+
 @Entity
-@Table( name = "Cliente" )
-public class Cliente extends EntidadBase{
+@Table( name = "cliente" )
+public class Cliente extends EntidadBase
+{
+    @Column( name = "rif" )
+    private String _rif;
 
+    public String get_rif()
+    {
+        return _rif;
+    }
 
+    public void set_rif( String _rif )
+    {
+        this._rif = _rif;
+    }
 
+    @Column( name = "razon_social" )
+    private String _razon_social;
+
+    public String get_razon_social()
+    {
+        return _razon_social;
+    }
+
+    public void set_razon_social( String _razon_social ) { this._razon_social = _razon_social; }
+
+    @Column( name = "nombre_empresa" )
+    private String _nombre_empresa;
+
+    public String get_nombre_empresa()
+    {
+        return _nombre_empresa;
+    }
+
+    public void set_nombre_empresa( String _nombre_empresa )
+    {
+        this._nombre_empresa = _nombre_empresa;
+    }
+
+    @ManyToOne
+    @JoinColumn( name = "idUsuario" )
+    private Usuario _usuario_cliente;
+
+    public Usuario get_usuario_cliente()
+    {
+        return _usuario_cliente;
+    }
+
+    public void set_usuario_cliente( Usuario _usuario_cliente )
+    {
+        this._usuario_cliente = _usuario_cliente;
+    }
+
+    public Cliente( long id )
+    {
+        super( id );
+    }
+
+    public Cliente()
+    {
+
+    }
 }
