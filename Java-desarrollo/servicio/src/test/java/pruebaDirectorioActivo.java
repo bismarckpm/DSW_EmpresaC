@@ -52,7 +52,7 @@ public class pruebaDirectorioActivo
         user.setContrasena( "12345" );
         DirectorioActivo ldap = new DirectorioActivo();
         long resultado=ldap.userAuthentication( user );
-        Assert.assertNotEquals(resultado, 0  );
+        Assert.assertNotEquals(resultado,   0);
     }
 
     @Test
