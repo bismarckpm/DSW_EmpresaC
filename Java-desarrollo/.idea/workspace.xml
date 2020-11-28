@@ -28,28 +28,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c9c357f-2b07-42bd-afe8-0f758d0713a9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_9_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_9_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_9_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_0_9_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_annotation_javax_annotation_api_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_ws_rs_javax_ws_rs_api_2_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_external_aopalliance_repackaged_2_4_0_b34.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_external_javax_inject_2_4_0_b34.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_hk2_api_2_4_0_b34.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_hk2_locator_2_4_0_b34.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_hk2_utils_2_4_0_b34.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_osgi_resource_locator_1_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_bundles_repackaged_jersey_guava_2_22_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_common_2_22_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_18_1_GA.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/servicio_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/servicio_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/pruebaDirectorioActivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/pruebaDirectorioActivo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/Login.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/test-classes/pruebaDirectorioActivo.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/test-classes/pruebaDirectorioActivo.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -250,6 +230,8 @@
       <workItem from="1606193817081" duration="3260000" />
       <workItem from="1606225752106" duration="4423000" />
       <workItem from="1606419204243" duration="12038000" />
+      <workItem from="1606594566830" duration="1420000" />
+      <workItem from="1606600133231" duration="288000" />
     </task>
     <servers />
   </component>
@@ -324,25 +306,25 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="507" y="266" key="Github.CreateGistDialog/0.0.1366.728@0.0.1366.728" timestamp="1605854281039" />
-    <state width="1238" height="258" key="GridCell.Tab.0.bottom" timestamp="1606434249591">
+    <state width="1238" height="258" key="GridCell.Tab.0.bottom" timestamp="1606600492328">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="258" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1606434249591" />
+    <state width="1238" height="258" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1606600492328" />
     <state width="1323" height="265" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="1238" height="258" key="GridCell.Tab.0.center" timestamp="1606434249591">
+    <state width="1238" height="258" key="GridCell.Tab.0.center" timestamp="1606600492328">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="258" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1606434249591" />
+    <state width="1238" height="258" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1606600492328" />
     <state width="1323" height="265" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="1238" height="258" key="GridCell.Tab.0.left" timestamp="1606434249591">
+    <state width="1238" height="258" key="GridCell.Tab.0.left" timestamp="1606600492328">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="258" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1606434249591" />
+    <state width="1238" height="258" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1606600492328" />
     <state width="1323" height="265" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="1238" height="258" key="GridCell.Tab.0.right" timestamp="1606434249591">
+    <state width="1238" height="258" key="GridCell.Tab.0.right" timestamp="1606600492328">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="258" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1606434249591" />
+    <state width="1238" height="258" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1606600492328" />
     <state width="1323" height="265" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
     <state width="1230" height="317" key="GridCell.Tab.1.bottom" timestamp="1606191844640">
       <screen x="0" y="0" width="1280" height="980" />
