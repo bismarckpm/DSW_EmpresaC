@@ -2,6 +2,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import ucab.dsw.directorio.DirectorioActivo;
 import ucab.dsw.dtos.UsuarioDto;
+import ucab.dsw.servicio.Login;
 
 public class pruebaDirectorioActivo
 {
@@ -52,5 +53,16 @@ public class pruebaDirectorioActivo
         DirectorioActivo ldap = new DirectorioActivo();
         long resultado=ldap.userAuthentication( user );
         Assert.assertNotEquals(resultado, 0  );
+    }
+
+    @Test
+
+    public void login()
+    {
+        UsuarioDto user = new UsuarioDto();
+        user.setCorreoelectronico( "daniel@gmail.com" );
+        user.setContrasena( "12345" );
+        Login login = new Login();
+        login.loginLdap(user);
     }
 }
