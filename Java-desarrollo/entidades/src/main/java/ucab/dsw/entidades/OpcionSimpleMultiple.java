@@ -16,7 +16,7 @@ public class OpcionSimpleMultiple extends EntidadBase{
     @Column( name = "opcion" )
     private String _opcion;
 
-    @ManyToOne
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
     @JoinColumn( name = "Pregunta_id" )
     private Pregunta _pregunta;
 

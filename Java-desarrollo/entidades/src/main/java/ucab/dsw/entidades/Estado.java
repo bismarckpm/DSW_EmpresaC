@@ -43,7 +43,7 @@ public class Estado extends EntidadBase
         this._ciudad = _ciudad;
     }
 
-    @ManyToOne
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
     @JoinColumn( name = "Pais_id" )
     private Pais _pais;
 

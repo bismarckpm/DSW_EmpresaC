@@ -16,7 +16,7 @@ public class Encuesta extends EntidadBase{
     @Column( name = "nombre" )
     private String _nombre;
 
-    @ManyToOne
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
     @JoinColumn( name = "Marca_id" )
     private Marca _marca;
 

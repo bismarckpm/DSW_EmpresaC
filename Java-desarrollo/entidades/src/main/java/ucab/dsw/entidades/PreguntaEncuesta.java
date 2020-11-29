@@ -16,11 +16,11 @@ public class PreguntaEncuesta extends EntidadBase{
     @Column( name = "nombre" )
     private String _nombre;
 
-    @ManyToOne
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
     @JoinColumn( name = "Pregunta_id" )
     private Pregunta _pregunta;
 
-    @ManyToOne
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
     @JoinColumn( name = "Encuesta_id" )
     private Encuesta _encuesta;
 

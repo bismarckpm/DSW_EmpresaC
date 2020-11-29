@@ -35,7 +35,7 @@ public class Telefono extends EntidadBase {
 
         public void set_codigo_area( String _codigo_area ) { this._codigo_area = _codigo_area; }
 
-    @ManyToOne
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
     @JoinColumn( name = "Encuestado_id" )
     private Encuestado _encuestado_telefono;
 

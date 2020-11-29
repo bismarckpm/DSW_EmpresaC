@@ -22,7 +22,7 @@ public class Ocupacion_Encuestado extends EntidadBase{
 
     public void set_nombre( String _nombre ) { this._nombre = _nombre; }
 
-    @ManyToOne
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
     @JoinColumn( name = "Ocupacion_id" )
     private Ocupacion _ocupacion;
 
@@ -30,7 +30,7 @@ public class Ocupacion_Encuestado extends EntidadBase{
 
     public void set_ocupacion( Ocupacion _ocupacion ) { this._ocupacion = _ocupacion; }
 
-    @ManyToOne
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
     @JoinColumn( name = "Encuestado_id" )
     private Encuestado _encuestado_ocupacion;
 

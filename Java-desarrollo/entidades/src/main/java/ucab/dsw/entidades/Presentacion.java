@@ -17,7 +17,7 @@ public class Presentacion extends EntidadBase{
     @Column( name = "nombre" )
     private String _nombre;
 
-    @ManyToOne
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
     @JoinColumn( name = "Tipo_id" )
     private Tipo _tipo;
 
