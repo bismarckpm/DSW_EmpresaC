@@ -14,74 +14,75 @@ import java.util.List;
 @Table( name = "usuario" )
 public class Usuario extends EntidadBase
 {
-    @Column( name = "nombre" )
-    private String _nombre;
+    @Column( name = "usuario" )
+    private String _usuario;
 
-    public String get_nombre()
+    public String get_usuario()
     {
-        return _nombre;
+        return _usuario;
     }
 
-    public void set_nombre( String _nombre )
+    public void set_usuario( String _usuario )
     {
-        this._nombre = _nombre;
+        this._usuario = _usuario;
     }
 
-    public String get_apellido()
+    @Column( name = "estado" )
+    private String _estado;
+
+    public String get_estado()
     {
-        return _apellido;
+        return _estado;
     }
 
-    public void set_apellido( String _apellido )
+    public void set_estado( String _estado )
     {
-        this._apellido = _apellido;
+        this._estado = _estado;
     }
 
-    public String get_correoelectronico()
+
+    @Column( name = "rol" )
+    private String _rol;
+
+    public String get_rol()
     {
-        return _correoelectronico;
+        return _rol;
     }
 
-    public void set_correoelectronico( String _correoelectronico )
+    public void set_rol( String _rol )
     {
-        this._correoelectronico = _correoelectronico;
+        this._rol = _rol;
     }
 
-    public TipoUsuario get_tipousuario()
+
+    @OneToMany( mappedBy = "_usuario_cliente", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    private List<Cliente> _cliente;
+
+    public List<Cliente> get_cliente()
     {
-        return _tipousuario;
+        return _cliente;
     }
 
-    public void set_tipousuario( TipoUsuario _tipousuario )
+    public void set_cliente( List<Cliente> _cliente )
     {
-        this._tipousuario = _tipousuario;
+        this._cliente = _cliente;
     }
 
-    @Column( name = "apellido" )
-    private String _apellido;
+    @OneToMany( mappedBy = "_usuario_encuestado", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    private List<Encuestado> _encuestado;
 
-    @Column( name = "correoelectronico" )
-    private String _correoelectronico;
-
-    @Override
-    public String get_estatus()
+    public List<Encuestado> get_encuestado()
     {
-        return _estatus;
+        return _encuestado;
     }
 
-    @Override
-    public void set_estatus( String _estatus )
+    public void set_encuestado( List<Encuestado> _encuestado )
     {
-        this._estatus = _estatus;
+        this._encuestado = _encuestado;
     }
 
-    @Column( name = "estatus" )
-    private String _estatus;
-
-    @ManyToOne
-    @JoinColumn( name = "idTipoUsuario" )
-    private TipoUsuario _tipousuario;
-
+    @OneToMany( mappedBy = "_usuario", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    private List<SolicitudEstudio> _solicitudestudio;
 
     public Usuario( long id )
     {

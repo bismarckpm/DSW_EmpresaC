@@ -2,73 +2,37 @@ package ucab.dsw.dtos;
 
 public class UsuarioDto extends DtoBase
 {
-    private String nombre;
+    private String usuario;
 
-    public String getNombre()
+    public String getUsuario() { return usuario; }
+
+    public void setUsuario( String usuario )
     {
-        return nombre;
+        this.usuario = usuario;
     }
 
-    public void setNombre( String nombre )
+    private String estado;
+
+    public String getEstado()
     {
-        this.nombre = nombre;
+        return estado;
     }
 
-    public String getApellido()
+    public void setEstado( String estado )
     {
-        return apellido;
+        this.estado = estado;
     }
 
-    public void setApellido( String apellido )
+    private String rol;
+
+    public String getRol()
     {
-        this.apellido = apellido;
+        return rol;
     }
 
-    public String getCorreoelectronico()
+    public void setRol( String rol )
     {
-        return correoelectronico;
+        this.rol = rol;
     }
 
-    public void setCorreoelectronico( String correoelectronico )
-    {
-        this.correoelectronico = correoelectronico;
-    }
-
-    public TipoUsuarioDto getTipoUsuarioDto()
-    {
-        return tipoUsuarioDto;
-    }
-
-    public void setTipoUsuarioDto( TipoUsuarioDto tipoUsuarioDto )
-    {
-        this.tipoUsuarioDto = tipoUsuarioDto;
-    }
-
-    private String apellido;
-    private String correoelectronico;
-    private TipoUsuarioDto tipoUsuarioDto;
-
-    public String getContrasena()
-    {
-        return contrasena;
-    }
-
-    public void setContrasena( String contrasena )
-    {
-        this.contrasena = contrasena;
-    }
-
-    private String contrasena;
-
-    public String getEstatus()
-    {
-        return estatus;
-    }
-
-    public void setEstatus( String estatus )
-    {
-        this.estatus = estatus;
-    }
-
-    private String estatus;
 }
