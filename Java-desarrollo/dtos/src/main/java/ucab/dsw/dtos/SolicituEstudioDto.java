@@ -85,6 +85,18 @@ public class SolicituEstudioDto {
         this.usuarioDto = usuarioDto;
     }
 
+    private UsuarioDto usuarioDto2;
+
+    public UsuarioDto getUsuarioDto2()
+    {
+        return usuarioDto2;
+    }
+
+    public void setUsuarioDto2( UsuarioDto usuarioDto2 )
+    {
+        this.usuarioDto2 = usuarioDto2;
+    }
+
     private ClienteDto clienteDto;
 
     public ClienteDto getClienteDto()
