@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { NgProgressModule } from 'ngx-progressbar';
+import { NgProgressHttpModule } from 'ngx-progressbar/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +20,11 @@ import { ComunModule } from './comun/comun.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ComunModule
+    ComunModule,
+    HttpClientModule,
+    NgProgressModule,
+    NgProgressHttpModule
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
