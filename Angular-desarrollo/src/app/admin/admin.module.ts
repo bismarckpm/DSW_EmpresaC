@@ -10,7 +10,6 @@ import { ComunModule } from '../comun/comun.module';
 
 
 
-
 @NgModule({
   declarations: [
     AdminComponent,
