@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'admin-aside',
+  selector: 'comun-aside',
   templateUrl: './aside.component.html',
   styleUrls: ['./aside.component.css']
 })
