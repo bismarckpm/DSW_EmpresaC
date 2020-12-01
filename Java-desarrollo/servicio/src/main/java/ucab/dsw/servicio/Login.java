@@ -1,7 +1,7 @@
 package ucab.dsw.servicio;
 
 import ucab.dsw.directorio.DirectorioActivo;
-import ucab.dsw.dtos.UsuarioDto;
+import ucab.dsw.dtos.UsuarioLdapDto;
 import ucab.dsw.jwt.Jwt;
 
 import javax.json.Json;
@@ -17,7 +17,7 @@ import javax.ws.rs.core.Response;
 public class Login extends AplicacionBase{
     @POST
     @Path( "/ldap" )
-    public Response loginLdap(UsuarioDto usuarioDto)
+    public Response loginLdap(UsuarioLdapDto usuarioLdapDto)
     {
         String token="";
 
@@ -25,12 +25,12 @@ public class Login extends AplicacionBase{
         try
         {
             DirectorioActivo ldap = new DirectorioActivo();
-            long resultado=ldap.userAuthentication( usuarioDto );
+            long resultado=ldap.userAuthentication( usuarioLdapDto );
 
             if(resultado==1){
 
                 Jwt jwt=new Jwt();
-                token= jwt.generarToken(usuarioDto);
+                token= jwt.generarToken(usuarioLdapDto);
                 JsonObject data= Json.createObjectBuilder()
                                      .add("token-jwt",token).build();
 

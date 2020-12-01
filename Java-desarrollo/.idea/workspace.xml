@@ -134,6 +134,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
+  <component name="RunManager" selected="JUnit.pruebaDirectorioActivo.login">
   <component name="RunManager" selected="JUnit.pruebaORMWS_Test.addUserTest">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
@@ -223,6 +224,13 @@
       <workItem from="1605819932984" duration="7643000" />
       <workItem from="1606018378285" duration="706000" />
       <workItem from="1606021013022" duration="1408000" />
+      <workItem from="1606184056479" duration="5561000" />
+      <workItem from="1606192303216" duration="424000" />
+      <workItem from="1606193817081" duration="3260000" />
+      <workItem from="1606225752106" duration="4423000" />
+      <workItem from="1606419204243" duration="12038000" />
+      <workItem from="1606594566830" duration="1420000" />
+      <workItem from="1606600133231" duration="600000" />
       <workItem from="1606182628402" duration="1019000" />
       <workItem from="1606183681760" duration="71000" />
       <workItem from="1606183767279" duration="183000" />
@@ -312,6 +320,25 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="507" y="266" key="Github.CreateGistDialog/0.0.1366.728@0.0.1366.728" timestamp="1605854281039" />
+    <state width="1238" height="258" key="GridCell.Tab.0.bottom" timestamp="1606600828533">
+      <screen x="0" y="0" width="1280" height="980" />
+    </state>
+    <state width="1238" height="258" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1606600828533" />
+    <state width="1323" height="265" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
+    <state width="1238" height="258" key="GridCell.Tab.0.center" timestamp="1606600828533">
+      <screen x="0" y="0" width="1280" height="980" />
+    </state>
+    <state width="1238" height="258" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1606600828533" />
+    <state width="1323" height="265" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
+    <state width="1238" height="258" key="GridCell.Tab.0.left" timestamp="1606600828533">
+      <screen x="0" y="0" width="1280" height="980" />
+    </state>
+    <state width="1238" height="258" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1606600828533" />
+    <state width="1323" height="265" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
+    <state width="1238" height="258" key="GridCell.Tab.0.right" timestamp="1606600828533">
+      <screen x="0" y="0" width="1280" height="980" />
+    </state>
+    <state width="1238" height="258" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1606600828533" />
     <state width="980" height="193" key="GridCell.Tab.0.bottom" timestamp="1606246012370">
       <screen x="0" y="0" width="1024" height="728" />
     </state>

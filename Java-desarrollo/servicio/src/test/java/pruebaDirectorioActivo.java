@@ -1,7 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
 import ucab.dsw.directorio.DirectorioActivo;
-import ucab.dsw.dtos.UsuarioDto;
+import ucab.dsw.dtos.UsuarioLdapDto;
 import ucab.dsw.servicio.Login;
 
 public class pruebaDirectorioActivo
@@ -59,7 +59,7 @@ public class pruebaDirectorioActivo
 
     public void login()
     {
-        UsuarioDto user = new UsuarioDto();
+        UsuarioLdapDto user = new UsuarioLdapDto();
         user.setCorreoelectronico( "daniel@gmail.com" );
         user.setContrasena( "12345" );
         Login login = new Login();
