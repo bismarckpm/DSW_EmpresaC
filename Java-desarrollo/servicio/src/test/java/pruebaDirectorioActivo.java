@@ -67,4 +67,15 @@ public class pruebaDirectorioActivo
         Login login = new Login();
         login.loginLdap(user);
     }
+
+    @Test
+
+    public void getEntryRole()
+    {
+        UsuarioLdapDto user = new UsuarioLdapDto();
+        user.setCorreoelectronico( "bryan@gmail.com" );
+        DirectorioActivo ldap = new DirectorioActivo();
+        ldap.getEntryRole(user);
+
+    }
 }

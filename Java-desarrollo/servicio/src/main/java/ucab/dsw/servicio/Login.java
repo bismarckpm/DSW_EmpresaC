@@ -20,7 +20,7 @@ public class Login extends AplicacionBase{
     public Response loginLdap(UsuarioLdapDto usuarioLdapDto)
     {
         String token="";
-
+        JsonObject data;
 
         try
         {
@@ -31,18 +31,22 @@ public class Login extends AplicacionBase{
 
                 Jwt jwt=new Jwt();
                 token= jwt.generarToken(usuarioLdapDto);
-                JsonObject data= Json.createObjectBuilder()
-                                     .add("token-jwt",token).build();
+                data= Json.createObjectBuilder()
+                                     .add("estado","success")
+                                     .add("codigo",200)
+                                     .add("token-jwt",token)
+                                     .add("rol", ldap.getEntryRole(usuarioLdapDto)).build();
 
-                System.out.println(token);
-                System.out.println(Response.status(Response.Status.OK).entity(data).build());
+                System.out.println(data);
                 return Response.status(Response.Status.OK).entity(data).build();
 
 
             }else{
-                System.out.println("Credenciales Incorrectas");
-                System.out.println(Response.status(Response.Status.UNAUTHORIZED).build());
-                return Response.status(Response.Status.UNAUTHORIZED).build();
+                data= Json.createObjectBuilder()
+                        .add("estado","error")
+                        .add("codigo",401).build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
             }
 
         }
