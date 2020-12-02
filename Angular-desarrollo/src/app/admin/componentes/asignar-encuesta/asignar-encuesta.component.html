@@ -1,0 +1,10 @@
+
+<div *ngIf="estudio">
+<p>{{estudio.id}}</p>
+<p>{{estudio.categoria}}</p>
+
+</div>
+
+<div [hidden]="estudio">
+    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+</div>

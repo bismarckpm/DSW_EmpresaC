@@ -1,6 +1,6 @@
 .contenedor{
     width: 100%;
-  
+    background-color: aqua;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -8,5 +8,5 @@
 
 .item{
     width: 45%;
-  
+    background-color: brown;
 }
