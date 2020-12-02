@@ -3,8 +3,17 @@ package ucab.dsw.dtos;
 
 import java.sql.Date;
 
-public class SolicituEstudioDto {
+public class SolicituEstudioDto extends DtoBase{
 
+
+    public SolicituEstudioDto()
+    {
+    }
+
+    public SolicituEstudioDto ( long id ) throws Exception
+    {
+        super( id );
+    }
 
     private Date fecha_inicio;
 
@@ -71,6 +80,18 @@ public class SolicituEstudioDto {
     public void setEncuestaDto( EncuestaDto encuestaDto )
     {
         this.encuestaDto = encuestaDto;
+    }
+
+    private MarcaDto marcaDto;
+
+    public MarcaDto getMarcaDto()
+    {
+        return marcaDto;
+    }
+
+    public void setMarcaDto( MarcaDto marcaDto)
+    {
+        this.marcaDto = marcaDto;
     }
 
     private UsuarioDto usuarioDto;

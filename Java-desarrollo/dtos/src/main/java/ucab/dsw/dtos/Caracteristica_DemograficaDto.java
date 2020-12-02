@@ -1,7 +1,16 @@
 package ucab.dsw.dtos;
 
 
-public class Caracteristica_DemograficaDto {
+public class Caracteristica_DemograficaDto extends DtoBase{
+
+    public Caracteristica_DemograficaDto()
+    {
+    }
+
+    public Caracteristica_DemograficaDto ( long id ) throws Exception
+    {
+        super( id );
+    }
 
     private int edad_min;
 

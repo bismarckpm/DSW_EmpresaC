@@ -32,6 +32,16 @@ public class Pregunta extends EntidadBase{
     @OneToMany( mappedBy = "_pregunta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<PreguntaEncuesta> _preguntaencuesta;
 
+    public List<PreguntaEncuesta> get_preguntaencuesta()
+    {
+        return _preguntaencuesta;
+    }
+
+    public void set_preguntaencuesta( List<PreguntaEncuesta> _preguntaencuesta )
+    {
+        this._preguntaencuesta = _preguntaencuesta;
+    }
+
     public int get_valormax() {
         return _valormax;
     }

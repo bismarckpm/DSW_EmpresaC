@@ -57,6 +57,7 @@ public class SolicitudEstudio extends EntidadBase{
     public void set_caracteristicademografica(Caracteristica_Demografica _caracteristicademografica) {
         this._caracteristicademografica = _caracteristicademografica;
     }
+
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
     @JoinColumn( name = "Usuario_admin_id" )
 
@@ -66,8 +67,17 @@ public class SolicitudEstudio extends EntidadBase{
         this._usuario2 = _usuario2;
     }
 
-    public Usuario get_usuario2() {
-        return _usuario2;
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @JoinColumn( name = "marca_id" )
+
+    private Marca _marca_solicitud;
+
+    public void set_marca(Marca _marca_solicitud) {
+        this._marca_solicitud = _marca_solicitud;
+    }
+
+    public Marca get_marca() {
+        return _marca_solicitud;
     }
 
     public Usuario get_usuario() {
