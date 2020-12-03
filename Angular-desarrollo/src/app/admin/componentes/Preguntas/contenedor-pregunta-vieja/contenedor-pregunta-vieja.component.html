@@ -1,0 +1,32 @@
+<mat-card >
+    <mat-card-header aling-center>
+      <mat-card-title >{{pregunta.Descripcion}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+  
+      <div class="form-group" *ngIf="pregunta.Tipo=='Texto'">
+        <label for="exampleInputEncuesta1">Pregunta de tipo texto</label>
+        
+      </div>
+
+      <div class="form-group" *ngIf="pregunta.Tipo=='Rango'">
+        <label for="exampleInputEncuesta1">Pregunta de tipo Rango</label>
+      </div>
+
+      <div class="form-group" *ngIf="pregunta.Tipo=='Boolean'">
+        <label for="exampleInputEncuesta1">Pregunta de tipo Boolean</label>
+      </div>
+
+      <div class="form-group" *ngIf="pregunta.Tipo=='Multiple'">
+        <label for="exampleInputEncuesta1">Pregunta de tipo Multiple</label>
+      </div>
+
+
+
+        <mat-card-actions>
+          <button mat-raised-button color="#ffc107" type="submit" (click)="Eliminar()">Eliminar de encuesta</button>
+        </mat-card-actions>
+      
+    </mat-card-content>
+
+</mat-card>
