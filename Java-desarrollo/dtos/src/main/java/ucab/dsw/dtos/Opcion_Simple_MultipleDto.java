@@ -1,6 +1,6 @@
 package ucab.dsw.dtos;
 
-public class Opcion_Simple_MultipleDto {
+public class Opcion_Simple_MultipleDto extends DtoBase{
 
     private String opcion;
 

@@ -1,33 +1,31 @@
-<div  class="row"> 
-  
-    <div class="col-6">
-     <img src="/assets/MUcab.png" class="example-img">
-    </div>
-   
-    <div class="col-6 justify-content-center">
-      
-      <mat-card class="example-card ">
-        <mat-card-header aling-center>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title >Mercadeo Ucab</mat-card-title>
-          <mat-card-subtitle></mat-card-subtitle>
-        </mat-card-header>
-         <mat-card-content>
-          <form>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Username/Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
-            </div>
-         </form>
-        </mat-card-content>
-       
-        <mat-card-actions>
-          <button mat-raised-button color="#ffc107" type="submit">Ingresar</button>
-         </mat-card-actions>
-      </mat-card>
-    </div>
+
+<div class="padre"> 
+  <div class="hijo">   
+    <img src="/assets/MUcab.png" >
+
+    <mat-card class="example-card ">
+      <mat-card-header aling-center>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title >Bienvenido</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Username/Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+          </div>
+        </form>
+      </mat-card-content>
+      <a routerLink="/recuperarcion" class="float-right">¿Olvidaste tu contraseña?</a>
+      <br>
+      <mat-card-actions>
+        <button class="float-right" mat-raised-button color="#ffc107" type="submit">Ingresar</button>
+        <button mat-raised-button color="#ffc107" type="submit">Registrarse</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

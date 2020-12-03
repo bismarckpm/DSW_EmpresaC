@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './comun/componentes/login/login.component';
+import {RecuperacionComponent } from './comun/componentes/recuperacion/recuperacion.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
   {path:'login', component: LoginComponent},
+  {path:'recuperacion', component: RecuperacionComponent},
   {
     path:'admin',
     loadChildren: () => import

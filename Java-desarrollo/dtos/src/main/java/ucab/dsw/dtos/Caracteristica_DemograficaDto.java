@@ -1,7 +1,7 @@
 package ucab.dsw.dtos;
 
 
-public class Caracteristica_DemograficaDto {
+public class Caracteristica_DemograficaDto extends DtoBase{
 
     private int edad_min;
 

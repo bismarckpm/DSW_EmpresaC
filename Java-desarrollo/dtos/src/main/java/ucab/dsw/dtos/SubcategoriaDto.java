@@ -1,6 +1,6 @@
 package ucab.dsw.dtos;
 
-public class SubcategoriaDto {
+public class SubcategoriaDto extends DtoBase{
 
     private String nombre;
 

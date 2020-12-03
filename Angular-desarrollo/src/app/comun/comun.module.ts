@@ -7,11 +7,12 @@ import { MaterialModule } from '../material.module';
 import { AsideComponent } from './componentes/aside/aside.component';
 
 import { RouterModule } from '@angular/router';
+import { RecuperacionComponent } from './componentes/recuperacion/recuperacion.component';
 
 
 
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent, LoginComponent, AsideComponent],
+  declarations: [NavbarComponent, FooterComponent, LoginComponent, AsideComponent, RecuperacionComponent],
   imports: [
     
     MaterialModule,

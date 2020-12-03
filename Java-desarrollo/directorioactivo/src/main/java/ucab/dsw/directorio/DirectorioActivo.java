@@ -1,6 +1,6 @@
 package ucab.dsw.directorio;
 
-import ucab.dsw.dtos.UsuarioDto;
+import ucab.dsw.dtos.UsuarioLdapDto;
 
 import javax.naming.Context;
 import javax.naming.NamingEnumeration;
@@ -68,7 +68,7 @@ public class DirectorioActivo
     /*
       Method that adds users to ldap
      */
-    public void addEntryToLdap(UsuarioDto user)
+    public void addEntryToLdap(UsuarioLdapDto user)
     {
 
         try
@@ -80,7 +80,12 @@ public class DirectorioActivo
             SimpleDateFormat format = new SimpleDateFormat( "yyyyMMddHHmm" );
             BasicAttributes entry = new BasicAttributes();
             entry.put( oc );
+            entry.put( new BasicAttribute( "cn", user.getCorreoelectronico() ) );
+            entry.put( new BasicAttribute( "description", user.getTipo_usuario()) );
+            entry.put( new BasicAttribute( "sn", user.getSn() ));
+            entry.put( new BasicAttribute( "userpassword", user.getContrasena() ) );
             entry.put( new BasicAttribute( "pwdLastSuccess", format.format( new Date() ) + "Z" ) );
+            _ldapContext.createSubcontext( String.format( _userDirectory + "," + _directory, user.getCorreoelectronico()), entry );
 
         }
         catch(Exception exception)
@@ -92,11 +97,12 @@ public class DirectorioActivo
     /*
      Method that remove users to ldap
     */
-    public void deleteEntry(UsuarioDto user)
+    public void deleteEntry(UsuarioLdapDto user)
     {
         try
         {
             connectLDAP( _user, _password );
+            _ldapContext.destroySubcontext( String.format(_userDirectory + "," + _directory, user.getCorreoelectronico()));
         }
         catch ( Exception exception )
         {
@@ -111,15 +117,29 @@ public class DirectorioActivo
     /*
      Method that obtains user data from ldap
     */
-    public void getEntry(UsuarioDto user)
+    public void getEntry(UsuarioLdapDto user)
     {
         try
         {
             connectLDAP( _user, _password );
             SearchControls searcCon = new SearchControls();
             searcCon.setSearchScope( SearchControls.SUBTREE_SCOPE );
-
-
+            NamingEnumeration results =
+                    _ldapContext.search( _directory, String.format(_userDirectory, user.getCorreoelectronico()), searcCon );
+            if ( results != null )
+            {
+                while ( results.hasMore() )
+                {
+                    SearchResult res = ( SearchResult ) results.next();
+                    Attributes atbs = res.getAttributes();
+                    Attribute atb = atbs.get( "cn" );
+                    String name = ( String ) atb.get();
+                }
+            }
+            else
+            {
+                System.out.println( "fail" );
+            }
         }
         catch ( Exception exception )
         {
@@ -134,7 +154,7 @@ public class DirectorioActivo
     /*
     Method that updates the user in the ldap
      */
-    public void updateEntry(UsuarioDto user)
+    public void updateEntry(UsuarioLdapDto user)
     {
         try
         {
@@ -143,6 +163,8 @@ public class DirectorioActivo
             Attribute atb = new BasicAttribute("mail","java2db@mai.com");
             atbs.put(atb);
 
+            _ldapContext.modifyAttributes( String.format(_userDirectory + "," + _directory, user.getCorreoelectronico())
+                    , DirContext.REPLACE_ATTRIBUTE,atbs );
         }
         catch(Exception exception)
         {
@@ -155,13 +177,20 @@ public class DirectorioActivo
     }
 
 
-    public void changePassword(UsuarioDto user)
+    public void changePassword(UsuarioLdapDto user)
     {
         try
         {
             connectLDAP( _user, _password );
             ModificationItem[] modificationItems = new ModificationItem[ 2 ];
-
+            modificationItems[ 0 ] = new ModificationItem( DirContext.REPLACE_ATTRIBUTE,
+                    new BasicAttribute( "userpassword", user.getContrasena()
+                    ) );
+            modificationItems[ 1 ] = new ModificationItem( DirContext.REPLACE_ATTRIBUTE,
+                    new BasicAttribute( "description", "NUEVO"
+                    ) );
+            _ldapContext.modifyAttributes(String.format(_userDirectory + "," + _directory, user.getCorreoelectronico
+                    ()), modificationItems );
         }
         catch(Exception exception)
         {
@@ -173,7 +202,7 @@ public class DirectorioActivo
         }
     }
 
-    public long userAuthentication(UsuarioDto user)
+    public long userAuthentication(UsuarioLdapDto user)
     {
         try
         {
@@ -203,7 +232,7 @@ public class DirectorioActivo
         }
     }
 
-    public Boolean validateUser(UsuarioDto user){
+    public Boolean validateUser(UsuarioLdapDto user){
         try
         {
             Hashtable<String, String> environment = new Hashtable<String, String>();
@@ -224,5 +253,44 @@ public class DirectorioActivo
         {
             return false;
         }
+    }
+
+    public String getEntryRole(UsuarioLdapDto user)
+    {
+        String role="";
+        try
+        {
+            connectLDAP( _user, _password );
+            SearchControls searcCon = new SearchControls();
+            searcCon.setSearchScope( SearchControls.SUBTREE_SCOPE );
+            NamingEnumeration results =
+                    _ldapContext.search( _directory, String.format(_userDirectory, user.getCorreoelectronico()), searcCon );
+
+            if ( results != null )
+            {
+                while ( results.hasMore() )
+                {
+                    SearchResult res = ( SearchResult ) results.next();
+                    Attributes atbs = res.getAttributes();
+                    Attribute atb = atbs.get( "description" );
+                    role = ( String ) atb.get();
+                }
+            }
+            else
+            {
+                System.out.println( "fail" );
+                return null;
+            }
+        }
+        catch ( Exception exception )
+        {
+            exception.printStackTrace();
+        }
+        finally
+        {
+            disconnectLDAP();
+        }
+        System.out.println(role);
+        return role;
     }
 }
