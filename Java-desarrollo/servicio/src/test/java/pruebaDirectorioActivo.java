@@ -1,16 +1,19 @@
 import org.junit.Assert;
 import org.junit.Test;
 import ucab.dsw.directorio.DirectorioActivo;
-import ucab.dsw.dtos.UsuarioDto;
+import ucab.dsw.dtos.UsuarioLdapDto;
+import ucab.dsw.servicio.LoginServicio;
 
 public class pruebaDirectorioActivo
 {
     @Test
     public void createUserLDAP()
     {
-        UsuarioDto user = new UsuarioDto();
-        user.setCorreoelectronico( "daniel@gmail.com" );
+        UsuarioLdapDto user = new UsuarioLdapDto();
+        user.setCorreoelectronico( "bryan@gmail.com" );
         user.setContrasena( "12345" );
+        user.setSn("1");
+        user.setTipo_usuario("analista");
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.addEntryToLdap( user );
     }
@@ -18,8 +21,8 @@ public class pruebaDirectorioActivo
     @Test
     public void deleteUserLDAP()
     {
-        UsuarioDto user = new UsuarioDto();
-        user.setCorreoelectronico( "bismarckpm2@gmail.com" );
+        UsuarioLdapDto user = new UsuarioLdapDto();
+        user.setCorreoelectronico( "pedro@gmail.com" );
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.deleteEntry( user );
     }
@@ -27,7 +30,7 @@ public class pruebaDirectorioActivo
     @Test
     public void getUserLDAP()
     {
-        UsuarioDto user = new UsuarioDto();
+        UsuarioLdapDto user = new UsuarioLdapDto();
         user.setCorreoelectronico( "bismarckpmpruebaLDAP@gmail.com" );
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.getEntry( user );
@@ -36,7 +39,7 @@ public class pruebaDirectorioActivo
     @Test
     public void changePassword()
     {
-        UsuarioDto user = new UsuarioDto();
+        UsuarioLdapDto user = new UsuarioLdapDto();
         user.setCorreoelectronico( "bismarckpmpruebaLDAP@gmail.com" );
         user.setContrasena( "MARIAPEPE" );
         DirectorioActivo ldap = new DirectorioActivo();
@@ -46,11 +49,33 @@ public class pruebaDirectorioActivo
     @Test
     public void userAuthentication()
     {
-        UsuarioDto user = new UsuarioDto();
+        UsuarioLdapDto user = new UsuarioLdapDto();
         user.setCorreoelectronico( "daniel@gmail.com" );
         user.setContrasena( "12345" );
         DirectorioActivo ldap = new DirectorioActivo();
         long resultado=ldap.userAuthentication( user );
-        Assert.assertNotEquals(resultado, 0  );
+        Assert.assertNotEquals(resultado,   0);
+    }
+
+    @Test
+
+    public void login()
+    {
+        UsuarioLdapDto user = new UsuarioLdapDto();
+        user.setCorreoelectronico( "bryan@gmail.com" );
+        user.setContrasena( "12345" );
+        LoginServicio loginServicio = new LoginServicio();
+        loginServicio.loginLdap(user);
+    }
+
+    @Test
+
+    public void getEntryRole()
+    {
+        UsuarioLdapDto user = new UsuarioLdapDto();
+        user.setCorreoelectronico( "bryan@gmail.com" );
+        DirectorioActivo ldap = new DirectorioActivo();
+        ldap.getEntryRole(user);
+
     }
 }
