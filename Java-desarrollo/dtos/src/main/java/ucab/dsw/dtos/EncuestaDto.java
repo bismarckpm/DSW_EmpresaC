@@ -1,6 +1,6 @@
 package ucab.dsw.dtos;
 
-public class EncuestaDto {
+public class EncuestaDto extends DtoBase{
 
     private String nombre;
 

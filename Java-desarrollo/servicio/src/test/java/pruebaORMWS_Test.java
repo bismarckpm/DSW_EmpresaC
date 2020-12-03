@@ -3,6 +3,7 @@ import org.junit.Test;
 import ucab.dsw.dtos.UsuarioDto;
 
 
+
 public class pruebaORMWS_Test
 {
 
@@ -19,6 +20,5 @@ public class pruebaORMWS_Test
         System.out.println("HOLA");
 
     }
-
 
 }

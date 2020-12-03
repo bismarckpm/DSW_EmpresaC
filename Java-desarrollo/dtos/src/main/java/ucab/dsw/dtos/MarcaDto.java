@@ -1,6 +1,6 @@
 package ucab.dsw.dtos;
 
-public class MarcaDto {
+public class MarcaDto extends DtoBase {
 
     private String nombre;
 

@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 @Path( "/login" )
 @Produces( MediaType.APPLICATION_JSON )
 @Consumes( MediaType.APPLICATION_JSON )
-public class Login extends AplicacionBase{
+public class LoginServicio extends AplicacionBase{
     @POST
     @Path( "/ldap" )
     public Response loginLdap(UsuarioLdapDto usuarioLdapDto)

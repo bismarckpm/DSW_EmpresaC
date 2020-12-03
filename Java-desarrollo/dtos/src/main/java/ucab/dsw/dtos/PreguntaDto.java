@@ -6,7 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.List;
 
-public class PreguntaDto {
+public class PreguntaDto extends DtoBase{
 
 
     private String descripcion;

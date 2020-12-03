@@ -2,7 +2,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import ucab.dsw.directorio.DirectorioActivo;
 import ucab.dsw.dtos.UsuarioLdapDto;
-import ucab.dsw.servicio.Login;
+import ucab.dsw.servicio.LoginServicio;
 
 public class pruebaDirectorioActivo
 {
@@ -64,8 +64,8 @@ public class pruebaDirectorioActivo
         UsuarioLdapDto user = new UsuarioLdapDto();
         user.setCorreoelectronico( "bryan@gmail.com" );
         user.setContrasena( "12345" );
-        Login login = new Login();
-        login.loginLdap(user);
+        LoginServicio loginServicio = new LoginServicio();
+        loginServicio.loginLdap(user);
     }
 
     @Test

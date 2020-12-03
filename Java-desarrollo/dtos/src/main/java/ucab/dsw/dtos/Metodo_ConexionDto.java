@@ -1,6 +1,6 @@
 package ucab.dsw.dtos;
 
-public class Metodo_ConexionDto {
+public class Metodo_ConexionDto extends DtoBase{
 
     private String nombre;
 

@@ -34,24 +34,64 @@
   <component name="ChangeListManager">
     <list default="true" id="9c9c357f-2b07-42bd-afe8-0f758d0713a9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/servicio_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/servicio_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/directorioactivo/src/main/java/ucab/dsw/directorio/DirectorioActivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/directorioactivo/src/main/java/ucab/dsw/directorio/DirectorioActivo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/directorioactivo/target/classes/ucab/dsw/directorio/DirectorioActivo.class" beforeDir="false" afterPath="$PROJECT_DIR$/directorioactivo/target/classes/ucab/dsw/directorio/DirectorioActivo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/UsuarioLdapDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/UsuarioLdapDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/UsuarioLdapDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/UsuarioLdapDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesodatos/target/classes/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/target/classes/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Caracteristica_DemograficaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Caracteristica_DemograficaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/CategoriaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/CategoriaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/EncuestaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/EncuestaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Encuesta_TipoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Encuesta_TipoDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/HijoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/HijoDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/MarcaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/MarcaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Metodo_ConexionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Metodo_ConexionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Metodo_Conexion_EncuestadoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Metodo_Conexion_EncuestadoDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/OcupacionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/OcupacionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Ocupacion_EncuestadoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Ocupacion_EncuestadoDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Opcion_Simple_MultipleDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Opcion_Simple_MultipleDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/ParticipacionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/ParticipacionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/PreguntaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/PreguntaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Pregunta_EncuestaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Pregunta_EncuestaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/PresentacionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/PresentacionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/RespuestaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/RespuestaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Respuesta_Opcion.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Respuesta_Opcion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/SolicituEstudioDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/SolicituEstudioDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/SubcategoriaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/SubcategoriaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/TelefonoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/TelefonoDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/TipoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/TipoDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Caracteristica_DemograficaDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Caracteristica_DemograficaDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/CategoriaDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/CategoriaDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/EncuestaDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/EncuestaDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Encuesta_TipoDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Encuesta_TipoDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/HijoDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/HijoDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/MarcaDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/MarcaDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Metodo_ConexionDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Metodo_ConexionDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Metodo_Conexion_EncuestadoDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Metodo_Conexion_EncuestadoDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/OcupacionDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/OcupacionDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Ocupacion_EncuestadoDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Ocupacion_EncuestadoDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Opcion_Simple_MultipleDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Opcion_Simple_MultipleDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/ParticipacionDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/ParticipacionDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/PreguntaDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/PreguntaDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Pregunta_EncuestaDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Pregunta_EncuestaDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/PresentacionDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/PresentacionDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/RespuestaDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/RespuestaDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Respuesta_Opcion.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Respuesta_Opcion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/SolicituEstudioDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/SolicituEstudioDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/SubcategoriaDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/SubcategoriaDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/TelefonoDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/TelefonoDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/TipoDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/TipoDto.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/LoginServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/src/test/java/pruebaDirectorioActivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/pruebaDirectorioActivo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/Login.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/classes/ucab/dsw/servicio/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/classes/ucab/dsw/servicio/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/pruebaORMWS_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/pruebaORMWS_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/Login.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/classes/ucab/dsw/servicio/Login.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/accesodatos-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/accesodatos-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/directorioactivo-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/directorioactivo-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/dtos-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/dtos-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/entidades-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/entidades-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/excepciones-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/excepciones-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/target/test-classes/pruebaDirectorioActivo.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/test-classes/pruebaDirectorioActivo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/test-classes/pruebaORMWS_Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/test-classes/pruebaORMWS_Test.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +174,9 @@
     </option>
   </component>
   <component name="ProjectId" id="1kQgJut6PB65NIv9wa06kRlufFe" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -159,7 +201,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
-  <component name="RunManager" selected="JBoss Server.JBoss 21.0.0.Final1">
+  <component name="RunManager" selected="JUnit.CategoriaTest">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -305,41 +347,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="pruebaDirectorioActivo.createUserLDAP" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CategoriaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="pruebaDirectorioActivo" />
-      <option name="METHOD_NAME" value="createUserLDAP" />
+      <option name="MAIN_CLASS_NAME" value="CategoriaTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CategoriaTest.getCategoria" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CategoriaTest" />
+      <option name="METHOD_NAME" value="getCategoria" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="pruebaDirectorioActivo.deleteUserLDAP" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CategoriaTest.getCategorias" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="pruebaDirectorioActivo" />
-      <option name="METHOD_NAME" value="deleteUserLDAP" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="pruebaDirectorioActivo.getEntryRole" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="servicio" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="pruebaDirectorioActivo" />
-      <option name="METHOD_NAME" value="getEntryRole" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="pruebaDirectorioActivo.login" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="servicio" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="pruebaDirectorioActivo" />
-      <option name="METHOD_NAME" value="login" />
+      <option name="MAIN_CLASS_NAME" value="CategoriaTest" />
+      <option name="METHOD_NAME" value="getCategorias" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -355,20 +386,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="pruebaORMWS_Test.getCategorias" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="pruebaORMWS_Test" />
+      <option name="METHOD_NAME" value="getCategorias" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="JBoss Server.JBoss 21.0.0.Final1" />
-      <item itemvalue="JUnit.pruebaDirectorioActivo.createUserLDAP" />
-      <item itemvalue="JUnit.pruebaDirectorioActivo.deleteUserLDAP" />
-      <item itemvalue="JUnit.pruebaDirectorioActivo.getEntryRole" />
-      <item itemvalue="JUnit.pruebaDirectorioActivo.login" />
+      <item itemvalue="JUnit.pruebaORMWS_Test.getCategorias" />
       <item itemvalue="JUnit.pruebaORMWS_Test.addUserTest" />
+      <item itemvalue="JUnit.CategoriaTest.getCategorias" />
+      <item itemvalue="JUnit.CategoriaTest.getCategoria" />
+      <item itemvalue="JUnit.CategoriaTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.pruebaDirectorioActivo.login" />
-        <item itemvalue="JUnit.pruebaDirectorioActivo.getEntryRole" />
-        <item itemvalue="JUnit.pruebaDirectorioActivo.deleteUserLDAP" />
-        <item itemvalue="JUnit.pruebaDirectorioActivo.createUserLDAP" />
+        <item itemvalue="JUnit.CategoriaTest" />
+        <item itemvalue="JUnit.CategoriaTest.getCategoria" />
+        <item itemvalue="JUnit.CategoriaTest.getCategorias" />
+        <item itemvalue="JUnit.pruebaORMWS_Test.getCategorias" />
         <item itemvalue="JUnit.pruebaORMWS_Test.addUserTest" />
       </list>
     </recent_temporary>
@@ -405,6 +446,8 @@
       <workItem from="1606183681760" duration="71000" />
       <workItem from="1606183767279" duration="183000" />
       <workItem from="1606184025742" duration="6670000" />
+      <workItem from="1606927802521" duration="4824000" />
+      <workItem from="1606941981375" duration="15910000" />
     </task>
     <servers />
   </component>
@@ -483,6 +526,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="466" y="233" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.728@0.0.1366.728" timestamp="1605853565747" />
+    <state x="360" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606943569268">
+      <screen x="0" y="0" width="1280" height="980" />
+    </state>
+    <state x="360" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.980@0.0.1280.980" timestamp="1606943569268" />
     <state x="242" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606240422453">
       <screen x="0" y="0" width="1024" height="728" />
     </state>
@@ -496,29 +543,29 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="507" y="266" key="Github.CreateGistDialog/0.0.1366.728@0.0.1366.728" timestamp="1605854281039" />
-    <state width="412" height="259" key="GridCell.Tab.0.bottom" timestamp="1606885900423">
+    <state width="1238" height="259" key="GridCell.Tab.0.bottom" timestamp="1606961952291">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
     <state width="980" height="193" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1606246012370" />
-    <state width="412" height="259" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1606885900423" />
+    <state width="1238" height="259" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1606961952291" />
     <state width="1323" height="265" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="412" height="259" key="GridCell.Tab.0.center" timestamp="1606885900423">
+    <state width="1238" height="259" key="GridCell.Tab.0.center" timestamp="1606961952291">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
     <state width="980" height="193" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1606246012370" />
-    <state width="412" height="259" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1606885900423" />
+    <state width="1238" height="259" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1606961952291" />
     <state width="1323" height="265" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="412" height="259" key="GridCell.Tab.0.left" timestamp="1606885900423">
+    <state width="1238" height="259" key="GridCell.Tab.0.left" timestamp="1606961952291">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
     <state width="980" height="193" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1606246012370" />
-    <state width="412" height="259" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1606885900423" />
+    <state width="1238" height="259" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1606961952291" />
     <state width="1323" height="265" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="412" height="259" key="GridCell.Tab.0.right" timestamp="1606885900423">
+    <state width="1238" height="259" key="GridCell.Tab.0.right" timestamp="1606961952291">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
     <state width="980" height="193" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1606246012370" />
-    <state width="412" height="259" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1606885900423" />
+    <state width="1238" height="259" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1606961952291" />
     <state width="1323" height="265" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
     <state width="980" height="168" key="GridCell.Tab.1.bottom" timestamp="1606183672249">
       <screen x="0" y="0" width="1024" height="728" />
