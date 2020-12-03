@@ -1,0 +1,90 @@
+<mat-card class="forma">
+    <br>
+    <mat-card-title>Registrate</mat-card-title>
+    <br>
+    <mat-divider></mat-divider> 
+    <mat-card-content [style.overflow]="'auto'" [style.height.px]="'400'">
+
+        <form class="example-form">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Nombre de usuario</mat-label>
+                <input matInput type="text">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Nombre</mat-label>
+                <input matInput type="text">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Apellido</mat-label>
+                <input matInput type="text">
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha de nacimiento</mat-label>
+                <input matInput [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            
+            <mat-form-field class="example-full-width">
+                <mat-label>Nuemero de personas en su hogar</mat-label>
+                <input matInput type="number">
+            </mat-form-field>
+            <label for="genero">Genero</label><br>
+            <mat-radio-group aria-label="Genero">
+                <mat-radio-button value="M">Masculino</mat-radio-button><br>
+                <mat-radio-button value="F">Femenino</mat-radio-button>
+            </mat-radio-group>
+            
+            <mat-form-field class="example-full-width">
+                <mat-label>Correo electrónico</mat-label>
+                <input matInput type="email">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Contraseña</mat-label>
+                <input matInput type="password">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Confirme su contraseña</mat-label>
+                <input matInput type="password">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Telefono</mat-label>
+                <input type="tel" matInput placeholder="+58-04-123-4567">
+                <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+
+
+
+        <!--Direción-->
+
+            <table class="example-full-width" cellspacing="0"><tr>
+                <td><mat-form-field class="example-full-width">
+                    <mat-label>Pais</mat-label>
+                    <input matInput placeholder="Ex. Caracas">
+                  </mat-form-field></td>
+
+                <td><mat-form-field class="example-full-width">
+                    <mat-label>Estado</mat-label>
+                    <input matInput placeholder="Ex. Miranda">
+                </mat-form-field></td>
+                <td><mat-form-field class="example-full-width">
+                    <mat-label>Ciudad</mat-label>
+                    <input matInput placeholder="Ex. Caracas">
+                </mat-form-field></td>
+                <td><mat-form-field class="example-full-width">
+                    <mat-label>Parroquia</mat-label>
+                    <input matInput placeholder="Ex. San Luis">
+                </mat-form-field></td>
+            </tr></table>
+          </form>
+          
+
+
+    </mat-card-content>
+    <mat-divider></mat-divider> 
+    <mat-card-actions >
+        <button mat-raised-button type="submit">Registrate</button>
+    </mat-card-actions>
+</mat-card>

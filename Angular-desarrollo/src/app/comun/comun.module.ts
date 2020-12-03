@@ -8,11 +8,12 @@ import { AsideComponent } from './componentes/aside/aside.component';
 
 import { RouterModule } from '@angular/router';
 import { RecuperacionComponent } from './componentes/recuperacion/recuperacion.component';
+import { RegistroComponent } from './componentes/registro/registro.component';
 
 
 
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent, LoginComponent, AsideComponent, RecuperacionComponent],
+  declarations: [NavbarComponent, FooterComponent, LoginComponent, AsideComponent, RecuperacionComponent, RegistroComponent],
   imports: [
     
     MaterialModule,
