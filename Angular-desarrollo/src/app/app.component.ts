@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgProgress } from 'ngx-progressbar';
 import {NgProgressRef} from 'ngx-progressbar';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit{
   title = 'Angular-desarrollo';
   progressRef: NgProgressRef;
 
-  constructor(private progress: NgProgress, private _http:HttpClient) {
+  constructor(private progress: NgProgress, private _http:HttpClient, private _toastrService: ToastrService) {
     this.progressRef = this.progress.ref('myProgress');
   }
   
@@ -26,6 +27,15 @@ export class AppComponent implements OnInit{
     setTimeout(()=>{
       this.completeLoading();
     },3000);
+
+    
+    this._toastrService.error('Mensaje', 'Error');
+
+    this._toastrService.success('Mensaje', 'Realizado');
+
+    this._toastrService.warning('Mensaje', 'Advertencia');
+
+    this._toastrService.info('Mensaje', 'Info');
 
   }
 

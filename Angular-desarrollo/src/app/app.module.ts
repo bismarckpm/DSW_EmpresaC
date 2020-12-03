@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { ComunModule } from './comun/comun.module';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,13 @@ import { ComunModule } from './comun/comun.module';
     ComunModule,
     HttpClientModule,
     NgProgressModule,
-    NgProgressHttpModule
+    NgProgressHttpModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-top-center',
+      progressBar:true,
+      closeButton:true
+    }),
   
   ],
   providers: [],
