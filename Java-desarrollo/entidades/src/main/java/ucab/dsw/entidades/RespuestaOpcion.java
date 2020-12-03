@@ -15,8 +15,8 @@ import java.util.List;
 public class RespuestaOpcion extends EntidadBase{
 
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
-    @JoinColumn( name = "Opcion_Simple_Multiple_id" )
-    private OpcionSimpleMultiple _opcionsimplemultiple;
+    @JoinColumn( name = "Opcion_Simple_Multiple_Pregunta_id" )
+    private Opcion_Simple_Multiple_Pregunta _opcionsimplemultiple;
 
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
     @JoinColumn( name = "Respuesta_id" )
@@ -30,11 +30,11 @@ public class RespuestaOpcion extends EntidadBase{
         this._respuesta = _respuesta;
     }
 
-    public OpcionSimpleMultiple get_opcionsimplemultiple() {
+    public Opcion_Simple_Multiple_Pregunta get_opcionsimplemultiple() {
         return _opcionsimplemultiple;
     }
 
-    public void set_opcionsimplemultiple(OpcionSimpleMultiple _opcionsimplemultiple) {
+    public void set_opcionsimplemultiple(Opcion_Simple_Multiple_Pregunta _opcionsimplemultiple) {
         this._opcionsimplemultiple = _opcionsimplemultiple;
     }
 

@@ -4,10 +4,9 @@ import org.junit.Test;
 import ucab.dsw.accesodatos.DaoSolicitudEstudio;
 import ucab.dsw.dtos.*;
 
-import ucab.dsw.entidades.Caracteristica_Demografica;
-import ucab.dsw.entidades.Cliente;
-import ucab.dsw.entidades.SolicitudEstudio;
-import ucab.dsw.entidades.Usuario;
+import ucab.dsw.entidades.*;
+
+import java.util.List;
 
 
 public class metodos_admin_Test {
@@ -61,6 +60,20 @@ public class metodos_admin_Test {
         SolicituEstudioDto resultado = servicio.EliminarEstudio( 1 );
         Assert.assertNotEquals( resultado.getId(), 0 );
 
+    }
+
+    @Test
+    public void addEncuestaTest() throws Exception
+    {
+        ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
+        EncuestaDto encuestaDto = new EncuestaDto();
+
+        encuestaDto.setNombre( "mejor color?" );
+        MarcaDto marca = new MarcaDto(2);
+        encuestaDto.setMarcaDto( marca );
+
+        EncuestaDto resultado = servicio.addEncuesta( encuestaDto);
+        Assert.assertNotEquals( resultado.getId(), 1 );
     }
 }
 

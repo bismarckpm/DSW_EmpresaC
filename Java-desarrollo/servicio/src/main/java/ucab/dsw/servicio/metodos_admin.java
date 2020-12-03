@@ -1,8 +1,9 @@
 package ucab.dsw.servicio;
-import ucab.dsw.accesodatos.DaoPregunta;
-import ucab.dsw.accesodatos.DaoPreguntaEncuesta;
-import ucab.dsw.accesodatos.DaoSolicitudEstudio;
+import ucab.dsw.accesodatos.*;
+import ucab.dsw.dtos.EncuestaDto;
+import ucab.dsw.dtos.Pregunta_EncuestaDto;
 import ucab.dsw.dtos.SolicituEstudioDto;
+import ucab.dsw.dtos.UsuarioDto;
 import ucab.dsw.entidades.*;
 
 import javax.validation.constraints.Null;
@@ -88,19 +89,23 @@ public class metodos_admin {
     public int preguntas_categoria_subcategoria(@PathParam("id") long  _id, @PathParam("id") long  _id2)
     {
         JsonArrayBuilder builder = Json.createArrayBuilder();
-        List<PreguntaEncuesta> resultado= null;
+        List<Respuesta> resultado= null;
 
-        DaoPreguntaEncuesta dao= new DaoPreguntaEncuesta();
-        Class<PreguntaEncuesta> type = PreguntaEncuesta.class;
+        DaoRespuesta dao= new DaoRespuesta();
+        Class<Respuesta> type = Respuesta.class;
 
         resultado= dao.findAll(type);
         System.out.println("Preguntas por Categoria: ");
-        for(PreguntaEncuesta obj: resultado) {
+        for(Respuesta obj: resultado) {
 
-            if(obj.get_encuesta().get_marca().get_subcategoria().get_categoria().get_id() == _id2) {
-                System.out.println("Id: " + obj.get_pregunta().get_id());
-                System.out.println("Descripcion: " + obj.get_pregunta().get_descripcion());
-                System.out.println("Tipo de pregunta: " + obj.get_pregunta().get_tipopregunta());
+            if(obj.get_preguntaencuesta().get_encuesta().get_marca().get_subcategoria().get_categoria().get_id() == _id2) {
+                System.out.println("Id: " + obj.get_preguntaencuesta().get_pregunta().get_id());
+                System.out.println("Descripcion: " + obj.get_preguntaencuesta().get_pregunta().get_descripcion());
+                System.out.println("Tipo de pregunta: " + obj.get_preguntaencuesta().get_pregunta().get_tipopregunta());
+                if(obj.get_preguntaencuesta().get_pregunta().get_valormax()!= 0){
+                    System.out.println("Rango minimo: " + obj.get_preguntaencuesta().get_pregunta().get_valormin());
+                    System.out.println("Rango maximo: " + obj.get_preguntaencuesta().get_pregunta().get_valormax());
+                }
 
             }else{
                 System.out.println("");
@@ -108,13 +113,16 @@ public class metodos_admin {
         }
 
         System.out.println("Preguntas por SubCategoria: ");
-        for(PreguntaEncuesta obj: resultado) {
+        for(Respuesta obj: resultado) {
 
-            if(obj.get_encuesta().get_marca().get_subcategoria().get_id() == _id) {
-                System.out.println("Id: " + obj.get_pregunta().get_id());
-                System.out.println("Descripcion: " + obj.get_pregunta().get_descripcion());
-                System.out.println("Tipo de pregunta: " + obj.get_pregunta().get_tipopregunta());
-
+            if(obj.get_preguntaencuesta().get_encuesta().get_marca().get_subcategoria().get_id() == _id) {
+                System.out.println("Id: " + obj.get_preguntaencuesta().get_pregunta().get_id());
+                System.out.println("Descripcion: " + obj.get_preguntaencuesta().get_pregunta().get_descripcion());
+                System.out.println("Tipo de pregunta: " + obj.get_preguntaencuesta().get_pregunta().get_tipopregunta());
+                if(obj.get_preguntaencuesta().get_pregunta().get_valormax()!= 0){
+                    System.out.println("Rango minimo: " + obj.get_preguntaencuesta().get_pregunta().get_valormin());
+                    System.out.println("Rango maximo: " + obj.get_preguntaencuesta().get_pregunta().get_valormax());
+                }
             }else{
                 System.out.println("");
             }
@@ -160,6 +168,29 @@ public class metodos_admin {
             solicitudEstudio.set_estado("Eliminado");
 
             SolicitudEstudio resul = dao.update(solicitudEstudio);
+            resultado.setId( resul.get_id() );
+        }
+        catch ( Exception ex )
+        {
+            String problema = ex.getMessage();
+        }
+        return  resultado;
+    }
+
+    @PUT
+    @Path( "/addEncuesta" )
+    public EncuestaDto addEncuesta( EncuestaDto encuestaDto)
+    {
+        EncuestaDto resultado = new EncuestaDto();
+
+        try
+        {
+            DaoEncuesta dao = new DaoEncuesta();
+            Encuesta encuesta = new Encuesta();
+            encuesta.set_nombre( encuestaDto.getNombre() );
+            Marca marca = new Marca(encuestaDto.getMarcaDto().getId());
+            encuesta.set_marca( marca );
+            Encuesta resul = dao.insert( encuesta);
             resultado.setId( resul.get_id() );
         }
         catch ( Exception ex )

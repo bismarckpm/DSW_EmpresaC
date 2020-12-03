@@ -1,6 +1,15 @@
 package ucab.dsw.dtos;
 
-public class MarcaDto {
+public class MarcaDto extends DtoBase{
+
+    public MarcaDto()
+    {
+    }
+
+    public MarcaDto ( long id ) throws Exception
+    {
+        super( id );
+    }
 
     private String nombre;
 

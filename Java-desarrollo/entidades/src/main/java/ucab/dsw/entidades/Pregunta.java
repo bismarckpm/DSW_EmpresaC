@@ -27,7 +27,7 @@ public class Pregunta extends EntidadBase{
     private int _valormax;
 
     @OneToMany( mappedBy = "_pregunta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
-    private List<OpcionSimpleMultiple> _opcionsimplemultiple;
+    private List<Opcion_Simple_Multiple_Pregunta> _opcionsimplemultiple;
 
     @OneToMany( mappedBy = "_pregunta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<PreguntaEncuesta> _preguntaencuesta;

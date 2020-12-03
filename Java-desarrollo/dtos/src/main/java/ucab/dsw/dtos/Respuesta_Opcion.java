@@ -1,6 +1,6 @@
 package ucab.dsw.dtos;
 
-public class Respuesta_Opcion {
+public class Respuesta_Opcion extends DtoBase{
 
     private RespuestaDto respuestaDto;
 
@@ -14,15 +14,15 @@ public class Respuesta_Opcion {
         this.respuestaDto = respuestaDto;
     }
 
-    private Opcion_Simple_MultipleDto opcion_Simple_MultipleDto;
+    private Opcion_Simple_Multiple_PreguntaDto opcion_Simple_Multiple_PreguntaDto;
 
-    public Opcion_Simple_MultipleDto getOpcion_Simple_MultipleDto()
+    public Opcion_Simple_Multiple_PreguntaDto getOpcion_Simple_Multiple_PreguntaDto()
     {
-        return opcion_Simple_MultipleDto;
+        return opcion_Simple_Multiple_PreguntaDto;
     }
 
-    public void setOpcion_Simple_MultipleDto( Opcion_Simple_MultipleDto Oopcion_Simple_MultipleDto )
+    public void setOpcion_Simple_Multiple_PreguntaDto( Opcion_Simple_Multiple_PreguntaDto opcion_Simple_Multiple_PreguntaDto )
     {
-        this.opcion_Simple_MultipleDto = opcion_Simple_MultipleDto;
+        this.opcion_Simple_Multiple_PreguntaDto = opcion_Simple_Multiple_PreguntaDto;
     }
 }

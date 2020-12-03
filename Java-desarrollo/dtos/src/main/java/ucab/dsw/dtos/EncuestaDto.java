@@ -13,7 +13,7 @@ public class EncuestaDto extends DtoBase{
 
     private String nombre;
 
-    public String getBombre()
+    public String getNombre()
     {
         return nombre;
     }
