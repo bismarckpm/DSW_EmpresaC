@@ -214,6 +214,16 @@ public class metodos_admin {
 
             Pregunta resul = dao.insert( pregunta);
             resultado.setId( resul.get_id() );
+
+            System.out.println("Id: " + resul.get_id());
+            System.out.println("Descripcion: " + preguntaDto.getDescripcion() );
+            System.out.println("Tipo de pregunta: "+ preguntaDto.getTipopregunta() );
+            if(preguntaDto.getValormax()!= 0){
+                System.out.println("Rango minimo: " + preguntaDto.getValormin());
+                System.out.println("Rango maximo: " + preguntaDto.getValormax());
+            }
+
+
         }
         catch ( Exception ex )
         {
