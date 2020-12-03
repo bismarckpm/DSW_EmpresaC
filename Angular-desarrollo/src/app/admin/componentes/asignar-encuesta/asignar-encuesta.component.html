@@ -1,9 +1,59 @@
 
 <div *ngIf="estudio">
-<p>{{estudio.id}}</p>
-<p>{{estudio.categoria}}</p>
+
 
 </div>
+
+<mat-card class="example-card ">
+  <mat-card-header aling-center>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title >Mercadeo Ucab</mat-card-title>
+    <mat-card-subtitle></mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form>
+      <div class="form-group">
+        <p> {{estudio.marca}}</p>
+        <p>{{estudio.categoria}}</p>
+        <p>{{estudio.subcategoria}}</p>
+      </div>
+    </form>
+  </mat-card-content>
+
+</mat-card>
+
+<mat-card class="example-card ">
+  <mat-card-header aling-center>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title >Mercadeo Ucab</mat-card-title>
+    <mat-card-subtitle></mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+
+    <div class="form-group">
+      <label for="exampleInputEncuesta1">Nombre de la Encuesta</label>
+      <input type="email" class="form-control" id="exampleInputEncuesta1" aria-describedby="EncuestaHelp">
+    </div>
+
+    <select name="OS">
+      <option selected value="0"> Seleccion de pregunta </option>
+
+    </select>
+
+    <div mat-card-avatar class="example-header-image">
+      <mat-card-actions>
+        <button mat-raised-button color="#ffc107" type="submit">Agregar Pregunta</button>
+      </mat-card-actions>
+    </div>
+    <div mat-card-avatar class="example-header-image">
+      <mat-card-actions>
+        <button mat-raised-button color="#ffc107" type="submit">Aceptar encuesta</button>
+      </mat-card-actions>
+    </div>
+  </mat-card-content>
+
+
+</mat-card>
 
 <div [hidden]="estudio">
     <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
