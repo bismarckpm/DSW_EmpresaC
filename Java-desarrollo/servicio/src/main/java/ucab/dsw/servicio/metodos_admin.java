@@ -1,9 +1,6 @@
 package ucab.dsw.servicio;
 import ucab.dsw.accesodatos.*;
-import ucab.dsw.dtos.EncuestaDto;
-import ucab.dsw.dtos.Pregunta_EncuestaDto;
-import ucab.dsw.dtos.SolicituEstudioDto;
-import ucab.dsw.dtos.UsuarioDto;
+import ucab.dsw.dtos.*;
 import ucab.dsw.entidades.*;
 
 import javax.validation.constraints.Null;
@@ -191,6 +188,31 @@ public class metodos_admin {
             Marca marca = new Marca(encuestaDto.getMarcaDto().getId());
             encuesta.set_marca( marca );
             Encuesta resul = dao.insert( encuesta);
+            resultado.setId( resul.get_id() );
+        }
+        catch ( Exception ex )
+        {
+            String problema = ex.getMessage();
+        }
+        return  resultado;
+    }
+
+    @PUT
+    @Path( "/addPregunta" )
+    public PreguntaDto addPregunta(PreguntaDto preguntaDto)
+    {
+        PreguntaDto resultado = new PreguntaDto();
+
+        try
+        {
+            DaoPregunta dao = new DaoPregunta();
+            Pregunta pregunta = new Pregunta();
+            pregunta.set_descripcion( preguntaDto.getDescripcion() );
+            pregunta.set_tipopregunta( preguntaDto.getTipopregunta() );
+            pregunta.set_valormax( preguntaDto.getValormax() );
+            pregunta.set_valormin( preguntaDto.getValormin() );
+
+            Pregunta resul = dao.insert( pregunta);
             resultado.setId( resul.get_id() );
         }
         catch ( Exception ex )

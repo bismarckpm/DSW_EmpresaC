@@ -28,14 +28,14 @@ public class Opcion_Simple_Multiple_Pregunta extends EntidadBase{
 
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
     @JoinColumn( name = "Opcion_Silple_Multiple_id" )
-    private OpcionSimpleMultiple _opcion_Simple_Multiple_Pregunta;
+    private OpcionSimpleMultiple _opcionsimplemultiple;
 
-    public OpcionSimpleMultiple get_opcion_Simple_Multiple_Pregunta() {
-        return _opcion_Simple_Multiple_Pregunta;
+    public OpcionSimpleMultiple get_opcionsimplemultiple() {
+        return _opcionsimplemultiple;
     }
 
-    public void set_opcion_Simple_Multiple_Pregunta(OpcionSimpleMultiple _opcion_Simple_Multiple_Pregunta) {
-        this._opcion_Simple_Multiple_Pregunta = _opcion_Simple_Multiple_Pregunta;
+    public void set_opcion_Simple_Multiple_Pregunta(OpcionSimpleMultiple _opcionsimplemultiple) {
+        this._opcionsimplemultiple = _opcionsimplemultiple;
     }
 
 

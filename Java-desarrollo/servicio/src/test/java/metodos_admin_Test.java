@@ -75,6 +75,21 @@ public class metodos_admin_Test {
         EncuestaDto resultado = servicio.addEncuesta( encuestaDto);
         Assert.assertNotEquals( resultado.getId(), 1 );
     }
+
+    @Test
+    public void addPreguntaTest() throws Exception
+    {
+        ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
+        PreguntaDto preguntaDto = new PreguntaDto();
+
+        preguntaDto.setDescripcion( "te calma este color?" );
+        preguntaDto.setTipopregunta( "Rango" );
+        preguntaDto.setValormax( 10 );
+        preguntaDto.setValormin( 0 );
+
+        PreguntaDto resultado = servicio.addPregunta( preguntaDto);
+        Assert.assertNotEquals( resultado.getId(), 1 );
+    }
 }
 
 
