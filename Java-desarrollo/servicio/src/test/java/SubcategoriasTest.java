@@ -28,10 +28,18 @@ public class SubcategoriasTest {
     {
         ucab.dsw.servicio.SubcategoriaServicio servicio = new ucab.dsw.servicio.SubcategoriaServicio();
         SubcategoriaDto subcategoriaDto=new SubcategoriaDto();
-        subcategoriaDto.setNombre("Xiaomi");
-        CategoriaDto categoriaDto=new CategoriaDto(11);
+        subcategoriaDto.setNombre("prueba");
+        CategoriaDto categoriaDto=new CategoriaDto(1);
         subcategoriaDto.setCategoriaDto(categoriaDto);
         Response respuesta= servicio.addSubcategoria(subcategoriaDto);
+        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+    }
+
+    @Test
+    public void getSubcategoriasByCategoriaId() throws Exception
+    {
+        ucab.dsw.servicio.SubcategoriaServicio servicio = new ucab.dsw.servicio.SubcategoriaServicio();
+        Response respuesta= servicio.getSubcategoriasByCategoriaId(11);
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
     }
 }
