@@ -142,13 +142,5 @@ public class SolicituEstudioDto extends DtoBase{
         this.caracteristica_DemograficaDto = caracteristica_DemograficaDto;
     }
 
-    private MarcaDto marcaDto;
-
-    public MarcaDto getMarcaDto()
-    {
-        return marcaDto;
-    }
-
-
 
 }
