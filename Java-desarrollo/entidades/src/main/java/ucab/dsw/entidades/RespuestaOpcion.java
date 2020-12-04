@@ -14,11 +14,11 @@ import java.util.List;
 @Table( name = "Respuesta_Opcion" )
 public class RespuestaOpcion extends EntidadBase{
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
-    @JoinColumn( name = "Opcion_Simple_Multiple_id" )
-    private OpcionSimpleMultiple _opcionsimplemultiple;
+    @ManyToOne(optional = false , fetch = FetchType.EAGER)
+    @JoinColumn( name = "Opcion_Simple_Multiple_Pregunta_id" )
+    private Opcion_Simple_Multiple_Pregunta _opcionsimplemultiple_pregunta;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Respuesta_id" )
     private Respuesta _respuesta;
 
@@ -30,12 +30,12 @@ public class RespuestaOpcion extends EntidadBase{
         this._respuesta = _respuesta;
     }
 
-    public OpcionSimpleMultiple get_opcionsimplemultiple() {
-        return _opcionsimplemultiple;
+    public Opcion_Simple_Multiple_Pregunta get_opcionsimplemultiple() {
+        return _opcionsimplemultiple_pregunta;
     }
 
-    public void set_opcionsimplemultiple(OpcionSimpleMultiple _opcionsimplemultiple) {
-        this._opcionsimplemultiple = _opcionsimplemultiple;
+    public void set_opcionsimplemultiple(Opcion_Simple_Multiple_Pregunta _opcionsimplemultiple_pregunta) {
+        this._opcionsimplemultiple_pregunta = _opcionsimplemultiple_pregunta;
     }
 
     public RespuestaOpcion(long id )

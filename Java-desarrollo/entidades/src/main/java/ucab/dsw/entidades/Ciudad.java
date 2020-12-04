@@ -41,7 +41,7 @@ public class Ciudad extends EntidadBase
         this._parroquia = _parroquia;
     }
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Estado_id" )
     private Estado _estado;
 

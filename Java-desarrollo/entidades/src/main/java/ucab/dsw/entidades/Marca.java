@@ -16,12 +16,27 @@ public class Marca extends EntidadBase{
     @Column( name = "nombre" )
     private String _nombre;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Subcategoria_id" )
     private Subcategoria _subcategoria;
 
-    @OneToMany( mappedBy = "_marca", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    public Subcategoria get_subcategoria()
+    {
+        return _subcategoria;
+    }
+
+    public void set_subcategoria( Subcategoria _subcategoria )
+    {
+        this._subcategoria = _subcategoria;
+    }
+
+    @OneToMany( mappedBy = "_marca_encuesta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<Encuesta> _encuesta;
+
+
+    @OneToMany( mappedBy = "_marca_solicitud", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    private List<SolicitudEstudio> _solicitud;
+
 
     public String get_nombre() {
         return _nombre;
