@@ -40,7 +40,7 @@ public class Opcion_Simple_Multiple_Pregunta extends EntidadBase{
 
 
 
-    @OneToMany( mappedBy = "_opcionsimplemultiple", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    @OneToMany( mappedBy = "_opcionsimplemultiple_pregunta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<RespuestaOpcion> _respuestaopcion;
 
 

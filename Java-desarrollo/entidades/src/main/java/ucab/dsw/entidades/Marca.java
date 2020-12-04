@@ -30,7 +30,7 @@ public class Marca extends EntidadBase{
         this._subcategoria = _subcategoria;
     }
 
-    @OneToMany( mappedBy = "_marca", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    @OneToMany( mappedBy = "_marca_encuesta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<Encuesta> _encuesta;
 
     public List<Encuesta> get_encuesta()

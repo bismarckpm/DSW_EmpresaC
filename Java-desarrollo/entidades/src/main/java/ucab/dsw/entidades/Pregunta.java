@@ -29,7 +29,7 @@ public class Pregunta extends EntidadBase{
     @OneToMany( mappedBy = "_pregunta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<Opcion_Simple_Multiple_Pregunta> _opcionsimplemultiple;
 
-    @OneToMany( mappedBy = "_pregunta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    @OneToMany( mappedBy = "_pregunta_Encuesta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<PreguntaEncuesta> _preguntaencuesta;
 
     public List<PreguntaEncuesta> get_preguntaencuesta()

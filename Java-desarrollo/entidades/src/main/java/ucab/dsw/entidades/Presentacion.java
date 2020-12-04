@@ -19,7 +19,7 @@ public class Presentacion extends EntidadBase{
 
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
     @JoinColumn( name = "Tipo_id" )
-    private Tipo _tipo;
+    private Tipo _tipo_Presentacion;
 
     public String get_nombre() {
         return _nombre;
@@ -30,11 +30,11 @@ public class Presentacion extends EntidadBase{
     }
 
     public Tipo get_tipo() {
-        return _tipo;
+        return _tipo_Presentacion;
     }
 
     public void set_tipo(Tipo _tipo) {
-        this._tipo = _tipo;
+        this._tipo_Presentacion = _tipo_Presentacion;
     }
 
     public Presentacion(long id )

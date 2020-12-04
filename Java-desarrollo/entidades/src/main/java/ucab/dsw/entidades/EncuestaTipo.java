@@ -16,26 +16,26 @@ public class EncuestaTipo extends EntidadBase{
 
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
     @JoinColumn( name = "Tipo_id" )
-    private Tipo _tipo;
+    private Tipo _tipo_encuesta;
 
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
     @JoinColumn( name = "Encuesta_id" )
-    private Encuesta _encuesta;
+    private Encuesta _encuesta_Tipo;
 
     public Encuesta get_encuesta() {
-        return _encuesta;
+        return _encuesta_Tipo;
     }
 
     public void set_encuesta(Encuesta _encuesta) {
-        this._encuesta = _encuesta;
+        this._encuesta_Tipo = _encuesta_Tipo;
     }
 
     public Tipo get_tipo() {
-        return _tipo;
+        return _tipo_encuesta;
     }
 
-    public void set_tipo(Tipo _tipo) {
-        this._tipo = _tipo;
+    public void set_tipo(Tipo _tipo_encuesta) {
+        this._tipo_encuesta = _tipo_encuesta;
     }
 
     public EncuestaTipo(long id )

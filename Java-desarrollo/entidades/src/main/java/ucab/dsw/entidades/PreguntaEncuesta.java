@@ -18,11 +18,11 @@ public class PreguntaEncuesta extends EntidadBase{
 
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
     @JoinColumn( name = "Pregunta_id" )
-    private Pregunta _pregunta;
+    private Pregunta _pregunta_Encuesta;
 
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
     @JoinColumn( name = "Encuesta_id" )
-    private Encuesta _encuesta;
+    private Encuesta _encuesta_Pregunta;
 
     @OneToMany( mappedBy = "_preguntaencuesta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<Respuesta> _respuesta;
@@ -38,19 +38,19 @@ public class PreguntaEncuesta extends EntidadBase{
     }
 
     public Encuesta get_encuesta() {
-        return _encuesta;
+        return _encuesta_Pregunta;
     }
 
-    public void set_encuesta(Encuesta _encuesta) {
-        this._encuesta = _encuesta;
+    public void set_encuesta(Encuesta _encuesta_Pregunta) {
+        this._encuesta_Pregunta = _encuesta_Pregunta;
     }
 
     public Pregunta get_pregunta() {
-        return _pregunta;
+        return _pregunta_Encuesta;
     }
 
-    public void set_pregunta(Pregunta _pregunta) {
-        this._pregunta = _pregunta;
+    public void set_pregunta(Pregunta _pregunta_Encuesta) {
+        this._pregunta_Encuesta = _pregunta_Encuesta;
     }
 
     public String get_nombre() {

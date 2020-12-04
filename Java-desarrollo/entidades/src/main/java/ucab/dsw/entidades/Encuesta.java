@@ -18,23 +18,23 @@ public class Encuesta extends EntidadBase{
 
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
     @JoinColumn( name = "Marca_id" )
-    private Marca _marca;
+    private Marca _marca_encuesta;
 
-    @OneToMany( mappedBy = "_encuesta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    @OneToMany( mappedBy = "_encuesta_Tipo", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<EncuestaTipo> _encuestatipo;
 
-    @OneToMany( mappedBy = "_encuesta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    @OneToMany( mappedBy = "_encuesta_Pregunta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<PreguntaEncuesta> _preguntaencuesta;
 
-    @OneToMany( mappedBy = "_encuesta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    @OneToMany( mappedBy = "_encuesta_solicitud", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<SolicitudEstudio> _solicitudestudio;
 
     public Marca get_marca() {
-        return _marca;
+        return _marca_encuesta;
     }
 
     public void set_marca(Marca _marca) {
-        this._marca = _marca;
+        this._marca_encuesta = _marca_encuesta;
     }
 
     public String get_nombre() {

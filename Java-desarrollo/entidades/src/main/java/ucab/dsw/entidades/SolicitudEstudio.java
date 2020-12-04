@@ -33,7 +33,7 @@ public class SolicitudEstudio extends EntidadBase{
 
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
     @JoinColumn( name = "Encuesta_id" )
-    private Encuesta _encuesta;
+    private Encuesta _encuesta_solicitud;
 
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
     @JoinColumn( name = "Cliente_id" )
@@ -97,11 +97,11 @@ public class SolicitudEstudio extends EntidadBase{
     }
 
     public Encuesta get_encuesta() {
-        return _encuesta;
+        return _encuesta_solicitud;
     }
 
-    public void set_encuesta(Encuesta _encuesta) {
-        this._encuesta = _encuesta;
+    public void set_encuesta(Encuesta _encuesta_solicitud) {
+        this._encuesta_solicitud = _encuesta_solicitud;
     }
 
     public String get_modoencuesta() {
