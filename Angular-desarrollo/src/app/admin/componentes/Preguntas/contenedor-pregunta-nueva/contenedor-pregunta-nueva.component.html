@@ -1,9 +1,12 @@
 <mat-card >
+    <h1>Pregunta nueva</h1>
+    <p>{{error}}</p>
 
-    <form novalidate [formGroup]="PreguntaForm" #fform="ngForm" >
+   
+    <form novalidate [formGroup]="PreguntaForm" #fform="ngForm"  >
 
 
-        <input type="text" placeholder="Pregunta..." formControlName="pregunta">
+        <input type="text" placeholder="Pregunta..." formControlName="pregunta" required pattern="[a-zA-Z ]*">
 
         <mat-form-field class="example-full-width" >
             <mat-select formControlName="tipo">
@@ -19,26 +22,32 @@
 
         <div *ngIf="tipo=='Rango'">
             <label for="min">Minimo</label>
-            <input type="number" name="min" id="" class="num">
+            <input type="number" name="min"  class="num" formControlName="minimo">
             <label for="max">Maximo</label>
-            <input type="number" name="max" id="" class="num">
+            <input type="number" name="max"  class="num" formControlName="maximo">
         </div>
         <div *ngIf="tipo=='Multiple' || tipo=='Simple'" >
             
-            <input type="text" placeholder="Opcion..." >
-            <button mat-raised-button color="#ffc107" >Agregar otra</button>
-            
+            <input type="text" placeholder="Opcion..." formControlName="opcion1">
+            <button mat-raised-button color="#ffc107" (click)="addOpciones()" >Agregar otra</button>
+            <input type="text" placeholder="Opcion..." formControlName="opcion2">
+            <button mat-raised-button color="#ffc107" (click)="deleteOpciones()" *ngIf="Opciones.controls.length>0" >Borrar uno</button>
+
+            <div formArrayName="opciones" *ngFor="let items of Opciones.controls; let i=index">
+                <input type="text" placeholder="Opcion..."  [formControlName]="i" >
+
+            </div>
         </div>
         
+        <mat-card-actions>
+            <button type="submit" mat-raised-button color="#ffc107" (click)="AceptarPregunta()" [disabled]="PreguntaForm.invalid">Aceptar Pregunta</button>
+        
+        </mat-card-actions>    
         
 
    
     </form>
     
-    <mat-card-actions>
-        <button mat-raised-button color="#ffc107" >Aceptar Pregunta</button>
-    
-    </mat-card-actions>    
-    
+
 </mat-card>
 

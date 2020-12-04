@@ -17,8 +17,9 @@
         <label for="exampleInputEncuesta1">Pregunta de tipo Boolean</label>
       </div>
 
-      <div class="form-group" *ngIf="pregunta.Tipo=='Multiple'">
-        <label for="exampleInputEncuesta1">Pregunta de tipo Multiple</label>
+      <div class="form-group" *ngIf="pregunta.Tipo=='Multiple' || pregunta.Tipo=='Simple' ">
+        <label for="exampleInputEncuesta1">Pregunta de tipo Multiple con opciones:</label>
+        <p *ngFor="let x of pregunta.opciones">{{x}}</p>
       </div>
 
 
