@@ -14,7 +14,7 @@ import java.util.List;
 @Table( name = "Opcion_Simple_Multiple_Pregunta" )
 public class Opcion_Simple_Multiple_Pregunta extends EntidadBase{
 
-    @ManyToOne()
+    @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Pregunta_id" )
     private Pregunta _pregunta;
 
@@ -26,7 +26,7 @@ public class Opcion_Simple_Multiple_Pregunta extends EntidadBase{
         this._pregunta = _pregunta;
     }
 
-    @ManyToOne()
+    @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Opcion_Silple_Multiple_id" )
     private OpcionSimpleMultiple _opcionsimplemultiple;
 

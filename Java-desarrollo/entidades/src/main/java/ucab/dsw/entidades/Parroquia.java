@@ -27,7 +27,7 @@ public class Parroquia extends EntidadBase
         this._nombre = _nombre;
     }
 
-    @ManyToOne()
+    @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Ciudad_id" )
     private Ciudad _ciudad;
 

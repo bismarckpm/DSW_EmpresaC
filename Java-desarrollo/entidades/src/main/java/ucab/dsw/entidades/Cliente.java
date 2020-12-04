@@ -51,7 +51,7 @@ public class Cliente extends EntidadBase
         this._nombre_empresa = _nombre_empresa;
     }
 
-    @ManyToOne()
+    @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Usuario_id" )
     private Usuario _usuario_cliente;
 

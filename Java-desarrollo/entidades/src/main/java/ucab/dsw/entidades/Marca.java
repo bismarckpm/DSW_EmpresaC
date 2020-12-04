@@ -16,7 +16,7 @@ public class Marca extends EntidadBase{
     @Column( name = "nombre" )
     private String _nombre;
 
-    @ManyToOne()
+    @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Subcategoria_id" )
     private Subcategoria _subcategoria;
 
