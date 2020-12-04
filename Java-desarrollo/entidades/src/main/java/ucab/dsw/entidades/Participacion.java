@@ -17,11 +17,11 @@ public class Participacion extends EntidadBase{
     @Column( name = "estado" )
     private String _estado;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Estudio_id" )
     private SolicitudEstudio _solicitudestudio;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Encuestado_id" )
     private Encuestado _encuestado;
 

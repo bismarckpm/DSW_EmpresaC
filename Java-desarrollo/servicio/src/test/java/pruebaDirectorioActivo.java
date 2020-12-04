@@ -10,7 +10,11 @@ public class pruebaDirectorioActivo
     public void createUserLDAP()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
+<<<<<<< HEAD
         user.setCorreoelectronico( "bryan@gmail.com" );
+=======
+        user.setCorreoelectronico( "daniel@gmail.com" );
+>>>>>>> ca2eee67baee4a4952bcd543d6bd2f7ea768eda9
         user.setContrasena( "12345" );
         user.setSn("1");
         user.setTipo_usuario("analista");
@@ -22,7 +26,11 @@ public class pruebaDirectorioActivo
     public void deleteUserLDAP()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
+<<<<<<< HEAD
         user.setCorreoelectronico( "pedro@gmail.com" );
+=======
+        user.setCorreoelectronico( "bismarckpm2@gmail.com" );
+>>>>>>> ca2eee67baee4a4952bcd543d6bd2f7ea768eda9
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.deleteEntry( user );
     }

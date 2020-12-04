@@ -33,7 +33,95 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c9c357f-2b07-42bd-afe8-0f758d0713a9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoOpcion_Simple_Multiple_Pregunta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accesodatos/target/classes/ucab/dsw/accesodatos/DaoOpcion_Simple_Multiple_Pregunta.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Opcion_Simple_Multiple_PreguntaDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Opcion_Simple_Multiple_PreguntaDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Opcion_Simple_Multiple_Pregunta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Opcion_Simple_Multiple_Pregunta.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_admin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/servicio/src/test/java/metodos_admin_Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/metodos_admin.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/servicio/target/test-classes/metodos_admin_Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/Dao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesodatos/target/classes/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/target/classes/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesodatos/target/classes/ucab/dsw/accesodatos/Dao.class" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/target/classes/ucab/dsw/accesodatos/Dao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/directorioactivo/target/classes/ucab/dsw/directorio/DirectorioActivo.class" beforeDir="false" afterPath="$PROJECT_DIR$/directorioactivo/target/classes/ucab/dsw/directorio/DirectorioActivo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/directorioactivo/target/directorioactivo.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/directorioactivo/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/directorioactivo/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/directorioactivo/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Caracteristica_DemograficaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Caracteristica_DemograficaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/ClienteDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/ClienteDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/EncuestaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/EncuestaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/MarcaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/MarcaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Opcion_Simple_MultipleDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Opcion_Simple_MultipleDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/PreguntaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/PreguntaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Respuesta_Opcion.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Respuesta_Opcion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/SolicituEstudioDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/SolicituEstudioDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/UsuarioDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/UsuarioDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Caracteristica_DemograficaDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Caracteristica_DemograficaDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/ClienteDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/ClienteDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/EncuestaDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/EncuestaDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/MarcaDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/MarcaDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Opcion_Simple_MultipleDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Opcion_Simple_MultipleDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/PreguntaDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/PreguntaDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Respuesta_Opcion.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Respuesta_Opcion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/SolicituEstudioDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/SolicituEstudioDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/UsuarioDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/UsuarioDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/UsuarioLdapDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/UsuarioLdapDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/dtos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Caracteristica_Demografica.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Caracteristica_Demografica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Ciudad.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Ciudad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Encuesta.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Encuesta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/EncuestaTipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/EncuestaTipo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Encuestado.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Encuestado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Estado.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Estado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Hijo.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Hijo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Marca.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Marca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Metodo_Conexion_Encuestado.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Metodo_Conexion_Encuestado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Ocupacion_Encuestado.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Ocupacion_Encuestado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/OpcionSimpleMultiple.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/OpcionSimpleMultiple.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Parroquia.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Parroquia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Participacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Participacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Pregunta.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Pregunta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/PreguntaEncuesta.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/PreguntaEncuesta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Presentacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Presentacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Respuesta.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Respuesta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/RespuestaOpcion.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/RespuestaOpcion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/SolicitudEstudio.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/SolicitudEstudio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Subcategoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Subcategoria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Telefono.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Telefono.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Tipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Tipo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Encuesta.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Encuesta.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/EncuestaTipo.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/EncuestaTipo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Marca.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Marca.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/OpcionSimpleMultiple.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/OpcionSimpleMultiple.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Pregunta.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Pregunta.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/PreguntaEncuesta.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/PreguntaEncuesta.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Presentacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Presentacion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/RespuestaOpcion.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/RespuestaOpcion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/SolicitudEstudio.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/SolicitudEstudio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Tipo.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Tipo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Usuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/target/entidades.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/excepciones/target/excepciones-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/excepciones/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/pruebaDirectorioActivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/pruebaDirectorioActivo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/accesodatos-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/accesodatos-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/dtos-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/dtos-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/entidades-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/entidades-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/test-classes/pruebaDirectorioActivo.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/test-classes/pruebaDirectorioActivo.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,13 +232,15 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunManager" selected="JUnit.CategoriaTest">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

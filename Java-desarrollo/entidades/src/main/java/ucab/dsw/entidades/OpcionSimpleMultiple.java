@@ -13,23 +13,14 @@ import java.util.List;
 @Entity
 @Table( name = "Opcion_Simple_Multiple" )
 public class OpcionSimpleMultiple extends EntidadBase{
+
     @Column( name = "opcion" )
     private String _opcion;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
-    @JoinColumn( name = "Pregunta_id" )
-    private Pregunta _pregunta;
-
     @OneToMany( mappedBy = "_opcionsimplemultiple", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
-    private List<RespuestaOpcion> _respuestaopcion;
+    private List<Opcion_Simple_Multiple_Pregunta> _opcion_Simple_Multiple_Pregunta;
 
-    public Pregunta get_pregunta() {
-        return _pregunta;
-    }
 
-    public void set_pregunta(Pregunta _pregunta) {
-        this._pregunta = _pregunta;
-    }
 
     public String get_opcion() {
         return _opcion;
