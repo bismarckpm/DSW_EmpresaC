@@ -16,7 +16,7 @@ public class Marca extends EntidadBase{
     @Column( name = "nombre" )
     private String _nombre;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn( name = "Subcategoria_id" )
     private Subcategoria _subcategoria;
 
@@ -33,23 +33,10 @@ public class Marca extends EntidadBase{
     @OneToMany( mappedBy = "_marca_encuesta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<Encuesta> _encuesta;
 
-    public List<Encuesta> get_encuesta()
-    {
-        return _encuesta;
-    }
 
     @OneToMany( mappedBy = "_marca_solicitud", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<SolicitudEstudio> _solicitud;
 
-    public List<SolicitudEstudio> get_solicitud()
-    {
-        return _solicitud;
-    }
-
-    public void set_solicitud( List<SolicitudEstudio>  _solicitud )
-    {
-        this._solicitud = _solicitud;
-    }
 
     public String get_nombre() {
         return _nombre;

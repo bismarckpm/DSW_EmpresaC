@@ -69,10 +69,8 @@ public class metodos_admin_Test {
         EncuestaDto encuestaDto = new EncuestaDto();
 
         encuestaDto.setNombre( "mejor color?" );
-        MarcaDto marca = new MarcaDto(2);
-        encuestaDto.setMarcaDto( marca );
 
-        EncuestaDto resultado = servicio.addEncuesta( encuestaDto);
+        EncuestaDto resultado = servicio.addEncuesta( 2,encuestaDto);
         Assert.assertNotEquals( resultado.getId(), 1 );
     }
 

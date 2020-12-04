@@ -157,7 +157,7 @@ public class Encuestado extends EntidadBase
         this._ocupacion_Encuestado = _ocupacion_Encuestado;
     }
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn( name = "Parroquia_id" )
     private Parroquia _Parroquia_encuestado;
 
@@ -171,7 +171,7 @@ public class Encuestado extends EntidadBase
         this._Parroquia_encuestado = _Parroquia_encuestado;
     }
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn( name = "Nivel_academico_id" )
     private Nivel_Academico _nivel_academico_encuestado;
 
@@ -185,7 +185,7 @@ public class Encuestado extends EntidadBase
         this._nivel_academico_encuestado = _nivel_academico_encuestado;
     }
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn( name = "Usuario_id" )
     private Usuario _usuario_encuestado;
 

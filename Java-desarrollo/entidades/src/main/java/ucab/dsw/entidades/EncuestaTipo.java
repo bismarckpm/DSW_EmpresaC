@@ -14,11 +14,11 @@ import java.util.List;
 @Table( name = "Encuesta_Tipo" )
 public class EncuestaTipo extends EntidadBase{
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn( name = "Tipo_id" )
     private Tipo _tipo_encuesta;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn( name = "Encuesta_id" )
     private Encuesta _encuesta_Tipo;
 

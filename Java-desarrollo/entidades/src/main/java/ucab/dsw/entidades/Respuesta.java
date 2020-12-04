@@ -22,11 +22,11 @@ public class Respuesta extends EntidadBase{
     @Column( name = "Respuesta_rango" )
     private int _respuestarango;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn( name = "Pregunta_encuesta_id" )
     private PreguntaEncuesta _preguntaencuesta;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn( name = "Participacion_id" )
     private Participacion _participacion;
 

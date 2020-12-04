@@ -176,7 +176,7 @@ public class metodos_admin {
 
     @PUT
     @Path( "/addEncuesta" )
-    public EncuestaDto addEncuesta( EncuestaDto encuestaDto)
+    public EncuestaDto addEncuesta( long  _id,EncuestaDto encuestaDto)
     {
         EncuestaDto resultado = new EncuestaDto();
 
@@ -185,8 +185,10 @@ public class metodos_admin {
             DaoEncuesta dao = new DaoEncuesta();
             Encuesta encuesta = new Encuesta();
             encuesta.set_nombre( encuestaDto.getNombre() );
-            Marca marca = new Marca(encuestaDto.getMarcaDto().getId());
+
+            Marca marca = new Marca(_id);
             encuesta.set_marca( marca );
+
             Encuesta resul = dao.insert( encuesta);
             resultado.setId( resul.get_id() );
         }

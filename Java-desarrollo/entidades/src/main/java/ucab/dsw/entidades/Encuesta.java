@@ -16,7 +16,7 @@ public class Encuesta extends EntidadBase{
     @Column( name = "nombre" )
     private String _nombre;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn( name = "Marca_id" )
     private Marca _marca_encuesta;
 
@@ -33,7 +33,7 @@ public class Encuesta extends EntidadBase{
         return _marca_encuesta;
     }
 
-    public void set_marca(Marca _marca) {
+    public void set_marca(Marca _marca_encuesta) {
         this._marca_encuesta = _marca_encuesta;
     }
 

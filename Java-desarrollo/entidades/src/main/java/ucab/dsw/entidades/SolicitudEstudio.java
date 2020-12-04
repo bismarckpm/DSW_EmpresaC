@@ -31,19 +31,19 @@ public class SolicitudEstudio extends EntidadBase{
     @Column( name = "modo_encuesta" )
     private String _modoencuesta;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn( name = "Encuesta_id" )
     private Encuesta _encuesta_solicitud;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn( name = "Cliente_id" )
     private Cliente _cliente;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn( name = "Usuario_analista_id" )
     private Usuario _usuario;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn( name = "Caracteristica_demografica_id" )
     private Caracteristica_Demografica _caracteristicademografica;
 
@@ -58,7 +58,7 @@ public class SolicitudEstudio extends EntidadBase{
         this._caracteristicademografica = _caracteristicademografica;
     }
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn( name = "Usuario_admin_id" )
 
     private Usuario _usuario2;
@@ -67,7 +67,7 @@ public class SolicitudEstudio extends EntidadBase{
         this._usuario2 = _usuario2;
     }
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn( name = "marca_id" )
 
     private Marca _marca_solicitud;

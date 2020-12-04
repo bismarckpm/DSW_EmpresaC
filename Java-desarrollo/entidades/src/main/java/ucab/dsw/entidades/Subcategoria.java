@@ -16,7 +16,7 @@ public class Subcategoria extends EntidadBase{
     @Column( name = "nombre" )
     private String _nombre;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn( name = "Categoria_id" )
     private Categoria _categoria;
 

@@ -58,7 +58,7 @@ public class Hijo extends EntidadBase {
 
 
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn( name = "Encuestado_id" )
     private Encuestado _encuestado_hijo;
 
