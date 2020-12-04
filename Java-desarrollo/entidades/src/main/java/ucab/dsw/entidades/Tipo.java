@@ -17,10 +17,10 @@ public class Tipo extends EntidadBase{
     @Column( name = "nombre" )
     private String _nombre;
 
-    @OneToMany( mappedBy = "_tipo", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    @OneToMany( mappedBy = "_tipo_Presentacion", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<Presentacion> _presentacion;
 
-    @OneToMany( mappedBy = "_tipo", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    @OneToMany( mappedBy = "_tipo_encuesta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<EncuestaTipo> _encuestatipo;
 
     public String get_nombre() {

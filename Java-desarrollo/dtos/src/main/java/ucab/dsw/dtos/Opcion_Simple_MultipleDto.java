@@ -12,17 +12,6 @@ public class Opcion_Simple_MultipleDto extends DtoBase{
         this.opcion = opcion;
     }
 
-    private PreguntaDto preguntaDto;
-
-    public PreguntaDto getPreguntaDto()
-    {
-        return preguntaDto;
-    }
-
-    public void setPreguntaDto( PreguntaDto preguntaDto )
-    {
-        this.preguntaDto = preguntaDto;
-    }
 
 
 }

@@ -6,8 +6,17 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.List;
 
+
 public class PreguntaDto extends DtoBase{
 
+    public PreguntaDto()
+    {
+    }
+
+    public PreguntaDto ( long id ) throws Exception
+    {
+        super( id );
+    }
 
     private String descripcion;
 

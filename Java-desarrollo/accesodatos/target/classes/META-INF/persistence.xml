@@ -32,6 +32,7 @@
         <class>ucab.dsw.entidades.RespuestaOpcion</class>
         <class>ucab.dsw.entidades.Participacion</class>
         <class>ucab.dsw.entidades.SolicitudEstudio</class>
+        <class>ucab.dsw.entidades.Opcion_Simple_Multiple_Pregunta</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.user" value="root"/>

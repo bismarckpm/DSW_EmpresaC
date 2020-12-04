@@ -4,6 +4,15 @@ package ucab.dsw.dtos;
 
 public class ClienteDto extends DtoBase{
 
+    public ClienteDto()
+    {
+    }
+
+    public ClienteDto ( long id ) throws Exception
+    {
+        super( id );
+    }
+
 
     private String rif;
 

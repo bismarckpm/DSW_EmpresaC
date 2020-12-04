@@ -79,7 +79,7 @@ public class Caracteristica_Demografica extends EntidadBase{
 
     public void set_genero( String _genero ) { this._genero = _genero; }
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Parroquia_id" )
     private Parroquia _Parroquia_demografia;
 
@@ -93,7 +93,7 @@ public class Caracteristica_Demografica extends EntidadBase{
         this._Parroquia_demografia = _Parroquia_demografia;
     }
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Nivel_academico_id" )
     private Nivel_Academico _nivel_academico_demografia;
 
