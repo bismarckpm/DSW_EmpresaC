@@ -54,21 +54,22 @@ export class AsignarEncuestaComponent implements OnInit {
 
   CrearAgregador(){
     this.AgregadorForm=this.fb.group({
-      tipo: 'nueva'
+      tipo: 'none',
+
     });
   }
 
   Agregador(){
-    if(this.AgregadorForm.value.tipo!="nueva"){
+    console.log(this.AgregadorForm.value.tipo);
+    if(this.AgregadorForm.value.tipo!='none'){
     this.preguntas=this.preguntas.filter(x=> x.Id!=Number(this.AgregadorForm.value.tipo));
     this.preguntasSeleccionadas.push(this.todasPreguntas.filter(x=>x.Id==Number(this.AgregadorForm.value.tipo))[0])
     console.log(this.preguntasSeleccionadas)
     }
-    else{
-    }
+
 
     this.AgregadorForm.reset({
-      tipo: 'nueva'
+      tipo: 'none'
     });
   }
 

@@ -3,7 +3,7 @@
     <form novalidate [formGroup]="PreguntaForm" #fform="ngForm" >
 
 
-        <input type="text" placeholder="pregunta..." formControlName="pregunta">
+        <input type="text" placeholder="Pregunta..." formControlName="pregunta">
 
         <mat-form-field class="example-full-width" >
             <mat-select formControlName="tipo">
@@ -16,23 +16,29 @@
         </mat-form-field>
 
 
-        <div *ngIf="tipo=='Texto'" >Tipo texto</div>
-        <div *ngIf="tipo=='Rango'">tipo Rango</div>
-        <div *ngIf="tipo=='Multiple'">Tipo multiple</div>
-        <div *ngIf="tipo=='Simple'">tipo simple</div>
-        <div *ngIf="tipo=='Bolean'">tipo boolean</div>
+
+        <div *ngIf="tipo=='Rango'">
+            <label for="min">Minimo</label>
+            <input type="number" name="min" id="" class="num">
+            <label for="max">Maximo</label>
+            <input type="number" name="max" id="" class="num">
+        </div>
+        <div *ngIf="tipo=='Multiple' || tipo=='Simple'" >
+            
+            <input type="text" placeholder="Opcion..." >
+            <button mat-raised-button color="#ffc107" >Agregar otra</button>
+            
+        </div>
+        
+        
 
    
     </form>
     
-
-
-
-    <mat-card-content>
-  
-
-      
-    </mat-card-content>
-
+    <mat-card-actions>
+        <button mat-raised-button color="#ffc107" >Aceptar Pregunta</button>
+    
+    </mat-card-actions>    
+    
 </mat-card>
 
