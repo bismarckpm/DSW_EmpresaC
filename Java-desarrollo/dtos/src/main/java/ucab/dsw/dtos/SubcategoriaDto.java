@@ -25,4 +25,11 @@ public class SubcategoriaDto extends DtoBase{
     {
         this.categoriaDto = categoriaDto;
     }
+
+    public SubcategoriaDto(long id) throws Exception {
+        super(id);
+    }
+
+    public SubcategoriaDto() {
+    }
 }

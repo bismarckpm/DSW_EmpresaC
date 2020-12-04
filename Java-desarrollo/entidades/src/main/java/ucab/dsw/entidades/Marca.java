@@ -1,16 +1,12 @@
 package ucab.dsw.entidades;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name="MarcasBySubcategoriaId", query="select m FROM Marca m where m._subcategoria._id=:subcategoria_id")
+})
 @Table( name = "Marca" )
 public class Marca extends EntidadBase{
     @Column( name = "nombre" )

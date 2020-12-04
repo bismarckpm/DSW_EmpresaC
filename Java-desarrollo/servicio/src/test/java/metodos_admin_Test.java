@@ -38,8 +38,6 @@ public class metodos_admin_Test {
         ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
         int resultado= servicio.preguntas_categoria_subcategoria(1,1);
         Assert.assertNotEquals( resultado, 0 );
-
-
     }
 
     @Test
