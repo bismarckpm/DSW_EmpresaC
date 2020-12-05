@@ -8,7 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 
@@ -185,7 +185,7 @@ public class Encuestado extends EntidadBase
         this._nivel_academico_encuestado = _nivel_academico_encuestado;
     }
 
-    @ManyToOne(optional = false , fetch = FetchType.EAGER)
+    @ManyToOne(optional = false , fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
     @JoinColumn( name = "Usuario_id" )
     private Usuario _usuario_encuestado;
 

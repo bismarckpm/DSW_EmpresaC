@@ -4,7 +4,7 @@ public class Nivel_AcademicoDto extends DtoBase{
 
         private String nombre;
 
-        public String getBombre()
+        public String getNombre()
         {
             return nombre;
         }
@@ -12,5 +12,12 @@ public class Nivel_AcademicoDto extends DtoBase{
         public void setNombre( String nombre )
         {
             this.nombre = nombre;
+        }
+
+        public Nivel_AcademicoDto(long id) throws Exception {
+            super(id);
+        }
+
+        public Nivel_AcademicoDto() {
         }
 }
