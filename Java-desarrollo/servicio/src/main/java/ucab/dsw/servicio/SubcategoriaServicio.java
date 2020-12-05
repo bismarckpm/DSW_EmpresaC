@@ -33,7 +33,8 @@ public class SubcategoriaServicio extends AplicacionBase{
             for(Subcategoria obj: resultado){
 
                 JsonObject subcategoria = Json.createObjectBuilder().add("id",obj.get_id())
-                                                                    .add("nombre",obj.get_nombre()).build();
+                                                                    .add("nombre",obj.get_nombre())
+                                                                    .add("categoria_id",obj.get_categoria().get_id()).build();
 
                 subcategoriaArrayJson.add(subcategoria);
 

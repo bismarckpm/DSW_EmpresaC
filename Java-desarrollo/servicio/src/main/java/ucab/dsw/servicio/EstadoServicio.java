@@ -1,8 +1,7 @@
 package ucab.dsw.servicio;
 
-import ucab.dsw.accesodatos.DaoPais;
-import ucab.dsw.entidades.Pais;
-
+import ucab.dsw.accesodatos.DaoEstado;
+import ucab.dsw.entidades.Estado;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -15,35 +14,37 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path( "/pais" )
+
+@Path( "/estado" )
 @Produces( MediaType.APPLICATION_JSON )
 @Consumes( MediaType.APPLICATION_JSON )
-public class PaisServicio {
+public class EstadoServicio extends AplicacionBase {
     @GET
     @Path( "/all" )
-    public Response getAllPaises()
+    public Response getAllEstados()
     {
         JsonObject data;
         try
         {
-            DaoPais dao= new DaoPais();
-            List<Pais> resultado= dao.findAll(Pais.class);
+            DaoEstado dao= new DaoEstado();
+            List<Estado> resultado= dao.findAll(Estado.class);
 
-            JsonArrayBuilder paisesArrayJson= Json.createArrayBuilder();
+            JsonArrayBuilder estadosArrayJson= Json.createArrayBuilder();
 
-            for(Pais obj: resultado){
+            for(Estado obj: resultado){
 
-                JsonObject pais = Json.createObjectBuilder().add("id",obj.get_id())
-                                                            .add("nombre",obj.get_nombre()).build();
+                JsonObject parroquia = Json.createObjectBuilder().add("id",obj.get_id())
+                                                                .add("nombre",obj.get_nombre())
+                                                                .add("pais_id",obj.get_pais().get_id()).build();
 
-                paisesArrayJson.add(pais);
+                estadosArrayJson.add(parroquia);
 
             }
 
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200)
-                    .add("paises",paisesArrayJson).build();
+                    .add("estados",estadosArrayJson).build();
 
 
         }

@@ -33,7 +33,9 @@ public class MarcaServicio extends AplicacionBase{
             for(Marca obj: resultado){
 
                 JsonObject marca = Json.createObjectBuilder().add("id",obj.get_id())
-                                                             .add("nombre",obj.get_nombre()).build();
+                                                             .add("nombre",obj.get_nombre())
+                                                             .add("subcategoria_id",obj.get_subcategoria().get_id())
+                                                             .add("categoria_id",obj.get_subcategoria().get_categoria().get_id()).build();
 
                 marcaArrayJson.add(marca);
 

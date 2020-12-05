@@ -1,8 +1,7 @@
 package ucab.dsw.servicio;
 
-import ucab.dsw.accesodatos.DaoPais;
-import ucab.dsw.entidades.Pais;
-
+import ucab.dsw.accesodatos.DaoParroquia;
+import ucab.dsw.entidades.Parroquia;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -15,35 +14,38 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path( "/pais" )
+@Path( "/parroquia" )
 @Produces( MediaType.APPLICATION_JSON )
 @Consumes( MediaType.APPLICATION_JSON )
-public class PaisServicio {
+public class ParroquiaServicio extends AplicacionBase {
     @GET
     @Path( "/all" )
-    public Response getAllPaises()
+    public Response getAllParroquias()
     {
         JsonObject data;
         try
         {
-            DaoPais dao= new DaoPais();
-            List<Pais> resultado= dao.findAll(Pais.class);
+            DaoParroquia dao= new DaoParroquia();
+            List<Parroquia> resultado= dao.findAll(Parroquia.class);
 
             JsonArrayBuilder paisesArrayJson= Json.createArrayBuilder();
 
-            for(Pais obj: resultado){
+            for(Parroquia obj: resultado){
 
-                JsonObject pais = Json.createObjectBuilder().add("id",obj.get_id())
-                                                            .add("nombre",obj.get_nombre()).build();
+                JsonObject parroquia = Json.createObjectBuilder().add("id",obj.get_id())
+                                                            .add("nombre",obj.get_nombre())
+                                                            .add("ciudad_id",obj.get_ciudad().get_id())
+                                                            .add("estado_id",obj.get_ciudad().get_estado().get_id())
+                                                            .add("pais_id",obj.get_ciudad().get_estado().get_pais().get_id()).build();
 
-                paisesArrayJson.add(pais);
+                paisesArrayJson.add(parroquia);
 
             }
 
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200)
-                    .add("paises",paisesArrayJson).build();
+                    .add("parroquias",paisesArrayJson).build();
 
 
         }
