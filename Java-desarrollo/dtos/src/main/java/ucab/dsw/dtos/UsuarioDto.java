@@ -43,4 +43,13 @@ public class UsuarioDto extends DtoBase
         this.rol = rol;
     }
 
+    public String contrasena;
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
 }

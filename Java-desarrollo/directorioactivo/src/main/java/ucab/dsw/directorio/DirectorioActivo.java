@@ -3,6 +3,7 @@ package ucab.dsw.directorio;
 import ucab.dsw.dtos.UsuarioLdapDto;
 
 import javax.naming.Context;
+import javax.naming.NameAlreadyBoundException;
 import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
 import javax.naming.directory.Attribute;
@@ -68,29 +69,32 @@ public class DirectorioActivo
     /*
       Method that adds users to ldap
      */
-    public void addEntryToLdap(UsuarioLdapDto user)
-    {
+    public void addEntryToLdap(UsuarioLdapDto user) {
 
-        try
-        {
-            connectLDAP( _user, _password );
-            Attribute oc = new BasicAttribute( "objectClass" );
-            oc.add( "top" );
-            oc.add( "person" );
-            SimpleDateFormat format = new SimpleDateFormat( "yyyyMMddHHmm" );
+        try {
+            connectLDAP(_user, _password);
+            Attribute oc = new BasicAttribute("objectClass");
+            oc.add("top");
+            oc.add("person");
+            SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmm");
             BasicAttributes entry = new BasicAttributes();
-            entry.put( oc );
-            entry.put( new BasicAttribute( "cn", user.getCorreoelectronico() ) );
-            entry.put( new BasicAttribute( "description", user.getTipo_usuario()) );
-            entry.put( new BasicAttribute( "sn", user.getSn() ));
-            entry.put( new BasicAttribute( "userpassword", user.getContrasena() ) );
-            entry.put( new BasicAttribute( "pwdLastSuccess", format.format( new Date() ) + "Z" ) );
-            _ldapContext.createSubcontext( String.format( _userDirectory + "," + _directory, user.getCorreoelectronico()), entry );
+            entry.put(oc);
+            entry.put(new BasicAttribute("cn", user.getCorreoelectronico()));
+            entry.put(new BasicAttribute("description", user.getTipo_usuario()));
+            entry.put(new BasicAttribute("sn", user.getSn()));
+            entry.put(new BasicAttribute("userpassword", user.getContrasena()));
+            entry.put(new BasicAttribute("pwdLastSuccess", format.format(new Date()) + "Z"));
+            _ldapContext.createSubcontext(String.format(_userDirectory + "," + _directory, user.getCorreoelectronico()), entry);
 
-        }
-        catch(Exception exception)
-        {
-            exception.printStackTrace();
+        } catch (Exception exception) {
+
+            if(exception.getClass().equals(NameAlreadyBoundException.class)){
+                System.out.println("Ya hay un usuario con ese correo registrado en el sistema");
+            }
+            else{
+                exception.printStackTrace();
+            }
+
         }
     }
 

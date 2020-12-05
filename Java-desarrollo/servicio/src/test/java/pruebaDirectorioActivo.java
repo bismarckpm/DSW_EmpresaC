@@ -11,7 +11,7 @@ public class pruebaDirectorioActivo
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
         user.setCorreoelectronico( "bryan@gmail.com" );
-        user.setContrasena( "12345" );
+        user.setContrasena( "12345." );
         user.setSn("1");
         user.setTipo_usuario("analista");
         DirectorioActivo ldap = new DirectorioActivo();
