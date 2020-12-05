@@ -17,6 +17,9 @@ public class Tipo extends EntidadBase{
     @Column( name = "nombre" )
     private String _nombre;
 
+    @Column( name = "estado" )
+    private String _estado;
+
     @OneToMany( mappedBy = "_tipo_Presentacion", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<Presentacion> _presentacion;
 
@@ -29,6 +32,14 @@ public class Tipo extends EntidadBase{
 
     public void set_nombre(String _nombre) {
         this._nombre = _nombre;
+    }
+
+    public String get_estado() {
+        return _estado;
+    }
+
+    public void set_estado(String _estado) {
+        this._estado = _estado;
     }
 
 

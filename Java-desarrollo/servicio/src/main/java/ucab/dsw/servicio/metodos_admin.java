@@ -187,6 +187,7 @@ public class metodos_admin {
 
             Encuesta encuesta = new Encuesta();
             encuesta.set_nombre( encuestaDto.getNombre() );
+
             Marca marca = new Marca(_id);
             encuesta.set_marca( marca );
 
@@ -246,7 +247,30 @@ public class metodos_admin {
         }
         return  resultado;
     }
+    @GET
+    @Path( "/estudios" )
+    public int Participacion_estudio(long  _id)
+    {
+        JsonArrayBuilder builder = Json.createArrayBuilder();
+        List<Participacion> resultado= null;
 
+        DaoParticipacion dao= new DaoParticipacion();
+        Class<Participacion> type = Participacion.class;
+
+        resultado= dao.findAll(type);
+        for(Participacion obj: resultado) {
+
+            if(obj.get_solicitudestudio().get_id() == _id) {
+                System.out.println("Id: " + obj.get_solicitudestudio().get_id());
+                System.out.println("Participante: " + obj.get_encuestado().get_nombre());
+
+            }else{
+                System.out.println("");
+            }
+        }
+        builder.build();
+        return 1;
+    }
     @GET
     @Path( "/consulta" )
     public String consulta()

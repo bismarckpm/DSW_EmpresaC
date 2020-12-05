@@ -96,6 +96,16 @@ public class metodos_admin_Test {
         PreguntaDto resultado = servicio.addPregunta( preguntaDto);
         Assert.assertNotEquals( resultado.getId(), 1 );
     }
+
+    @Test
+    public void Participacion_estudioTest() throws Exception
+    {
+        ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
+        int resultado= servicio.Participacion_estudio(5);
+        Assert.assertNotEquals( resultado, 0 );
+
+
+    }
 }
 
 
