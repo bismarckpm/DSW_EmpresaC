@@ -8,7 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 
@@ -131,7 +131,7 @@ public class SolicitudEstudio extends EntidadBase{
         this._estado = _estado;
     }
 
-    public Date get_fecha_fin() {
+    public  Date get_fecha_fin() {
         return _fecha_fin;
     }
 
