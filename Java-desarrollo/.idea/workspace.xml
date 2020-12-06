@@ -33,51 +33,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c9c357f-2b07-42bd-afe8-0f758d0713a9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/clases/RespuestaValidarEstudio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/servicio_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/servicio_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoEncuestaTipo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoSolicitudEstudio.java" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoSolicitudEstudio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoUsuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/target/accesodatos-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/target/accesodatos-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/target/classes/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/target/classes/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/target/classes/ucab/dsw/accesodatos/DaoEncuestaTipo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/target/classes/ucab/dsw/accesodatos/DaoSolicitudEstudio.class" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/target/classes/ucab/dsw/accesodatos/DaoSolicitudEstudio.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/target/classes/ucab/dsw/accesodatos/DaoUsuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/target/classes/ucab/dsw/accesodatos/DaoUsuario.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Encuesta_TipoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/Marca_TipoDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/SolicituEstudioDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/SolicituEstudioDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/Encuesta_TipoDto.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/SolicituEstudioDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/classes/ucab/dsw/dtos/SolicituEstudioDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dtos/target/dtos.jar" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/dtos.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dtos/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dtos/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dtos/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Encuesta.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Encuesta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/EncuestaTipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/MarcaTipo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Marca.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Marca.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Participacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Participacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/SolicitudEstudio.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/SolicitudEstudio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Tipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Tipo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Encuesta.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Encuesta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/EncuestaTipo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Marca.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Marca.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Participacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Participacion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/SolicitudEstudio.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/SolicitudEstudio.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Tipo.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Tipo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Usuario.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/target/entidades.jar" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/entidades.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/MarcaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/MarcaTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/SolicitudEstudioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/SolicitudEstudioTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/metodos_admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/metodos_admin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/test-classes/MarcaTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/test-classes/MarcaTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/test-classes/SolicitudEstudioTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/test-classes/SolicitudEstudioTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -439,7 +399,7 @@
       <workItem from="1607176747985" duration="8519000" />
       <workItem from="1607201571581" duration="5301000" />
       <workItem from="1607261828132" duration="7540000" />
-      <workItem from="1607272596344" duration="5301000" />
+      <workItem from="1607272596344" duration="7677000" />
     </task>
     <servers />
   </component>
@@ -535,29 +495,29 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="507" y="266" key="Github.CreateGistDialog/0.0.1366.728@0.0.1366.728" timestamp="1605854281039" />
-    <state width="1238" height="220" key="GridCell.Tab.0.bottom" timestamp="1607278932231">
+    <state width="1238" height="220" key="GridCell.Tab.0.bottom" timestamp="1607282065591">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
     <state width="980" height="193" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1606246012370" />
-    <state width="1238" height="220" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1607278932231" />
+    <state width="1238" height="220" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1607282065591" />
     <state width="1323" height="265" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="1238" height="220" key="GridCell.Tab.0.center" timestamp="1607278932231">
+    <state width="1238" height="220" key="GridCell.Tab.0.center" timestamp="1607282065591">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
     <state width="980" height="193" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1606246012370" />
-    <state width="1238" height="220" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1607278932231" />
+    <state width="1238" height="220" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1607282065591" />
     <state width="1323" height="265" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="1238" height="220" key="GridCell.Tab.0.left" timestamp="1607278932231">
+    <state width="1238" height="220" key="GridCell.Tab.0.left" timestamp="1607282065590">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
     <state width="980" height="193" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1606246012370" />
-    <state width="1238" height="220" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1607278932231" />
+    <state width="1238" height="220" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1607282065590" />
     <state width="1323" height="265" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="1238" height="220" key="GridCell.Tab.0.right" timestamp="1607278932231">
+    <state width="1238" height="220" key="GridCell.Tab.0.right" timestamp="1607282065591">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
     <state width="980" height="193" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1606246012370" />
-    <state width="1238" height="220" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1607278932231" />
+    <state width="1238" height="220" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1607282065591" />
     <state width="1323" height="265" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
     <state width="980" height="168" key="GridCell.Tab.1.bottom" timestamp="1606183672249">
       <screen x="0" y="0" width="1024" height="728" />

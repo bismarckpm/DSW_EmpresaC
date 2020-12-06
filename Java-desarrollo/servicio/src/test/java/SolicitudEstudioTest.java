@@ -30,10 +30,10 @@ public class SolicitudEstudioTest {
         Caracteristica_Demografica Caracteristica_Demografica= new Caracteristica_Demografica();
         Caracteristica_Demografica.set_edad_min(30);
         Caracteristica_Demografica.set_edad_max(45);
-        Caracteristica_Demografica.set_nivel_socioeconomico("Medio");
+        Caracteristica_Demografica.set_nivel_socioeconomico("Bajo");
         Caracteristica_Demografica.set_nacionalidad("Extranjero");
         Caracteristica_Demografica.set_cantidad_hijos(1);
-        Caracteristica_Demografica.set_genero("M");
+        Caracteristica_Demografica.set_genero("F");
 
         Nivel_Academico nivel_academico=new Nivel_Academico(5);
         Parroquia parroquia= new Parroquia(5);

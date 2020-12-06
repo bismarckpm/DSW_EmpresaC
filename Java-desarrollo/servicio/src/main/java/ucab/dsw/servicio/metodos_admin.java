@@ -261,9 +261,9 @@ public class metodos_admin {
 
     }
 
-    public SolicitudEstudio validarEstudiosPrevio(SolicitudEstudio solicitudEstudio) throws Exception{     /*Esto no va aqui. GR*/
+    public SolicitudEstudio validarEstudiosPrevio(SolicitudEstudio solicitudEstudio) throws Exception{     /* Tengo que mover esto. -GR*/
 
-        /*Buscar todos los estudios realizados del cliente*/
+        
         DaoSolicitudEstudio dao=new DaoSolicitudEstudio();
         List<SolicitudEstudio> estudios_previos=dao.getEstudiosByCliente(solicitudEstudio.get_cliente().get_id(), solicitudEstudio.get_marca().get_id());
         SolicitudEstudio estudio_elegido = null;
@@ -271,7 +271,7 @@ public class metodos_admin {
         int admin_random=0;
         Usuario admin_elegido=null;
 
-            /*Comparar si existe uno igual*/
+            
 
             for(SolicitudEstudio obj: estudios_previos){
 
@@ -279,17 +279,18 @@ public class metodos_admin {
 
                 if(resul){
                     estudio_elegido=obj;
+                    solicitudEstudio.set_caracteristicademografica(obj.get_caracteristicademografica());
                     break;
                 }
 
             }
 
-            /*Si es el caso, asignar el analista_id y la encuesta_id asociados al nuevo estudio*/
+            
             if(estudio_elegido!=null){
                 solicitudEstudio.set_encuesta(estudio_elegido.get_encuesta());
                 solicitudEstudio.set_usuario(estudio_elegido.get_usuario());
 
-                /*Buscar la muestra*/
+                
                 List<Participacion> participaciones_estudio_previo=estudio_elegido.get_participacion();
                 List<Participacion> participaciones_actuales= new ArrayList<>();
 
@@ -306,7 +307,7 @@ public class metodos_admin {
 
                 solicitudEstudio.set_participacion(participaciones_actuales);
             }
-            /*Sino, elegir un admin random y asignarlo al estudio*/
+            
             else{
                 DaoUsuario daoUsuario=new DaoUsuario();
                 List<Usuario> admins= daoUsuario.getAdmins();
