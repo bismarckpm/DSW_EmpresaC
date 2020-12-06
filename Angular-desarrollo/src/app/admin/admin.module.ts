@@ -6,7 +6,7 @@ import { AdminComponent } from './componentes/raiz/admin.component';
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
 import { ComunModule } from '../comun/comun.module';
 import { AdministrarEstudiosComponent } from './componentes/administrar-estudios/administrar-estudios.component';
-
+import { MaterialModule } from '../material.module';
 
 
 @NgModule({
@@ -18,7 +18,8 @@ import { AdministrarEstudiosComponent } from './componentes/administrar-estudios
   imports: [
     CommonModule,
     AdminRoutingModule,
-    ComunModule
+    ComunModule,
+    MaterialModule
   ]
 })
 export class AdminModule { }
