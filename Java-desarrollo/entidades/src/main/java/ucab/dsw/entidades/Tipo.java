@@ -4,8 +4,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
@@ -21,7 +19,7 @@ public class Tipo extends EntidadBase{
     private List<Presentacion> _presentacion;
 
     @OneToMany( mappedBy = "_tipo_encuesta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
-    private List<EncuestaTipo> _encuestatipo;
+    private List<MarcaTipo> _encuestatipo;
 
     public String get_nombre() {
         return _nombre;

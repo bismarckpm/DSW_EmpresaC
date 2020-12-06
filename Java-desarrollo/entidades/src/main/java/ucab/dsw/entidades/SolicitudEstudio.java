@@ -1,18 +1,14 @@
 package ucab.dsw.entidades;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import java.sql.Date;
+import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name="EstudiosByCliente", query="select e FROM SolicitudEstudio e where e._cliente._id=:cliente_id and e._marca_solicitud._id=:marca_id")
+})
 @Table( name = "Solicitud_Estudio" )
 public class SolicitudEstudio extends EntidadBase{
 
@@ -43,7 +39,7 @@ public class SolicitudEstudio extends EntidadBase{
     @JoinColumn( name = "Usuario_analista_id" )
     private Usuario _usuario;
 
-    @ManyToOne(optional = false , fetch = FetchType.EAGER)
+    @ManyToOne(optional = false , fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn( name = "Caracteristica_demografica_id" )
     private Caracteristica_Demografica _caracteristicademografica;
 
@@ -60,7 +56,6 @@ public class SolicitudEstudio extends EntidadBase{
 
     @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Usuario_admin_id" )
-
     private Usuario _usuario2;
 
     public void set_usuario2(Usuario _usuario2) {
@@ -154,4 +149,11 @@ public class SolicitudEstudio extends EntidadBase{
 
     }
 
+    public List<Participacion> get_participacion() {
+        return _participacion;
+    }
+
+    public void set_participacion(List<Participacion> _participacion) {
+        this._participacion = _participacion;
+    }
 }

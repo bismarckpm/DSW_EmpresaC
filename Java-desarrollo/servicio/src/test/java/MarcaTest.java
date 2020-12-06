@@ -30,7 +30,7 @@ public class MarcaTest {
         MarcaDto marcaDto=new MarcaDto();
         SubcategoriaDto subcategoriaDto=new SubcategoriaDto(4);
 
-        marcaDto.setNombre("Kali");
+        marcaDto.setNombre("Juana");
         marcaDto.setSubcategoriaDto(subcategoriaDto);
 
         Response respuesta= servicio.addMarca(marcaDto);

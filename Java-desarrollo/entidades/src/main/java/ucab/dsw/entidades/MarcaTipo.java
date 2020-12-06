@@ -11,23 +11,23 @@ import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table( name = "Encuesta_Tipo" )
-public class EncuestaTipo extends EntidadBase{
+@Table( name = "Marca_Tipo" )
+public class MarcaTipo extends EntidadBase{
 
     @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Tipo_id" )
     private Tipo _tipo_encuesta;
 
     @ManyToOne(optional = false , fetch = FetchType.EAGER)
-    @JoinColumn( name = "Encuesta_id" )
-    private Encuesta _encuesta_Tipo;
+    @JoinColumn( name = "Marca_id" )
+    private Marca _marca_Tipo;
 
-    public Encuesta get_encuesta() {
-        return _encuesta_Tipo;
+    public Marca get_marca() {
+        return _marca_Tipo;
     }
 
-    public void set_encuesta(Encuesta _encuesta) {
-        this._encuesta_Tipo = _encuesta_Tipo;
+    public void set_marca(Marca _marca_Tipo) {
+        this._marca_Tipo = _marca_Tipo;
     }
 
     public Tipo get_tipo() {
@@ -38,12 +38,12 @@ public class EncuestaTipo extends EntidadBase{
         this._tipo_encuesta = _tipo_encuesta;
     }
 
-    public EncuestaTipo(long id )
+    public MarcaTipo(long id )
     {
         super( id );
     }
 
-    public EncuestaTipo()
+    public MarcaTipo()
     {
 
     }

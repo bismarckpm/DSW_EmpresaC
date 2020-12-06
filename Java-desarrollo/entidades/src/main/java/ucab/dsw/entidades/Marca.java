@@ -53,4 +53,7 @@ public class Marca extends EntidadBase{
     {
 
     }
+
+    @OneToMany( mappedBy = "_marca_Tipo", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    private List<MarcaTipo> _marcatipo;
 }

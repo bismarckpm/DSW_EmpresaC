@@ -8,6 +8,7 @@ ucab\dsw\dtos\TipoDto.class
 ucab\dsw\dtos\DtoBase.class
 ucab\dsw\dtos\EncuestaDto.class
 ucab\dsw\dtos\Opcion_Simple_Multiple_PreguntaDto.class
+ucab\dsw\dtos\Marca_TipoDto.class
 ucab\dsw\dtos\SubcategoriaDto.class
 ucab\dsw\dtos\CategoriaDto.class
 ucab\dsw\dtos\EncuestadoDto.class
@@ -18,7 +19,6 @@ ucab\dsw\dtos\PreguntaDto.class
 ucab\dsw\dtos\TelefonoDto.class
 ucab\dsw\dtos\Respuesta_Opcion.class
 ucab\dsw\dtos\EstadoDto.class
-ucab\dsw\dtos\Encuesta_TipoDto.class
 ucab\dsw\dtos\UsuarioLdapDto.class
 ucab\dsw\dtos\Caracteristica_DemograficaDto.class
 ucab\dsw\dtos\PresentacionDto.class

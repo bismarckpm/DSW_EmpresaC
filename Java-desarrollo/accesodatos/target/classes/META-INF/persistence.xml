@@ -23,7 +23,7 @@
         <class>ucab.dsw.entidades.Marca</class>
         <class>ucab.dsw.entidades.Presentacion</class>
         <class>ucab.dsw.entidades.Tipo</class>
-        <class>ucab.dsw.entidades.EncuestaTipo</class>
+        <class>ucab.dsw.entidades.MarcaTipo</class>
         <class>ucab.dsw.entidades.Encuesta</class>
         <class>ucab.dsw.entidades.Pregunta</class>
         <class>ucab.dsw.entidades.PreguntaEncuesta</class>
@@ -33,6 +33,7 @@
         <class>ucab.dsw.entidades.Participacion</class>
         <class>ucab.dsw.entidades.SolicitudEstudio</class>
         <class>ucab.dsw.entidades.Opcion_Simple_Multiple_Pregunta</class>
+
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
