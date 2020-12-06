@@ -62,6 +62,9 @@ public class SolicitudEstudio extends EntidadBase{
     @JoinColumn( name = "Usuario_admin_id" )
 
     private Usuario _usuario2;
+    public Usuario get_usuario2() {
+        return _usuario2;
+    }
 
     public void set_usuario2(Usuario _usuario2) {
         this._usuario2 = _usuario2;

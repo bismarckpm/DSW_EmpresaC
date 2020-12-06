@@ -23,8 +23,8 @@ public class Tipo extends EntidadBase{
     @OneToMany( mappedBy = "_tipo_Presentacion", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<Presentacion> _presentacion;
 
-    @OneToMany( mappedBy = "_tipo_encuesta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
-    private List<EncuestaTipo> _encuestatipo;
+    @OneToMany( mappedBy = "_tipo_marca", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    private List<Marca_Tipo> _marcatipo;
 
     public String get_nombre() {
         return _nombre;

@@ -11,39 +11,39 @@ import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table( name = "Encuesta_Tipo" )
-public class EncuestaTipo extends EntidadBase{
+@Table( name = "Marca_Tipo" )
+public class Marca_Tipo extends EntidadBase{
 
     @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Tipo_id" )
-    private Tipo _tipo_encuesta;
+    private Tipo _tipo_marca;
 
     @ManyToOne(optional = false , fetch = FetchType.EAGER)
-    @JoinColumn( name = "Encuesta_id" )
-    private Encuesta _encuesta_Tipo;
+    @JoinColumn( name = "Marca_id" )
+    private Marca _Marca_Tipo;
 
-    public Encuesta get_encuesta() {
-        return _encuesta_Tipo;
+    public Marca get_Marca_Tipo() {
+        return _Marca_Tipo;
     }
 
-    public void set_encuesta(Encuesta _encuesta) {
-        this._encuesta_Tipo = _encuesta_Tipo;
+    public void set_Marca_Tipo(Marca _Marca_Tipo) {
+        this._Marca_Tipo = _Marca_Tipo;
     }
 
     public Tipo get_tipo() {
-        return _tipo_encuesta;
+        return _tipo_marca;
     }
 
-    public void set_tipo(Tipo _tipo_encuesta) {
-        this._tipo_encuesta = _tipo_encuesta;
+    public void set_tipo(Tipo _tipo_marca) {
+        this._tipo_marca = _tipo_marca;
     }
 
-    public EncuestaTipo(long id )
+    public Marca_Tipo(long id )
     {
         super( id );
     }
 
-    public EncuestaTipo()
+    public Marca_Tipo()
     {
 
     }

@@ -20,8 +20,6 @@ public class Encuesta extends EntidadBase{
     @JoinColumn( name = "Marca_id" )
     private Marca _marca_encuesta;
 
-    @OneToMany( mappedBy = "_encuesta_Tipo", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
-    private List<EncuestaTipo> _encuestatipo;
 
     @OneToMany( mappedBy = "_encuesta_Pregunta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<PreguntaEncuesta> _preguntaencuesta;
