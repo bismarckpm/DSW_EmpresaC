@@ -26,8 +26,8 @@ public class analista_metodos {
 
 
     @GET
-    @Path("/estudios")
-    public Response consultaEstudios_asignados(long  _id) {
+    @Path("/estudios-asignados/{id}")
+    public Response consultaEstudios_asignados(@PathParam("id")long  _id) {
         JsonArrayBuilder builder = Json.createArrayBuilder();
         List<SolicitudEstudio> resultado = null;
 

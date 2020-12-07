@@ -93,7 +93,7 @@ public class crud_tipo {
 
     @DELETE
     @Path( "/delete/{id}" )
-    public Response EliminarTipo( long  _id )
+    public Response EliminarTipo( @PathParam("id")long  _id )
     {
         JsonObject data;
         TipoDto resultado = new TipoDto();
@@ -148,8 +148,8 @@ public class crud_tipo {
     }
 
     @GET
-    @Path( "/{id}" )
-    public Response findTipo( long id )
+    @Path( "/tipo/{id}" )
+    public Response findTipo(@PathParam("id") long id )
     {
         JsonObject data;
         JsonObject tipoJson;
@@ -185,7 +185,7 @@ public class crud_tipo {
     }
 
     @PUT
-    @Path( "/{id}" )
+    @Path( "/tipo" )
     public Response findAllTipo( )
     {
         JsonObject data;

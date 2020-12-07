@@ -27,7 +27,7 @@ public class metodos_admin {
 
 
     @GET
-    @Path( "/estudios" )
+    @Path( "/estudios-asignados" )
     public Response consultaEstudios_asignados()
     {
         JsonArrayBuilder builder = Json.createArrayBuilder();
@@ -55,7 +55,7 @@ public class metodos_admin {
     }
 
     @GET
-    @Path( "/estudios" )
+    @Path( "/estudios-no-asignados" )
     public Response consultaEstudios_no_asignados()
     {
         JsonArrayBuilder builder = Json.createArrayBuilder();
@@ -83,7 +83,7 @@ public class metodos_admin {
         return Response.status(Response.Status.OK).entity(builder).build();
     }
 
-    @DELETE
+    @GET
     @Path( "/delete/{id}" )
     public Response preguntas_categoria_subcategoria(@PathParam("id") long  _id, @PathParam("id") long  _id2)
     {
@@ -131,9 +131,10 @@ public class metodos_admin {
     }
 
     @DELETE
-    @Path( "/delete/{id}" )
-    public SolicituEstudioDto asignarEncuesta(@PathParam("id") long  _id, @PathParam("id") long  _id2 )
+    @Path( "/asignarEncuesta/{id}" )
+    public Response asignarEncuesta(@PathParam("id") long  _id, @PathParam("id") long  _id2 )
     {
+        JsonObject data;
         SolicituEstudioDto resultado = new SolicituEstudioDto();
         try
         {
@@ -146,18 +147,31 @@ public class metodos_admin {
 
             SolicitudEstudio resul = dao.update(solicitudEstudio);
             resultado.setId( resul.get_id() );
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
+
         }
         catch ( Exception ex )
         {
             String problema = ex.getMessage();
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
-        return  resultado;
+        return Response.status(Response.Status.OK).entity(data).build();
     }
 
     @DELETE
-    @Path( "/delete/{id}" )
-    public SolicituEstudioDto EliminarEstudio(@PathParam("id") long  _id )
+    @Path( "/delete-solicitud/{id}" )
+    public Response EliminarEstudio(@PathParam("id") long  _id )
     {
+        JsonObject data;
         SolicituEstudioDto resultado = new SolicituEstudioDto();
         try
         {
@@ -168,20 +182,31 @@ public class metodos_admin {
 
             SolicitudEstudio resul = dao.update(solicitudEstudio);
             resultado.setId( resul.get_id() );
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
         }
         catch ( Exception ex )
         {
             String problema = ex.getMessage();
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
-        return  resultado;
+        return Response.status(Response.Status.OK).entity(data).build();
     }
 
     @PUT
-    @Path( "/addEncuesta" )
-    public EncuestaDto addEncuesta( long  _id,EncuestaDto encuestaDto,List<Pregunta> pregunta)
+    @Path( "/addEncuesta/{id}" )
+    public Response addEncuesta(@PathParam("id") long  _id,EncuestaDto encuestaDto,List<Pregunta> pregunta)
     {
         EncuestaDto resultado = new EncuestaDto();
-
+        JsonObject data;
         try
         {
             DaoEncuesta dao = new DaoEncuesta();
@@ -207,20 +232,32 @@ public class metodos_admin {
                 resultado2.setId( resul2.get_id() );
 
             }
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
+
         }
         catch ( Exception ex )
         {
             String problema = ex.getMessage();
+
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
-        return  resultado;
+        return Response.status(Response.Status.OK).entity(data).build();
     }
 
     @PUT
     @Path( "/addPregunta" )
-    public PreguntaDto addPregunta(PreguntaDto preguntaDto)
+    public Response addPregunta(PreguntaDto preguntaDto)
     {
         PreguntaDto resultado = new PreguntaDto();
-
+        JsonObject data;
         try
         {
             DaoPregunta dao = new DaoPregunta();
@@ -241,17 +278,29 @@ public class metodos_admin {
                 System.out.println("Rango maximo: " + preguntaDto.getValormax());
             }
 
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
+
 
         }
         catch ( Exception ex )
         {
             String problema = ex.getMessage();
+
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
-        return  resultado;
+        return Response.status(Response.Status.OK).entity(data).build();
     }
     @GET
-    @Path( "/estudios" )
-    public Response Participacion_estudio(long  _id)
+    @Path( "/estudios-participacion/{id}" )
+    public Response Participacion_estudio(@PathParam("id")long  _id)
     {
         JsonArrayBuilder builder = Json.createArrayBuilder();
         List<Participacion> resultado= null;

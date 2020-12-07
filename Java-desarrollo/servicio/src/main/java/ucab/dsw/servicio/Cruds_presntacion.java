@@ -63,8 +63,8 @@ public class Cruds_presntacion {
     }
 
     @PUT
-    @Path( "/channgepresentacion" )
-    public Response changePresentacion(long  _id,long  _id2,PresentacionDto presentacionDto)
+    @Path( "/channgepresentacion/{id}/{id2}" )
+    public Response changePresentacion(@PathParam("id")long  _id,@PathParam("id2")long  _id2,PresentacionDto presentacionDto)
     {
         PresentacionDto resultado = new PresentacionDto();
         JsonObject data;
@@ -101,7 +101,7 @@ public class Cruds_presntacion {
 
     @DELETE
     @Path( "/delete/{id}" )
-    public Response EliminarPresentacion( long  _id )
+    public Response EliminarPresentacion( @PathParam("id")long  _id )
     {
         JsonObject data;
         PresentacionDto resultado = new PresentacionDto();
@@ -131,9 +131,9 @@ public class Cruds_presntacion {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
-    @PUT
-    @Path( "/{id}" )
-    public Response findPresentacion( long id )
+    @GET
+    @Path( "/Presentacion/{id}" )
+    public Response findPresentacion( @PathParam("id")long id )
     {
         JsonObject data;
         JsonObject PresentacionJson;
@@ -171,8 +171,8 @@ public class Cruds_presntacion {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
-    @PUT
-    @Path( "/{id}" )
+    @GET
+    @Path( "/presentacion" )
     public Response findAllPresentacion( )
     {
         JsonObject data;

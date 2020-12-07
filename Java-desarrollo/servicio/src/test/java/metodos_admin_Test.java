@@ -49,8 +49,8 @@ public class metodos_admin_Test {
     {
         ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
 
-        SolicituEstudioDto resultado = servicio.asignarEncuesta( 1 ,2);
-        Assert.assertNotEquals( resultado.getId(), 0 );
+        Response resultado = servicio.asignarEncuesta( 1 ,2);
+        Assert.assertNotEquals( resultado, 0 );
 
     }
 
@@ -59,8 +59,8 @@ public class metodos_admin_Test {
     {
         ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
 
-        SolicituEstudioDto resultado = servicio.EliminarEstudio( 1 );
-        Assert.assertNotEquals( resultado.getId(), 0 );
+        Response resultado = servicio.EliminarEstudio( 1 );
+        Assert.assertNotEquals( resultado, 0 );
 
     }
 
@@ -79,8 +79,8 @@ public class metodos_admin_Test {
         DaoPregunta dao= new DaoPregunta();
         pregunta= dao.findAll(type);
 
-        EncuestaDto resultado = servicio.addEncuesta( 2,encuestaDto,pregunta);
-        Assert.assertNotEquals( resultado.getId(), 1 );
+        Response resultado = servicio.addEncuesta( 2,encuestaDto,pregunta);
+        Assert.assertNotEquals( resultado, 1 );
     }
 
     @Test
@@ -94,8 +94,8 @@ public class metodos_admin_Test {
         preguntaDto.setValormax( 10 );
         preguntaDto.setValormin( 0 );
 
-        PreguntaDto resultado = servicio.addPregunta( preguntaDto);
-        Assert.assertNotEquals( resultado.getId(), 1 );
+        Response resultado = servicio.addPregunta( preguntaDto);
+        Assert.assertNotEquals( resultado, 1 );
     }
 
     @Test

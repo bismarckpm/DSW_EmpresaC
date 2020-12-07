@@ -27,8 +27,8 @@ import javax.ws.rs.core.Response;
 public class solicitud {
 
     @PUT
-    @Path( "/addSolicitud" )
-    public Response addSolicitud(long  _id_Cliente, long  _id_Marca, long  _id_Nivel_academico, long  _id_Parroquia, SolicituEstudioDto solicituEstudioDto, Caracteristica_DemograficaDto caracteristica_DemograficaDto)
+    @Path( "/addSolicitud/{id}/{id2}/{id3}/{id4}" )
+    public Response addSolicitud(@PathParam("id")long  _id_Cliente,@PathParam("id2") long  _id_Marca, @PathParam("id3")long  _id_Nivel_academico, @PathParam("id4")long  _id_Parroquia, SolicituEstudioDto solicituEstudioDto, Caracteristica_DemograficaDto caracteristica_DemograficaDto)
     {
         JsonObject data;
         SolicituEstudioDto resultado = new SolicituEstudioDto();
