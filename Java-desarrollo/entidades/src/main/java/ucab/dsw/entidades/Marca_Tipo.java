@@ -16,26 +16,26 @@ public class Marca_Tipo extends EntidadBase{
 
     @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Tipo_id" )
-    private Tipo _tipo_marca;
+    private Tipo _tipo;
 
     @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Marca_id" )
-    private Marca _Marca_Tipo;
+    private Marca _marca;
 
-    public Marca get_Marca_Tipo() {
-        return _Marca_Tipo;
+    public Marca get_marca() {
+        return _marca;
     }
 
-    public void set_Marca_Tipo(Marca _Marca_Tipo) {
-        this._Marca_Tipo = _Marca_Tipo;
+    public void set_marca(Marca _marca) {
+        this._marca = _marca;
     }
 
     public Tipo get_tipo() {
-        return _tipo_marca;
+        return _tipo;
     }
 
-    public void set_tipo(Tipo _tipo_marca) {
-        this._tipo_marca = _tipo_marca;
+    public void set_tipo(Tipo _tipo) {
+        this._tipo = _tipo;
     }
 
     public Marca_Tipo(long id )

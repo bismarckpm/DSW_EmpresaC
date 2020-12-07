@@ -2,7 +2,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import ucab.dsw.dtos.PresentacionDto;
 import ucab.dsw.dtos.PresentacionDto;
-import ucab.dsw.dtos.SolicituEstudioDto;
+import ucab.dsw.dtos.SolicitudEstudioDto;
 import ucab.dsw.dtos.TipoDto;
 import ucab.dsw.entidades.Presentacion;
 

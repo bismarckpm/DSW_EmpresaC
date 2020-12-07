@@ -167,4 +167,6 @@ public class SolicitudEstudio extends EntidadBase{
     public void set_participacion(List<Participacion> _participacion) {
         this._participacion = _participacion;
     }
+
+
 }

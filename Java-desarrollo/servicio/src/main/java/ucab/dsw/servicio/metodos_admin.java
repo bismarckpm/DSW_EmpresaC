@@ -132,9 +132,9 @@ public class metodos_admin {
 
     @DELETE
     @Path( "/delete/{id}" )
-    public SolicituEstudioDto asignarEncuesta(@PathParam("id") long  _id, @PathParam("id") long  _id2 )
+    public SolicitudEstudioDto asignarEncuesta(@PathParam("id") long  _id, @PathParam("id") long  _id2 )
     {
-        SolicituEstudioDto resultado = new SolicituEstudioDto();
+        SolicitudEstudioDto resultado = new SolicitudEstudioDto();
         try
         {
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
@@ -156,9 +156,9 @@ public class metodos_admin {
 
     @DELETE
     @Path( "/delete/{id}" )
-    public SolicituEstudioDto EliminarEstudio(@PathParam("id") long  _id )
+    public SolicitudEstudioDto EliminarEstudio(@PathParam("id") long  _id )
     {
-        SolicituEstudioDto resultado = new SolicituEstudioDto();
+        SolicitudEstudioDto resultado = new SolicitudEstudioDto();
         try
         {
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
@@ -272,129 +272,5 @@ public class metodos_admin {
         }
         builder.build();
         return 1;
-    }
-    @GET
-    @Path( "/consulta" )
-    public String consulta()
-    {
-        return "Epa";
-    }
-
-    @GET
-    @Path( "/prueba" )
-    public int prueba(SolicitudEstudio b)
-    {
-
-        try {
-            DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
-            SolicitudEstudio solicitudEstudioProcesada = this.validarEstudiosPrevio(b);
-
-            dao.insert(solicitudEstudioProcesada);
-        }catch (Exception ex){
-            ex.printStackTrace();
-            return 0;
-        }
-        return 1;
-
-    }
-
-    public SolicitudEstudio validarEstudiosPrevio(SolicitudEstudio solicitudEstudio) throws Exception{     /* Tengo que mover esto. -GR*/
-
-        
-        DaoSolicitudEstudio dao=new DaoSolicitudEstudio();
-        List<SolicitudEstudio> estudios_previos=dao.getEstudiosByCliente(solicitudEstudio.get_cliente().get_id(), solicitudEstudio.get_marca().get_id());
-        SolicitudEstudio estudio_elegido = null;
-        Boolean resul=false;
-        int admin_random=0;
-        Usuario admin_elegido=null;
-
-            
-
-            for(SolicitudEstudio obj: estudios_previos){
-
-                resul=this.CheckearCaracteristicasDemograficas(solicitudEstudio.get_caracteristicademografica(),obj.get_caracteristicademografica());
-
-                if(resul){
-                    estudio_elegido=obj;
-                    solicitudEstudio.set_caracteristicademografica(obj.get_caracteristicademografica());
-                    break;
-                }
-
-            }
-
-            
-            if(estudio_elegido!=null){
-                solicitudEstudio.set_encuesta(estudio_elegido.get_encuesta());
-                solicitudEstudio.set_usuario(estudio_elegido.get_usuario());
-
-                
-                List<Participacion> participaciones_estudio_previo=estudio_elegido.get_participacion();
-                List<Participacion> participaciones_actuales= new ArrayList<>();
-
-                for(Participacion obj: participaciones_estudio_previo){
-                    Participacion participacion=new Participacion();
-                    participacion.set_encuestado(obj.get_encuestado());
-                    participacion.set_solicitudestudio(solicitudEstudio);
-                    participacion.set_estado("Pendiente");
-
-                    participaciones_actuales.add(participacion);
-                }
-
-                /*FALTA: Añadir metodo para verificar si existen mas encuestados que cumplan las caracteristicas*/
-
-                solicitudEstudio.set_participacion(participaciones_actuales);
-            }
-            
-            else{
-                DaoUsuario daoUsuario=new DaoUsuario();
-                List<Usuario> admins= daoUsuario.getAdmins();
-                admin_random=(int)(Math.random()* admins.size());
-                admin_elegido=admins.get(admin_random);
-                solicitudEstudio.set_usuario2(admin_elegido);
-            }
-
-        return solicitudEstudio;
-    }
-
-    public boolean CheckearCaracteristicasDemograficas(Caracteristica_Demografica a, Caracteristica_Demografica b) throws Exception{
-        Boolean resul=false;
-        int cont=0;
-
-        if(a.get_edad_min()==b.get_edad_min()){
-            cont++;
-        }
-        if(a.get_edad_max()==b.get_edad_max()){
-            cont++;
-        }
-
-        if(a.get_nivel_socioeconomico().equals(b.get_nivel_socioeconomico())){
-            cont++;
-        }
-
-        if(a.get_nacionalidad().equals(b.get_nacionalidad())){
-            cont++;
-        }
-
-        if(a.get_cantidad_hijos()==b.get_cantidad_hijos()){
-            cont++;
-        }
-
-        if(a.get_genero().equals(b.get_genero())){
-            cont++;
-        }
-
-        if(a.get_nivel_academico_demografia().get_id()==b.get_nivel_academico_demografia().get_id()){
-            cont++;
-        }
-
-        if(a.get_Parroquia_demografia().get_id()==b.get_Parroquia_demografia().get_id()){
-            cont++;
-        }
-
-        if(cont==8){
-            resul=true;
-        }
-
-        return resul;
     }
 }

@@ -34,8 +34,8 @@ public class Marca extends EntidadBase{
     private List<SolicitudEstudio> _solicitud;
 
 
-    @OneToMany( mappedBy = "_Marca_Tipo", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
-    private List<Marca_Tipo> _marca;
+    @OneToMany( mappedBy = "_marca", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    private List<Marca_Tipo> _marcatipos;
 
     public String get_nombre() {
         return _nombre;
@@ -56,7 +56,4 @@ public class Marca extends EntidadBase{
     {
 
     }
-
-    @OneToMany( mappedBy = "_marca_Tipo", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
-    private List<MarcaTipo> _marcatipo;
 }

@@ -1,10 +1,8 @@
 package ucab.dsw.dtos;
 
-<<<<<<< HEAD
-public class PresentacionDto extends DtoBase{
-=======
+
 public class PresentacionDto extends DtoBase {
->>>>>>> 269b5caca644055e5622875a19c1a5450d20a301
+
 
     private String nombre;
 

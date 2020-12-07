@@ -46,7 +46,7 @@ public class metodos_admin_Test {
     {
         ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
 
-        SolicituEstudioDto resultado = servicio.asignarEncuesta( 1 ,2);
+        SolicitudEstudioDto resultado = servicio.asignarEncuesta( 1 ,2);
         Assert.assertNotEquals( resultado.getId(), 0 );
 
     }
@@ -56,7 +56,7 @@ public class metodos_admin_Test {
     {
         ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
 
-        SolicituEstudioDto resultado = servicio.EliminarEstudio( 1 );
+        SolicitudEstudioDto resultado = servicio.EliminarEstudio( 1 );
         Assert.assertNotEquals( resultado.getId(), 0 );
 
     }
