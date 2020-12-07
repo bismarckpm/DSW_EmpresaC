@@ -17,6 +17,9 @@ public class Presentacion extends EntidadBase{
     @Column( name = "nombre" )
     private String _nombre;
 
+    @Column( name = "estado" )
+    private String _estado;
+
     @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Tipo_id" )
     private Tipo _tipo_Presentacion;
@@ -29,11 +32,19 @@ public class Presentacion extends EntidadBase{
         this._nombre = _nombre;
     }
 
+    public String get_estado() {
+        return _estado;
+    }
+
+    public void set_estado(String _estado) {
+        this._estado = _estado;
+    }
+
     public Tipo get_tipo() {
         return _tipo_Presentacion;
     }
 
-    public void set_tipo(Tipo _tipo) {
+    public void set_tipo(Tipo _tipo_Presentacion) {
         this._tipo_Presentacion = _tipo_Presentacion;
     }
 

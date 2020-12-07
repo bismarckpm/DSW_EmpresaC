@@ -178,13 +178,15 @@ public class metodos_admin {
 
     @PUT
     @Path( "/addEncuesta" )
-    public EncuestaDto addEncuesta( long  _id,EncuestaDto encuestaDto)
+    public EncuestaDto addEncuesta( long  _id,EncuestaDto encuestaDto,List<Pregunta> pregunta)
     {
         EncuestaDto resultado = new EncuestaDto();
 
         try
         {
             DaoEncuesta dao = new DaoEncuesta();
+            DaoPreguntaEncuesta dao2= new DaoPreguntaEncuesta();
+
             Encuesta encuesta = new Encuesta();
             encuesta.set_nombre( encuestaDto.getNombre() );
 
@@ -193,6 +195,18 @@ public class metodos_admin {
 
             Encuesta resul = dao.insert( encuesta);
             resultado.setId( resul.get_id() );
+
+
+            for(Pregunta obj: pregunta) {
+                Pregunta_EncuestaDto resultado2 = new Pregunta_EncuestaDto();
+                PreguntaEncuesta preguntaEncuesta = new PreguntaEncuesta();
+                preguntaEncuesta.set_encuesta(resul);
+                preguntaEncuesta.set_pregunta(obj);
+
+                PreguntaEncuesta resul2 = dao2.insert( preguntaEncuesta);
+                resultado2.setId( resul2.get_id() );
+
+            }
         }
         catch ( Exception ex )
         {
@@ -235,7 +249,30 @@ public class metodos_admin {
         }
         return  resultado;
     }
+    @GET
+    @Path( "/estudios" )
+    public int Participacion_estudio(long  _id)
+    {
+        JsonArrayBuilder builder = Json.createArrayBuilder();
+        List<Participacion> resultado= null;
 
+        DaoParticipacion dao= new DaoParticipacion();
+        Class<Participacion> type = Participacion.class;
+
+        resultado= dao.findAll(type);
+        for(Participacion obj: resultado) {
+
+            if(obj.get_solicitudestudio().get_id() == _id) {
+                System.out.println("Id: " + obj.get_solicitudestudio().get_id());
+                System.out.println("Participante: " + obj.get_encuestado().get_nombre());
+
+            }else{
+                System.out.println("");
+            }
+        }
+        builder.build();
+        return 1;
+    }
     @GET
     @Path( "/consulta" )
     public String consulta()

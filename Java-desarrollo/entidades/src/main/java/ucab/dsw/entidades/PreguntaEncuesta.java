@@ -13,8 +13,7 @@ import java.util.List;
 @Entity
 @Table( name = "Pregunta_Encuesta" )
 public class PreguntaEncuesta extends EntidadBase{
-    @Column( name = "nombre" )
-    private String _nombre;
+
 
     @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Pregunta_id" )
@@ -53,13 +52,6 @@ public class PreguntaEncuesta extends EntidadBase{
         this._pregunta_Encuesta = _pregunta_Encuesta;
     }
 
-    public String get_nombre() {
-        return _nombre;
-    }
-
-    public void set_nombre(String _nombre) {
-        this._nombre = _nombre;
-    }
 
     public PreguntaEncuesta(long id )
     {

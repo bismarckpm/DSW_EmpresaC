@@ -1,6 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import ucab.dsw.accesodatos.DaoPregunta;
 import ucab.dsw.accesodatos.DaoSolicitudEstudio;
 import ucab.dsw.dtos.*;
 
@@ -68,7 +69,14 @@ public class metodos_admin_Test {
 
         encuestaDto.setNombre( "mejor color?" );
 
-        EncuestaDto resultado = servicio.addEncuesta( 2,encuestaDto);
+
+
+        List<Pregunta> pregunta = null;
+        Class<Pregunta> type = Pregunta.class;
+        DaoPregunta dao= new DaoPregunta();
+        pregunta= dao.findAll(type);
+
+        EncuestaDto resultado = servicio.addEncuesta( 2,encuestaDto,pregunta);
         Assert.assertNotEquals( resultado.getId(), 1 );
     }
 
@@ -85,6 +93,16 @@ public class metodos_admin_Test {
 
         PreguntaDto resultado = servicio.addPregunta( preguntaDto);
         Assert.assertNotEquals( resultado.getId(), 1 );
+    }
+
+    @Test
+    public void Participacion_estudioTest() throws Exception
+    {
+        ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
+        int resultado= servicio.Participacion_estudio(5);
+        Assert.assertNotEquals( resultado, 0 );
+
+
     }
 }
 

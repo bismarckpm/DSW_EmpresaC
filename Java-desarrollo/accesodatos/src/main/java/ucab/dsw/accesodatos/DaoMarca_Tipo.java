@@ -1,16 +1,15 @@
 package ucab.dsw.accesodatos;
 
-import ucab.dsw.entidades.MarcaTipo;
+import ucab.dsw.entidades.Marca_Tipo;
 
 import javax.persistence.EntityManager;
+public class DaoMarca_Tipo extends Dao<Marca_Tipo>{
 
-public class DaoMarcaTipo extends Dao<MarcaTipo>
-{
     private EntityManager _em;
     static DaoHandler _handler = new DaoHandler();
 
 
-    public DaoMarcaTipo( )
+    public DaoMarca_Tipo( )
     {
         super( _handler );
     }

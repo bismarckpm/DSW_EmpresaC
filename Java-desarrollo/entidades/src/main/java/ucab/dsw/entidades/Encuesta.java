@@ -20,6 +20,10 @@ public class Encuesta extends EntidadBase{
     @JoinColumn( name = "Marca_id" )
     private Marca _marca_encuesta;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 269b5caca644055e5622875a19c1a5450d20a301
     @OneToMany( mappedBy = "_encuesta_Pregunta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<PreguntaEncuesta> _preguntaencuesta;
 

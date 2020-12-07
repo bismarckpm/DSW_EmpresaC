@@ -23,7 +23,11 @@
         <class>ucab.dsw.entidades.Marca</class>
         <class>ucab.dsw.entidades.Presentacion</class>
         <class>ucab.dsw.entidades.Tipo</class>
+<<<<<<< HEAD
         <class>ucab.dsw.entidades.MarcaTipo</class>
+=======
+        <class>ucab.dsw.entidades.Marca_Tipo</class>
+>>>>>>> 269b5caca644055e5622875a19c1a5450d20a301
         <class>ucab.dsw.entidades.Encuesta</class>
         <class>ucab.dsw.entidades.Pregunta</class>
         <class>ucab.dsw.entidades.PreguntaEncuesta</class>
