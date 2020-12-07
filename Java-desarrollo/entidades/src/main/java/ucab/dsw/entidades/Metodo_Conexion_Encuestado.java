@@ -16,7 +16,7 @@ import java.util.List;
 public class Metodo_Conexion_Encuestado extends EntidadBase{
 
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Metodo_conexion_id" )
     private Metodo_conexion _metodo_conexion;
 
@@ -24,7 +24,7 @@ public class Metodo_Conexion_Encuestado extends EntidadBase{
 
     public void set_metodo_conexion( Metodo_conexion _metodo_conexion ) { this._metodo_conexion = _metodo_conexion; }
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Encuestado_id" )
     private Encuestado _encuestado_metodo_conexion;
 

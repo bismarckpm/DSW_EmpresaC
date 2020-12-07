@@ -1,1 +1,14 @@
-<p>administrar-estudios works!</p>
+
+
+
+
+
+<div *ngIf="estudios" class="contenedor">
+    <div *ngFor="let x of estudios" class="item">
+        <app-tarjeta-estudios [routerLink]="['/admin/AsignarEncuesta', x.id]"   [estudio]=x></app-tarjeta-estudios>
+    </div>
+</div>
+
+<div [hidden]="estudios">
+    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+</div>

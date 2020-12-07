@@ -2,12 +2,16 @@ package ucab.dsw.dtos;
 
 public class UsuarioLdapDto extends DtoBase
 {
+<<<<<<< HEAD
     private String cn;
     private String sn;
     private String tipo_usuario;
     private String nombre;
     private String correoelectronico;
     private String uid;
+=======
+    private String usuario;
+>>>>>>> ec2028d05a0a9fba4df1fced2f844db80de97032
     private String contrasena;
 
     public String getCn() { return cn; }
@@ -22,6 +26,7 @@ public class UsuarioLdapDto extends DtoBase
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
 
+<<<<<<< HEAD
     public String getCorreoelectronico() { return correoelectronico; }
     public void setCorreoelectronico(String correoelectronico) { this.correoelectronico = correoelectronico; }
 
@@ -30,4 +35,33 @@ public class UsuarioLdapDto extends DtoBase
 
     public String getContrasena() { return contrasena; }
     public void setContrasena(String contrasena) { this.contrasena = contrasena; }
+=======
+    public String getUsuario() { return usuario; }
+    public String getContrasena() { return contrasena; }
+
+    public void setUsuario( String usuario )
+    {
+        this.usuario = usuario;
+    }
+    public void setContrasena( String contrasena )
+    {
+        this.contrasena= contrasena;
+    }
+
+    public String getTipo_usuario() {
+        return tipo_usuario;
+    }
+
+    public void setTipo_usuario(String tipo_usuario) {
+        this.tipo_usuario = tipo_usuario;
+    }
+
+    public String getSn() {
+        return sn;
+    }
+
+    public void setSn(String sn) {
+        this.sn = sn;
+    }
+>>>>>>> ec2028d05a0a9fba4df1fced2f844db80de97032
 }

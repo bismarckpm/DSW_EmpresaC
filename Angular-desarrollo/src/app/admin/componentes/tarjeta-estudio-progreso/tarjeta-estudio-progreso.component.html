@@ -1,0 +1,14 @@
+
+<div class="card">
+    <div class="right">
+        <h2 class="name">{{estudio.marca}}</h2>
+        <p class="title">Cliente: {{estudio.usuario}}</p>
+        <div class="interests">
+            <p class="interests_title">Caracteristicas: </p>
+            <span class="interests_item">{{estudio.categoria}}</span>
+            <span class="interests_item">{{estudio.subcategoria}}</span>
+            <button class="bad">Eliminar</button><button class="good" [routerLink]="['/admin/EstudioDetalle', estudio.id]">Ver</button>
+        </div>
+    </div>
+</div>
+

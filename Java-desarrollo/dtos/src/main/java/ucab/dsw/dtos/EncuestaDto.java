@@ -1,10 +1,20 @@
 package ucab.dsw.dtos;
 
-public class EncuestaDto {
+public class EncuestaDto extends DtoBase{
+
+
+    public EncuestaDto()
+    {
+    }
+
+    public EncuestaDto ( long id ) throws Exception
+    {
+        super( id );
+    }
 
     private String nombre;
 
-    public String getBombre()
+    public String getNombre()
     {
         return nombre;
     }

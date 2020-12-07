@@ -1,0 +1,10 @@
+
+<div *ngIf="estudios" class="contenedor">
+    <div *ngFor="let x of estudios" class="item">
+        <app-tarjeta-estudio-progreso [estudio]=x ></app-tarjeta-estudio-progreso>
+    </div>
+</div>
+
+<div [hidden]="estudios">
+    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+</div>

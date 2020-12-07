@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="pruebaORM-1.0-SNAPSHOT.war">
+    <root id="archive" name="MercadeoUcab-1.0-SNAPSHOT.war">
       <element id="artifact" artifact-name="servicio:war exploded" />
     </root>
   </artifact>

@@ -2,7 +2,7 @@ package ucab.dsw.dtos;
 
 
 
-public class RespuestaDto {
+public class RespuestaDto extends DtoBase{
 
 
     private int respuestaboolean;

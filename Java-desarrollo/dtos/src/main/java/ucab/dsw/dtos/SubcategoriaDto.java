@@ -1,10 +1,10 @@
 package ucab.dsw.dtos;
 
-public class SubcategoriaDto {
+public class SubcategoriaDto extends DtoBase{
 
     private String nombre;
 
-    public String getBombre()
+    public String getNombre()
     {
         return nombre;
     }
@@ -24,5 +24,12 @@ public class SubcategoriaDto {
     public void setCategoriaDto( CategoriaDto categoriaDto )
     {
         this.categoriaDto = categoriaDto;
+    }
+
+    public SubcategoriaDto(long id) throws Exception {
+        super(id);
+    }
+
+    public SubcategoriaDto() {
     }
 }
