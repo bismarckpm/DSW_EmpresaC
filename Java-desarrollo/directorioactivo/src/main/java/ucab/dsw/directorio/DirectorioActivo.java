@@ -3,6 +3,7 @@ package ucab.dsw.directorio;
 import ucab.dsw.dtos.UsuarioLdapDto;
 
 import javax.naming.Context;
+import javax.naming.NameAlreadyBoundException;
 import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
 import javax.naming.directory.Attribute;
@@ -68,8 +69,7 @@ public class DirectorioActivo
     /*
       Method that adds users to ldap
      */
-    public void addEntryToLdap(UsuarioLdapDto user)
-    {
+    public void addEntryToLdap(UsuarioLdapDto user) {
 
         try
         {
@@ -92,10 +92,6 @@ public class DirectorioActivo
             entry.put( new BasicAttribute( "pwdLastSuccess", format.format( new Date() ) + "Z" ) );
             _ldapContext.createSubcontext( String.format( _userDirectory + "," + _directory, user.getCn()), entry );
 
-        }
-        catch(Exception exception)
-        {
-            exception.printStackTrace();
         }
     }
 
@@ -168,7 +164,7 @@ public class DirectorioActivo
             Attribute atb = new BasicAttribute("mail","java2db@mai.com");
             atbs.put(atb);
 
-            _ldapContext.modifyAttributes( String.format(_userDirectory + "," + _directory, user.getCorreoelectronico())
+            _ldapContext.modifyAttributes( String.format(_userDirectory + "," + _directory, user.getUsuario())
                     , DirContext.REPLACE_ATTRIBUTE,atbs );
         }
         catch(Exception exception)

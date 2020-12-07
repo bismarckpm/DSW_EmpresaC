@@ -1,0 +1,17 @@
+input{
+    
+    
+    width: 60%;
+    margin-right: 10px;
+    
+
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: #000000;
+  
+}
+
+.num{
+    width:85%;
+}
+

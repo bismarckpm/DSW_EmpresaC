@@ -2,6 +2,14 @@ package ucab.dsw.dtos;
 
 public class UsuarioDto extends DtoBase
 {
+    public UsuarioDto()
+    {
+    }
+
+    public UsuarioDto ( long id ) throws Exception
+    {
+        super( id );
+    }
     private String usuario;
 
     public String getUsuario() { return usuario; }
@@ -35,4 +43,13 @@ public class UsuarioDto extends DtoBase
         this.rol = rol;
     }
 
+    public String contrasena;
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
 }

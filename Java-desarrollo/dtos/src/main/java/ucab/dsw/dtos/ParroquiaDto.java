@@ -25,4 +25,11 @@ public class ParroquiaDto extends DtoBase
     {
         this.ciudadDto = ciudadDto;
     }
+
+    public ParroquiaDto(long id) throws Exception {
+        super(id);
+    }
+
+    public ParroquiaDto() {
+    }
 }

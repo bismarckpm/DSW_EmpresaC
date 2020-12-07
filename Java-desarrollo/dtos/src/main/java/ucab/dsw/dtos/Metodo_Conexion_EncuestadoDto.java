@@ -1,6 +1,6 @@
 package ucab.dsw.dtos;
 
-public class Metodo_Conexion_EncuestadoDto {
+public class Metodo_Conexion_EncuestadoDto extends DtoBase{
 
     private EncuestadoDto encuestadoDto;
 

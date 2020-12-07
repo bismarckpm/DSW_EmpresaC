@@ -2,7 +2,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import ucab.dsw.directorio.DirectorioActivo;
 import ucab.dsw.dtos.UsuarioLdapDto;
-import ucab.dsw.servicio.Login;
+import ucab.dsw.servicio.LoginServicio;
 
 public class pruebaDirectorioActivo
 {
@@ -34,7 +34,7 @@ public class pruebaDirectorioActivo
     public void getUserLDAP()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
-        user.setCorreoelectronico( "bismarckpmpruebaLDAP@gmail.com" );
+        user.setUsuario( "bismarckpmpruebaLDAP" );
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.getEntry( user );
     }
@@ -43,7 +43,7 @@ public class pruebaDirectorioActivo
     public void changePassword()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
-        user.setCorreoelectronico( "bismarckpmpruebaLDAP@gmail.com" );
+        user.setUsuario( "bismarckpmpruebaLDAP2" );
         user.setContrasena( "MARIAPEPE" );
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.changePassword( user );
@@ -66,8 +66,8 @@ public class pruebaDirectorioActivo
         UsuarioLdapDto user = new UsuarioLdapDto();
         user.setCn( "MFalcon" );
         user.setContrasena( "12345" );
-        Login login = new Login();
-        login.loginLdap(user);
+        LoginServicio loginServicio = new LoginServicio();
+        loginServicio.loginLdap(user);
     }
 
     @Test
@@ -75,7 +75,7 @@ public class pruebaDirectorioActivo
     public void getEntryRole()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
-        user.setCorreoelectronico( "bryan@gmail.com" );
+        user.setUsuario( "gabrielOne" );
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.getEntryRole(user);
 

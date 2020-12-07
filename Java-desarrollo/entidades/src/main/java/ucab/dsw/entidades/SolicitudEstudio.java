@@ -1,5 +1,6 @@
 package ucab.dsw.entidades;
 
+import javax.persistence.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,11 +9,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name="EstudiosByCliente", query="select e FROM SolicitudEstudio e where e._cliente._id=:cliente_id and e._marca_solicitud._id=:marca_id")
+})
 @Table( name = "Solicitud_Estudio" )
 public class SolicitudEstudio extends EntidadBase{
 
@@ -31,19 +35,19 @@ public class SolicitudEstudio extends EntidadBase{
     @Column( name = "modo_encuesta" )
     private String _modoencuesta;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Encuesta_id" )
-    private Encuesta _encuesta;
+    private Encuesta _encuesta_solicitud;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Cliente_id" )
     private Cliente _cliente;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Usuario_analista_id" )
     private Usuario _usuario;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST , fetch = FetchType.EAGER)
+    @ManyToOne(optional = false , fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn( name = "Caracteristica_demografica_id" )
     private Caracteristica_Demografica _caracteristicademografica;
 
@@ -56,6 +60,30 @@ public class SolicitudEstudio extends EntidadBase{
 
     public void set_caracteristicademografica(Caracteristica_Demografica _caracteristicademografica) {
         this._caracteristicademografica = _caracteristicademografica;
+    }
+
+    @ManyToOne(optional = false , fetch = FetchType.EAGER)
+    @JoinColumn( name = "Usuario_admin_id" )
+    private Usuario _usuario2;
+    public Usuario get_usuario2() {
+        return _usuario2;
+    }
+
+    public void set_usuario2(Usuario _usuario2) {
+        this._usuario2 = _usuario2;
+    }
+
+    @ManyToOne(optional = false , fetch = FetchType.EAGER)
+    @JoinColumn( name = "marca_id" )
+
+    private Marca _marca_solicitud;
+
+    public void set_marca(Marca _marca_solicitud) {
+        this._marca_solicitud = _marca_solicitud;
+    }
+
+    public Marca get_marca() {
+        return _marca_solicitud;
     }
 
     public Usuario get_usuario() {
@@ -75,11 +103,11 @@ public class SolicitudEstudio extends EntidadBase{
     }
 
     public Encuesta get_encuesta() {
-        return _encuesta;
+        return _encuesta_solicitud;
     }
 
-    public void set_encuesta(Encuesta _encuesta) {
-        this._encuesta = _encuesta;
+    public void set_encuesta(Encuesta _encuesta_solicitud) {
+        this._encuesta_solicitud = _encuesta_solicitud;
     }
 
     public String get_modoencuesta() {
@@ -106,7 +134,7 @@ public class SolicitudEstudio extends EntidadBase{
         this._estado = _estado;
     }
 
-    public Date get_fecha_fin() {
+    public  Date get_fecha_fin() {
         return _fecha_fin;
     }
 
@@ -131,5 +159,14 @@ public class SolicitudEstudio extends EntidadBase{
     {
 
     }
+
+    public List<Participacion> get_participacion() {
+        return _participacion;
+    }
+
+    public void set_participacion(List<Participacion> _participacion) {
+        this._participacion = _participacion;
+    }
+
 
 }

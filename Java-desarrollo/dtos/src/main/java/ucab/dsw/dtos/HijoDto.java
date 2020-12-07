@@ -3,7 +3,7 @@ package ucab.dsw.dtos;
 
 import java.sql.Date;
 
-public class HijoDto {
+public class HijoDto extends DtoBase{
     private String nombre;
 
     public String getNombre()

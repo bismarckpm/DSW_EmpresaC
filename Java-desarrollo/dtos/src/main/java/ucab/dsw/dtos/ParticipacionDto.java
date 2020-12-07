@@ -1,6 +1,6 @@
 package ucab.dsw.dtos;
 
-public class ParticipacionDto {
+public class ParticipacionDto extends DtoBase{
 
 
     private String estado;
@@ -27,14 +27,14 @@ public class ParticipacionDto {
         this.encuestadoDto = encuestadoDto;
     }
 
-    private SolicituEstudioDto solicituEstudioDto;
+    private SolicitudEstudioDto solicituEstudioDto;
 
-    public SolicituEstudioDto getSolicituEstudioDto()
+    public SolicitudEstudioDto getSolicituEstudioDto()
     {
         return solicituEstudioDto;
     }
 
-    public void setSolicituEstudioDto( SolicituEstudioDto solicituEstudioDto )
+    public void setSolicituEstudioDto( SolicitudEstudioDto solicituEstudioDto )
     {
         this.solicituEstudioDto = solicituEstudioDto;
     }
