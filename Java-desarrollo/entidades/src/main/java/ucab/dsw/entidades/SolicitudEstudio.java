@@ -1,6 +1,14 @@
 package ucab.dsw.entidades;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.Date;
 import java.util.List;
 
@@ -57,6 +65,9 @@ public class SolicitudEstudio extends EntidadBase{
     @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Usuario_admin_id" )
     private Usuario _usuario2;
+    public Usuario get_usuario2() {
+        return _usuario2;
+    }
 
     public void set_usuario2(Usuario _usuario2) {
         this._usuario2 = _usuario2;
@@ -123,7 +134,7 @@ public class SolicitudEstudio extends EntidadBase{
         this._estado = _estado;
     }
 
-    public Date get_fecha_fin() {
+    public  Date get_fecha_fin() {
         return _fecha_fin;
     }
 
@@ -156,4 +167,6 @@ public class SolicitudEstudio extends EntidadBase{
     public void set_participacion(List<Participacion> _participacion) {
         this._participacion = _participacion;
     }
+
+
 }

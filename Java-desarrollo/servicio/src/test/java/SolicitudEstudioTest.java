@@ -1,52 +1,47 @@
 import org.junit.Assert;
 import org.junit.Test;
 import ucab.dsw.dtos.*;
-import ucab.dsw.entidades.*;
+import ucab.dsw.dtos.SolicitudEstudioDto;
 
 import javax.ws.rs.core.Response;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+
 
 public class SolicitudEstudioTest {
     @Test
-    public void getValidarSolicitud() throws Exception
+    public void AddSolicitud() throws Exception
     {
-        ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
+        ucab.dsw.servicio.SolicitudServicio servicio = new ucab.dsw.servicio.SolicitudServicio();
 
+        /*--------------Dto--------------*/
 
-        /*--------------Entidad--------------*/
+        SolicitudEstudioDto solicitudEstudioDto=new SolicitudEstudioDto();
 
-        SolicitudEstudio solicitudEstudio=new SolicitudEstudio();
+        solicitudEstudioDto.setModoencuesta("online");
 
-        DateFormat formato= new SimpleDateFormat("yyyy-MM-dd");
-        solicitudEstudio.set_fecha_inicio(formato.parse("2020-12-06"));
+        Caracteristica_DemograficaDto Caracteristica_DemograficaDto= new Caracteristica_DemograficaDto();
+        Caracteristica_DemograficaDto.setEdad_min(30);
+        Caracteristica_DemograficaDto.setEdad_max(45);
+        Caracteristica_DemograficaDto.setNivel_socioeconomico("Bajo");
+        Caracteristica_DemograficaDto.setNacionalidad("Extranjero");
+        Caracteristica_DemograficaDto.setCantidad_hijos(1);
+        Caracteristica_DemograficaDto.setGenero("F");
 
-        solicitudEstudio.set_estado("pendiente");
-        solicitudEstudio.set_modoencuesta("online");
+        Nivel_AcademicoDto nivel_academicoDto=new Nivel_AcademicoDto(5);
+        ParroquiaDto parroquiaDto= new ParroquiaDto(5);
 
-        Cliente cliente= new Cliente(5);
-        solicitudEstudio.set_cliente(cliente);
+        Caracteristica_DemograficaDto.setNivel_AcademicoDto(nivel_academicoDto);
+        Caracteristica_DemograficaDto.setParroquiaDto(parroquiaDto);
 
-        Caracteristica_Demografica Caracteristica_Demografica= new Caracteristica_Demografica();
-        Caracteristica_Demografica.set_edad_min(30);
-        Caracteristica_Demografica.set_edad_max(45);
-        Caracteristica_Demografica.set_nivel_socioeconomico("Bajo");
-        Caracteristica_Demografica.set_nacionalidad("Extranjero");
-        Caracteristica_Demografica.set_cantidad_hijos(1);
-        Caracteristica_Demografica.set_genero("F");
+        solicitudEstudioDto.setCaracteristica_DemograficaDto(Caracteristica_DemograficaDto);
 
-        Nivel_Academico nivel_academico=new Nivel_Academico(5);
-        Parroquia parroquia= new Parroquia(5);
+        MarcaDto marcaDto=new MarcaDto(5);
+        solicitudEstudioDto.setMarcaDto(marcaDto);
 
-        Caracteristica_Demografica.set_nivel_academico_demografia(nivel_academico);
-        Caracteristica_Demografica.set_Parroquia_demografia(parroquia);
+        ClienteDto clienteDto= new ClienteDto(5);
+        solicitudEstudioDto.setClienteDto(clienteDto);
 
-        solicitudEstudio.set_caracteristicademografica(Caracteristica_Demografica);
+        Response respuesta= servicio.addSolicitud(solicitudEstudioDto);
+        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
 
-        Marca marca=new Marca(5);
-        solicitudEstudio.set_marca(marca);
-
-        int respuesta= servicio.prueba(solicitudEstudio);
-        Assert.assertEquals(respuesta,1);
     }
 }

@@ -10,10 +10,13 @@ public class pruebaDirectorioActivo
     public void createUserLDAP()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
-        user.setUsuario( "bryanOconor" );
-        user.setContrasena( "12345." );
-        user.setSn("1");
+        user.setCn( "MFalcon" );
+        user.setSn("Solo");
         user.setTipo_usuario("analista");
+        user.setNombre( "Han");
+        user.setCorreoelectronico( "hansolo@gmail.com" );
+        user.setUid("2");
+        user.setContrasena( "12345" );
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.addEntryToLdap( user );
     }
@@ -22,7 +25,7 @@ public class pruebaDirectorioActivo
     public void deleteUserLDAP()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
-        user.setUsuario( "CArlosOconor" );
+        user.setCn( "MFalcon" );
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.deleteEntry( user );
     }
@@ -31,7 +34,7 @@ public class pruebaDirectorioActivo
     public void getUserLDAP()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
-        user.setUsuario( "bismarckpmpruebaLDAP" );
+        user.setCn( "MFalcon" );
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.getEntry( user );
     }
@@ -40,8 +43,8 @@ public class pruebaDirectorioActivo
     public void changePassword()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
-        user.setUsuario( "bismarckpmpruebaLDAP2" );
-        user.setContrasena( "MARIAPEPE" );
+        user.setCn( "MFalcon" );
+        user.setContrasena( "00000" );
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.changePassword( user );
     }
@@ -50,32 +53,40 @@ public class pruebaDirectorioActivo
     public void userAuthentication()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
-        user.setUsuario( "danielD" );
+        user.setCn( "MFalcon" );
         user.setContrasena( "12345" );
         DirectorioActivo ldap = new DirectorioActivo();
         long resultado=ldap.userAuthentication( user );
         Assert.assertNotEquals(resultado,   0);
     }
 
-    @Test
-
+   @Test
     public void login()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
-        user.setUsuario( "DiorA" );
+        user.setCn( "MFalcon" );
         user.setContrasena( "12345" );
         LoginServicio loginServicio = new LoginServicio();
         loginServicio.loginLdap(user);
     }
 
     @Test
-
     public void getEntryRole()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
-        user.setUsuario( "gabrielOne" );
+        user.setCn( "MFalcon" );
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.getEntryRole(user);
+
+    }
+
+    @Test
+    public void getEntryUid()
+    {
+        UsuarioLdapDto user = new UsuarioLdapDto();
+        user.setCn( "MFalcon" );
+        DirectorioActivo ldap = new DirectorioActivo();
+        ldap.getEntryUid(user);
 
     }
 }

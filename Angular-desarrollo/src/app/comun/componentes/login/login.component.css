@@ -1,8 +1,24 @@
 .padre {
-    display: flex;
-    justify-content: center;
-  }
-  .hijo {
+  display: flex;
+  flex-flow: column;
+}
+
+.hijo {
+
     padding: 10px;
-    margin: 10px;
-  }
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.example-form {
+  min-width: 75px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+  
