@@ -4,12 +4,11 @@
     <br>
     <mat-divider></mat-divider> 
     <mat-card-content [style.overflow]="'auto'" [style.height.px]="'400'">
-
-        <form class="example-form">
-
+        <div class="hijo">
+        <form [formGroup]="registroData" class="example-form">
             <mat-form-field class="example-full-width">
                 <mat-label>Nombre de usuario</mat-label>
-                <input matInput type="text">
+                <input matInput type="text" >
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <mat-label>Nombre</mat-label>
@@ -55,10 +54,6 @@
                 <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
 
-
-
-        <!--Direción-->
-
             <table class="example-full-width" cellspacing="0"><tr>
                 <td><mat-form-field class="example-full-width">
                     <mat-label>Pais</mat-label>
@@ -79,8 +74,8 @@
                 </mat-form-field></td>
             </tr></table>
           </form>
+        </div>  
           
-
 
     </mat-card-content>
     <mat-divider></mat-divider> 

@@ -39,8 +39,6 @@ public class Login extends AplicacionBase{
 
                 System.out.println(data);
                 return Response.status(Response.Status.OK).entity(data).build();
-
-
             }else{
                 data= Json.createObjectBuilder()
                         .add("estado","error")
@@ -48,16 +46,11 @@ public class Login extends AplicacionBase{
 
                 return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
             }
-
         }
         catch ( Exception ex )
         {
             System.out.println("Excepcion");
-
             return Response.status(Response.Status.BAD_REQUEST).build();
-
-
         }
-
     }
 }

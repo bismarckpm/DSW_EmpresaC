@@ -24,7 +24,6 @@ import { ComunModule } from './comun/comun.module';
     HttpClientModule,
     NgProgressModule,
     NgProgressHttpModule
-  
   ],
   providers: [],
   bootstrap: [AppComponent]
