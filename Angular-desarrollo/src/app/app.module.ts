@@ -24,9 +24,6 @@ import { ToastrModule } from 'ngx-toastr';
     ComunModule,
     HttpClientModule,
     NgProgressModule,
-<<<<<<< HEAD
-    NgProgressHttpModule
-=======
     NgProgressHttpModule,
     ToastrModule.forRoot({
       timeOut: 5000,
@@ -35,7 +32,6 @@ import { ToastrModule } from 'ngx-toastr';
       closeButton:true
     }),
   
->>>>>>> ec2028d05a0a9fba4df1fced2f844db80de97032
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,14 +10,8 @@ public class pruebaDirectorioActivo
     public void createUserLDAP()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
-<<<<<<< HEAD
         user.setCn( "MFalcon" );
         user.setSn("Solo");
-=======
-        user.setUsuario( "bryanOconor" );
-        user.setContrasena( "12345." );
-        user.setSn("1");
->>>>>>> ec2028d05a0a9fba4df1fced2f844db80de97032
         user.setTipo_usuario("analista");
         user.setNombre( "Han");
         user.setCorreoelectronico( "hansolo@gmail.com" );
@@ -31,11 +25,7 @@ public class pruebaDirectorioActivo
     public void deleteUserLDAP()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
-<<<<<<< HEAD
         user.setCorreoelectronico( "bryan@gmail.com" );
-=======
-        user.setUsuario( "CArlosOconor" );
->>>>>>> ec2028d05a0a9fba4df1fced2f844db80de97032
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.deleteEntry( user );
     }
@@ -63,11 +53,7 @@ public class pruebaDirectorioActivo
     public void userAuthentication()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
-<<<<<<< HEAD
         user.setCn( "MFalcon" );
-=======
-        user.setUsuario( "danielD" );
->>>>>>> ec2028d05a0a9fba4df1fced2f844db80de97032
         user.setContrasena( "12345" );
         DirectorioActivo ldap = new DirectorioActivo();
         long resultado=ldap.userAuthentication( user );
@@ -78,18 +64,13 @@ public class pruebaDirectorioActivo
     public void login()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
-<<<<<<< HEAD
         user.setCn( "MFalcon" );
-=======
-        user.setUsuario( "DiorA" );
->>>>>>> ec2028d05a0a9fba4df1fced2f844db80de97032
         user.setContrasena( "12345" );
         LoginServicio loginServicio = new LoginServicio();
         loginServicio.loginLdap(user);
     }
 
     @Test
-
     public void getEntryRole()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();

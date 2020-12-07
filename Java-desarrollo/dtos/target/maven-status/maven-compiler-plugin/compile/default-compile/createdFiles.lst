@@ -3,18 +3,10 @@ ucab\dsw\dtos\Pregunta_EncuestaDto.class
 ucab\dsw\dtos\MarcaDto.class
 ucab\dsw\dtos\OcupacionDto.class
 ucab\dsw\dtos\PaisDto.class
-<<<<<<< HEAD
 ucab\dsw\dtos\SolicituEstudioDto.class
 ucab\dsw\dtos\TipoDto.class
 ucab\dsw\dtos\DtoBase.class
 ucab\dsw\dtos\EncuestaDto.class
-=======
-ucab\dsw\dtos\TipoDto.class
-ucab\dsw\dtos\DtoBase.class
-ucab\dsw\dtos\EncuestaDto.class
-ucab\dsw\dtos\Opcion_Simple_Multiple_PreguntaDto.class
-ucab\dsw\dtos\Marca_TipoDto.class
->>>>>>> ec2028d05a0a9fba4df1fced2f844db80de97032
 ucab\dsw\dtos\SubcategoriaDto.class
 ucab\dsw\dtos\CategoriaDto.class
 ucab\dsw\dtos\EncuestadoDto.class
@@ -25,11 +17,8 @@ ucab\dsw\dtos\PreguntaDto.class
 ucab\dsw\dtos\TelefonoDto.class
 ucab\dsw\dtos\Respuesta_Opcion.class
 ucab\dsw\dtos\EstadoDto.class
-<<<<<<< HEAD
 ucab\dsw\dtos\Encuesta_TipoDto.class
-=======
 ucab\dsw\dtos\SolicitudEstudioDto.class
->>>>>>> ec2028d05a0a9fba4df1fced2f844db80de97032
 ucab\dsw\dtos\UsuarioLdapDto.class
 ucab\dsw\dtos\Caracteristica_DemograficaDto.class
 ucab\dsw\dtos\PresentacionDto.class

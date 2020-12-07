@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\PaisDto.java
 C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\TipoDto.java
 C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\OcupacionDto.java
@@ -30,37 +29,3 @@ C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\dtos\src\m
 C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\Metodo_Conexion_EncuestadoDto.java
 C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\Ocupacion_EncuestadoDto.java
 C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\Respuesta_Opcion.java
-=======
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\EstadoDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\SubcategoriaDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\UsuarioLdapDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\Metodo_Conexion_EncuestadoDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\PaisDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\Marca_TipoDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\OcupacionDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\ClienteDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\Metodo_ConexionDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\EncuestaDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\Nivel_AcademicoDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\PresentacionDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\EncuestadoDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\Ocupacion_EncuestadoDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\SolicitudEstudioDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\Opcion_Simple_MultipleDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\Caracteristica_DemograficaDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\CategoriaDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\Opcion_Simple_Multiple_PreguntaDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\Respuesta_Opcion.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\DtoBase.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\UsuarioDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\TipoDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\ParticipacionDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\HijoDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\TelefonoDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\RespuestaDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\ParroquiaDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\MarcaDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\Pregunta_EncuestaDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\CiudadDto.java
-C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\DSW_EmpresaC\Java-desarrollo\dtos\src\main\java\ucab\dsw\dtos\PreguntaDto.java
->>>>>>> ec2028d05a0a9fba4df1fced2f844db80de97032
