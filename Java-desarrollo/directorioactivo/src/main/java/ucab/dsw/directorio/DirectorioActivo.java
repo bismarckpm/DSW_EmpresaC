@@ -170,7 +170,7 @@ public class DirectorioActivo
             Attribute atb = new BasicAttribute("mail","java2db@mai.com");
             atbs.put(atb);
 
-            _ldapContext.modifyAttributes( String.format(_userDirectory + "," + _directory, user.getUsuario())
+            _ldapContext.modifyAttributes( String.format(_userDirectory + "," + _directory, user.getCn())
                     , DirContext.REPLACE_ATTRIBUTE,atbs );
         }
         catch(Exception exception)
@@ -280,6 +280,45 @@ public class DirectorioActivo
                     SearchResult res = ( SearchResult ) results.next();
                     Attributes atbs = res.getAttributes();
                     Attribute atb = atbs.get( "description" );
+                    role = ( String ) atb.get();
+                }
+            }
+            else
+            {
+                System.out.println( "fail" );
+                return null;
+            }
+        }
+        catch ( Exception exception )
+        {
+            exception.printStackTrace();
+        }
+        finally
+        {
+            disconnectLDAP();
+        }
+        System.out.println(role);
+        return role;
+    }
+
+    public String getEntryUid(UsuarioLdapDto user)
+    {
+        String role="";
+        try
+        {
+            connectLDAP( _user, _password );
+            SearchControls searcCon = new SearchControls();
+            searcCon.setSearchScope( SearchControls.SUBTREE_SCOPE );
+            NamingEnumeration results =
+                    _ldapContext.search( _directory, String.format(_userDirectory, user.getCn()), searcCon );
+
+            if ( results != null )
+            {
+                while ( results.hasMore() )
+                {
+                    SearchResult res = ( SearchResult ) results.next();
+                    Attributes atbs = res.getAttributes();
+                    Attribute atb = atbs.get( "uid" );
                     role = ( String ) atb.get();
                 }
             }

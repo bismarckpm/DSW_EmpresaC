@@ -35,7 +35,8 @@ public class LoginServicio extends AplicacionBase{
                                      .add("estado","success")
                                      .add("codigo",200)
                                      .add("token-jwt",token)
-                                     .add("rol", ldap.getEntryRole(usuarioLdapDto)).build();
+                                     .add("rol", ldap.getEntryRole(usuarioLdapDto))
+                                     .add("user_id",ldap.getEntryUid(usuarioLdapDto)).build();
 
                 System.out.println(data);
                 return Response.status(Response.Status.OK).entity(data).build();

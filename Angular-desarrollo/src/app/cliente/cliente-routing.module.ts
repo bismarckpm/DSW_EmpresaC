@@ -6,7 +6,7 @@ import { SolicitarEstudiosComponent } from "./componentes/solicitar-estudios/sol
 
 const routes: Routes = [
   {path:'', component: ClienteComponent},
-  {path:'solicitar-estudios', component: DashboardComponent}
+  {path:'solicitar-estudios', component: SolicitarEstudiosComponent}
 ];
 
 @NgModule({

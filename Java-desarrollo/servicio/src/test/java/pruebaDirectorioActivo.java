@@ -25,7 +25,7 @@ public class pruebaDirectorioActivo
     public void deleteUserLDAP()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
-        user.setCorreoelectronico( "bryan@gmail.com" );
+        user.setCn( "MFalcon" );
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.deleteEntry( user );
     }
@@ -34,7 +34,7 @@ public class pruebaDirectorioActivo
     public void getUserLDAP()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
-        user.setUsuario( "bismarckpmpruebaLDAP" );
+        user.setCn( "MFalcon" );
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.getEntry( user );
     }
@@ -43,8 +43,8 @@ public class pruebaDirectorioActivo
     public void changePassword()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
-        user.setUsuario( "bismarckpmpruebaLDAP2" );
-        user.setContrasena( "MARIAPEPE" );
+        user.setCn( "MFalcon" );
+        user.setContrasena( "00000" );
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.changePassword( user );
     }
@@ -74,9 +74,19 @@ public class pruebaDirectorioActivo
     public void getEntryRole()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
-        user.setUsuario( "gabrielOne" );
+        user.setCn( "MFalcon" );
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.getEntryRole(user);
+
+    }
+
+    @Test
+    public void getEntryUid()
+    {
+        UsuarioLdapDto user = new UsuarioLdapDto();
+        user.setCn( "MFalcon" );
+        DirectorioActivo ldap = new DirectorioActivo();
+        ldap.getEntryUid(user);
 
     }
 }
