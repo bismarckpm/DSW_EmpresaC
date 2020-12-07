@@ -13,6 +13,8 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 import javax.json.Json;
 import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.ws.rs.core.Response;
 import javax.json.JsonArrayBuilder;
 
 import javax.ws.rs.*;
@@ -26,7 +28,7 @@ public class metodos_admin {
 
     @GET
     @Path( "/estudios" )
-    public int consultaEstudios_asignados()
+    public Response consultaEstudios_asignados()
     {
         JsonArrayBuilder builder = Json.createArrayBuilder();
         List<SolicitudEstudio> resultado= null;
@@ -48,13 +50,13 @@ public class metodos_admin {
                 System.out.println("Subcategoria: " + obj.get_marca().get_subcategoria().get_nombre());
             }
         }
-        builder.build();
-        return 1;
+        //builder.build();
+        return Response.status(Response.Status.OK).entity(builder).build();
     }
 
     @GET
     @Path( "/estudios" )
-    public int consultaEstudios_no_asignados()
+    public Response consultaEstudios_no_asignados()
     {
         JsonArrayBuilder builder = Json.createArrayBuilder();
         List<SolicitudEstudio> resultado= null;
@@ -77,13 +79,13 @@ public class metodos_admin {
                 System.out.println("");
             }
         }
-        builder.build();
-        return 1;
+        //builder.build();
+        return Response.status(Response.Status.OK).entity(builder).build();
     }
 
     @DELETE
     @Path( "/delete/{id}" )
-    public int preguntas_categoria_subcategoria(@PathParam("id") long  _id, @PathParam("id") long  _id2)
+    public Response preguntas_categoria_subcategoria(@PathParam("id") long  _id, @PathParam("id") long  _id2)
     {
         JsonArrayBuilder builder = Json.createArrayBuilder();
         List<Respuesta> resultado= null;
@@ -124,8 +126,8 @@ public class metodos_admin {
                 System.out.println("");
             }
         }
-        builder.build();
-        return 1;
+        //builder.build();
+        return Response.status(Response.Status.OK).entity(builder).build();
     }
 
     @DELETE
@@ -249,7 +251,7 @@ public class metodos_admin {
     }
     @GET
     @Path( "/estudios" )
-    public int Participacion_estudio(long  _id)
+    public Response Participacion_estudio(long  _id)
     {
         JsonArrayBuilder builder = Json.createArrayBuilder();
         List<Participacion> resultado= null;
@@ -268,13 +270,14 @@ public class metodos_admin {
                 System.out.println("");
             }
         }
-        builder.build();
-        return 1;
+        //builder.build();
+        return Response.status(Response.Status.OK).entity(builder).build();
     }
-    @GET
-    @Path( "/consulta" )
-    public String consulta()
-    {
-        return "Epa";
-    }
+
+//    @GET
+  //  @Path( "/consulta" )
+   // public String consulta()
+  //  {
+    //    return "Epa";
+   // }
 }

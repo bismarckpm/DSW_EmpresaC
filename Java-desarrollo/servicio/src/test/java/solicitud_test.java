@@ -4,6 +4,8 @@ import ucab.dsw.dtos.Caracteristica_DemograficaDto;
 import ucab.dsw.dtos.SolicituEstudioDto;
 import ucab.dsw.dtos.UsuarioDto;
 
+import javax.ws.rs.core.Response;
+
 
 public class solicitud_test
 {
@@ -25,8 +27,8 @@ public class solicitud_test
         caracteristica_DemograficaDto.setGenero("M");
 
 
-        SolicituEstudioDto resultado = servicio.addSolicitud(1,1,1,1, solicituEstudioDto,caracteristica_DemograficaDto );
-        Assert.assertNotEquals( resultado.getId(), 0 );
+        Response resultado = servicio.addSolicitud(1,1,1,1, solicituEstudioDto,caracteristica_DemograficaDto );
+        Assert.assertEquals(resultado.getStatus(),Response.Status.OK.getStatusCode());
 
     }
 

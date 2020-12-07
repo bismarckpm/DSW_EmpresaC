@@ -15,9 +15,11 @@ import java.util.List;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path( "/prueba" )
 @Produces( MediaType.APPLICATION_JSON )
@@ -26,8 +28,9 @@ public class solicitud {
 
     @PUT
     @Path( "/addSolicitud" )
-    public SolicituEstudioDto addSolicitud(long  _id_Cliente,long  _id_Marca,long  _id_Nivel_academico,long  _id_Parroquia, SolicituEstudioDto solicituEstudioDto,Caracteristica_DemograficaDto caracteristica_DemograficaDto)
+    public Response addSolicitud(long  _id_Cliente, long  _id_Marca, long  _id_Nivel_academico, long  _id_Parroquia, SolicituEstudioDto solicituEstudioDto, Caracteristica_DemograficaDto caracteristica_DemograficaDto)
     {
+        JsonObject data;
         SolicituEstudioDto resultado = new SolicituEstudioDto();
         Caracteristica_DemograficaDto resultado2 = new Caracteristica_DemograficaDto();
 
@@ -69,11 +72,22 @@ public class solicitud {
 
             SolicitudEstudio resul2 = dao.insert( solicitudEstudio);
             resultado.setId( resul2.get_id() );
+
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
+
         }
         catch ( Exception ex )
         {
             String problema = ex.getMessage();
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
-        return  resultado;
+        return Response.status(Response.Status.OK).entity(data).build();
     }
 }

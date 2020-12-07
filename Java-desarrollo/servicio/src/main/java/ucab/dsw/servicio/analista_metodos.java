@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 import javax.json.Json;
 import javax.json.JsonArray;
+import javax.ws.rs.core.Response;
 import javax.json.JsonArrayBuilder;
 
 import javax.ws.rs.*;
@@ -26,7 +27,7 @@ public class analista_metodos {
 
     @GET
     @Path("/estudios")
-    public int consultaEstudios_asignados(long  _id) {
+    public Response consultaEstudios_asignados(long  _id) {
         JsonArrayBuilder builder = Json.createArrayBuilder();
         List<SolicitudEstudio> resultado = null;
 
@@ -49,7 +50,7 @@ public class analista_metodos {
                 System.out.println("");
             }
         }
-        builder.build();
-        return 1;
+        //builder.build();
+        return Response.status(Response.Status.OK).entity(builder).build();
     }
 }

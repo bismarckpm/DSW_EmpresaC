@@ -14,6 +14,8 @@ import java.util.List;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
+import javax.ws.rs.core.Response;
+import javax.json.JsonObject;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -25,8 +27,9 @@ public class Cruds_presntacion {
 
     @PUT
     @Path( "/addpresentacion" )
-    public PresentacionDto addPresentacion(PresentacionDto presentacionDto)
+    public Response addPresentacion(PresentacionDto presentacionDto)
     {
+        JsonObject data;
         PresentacionDto resultado = new PresentacionDto();
 
         try
@@ -42,20 +45,29 @@ public class Cruds_presntacion {
             resultado.setId( resul.get_id() );
 
 
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
+
         }
         catch ( Exception ex )
         {
-            String problema = ex.getMessage();
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
-        return  resultado;
+        return Response.status(Response.Status.OK).entity(data).build();
     }
 
     @PUT
     @Path( "/channgepresentacion" )
-    public PresentacionDto changePresentacion(long  _id,long  _id2,PresentacionDto presentacionDto)
+    public Response changePresentacion(long  _id,long  _id2,PresentacionDto presentacionDto)
     {
         PresentacionDto resultado = new PresentacionDto();
-
+        JsonObject data;
         try
         {
             DaoPresentacion dao = new DaoPresentacion();
@@ -68,19 +80,30 @@ public class Cruds_presntacion {
             Presentacion resul = dao.update( presentacion);
             resultado.setId( resul.get_id() );
 
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
+
 
         }
         catch ( Exception ex )
         {
             String problema = ex.getMessage();
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
-        return  resultado;
+        return Response.status(Response.Status.OK).entity(data).build();
     }
 
     @DELETE
     @Path( "/delete/{id}" )
-    public PresentacionDto EliminarPresentacion( long  _id )
+    public Response EliminarPresentacion( long  _id )
     {
+        JsonObject data;
         PresentacionDto resultado = new PresentacionDto();
         try
         {
@@ -91,19 +114,29 @@ public class Cruds_presntacion {
 
             Presentacion resul = dao.update(presentacion);
             resultado.setId( resul.get_id() );
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
         }
         catch ( Exception ex )
         {
             String problema = ex.getMessage();
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
-        return  resultado;
+        return Response.status(Response.Status.OK).entity(data).build();
     }
 
     @PUT
     @Path( "/{id}" )
-    public int findPresentacion( long id )
+    public Response findPresentacion( long id )
     {
-
+        JsonObject data;
+        JsonObject PresentacionJson;
         try {
             DaoPresentacion dao = new DaoPresentacion();
             Presentacion resul = dao.find( id,Presentacion.class );
@@ -114,41 +147,86 @@ public class Cruds_presntacion {
             }
             System.out.println("tipo: " + resul.get_tipo().get_nombre());
 
+            PresentacionJson= Json.createObjectBuilder()
+                    .add("estado",resul.get_estado()).build();
+            PresentacionJson= Json.createObjectBuilder()
+                    .add("tipo",resul.get_tipo().get_nombre()).build();
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200)
+                    .add("categoria",PresentacionJson).build();
+
         }
         catch ( Exception ex )
         {
             String problema = ex.getMessage();
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
-        return  1;
+        return Response.status(Response.Status.OK).entity(data).build();
     }
 
     @PUT
     @Path( "/{id}" )
-    public int findAllPresentacion( )
+    public Response findAllPresentacion( )
     {
-
+        JsonObject data;
         try {
             List<Presentacion> resultado= null;
             Class<Presentacion> type = Presentacion.class;
 
             DaoPresentacion dao = new DaoPresentacion();
             resultado = dao.findAll( type );
+            JsonArrayBuilder presentacionArrayJson= Json.createArrayBuilder();
+
             for(Presentacion obj: resultado) {
 
-                System.out.println("id: " + obj.get_id());
-                System.out.println("nombre: " + obj.get_nombre());
                 if (obj.get_estado() != null){
+                    JsonObject e = Json.createObjectBuilder().add("estado:",obj.get_estado())
+                            .build();
+
+
                     System.out.println("estado: " + obj.get_estado());
+                }else{
+                    JsonObject e = Json.createObjectBuilder().add("estado:","")
+                            .build();
                 }
-                System.out.println("tipo: " + obj.get_tipo().get_nombre());
+
+
+                JsonObject p = Json.createObjectBuilder().add("id",obj.get_id())
+                        .add("nombre",obj.get_nombre()).add("tipo",obj.get_tipo().get_nombre())
+                        .build();
+
+
+
+
+                presentacionArrayJson.add(p);
+
+
             }
 
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200)
+                    .add("categorias",presentacionArrayJson).build();
 
         }
         catch ( Exception ex )
         {
             String problema = ex.getMessage();
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
-        return  1;
+        return Response.status(Response.Status.OK).entity(data).build();
     }
 }
