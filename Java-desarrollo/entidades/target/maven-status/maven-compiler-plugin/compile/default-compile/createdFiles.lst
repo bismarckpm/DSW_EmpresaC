@@ -1,3 +1,5 @@
+ucab\dsw\entidades\Opcion_Simple_Multiple_Pregunta.class
+ucab\dsw\entidades\Marca_Tipo.class
 ucab\dsw\entidades\Metodo_conexion.class
 ucab\dsw\entidades\Telefono.class
 ucab\dsw\entidades\PreguntaEncuesta.class
@@ -25,6 +27,5 @@ ucab\dsw\entidades\Marca.class
 ucab\dsw\entidades\Ocupacion_Encuestado.class
 ucab\dsw\entidades\Pais.class
 ucab\dsw\entidades\RespuestaOpcion.class
-ucab\dsw\entidades\EncuestaTipo.class
 ucab\dsw\entidades\Caracteristica_Demografica.class
 ucab\dsw\entidades\Nivel_Academico.class

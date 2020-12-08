@@ -22,7 +22,7 @@ export class AppComponent implements OnInit{
   
   ngOnInit() {
 
-    this.startLoading();
+    /*this.startLoading();
     this._http.get('ttp://slowwly.robertomurray.co.uk/delay/3000/url/https://jsonplaceholder.typicode.com/posts/1');
     setTimeout(()=>{
       this.completeLoading();
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit{
 
     this._toastrService.warning('Mensaje', 'Advertencia');
 
-    this._toastrService.info('Mensaje', 'Info');
+    this._toastrService.info('Mensaje', 'Info');*/
 
   }
 

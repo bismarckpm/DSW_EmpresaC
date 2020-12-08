@@ -9,6 +9,7 @@ import javax.validation.constraints.Null;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -30,7 +31,7 @@ import javax.ws.rs.core.MediaType;
 @Consumes( MediaType.APPLICATION_JSON )
 public class SolicitudServicio {
 
-    @PUT
+    @POST
     @Path( "/add" )
     public Response addSolicitud(SolicitudEstudioDto solicitudEstudioDto)
     {
@@ -44,7 +45,6 @@ public class SolicitudServicio {
 
             Date fecha=new Date();
             solicitudEstudio.set_fecha_inicio(fecha);
-            solicitudEstudio.set_estado("pendiente");
             solicitudEstudio.set_modoencuesta(solicitudEstudioDto.getModoencuesta());
 
 
@@ -104,9 +104,9 @@ public class SolicitudServicio {
             
 
             for(SolicitudEstudio obj: estudios_previos){
-
-                resul=this.CheckearCaracteristicasDemograficas(solicitudEstudio.get_caracteristicademografica(),obj.get_caracteristicademografica());
-
+                if(!obj.get_estado().equals("por asignar")){
+                    resul=this.CheckearCaracteristicasDemograficas(solicitudEstudio.get_caracteristicademografica(),obj.get_caracteristicademografica());
+                }
                 if(resul){
                     estudio_elegido=obj;
                     solicitudEstudio.set_caracteristicademografica(obj.get_caracteristicademografica());
@@ -114,6 +114,8 @@ public class SolicitudServicio {
                 }
 
             }
+        System.out.println("ESTUDIO ELEGIDOO");
+        System.out.println(estudio_elegido);
 
             
             if(estudio_elegido!=null){
@@ -128,13 +130,14 @@ public class SolicitudServicio {
                     Participacion participacion=new Participacion();
                     participacion.set_encuestado(obj.get_encuestado());
                     participacion.set_solicitudestudio(solicitudEstudio);
-                    participacion.set_estado("Pendiente");
+                    participacion.set_estado("activo");
 
                     participaciones_actuales.add(participacion);
                 }
 
                 /*FALTA: Añadir metodo para verificar si existen mas encuestados que cumplan las caracteristicas*/
 
+                solicitudEstudio.set_estado("pendiente");
                 solicitudEstudio.set_participacion(participaciones_actuales);
             }
             
@@ -142,7 +145,10 @@ public class SolicitudServicio {
                 DaoUsuario daoUsuario=new DaoUsuario();
                 List<Usuario> admins= daoUsuario.getAdmins();
                 admin_random=(int)(Math.random()* admins.size());
+                System.out.println("Admin random");
+                System.out.println(admin_random);
                 admin_elegido=admins.get(admin_random);
+                solicitudEstudio.set_estado("por asignar");
                 solicitudEstudio.set_usuario2(admin_elegido);
             }
 
@@ -153,36 +159,37 @@ public class SolicitudServicio {
         Boolean resul=false;
         int cont=0;
 
-        if(a.get_edad_min()==b.get_edad_min()){
-            cont++;
-        }
-        if(a.get_edad_max()==b.get_edad_max()){
-            cont++;
-        }
+            if(a.get_edad_min()==b.get_edad_min()){
+                cont++;
+            }
+            if(a.get_edad_max()==b.get_edad_max()){
+                cont++;
+            }
 
-        if(a.get_nivel_socioeconomico().equals(b.get_nivel_socioeconomico())){
-            cont++;
-        }
+            if(a.get_nivel_socioeconomico().equals(b.get_nivel_socioeconomico())){
+                cont++;
+            }
 
-        if(a.get_nacionalidad().equals(b.get_nacionalidad())){
-            cont++;
-        }
+            if(a.get_nacionalidad().equals(b.get_nacionalidad())){
+                cont++;
+            }
 
-        if(a.get_cantidad_hijos()==b.get_cantidad_hijos()){
-            cont++;
-        }
+            if(a.get_cantidad_hijos()==b.get_cantidad_hijos()){
+                cont++;
+            }
 
-        if(a.get_genero().equals(b.get_genero())){
-            cont++;
-        }
+            if(a.get_genero().equals(b.get_genero())){
+                cont++;
+            }
 
-        if(a.get_nivel_academico_demografia().get_id()==b.get_nivel_academico_demografia().get_id()){
-            cont++;
-        }
+            if(a.get_nivel_academico_demografia().get_id()==b.get_nivel_academico_demografia().get_id()){
+                cont++;
+            }
 
-        if(a.get_Parroquia_demografia().get_id()==b.get_Parroquia_demografia().get_id()){
-            cont++;
-        }
+            if(a.get_Parroquia_demografia().get_id()==b.get_Parroquia_demografia().get_id()){
+                cont++;
+            }
+
 
         if(cont==8){
             resul=true;
