@@ -19,7 +19,7 @@ import javax.json.JsonArrayBuilder;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-@Path( "/prueba" )
+@Path( "/analista" )
 @Produces( MediaType.APPLICATION_JSON )
 @Consumes( MediaType.APPLICATION_JSON )
 public class analista_metodos {

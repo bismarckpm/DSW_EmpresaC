@@ -20,7 +20,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path( "/prueba" )
+@Path( "/tipo" )
 @Produces( MediaType.APPLICATION_JSON )
 @Consumes( MediaType.APPLICATION_JSON )
 public class crud_tipo {
@@ -184,7 +184,7 @@ public class crud_tipo {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
-    @PUT
+    @GET
     @Path( "/tipo" )
     public Response findAllTipo( )
     {

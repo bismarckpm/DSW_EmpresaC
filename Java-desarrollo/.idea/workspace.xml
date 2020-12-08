@@ -34,14 +34,44 @@
   <component name="ChangeListManager">
     <list default="true" id="9c9c357f-2b07-42bd-afe8-0f758d0713a9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesodatos/target/accesodatos-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/target/accesodatos-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesodatos/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/directorioactivo/target/directorioactivo.jar" beforeDir="false" afterPath="$PROJECT_DIR$/directorioactivo/target/directorioactivo.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/directorioactivo/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/directorioactivo/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/dtos.jar" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/dtos.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/target/entidades.jar" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/entidades.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/excepciones/target/excepciones-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/excepciones/target/excepciones-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/excepciones/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/excepciones/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/Cruds_presntacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/Cruds_presntacion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/analista_metodos.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/analista_metodos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/crud_tipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/crud_tipo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_admin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/solicitud.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/solicitud.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/metodos_admin_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/metodos_admin_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/Cruds_presntacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/Cruds_presntacion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/analista_metodos.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/analista_metodos.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/crud_tipo.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/crud_tipo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/metodos_admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/metodos_admin.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/solicitud.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/solicitud.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/target/pruebaORM-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/pruebaORM-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/classes/ucab/dsw/servicio/Cruds_presntacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/classes/ucab/dsw/servicio/Cruds_presntacion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/classes/ucab/dsw/servicio/analista_metodos.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/classes/ucab/dsw/servicio/analista_metodos.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/classes/ucab/dsw/servicio/crud_tipo.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/classes/ucab/dsw/servicio/crud_tipo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/classes/ucab/dsw/servicio/metodos_admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/classes/ucab/dsw/servicio/metodos_admin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/classes/ucab/dsw/servicio/solicitud.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/classes/ucab/dsw/servicio/solicitud.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/accesodatos-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/accesodatos-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/directorioactivo-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/directorioactivo-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/dtos-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/dtos-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/entidades-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/entidades-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/excepciones-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/excepciones-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/surefire-reports/TEST-analista_metodos_Test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/surefire-reports/TEST-analista_metodos_Test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/surefire-reports/TEST-metodos_admin_Test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/surefire-reports/TEST-metodos_admin_Test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/surefire-reports/TEST-pruebaORMWS_Test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/surefire-reports/TEST-pruebaORMWS_Test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/surefire-reports/analista_metodos_Test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/surefire-reports/analista_metodos_Test.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/surefire-reports/metodos_admin_Test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/surefire-reports/metodos_admin_Test.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/surefire-reports/pruebaORMWS_Test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/surefire-reports/pruebaORMWS_Test.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -326,6 +356,8 @@
       <workItem from="1606184025742" duration="6670000" />
       <workItem from="1607353671414" duration="8463000" />
       <workItem from="1607368695170" duration="3742000" />
+      <workItem from="1607399860035" duration="1986000" />
+      <workItem from="1607439502353" duration="5378000" />
     </task>
     <servers />
   </component>
@@ -415,28 +447,28 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="507" y="266" key="Github.CreateGistDialog/0.0.1366.728@0.0.1366.728" timestamp="1605854281039" />
-    <state width="665" height="140" key="GridCell.Tab.0.bottom" timestamp="1607370935219">
+    <state width="980" height="156" key="GridCell.Tab.0.bottom" timestamp="1607449003065">
       <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="665" height="140" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1607370935219" />
+    <state width="980" height="156" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1607449003065" />
     <state width="1238" height="259" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1606022672289" />
     <state width="1323" height="265" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="665" height="140" key="GridCell.Tab.0.center" timestamp="1607370935219">
+    <state width="980" height="156" key="GridCell.Tab.0.center" timestamp="1607449003065">
       <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="665" height="140" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1607370935219" />
+    <state width="980" height="156" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1607449003065" />
     <state width="1238" height="259" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1606022672289" />
     <state width="1323" height="265" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="665" height="140" key="GridCell.Tab.0.left" timestamp="1607370935219">
+    <state width="980" height="156" key="GridCell.Tab.0.left" timestamp="1607449003064">
       <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="665" height="140" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1607370935219" />
+    <state width="980" height="156" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1607449003064" />
     <state width="1238" height="259" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1606022672289" />
     <state width="1323" height="265" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="665" height="140" key="GridCell.Tab.0.right" timestamp="1607370935219">
+    <state width="980" height="156" key="GridCell.Tab.0.right" timestamp="1607449003065">
       <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="665" height="140" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1607370935219" />
+    <state width="980" height="156" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1607449003065" />
     <state width="1238" height="259" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1606022672289" />
     <state width="1323" height="265" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
     <state width="665" height="140" key="GridCell.Tab.1.bottom" timestamp="1607370934833">
