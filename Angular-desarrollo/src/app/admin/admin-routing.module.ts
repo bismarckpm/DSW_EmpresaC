@@ -7,6 +7,7 @@ import { AdministrarEstudiosComponent } from "./componentes/administrar-estudios
 import {AsignarEncuestaComponent} from "./componentes/asignar-encuesta/asignar-encuesta.component"
 import { AdministrarEstudiosProgresoComponent } from "./componentes/administrar-estudios-progreso/administrar-estudios-progreso.component";
 import { EstudioDetalleComponent } from "./componentes/estudio-detalle/estudio-detalle.component";
+import {AdministrarMarcasComponent} from "./componentes/administrar-marcas/administrar-marcas.component";
 
 const routes: Routes = [
   {path:'', component: DashboardComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path:'administrar-estudios', component: AdministrarEstudiosComponent},
   {path:'administrar-estudios-progreso', component: AdministrarEstudiosProgresoComponent},
   { path: 'AsignarEncuesta/:id',     component:AsignarEncuestaComponent  },
-  { path: 'EstudioDetalle/:id',     component:EstudioDetalleComponent  }
+  { path: 'EstudioDetalle/:id',     component:EstudioDetalleComponent  } ,
+  { path: 'administrar-marcas',   component: AdministrarMarcasComponent  }
 ];
 
 @NgModule({

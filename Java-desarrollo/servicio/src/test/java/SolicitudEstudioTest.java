@@ -19,15 +19,15 @@ public class SolicitudEstudioTest {
         solicitudEstudioDto.setModoencuesta("online");
 
         Caracteristica_DemograficaDto Caracteristica_DemograficaDto= new Caracteristica_DemograficaDto();
-        Caracteristica_DemograficaDto.setEdad_min(30);
-        Caracteristica_DemograficaDto.setEdad_max(45);
-        Caracteristica_DemograficaDto.setNivel_socioeconomico("Bajo");
-        Caracteristica_DemograficaDto.setNacionalidad("Extranjero");
-        Caracteristica_DemograficaDto.setCantidad_hijos(1);
-        Caracteristica_DemograficaDto.setGenero("F");
+        Caracteristica_DemograficaDto.setEdad_min(5);
+        Caracteristica_DemograficaDto.setEdad_max(10);
+        Caracteristica_DemograficaDto.setNivel_socioeconomico("bajo");
+        Caracteristica_DemograficaDto.setNacionalidad("venezolano");
+        Caracteristica_DemograficaDto.setCantidad_hijos(2);
+        Caracteristica_DemograficaDto.setGenero("M");
 
-        Nivel_AcademicoDto nivel_academicoDto=new Nivel_AcademicoDto(5);
-        ParroquiaDto parroquiaDto= new ParroquiaDto(5);
+        Nivel_AcademicoDto nivel_academicoDto=new Nivel_AcademicoDto(1);
+        ParroquiaDto parroquiaDto= new ParroquiaDto(1);
 
         Caracteristica_DemograficaDto.setNivel_AcademicoDto(nivel_academicoDto);
         Caracteristica_DemograficaDto.setParroquiaDto(parroquiaDto);

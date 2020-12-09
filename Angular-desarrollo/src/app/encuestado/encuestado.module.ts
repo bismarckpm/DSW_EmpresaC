@@ -1,18 +1,18 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+  /* Modulos */
+  import { NgModule } from '@angular/core';
+  import { CommonModule } from '@angular/common';
+  import { EncuestadoRoutingModule } from './encuestado-routing.module';
 
-import { EncuestadoRoutingModule } from './encuestado-routing.module';
-import { EncuestadoComponent } from './componentes/raiz/encuestado.component';
+  /* Componentes */
+  import { EncuestadoComponent } from './componentes/raiz/encuestado.component';
 
-
-@NgModule({
-  declarations: [
-    EncuestadoComponent,
-    //NavbarComponent
-  ],
-  imports: [
-    CommonModule,
-    EncuestadoRoutingModule
-  ]
-})
-export class EncuestadoModule { }
+  @NgModule({
+    declarations: [
+      EncuestadoComponent
+    ],
+    imports: [
+      CommonModule,
+      EncuestadoRoutingModule
+    ]
+  })
+  export class EncuestadoModule { }
