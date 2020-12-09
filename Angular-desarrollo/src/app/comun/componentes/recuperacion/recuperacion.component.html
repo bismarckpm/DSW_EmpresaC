@@ -12,13 +12,13 @@
           <form [formGroup]="recuperacionData">
             <mat-form-field>
               <mat-label>Correo electrónico</mat-label>
-              <input matInput type="email">
+              <input matInput type="email"formControlName="email">
           </mat-form-field>
           </form>
         </mat-card-content>
         
          <mat-card-actions>
-          <button class="float-right" mat-raised-button color="#ffc107" type="submit">Recuperar</button>
+          <button class="float-right" mat-raised-button color="#ffc107" type="submit" (click)="recuperacion()">Recuperar</button>
           <button mat-raised-button color="#ffc107" routerLink="/login">Regresar</button>
         </mat-card-actions>
       </mat-card>

@@ -10,16 +10,10 @@ import {global} from 'src/urlGlobal';
 })
 export class LoginService {
 
-  res: {};
-  usaurio: usuarioLdap;
-  
-  constructor(private http: HttpClient) {
-    
-  }
+  constructor(private http: HttpClient) { }
 
-  loginLdap( usuario: usuarioLdap ){
-    this.http.post(global.url+'login/ldap', usuario).toPromise().then( data =>{ this.res = data;} );
-    return this.res;
+  loginLdap( usuario: usuarioLdap): Observable<any> {
+    return this.http.post(global.url+'login/ldap', usuario);
   }
   /*
   metodoGet(){

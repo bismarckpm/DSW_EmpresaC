@@ -10,6 +10,7 @@ C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\entidades\
 C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\entidades\src\main\java\ucab\dsw\entidades\Caracteristica_Demografica.java
 C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\entidades\src\main\java\ucab\dsw\entidades\Encuesta.java
 C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\entidades\src\main\java\ucab\dsw\entidades\Cliente.java
+C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\entidades\src\main\java\ucab\dsw\entidades\Marca_Tipo.java
 C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\entidades\src\main\java\ucab\dsw\entidades\Presentacion.java
 C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\entidades\src\main\java\ucab\dsw\entidades\Ciudad.java
 C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\entidades\src\main\java\ucab\dsw\entidades\Respuesta.java
@@ -20,7 +21,6 @@ C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\entidades\
 C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\entidades\src\main\java\ucab\dsw\entidades\Hijo.java
 C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\entidades\src\main\java\ucab\dsw\entidades\Tipo.java
 C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\entidades\src\main\java\ucab\dsw\entidades\RespuestaOpcion.java
-C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\entidades\src\main\java\ucab\dsw\entidades\EncuestaTipo.java
 C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\entidades\src\main\java\ucab\dsw\entidades\Pais.java
 C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\entidades\src\main\java\ucab\dsw\entidades\Marca.java
 C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\entidades\src\main\java\ucab\dsw\entidades\Subcategoria.java
@@ -28,3 +28,4 @@ C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\entidades\
 C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\entidades\src\main\java\ucab\dsw\entidades\Pregunta.java
 C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\entidades\src\main\java\ucab\dsw\entidades\Estado.java
 C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\entidades\src\main\java\ucab\dsw\entidades\Participacion.java
+C:\Users\Reque Mark II\Jesus R\Proyectos\DSW_EmpresaC\Java-desarrollo\entidades\src\main\java\ucab\dsw\entidades\Opcion_Simple_Multiple_Pregunta.java

@@ -13,7 +13,9 @@ import { HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 export class LoginComponent implements OnInit {
   usuario: usuarioLdap;
   loginData: FormGroup;
-  res: {};
+  res: any;
+  res$: Observable<any>;
+
   constructor( private http: LoginService) {
     this.loginData = this.crearFormGroup();
     this.usuario = new usuarioLdap();
@@ -31,9 +33,13 @@ export class LoginComponent implements OnInit {
   iniciarSesion(){
     this.usuario.cn = this.loginData.value.usuario;
     this.usuario.contrasena = this.loginData.value.pass;
-    this.res = this.http.loginLdap( this.usuario );
-    //ENTRE ESTOS 2 PASOS HAY QUE
-    console.log(this.res);
-    //localStorage.setItem("usuario", JSON.stringify( this.usuario) );
+    this.http.loginLdap( this.usuario ).subscribe( data =>{
+       this.res = data;
+       console.log(this.res);
+       localStorage.setItem("user_id", this.res.user_id );
+       localStorage.setItem("rol", this.res.rol );
+       localStorage.setItem("token", this.res.token );
+    });
+    
   }
 }
