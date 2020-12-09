@@ -1,6 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
 import ucab.dsw.directorio.DirectorioActivo;
+import ucab.dsw.directorio.RecuperacionPass;
 import ucab.dsw.dtos.UsuarioLdapDto;
 import ucab.dsw.servicio.LoginServicio;
 
@@ -10,12 +11,12 @@ public class pruebaDirectorioActivo
     public void createUserLDAP()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
-        user.setCn( "MFalcon" );
-        user.setSn("Solo");
-        user.setTipo_usuario("analista");
-        user.setNombre( "Han");
-        user.setCorreoelectronico( "hansolo@gmail.com" );
-        user.setUid("2");
+        user.setCn( "elrequena" );
+        user.setSn("Requena");
+        user.setTipo_usuario("administrador");
+        user.setNombre( "Jesus");
+        user.setCorreoelectronico( "elrequena123@outlook.com" );
+        user.setUid("3");
         user.setContrasena( "12345" );
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.addEntryToLdap( user );
@@ -89,4 +90,31 @@ public class pruebaDirectorioActivo
         ldap.getEntryUid(user);
 
     }
+
+    @Test
+    public void getUserFromMailtest()
+    {
+        UsuarioLdapDto user = new UsuarioLdapDto();
+        user.setCorreoelectronico( "hansolo@gmail.com" );
+        DirectorioActivo ldap = new DirectorioActivo();
+
+        System.out.println(ldap.getUserFromMail(user));
+    }
+
+    @Test
+    public void reSetPasstest()
+    {
+        UsuarioLdapDto user = new UsuarioLdapDto();
+        user.setCn( "MFalcon" );
+        DirectorioActivo ldap = new DirectorioActivo();
+        ldap.reSetPass(user,"12345");
+    }
+
+    @Test
+    public void randomtest(){
+        RecuperacionPass rec = new RecuperacionPass();
+        String str = rec.newPass();
+        System.out.println(str);
+    }
+
 }
