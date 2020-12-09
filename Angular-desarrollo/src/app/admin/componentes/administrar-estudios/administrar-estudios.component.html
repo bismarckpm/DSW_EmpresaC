@@ -5,7 +5,7 @@
 
 <div *ngIf="estudios" class="contenedor">
     <div *ngFor="let x of estudios" class="item">
-        <app-tarjeta-estudios [routerLink]="['/admin/AsignarEncuesta', x.cod_pais]"   [estudio]=x.encuesta></app-tarjeta-estudios>
+        <app-tarjeta-estudios [routerLink]="['/admin/AsignarEncuesta', x.id]"   [estudio]=x></app-tarjeta-estudios>
     </div>
 </div>
 

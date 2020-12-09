@@ -19,11 +19,13 @@ import { SolicitudEstudioService } from "../../Servicios/solicitud-estudio.servi
 })
 export class EstudioDetalleComponent implements OnInit {
   estudio:any;
+  error:string;
+
   constructor(private route: ActivatedRoute,
     private location: Location,
     private solicitudServicio:SolicitudEstudioService) {
       this.route.params.pipe(switchMap((params: Params) => { return this.solicitudServicio.getEstudio(params['id']); }))
-      .subscribe(x => { this.estudio = x;   });
+      .subscribe(x => { this.estudio = x.estudio;   });
      }
 
   ngOnInit(): void {

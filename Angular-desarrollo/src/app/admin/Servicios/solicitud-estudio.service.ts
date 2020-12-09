@@ -22,26 +22,30 @@ export class SolicitudEstudioService {
   constructor(private http: HttpClient) { }
 
 
-  getEstudiosAdministrar(): Observable<SolicitudEstudio[]> {
+  getEstudiosAdministrar(): Observable<any[]> {
     // return of(DISHES.filter((dish) => (dish.id === id))[0]).pipe(delay(2000));
-    return of(SOLICITUDESPROGRESO).pipe(delay(2000));
+    return this.http.get<any>(this.URL + 'admin/estudios-asignados/20')
   }
 
-  getEstudiosAdministrar2(): Observable<SolicitudEstudio[]> {
-    // return of(DISHES.filter((dish) => (dish.id === id))[0]).pipe(delay(2000));
-     return this.http.get<any>(this.URL + 'admin/estudios-asignados')
-     
-  }
-
-  getEstudiosPendientes(): Observable<SolicitudEstudio[]> {
+  getEstudiosPendientes(): Observable<any[]> {
     // return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000));
-    return of(SOLICITUDESESTUDIO).pipe(delay(2000));
+    
+    return this.http.get<any>(this.URL + 'admin/estudios-no-asignados/20')
     // 
   }
 
-  getEstudio(id:number): Observable<SolicitudEstudio> {
+  DeleteEstudios(id:number): Observable<any> {
     // return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000));
-    return of(SOLICITUDESESTUDIO.filter(x=> x.id==id)[0]).pipe(delay(2000));
+    
+    return this.http.delete<any>(this.URL + 'admin/delete-solicitud/'+id)
+    // 
+  }
+
+  getEstudio(id:number): Observable<any> {
+    // return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000));
+
+    return this.http.get<any>(this.URL + 'admin/estudio/'+id)
+    
   }
 
 

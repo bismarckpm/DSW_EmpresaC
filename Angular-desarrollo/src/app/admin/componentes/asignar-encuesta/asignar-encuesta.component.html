@@ -1,5 +1,5 @@
 
-
+<div *ngIf="estudio">
 <mat-card class="example-card "  *ngIf="estudio">
   <mat-card-header aling-center>
     
@@ -10,9 +10,9 @@
   <mat-card-content>
     
       <div class="form-group">
-        <p> Marca: {{estudio.marca}}</p>
-        <p> Categoria: {{estudio.categoria}}</p>
-        <p> Subcategoria: {{estudio.subcategoria}}</p>
+        <p> Marca: {{estudio.caracteristicas.Marca}}</p>
+        <p> Categoria: {{estudio.caracteristicas.Categoria}}</p>
+        <p> Subcategoria: {{estudio.caracteristicas.Subcategoria}}</p>
       </div>
    
   </mat-card-content>
@@ -70,6 +70,7 @@
 
 
 </mat-card>
+</div>
 
 <div [hidden]="estudio">
     <mat-spinner></mat-spinner><h4>Cargando estudio ...</h4>

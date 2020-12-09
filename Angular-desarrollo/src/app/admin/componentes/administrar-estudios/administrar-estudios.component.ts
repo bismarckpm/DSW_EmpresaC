@@ -17,7 +17,7 @@ export class AdministrarEstudiosComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.solicitudservice.getEstudiosAdministrar2().subscribe(e=> {this.estudios=e.categorias;console.log(e.categorias[0].encuesta)})
+    this.solicitudservice.getEstudiosPendientes().subscribe(e=> {this.estudios=e.estudios;console.log(e.estudios[0].encuesta)})
   }
 
 }

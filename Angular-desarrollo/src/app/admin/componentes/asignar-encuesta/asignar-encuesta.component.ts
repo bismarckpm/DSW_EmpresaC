@@ -39,7 +39,7 @@ export class AsignarEncuestaComponent implements OnInit {
       
       this.preguntasSeleccionadas=[];
       this.route.params.pipe(switchMap((params: Params) => { return this.solicitudServicio.getEstudio(params['id']); }))
-      .subscribe(x => { this.estudio = x;   });
+      .subscribe(x => { this.estudio = x.estudio;   });
 
       this.preguntaServicio.getPreguntas().subscribe(x=>{
         this.todasPreguntas=x
