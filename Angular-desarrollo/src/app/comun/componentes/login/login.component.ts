@@ -4,6 +4,8 @@ import { LoginService } from '../../servicios/login/login.service';
 import { usuarioLdap } from '../../../Entidades/usuarioLDAP'
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+import { NgEventBus } from 'ng-event-bus';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +15,10 @@ import { HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 export class LoginComponent implements OnInit {
   usuario: usuarioLdap;
   loginData: FormGroup;
-  res: {};
-  constructor( private http: LoginService) {
+  res: any;
+  res$: Observable<any>;
+
+  constructor( private http: LoginService, private _toastrService: ToastrService, private eventBus: NgEventBus) {
     this.loginData = this.crearFormGroup();
     this.usuario = new usuarioLdap();
   }
@@ -26,14 +30,34 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    
+  }
 
   iniciarSesion(){
+    this.eventBus.cast('inicio-progress','hola');
     this.usuario.cn = this.loginData.value.usuario;
     this.usuario.contrasena = this.loginData.value.pass;
-    this.res = this.http.loginLdap( this.usuario );
-    //ENTRE ESTOS 2 PASOS HAY QUE
-    console.log(this.res);
-    //localStorage.setItem("usuario", JSON.stringify( this.usuario) );
+    this._toastrService.info('Espere un momento un momento, por favor', 'Validando....');
+    this.http.loginLdap( this.usuario ).subscribe( data =>{
+       this.res = data;
+       console.log(this.res);
+       if(this.res.estado='success'){
+        localStorage.setItem("user_id", this.res.user_id );
+        localStorage.setItem("rol", this.res.rol );
+        localStorage.setItem("token", this.res.token );
+        this._toastrService.success("Bienvenido", "Credenciales correctas!");
+        this.eventBus.cast('inicio-sesion','ok');
+       }
+       else{
+        this._toastrService.success("Intente de nuevo", "Credenciales incorrectas!");
+       }
+       this.eventBus.cast('fin-progress','chao');
+    },
+    (error)=>{
+      console.log(error);
+      this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+      this.eventBus.cast('fin-progress','chao');
+    });
   }
 }

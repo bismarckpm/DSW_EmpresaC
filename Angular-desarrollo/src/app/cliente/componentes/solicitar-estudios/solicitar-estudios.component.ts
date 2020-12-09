@@ -8,6 +8,7 @@ import { ClienteDto } from 'src/app/Entidades/clienteDto';
 import { CaracteristicaDemograficaDto } from 'src/app/Entidades/CaracteristicaDemograficaDto';
 import { ParroquiaDto } from 'src/app/Entidades/parroquiaDto';
 import { NivelAcademicoDto } from 'src/app/Entidades/nivelAcademicoDto';
+import { NgEventBus } from 'ng-event-bus';
 
 @Component({
   selector: 'app-solicitar-estudios',
@@ -63,7 +64,7 @@ export class SolicitarEstudiosComponent implements OnInit {
   public solicitudEstudioCliente: SolicitudEstudioCliente;
 
 
-  constructor(private _solicitudService:SolicitudEstudiosService, private progress: NgProgress, private _toastrService: ToastrService) {}
+  constructor(private _solicitudService:SolicitudEstudiosService, private progress: NgProgress, private _toastrService: ToastrService,private eventBus: NgEventBus) {}
 
   ngOnInit(): void {
     this._toastrService.info('Espere unos segundos, por favor. Un momento!');
@@ -181,7 +182,7 @@ export class SolicitarEstudiosComponent implements OnInit {
   
 
 
-  /*Filtros*/
+  /*Filters*/
 
   filterSubcategorias(e){
     console.log(this.categoria_id);
@@ -198,8 +199,26 @@ export class SolicitarEstudiosComponent implements OnInit {
     console.log(this.marcas_filtered);
   }
 
+  filterEstados(e){
+    console.log(e);
+  }
+
+  filterCiudades(e){
+
+  }
+  
+  filterParroquias(e){
+    console.log(e);
+  }
+
+
+
+  /* Post */
+
   enviarSolicitud(){
 
+    this.eventBus.cast('inicio-progress','hola');
+        
     this.dataToSend();
     console.log(this.solicitudEstudioCliente);
     
@@ -210,15 +229,17 @@ export class SolicitarEstudiosComponent implements OnInit {
         if(response.estado='success'){
           this._toastrService.success("Todo salio bien!", "Solicitud Procesada");
         }else{
-          this._toastrService.error("Ops! Hubo un problema.", "Intentelo de nuevo");
+          this._toastrService.error("Ops! Hubo un problema.", "Intentelo más tarde");
         }
+        this.eventBus.cast('fin-progress','chao');
 
       },
       (error)=>{
         console.log(error);
         this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        this.eventBus.cast('fin-progress','chao');
       });
-  
+
 }
 
   /* Data to send */

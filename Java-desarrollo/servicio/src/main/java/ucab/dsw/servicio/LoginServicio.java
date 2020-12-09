@@ -34,7 +34,7 @@ public class LoginServicio extends AplicacionBase{
                 data= Json.createObjectBuilder()
                                      .add("estado","success")
                                      .add("codigo",200)
-                                     .add("token-jwt",token)
+                                     .add("token",token)
                                      .add("rol", ldap.getEntryRole(usuarioLdapDto))
                                      .add("user_id",ldap.getEntryUid(usuarioLdapDto)).build();
 

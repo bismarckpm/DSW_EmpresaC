@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MetaData } from 'ng-event-bus/lib/meta-data';
 import { NgProgress } from 'ngx-progressbar';
 import {NgProgressRef} from 'ngx-progressbar';
 import { ToastrService } from 'ngx-toastr';
+import { NgEventBus } from 'ng-event-bus';
+import { Router } from '@angular/router';
 
 
 
@@ -16,26 +19,40 @@ export class AppComponent implements OnInit{
   title = 'Angular-desarrollo';
   progressRef: NgProgressRef;
 
-  constructor(private progress: NgProgress, private _http:HttpClient, private _toastrService: ToastrService) {
+  public token:any;
+  public rol:any;
+  public user_id:any;
+
+  constructor(private route: Router,private progress: NgProgress, private _http:HttpClient, private _toastrService: ToastrService,private eventBus: NgEventBus) {
     this.progressRef = this.progress.ref('myProgress');
   }
   
   ngOnInit() {
 
-    /*this.startLoading();
-    this._http.get('ttp://slowwly.robertomurray.co.uk/delay/3000/url/https://jsonplaceholder.typicode.com/posts/1');
-    setTimeout(()=>{
+    this.checkLocalStorage();
+
+    this.eventBus.on('inicio-progress').subscribe((meta: MetaData) => {
+      console.log(meta.data); // will receive 'started' only
+      this.startLoading();
+    });
+
+    this.eventBus.on('fin-progress').subscribe((meta: MetaData) => {
+      console.log(meta.data); // will receive 'started' only
       this.completeLoading();
-    },3000);
+    });
 
-    
-    this._toastrService.error('Mensaje', 'Error');
+    this.eventBus.on('inicio-sesion').subscribe((meta: MetaData) => {
+      console.log(meta.data); // will receive 'started' only
+      this.checkLocalStorage();
+      this.checkDashboardRol();
+    });
 
-    this._toastrService.success('Mensaje', 'Realizado');
+    this.eventBus.on('cerrar-sesion').subscribe((meta: MetaData) => {
+      console.log(meta.data); // will receive 'started' only
+      this.cleanLocalstorage();
+    });
 
-    this._toastrService.warning('Mensaje', 'Advertencia');
 
-    this._toastrService.info('Mensaje', 'Info');*/
 
   }
 
@@ -45,6 +62,32 @@ export class AppComponent implements OnInit{
 
   completeLoading() {
     this.progressRef.complete();
+  }
+
+  checkLocalStorage(){
+    this.token=localStorage.getItem('token');
+    this.rol=localStorage.getItem('rol');
+    this.user_id=+localStorage.getItem('user_id');
+  }
+
+  checkDashboardRol(){
+      if(this.rol=='admin'){
+        this.route.navigate(['/admin']);
+      }else if(this.rol=='analista'){
+        this.route.navigate(['/analista']);
+      }
+      else if(this.rol=='cliente'){
+        this.route.navigate(['/cliente']);
+      }
+      else if(this.rol=='encuestado'){
+        this.route.navigate(['/encuestado']);
+      }
+  }
+
+  cleanLocalstorage(){
+    localStorage.clear();
+    this.checkLocalStorage();
+    this.route.navigate(['/login']);
   }
 
 }

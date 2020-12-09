@@ -62,7 +62,7 @@ export class SolicitudEstudiosService {
   getAllNivelAcademicos():Observable<any>{
 
     //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
-    return this._http.get(global.url+'niveles_socioeconomicos/all');  //Esta ruta esta mal escrita en el backend. Deberia ser "niveles_academicos"
+    return this._http.get(global.url+'niveles_academicos/all');  
     
   }
 

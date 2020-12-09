@@ -25,6 +25,7 @@
         "@popperjs/core": "^2.5.4",
         "bootstrap": "^4.5.3",
         "jquery": "^3.5.1",
+        "ng-event-bus": "^2.0.0",
         "ngx-progressbar": "6.0.0",
         "ngx-toastr": "^13.1.0",
         "rxjs": "~6.6.0",
