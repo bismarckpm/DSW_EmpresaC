@@ -1,10 +1,12 @@
 package ucab.dsw.dtos;
 
-public class PresentacionDto extends DtoBase{
+
+public class PresentacionDto extends DtoBase {
+
 
     private String nombre;
 
-    public String getBombre()
+    public String getNombre()
     {
         return nombre;
     }
@@ -12,6 +14,18 @@ public class PresentacionDto extends DtoBase{
     public void setNombre( String nombre )
     {
         this.nombre = nombre;
+    }
+
+    private String estado;
+
+    public String getEstado()
+    {
+        return estado;
+    }
+
+    public void setEstado( String estado )
+    {
+        this.estado = estado;
     }
 
     private TipoDto tipoDto;
@@ -24,5 +38,14 @@ public class PresentacionDto extends DtoBase{
     public void setTipoDto( TipoDto tipoDto )
     {
         this.tipoDto = tipoDto;
+    }
+
+    public PresentacionDto()
+    {
+    }
+
+    public PresentacionDto ( long id ) throws Exception
+    {
+        super( id );
     }
 }

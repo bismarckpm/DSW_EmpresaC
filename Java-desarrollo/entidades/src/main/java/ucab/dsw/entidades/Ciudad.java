@@ -50,10 +50,11 @@ public class Ciudad extends EntidadBase
         return _estado;
     }
 
-    public void set_pais( Estado _estado )
+    public void set_estado( Estado _estado )
     {
         this._estado = _estado;
     }
+
 
     public Ciudad( long id )
     {

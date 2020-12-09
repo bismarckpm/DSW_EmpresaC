@@ -42,6 +42,6 @@ public class pruebaORMWS extends AplicacionBase
     @Path( "/consulta" )
     public String consulta()
     {
-        return "Epa";
+        return "Epa 17";
     }
 }

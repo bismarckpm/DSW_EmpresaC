@@ -1,0 +1,76 @@
+
+
+<mat-card class="example-card "  *ngIf="estudio">
+  <mat-card-header aling-center>
+    
+    <mat-card-title >Mercadeo Ucab</mat-card-title>
+    
+  </mat-card-header>
+
+  <mat-card-content>
+    
+      <div class="form-group">
+        <p> Marca: {{estudio.marca}}</p>
+        <p> Categoria: {{estudio.categoria}}</p>
+        <p> Subcategoria: {{estudio.subcategoria}}</p>
+      </div>
+   
+  </mat-card-content>
+
+</mat-card>
+
+<mat-divider></mat-divider>
+<app-contenedor-pregunta-nueva></app-contenedor-pregunta-nueva>
+
+<mat-divider></mat-divider>
+
+<mat-card >
+  <mat-card-header aling-center>  
+    <mat-card-title >Agregador de preguntas</mat-card-title>
+  </mat-card-header>
+
+  <form novalidate [formGroup]="AgregadorForm" #fform="ngForm" >
+
+    <mat-form-field class="half-width">
+      <mat-select formControlName="tipo">
+        
+        <mat-option *ngFor="let x of preguntas" value={{x.Id}}>{{x.Descripcion}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-card-actions>
+      <button mat-raised-button color="#ffc107" (click)="Agregador()" >Agregar Pregunta</button>
+    </mat-card-actions>
+  </form>
+</mat-card>
+
+<mat-divider></mat-divider>
+
+<app-contenedor-pregunta-vieja *ngFor="let i of preguntasSeleccionadas" (preguntaEvent)="Borrador($event)"  [pregunta]="i"></app-contenedor-pregunta-vieja>
+
+<mat-divider></mat-divider>
+
+
+
+<mat-card >
+  <mat-card-header aling-center>
+    <mat-card-title >Confirma la encuesta</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+    <div class="form-group">
+      <label for="exampleInputEncuesta1">Nombre de la Encuesta</label>
+      <input type="text" class="form-control" id="exampleInputEncuesta1" aria-describedby="EncuestaHelp">
+    </div>
+          <mat-card-actions>
+        <button mat-raised-button color="#ffc107" type="submit">Aceptar encuesta</button>
+      </mat-card-actions>
+    
+  </mat-card-content>
+
+
+</mat-card>
+
+<div [hidden]="estudio">
+    <mat-spinner></mat-spinner><h4>Cargando estudio ...</h4>
+</div>

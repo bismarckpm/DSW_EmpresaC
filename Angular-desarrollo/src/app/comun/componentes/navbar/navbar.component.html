@@ -13,7 +13,7 @@
     </ul>
 
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
+    <form [formGroup]="navBarData" class="form-inline ml-3">
         <div class="input-group input-group-sm">
             <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
             <div class="input-group-append">
@@ -112,8 +112,8 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                <i class="fas fa-expand-arrows-alt"></i>
+            <a class="nav-link" (click)="cerrarSesion()" role="button">
+                <i class="fas fa-window-close"></i>
             </a>
         </li>
         <li class="nav-item">

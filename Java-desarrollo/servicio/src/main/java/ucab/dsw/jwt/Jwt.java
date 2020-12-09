@@ -19,7 +19,7 @@ public class Jwt {
         try{
             String token=Jwts.builder()
                 .signWith(SignatureAlgorithm.HS256,KEY)
-                .setSubject(usuarioLdapDto.getCorreoelectronico())
+                .setSubject(usuarioLdapDto.getCn())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis()+10800000))
                 .compact();

@@ -3,6 +3,7 @@ import ucab.dsw.accesodatos.*;
 import ucab.dsw.dtos.*;
 import ucab.dsw.entidades.*;
 
+import javax.servlet.http.Part;
 import javax.validation.constraints.Null;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -10,6 +11,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
 import java.util.List;
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -130,9 +132,9 @@ public class metodos_admin {
 
     @DELETE
     @Path( "/delete/{id}" )
-    public SolicituEstudioDto asignarEncuesta(@PathParam("id") long  _id, @PathParam("id") long  _id2 )
+    public SolicitudEstudioDto asignarEncuesta(@PathParam("id") long  _id, @PathParam("id") long  _id2 )
     {
-        SolicituEstudioDto resultado = new SolicituEstudioDto();
+        SolicitudEstudioDto resultado = new SolicitudEstudioDto();
         try
         {
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
@@ -154,9 +156,9 @@ public class metodos_admin {
 
     @DELETE
     @Path( "/delete/{id}" )
-    public SolicituEstudioDto EliminarEstudio(@PathParam("id") long  _id )
+    public SolicitudEstudioDto EliminarEstudio(@PathParam("id") long  _id )
     {
-        SolicituEstudioDto resultado = new SolicituEstudioDto();
+        SolicitudEstudioDto resultado = new SolicitudEstudioDto();
         try
         {
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
@@ -176,13 +178,15 @@ public class metodos_admin {
 
     @PUT
     @Path( "/addEncuesta" )
-    public EncuestaDto addEncuesta( long  _id,EncuestaDto encuestaDto)
+    public EncuestaDto addEncuesta( long  _id,EncuestaDto encuestaDto,List<Pregunta> pregunta)
     {
         EncuestaDto resultado = new EncuestaDto();
 
         try
         {
             DaoEncuesta dao = new DaoEncuesta();
+            DaoPreguntaEncuesta dao2= new DaoPreguntaEncuesta();
+
             Encuesta encuesta = new Encuesta();
             encuesta.set_nombre( encuestaDto.getNombre() );
 
@@ -191,6 +195,18 @@ public class metodos_admin {
 
             Encuesta resul = dao.insert( encuesta);
             resultado.setId( resul.get_id() );
+
+
+            for(Pregunta obj: pregunta) {
+                Pregunta_EncuestaDto resultado2 = new Pregunta_EncuestaDto();
+                PreguntaEncuesta preguntaEncuesta = new PreguntaEncuesta();
+                preguntaEncuesta.set_encuesta(resul);
+                preguntaEncuesta.set_pregunta(obj);
+
+                PreguntaEncuesta resul2 = dao2.insert( preguntaEncuesta);
+                resultado2.setId( resul2.get_id() );
+
+            }
         }
         catch ( Exception ex )
         {
@@ -233,11 +249,28 @@ public class metodos_admin {
         }
         return  resultado;
     }
-
     @GET
-    @Path( "/consulta" )
-    public String consulta()
+    @Path( "/estudios" )
+    public int Participacion_estudio(long  _id)
     {
-        return "Epa";
+        JsonArrayBuilder builder = Json.createArrayBuilder();
+        List<Participacion> resultado= null;
+
+        DaoParticipacion dao= new DaoParticipacion();
+        Class<Participacion> type = Participacion.class;
+
+        resultado= dao.findAll(type);
+        for(Participacion obj: resultado) {
+
+            if(obj.get_solicitudestudio().get_id() == _id) {
+                System.out.println("Id: " + obj.get_solicitudestudio().get_id());
+                System.out.println("Participante: " + obj.get_encuestado().get_nombre());
+
+            }else{
+                System.out.println("");
+            }
+        }
+        builder.build();
+        return 1;
     }
 }
