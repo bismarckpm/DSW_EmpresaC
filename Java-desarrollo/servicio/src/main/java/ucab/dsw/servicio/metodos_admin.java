@@ -27,8 +27,8 @@ public class metodos_admin {
 
 
     @GET
-    @Path( "/estudios-asignados" )
-    public Response consultaEstudios_asignados()
+    @Path( "/estudios-asignados/{id}" )
+    public Response consultaEstudios_asignados(@PathParam("id")long  _id)
     {
         JsonObject data;
         JsonArrayBuilder builder = Json.createArrayBuilder();
@@ -40,18 +40,21 @@ public class metodos_admin {
 
             resultado = dao.findAll(type);
             for (SolicitudEstudio obj : resultado) {
-                if (obj.get_encuesta() == null) {
-                    System.out.println("");
 
-                } else {
-                    JsonObject encuesta = Json.createObjectBuilder().add("Marca:",obj.get_marca().get_nombre())
+                System.out.println(obj.get_estado());
+                if (obj.get_encuesta() != null && obj.get_usuario2().get_id()== _id && obj.get_estado().equals("en ejecucion")) {
+                    JsonObject encuesta = Json.createObjectBuilder().add("Marca",obj.get_marca().get_nombre())
                             .add("Categoria",obj.get_marca().get_subcategoria().get_categoria().get_nombre())
                             .add("Subcategoria",obj.get_marca().get_subcategoria().get_nombre()).build();
                     JsonObject tipo = Json.createObjectBuilder().add("id",obj.get_id())
                             .add("fecha",obj.get_fecha_inicio().toString())
-                            .add("encuesta",encuesta).build();
+                            .add("caracteristicas",encuesta).build();
 
                     builder.add(tipo);
+
+
+                } else {
+                    System.out.println("");
                 }
 
 
@@ -60,7 +63,7 @@ public class metodos_admin {
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200)
-                    .add("categorias",builder).build();
+                    .add("estudios",builder).build();
 
         }
         catch (Exception ex){
@@ -77,8 +80,8 @@ public class metodos_admin {
     }
 
     @GET
-    @Path( "/estudios-no-asignados" )
-    public Response consultaEstudios_no_asignados()
+    @Path( "/estudios-no-asignados/{id}" )
+    public Response consultaEstudios_no_asignados(@PathParam("id")long  _id)
     {
         JsonObject data;
 
@@ -92,14 +95,17 @@ public class metodos_admin {
 
             resultado = dao.findAll(type);
             for (SolicitudEstudio obj : resultado) {
-                if (obj.get_encuesta() == null) {
-                    JsonObject encuesta = Json.createObjectBuilder().add("Marca:",obj.get_marca().get_nombre())
+
+                if (obj.get_encuesta() == null && obj.get_usuario2().get_id()== _id) {
+
+
+                    JsonObject encuesta = Json.createObjectBuilder().add("Marca",obj.get_marca().get_nombre())
                             .add("Categoria",obj.get_marca().get_subcategoria().get_categoria().get_nombre())
                             .add("Subcategoria",obj.get_marca().get_subcategoria().get_nombre()).build();
                     JsonObject tipo = Json.createObjectBuilder().add("id",obj.get_id())
                             .add("fecha",obj.get_fecha_inicio().toString())
                             .add("estatus", obj.get_estado())
-                            .add("encuesta",encuesta)
+                            .add("caracteristicas",encuesta)
                             .build();
 
                     builder.add(tipo);
@@ -115,7 +121,7 @@ public class metodos_admin {
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200)
-                    .add("categorias",builder).build();
+                    .add("estudios",builder).build();
 
         }
         catch (Exception ex){
@@ -391,6 +397,54 @@ public class metodos_admin {
                     .add("estado","success")
                     .add("codigo",200)
                     .add("categorias",builder).build();
+
+
+        }
+        catch ( Exception ex )
+        {
+            String problema = ex.getMessage();
+
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+        //builder.build();
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
+
+    @GET
+    @Path( "/estudio/{id}" )
+    public Response buscarEstudio(@PathParam("id")long  _id)
+    {
+        JsonObject data;
+        JsonObject builder;
+        try {
+            SolicitudEstudio obj = null;
+
+            DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
+            Class<SolicitudEstudio> type = SolicitudEstudio.class;
+
+            obj = dao.find(_id,type);
+
+            JsonObject encuesta = Json.createObjectBuilder().add("Marca",obj.get_marca().get_nombre())
+                    .add("Categoria",obj.get_marca().get_subcategoria().get_categoria().get_nombre())
+                    .add("Subcategoria",obj.get_marca().get_subcategoria().get_nombre()).build();
+            JsonObject tipo = Json.createObjectBuilder().add("id",obj.get_id())
+                    .add("fecha",obj.get_fecha_inicio().toString())
+                    .add("estatus", obj.get_estado())
+                    .add("caracteristicas",encuesta)
+                    .build();
+
+
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200)
+                    .add("estudio",tipo).build();
 
 
         }
