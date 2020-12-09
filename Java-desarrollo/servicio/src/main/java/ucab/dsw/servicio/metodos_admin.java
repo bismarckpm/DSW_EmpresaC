@@ -264,7 +264,7 @@ public class metodos_admin {
 
     @PUT
     @Path( "/addEncuesta/{id}" )
-    public Response addEncuesta(@PathParam("id") long  _id,EncuestaDto encuestaDto,List<Pregunta> pregunta)
+    public Response addEncuesta(@PathParam("id") long  _id,EncuestaDto encuestaDto,List<PreguntaDto> pregunta)
     {
         EncuestaDto resultado = new EncuestaDto();
         JsonObject data;
@@ -283,11 +283,12 @@ public class metodos_admin {
             resultado.setId( resul.get_id() );
 
 
-            for(Pregunta obj: pregunta) {
+            for(PreguntaDto obj: pregunta) {
                 Pregunta_EncuestaDto resultado2 = new Pregunta_EncuestaDto();
                 PreguntaEncuesta preguntaEncuesta = new PreguntaEncuesta();
                 preguntaEncuesta.set_encuesta(resul);
-                preguntaEncuesta.set_pregunta(obj);
+                Pregunta pregunta1 = new Pregunta(obj.getId());
+                preguntaEncuesta.set_pregunta(pregunta1);
 
                 PreguntaEncuesta resul2 = dao2.insert( preguntaEncuesta);
                 resultado2.setId( resul2.get_id() );

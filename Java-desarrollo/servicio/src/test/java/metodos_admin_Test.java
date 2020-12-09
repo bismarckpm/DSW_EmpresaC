@@ -8,6 +8,7 @@ import ucab.dsw.dtos.*;
 
 import ucab.dsw.entidades.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -69,15 +70,15 @@ public class metodos_admin_Test {
     {
         ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
         EncuestaDto encuestaDto = new EncuestaDto();
+        PreguntaDto preguntaDto = new PreguntaDto(1);
 
         encuestaDto.setNombre( "mejor color?" );
 
 
 
-        List<Pregunta> pregunta = null;
-        Class<Pregunta> type = Pregunta.class;
-        DaoPregunta dao= new DaoPregunta();
-        pregunta= dao.findAll(type);
+        List<PreguntaDto> pregunta = new ArrayList<>();
+
+        pregunta.add(preguntaDto);
 
         Response resultado = servicio.addEncuesta( 2,encuestaDto,pregunta);
         Assert.assertNotEquals( resultado, 1 );
