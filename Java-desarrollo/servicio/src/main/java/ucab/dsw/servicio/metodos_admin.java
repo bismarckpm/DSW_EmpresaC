@@ -47,7 +47,7 @@ public class metodos_admin {
                     JsonObject encuesta = Json.createObjectBuilder().add("Marca:",obj.get_marca().get_nombre())
                             .add("Categoria",obj.get_marca().get_subcategoria().get_categoria().get_nombre())
                             .add("Subcategoria",obj.get_marca().get_subcategoria().get_nombre()).build();
-                    JsonObject tipo = Json.createObjectBuilder().add("cod_pais",obj.get_id())
+                    JsonObject tipo = Json.createObjectBuilder().add("id",obj.get_id())
                             .add("fecha",obj.get_fecha_inicio().toString())
                             .add("encuesta",encuesta).build();
 
@@ -92,15 +92,11 @@ public class metodos_admin {
 
             resultado = dao.findAll(type);
             for (SolicitudEstudio obj : resultado) {
-                builder.add(Json.createObjectBuilder().add("cod_pais", obj.get_id())
-                        .add("fecha", obj.get_fecha_inicio().toString())
-                        .add("estatus", obj.get_estado()));
                 if (obj.get_encuesta() == null) {
-
                     JsonObject encuesta = Json.createObjectBuilder().add("Marca:",obj.get_marca().get_nombre())
                             .add("Categoria",obj.get_marca().get_subcategoria().get_categoria().get_nombre())
                             .add("Subcategoria",obj.get_marca().get_subcategoria().get_nombre()).build();
-                    JsonObject tipo = Json.createObjectBuilder().add("cod_pais",obj.get_id())
+                    JsonObject tipo = Json.createObjectBuilder().add("id",obj.get_id())
                             .add("fecha",obj.get_fecha_inicio().toString())
                             .add("estatus", obj.get_estado())
                             .add("encuesta",encuesta)
@@ -138,46 +134,58 @@ public class metodos_admin {
 
     @GET
     @Path( "/nose/{id}" )
-    public Response preguntas_categoria_subcategoria(@PathParam("id") long  _id, @PathParam("id") long  _id2)
+    public Response preguntas_categoria_subcategoria(@PathParam("id") long  _id)
     {
+        JsonObject data;
         JsonArrayBuilder builder = Json.createArrayBuilder();
-        List<Respuesta> resultado= null;
+        try {
+            List<PreguntaEncuesta> resultado = null;
 
-        DaoRespuesta dao= new DaoRespuesta();
-        Class<Respuesta> type = Respuesta.class;
+            DaoPreguntaEncuesta dao = new DaoPreguntaEncuesta();
+            Class<PreguntaEncuesta> type = PreguntaEncuesta.class;
 
-        resultado= dao.findAll(type);
-        System.out.println("Preguntas por Categoria: ");
-        for(Respuesta obj: resultado) {
+            resultado = dao.findAll(type);
+            System.out.println("Preguntas por Categoria: ");
+            for (PreguntaEncuesta obj : resultado) {
 
-            if(obj.get_preguntaencuesta().get_encuesta().get_marca().get_subcategoria().get_categoria().get_id() == _id2) {
-                System.out.println("Id: " + obj.get_preguntaencuesta().get_pregunta().get_id());
-                System.out.println("Descripcion: " + obj.get_preguntaencuesta().get_pregunta().get_descripcion());
-                System.out.println("Tipo de pregunta: " + obj.get_preguntaencuesta().get_pregunta().get_tipopregunta());
-                if(obj.get_preguntaencuesta().get_pregunta().get_valormax()!= 0){
-                    System.out.println("Rango minimo: " + obj.get_preguntaencuesta().get_pregunta().get_valormin());
-                    System.out.println("Rango maximo: " + obj.get_preguntaencuesta().get_pregunta().get_valormax());
+                if (obj.get_encuesta().get_marca().get_subcategoria().get_categoria().get_id() == _id) {
+
+                    JsonObject p = Json.createObjectBuilder().add("id",obj.get_id())
+                            .add("Descripcion",obj.get_pregunta().get_descripcion())
+                            .add("Tipo de pregunta: " , obj.get_pregunta().get_tipopregunta()).build();
+
+                    builder.add(p);
+
+                    System.out.println("Id: " + obj.get_pregunta().get_id());
+                    System.out.println("Descripcion: " + obj.get_pregunta().get_descripcion());
+                    System.out.println("Tipo de pregunta: " + obj.get_pregunta().get_tipopregunta());
+                    if (obj.get_pregunta().get_valormax() != 0) {
+                        System.out.println("Rango minimo: " + obj.get_pregunta().get_valormin());
+                        System.out.println("Rango maximo: " + obj.get_pregunta().get_valormax());
+                    }
+
+                } else {
+                    System.out.println("");
                 }
-
-            }else{
-                System.out.println("");
             }
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200)
+                    .add("categorias",builder).build();
+
+
         }
+        catch ( Exception ex )
+        {
+            String problema = ex.getMessage();
 
-        System.out.println("Preguntas por SubCategoria: ");
-        for(Respuesta obj: resultado) {
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
 
-            if(obj.get_preguntaencuesta().get_encuesta().get_marca().get_subcategoria().get_id() == _id) {
-                System.out.println("Id: " + obj.get_preguntaencuesta().get_pregunta().get_id());
-                System.out.println("Descripcion: " + obj.get_preguntaencuesta().get_pregunta().get_descripcion());
-                System.out.println("Tipo de pregunta: " + obj.get_preguntaencuesta().get_pregunta().get_tipopregunta());
-                if(obj.get_preguntaencuesta().get_pregunta().get_valormax()!= 0){
-                    System.out.println("Rango minimo: " + obj.get_preguntaencuesta().get_pregunta().get_valormin());
-                    System.out.println("Rango maximo: " + obj.get_preguntaencuesta().get_pregunta().get_valormax());
-                }
-            }else{
-                System.out.println("");
-            }
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
         //builder.build();
         return Response.status(Response.Status.OK).entity(builder).build();

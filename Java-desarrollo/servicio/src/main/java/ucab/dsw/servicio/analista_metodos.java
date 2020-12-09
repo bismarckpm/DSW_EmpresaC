@@ -36,18 +36,17 @@ public class analista_metodos {
 
         resultado = dao.findAll(type);
         for (SolicitudEstudio obj : resultado) {
-            builder.add(Json.createObjectBuilder().add("cod_pais", obj.get_id())
-                    .add("fecha", obj.get_fecha_inicio().toString())
-                    .add("estatus", obj.get_estado()));
-            if (obj.get_usuario().get_id() == _id) {
-                System.out.println("Id: " + obj.get_id());
-                System.out.println("Estado: " + obj.get_estado());
-                System.out.println("Marca: " + obj.get_marca().get_nombre());
-                System.out.println("Categoria: " + obj.get_marca().get_subcategoria().get_categoria().get_nombre());
-                System.out.println("Subcategoria: " + obj.get_marca().get_subcategoria().get_nombre());
+            if (obj.get_usuario() != null) {
+                if (obj.get_usuario().get_id() == _id) {
+                    System.out.println("Id: " + obj.get_id());
+                    System.out.println("Estado: " + obj.get_estado());
+                    System.out.println("Marca: " + obj.get_marca().get_nombre());
+                    System.out.println("Categoria: " + obj.get_marca().get_subcategoria().get_categoria().get_nombre());
+                    System.out.println("Subcategoria: " + obj.get_marca().get_subcategoria().get_nombre());
 
-            } else {
-                System.out.println("");
+                } else {
+                    System.out.println("");
+                }
             }
         }
         //builder.build();
