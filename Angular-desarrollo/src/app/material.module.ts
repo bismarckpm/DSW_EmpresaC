@@ -42,6 +42,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
+
+
 @NgModule({
     imports: [
         MatAutocompleteModule,
@@ -54,6 +56,16 @@ import { MatTableModule } from '@angular/material/table';
         MatSliderModule,
         MatSlideToggleModule,
         MatMenuModule,
+        MatDividerModule,
+        MatTableModule
+        
+   
+    ],
+    exports: [
+        MatNativeDateModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatIconModule,
         MatSidenavModule,
         MatToolbarModule,
         MatCardModule,
@@ -79,9 +91,7 @@ import { MatTableModule } from '@angular/material/table';
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
-        MatNativeDateModule
-    ],
-    exports: [
+        MatNativeDateModule,
         MatAutocompleteModule,
         MatCheckboxModule,
         MatDatepickerModule,
@@ -117,7 +127,9 @@ import { MatTableModule } from '@angular/material/table';
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        MatDividerModule,
+        MatTableModule
     ],
 })
 

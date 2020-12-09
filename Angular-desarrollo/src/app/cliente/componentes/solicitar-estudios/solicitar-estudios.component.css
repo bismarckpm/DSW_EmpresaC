@@ -21,4 +21,11 @@
 .fuente {
     font-size: 25px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-bottom: 0;
+    padding: 15px 0;
+}
+
+h2 {
+    margin: 0 !important;
+    padding: 20px 0 !important;
 }

@@ -3,8 +3,7 @@
         <mat-card-header class="color pg 2rm">
 
             <div class="row">
-                <div class="col-6" style="display:flex">
-                    <img src="/assets/Imagen2.png" class="i">
+                <div class="col-12" style="display:flex">
                     <h1 class="fuente"> Solicitar Estudio</h1>
                 </div>
             </div>
@@ -19,8 +18,8 @@
             </h2>
 
             <div class="row justify-content-md-center">
-                <div class="col-6 col-md-4">Categoria
-                    <mat-form-field appearance="fill">
+                <div class="col-6 col-md-4">Categoria <br>
+                    <mat-form-field appearance="outline">
                         <mat-label>Seleccionar</mat-label>
                         <mat-select [(ngModel)]="categoria_id" (selectionChange)="filterSubcategorias($event)">
                             <mat-option>None</mat-option>
@@ -29,8 +28,8 @@
                     </mat-form-field>
                 </div>
 
-                <div class="col-6 col-md-4">Sub-Categoria
-                    <mat-form-field appearance="fill">
+                <div class="col-6 col-md-4">Subcategoria<br>
+                    <mat-form-field appearance="outline">
                         <mat-label>Seleccionar </mat-label>
                         <mat-select [(ngModel)]="subcategoria_id" (selectionChange)="filterMarcas($event)">
                             <mat-option>None</mat-option>
@@ -54,15 +53,15 @@
                 </div>
             </div>
 
-            <mat-divider class="divider"></mat-divider>
+            <mat-divider class="divider" style="padding-bottom: 20px;"></mat-divider>
 
             <h2>
                 <mat-icon aria-hidden="false" aria-label="Example groups icon">groups</mat-icon>
                 Caracteristicas Demograficas
             </h2>
-            <div class="row">
+            <div class="row justify-content-md-center">
                 <div class="col-6 col-md-3">Pais<br>
-                    <mat-form-field appearance="fill">
+                    <mat-form-field appearance="outline">
                         <mat-label>Seleccionar </mat-label>
                         <mat-select [(ngModel)]="pais_id" (selectionChange)="filterEstados($event)">
                             <mat-option>None</mat-option>
@@ -71,7 +70,7 @@
                     </mat-form-field>
                 </div>
                 <div class="col-6 col-md-3">Estados<br>
-                    <mat-form-field appearance="fill">
+                    <mat-form-field appearance="outline">
                         <mat-label>Seleccionar </mat-label>
                         <mat-select [(ngModel)]="estado_id" (selectionChange)="filterCiudades($event)">
                             <mat-option>None</mat-option>
@@ -80,7 +79,7 @@
                     </mat-form-field>
                 </div>
                 <div class="col-6 col-md-3">Ciudades<br>
-                    <mat-form-field appearance="fill">
+                    <mat-form-field appearance="outline">
                         <mat-label>Seleccionar </mat-label>
                         <mat-select [(ngModel)]="ciudad_id" (selectionChange)="filterParroquias($event)">
                             <mat-option>None</mat-option>
@@ -89,7 +88,7 @@
                     </mat-form-field>
                 </div>
                 <div class="col-6 col-md-3">Parroquia<br>
-                    <mat-form-field appearance="fill">
+                    <mat-form-field appearance="outline">
                         <mat-label>Seleccionar </mat-label>
                         <mat-select [(ngModel)]="parroquiaSelected">
                             <mat-option>None</mat-option>
@@ -98,15 +97,16 @@
                     </mat-form-field>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-6 col-md-4">Nacionalidad<br>
+
+            <div class="row justify-content-md-center">
+                <div class="col-6 col-md-3">Nacionalidad<br>
                     <mat-form-field class="example-full-width">
                         <input matInput placeholder="Ex. venezolano" [(ngModel)]="nacionalidadSelected">
                     </mat-form-field>
                 </div>
 
-                <div class="col-6 col-md-4">Edad Minima<br>
-                    <mat-form-field appearance="fill">
+                <div class="col-6 col-md-3">Edad Minima<br>
+                    <mat-form-field appearance="outline">
                         <mat-label>Seleccionar </mat-label>
                         <mat-select [(ngModel)]="edad_minimaSelected">
                             <mat-option>None</mat-option>
@@ -114,8 +114,8 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-                <div class="col-6 col-md-4">Edad Maxima<br>
-                    <mat-form-field appearance="fill">
+                <div class="col-6 col-md-3">Edad Maxima<br>
+                    <mat-form-field appearance="outline">
                         <mat-label>Seleccionar </mat-label>
                         <mat-select [(ngModel)]="edad_maximaSelected">
                             <mat-option>None</mat-option>
@@ -123,11 +123,8 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-6 col-md-4">Niveles Socioeconomico<br>
-                    <mat-form-field appearance="fill">
+                <div class="col-6 col-md-3">Niveles Socioeconomico<br>
+                    <mat-form-field appearance="outline">
                         <mat-label>Seleccionar </mat-label>
                         <mat-select [(ngModel)]="nivel_socioeconomicoSelected">
                             <mat-option>None</mat-option>
@@ -135,8 +132,11 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
+            </div>
+
+            <div class="row d-flex justify-content-between">
                 <div class="col-6 col-md-4">Genero<br>
-                    <mat-form-field appearance="fill">
+                    <mat-form-field appearance="outline">
                         <mat-label>Select</mat-label>
                         <mat-select [(ngModel)]="generoSelected">
                             <mat-option value="M">Masculino</mat-option>
@@ -145,7 +145,7 @@
                     </mat-form-field>
                 </div>
                 <div class="col-6 col-md-4">Cantidad de hijos<br>
-                    <mat-form-field appearance="fill">
+                    <mat-form-field appearance="outline">
                         <mat-label>Seleccionar </mat-label>
                         <mat-select [(ngModel)]="hijoSelected">
                             <mat-option>None</mat-option>
@@ -154,7 +154,7 @@
                     </mat-form-field>
                 </div>
                 <div class="col-6 col-md-4">Niveles Academicos<br>
-                    <mat-form-field appearance="fill">
+                    <mat-form-field appearance="outline">
                         <mat-label>Seleccionar </mat-label>
                         <mat-select [(ngModel)]="nivel_academicoSelected">
                             <mat-option>None</mat-option>
@@ -180,7 +180,7 @@
 
         </mat-card-content>
 
-        <mat-card-actions>
+        <mat-card-actions style="padding: 15px 0;">
             <div class="row justify-content-md-center">
                 <button mat-flat-button class="color" (click)="enviarSolicitud()">Solicitar</button>
             </div>

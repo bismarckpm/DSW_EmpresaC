@@ -29,6 +29,7 @@ export class AppComponent implements OnInit{
   
   ngOnInit() {
 
+    this.dataLogin();
     this.checkLocalStorage();
 
     this.eventBus.on('inicio-progress').subscribe((meta: MetaData) => {
@@ -51,7 +52,6 @@ export class AppComponent implements OnInit{
       console.log(meta.data); // will receive 'started' only
       this.cleanLocalstorage();
     });
-
 
 
   }
@@ -88,6 +88,13 @@ export class AppComponent implements OnInit{
     localStorage.clear();
     this.checkLocalStorage();
     this.route.navigate(['/login']);
+  }
+
+  dataLogin(){
+       //Quitar;
+       localStorage.setItem("user_id", '1' );
+       localStorage.setItem("rol", 'analista' );
+       localStorage.setItem("token", '111111111' );
   }
 
 }

@@ -17,12 +17,15 @@
   import { AdministrarEstudiosProgresoComponent } from './componentes/administrar-estudios-progreso/administrar-estudios-progreso.component';
   import { TarjetaEstudioProgresoComponent } from './componentes/tarjeta-estudio-progreso/tarjeta-estudio-progreso.component';
   import { EstudioDetalleComponent } from './componentes/estudio-detalle/estudio-detalle.component';
+  import {AdministrarMarcasComponent} from "./componentes/administrar-marcas/administrar-marcas.component";
+  import { ContenedorPreguntaNuevaComponent } from './componentes/Preguntas/contenedor-pregunta-nueva/contenedor-pregunta-nueva.component';
+  import { ContenedorPreguntaViejaComponent } from './componentes/Preguntas/contenedor-pregunta-vieja/contenedor-pregunta-vieja.component';
+
 
   //Servicios
   import { SolicitudEstudioService } from "./Servicios/solicitud-estudio.service";
   import { PreguntaService } from "./Servicios/pregunta.service";
-  import { ContenedorPreguntaNuevaComponent } from './componentes/Preguntas/contenedor-pregunta-nueva/contenedor-pregunta-nueva.component';
-  import { ContenedorPreguntaViejaComponent } from './componentes/Preguntas/contenedor-pregunta-vieja/contenedor-pregunta-vieja.component';
+  import {  AdminMarcasService } from "./Servicios/administrar-marcas/admin-marcas.service";
 
 
   @NgModule({
@@ -36,7 +39,8 @@
       TarjetaEstudioProgresoComponent,
       EstudioDetalleComponent,
       ContenedorPreguntaNuevaComponent,
-      ContenedorPreguntaViejaComponent
+      ContenedorPreguntaViejaComponent,
+      AdministrarMarcasComponent
     ],
     imports: [
       CommonModule,
@@ -46,7 +50,7 @@
       ReactiveFormsModule
     ],
     providers:[SolicitudEstudioService,
-    PreguntaService
+    PreguntaService,  AdminMarcasService
     ]
   })
   export class AdminModule { }
