@@ -1,2 +1,8 @@
 .idea/*
 *.iml
+Java-desarrollo/accesodatos/target/*
+Java-desarrollo/directorioactivo/target/*
+Java-desarrollo/dtos/target/*
+Java-desarrollo/entidades/target/*
+Java-desarrollo/excepciones/target/*
+Java-desarrollo/servicio/target/*
