@@ -5,8 +5,8 @@ import { ClienteComponent } from './componentes/raiz/cliente.component';
 import { SolicitarEstudiosComponent } from "./componentes/solicitar-estudios/solicitar-estudios.component";
 
 const routes: Routes = [
-  {path:'', component: ClienteComponent},
-  {path:'solicitar-estudios', component: DashboardComponent}
+  {path:'', component: DashboardComponent},
+  {path:'solicitar-estudios', component: SolicitarEstudiosComponent }
 ];
 
 @NgModule({

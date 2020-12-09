@@ -7,13 +7,9 @@ import { AdminComponent } from './componentes/raiz/admin.component';
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
 import { ComunModule } from '../comun/comun.module';
 import { AdministrarEstudiosComponent } from './componentes/administrar-estudios/administrar-estudios.component';
-<<<<<<< HEAD
-import { MaterialModule } from '../material.module';
-=======
 
 import { MaterialModule } from '.././material.module';
 import { TarjetaEstudiosComponent } from './componentes/tarjeta-estudios/tarjeta-estudios.component';
->>>>>>> e552ff9549ceb29e06aaa190c8f897664ea700b6
 
 
 import { AsignarEncuestaComponent } from './componentes/asignar-encuesta/asignar-encuesta.component';
@@ -27,6 +23,7 @@ import { SolicitudEstudioService } from "./Servicios/solicitud-estudio.service";
 import { PreguntaService } from "./Servicios/pregunta.service";
 import { ContenedorPreguntaNuevaComponent } from './componentes/Preguntas/contenedor-pregunta-nueva/contenedor-pregunta-nueva.component';
 import { ContenedorPreguntaViejaComponent } from './componentes/Preguntas/contenedor-pregunta-vieja/contenedor-pregunta-vieja.component';
+import { AdministrarMarcasComponent } from './componentes/administrar-marcas/administrar-marcas.component';
 
 @NgModule({
   declarations: [
@@ -39,21 +36,18 @@ import { ContenedorPreguntaViejaComponent } from './componentes/Preguntas/conten
     TarjetaEstudioProgresoComponent,
     EstudioDetalleComponent,
     ContenedorPreguntaNuevaComponent,
-    ContenedorPreguntaViejaComponent
+    ContenedorPreguntaViejaComponent,
+    AdministrarMarcasComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     ComunModule,
-<<<<<<< HEAD
-    MaterialModule
-=======
     MaterialModule,
     ReactiveFormsModule
   ],
   providers:[SolicitudEstudioService,
   PreguntaService
->>>>>>> e552ff9549ceb29e06aaa190c8f897664ea700b6
   ]
 })
 export class AdminModule { }

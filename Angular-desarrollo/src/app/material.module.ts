@@ -11,6 +11,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -30,7 +31,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
         MatProgressSpinnerModule,
         MatFormFieldModule,
         MatSelectModule,
-        MatDividerModule      
+        MatDividerModule,
+        MatTableModule
+        
+   
     ],
     exports: [
         MatNativeDateModule,
@@ -46,7 +50,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
         MatProgressSpinnerModule,
         MatFormFieldModule,
         MatSelectModule,
-        MatDividerModule
+        MatDividerModule,
+        MatTableModule
     ],
 })
 

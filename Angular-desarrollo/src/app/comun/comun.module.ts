@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { FooterComponent } from './componentes/footer/footer.component';
@@ -12,9 +12,9 @@ import { RecuperacionComponent } from './componentes/recuperacion/recuperacion.c
 
 
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent, LoginComponent, AsideComponent, RecuperacionComponent],
+  declarations: [ NavbarComponent, FooterComponent, LoginComponent, AsideComponent, RecuperacionComponent],
   imports: [
-    
+    CommonModule,
     MaterialModule,
     RouterModule,
     

@@ -1,4 +1,12 @@
-.example-card {
+table {
+    width: 90%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  .example-card {
     max-width: 1000px;
     
   }

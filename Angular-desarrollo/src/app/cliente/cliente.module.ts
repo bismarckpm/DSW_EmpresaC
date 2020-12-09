@@ -9,7 +9,7 @@ import { SolicitarEstudiosComponent } from './componentes/solicitar-estudios/sol
 import { MaterialModule } from '../material.module';
 
 
-
+import { SolicitudEstudioService } from "./servicios/solicitud-estudio.service";
 
 @NgModule({
   declarations: [
@@ -24,6 +24,9 @@ import { MaterialModule } from '../material.module';
     ComunModule,
     MaterialModule
     
-  ]
+  ],
+  providers:[SolicitudEstudioService,
+   
+    ]
 })
 export class ClienteModule { }
