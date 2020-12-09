@@ -18,7 +18,7 @@ import { SolicitudEstudioService } from "../../Servicios/solicitud-estudio.servi
   styleUrls: ['./estudio-detalle.component.css']
 })
 export class EstudioDetalleComponent implements OnInit {
-  estudio:SolicitudEstudio;
+  estudio:any;
   constructor(private route: ActivatedRoute,
     private location: Location,
     private solicitudServicio:SolicitudEstudioService) {

@@ -25,7 +25,7 @@ export class AsignarEncuestaComponent implements OnInit {
   @ViewChild('fform') AgregadorFormDirective;
   AgregadorForm:FormGroup;
 
-  estudio:SolicitudEstudio;
+  estudio:any;
   preguntas:Pregunta[];
   preguntasSeleccionadas:Pregunta[];
   todasPreguntas:Pregunta[];

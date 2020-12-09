@@ -10,7 +10,7 @@ import { SolicitudEstudio } from "../../../Entidades/solicitudEstudio";
   styleUrls: ['./tarjeta-estudios.component.css']
 })
 export class TarjetaEstudiosComponent implements OnInit {
-  @Input() estudio:SolicitudEstudio;
+  @Input() estudio:any;
   constructor() { }
 
   ngOnInit(): void {
