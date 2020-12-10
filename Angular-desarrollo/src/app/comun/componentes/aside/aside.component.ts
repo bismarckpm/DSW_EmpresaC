@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { NgEventBus } from 'ng-event-bus';
+import { MetaData } from 'ng-event-bus/lib/meta-data';
 
 @Component({
   selector: 'comun-aside',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AsideComponent implements OnInit {
 
-  constructor() { }
+  rol:any;
+  flag=true;
+  
+
+  constructor(private _toastrService: ToastrService,private eventBus: NgEventBus) { }
 
   ngOnInit(): void {
+    this.checkLocalStorage();
+  }
+
+  checkLocalStorage(){
+    this.rol=localStorage.getItem('rol');
+    console.log(this.rol);
+  }
+
+  refresh(){
+    this.checkLocalStorage();
+    this.flag=false;
   }
 
 }

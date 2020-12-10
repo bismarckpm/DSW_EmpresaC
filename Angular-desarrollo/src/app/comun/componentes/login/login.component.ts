@@ -35,7 +35,9 @@ export class LoginComponent implements OnInit {
   }
 
   iniciarSesion(){
-    this.eventBus.cast('inicio-progress','hola');
+    this.dataLogin();
+    this.eventBus.cast('inicio-sesion','ok');
+    /*this.eventBus.cast('inicio-progress','hola');
     this.usuario.cn = this.loginData.value.usuario;
     this.usuario.contrasena = this.loginData.value.pass;
     this._toastrService.info('Espere un momento un momento, por favor', 'Validando....');
@@ -58,6 +60,13 @@ export class LoginComponent implements OnInit {
       console.log(error);
       this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
       this.eventBus.cast('fin-progress','chao');
-    });
+    });*/
+  }
+
+  dataLogin(){
+    //Quitar;
+    localStorage.setItem("user_id", '1' );
+    localStorage.setItem("rol", 'cliente' );
+    localStorage.setItem("token", '111111111' );
   }
 }

@@ -12,6 +12,7 @@ import { NgEventBus } from 'ng-event-bus';
 export class AdministrarMarcasComponent implements OnInit {
 
   public marcas:any;
+ 
 
   constructor(private _adminMarcas:AdminMarcasService,private _toastrService: ToastrService,private eventBus: NgEventBus) { }
 
@@ -38,5 +39,22 @@ export class AdministrarMarcasComponent implements OnInit {
 
   init(){
     this.getAllMarcas();
+    this.prueba();
+  }
+
+  prueba(){
+    this.marcas=[
+      {id:1,nombre:'juana',subcategoria_id:2,estado:'activo'}
+    ];
+    this.actualizar();
+  }
+
+  actualizar(){
+    setTimeout(()=>{
+      this.marcas=[
+        {id:1,nombre:'juana',subcategoria_id:2,estado:'activo'},
+        {id:2,nombre:'Harina PAN',subcategoria_id:3,estado:'activo'},
+      ];
+    },3000);
   }
 }
