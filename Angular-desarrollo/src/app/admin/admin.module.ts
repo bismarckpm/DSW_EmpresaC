@@ -20,7 +20,10 @@
   import {AdministrarMarcasComponent} from "./componentes/administrar-marcas/administrar-marcas.component";
   import { ContenedorPreguntaNuevaComponent } from './componentes/Preguntas/contenedor-pregunta-nueva/contenedor-pregunta-nueva.component';
   import { ContenedorPreguntaViejaComponent } from './componentes/Preguntas/contenedor-pregunta-vieja/contenedor-pregunta-vieja.component';
-
+  import { AdministrarCategoriaComponent } from './componentes/administrar-categoria/administrar-categoria.component';
+  import { AdministrarSubcategoriasComponent } from './componentes/administrar-subcategorias/administrar-subcategorias.component';
+  import { AdministrarUsuariosComponent } from './componentes/administrar-usuarios/administrar-usuarios.component';
+  
 
   //Servicios
   import { SolicitudEstudioService } from "./Servicios/solicitud-estudio.service";
@@ -40,7 +43,10 @@
       EstudioDetalleComponent,
       ContenedorPreguntaNuevaComponent,
       ContenedorPreguntaViejaComponent,
-      AdministrarMarcasComponent
+      AdministrarMarcasComponent,
+      AdministrarCategoriaComponent,
+      AdministrarSubcategoriasComponent,
+      AdministrarUsuariosComponent
     ],
     imports: [
       CommonModule,
