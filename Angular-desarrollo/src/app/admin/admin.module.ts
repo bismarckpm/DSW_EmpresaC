@@ -24,6 +24,9 @@ import { PreguntaService } from "./Servicios/pregunta.service";
 import { ContenedorPreguntaNuevaComponent } from './componentes/Preguntas/contenedor-pregunta-nueva/contenedor-pregunta-nueva.component';
 import { ContenedorPreguntaViejaComponent } from './componentes/Preguntas/contenedor-pregunta-vieja/contenedor-pregunta-vieja.component';
 import { AdministrarMarcasComponent } from './componentes/administrar-marcas/administrar-marcas.component';
+import { AdministrarCategoriaComponent } from './componentes/administrar-categoria/administrar-categoria.component';
+import { AdministrarSubcategoriasComponent } from './componentes/administrar-subcategorias/administrar-subcategorias.component';
+import { AdministrarUsuariosComponent } from './componentes/administrar-usuarios/administrar-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,10 @@ import { AdministrarMarcasComponent } from './componentes/administrar-marcas/adm
     EstudioDetalleComponent,
     ContenedorPreguntaNuevaComponent,
     ContenedorPreguntaViejaComponent,
-    AdministrarMarcasComponent
+    AdministrarMarcasComponent,
+    AdministrarCategoriaComponent,
+    AdministrarSubcategoriasComponent,
+    AdministrarUsuariosComponent
   ],
   imports: [
     CommonModule,

@@ -12,6 +12,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {MatTableModule} from '@angular/material/table';
         MatFormFieldModule,
         MatSelectModule,
         MatDividerModule,
-        MatTableModule
+        MatTableModule,
+        MatPaginatorModule
         
    
     ],
@@ -51,7 +53,8 @@ import {MatTableModule} from '@angular/material/table';
         MatFormFieldModule,
         MatSelectModule,
         MatDividerModule,
-        MatTableModule
+        MatTableModule,
+        MatPaginatorModule
     ],
 })
 

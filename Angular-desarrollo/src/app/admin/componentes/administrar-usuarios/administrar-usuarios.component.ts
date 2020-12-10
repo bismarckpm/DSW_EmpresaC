@@ -6,35 +6,32 @@ import {MatSort} from '@angular/material/sort';
 export interface PeriodicElement {
   id: number;
   name: string;
-  subcategoria: string;
   estado: string;
+  rol: string;
   
   
 }
 //datos de prueba -hace falta conectar con el back
-const MARCAS: PeriodicElement[] = [
-  {id:1, name: 'Hydrogen', subcategoria: 'uno', estado: 'Activo'},
-  {id:2, name: 'Helium', subcategoria: 'dos', estado: 'inactivo',},
-  {id:3, name: 'Lithium', subcategoria: 'tres', estado: 'inactivo'},
-  {id:4, name: 'Beryllium', subcategoria: 'cuatro', estado: 'activo'},
-  {id:5, name: 'Boron', subcategoria: 'cinco', estado: 'activo'},
- 
-];
-
+const USUARIOS: PeriodicElement[] = [
+  {id:1, name: 'Hydrogen', estado: 'Activo',rol: 'admin'},
+  {id:2, name: 'Helium',  estado: 'inactivo', rol:'admin'},
+  {id:3, name: 'Lithium',  estado: 'inactivo',rol:'admin'},
+  {id:4, name: 'Beryllium',  estado: 'activo',rol:'admin'},
+  {id:5, name: 'Boron',  estado: 'activo',rol:'admin'}
+]
 @Component({
-  selector: 'app-administrar-marcas',
-  templateUrl: './administrar-marcas.component.html',
-  styleUrls: ['./administrar-marcas.component.css']
+  selector: 'app-administrar-usuarios',
+  templateUrl: './administrar-usuarios.component.html',
+  styleUrls: ['./administrar-usuarios.component.css']
 })
-export class AdministrarMarcasComponent implements OnInit, AfterViewInit{
-  dataSource = new MatTableDataSource<PeriodicElement>(MARCAS);
+export class AdministrarUsuariosComponent implements OnInit {
+  dataSource = new MatTableDataSource<PeriodicElement>(USUARIOS);
   @ViewChild(MatPaginator) paginator: MatPaginator;
-    
   constructor() { }
 
   ngOnInit(): void {
   }
-  displayedColumns: string[] = ['id','name', 'subcategoria', 'estado'];
+  displayedColumns: string[] = ['id','name', 'estado','rol'];
   //dataSource = MARCAS;
  
   ngAfterViewInit() {
@@ -48,7 +45,4 @@ export class AdministrarMarcasComponent implements OnInit, AfterViewInit{
 
     
     }
-  }
- 
-
-
+}

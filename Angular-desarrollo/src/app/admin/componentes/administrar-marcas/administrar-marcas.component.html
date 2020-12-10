@@ -4,39 +4,40 @@
 </div>
 
 <div class="row justify-content-md-center"> 
-    <table class="table mat-elevation-z8">
-        <thead class="thead" style=" background-color: #ffc400;">
-           <tr>
-              <th>Codigo</th>
-              <th>Nombre</th>
-              <th>SubCategoria</th>
-              <th>Estatus</th>
-              <th>      </th>
-           </tr>
-        </thead>
-        
-        <tbody class="tbody"> 
-           <tr *ngFor="let dataSource of dataSource">
-              <td> {{dataSource.id}}</td>
-             <td>{{dataSource.name}}</td>
-              <td>{{dataSource.subcategoria}}</td>
-              <td>{{dataSource.estado}}</td>
-              <td>
-                  <div class="row">
-                      <div aling="center" class="col-sm-4">
-                          <a class="btn btn-primary text-white" style="cursor: pointer;"><i class="fas fa-pencil-alt"></i></a>
-                      </div>
-                      <div aling="center" class="col-sm-4">
-                      <button type="submit" class="btn btn-danger"> <i class=" fas fa-trash"></i></button>
+   
+   <table class="table mat-elevation-z8">
+      <thead class="thead" style=" background-color: #ffc400;">
+         <tr>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>SubCategoria</th>
+            <th>Estatus</th>
+            <th>      </th>
+         </tr>
+      </thead>
+      
+      <tbody class="tbody"> 
+         <tr *ngFor="let dataSource of dataSource">
+           <td> {{dataSource.id}}</td>
+           <td>{{dataSource.name}}</td>
+            <td>{{dataSource.subcategoria}}</td>
+            <td>{{dataSource.estado}}</td>
+            <td>
+                <div class="row">
+                    <div aling="center" class="col-sm-4">
+                        <a class="btn btn-primary text-white" style="cursor: pointer;"><i class="fas fa-pencil-alt"></i></a>
                     </div>
-
+                    <div aling="center" class="col-sm-4">
+                    <button type="submit" class="btn btn-danger"> <i class=" fas fa-trash"></i></button>
                   </div>
-              </td>
-           </tr>
-        </tbody>
-    
-     </table>
-       
+
+                </div>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+          
+     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons style="width: 90%;"></mat-paginator>
  </div>  
 
   
