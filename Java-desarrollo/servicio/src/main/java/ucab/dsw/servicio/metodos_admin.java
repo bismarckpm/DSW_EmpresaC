@@ -330,6 +330,7 @@ public class metodos_admin {
         {
             DaoPregunta dao = new DaoPregunta();
             DaoOpcionSimpleMultiple dao2 = new DaoOpcionSimpleMultiple();
+            DaoOpcion_Simple_Multiple_Pregunta dao3 = new DaoOpcion_Simple_Multiple_Pregunta();
             Pregunta pregunta = new Pregunta();
             pregunta.set_descripcion( preguntaDto.getDescripcion() );
             pregunta.set_tipopregunta( preguntaDto.getTipopregunta() );
@@ -354,6 +355,14 @@ public class metodos_admin {
 
                 OpcionSimpleMultiple resul2 = dao2.insert( opcionSimpleMultiple);
                 resultado2.setId( resul2.get_id() );
+
+                Opcion_Simple_Multiple_PreguntaDto resultado3 = new Opcion_Simple_Multiple_PreguntaDto();
+                Opcion_Simple_Multiple_Pregunta opcion_Simple_Multiple_Pregunta = new Opcion_Simple_Multiple_Pregunta();
+                opcion_Simple_Multiple_Pregunta.set_opcion_Simple_Multiple_Pregunta(resul2);
+                opcion_Simple_Multiple_Pregunta.set_pregunta(resul);
+
+                Opcion_Simple_Multiple_Pregunta resul3 = dao3.insert( opcion_Simple_Multiple_Pregunta);
+                resultado3.setId( resul3.get_id() );
             }
 
 

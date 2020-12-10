@@ -27,7 +27,7 @@ public class Opcion_Simple_Multiple_Pregunta extends EntidadBase{
     }
 
     @ManyToOne(optional = false , fetch = FetchType.EAGER)
-    @JoinColumn( name = "Opcion_Silple_Multiple_id" )
+    @JoinColumn( name = "Opcion_Simple_Multiple_id" )
     private OpcionSimpleMultiple _opcionsimplemultiple;
 
     public OpcionSimpleMultiple get_opcionsimplemultiple() {
