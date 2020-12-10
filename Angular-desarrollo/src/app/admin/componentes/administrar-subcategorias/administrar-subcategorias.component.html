@@ -1,0 +1,52 @@
+
+<div class="container"> 
+    <div class="row justify-content-md-center">
+      <h1>SUBCATEGORIAS</h1>
+    </div>
+    
+    <div class="row justify-content-md-center"> 
+       
+       <table class="table mat-elevation-z8">
+          <thead class="thead" style=" background-color: #ffc400;">
+             <tr>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Categoria</th>
+                <th>Estatus</th>
+                <th>      </th>
+             </tr>
+          </thead>
+          
+          <tbody class="tbody"> 
+             <tr *ngFor="let dataSource of dataSource">
+               <td> {{dataSource.id}}</td>
+               <td>{{dataSource.name}}</td>
+                <td>{{dataSource.categoria}}</td>
+                <td>{{dataSource.estado}}</td>
+                <td>
+                    <div class="row">
+                        <div aling="center" class="col-sm-4">
+                            <a class="btn btn-primary text-white" style="cursor: pointer;"><i class="fas fa-pencil-alt"></i></a>
+                        </div>
+                        <div aling="center" class="col-sm-4">
+                        <button type="submit" class="btn btn-danger"> <i class=" fas fa-trash"></i></button>
+                      </div>
+    
+                    </div>
+                </td>
+             </tr>
+          </tbody>
+       </table>
+              
+         <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons style="width: 90%;"></mat-paginator>
+     </div>  
+    
+      
+     <div class="row justify-content-end">
+          
+        <button mat-fab class="color" aria-label="Example icon button with a home icon">
+            <mat-icon>add</mat-icon>
+          </button>
+    
+     </div> 
+    </div>

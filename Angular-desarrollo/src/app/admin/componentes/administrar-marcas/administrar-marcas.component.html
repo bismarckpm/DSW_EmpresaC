@@ -6,27 +6,27 @@
     <div class="row justify-content-md-center">
         <table class="table mat-elevation-z8">
             <thead class="thead" style=" background-color: #ffc400;">
-                <tr>
-                    <th>Codigo</th>
+                <tr style="text-align: center;">
+                    <th style="width: 1% !important;">Codigo</th>
                     <th>Nombre</th>
                     <th>Subcategoria</th>
                     <th>Estatus</th>
-                    <th> </th>
+                    <th>Opciones</th>
                 </tr>
             </thead>
 
             <tbody class="tbody">
-                <tr *ngFor="let marca of marcas">
-                    <td> {{marca.id}}</td>
+                <tr *ngFor="let marca of marcas" style="text-align: center;">
+                    <td style="width: 1% !important;"> {{marca.id}}</td>
                     <td>{{marca.nombre}}</td>
                     <td>{{marca.subcategoria_id}}</td>
                     <td>{{marca.estado}}</td>
                     <td>
-                        <div class="row">
-                            <div aling="center" class="col-sm-4">
+                        <div class="father">
+                            <div aling="center">
                                 <a class="btn btn-primary text-white" style="cursor: pointer;"><i class="fas fa-pencil-alt"></i></a>
                             </div>
-                            <div aling="center" class="col-sm-4">
+                            <div aling="center">
                                 <button type="submit" class="btn btn-danger"> <i class=" fas fa-trash"></i></button>
                             </div>
 

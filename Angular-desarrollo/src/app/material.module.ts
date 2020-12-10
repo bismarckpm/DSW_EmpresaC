@@ -57,7 +57,8 @@ import { MatTableModule } from '@angular/material/table';
         MatSlideToggleModule,
         MatMenuModule,
         MatDividerModule,
-        MatTableModule
+        MatTableModule,
+        MatPaginatorModule
         
    
     ],
@@ -129,7 +130,8 @@ import { MatTableModule } from '@angular/material/table';
         MatTableModule,
         MatNativeDateModule,
         MatDividerModule,
-        MatTableModule
+        MatTableModule,
+        MatPaginatorModule
     ],
 })
 

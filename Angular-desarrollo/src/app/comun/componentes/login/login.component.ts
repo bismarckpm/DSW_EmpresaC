@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
   dataLogin(){
     //Quitar;
     localStorage.setItem("user_id", '1' );
-    localStorage.setItem("rol", 'cliente' );
+    localStorage.setItem("rol", 'admin' );
     localStorage.setItem("token", '111111111' );
   }
 }
