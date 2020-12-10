@@ -10,6 +10,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
 import java.util.List;
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -270,9 +271,10 @@ public class metodos_admin {
 
     @PUT
     @Path( "/addEncuesta/{id}" )
-    public Response addEncuesta(@PathParam("id") long  _id,EncuestaDto encuestaDto,List<PreguntaDto> pregunta)
+    public Response addEncuesta(@PathParam("id") long  _id,@PathParam("id") long  _id2,EncuestaDto encuestaDto)
     {
         EncuestaDto resultado = new EncuestaDto();
+        SolicituEstudioDto resultado3 = new SolicituEstudioDto();
         JsonObject data;
         try
         {
@@ -288,6 +290,15 @@ public class metodos_admin {
             Encuesta resul = dao.insert( encuesta);
             resultado.setId( resul.get_id() );
 
+            DaoSolicitudEstudio dao3 = new DaoSolicitudEstudio();
+            SolicitudEstudio solicitudEstudio = dao3.find(_id2,SolicitudEstudio.class);
+
+            solicitudEstudio.set_encuesta( resul );
+
+            SolicitudEstudio resul3 = dao3.update(solicitudEstudio);
+            resultado3.setId( resul3.get_id() );
+
+            List<PreguntaDto> pregunta = encuestaDto.getPreguntas();
 
             for(PreguntaDto obj: pregunta) {
                 Pregunta_EncuestaDto resultado2 = new Pregunta_EncuestaDto();

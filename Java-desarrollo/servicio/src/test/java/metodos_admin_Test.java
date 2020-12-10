@@ -72,7 +72,7 @@ public class metodos_admin_Test {
         EncuestaDto encuestaDto = new EncuestaDto();
         PreguntaDto preguntaDto = new PreguntaDto(1);
 
-        encuestaDto.setNombre( "mejor color?" );
+        encuestaDto.setNombre( "siva?" );
 
 
 
@@ -80,7 +80,7 @@ public class metodos_admin_Test {
 
         pregunta.add(preguntaDto);
 
-        Response resultado = servicio.addEncuesta( 2,encuestaDto,pregunta);
+        Response resultado = servicio.addEncuesta( 3,6,encuestaDto);
         Assert.assertNotEquals( resultado, 1 );
     }
 
