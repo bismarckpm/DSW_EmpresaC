@@ -322,7 +322,7 @@ public class metodos_admin {
 
     @PUT
     @Path( "/addPregunta" )
-    public Response addPregunta(PreguntaDto preguntaDto,List<Opcion_Simple_MultipleDto> opcion)
+    public Response addPregunta(PreguntaDto preguntaDto)
     {
         PreguntaDto resultado = new PreguntaDto();
         JsonObject data;
@@ -334,9 +334,11 @@ public class metodos_admin {
             Pregunta pregunta = new Pregunta();
             pregunta.set_descripcion( preguntaDto.getDescripcion() );
             pregunta.set_tipopregunta( preguntaDto.getTipopregunta() );
-            pregunta.set_valormax( preguntaDto.getValormax() );
-            pregunta.set_valormin( preguntaDto.getValormin() );
 
+            if (preguntaDto.getTipopregunta().equals("Rango")) {
+                pregunta.set_valormax(preguntaDto.getValormax());
+                pregunta.set_valormin(preguntaDto.getValormin());
+            }
             Pregunta resul = dao.insert( pregunta);
             resultado.setId( resul.get_id() );
 
@@ -348,23 +350,28 @@ public class metodos_admin {
                 System.out.println("Rango maximo: " + preguntaDto.getValormax());
             }
 
-            for(Opcion_Simple_MultipleDto obj: opcion) {
-                Opcion_Simple_MultipleDto resultado2 = new Opcion_Simple_MultipleDto();
-                OpcionSimpleMultiple opcionSimpleMultiple = new OpcionSimpleMultiple();
-                opcionSimpleMultiple.set_opcion(obj.getOpcion());
 
-                OpcionSimpleMultiple resul2 = dao2.insert( opcionSimpleMultiple);
-                resultado2.setId( resul2.get_id() );
+            if (preguntaDto.getOpciones()!=null) {
 
-                Opcion_Simple_Multiple_PreguntaDto resultado3 = new Opcion_Simple_Multiple_PreguntaDto();
-                Opcion_Simple_Multiple_Pregunta opcion_Simple_Multiple_Pregunta = new Opcion_Simple_Multiple_Pregunta();
-                opcion_Simple_Multiple_Pregunta.set_opcion_Simple_Multiple_Pregunta(resul2);
-                opcion_Simple_Multiple_Pregunta.set_pregunta(resul);
+                List<Opcion_Simple_MultipleDto> opcion = preguntaDto.getOpciones();
 
-                Opcion_Simple_Multiple_Pregunta resul3 = dao3.insert( opcion_Simple_Multiple_Pregunta);
-                resultado3.setId( resul3.get_id() );
+                for (Opcion_Simple_MultipleDto obj : opcion) {
+                    Opcion_Simple_MultipleDto resultado2 = new Opcion_Simple_MultipleDto();
+                    OpcionSimpleMultiple opcionSimpleMultiple = new OpcionSimpleMultiple();
+                    opcionSimpleMultiple.set_opcion(obj.getOpcion());
+
+                    OpcionSimpleMultiple resul2 = dao2.insert(opcionSimpleMultiple);
+                    resultado2.setId(resul2.get_id());
+
+                    Opcion_Simple_Multiple_PreguntaDto resultado3 = new Opcion_Simple_Multiple_PreguntaDto();
+                    Opcion_Simple_Multiple_Pregunta opcion_Simple_Multiple_Pregunta = new Opcion_Simple_Multiple_Pregunta();
+                    opcion_Simple_Multiple_Pregunta.set_opcion_Simple_Multiple_Pregunta(resul2);
+                    opcion_Simple_Multiple_Pregunta.set_pregunta(resul);
+
+                    Opcion_Simple_Multiple_Pregunta resul3 = dao3.insert(opcion_Simple_Multiple_Pregunta);
+                    resultado3.setId(resul3.get_id());
+                }
             }
-
 
 
 

@@ -98,8 +98,9 @@ public class metodos_admin_Test {
 
         List<Opcion_Simple_MultipleDto> opcion = new ArrayList<>();
         opcion.add(opcion_Simple_MultipleDto);
+        preguntaDto.setOpciones(opcion);
 
-        Response resultado = servicio.addPregunta( preguntaDto, opcion);
+        Response resultado = servicio.addPregunta( preguntaDto);
         Assert.assertNotEquals( resultado, 1 );
     }
 

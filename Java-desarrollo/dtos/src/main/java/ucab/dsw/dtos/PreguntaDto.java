@@ -27,6 +27,15 @@ public class PreguntaDto extends DtoBase {
 
     private int valormax;
 
+    private List<Opcion_Simple_MultipleDto> opciones;
+
+    public List<Opcion_Simple_MultipleDto> getOpciones() {
+        return opciones;
+    }
+
+    public void setOpciones(List<Opcion_Simple_MultipleDto> opciones) {
+        this.opciones = opciones;
+    }
 
     public int getValormax() {
         return valormax;
