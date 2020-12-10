@@ -41,23 +41,24 @@ public class metodos_admin {
 
             resultado = dao.findAll(type);
             for (SolicitudEstudio obj : resultado) {
+                if (obj.get_usuario() != null) {
 
-                System.out.println(obj.get_estado());
-                if (obj.get_encuesta() != null && obj.get_usuario2().get_id()== _id && obj.get_estado().equals("en ejecucion")) {
-                    JsonObject encuesta = Json.createObjectBuilder().add("Marca",obj.get_marca().get_nombre())
-                            .add("Categoria",obj.get_marca().get_subcategoria().get_categoria().get_nombre())
-                            .add("Subcategoria",obj.get_marca().get_subcategoria().get_nombre()).build();
-                    JsonObject tipo = Json.createObjectBuilder().add("id",obj.get_id())
-                            .add("fecha",obj.get_fecha_inicio().toString())
-                            .add("caracteristicas",encuesta).build();
+                    System.out.println(obj.get_estado());
+                    if (obj.get_encuesta() != null && obj.get_usuario2().get_id() == _id && obj.get_estado().equals("en ejecucion")) {
+                        JsonObject encuesta = Json.createObjectBuilder().add("Marca", obj.get_marca().get_nombre())
+                                .add("Categoria", obj.get_marca().get_subcategoria().get_categoria().get_nombre())
+                                .add("Subcategoria", obj.get_marca().get_subcategoria().get_nombre()).build();
+                        JsonObject tipo = Json.createObjectBuilder().add("id", obj.get_id())
+                                .add("fecha", obj.get_fecha_inicio().toString())
+                                .add("caracteristicas", encuesta).build();
 
-                    builder.add(tipo);
+                        builder.add(tipo);
 
 
-                } else {
-                    System.out.println("");
+                    } else {
+                        System.out.println("");
+                    }
                 }
-
 
             }
 
