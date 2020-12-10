@@ -298,18 +298,22 @@ public class metodos_admin {
             SolicitudEstudio resul3 = dao3.update(solicitudEstudio);
             resultado3.setId( resul3.get_id() );
 
-            List<PreguntaDto> pregunta = encuestaDto.getPreguntas();
+            if (encuestaDto.getPreguntas()!=null) {
 
-            for(PreguntaDto obj: pregunta) {
-                Pregunta_EncuestaDto resultado2 = new Pregunta_EncuestaDto();
-                PreguntaEncuesta preguntaEncuesta = new PreguntaEncuesta();
-                preguntaEncuesta.set_encuesta(resul);
-                Pregunta pregunta1 = new Pregunta(obj.getId());
-                preguntaEncuesta.set_pregunta(pregunta1);
+                List<PreguntaDto> pregunta = encuestaDto.getPreguntas();
 
-                PreguntaEncuesta resul2 = dao2.insert( preguntaEncuesta);
-                resultado2.setId( resul2.get_id() );
+                for (PreguntaDto obj : pregunta) {
+                    Pregunta_EncuestaDto resultado2 = new Pregunta_EncuestaDto();
+                    PreguntaEncuesta preguntaEncuesta = new PreguntaEncuesta();
+                    preguntaEncuesta.set_encuesta(resul);
+                    Pregunta pregunta1 = new Pregunta(obj.getId());
+                    preguntaEncuesta.set_pregunta(pregunta1);
 
+                    PreguntaEncuesta resul2 = dao2.insert(preguntaEncuesta);
+                    resultado2.setId(resul2.get_id());
+
+
+                }
             }
             data= Json.createObjectBuilder()
                     .add("estado","success")
