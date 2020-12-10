@@ -368,6 +368,7 @@ public class metodos_admin {
 
                 for (Opcion_Simple_MultipleDto obj : opcion) {
                     Opcion_Simple_MultipleDto resultado2 = new Opcion_Simple_MultipleDto();
+
                     OpcionSimpleMultiple opcionSimpleMultiple = new OpcionSimpleMultiple();
                     opcionSimpleMultiple.set_opcion(obj.getOpcion());
 
@@ -383,11 +384,6 @@ public class metodos_admin {
                     resultado3.setId(resul3.get_id());
                 }
             }
-
-
-
-
-
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200).build();
@@ -408,6 +404,9 @@ public class metodos_admin {
         }
         return Response.status(Response.Status.OK).entity(data).build();
     }
+
+
+
     @GET
     @Path( "/estudios-participacion/{id}" )
     public Response Participacion_estudio(@PathParam("id")long  _id)
