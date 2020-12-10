@@ -12,7 +12,7 @@ import { SolicitudEstudioService } from "../../Servicios/solicitud-estudio.servi
   styleUrls: ['./administrar-estudios-progreso.component.css']
 })
 export class AdministrarEstudiosProgresoComponent implements OnInit {
-  estudios:any[];
+  estudios:{};
   constructor(private solicitudServicio:SolicitudEstudioService) { }
 
   ngOnInit(): void {

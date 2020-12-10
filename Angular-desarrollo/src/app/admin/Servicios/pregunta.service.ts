@@ -19,11 +19,19 @@ import { PREGUNTAS } from "../../Entidades/DatosPrueba/preguntas";
   providedIn: 'root'
 })
 export class PreguntaService {
+  URL:string="http://127.0.0.1:8080/pruebaORM-1.0-SNAPSHOT/api/"
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getPreguntas(): Observable<Pregunta[]> {
     // return of(DISHES.filter((dish) => (dish.id === id))[0]).pipe(delay(2000));
     return of(PREGUNTAS).pipe(delay(2000));
   }
+
+  postPreguntas(objeto:{}): Observable<{}> {
+    // return of(DISHES.filter((dish) => (dish.id === id))[0]).pipe(delay(2000));
+    return this.http.put<{}>(this.URL+"admin/addPregunta",objeto)
+  }
+
+
 }

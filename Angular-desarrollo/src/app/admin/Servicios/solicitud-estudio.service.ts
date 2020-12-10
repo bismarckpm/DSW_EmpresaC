@@ -22,22 +22,22 @@ export class SolicitudEstudioService {
   constructor(private http: HttpClient) { }
 
 
-  getEstudiosAdministrar(): Observable<any[]> {
+  getEstudiosAdministrar(): Observable<{}[]> {
     // return of(DISHES.filter((dish) => (dish.id === id))[0]).pipe(delay(2000));
-    return this.http.get<any>(this.URL + 'admin/estudios-asignados/20')
+    return this.http.get<{}[]>(this.URL + 'admin/estudios-asignados/20')
   }
 
-  getEstudiosPendientes(): Observable<any[]> {
+  getEstudiosPendientes(): Observable<{}[]> {
     // return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000));
     
-    return this.http.get<any>(this.URL + 'admin/estudios-no-asignados/20')
+    return this.http.get<{}[]>(this.URL + 'admin/estudios-no-asignados/20')
     // 
   }
 
-  DeleteEstudios(id:number): Observable<any> {
+  DeleteEstudios(id:number): Observable<{}> {
     // return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000));
     
-    return this.http.delete<any>(this.URL + 'admin/delete-solicitud/'+id)
+    return this.http.delete<{}>(this.URL + 'admin/delete-solicitud/'+id)
     // 
   }
 
