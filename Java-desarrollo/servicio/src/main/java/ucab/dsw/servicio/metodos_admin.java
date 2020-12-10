@@ -322,13 +322,14 @@ public class metodos_admin {
 
     @PUT
     @Path( "/addPregunta" )
-    public Response addPregunta(PreguntaDto preguntaDto)
+    public Response addPregunta(PreguntaDto preguntaDto,List<Opcion_Simple_MultipleDto> opcion)
     {
         PreguntaDto resultado = new PreguntaDto();
         JsonObject data;
         try
         {
             DaoPregunta dao = new DaoPregunta();
+            DaoOpcionSimpleMultiple dao2 = new DaoOpcionSimpleMultiple();
             Pregunta pregunta = new Pregunta();
             pregunta.set_descripcion( preguntaDto.getDescripcion() );
             pregunta.set_tipopregunta( preguntaDto.getTipopregunta() );
@@ -345,6 +346,20 @@ public class metodos_admin {
                 System.out.println("Rango minimo: " + preguntaDto.getValormin());
                 System.out.println("Rango maximo: " + preguntaDto.getValormax());
             }
+
+            for(Opcion_Simple_MultipleDto obj: opcion) {
+                Opcion_Simple_MultipleDto resultado2 = new Opcion_Simple_MultipleDto();
+                OpcionSimpleMultiple opcionSimpleMultiple = new OpcionSimpleMultiple();
+                opcionSimpleMultiple.set_opcion(obj.getOpcion());
+
+                OpcionSimpleMultiple resul2 = dao2.insert( opcionSimpleMultiple);
+                resultado2.setId( resul2.get_id() );
+            }
+
+
+
+
+
 
             data= Json.createObjectBuilder()
                     .add("estado","success")

@@ -89,13 +89,17 @@ public class metodos_admin_Test {
     {
         ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
         PreguntaDto preguntaDto = new PreguntaDto();
+        Opcion_Simple_MultipleDto opcion_Simple_MultipleDto= new Opcion_Simple_MultipleDto();
+
+        opcion_Simple_MultipleDto.setOpcion("carlos");
 
         preguntaDto.setDescripcion( "te calma este color?" );
-        preguntaDto.setTipopregunta( "Rango" );
-        preguntaDto.setValormax( 10 );
-        preguntaDto.setValormin( 0 );
+        preguntaDto.setTipopregunta( "Opcion simple" );
 
-        Response resultado = servicio.addPregunta( preguntaDto);
+        List<Opcion_Simple_MultipleDto> opcion = new ArrayList<>();
+        opcion.add(opcion_Simple_MultipleDto);
+
+        Response resultado = servicio.addPregunta( preguntaDto, opcion);
         Assert.assertNotEquals( resultado, 1 );
     }
 
