@@ -467,11 +467,18 @@ public class metodos_admin {
         JsonArrayBuilder builder = Json.createArrayBuilder();
         try {
             List<PreguntaEncuesta> resultado = null;
+            List<Pregunta> resultado2 = null;
 
             DaoPreguntaEncuesta dao = new DaoPreguntaEncuesta();
             Class<PreguntaEncuesta> type = PreguntaEncuesta.class;
 
+            DaoPregunta dao2 = new DaoPregunta();
+            Class<Pregunta> type2 = Pregunta.class;
+
+            resultado2 = dao2.findAll(type2);
+
             resultado = dao.findAll(type);
+
             for (PreguntaEncuesta obj : resultado) {
 
                 if (obj.get_encuesta().get_marca().get_subcategoria().get_categoria().get_id() == _id) {
@@ -480,15 +487,26 @@ public class metodos_admin {
                             .add("Descriocion: ", obj.get_pregunta().get_descripcion())
                             .add("Tipo pregunta : ", obj.get_pregunta().get_tipopregunta())
                             .build();
-                    if (obj.get_pregunta().get_tipopregunta().equals("Opcion multiple")) {
 
-
-                    }
 
                     builder.add(p);
 
                 }
             }
+
+            for (Pregunta obj : resultado2) {
+
+                if (obj.get_preguntaencuesta().isEmpty() == true) {
+                    JsonObject p = Json.createObjectBuilder().add("id: ", obj.get_id())
+                            .add("Descriocion: ", obj.get_descripcion())
+                            .add("Tipo pregunta : ", obj.get_tipopregunta())
+                            .build();
+
+
+                    builder.add(p);
+                }
+            }
+
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200)

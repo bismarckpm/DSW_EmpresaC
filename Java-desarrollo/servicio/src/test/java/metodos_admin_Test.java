@@ -104,6 +104,16 @@ public class metodos_admin_Test {
 
 
     }
+
+    @Test
+    public void Pregunta_CategoriaTest() throws Exception
+    {
+        ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
+        Response resultado= servicio.Preguntas_categoria(5);
+        Assert.assertNotEquals( resultado, 0 );
+
+
+    }
 }
 
 
