@@ -26,11 +26,11 @@ public class CategoriaTest {
 
 
     @Test
-    public void AddCategoria() throws Exception
+    public void AddCategoria()
     {
         ucab.dsw.servicio.CategoriaServicio servicio = new ucab.dsw.servicio.CategoriaServicio();
         CategoriaDto categoriaDto=new CategoriaDto();
-        categoriaDto.setNombre("Telefonos");
+        categoriaDto.setNombre("Navidad");
         Response respuesta= servicio.addCategoria(categoriaDto);
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
     }

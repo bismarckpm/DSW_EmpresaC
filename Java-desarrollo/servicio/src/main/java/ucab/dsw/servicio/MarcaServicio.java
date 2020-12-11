@@ -1,13 +1,17 @@
 package ucab.dsw.servicio;
 
+import org.eclipse.persistence.exceptions.DatabaseException;
 import ucab.dsw.accesodatos.DaoMarca;
+import ucab.dsw.accesodatos.DaoSubcategoria;
 import ucab.dsw.dtos.MarcaDto;
 import ucab.dsw.entidades.Marca;
 import ucab.dsw.entidades.Subcategoria;
+import ucab.dsw.excepciones.PruebaExcepcion;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
+import javax.persistence.PersistenceException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -25,17 +29,22 @@ public class MarcaServicio extends AplicacionBase{
         JsonObject data;
         try
         {
+			
             DaoMarca dao= new DaoMarca();
+			DaoSubcategoria daoSubcategoria= new DaoSubcategoria();
+			
             List<Marca> resultado= dao.findAll(Marca.class);
 
             JsonArrayBuilder marcaArrayJson= Json.createArrayBuilder();
 
             for(Marca obj: resultado){
 
+				Subcategoria subcategoria= daoSubcategoria.find(obj.get_subcategoria().get_id(),Subcategoria.class);
                 JsonObject marca = Json.createObjectBuilder().add("id",obj.get_id())
                                                              .add("nombre",obj.get_nombre())
-                                                             .add("subcategoria_id",obj.get_subcategoria().get_id())
-                                                             .add("categoria_id",obj.get_subcategoria().get_categoria().get_id()).build();
+                                                             .add("subcategoria_id",subcategoria.get_id())
+                                                             .add("subcategoria",subcategoria.get_nombre())
+                                                             .add("estado",obj.get_estado()).build();
 
                 marcaArrayJson.add(marca);
 
@@ -83,6 +92,7 @@ public class MarcaServicio extends AplicacionBase{
 
             marca.set_nombre(marcaDto.getNombre());
             marca.set_subcategoria(subcategoria);
+            marca.set_estado("activo");
 
             Marca resul = DaoMarca.insert(marca);
             resultado.setId( resul.get_id() );
@@ -91,15 +101,25 @@ public class MarcaServicio extends AplicacionBase{
                     .add("estado","success")
                     .add("codigo",200).build();
         }
-        catch ( Exception ex )
-        {
-            ex.printStackTrace();
+        catch (PersistenceException | DatabaseException ex){
             data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
+                    .add("estado","error")
+                    .add("mensaje","La marca ya se encuestra registrada")
                     .add("codigo",500).build();
 
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            System.out.println(data);
+
+            return Response.status(Response.Status.OK).entity(data).build();
+        }
+        catch ( PruebaExcepcion ex){
+            data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje",ex.getMessage())
+                    .add("codigo",500).build();
+
+            System.out.println(data);
+            return Response.status(Response.Status.OK).entity(data).build();
+
         }
         return Response.status(Response.Status.OK).entity(data).build();
     }

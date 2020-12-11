@@ -35,6 +35,24 @@ public class Subcategoria extends EntidadBase{
         this._nombre = _nombre;
     }
 
+    @Column( name = "estado" )
+    private String _estado;
+
+    public String get_estado() {
+        return _estado;
+    }
+
+    public void set_estado(String _estado) {
+        this._estado = _estado;
+    }
+
+    public List<Marca> get_marca() {
+        return _marca;
+    }
+
+    public void set_marca(List<Marca> _marca) {
+        this._marca = _marca;
+    }
 
     public Subcategoria( long id )
     {
@@ -45,4 +63,6 @@ public class Subcategoria extends EntidadBase{
     {
 
     }
+
+
 }

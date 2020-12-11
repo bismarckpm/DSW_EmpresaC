@@ -28,7 +28,7 @@ public class SubcategoriasTest {
     {
         ucab.dsw.servicio.SubcategoriaServicio servicio = new ucab.dsw.servicio.SubcategoriaServicio();
         SubcategoriaDto subcategoriaDto=new SubcategoriaDto();
-        subcategoriaDto.setNombre("prueba");
+        subcategoriaDto.setNombre("Kali");
         CategoriaDto categoriaDto=new CategoriaDto(1);
         subcategoriaDto.setCategoriaDto(categoriaDto);
         Response respuesta= servicio.addSubcategoria(subcategoriaDto);
