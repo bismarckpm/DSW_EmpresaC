@@ -1,46 +1,47 @@
 table {
-    width: 90%;
-  }
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.example-card {
+  max-width: 1000px;
   
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
-  .example-card {
-    max-width: 1000px;
-    
-  }
+}
 .divider{
-    max-width: 900px;
+  max-width: 900px;
 }
 .color{
-    background-color: #ffc400;
+  background-color: #ffc400;
 }
 .i{
- max-width: 75px;
- 
+max-width: 75px;
+
 }
 .mt-n1 {
-    margin-top: -0.25rem !important;
-  }
+  margin-top: -0.25rem !important;
+}
 
 .fuente{
-   font-size:25px;
-   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; 
+ font-size:25px;
+ font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; 
 }
 .forma{
-  font-size: 20px;
-  width: 100%;
+font-size: 20px;
+width: 100%;
 }
 .example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+min-width: 150px;
+max-width: 500px;
+width: 100%;
 }
 
 td, th {
-  width: 25%;
+width: 25%;
 }
 .input{
-  width: 10%;
+width: 10%;
 }
+

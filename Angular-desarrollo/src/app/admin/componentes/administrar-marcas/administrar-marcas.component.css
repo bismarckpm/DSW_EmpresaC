@@ -1,5 +1,5 @@
 table {
-    width: 90%;
+    width: 100%;
   }
   
   .mat-form-field {
@@ -44,3 +44,4 @@ td, th {
 .input{
   width: 10%;
 }
+

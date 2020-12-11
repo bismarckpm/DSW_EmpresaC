@@ -3,42 +3,56 @@
   <h1> MARCAS</h1>
 </div>
 
-<div class="row justify-content-md-center"> 
-   
-   <table class="table mat-elevation-z8">
-      <thead class="thead" style=" background-color: #ffc400;">
-         <tr>
-            <th>Codigo</th>
-            <th>Nombre</th>
-            <th>SubCategoria</th>
-            <th>Estatus</th>
-            <th>      </th>
-         </tr>
-      </thead>
-      
-      <tbody class="tbody"> 
-         <tr *ngFor="let dataSource of dataSource">
-           <td> {{dataSource.id}}</td>
-           <td>{{dataSource.name}}</td>
-            <td>{{dataSource.subcategoria}}</td>
-            <td>{{dataSource.estado}}</td>
-            <td>
-                <div class="row">
-                    <div aling="center" class="col-sm-4">
-                        <a class="btn btn-primary text-white" style="cursor: pointer;"><i class="fas fa-pencil-alt"></i></a>
-                    </div>
-                    <div aling="center" class="col-sm-4">
-                    <button type="submit" class="btn btn-danger"> <i class=" fas fa-trash"></i></button>
-                  </div>
+<div class="table mat-elevation-z8">
+   <table mat-table [dataSource]="dataSource">
+ 
+     <!-- Position Column -->
+     <ng-container matColumnDef="id">
+       <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400;"> Codigo </th>
+       <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+     </ng-container>
+ 
+     <!-- Name Column -->
+     <ng-container matColumnDef="name">
+       <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400;"> Nombre </th>
+       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+     </ng-container>
+ 
+     <!-- Weight Column -->
+     <ng-container matColumnDef="subcategoria">
+       <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400;"> SubCategoria</th>
+       <td mat-cell *matCellDef="let element"> {{element.subcategoria}} </td>
+     </ng-container>
+ 
+     <!-- Symbol Column -->
+     <ng-container matColumnDef="estado" class="color">
+       <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400;"> Estatus </th>
+       <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+     </ng-container>
 
-                </div>
-            </td>
-         </tr>
-      </tbody>
+     <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400;"> </th>
+      <td mat-cell *matCellDef="let element"> 
+         <div class="row"> 
+            <div aling="center" class="col-sm-4">
+                <a class="text-primary" style="cursor: pointer;"><i class="fas fa-pencil-alt"></i></a>
+            </div>
+            <div aling="center" class="col-sm-4">
+            <button type="submit" class="btn btn-danger"> <i class=" fas fa-trash"></i></button>
+          </div>
+         </div>
+      </td>
+    </ng-container>
+ 
+     
+     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
    </table>
-          
-     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons style="width: 90%;"></mat-paginator>
- </div>  
+ 
+   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+ </div>
+
+
 
   
  <div class="row justify-content-end">
