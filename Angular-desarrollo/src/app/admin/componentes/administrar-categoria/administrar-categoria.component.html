@@ -3,45 +3,55 @@
         <h1> CATEGORIAS </h1>
     </div>
 
-    <div class="row justify-content-md-center">
+    <div class="table mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
 
-        <table class="table mat-elevation-z8">
-            <thead class="thead" style=" background-color: #ffc400;">
-                <tr style="text-align: center;">
-                    <th style="width: 1%;">Codigo</th>
-                    <th>Nombre</th>
-                    <th>Estado</th>
-                    <th>Opciones</th>
-                </tr>
-            </thead>
 
-            <tbody class="tbody">
-                <tr *ngFor="let dataSource of categorias" style="text-align: center;">
-                    <td> {{dataSource.id}}</td>
-                    <td>{{dataSource.nombre}}</td>
-                    <td>{{dataSource.estado}}</td>
-                    <td>
-                        <div class="father">
-                            <div aling="center">
-                                <a class="btn btn-primary text-white" style="cursor: pointer;"><i class="fas fa-pencil-alt"></i></a>
-                            </div>
-                            <div aling="center">
-                                <button type="submit" class="btn btn-danger"> <i class=" fas fa-trash"></i></button>
-                            </div>
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400;"> Codigo </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
 
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400;"> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+            </ng-container>
+
+
+
+            <ng-container matColumnDef="estado" class="color">
+                <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400;"> Estatus </th>
+                <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400;"> </th>
+                <td mat-cell *matCellDef="let element">
+                    <div class="row">
+                        <div aling="center" class="col-sm-4">
+                            <a class=" text-primary" style="cursor: pointer;"><i class="fas fa-pencil-alt"></i></a>
                         </div>
-                    </td>
-                </tr>
-            </tbody>
+                        <div aling="center" class="col-sm-4">
+                            <button type="submit" class="btn btn-danger"> <i class=" fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons style="width: 90%;"></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
+
 
 
     <div class="row justify-content-end">
 
         <button mat-fab class="color" (click)="openDialog()"><mat-icon>add</mat-icon></button>
-
     </div>
+
 </div>

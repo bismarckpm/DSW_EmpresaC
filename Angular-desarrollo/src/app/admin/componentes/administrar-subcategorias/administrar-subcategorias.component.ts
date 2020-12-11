@@ -9,17 +9,20 @@ import {  AdministrarSubcategoriasService } from "../../Servicios/administrar-su
 
 export interface PeriodicElement {
   id: number;
-  name: string;
-  categoria: string;
+  nombre: string;
+  categoria:string;
   estado: string;
   
 }
-const SUBCATEGORIAS: PeriodicElement[] = [
-  {id:1, name: 'Hydrogen', categoria: 'uno', estado: 'Activo'},
-  {id:2, name: 'Helium', categoria: 'dos', estado: 'inactivo',},
-  {id:3, name: 'Lithium', categoria: 'tres', estado: 'inactivo'},
-  {id:4, name: 'Beryllium', categoria: 'cuatro', estado: 'activo'},
-  {id:5, name: 'Boron', categoria: 'cinco', estado: 'activo'},
+
+const ELEMENT_DATA: PeriodicElement[] = [
+  {id: 1, nombre: 'Hydrogen', categoria:' bebe',  estado: 'H'},
+  {id: 2, nombre: 'Helium', categoria:' bebe', estado: 'He'},
+  {id: 3, nombre: 'Lithium', categoria:' bebe', estado: 'Li'},
+  {id: 4, nombre: 'Beryllium',  categoria:' bebe',estado: 'Be'},
+  {id: 5, nombre: 'Boron', categoria:' bebe', estado: 'B'},
+  {id: 1, nombre: 'Hydrogen',categoria:' bebe',  estado: 'H'},
+  {id: 2, nombre: 'Helium', categoria:' bebe', estado: 'He'},
  
 ];
 
@@ -28,24 +31,20 @@ const SUBCATEGORIAS: PeriodicElement[] = [
   templateUrl: './administrar-subcategorias.component.html',
   styleUrls: ['./administrar-subcategorias.component.css']
 })
-export class AdministrarSubcategoriasComponent implements OnInit {
-  dataSource = new MatTableDataSource<PeriodicElement>(SUBCATEGORIAS);
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
+export class AdministrarSubcategoriasComponent implements OnInit,AfterViewInit {
+  public displayedColumns: string[] = ['id', 'nombre','categoria', 'estado', 'acciones'];
+  public dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   public subcategorias:any[];
 
   constructor(public dialog: MatDialog,private _adminSubcategoriaService:AdministrarSubcategoriasService,private _toastrService: ToastrService,private eventBus: NgEventBus) { }
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   ngOnInit(): void {
-    //this.init();
-    this.getAllSubcategorias();
+    this.init();
   }
-  displayedColumns: string[] = ['id','name', 'categoria', 'estado'];
-  //dataSource = SUBCATGORIAS;
- 
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -82,3 +81,6 @@ export class AdministrarSubcategoriasComponent implements OnInit {
     });*/
   }
 }
+
+
+  

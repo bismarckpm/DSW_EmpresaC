@@ -9,21 +9,24 @@ import { AnadirModalComponent } from './anadir/anadir-modal/anadir-modal.compone
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MetaData } from 'ng-event-bus/lib/meta-data';
 
-export interface PeriodicElement {
+
+export interface Categoria {
   id: number;
-  name: string;
+  nombre: string;
   estado: string;
   
-  
-};
+}
 
-const CATEGORIAS: PeriodicElement[] = [
-  {id:1, name: 'Hydrogen',  estado: 'Activo'},
-  {id:2, name: 'Helium',  estado: 'inactivo',},
-  {id:3, name: 'Lithium',  estado: 'inactivo'},
-  {id:4, name: 'Beryllium',  estado: 'activo'},
-  {id:5, name: 'Boron',  estado: 'activo'},
+const ELEMENT_DATA: Categoria[] = [
+  {id: 1, nombre: 'Hydrogen',  estado: 'H'},
+  {id: 2, nombre: 'Helium',  estado: 'He'},
+  {id: 3, nombre: 'Lithium',  estado: 'Li'},
+  {id: 4, nombre: 'Beryllium',  estado: 'Be'},
+  {id: 5, nombre: 'Boron',  estado: 'B'},
+  {id: 1, nombre: 'Hydrogen',  estado: 'H'},
+  {id: 2, nombre: 'Helium',  estado: 'He'},
  
+  
 ];
 
 @Component({
@@ -31,10 +34,12 @@ const CATEGORIAS: PeriodicElement[] = [
   templateUrl: './administrar-categoria.component.html',
   styleUrls: ['./administrar-categoria.component.css']
 })
-export class AdministrarCategoriaComponent implements OnInit {
-  dataSource = new MatTableDataSource<PeriodicElement>(CATEGORIAS);
+export class AdministrarCategoriaComponent implements OnInit, AfterViewInit {
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  
+
+  public displayedColumns: string[] = ['id', 'nombre', 'estado', 'acciones'];
+  public dataSource = new MatTableDataSource<Categoria>(ELEMENT_DATA);
   public categorias:any[];
   public dialogRef;
 
@@ -56,13 +61,11 @@ export class AdministrarCategoriaComponent implements OnInit {
     
     
   }
-  displayedColumns: string[] = ['id','name', 'estado'];
-  //dataSource = CATEGORIAS;
- 
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    
   }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -106,3 +109,5 @@ export class AdministrarCategoriaComponent implements OnInit {
     console.log('Sirve');
   }
 }
+  
+
