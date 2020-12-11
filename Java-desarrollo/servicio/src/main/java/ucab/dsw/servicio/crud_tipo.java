@@ -185,7 +185,7 @@ public class crud_tipo {
     }
 
     @GET
-    @Path( "/fiendall-tipos" )
+    @Path( "/findall-tipos" )
     public Response findAllTipo( )
     {
         JsonObject data;

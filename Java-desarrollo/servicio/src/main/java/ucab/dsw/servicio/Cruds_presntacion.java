@@ -132,7 +132,7 @@ public class Cruds_presntacion {
     }
 
     @GET
-    @Path( "/find-Presentacion/{id}" )
+    @Path( "/find-presentacion/{id}" )
     public Response findPresentacion( @PathParam("id")long id )
     {
         JsonObject data;
@@ -140,17 +140,11 @@ public class Cruds_presntacion {
         try {
             DaoPresentacion dao = new DaoPresentacion();
             Presentacion resul = dao.find( id,Presentacion.class );
-            System.out.println("id: " + resul.get_id());
-            System.out.println("nombre: " + resul.get_nombre());
-            if (resul.get_estado() != null){
-            System.out.println("estado: " + resul.get_estado());
-            }
-            System.out.println("tipo: " + resul.get_tipo().get_nombre());
 
             PresentacionJson= Json.createObjectBuilder()
-                    .add("estado",resul.get_estado()).build();
-            PresentacionJson= Json.createObjectBuilder()
-                    .add("tipo",resul.get_tipo().get_nombre()).build();
+                    .add("id: ",resul.get_id())
+                    .add("nombre: ",resul.get_nombre())
+                    .add("tipo: ",resul.get_tipo().get_nombre()).build();
 
             data= Json.createObjectBuilder()
                     .add("estado","success")
