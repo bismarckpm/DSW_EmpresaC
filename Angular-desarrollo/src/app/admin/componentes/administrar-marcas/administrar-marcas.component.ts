@@ -30,16 +30,21 @@ export class AdministrarMarcasComponent implements OnInit {
         console.log(response);
         this.marcas=response.marcas;
         this._toastrService.success("Exito", "Todas las marcas");
+        this.eventBus.cast('fin-progress','chao');
       },
       (error)=>{
         console.log(error);
         this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        this.eventBus.cast('fin-progress','chao');
       });
   }
 
   init(){
+
+    this._toastrService.info('Espero un momento, por favor.','Cargando...');
     this.getAllMarcas();
-    this.prueba();
+    this.eventBus.cast('inicio-progress','hola');
+   
   }
 
   prueba(){
@@ -56,5 +61,13 @@ export class AdministrarMarcasComponent implements OnInit {
         {id:2,nombre:'Harina PAN',subcategoria_id:3,estado:'activo'},
       ];
     },3000);
+  }
+
+  openDialog() {
+    /*const dialogRef = this.dialog.open();
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });*/
   }
 }

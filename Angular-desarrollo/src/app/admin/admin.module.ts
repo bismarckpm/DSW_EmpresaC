@@ -6,6 +6,7 @@
   import { AdminRoutingModule } from './admin-routing.module';
   import { ComunModule } from '../comun/comun.module';
   import { MaterialModule } from '.././material.module';
+  import { FormsModule } from '@angular/forms';
 
 
   /* Componentes */
@@ -29,7 +30,9 @@
   import { SolicitudEstudioService } from "./Servicios/solicitud-estudio.service";
   import { PreguntaService } from "./Servicios/pregunta.service";
   import {  AdminMarcasService } from "./Servicios/administrar-marcas/admin-marcas.service";
-
+  import {  AdministrarCategoriasService } from "./Servicios/administrar-categorias/administrar-categorias.service";
+  import {  AdministrarSubcategoriasService } from "./Servicios/administrar-subcategorias/administrar-subcategorias.service";
+  import { AnadirModalComponent } from '../admin/componentes/administrar-categoria/anadir/anadir-modal/anadir-modal.component';
 
   @NgModule({
     declarations: [
@@ -46,17 +49,19 @@
       AdministrarMarcasComponent,
       AdministrarCategoriaComponent,
       AdministrarSubcategoriasComponent,
-      AdministrarUsuariosComponent
+      AdministrarUsuariosComponent,
+      AnadirModalComponent
     ],
     imports: [
       CommonModule,
       AdminRoutingModule,
       ComunModule,
       MaterialModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      FormsModule
     ],
     providers:[SolicitudEstudioService,
-    PreguntaService,  AdminMarcasService
+    PreguntaService,  AdminMarcasService, AdministrarCategoriasService,AdministrarSubcategoriasService
     ]
   })
   export class AdminModule { }

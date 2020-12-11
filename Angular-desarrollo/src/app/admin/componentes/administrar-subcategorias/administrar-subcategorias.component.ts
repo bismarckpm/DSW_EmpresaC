@@ -1,7 +1,11 @@
 import { AfterViewInit,Component, OnInit,ViewChild } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table'
+import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
+import { ToastrService } from 'ngx-toastr';
+import { NgEventBus } from 'ng-event-bus';
+import { MatDialog } from '@angular/material/dialog';
+import {  AdministrarSubcategoriasService } from "../../Servicios/administrar-subcategorias/administrar-subcategorias.service";
 
 export interface PeriodicElement {
   id: number;
@@ -28,9 +32,13 @@ export class AdministrarSubcategoriasComponent implements OnInit {
   dataSource = new MatTableDataSource<PeriodicElement>(SUBCATEGORIAS);
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor() { }
+  public subcategorias:any[];
+
+  constructor(public dialog: MatDialog,private _adminSubcategoriaService:AdministrarSubcategoriasService,private _toastrService: ToastrService,private eventBus: NgEventBus) { }
 
   ngOnInit(): void {
+    //this.init();
+    this.getAllSubcategorias();
   }
   displayedColumns: string[] = ['id','name', 'categoria', 'estado'];
   //dataSource = SUBCATGORIAS;
@@ -43,7 +51,34 @@ export class AdministrarSubcategoriasComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
-    
-    }
+  init(){
+    this._toastrService.info('Espero un momento, por favor.','Cargando...');
+    this.getAllSubcategorias();
+    this.eventBus.cast('inicio-progress','hola');
+  }
+
+  getAllSubcategorias(){
+    this._adminSubcategoriaService.getAllSubcategorias().subscribe(
+      (response)=>{
+        console.log(response);
+        this.subcategorias=response.subcategorias;
+        this._toastrService.success("Exito", "Todas las subcategorias");
+        this.eventBus.cast('fin-progress','chao');
+      },
+      (error)=>{
+        console.log(error);
+        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        this.eventBus.cast('fin-progress','chao');
+      });
+  }
+
+  openDialog() {
+    /*const dialogRef = this.dialog.open();
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });*/
+  }
 }

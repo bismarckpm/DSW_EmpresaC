@@ -220,6 +220,18 @@ button.toast-close-button {
     opacity: 0.4;
 }
 
+.father {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 
 /* Responsive Design */
 

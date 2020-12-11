@@ -11,7 +11,7 @@
                     <th>Nombre</th>
                     <th>Subcategoria</th>
                     <th>Estatus</th>
-                    <th>Opciones</th>
+                    <th>Opciones </th>
                 </tr>
             </thead>
 
@@ -40,11 +40,10 @@
     </div>
 
 
+
     <div class="row justify-content-end">
 
-        <button mat-fab class="color" aria-label="Example icon button with a home icon">
-        <mat-icon>add</mat-icon>
-      </button>
+        <button mat-fab class="color" (click)="openDialog()"><mat-icon>add</mat-icon></button>
 
     </div>
 </div>

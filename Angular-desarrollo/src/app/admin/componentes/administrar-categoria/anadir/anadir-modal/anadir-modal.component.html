@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>
+    Añadir una categoria</h2>
+
+<mat-dialog-content class="mat-typography">
+    <h3></h3>
+    <p></p>
+    <div class="formulario">
+        <mat-form-field class="example-full-width">
+            <mat-label>Nombre de la categoria</mat-label>
+            <input matInput [(ngModel)]="categoria" placeholder="Ex. Lacteos">
+        </mat-form-field>
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="true">Cancelar</button>
+    <button mat-button (click)="addCategoria()" cdkFocusInitial>Guardar</button>
+</mat-dialog-actions>

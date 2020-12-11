@@ -51,9 +51,3 @@ th {
 .input {
     width: 10%;
 }
-
-.father {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}

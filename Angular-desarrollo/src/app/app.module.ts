@@ -37,7 +37,7 @@
       NgProgressModule,
       NgProgressHttpModule,
       ToastrModule.forRoot({
-        timeOut: 5000,
+        timeOut: 2000,
         positionClass: 'toast-top-center',
         progressBar:true,
         closeButton:true
