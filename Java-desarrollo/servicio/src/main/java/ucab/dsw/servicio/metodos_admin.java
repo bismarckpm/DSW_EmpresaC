@@ -140,64 +140,6 @@ public class metodos_admin {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
-    @GET
-    @Path( "/nose/{id}" )
-    public Response preguntas_categoria_subcategoria(@PathParam("id") long  _id)
-    {
-        JsonObject data;
-        JsonArrayBuilder builder = Json.createArrayBuilder();
-        try {
-            List<PreguntaEncuesta> resultado = null;
-
-            DaoPreguntaEncuesta dao = new DaoPreguntaEncuesta();
-            Class<PreguntaEncuesta> type = PreguntaEncuesta.class;
-
-            resultado = dao.findAll(type);
-            System.out.println("Preguntas por Categoria: ");
-            for (PreguntaEncuesta obj : resultado) {
-
-                if (obj.get_encuesta().get_marca().get_subcategoria().get_categoria().get_id() == _id) {
-
-                    JsonObject p = Json.createObjectBuilder().add("id",obj.get_id())
-                            .add("Descripcion",obj.get_pregunta().get_descripcion())
-                            .add("Tipo de pregunta: " , obj.get_pregunta().get_tipopregunta()).build();
-
-                    builder.add(p);
-
-                    System.out.println("Id: " + obj.get_pregunta().get_id());
-                    System.out.println("Descripcion: " + obj.get_pregunta().get_descripcion());
-                    System.out.println("Tipo de pregunta: " + obj.get_pregunta().get_tipopregunta());
-                    if (obj.get_pregunta().get_valormax() != 0) {
-                        System.out.println("Rango minimo: " + obj.get_pregunta().get_valormin());
-                        System.out.println("Rango maximo: " + obj.get_pregunta().get_valormax());
-                    }
-
-                } else {
-                    System.out.println("");
-                }
-            }
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200)
-                    .add("categorias",builder).build();
-
-
-        }
-        catch ( Exception ex )
-        {
-            String problema = ex.getMessage();
-
-            data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
-                    .add("codigo",500).build();
-
-
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
-        }
-        //builder.build();
-        return Response.status(Response.Status.OK).entity(builder).build();
-    }
 
     @PUT
     @Path( "/asignarEncuesta/{id}" )
@@ -307,7 +249,7 @@ public class metodos_admin {
                     Pregunta_EncuestaDto resultado2 = new Pregunta_EncuestaDto();
                     PreguntaEncuesta preguntaEncuesta = new PreguntaEncuesta();
                     preguntaEncuesta.set_encuesta(resul);
-                    Pregunta pregunta1 = new Pregunta(obj.getId());
+                    Pregunta pregunta1 = new Pregunta(1);
                     preguntaEncuesta.set_pregunta(pregunta1);
 
                     PreguntaEncuesta resul2 = dao2.insert(preguntaEncuesta);
@@ -515,5 +457,57 @@ public class metodos_admin {
     public String consulta()
     {
         return "test";
+    }
+
+    @GET
+    @Path( "/preguntas-categoria/{id}" )
+    public Response Preguntas_categoria(@PathParam("id")long  _id)
+    {
+        JsonObject data;
+        JsonArrayBuilder builder = Json.createArrayBuilder();
+        try {
+            List<PreguntaEncuesta> resultado = null;
+
+            DaoPreguntaEncuesta dao = new DaoPreguntaEncuesta();
+            Class<PreguntaEncuesta> type = PreguntaEncuesta.class;
+
+            resultado = dao.findAll(type);
+            for (PreguntaEncuesta obj : resultado) {
+
+                if (obj.get_encuesta().get_marca().get_subcategoria().get_categoria().get_id() == _id) {
+
+                    JsonObject p = Json.createObjectBuilder().add("id: ",obj.get_pregunta().get_id())
+                            .add("Descriocion: ",obj.get_pregunta().get_descripcion())
+                            .add("Tipo pregunta : ",obj.get_pregunta().get_tipopregunta())
+                            .build();
+
+                    builder.add(p);
+
+                } else {
+                    System.out.println("");
+                }
+            }
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200)
+                    .add("categorias",builder).build();
+
+
+        }
+        catch ( Exception ex )
+        {
+            String problema = ex.getMessage();
+
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+        //builder.build();
+        return Response.status(Response.Status.OK).entity(data).build();
     }
 }

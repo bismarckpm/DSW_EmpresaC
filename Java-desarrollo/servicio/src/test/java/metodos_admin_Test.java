@@ -35,15 +35,6 @@ public class metodos_admin_Test {
 
     }
 
-    @Test
-    public void preguntas_categoria_subcategoriaTest() throws Exception
-    {
-        ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
-        Response resultado= servicio.preguntas_categoria_subcategoria(1);
-        Assert.assertNotEquals( resultado, 0 );
-
-
-    }
 
     @Test
     public void asignarEncuestaTest() throws Exception

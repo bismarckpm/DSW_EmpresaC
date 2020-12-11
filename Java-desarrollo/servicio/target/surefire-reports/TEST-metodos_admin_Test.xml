@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="8" failures="0" name="metodos_admin_Test" time="0.238" errors="0" skipped="0">
+<testsuite tests="7" failures="0" name="metodos_admin_Test" time="0.111" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2020.3"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -64,12 +64,11 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="metodos_admin_Test" name="find_no_asignadosTest" time="0.002"/>
-  <testcase classname="metodos_admin_Test" name="preguntas_categoria_subcategoriaTest" time="0.11"/>
-  <testcase classname="metodos_admin_Test" name="find_asignadosTest" time="0.004"/>
-  <testcase classname="metodos_admin_Test" name="EliminarEstudioTest" time="0.02"/>
-  <testcase classname="metodos_admin_Test" name="addPreguntaTest" time="0.04"/>
-  <testcase classname="metodos_admin_Test" name="addEncuestaTest" time="0.023"/>
-  <testcase classname="metodos_admin_Test" name="asignarEncuestaTest" time="0.004"/>
-  <testcase classname="metodos_admin_Test" name="Participacion_estudioTest" time="0.035"/>
+  <testcase classname="metodos_admin_Test" name="find_no_asignadosTest" time="0.007"/>
+  <testcase classname="metodos_admin_Test" name="find_asignadosTest" time="0.003"/>
+  <testcase classname="metodos_admin_Test" name="EliminarEstudioTest" time="0.014"/>
+  <testcase classname="metodos_admin_Test" name="addPreguntaTest" time="0.042"/>
+  <testcase classname="metodos_admin_Test" name="addEncuestaTest" time="0.021"/>
+  <testcase classname="metodos_admin_Test" name="asignarEncuestaTest" time="0.003"/>
+  <testcase classname="metodos_admin_Test" name="Participacion_estudioTest" time="0.021"/>
 </testsuite>
