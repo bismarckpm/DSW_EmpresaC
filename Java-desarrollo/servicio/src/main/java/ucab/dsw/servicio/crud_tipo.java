@@ -26,7 +26,7 @@ import javax.ws.rs.core.Response;
 public class crud_tipo {
 
     @PUT
-    @Path( "/addpresentacion" )
+    @Path( "/add-tipo" )
     public Response addTipo(TipoDto tipoDto)
     {
         TipoDto resultado = new TipoDto();
@@ -58,7 +58,7 @@ public class crud_tipo {
     }
 
     @PUT
-    @Path( "/channgepresentacion/{id}" )
+    @Path( "/channge-tipo/{id}" )
     public Response changeTipo(@PathParam("id")long  _id,TipoDto tipoDto)
     {
         TipoDto resultado = new TipoDto();
@@ -92,7 +92,7 @@ public class crud_tipo {
     }
 
     @DELETE
-    @Path( "/delete/{id}" )
+    @Path( "/delete-tipo/{id}" )
     public Response EliminarTipo( @PathParam("id")long  _id )
     {
         JsonObject data;
@@ -148,7 +148,7 @@ public class crud_tipo {
     }
 
     @GET
-    @Path( "/tipo/{id}" )
+    @Path( "/find-tipo/{id}" )
     public Response findTipo(@PathParam("id") long id )
     {
         JsonObject data;
@@ -185,7 +185,7 @@ public class crud_tipo {
     }
 
     @GET
-    @Path( "/tipo" )
+    @Path( "/fiendall-tipos" )
     public Response findAllTipo( )
     {
         JsonObject data;

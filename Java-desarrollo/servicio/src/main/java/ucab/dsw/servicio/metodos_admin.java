@@ -476,18 +476,19 @@ public class metodos_admin {
 
                 if (obj.get_encuesta().get_marca().get_subcategoria().get_categoria().get_id() == _id) {
 
-                    JsonObject p = Json.createObjectBuilder().add("id: ",obj.get_pregunta().get_id())
-                            .add("Descriocion: ",obj.get_pregunta().get_descripcion())
-                            .add("Tipo pregunta : ",obj.get_pregunta().get_tipopregunta())
+                    JsonObject p = Json.createObjectBuilder().add("id: ", obj.get_pregunta().get_id())
+                            .add("Descriocion: ", obj.get_pregunta().get_descripcion())
+                            .add("Tipo pregunta : ", obj.get_pregunta().get_tipopregunta())
                             .build();
+                    if (obj.get_pregunta().get_tipopregunta().equals("Opcion multiple")) {
+
+
+                    }
 
                     builder.add(p);
 
-                } else {
-                    System.out.println("");
                 }
             }
-
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200)

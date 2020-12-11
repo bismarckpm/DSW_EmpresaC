@@ -3,6 +3,7 @@ import ucab.dsw.accesodatos.*;
 import ucab.dsw.dtos.*;
 import ucab.dsw.entidades.*;
 
+import javax.json.JsonObject;
 import javax.validation.constraints.Null;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -26,30 +27,55 @@ public class analista_metodos {
 
 
     @GET
-    @Path("/estudios-asignados/{id}")
-    public Response consultaEstudios_asignados(@PathParam("id")long  _id) {
+    @Path( "/estudios-analistas/{id}" )
+    public Response Estudios_asignados(@PathParam("id")long  _id)
+    {
+        JsonObject data;
         JsonArrayBuilder builder = Json.createArrayBuilder();
-        List<SolicitudEstudio> resultado = null;
+        try {
+            List<SolicitudEstudio> resultado = null;
 
-        DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
-        Class<SolicitudEstudio> type = SolicitudEstudio.class;
+            DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
+            Class<SolicitudEstudio> type = SolicitudEstudio.class;
 
-        resultado = dao.findAll(type);
-        for (SolicitudEstudio obj : resultado) {
-            if (obj.get_usuario() != null) {
-                if (obj.get_usuario().get_id() == _id) {
-                    System.out.println("Id: " + obj.get_id());
-                    System.out.println("Estado: " + obj.get_estado());
-                    System.out.println("Marca: " + obj.get_marca().get_nombre());
-                    System.out.println("Categoria: " + obj.get_marca().get_subcategoria().get_categoria().get_nombre());
-                    System.out.println("Subcategoria: " + obj.get_marca().get_subcategoria().get_nombre());
+            resultado = dao.findAll(type);
+            for (SolicitudEstudio obj : resultado) {
+                if (obj.get_usuario() != null) {
+                    if (obj.get_usuario().get_id() == _id) {
 
-                } else {
-                    System.out.println("");
+                        JsonObject p = Json.createObjectBuilder().add("id: ", obj.get_id())
+                                .add("Estado: ", obj.get_estado())
+                                .add("Marca : ", obj.get_marca().get_nombre())
+                                .add("Categoria : ", obj.get_marca().get_subcategoria().get_categoria().get_nombre())
+                                .add("SubCategoria : ", obj.get_marca().get_subcategoria().get_nombre())
+                                .build();
+
+
+                        builder.add(p);
+
+                    }
                 }
             }
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200)
+                    .add("categorias",builder).build();
+
+
+        }
+        catch ( Exception ex )
+        {
+            String problema = ex.getMessage();
+
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
         //builder.build();
-        return Response.status(Response.Status.OK).entity(builder).build();
+        return Response.status(Response.Status.OK).entity(data).build();
     }
 }

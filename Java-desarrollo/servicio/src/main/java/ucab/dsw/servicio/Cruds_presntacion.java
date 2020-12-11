@@ -26,7 +26,7 @@ import javax.ws.rs.core.MediaType;
 public class Cruds_presntacion {
 
     @PUT
-    @Path( "/addpresentacion" )
+    @Path( "/add-presentacion" )
     public Response addPresentacion(PresentacionDto presentacionDto)
     {
         JsonObject data;
@@ -63,7 +63,7 @@ public class Cruds_presntacion {
     }
 
     @PUT
-    @Path( "/channgepresentacion/{id}/{id2}" )
+    @Path( "/channge-presentacion/{id}/{id2}" )
     public Response changePresentacion(@PathParam("id")long  _id,@PathParam("id2")long  _id2,PresentacionDto presentacionDto)
     {
         PresentacionDto resultado = new PresentacionDto();
@@ -100,7 +100,7 @@ public class Cruds_presntacion {
     }
 
     @DELETE
-    @Path( "/delete/{id}" )
+    @Path( "/delete-presentacion/{id}" )
     public Response EliminarPresentacion( @PathParam("id")long  _id )
     {
         JsonObject data;
@@ -132,7 +132,7 @@ public class Cruds_presntacion {
     }
 
     @GET
-    @Path( "/Presentacion/{id}" )
+    @Path( "/find-Presentacion/{id}" )
     public Response findPresentacion( @PathParam("id")long id )
     {
         JsonObject data;
@@ -172,7 +172,7 @@ public class Cruds_presntacion {
     }
 
     @GET
-    @Path( "/presentacion" )
+    @Path( "/findall-presentaciones" )
     public Response findAllPresentacion( )
     {
         JsonObject data;
