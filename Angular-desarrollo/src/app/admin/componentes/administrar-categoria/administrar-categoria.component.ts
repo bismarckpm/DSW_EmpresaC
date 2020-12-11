@@ -25,8 +25,6 @@ const ELEMENT_DATA: Categoria[] = [
   {id: 5, nombre: 'Boron',  estado: 'B'},
   {id: 1, nombre: 'Hydrogen',  estado: 'H'},
   {id: 2, nombre: 'Helium',  estado: 'He'},
- 
-  
 ];
 
 @Component({
@@ -38,13 +36,14 @@ export class AdministrarCategoriaComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  public displayedColumns: string[] = ['id', 'nombre', 'estado', 'acciones'];
-  public dataSource = new MatTableDataSource<Categoria>(ELEMENT_DATA);
-  public categorias:any[];
+  displayedColumns: string[] = ['id', 'nombre', 'estado', 'acciones'];
+  dataSource = new MatTableDataSource<Categoria>();
+
   public dialogRef;
 
   constructor(public dialog: MatDialog,private _adminCategoriaService:AdministrarCategoriasService,private _toastrService: ToastrService,private eventBus: NgEventBus) { }
 
+  
   ngOnInit(): void {
     this.init();
 
@@ -81,10 +80,11 @@ export class AdministrarCategoriaComponent implements OnInit, AfterViewInit {
   }
 
   getAllCategorias(){
+    //this.dataSource.data=ELEMENT_DATA;
     this._adminCategoriaService.getAllCategorias().subscribe(
       (response)=>{
         console.log(response);
-        this.categorias=response.categorias;
+        this.dataSource.data=response.categorias;
         this._toastrService.success("Exito", "Todas las categorias");
         this.eventBus.cast('fin-progress','chao');
       },
@@ -105,9 +105,7 @@ export class AdministrarCategoriaComponent implements OnInit, AfterViewInit {
     });
   }
 
-  pruebaa(){
-    console.log('Sirve');
-  }
+
 }
   
 

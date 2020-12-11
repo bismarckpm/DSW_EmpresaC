@@ -7,23 +7,16 @@ import { NgEventBus } from 'ng-event-bus';
 import { MatDialog } from '@angular/material/dialog';
 import {  AdministrarSubcategoriasService } from "../../Servicios/administrar-subcategorias/administrar-subcategorias.service";
 
-export interface PeriodicElement {
+export interface Subcategoria {
   id: number;
   nombre: string;
+  categoria_id:number;
   categoria:string;
   estado: string;
   
 }
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {id: 1, nombre: 'Hydrogen', categoria:' bebe',  estado: 'H'},
-  {id: 2, nombre: 'Helium', categoria:' bebe', estado: 'He'},
-  {id: 3, nombre: 'Lithium', categoria:' bebe', estado: 'Li'},
-  {id: 4, nombre: 'Beryllium',  categoria:' bebe',estado: 'Be'},
-  {id: 5, nombre: 'Boron', categoria:' bebe', estado: 'B'},
-  {id: 1, nombre: 'Hydrogen',categoria:' bebe',  estado: 'H'},
-  {id: 2, nombre: 'Helium', categoria:' bebe', estado: 'He'},
- 
+const ELEMENT_DATA: Subcategoria[] = [
+  {id: 1, nombre: 'Hydrogen',categoria_id:1, categoria:'Lacteos' , estado: 'H'},
 ];
 
 @Component({
@@ -33,8 +26,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class AdministrarSubcategoriasComponent implements OnInit,AfterViewInit {
   public displayedColumns: string[] = ['id', 'nombre','categoria', 'estado', 'acciones'];
-  public dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  public subcategorias:any[];
+  public dataSource = new MatTableDataSource<Subcategoria>();
 
   constructor(public dialog: MatDialog,private _adminSubcategoriaService:AdministrarSubcategoriasService,private _toastrService: ToastrService,private eventBus: NgEventBus) { }
 
@@ -59,10 +51,11 @@ export class AdministrarSubcategoriasComponent implements OnInit,AfterViewInit {
   }
 
   getAllSubcategorias(){
+    //this.dataSource.data=ELEMENT_DATA;
     this._adminSubcategoriaService.getAllSubcategorias().subscribe(
       (response)=>{
         console.log(response);
-        this.subcategorias=response.subcategorias;
+        this.dataSource.data=response.subcategorias;
         this._toastrService.success("Exito", "Todas las subcategorias");
         this.eventBus.cast('fin-progress','chao');
       },

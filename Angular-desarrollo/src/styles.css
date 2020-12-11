@@ -223,7 +223,11 @@ button.toast-close-button {
 .father {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+}
+
+.father>div {
+    padding: 0 3px;
 }
 
 .formulario {

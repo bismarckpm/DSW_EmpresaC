@@ -7,32 +7,19 @@ import {MatSort} from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 
 
-export interface PeriodicElement {
+export interface Marca {
   id: number;
   nombre: string;
+  subcategoria_id:number;
   subcategoria: string;
   estado: string;
   
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {id: 1, nombre: 'Hydrogen', subcategoria: 'hola', estado: 'H'},
-  {id: 2, nombre: 'Helium', subcategoria: 'cocala', estado: 'He'},
-  {id: 3, nombre: 'Lithium', subcategoria: 'bebe', estado: 'Li'},
-  {id: 4, nombre: 'Beryllium', subcategoria: 'como', estado: 'Be'},
-  {id: 5, nombre: 'Boron', subcategoria: 'estado', estado: 'B'},
-  {id: 1, nombre: 'Hydrogen', subcategoria: 'hola', estado: 'H'},
-  {id: 2, nombre: 'Helium', subcategoria: 'cocala', estado: 'He'},
-  {id: 3, nombre: 'Lithium', subcategoria: 'bebe', estado: 'Li'},
-  {id: 4, nombre: 'Beryllium', subcategoria: 'como', estado: 'Be'},
-  {id: 5, nombre: 'Boron', subcategoria: 'estado', estado: 'B'},
-  {id: 1, nombre: 'Hydrogen', subcategoria: 'hola', estado: 'H'},
-  {id: 2, nombre: 'Helium', subcategoria: 'cocala', estado: 'He'},
-  {id: 3, nombre: 'Lithium', subcategoria: 'bebe', estado: 'Li'},
-  {id: 4, nombre: 'Beryllium', subcategoria: 'como', estado: 'Be'},
-  {id: 5, nombre: 'Boron', subcategoria: 'estado', estado: 'B'},
-  
+const ELEMENT_DATA: Marca[] = [
+  {id: 1, nombre: 'Hydrogen',subcategoria_id:1, subcategoria:'Lacteos' , estado: 'H'},
 ];
+
 
 @Component({
   selector: 'app-administrar-marcas',
@@ -45,8 +32,8 @@ export class AdministrarMarcasComponent implements OnInit, AfterViewInit{
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
   public displayedColumns: string[] = ['id', 'nombre', 'subcategoria', 'estado', 'acciones'];
-  public dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  public marcas:any;
+  public dataSource = new MatTableDataSource<Marca>();
+  
  
 
   constructor(private _adminMarcas:AdminMarcasService,private _toastrService: ToastrService,private eventBus: NgEventBus) { }
@@ -66,10 +53,11 @@ export class AdministrarMarcasComponent implements OnInit, AfterViewInit{
   }
   
   getAllMarcas(){
+    //this.dataSource.data=ELEMENT_DATA;
     this._adminMarcas.getAllMarcas().subscribe(
       (response)=>{
         console.log(response);
-        this.marcas=response.marcas;
+        this.dataSource.data=response.marcas;
         this._toastrService.success("Exito", "Todas las marcas");
         this.eventBus.cast('fin-progress','chao');
       },
@@ -78,22 +66,6 @@ export class AdministrarMarcasComponent implements OnInit, AfterViewInit{
         this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
         this.eventBus.cast('fin-progress','chao');
       });
-  }
-
-  prueba(){
-    this.marcas=[
-      {id:1,nombre:'juana',subcategoria_id:2,estado:'activo'}
-    ];
-    this.actualizar();
-  }
-
-  actualizar(){
-    setTimeout(()=>{
-      this.marcas=[
-        {id:1,nombre:'juana',subcategoria_id:2,estado:'activo'},
-        {id:2,nombre:'Harina PAN',subcategoria_id:3,estado:'activo'},
-      ];
-    },3000);
   }
 
   openDialog() {
