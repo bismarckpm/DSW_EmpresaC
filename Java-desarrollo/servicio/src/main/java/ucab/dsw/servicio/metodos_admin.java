@@ -184,6 +184,8 @@ public class metodos_admin {
         EncuestaDto resultado = new EncuestaDto();
         SolicituEstudioDto resultado3 = new SolicituEstudioDto();
         JsonObject data;
+        int analista_random=0;
+        Usuario analista_elegido=null;
         try
         {
             DaoEncuesta dao = new DaoEncuesta();
@@ -201,6 +203,15 @@ public class metodos_admin {
             DaoSolicitudEstudio dao3 = new DaoSolicitudEstudio();
             SolicitudEstudio solicitudEstudio = dao3.find(_id2,SolicitudEstudio.class);
 
+            DaoUsuario daoUsuario=new DaoUsuario();
+            List<Usuario> analista= daoUsuario.getAnalistas();
+            analista_random=(int)(Math.random()* analista.size());
+            System.out.println("analista random");
+            System.out.println(analista_random);
+            analista_elegido=analista.get(analista_random);
+            solicitudEstudio.set_usuario(analista_elegido);
+
+            solicitudEstudio.set_estado( "Asignado" );
             solicitudEstudio.set_encuesta( resul );
 
             SolicitudEstudio resul3 = dao3.update(solicitudEstudio);
