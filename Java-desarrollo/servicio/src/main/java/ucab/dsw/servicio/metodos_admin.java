@@ -473,9 +473,9 @@ public class metodos_admin {
             for (Pregunta obj : resultado2) {
 
                 if (obj.get_preguntaencuesta().isEmpty() == true) {
-                    JsonObject p = Json.createObjectBuilder().add("id: ", obj.get_id())
-                            .add("Descriocion: ", obj.get_descripcion())
-                            .add("Tipo pregunta : ", obj.get_tipopregunta())
+                    JsonObject p = Json.createObjectBuilder().add("id", obj.get_id())
+                            .add("Descriocion", obj.get_descripcion())
+                            .add("Tipo", obj.get_tipopregunta())
                             .build();
 
 
@@ -486,7 +486,7 @@ public class metodos_admin {
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200)
-                    .add("categorias",builder).build();
+                    .add("Preguntas",builder).build();
 
 
         }

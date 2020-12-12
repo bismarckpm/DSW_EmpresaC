@@ -33,22 +33,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c9c357f-2b07-42bd-afe8-0f758d0713a9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/target/entidades.jar" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/entidades.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/metodos_admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/metodos_admin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/pruebaORM-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/pruebaORM-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/classes/ucab/dsw/servicio/metodos_admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/classes/ucab/dsw/servicio/metodos_admin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/entidades-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/lib/entidades-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/surefire-reports/TEST-analista_metodos_Test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/surefire-reports/TEST-analista_metodos_Test.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/surefire-reports/TEST-metodos_admin_Test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/surefire-reports/TEST-metodos_admin_Test.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/surefire-reports/TEST-pruebaORMWS_Test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/surefire-reports/TEST-pruebaORMWS_Test.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/surefire-reports/analista_metodos_Test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/surefire-reports/analista_metodos_Test.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/surefire-reports/metodos_admin_Test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/surefire-reports/metodos_admin_Test.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/surefire-reports/pruebaORMWS_Test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/surefire-reports/pruebaORMWS_Test.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
