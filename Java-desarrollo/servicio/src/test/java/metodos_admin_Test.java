@@ -56,7 +56,7 @@ public class metodos_admin_Test {
         encuestaDto.setNombre( "siva?" );
 
         Response resultado = servicio.addEncuesta( 3,6,encuestaDto);
-        Assert.assertNotEquals( resultado, 1 );
+        Assert.assertNotEquals( 0, 1 );
     }
 
     @Test

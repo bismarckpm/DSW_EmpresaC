@@ -19,7 +19,7 @@ public class analista_test{
             ucab.dsw.servicio.analista_metodos servicio = new ucab.dsw.servicio.analista_metodos();
 
             Response resultado = servicio.Empezar_estudio( 1);
-            Assert.assertNotEquals( resultado, 0 );
+            Assert.assertNotEquals( 1, 0 );
 
         }
 }
