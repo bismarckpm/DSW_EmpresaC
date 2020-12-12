@@ -24,9 +24,9 @@ export class PreguntaService {
 
   constructor(private http: HttpClient) { }
 
-  getPreguntas(): Observable<Pregunta[]> {
+  getPreguntas(): Observable<Respuesta> {
     // return of(DISHES.filter((dish) => (dish.id === id))[0]).pipe(delay(2000));
-    return of(PREGUNTAS).pipe(delay(2000));
+    return this.http.get<Respuesta>(this.URL + 'admin/preguntas-categoria/1')
   }
 
   postPreguntas(objeto:{}): Observable<Respuesta> {

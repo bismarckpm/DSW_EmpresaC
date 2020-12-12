@@ -20,7 +20,7 @@
 </mat-card>
 
 <mat-divider></mat-divider>
-<app-contenedor-pregunta-nueva></app-contenedor-pregunta-nueva>
+<app-contenedor-pregunta-nueva (nuevaEvent)="PreguntaNueva($event)"></app-contenedor-pregunta-nueva>
 
 <mat-divider></mat-divider>
 
@@ -34,7 +34,7 @@
     <mat-form-field class="half-width">
       <mat-select formControlName="tipo">
         
-        <mat-option *ngFor="let x of preguntas" value={{x.Id}}>{{x.Descripcion}}</mat-option>
+        <mat-option *ngFor="let x of preguntas" value={{x.id}}>{{x.descripcion}}</mat-option>
       </mat-select>
     </mat-form-field>
 

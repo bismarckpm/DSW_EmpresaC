@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 
 //Entidades
@@ -19,6 +19,7 @@ export class ContenedorPreguntaNuevaComponent implements OnInit {
   pregunta:Pregunta;
   tipo:String;
   opciones:string[];
+  @Output() nuevaEvent = new EventEmitter<Pregunta>();
 
   error:String="";
 
@@ -93,7 +94,7 @@ export class ContenedorPreguntaNuevaComponent implements OnInit {
         res=1;
         this.pregunta.preguntaRango(this.PreguntaForm.value.pregunta,this.PreguntaForm.value.tipo,Number(this.PreguntaForm.value.minimo), Number(this.PreguntaForm.value.maximo));
         pre={
-          "descripcion": this.PreguntaForm.value.pregunta,
+          "Descripcion": this.PreguntaForm.value.pregunta,
           "tipopregunta": this.PreguntaForm.value.tipo,
           "valormin":Number(this.PreguntaForm.value.minimo),
           "valormax":Number(this.PreguntaForm.value.maximo)
@@ -140,10 +141,20 @@ export class ContenedorPreguntaNuevaComponent implements OnInit {
     if(res==1){
       this.preguntaServicio.postPreguntas(pre).subscribe(x=>{
         console.log(x.codigo)
+        if(x.codigo==200){
+          // this.nuevaEvent.emit(pre);
+          this.pregunta.descripcion=this.PreguntaForm.value.pregunta;
+          this.pregunta.tipopregunta=this.PreguntaForm.value.tipo;
+          this.pregunta.id=x.Pregunta.id;
+          this.nuevaEvent.emit(this.pregunta);
+          this.PreguntaForm.reset();
+
+        }
+
 
 
       })
-      this.PreguntaForm.reset();
+      
     }
 
    

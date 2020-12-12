@@ -1,5 +1,5 @@
 import { Estudio } from "./estudio";
-
+import { Pregunta } from "./pregunta";
 
 export class Respuesta{
 
@@ -7,4 +7,7 @@ export class Respuesta{
     estado: string;
     estudios:Estudio[];
     estudio:Estudio;
+    Preguntas:Pregunta[];
+    Pregunta:Pregunta;
+
 }

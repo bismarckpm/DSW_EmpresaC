@@ -46,8 +46,12 @@ export class AsignarEncuestaComponent implements OnInit {
       .subscribe(x => { this.estudio = x.estudio; console.log(x)  });
 
       this.preguntaServicio.getPreguntas().subscribe(x=>{
-        this.todasPreguntas=x
-        this.preguntas=x;
+        this.todasPreguntas= x.Preguntas
+        this.preguntas=x.Preguntas;
+        console.log(this.preguntas)
+        
+        console.log(x.Preguntas)
+        console.log(x)
       })
     }
 
@@ -66,21 +70,24 @@ export class AsignarEncuestaComponent implements OnInit {
   Agregador(){
     console.log(this.AgregadorForm.value.tipo);
     if(this.AgregadorForm.value.tipo!='none'){
-    this.preguntas=this.preguntas.filter(x=> x.Id!=Number(this.AgregadorForm.value.tipo));
-    this.preguntasSeleccionadas.push(this.todasPreguntas.filter(x=>x.Id==Number(this.AgregadorForm.value.tipo))[0])
+    this.preguntas=this.preguntas.filter(x=> x.id!=Number(this.AgregadorForm.value.tipo));
+    this.preguntasSeleccionadas.push(this.todasPreguntas.filter(x=>x.id==Number(this.AgregadorForm.value.tipo))[0])
     console.log(this.preguntasSeleccionadas)
     }
-
 
     this.AgregadorForm.reset({
       tipo: 'none'
     });
   }
 
+  PreguntaNueva(nueva:Pregunta){
+    this.preguntasSeleccionadas.push(nueva);
+  }
+
   Borrador(p:Pregunta){
-    
+    console.log(p);
     this.preguntas.push(p);
-    this.preguntasSeleccionadas=this.preguntasSeleccionadas.filter(x=>x.Id!=p.Id);
+    this.preguntasSeleccionadas=this.preguntasSeleccionadas.filter(x=>x.id!=p.id);
   }
 
 }
