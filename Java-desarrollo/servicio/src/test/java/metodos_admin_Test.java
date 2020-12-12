@@ -51,15 +51,9 @@ public class metodos_admin_Test {
     {
         ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
         EncuestaDto encuestaDto = new EncuestaDto();
-        PreguntaDto preguntaDto = new PreguntaDto(1);
+
 
         encuestaDto.setNombre( "siva?" );
-
-
-
-        List<PreguntaDto> pregunta = new ArrayList<>();
-
-        pregunta.add(preguntaDto);
 
         Response resultado = servicio.addEncuesta( 3,6,encuestaDto);
         Assert.assertNotEquals( resultado, 1 );

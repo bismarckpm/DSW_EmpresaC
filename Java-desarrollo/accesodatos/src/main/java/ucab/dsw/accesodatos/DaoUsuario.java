@@ -18,8 +18,14 @@ public class DaoUsuario extends Dao<Usuario>
     }
 
     public List<Usuario> getAnalistas(){
+        _em=_handler.getSession();
+        _handler.beginTransaction();
         TypedQuery<Usuario> analistas= this._em.createNamedQuery("analistas", Usuario.class);
         List<Usuario> resultList= analistas.getResultList();
+        _em.flush();
+        _em.clear();
+        _handler.finishTransaction();
+
 
         return resultList;
     }
