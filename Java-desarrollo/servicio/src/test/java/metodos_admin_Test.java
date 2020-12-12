@@ -37,16 +37,6 @@ public class metodos_admin_Test {
 
 
     @Test
-    public void asignarEncuestaTest() throws Exception
-    {
-        ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
-
-        Response resultado = servicio.asignarEncuesta( 1 ,2);
-        Assert.assertNotEquals( resultado, 0 );
-
-    }
-
-    @Test
     public void EliminarEstudioTest() throws Exception
     {
         ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();

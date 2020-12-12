@@ -141,42 +141,7 @@ public class metodos_admin {
     }
 
 
-    @PUT
-    @Path( "/asignarEncuesta/{id}" )
-    public Response asignarEncuesta(@PathParam("id") long  _id, @PathParam("id") long  _id2 )
-    {
-        JsonObject data;
-        SolicituEstudioDto resultado = new SolicituEstudioDto();
-        try
-        {
-            DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
-            SolicitudEstudio solicitudEstudio = dao.find(_id,SolicitudEstudio.class);
 
-
-            Encuesta encuesta = new Encuesta(_id2);
-            solicitudEstudio.set_encuesta( encuesta );
-
-            SolicitudEstudio resul = dao.update(solicitudEstudio);
-            resultado.setId( resul.get_id() );
-
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200).build();
-
-        }
-        catch ( Exception ex )
-        {
-            String problema = ex.getMessage();
-            data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
-                    .add("codigo",500).build();
-
-
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
-        }
-        return Response.status(Response.Status.OK).entity(data).build();
-    }
 
     @DELETE
     @Path( "/delete-solicitud/{id}" )
