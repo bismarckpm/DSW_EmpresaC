@@ -12,9 +12,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // Entidades
 import { SolicitudEstudio } from "../../../Entidades/solicitudEstudio";
 import { Pregunta } from "../../../Entidades/pregunta";
+import { Estudio } from "../../../Entidades/estudio";
+
+
 //Servicio 
 import { SolicitudEstudioService } from "../../Servicios/solicitud-estudio.service";
 import { PreguntaService } from "../../Servicios/pregunta.service";
+
 
 @Component({
   selector: 'app-asignar-encuesta',
@@ -25,7 +29,7 @@ export class AsignarEncuestaComponent implements OnInit {
   @ViewChild('fform') AgregadorFormDirective;
   AgregadorForm:FormGroup;
 
-  estudio:any;
+  estudio:Estudio;
   preguntas:Pregunta[];
   preguntasSeleccionadas:Pregunta[];
   todasPreguntas:Pregunta[];
@@ -39,7 +43,7 @@ export class AsignarEncuestaComponent implements OnInit {
       
       this.preguntasSeleccionadas=[];
       this.route.params.pipe(switchMap((params: Params) => { return this.solicitudServicio.getEstudio(params['id']); }))
-      .subscribe(x => { this.estudio = x.estudio;   });
+      .subscribe(x => { this.estudio = x.estudio; console.log(x)  });
 
       this.preguntaServicio.getPreguntas().subscribe(x=>{
         this.todasPreguntas=x

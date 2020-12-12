@@ -1,6 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SolicitudEstudio } from "../../../Entidades/solicitudEstudio";
 
+
+//Entidad
+import { Estudio } from "../../../Entidades/estudio";
+
 import { SolicitudEstudioService } from "../../Servicios/solicitud-estudio.service";
 
 @Component({
@@ -9,7 +13,7 @@ import { SolicitudEstudioService } from "../../Servicios/solicitud-estudio.servi
   styleUrls: ['./tarjeta-estudio-progreso.component.css']
 })
 export class TarjetaEstudioProgresoComponent implements OnInit {
-  @Input() estudio:any;
+  @Input() estudio:Estudio;
   
   
   constructor(private estudioService:SolicitudEstudioService) { }

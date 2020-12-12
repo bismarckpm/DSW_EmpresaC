@@ -11,6 +11,7 @@ import { map, catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 //Entidades 
+import { Respuesta } from "../../Entidades/respuesta";
 import { Pregunta } from "../../Entidades/pregunta";
 import { PREGUNTAS } from "../../Entidades/DatosPrueba/preguntas";
 
@@ -28,9 +29,9 @@ export class PreguntaService {
     return of(PREGUNTAS).pipe(delay(2000));
   }
 
-  postPreguntas(objeto:{}): Observable<{}> {
+  postPreguntas(objeto:{}): Observable<Respuesta> {
     // return of(DISHES.filter((dish) => (dish.id === id))[0]).pipe(delay(2000));
-    return this.http.put<{}>(this.URL+"admin/addPregunta",objeto)
+    return this.http.put<Respuesta>(this.URL+"admin/addPregunta",objeto)
   }
 
 

@@ -12,6 +12,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 //Solo para pruebas
 import { SOLICITUDESESTUDIO } from "../../Entidades/DatosPrueba/SolicitudesEstudios";
 import { SOLICITUDESPROGRESO } from "../../Entidades/DatosPrueba/SolicitudesProgreso";
+import { Respuesta } from "../../Entidades/respuesta";
+import { Estudio } from "../../Entidades/estudio";
 
 @Injectable({
   providedIn: 'root'
@@ -22,29 +24,29 @@ export class SolicitudEstudioService {
   constructor(private http: HttpClient) { }
 
 
-  getEstudiosAdministrar(): Observable<{}[]> {
+  getEstudiosAdministrar(): Observable<Respuesta> {
     // return of(DISHES.filter((dish) => (dish.id === id))[0]).pipe(delay(2000));
-    return this.http.get<{}[]>(this.URL + 'admin/estudios-asignados/20')
+    return this.http.get<Respuesta>(this.URL + 'admin/estudios-asignados/20')
   }
 
-  getEstudiosPendientes(): Observable<{}[]> {
+  getEstudiosPendientes(): Observable<Respuesta> {
     // return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000));
     
-    return this.http.get<{}[]>(this.URL + 'admin/estudios-no-asignados/20')
+    return this.http.get<Respuesta>(this.URL + 'admin/estudios-no-asignados/20')
     // 
   }
 
-  DeleteEstudios(id:number): Observable<{}> {
+  DeleteEstudios(id:number): Observable<Respuesta> {
     // return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000));
     
-    return this.http.delete<{}>(this.URL + 'admin/delete-solicitud/'+id)
+    return this.http.delete<Respuesta>(this.URL + 'admin/delete-solicitud/'+id)
     // 
   }
 
-  getEstudio(id:number): Observable<any> {
+  getEstudio(id:number): Observable<Respuesta> {
     // return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000));
 
-    return this.http.get<any>(this.URL + 'admin/estudio/'+id)
+    return this.http.get<Respuesta>(this.URL + 'admin/estudio/'+id)
     
   }
 
