@@ -33,27 +33,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c9c357f-2b07-42bd-afe8-0f758d0713a9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/servicio_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/servicio_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/target/classes/ucab/dsw/accesodatos/Dao.class" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/target/classes/ucab/dsw/accesodatos/Dao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Categoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Categoria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Marca.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Marca.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Subcategoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Subcategoria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Categoria.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Categoria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Marca.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Marca.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Subcategoria.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Subcategoria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CategoriaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CategoriaServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/MarcaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/MarcaServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SubcategoriaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SubcategoriaServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/UsuarioServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/UsuarioServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/CategoriaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/CategoriaTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/SubcategoriasTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/SubcategoriasTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/CategoriaServicio.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/CategoriaServicio.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/MarcaServicio.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/MarcaServicio.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/SubcategoriaServicio.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/SubcategoriaServicio.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/UsuarioServicio.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/UsuarioServicio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoParticipacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoParticipacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoSolicitudEstudio.java" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoSolicitudEstudio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesodatos/target/classes/ucab/dsw/accesodatos/DaoParticipacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/target/classes/ucab/dsw/accesodatos/DaoParticipacion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesodatos/target/classes/ucab/dsw/accesodatos/DaoSolicitudEstudio.class" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/target/classes/ucab/dsw/accesodatos/DaoSolicitudEstudio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Participacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Participacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/SolicitudEstudio.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/SolicitudEstudio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Participacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Participacion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/SolicitudEstudio.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/SolicitudEstudio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/analista_metodos.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/analista_metodos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/analista_metodos_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/analista_metodos_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/analista_metodos.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/analista_metodos.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,14 +154,16 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
-  <component name="RunManager" selected="JUnit.SubcategoriasTest.getSubcategorias">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.analista_metodos_Test.consultaEstudios_asignadosTest">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -309,16 +302,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CategoriaTest.AddCategoria" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="servicio" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CategoriaTest" />
-      <option name="METHOD_NAME" value="AddCategoria" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="SubcategoriasTest.AddSubcategoria" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <option name="PACKAGE_NAME" value="" />
@@ -359,21 +342,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="analista_metodos_Test.consultaEstudios_asignadosTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="analista_metodos_Test" />
+      <option name="METHOD_NAME" value="consultaEstudios_asignadosTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="JBoss Server.JBoss 21.0.0.Final1" />
-      <item itemvalue="JUnit.CategoriaTest.AddCategoria" />
       <item itemvalue="JUnit.SubcategoriasTest.AddSubcategoria" />
       <item itemvalue="JUnit.UsuarioTest.AddUserCliente" />
       <item itemvalue="JUnit.UsuarioTest.AddUserEncuestado" />
       <item itemvalue="JUnit.SubcategoriasTest.getSubcategorias" />
+      <item itemvalue="JUnit.analista_metodos_Test.consultaEstudios_asignadosTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.analista_metodos_Test.consultaEstudios_asignadosTest" />
         <item itemvalue="JUnit.SubcategoriasTest.getSubcategorias" />
         <item itemvalue="JUnit.SubcategoriasTest.AddSubcategoria" />
         <item itemvalue="JUnit.UsuarioTest.AddUserCliente" />
         <item itemvalue="JUnit.UsuarioTest.AddUserEncuestado" />
-        <item itemvalue="JUnit.CategoriaTest.AddCategoria" />
       </list>
     </recent_temporary>
   </component>
@@ -425,6 +418,7 @@
       <workItem from="1607442163675" duration="5927000" />
       <workItem from="1607714064597" duration="6696000" />
       <workItem from="1607723777521" duration="418000" />
+      <workItem from="1607731559769" duration="7595000" />
     </task>
     <servers />
   </component>
@@ -529,29 +523,29 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="507" y="266" key="Github.CreateGistDialog/0.0.1366.728@0.0.1366.728" timestamp="1605854281039" />
-    <state width="1238" height="160" key="GridCell.Tab.0.bottom" timestamp="1607724300311">
+    <state width="1238" height="268" key="GridCell.Tab.0.bottom" timestamp="1607746344704">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
     <state width="980" height="193" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1606246012370" />
-    <state width="1238" height="160" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1607724300311" />
+    <state width="1238" height="268" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1607746344704" />
     <state width="1323" height="265" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="1238" height="160" key="GridCell.Tab.0.center" timestamp="1607724300311">
+    <state width="1238" height="268" key="GridCell.Tab.0.center" timestamp="1607746344704">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
     <state width="980" height="193" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1606246012370" />
-    <state width="1238" height="160" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1607724300311" />
+    <state width="1238" height="268" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1607746344704" />
     <state width="1323" height="265" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="1238" height="160" key="GridCell.Tab.0.left" timestamp="1607724300311">
+    <state width="1238" height="268" key="GridCell.Tab.0.left" timestamp="1607746344704">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
     <state width="980" height="193" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1606246012370" />
-    <state width="1238" height="160" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1607724300311" />
+    <state width="1238" height="268" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1607746344704" />
     <state width="1323" height="265" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="1238" height="160" key="GridCell.Tab.0.right" timestamp="1607724300311">
+    <state width="1238" height="268" key="GridCell.Tab.0.right" timestamp="1607746344704">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
     <state width="980" height="193" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1606246012370" />
-    <state width="1238" height="160" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1607724300311" />
+    <state width="1238" height="268" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1607746344704" />
     <state width="1323" height="265" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
     <state width="980" height="168" key="GridCell.Tab.1.bottom" timestamp="1606183672249">
       <screen x="0" y="0" width="1024" height="728" />
