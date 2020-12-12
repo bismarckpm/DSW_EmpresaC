@@ -178,8 +178,8 @@ public class metodos_admin {
     }
 
     @PUT
-    @Path( "/addEncuesta/{id}" )
-    public Response addEncuesta(@PathParam("id") long  _id,@PathParam("id") long  _id2,EncuestaDto encuestaDto)
+    @Path( "/addEncuesta/{id}/{id2}" )
+    public Response addEncuesta(@PathParam("id") long  _id,@PathParam("id2") long  _id2,EncuestaDto encuestaDto)
     {
         EncuestaDto resultado = new EncuestaDto();
         SolicituEstudioDto resultado3 = new SolicituEstudioDto();
@@ -276,6 +276,9 @@ public class metodos_admin {
             Pregunta resul = dao.insert( pregunta);
             resultado.setId( resul.get_id() );
 
+            JsonObject p = Json.createObjectBuilder().add("id", resul.get_id())
+                    .build();
+
             System.out.println("Id: " + resul.get_id());
             System.out.println("Descripcion: " + preguntaDto.getDescripcion() );
             System.out.println("Tipo de pregunta: "+ preguntaDto.getTipopregunta() );
@@ -307,9 +310,12 @@ public class metodos_admin {
                     resultado3.setId(resul3.get_id());
                 }
             }
+
             data= Json.createObjectBuilder()
                     .add("estado","success")
-                    .add("codigo",200).build();
+                    .add("codigo",200)
+                    .add("Pregunta",p).build();
+
 
 
         }
@@ -460,8 +466,8 @@ public class metodos_admin {
                 if (obj.get_encuesta().get_marca().get_subcategoria().get_categoria().get_id() == _id) {
 
                     JsonObject p = Json.createObjectBuilder().add("id", obj.get_pregunta().get_id())
-                            .add("Descripcion", obj.get_pregunta().get_descripcion())
-                            .add("Tipo", obj.get_pregunta().get_tipopregunta())
+                            .add("descripcion", obj.get_pregunta().get_descripcion())
+                            .add("tipopregunta", obj.get_pregunta().get_tipopregunta())
                             .build();
 
 
@@ -474,8 +480,8 @@ public class metodos_admin {
 
                 if (obj.get_preguntaencuesta().isEmpty() == true) {
                     JsonObject p = Json.createObjectBuilder().add("id", obj.get_id())
-                            .add("Descripcion", obj.get_descripcion())
-                            .add("Tipo", obj.get_tipopregunta())
+                            .add("descripcion", obj.get_descripcion())
+                            .add("tipopregunta", obj.get_tipopregunta())
                             .build();
 
 
