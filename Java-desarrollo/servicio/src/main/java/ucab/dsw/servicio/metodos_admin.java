@@ -211,7 +211,7 @@ public class metodos_admin {
             analista_elegido=analista.get(analista_random);
             solicitudEstudio.set_usuario(analista_elegido);
 
-            solicitudEstudio.set_estado( "Asignado" );
+            solicitudEstudio.set_estado( "Pendiente" );
             solicitudEstudio.set_encuesta( resul );
 
             SolicitudEstudio resul3 = dao3.update(solicitudEstudio);
