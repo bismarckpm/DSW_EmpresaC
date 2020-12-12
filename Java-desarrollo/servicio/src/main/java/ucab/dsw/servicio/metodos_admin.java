@@ -474,7 +474,7 @@ public class metodos_admin {
 
                 if (obj.get_preguntaencuesta().isEmpty() == true) {
                     JsonObject p = Json.createObjectBuilder().add("id", obj.get_id())
-                            .add("Descriocion", obj.get_descripcion())
+                            .add("Descripcion", obj.get_descripcion())
                             .add("Tipo", obj.get_tipopregunta())
                             .build();
 
