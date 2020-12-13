@@ -15,150 +15,145 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.json.Json;
 import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.ws.rs.core.Response;
 import javax.json.JsonArrayBuilder;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-@Path( "/prueba" )
+@Path( "/admin" )
 @Produces( MediaType.APPLICATION_JSON )
 @Consumes( MediaType.APPLICATION_JSON )
 public class metodos_admin {
 
 
     @GET
-    @Path( "/estudios" )
-    public int consultaEstudios_asignados()
+    @Path( "/estudios-asignados/{id}" )
+    public Response consultaEstudios_asignados(@PathParam("id")long  _id)
     {
+        JsonObject data;
         JsonArrayBuilder builder = Json.createArrayBuilder();
-        List<SolicitudEstudio> resultado= null;
+        try {
+            List<SolicitudEstudio> resultado = null;
 
-        DaoSolicitudEstudio dao= new DaoSolicitudEstudio();
-        Class<SolicitudEstudio> type = SolicitudEstudio.class;
+            DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
+            Class<SolicitudEstudio> type = SolicitudEstudio.class;
 
-        resultado= dao.findAll(type);
-        for(SolicitudEstudio obj: resultado) {
-            builder.add(Json.createObjectBuilder().add("cod_pais", obj.get_id())
-                    .add("fecha", obj.get_fecha_inicio().toString())
-                    .add("estatus", obj.get_estado()));
-            if(obj.get_encuesta() == null) {
-                System.out.println("");
-            }else{
-                System.out.println("Id: " + obj.get_id());
-                System.out.println("Marca: " + obj.get_marca().get_nombre());
-                System.out.println("Categoria: " + obj.get_marca().get_subcategoria().get_categoria().get_nombre());
-                System.out.println("Subcategoria: " + obj.get_marca().get_subcategoria().get_nombre());
+            resultado = dao.findAll(type);
+            for (SolicitudEstudio obj : resultado) {
+                if (obj.get_usuario() != null) {
+
+                    System.out.println(obj.get_estado());
+                    if (obj.get_encuesta() != null && obj.get_usuario2().get_id() == _id && obj.get_estado().equals("en ejecucion")) {
+                        JsonObject encuesta = Json.createObjectBuilder().add("Marca", obj.get_marca().get_nombre())
+                                .add("idcategoria", obj.get_marca().get_subcategoria().get_categoria().get_id())
+                                .add("Categoria", obj.get_marca().get_subcategoria().get_categoria().get_nombre())
+                                .add("idsubcategoria", obj.get_marca().get_subcategoria().get_id())
+                                .add("Subcategoria", obj.get_marca().get_subcategoria().get_nombre()).build();
+                        JsonObject tipo = Json.createObjectBuilder().add("id", obj.get_id())
+                                .add("fecha", obj.get_fecha_inicio().toString())
+                                .add("caracteristicas", encuesta).build();
+
+                        builder.add(tipo);
+
+
+                    } else {
+                        System.out.println("");
+                    }
+                }
+
             }
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200)
+                    .add("estudios",builder).build();
+
         }
-        builder.build();
-        return 1;
+        catch (Exception ex){
+            String problema = ex.getMessage();
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+        //builder.build();
+        return Response.status(Response.Status.OK).entity(data).build();
     }
 
     @GET
-    @Path( "/estudios" )
-    public int consultaEstudios_no_asignados()
+    @Path( "/estudios-no-asignados/{id}" )
+    public Response consultaEstudios_no_asignados(@PathParam("id")long  _id)
     {
+        JsonObject data;
+
         JsonArrayBuilder builder = Json.createArrayBuilder();
-        List<SolicitudEstudio> resultado= null;
 
-        DaoSolicitudEstudio dao= new DaoSolicitudEstudio();
-        Class<SolicitudEstudio> type = SolicitudEstudio.class;
+        try {
+            List<SolicitudEstudio> resultado = null;
 
-        resultado= dao.findAll(type);
-        for(SolicitudEstudio obj: resultado) {
-            builder.add(Json.createObjectBuilder().add("cod_pais", obj.get_id())
-                    .add("fecha", obj.get_fecha_inicio().toString())
-                    .add("estatus", obj.get_estado()));
-            if(obj.get_encuesta() == null) {
-                System.out.println("Id: " + obj.get_id());
-                System.out.println("Marca: " + obj.get_marca().get_nombre());
-                System.out.println("Categoria: " + obj.get_marca().get_subcategoria().get_categoria().get_nombre());
-                System.out.println("Subcategoria: " + obj.get_marca().get_subcategoria().get_nombre());
-
-            }else{
-                System.out.println("");
-            }
-        }
-        builder.build();
-        return 1;
-    }
-
-    @DELETE
-    @Path( "/delete/{id}" )
-    public int preguntas_categoria_subcategoria(@PathParam("id") long  _id, @PathParam("id") long  _id2)
-    {
-        JsonArrayBuilder builder = Json.createArrayBuilder();
-        List<Respuesta> resultado= null;
-
-        DaoRespuesta dao= new DaoRespuesta();
-        Class<Respuesta> type = Respuesta.class;
-
-        resultado= dao.findAll(type);
-        System.out.println("Preguntas por Categoria: ");
-        for(Respuesta obj: resultado) {
-
-            if(obj.get_preguntaencuesta().get_encuesta().get_marca().get_subcategoria().get_categoria().get_id() == _id2) {
-                System.out.println("Id: " + obj.get_preguntaencuesta().get_pregunta().get_id());
-                System.out.println("Descripcion: " + obj.get_preguntaencuesta().get_pregunta().get_descripcion());
-                System.out.println("Tipo de pregunta: " + obj.get_preguntaencuesta().get_pregunta().get_tipopregunta());
-                if(obj.get_preguntaencuesta().get_pregunta().get_valormax()!= 0){
-                    System.out.println("Rango minimo: " + obj.get_preguntaencuesta().get_pregunta().get_valormin());
-                    System.out.println("Rango maximo: " + obj.get_preguntaencuesta().get_pregunta().get_valormax());
-                }
-
-            }else{
-                System.out.println("");
-            }
-        }
-
-        System.out.println("Preguntas por SubCategoria: ");
-        for(Respuesta obj: resultado) {
-
-            if(obj.get_preguntaencuesta().get_encuesta().get_marca().get_subcategoria().get_id() == _id) {
-                System.out.println("Id: " + obj.get_preguntaencuesta().get_pregunta().get_id());
-                System.out.println("Descripcion: " + obj.get_preguntaencuesta().get_pregunta().get_descripcion());
-                System.out.println("Tipo de pregunta: " + obj.get_preguntaencuesta().get_pregunta().get_tipopregunta());
-                if(obj.get_preguntaencuesta().get_pregunta().get_valormax()!= 0){
-                    System.out.println("Rango minimo: " + obj.get_preguntaencuesta().get_pregunta().get_valormin());
-                    System.out.println("Rango maximo: " + obj.get_preguntaencuesta().get_pregunta().get_valormax());
-                }
-            }else{
-                System.out.println("");
-            }
-        }
-        builder.build();
-        return 1;
-    }
-
-    @DELETE
-    @Path( "/delete/{id}" )
-    public SolicitudEstudioDto asignarEncuesta(@PathParam("id") long  _id, @PathParam("id") long  _id2 )
-    {
-        SolicitudEstudioDto resultado = new SolicitudEstudioDto();
-        try
-        {
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
-            SolicitudEstudio solicitudEstudio = dao.find(_id,SolicitudEstudio.class);
+            Class<SolicitudEstudio> type = SolicitudEstudio.class;
+
+            resultado = dao.findAll(type);
+            for (SolicitudEstudio obj : resultado) {
+
+                if (obj.get_encuesta() == null && obj.get_usuario2().get_id()== _id) {
 
 
-            Encuesta encuesta = new Encuesta(_id2);
-            solicitudEstudio.set_encuesta( encuesta );
+                    JsonObject encuesta = Json.createObjectBuilder().add("Marca",obj.get_marca().get_nombre())
+                            .add("idcategoria", obj.get_marca().get_subcategoria().get_categoria().get_id())
+                            .add("Categoria",obj.get_marca().get_subcategoria().get_categoria().get_nombre())
+                            .add("idsubcategoria", obj.get_marca().get_subcategoria().get_id())
+                            .add("Subcategoria",obj.get_marca().get_subcategoria().get_nombre()).build();
+                    JsonObject tipo = Json.createObjectBuilder().add("id",obj.get_id())
+                            .add("fecha",obj.get_fecha_inicio().toString())
+                            .add("estatus", obj.get_estado())
+                            .add("caracteristicas",encuesta)
+                            .build();
 
-            SolicitudEstudio resul = dao.update(solicitudEstudio);
-            resultado.setId( resul.get_id() );
+                    builder.add(tipo);
+
+                } else {
+                    System.out.println("");
+                }
+
+
+
+            }
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200)
+                    .add("estudios",builder).build();
+
         }
-        catch ( Exception ex )
-        {
-            String problema = ex.getMessage();
+        catch (Exception ex){
+
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+
         }
-        return  resultado;
+        //builder.build();
+        return Response.status(Response.Status.OK).entity(data).build();
     }
 
+
+
+
     @DELETE
-    @Path( "/delete/{id}" )
-    public SolicitudEstudioDto EliminarEstudio(@PathParam("id") long  _id )
+    @Path( "/delete-solicitud/{id}" )
+    public Response EliminarEstudio(@PathParam("id") long  _id )
     {
-        SolicitudEstudioDto resultado = new SolicitudEstudioDto();
+        JsonObject data;
+        SolicituEstudioDto resultado = new SolicituEstudioDto();
         try
         {
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
@@ -168,20 +163,34 @@ public class metodos_admin {
 
             SolicitudEstudio resul = dao.update(solicitudEstudio);
             resultado.setId( resul.get_id() );
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
         }
         catch ( Exception ex )
         {
             String problema = ex.getMessage();
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
-        return  resultado;
+        return Response.status(Response.Status.OK).entity(data).build();
     }
 
     @PUT
-    @Path( "/addEncuesta" )
-    public EncuestaDto addEncuesta( long  _id,EncuestaDto encuestaDto,List<Pregunta> pregunta)
+    @Path( "/addEncuesta/{id}/{id2}" )
+    public Response addEncuesta(@PathParam("id") long  _id,@PathParam("id2") long  _id2,EncuestaDto encuestaDto)
     {
         EncuestaDto resultado = new EncuestaDto();
-
+        SolicituEstudioDto resultado3 = new SolicituEstudioDto();
+        JsonObject data;
+        int analista_random=0;
+        Usuario analista_elegido=null;
         try
         {
             DaoEncuesta dao = new DaoEncuesta();
@@ -196,42 +205,84 @@ public class metodos_admin {
             Encuesta resul = dao.insert( encuesta);
             resultado.setId( resul.get_id() );
 
+            DaoSolicitudEstudio dao3 = new DaoSolicitudEstudio();
+            SolicitudEstudio solicitudEstudio = dao3.find(_id2,SolicitudEstudio.class);
 
-            for(Pregunta obj: pregunta) {
-                Pregunta_EncuestaDto resultado2 = new Pregunta_EncuestaDto();
-                PreguntaEncuesta preguntaEncuesta = new PreguntaEncuesta();
-                preguntaEncuesta.set_encuesta(resul);
-                preguntaEncuesta.set_pregunta(obj);
+            DaoUsuario daoUsuario=new DaoUsuario();
+            List<Usuario> analista= daoUsuario.getAnalistas();
+            analista_random=(int)(Math.random()* analista.size());
+            System.out.println("analista random");
+            System.out.println(analista_random);
+            analista_elegido=analista.get(analista_random);
+            solicitudEstudio.set_usuario(analista_elegido);
 
-                PreguntaEncuesta resul2 = dao2.insert( preguntaEncuesta);
-                resultado2.setId( resul2.get_id() );
+            solicitudEstudio.set_estado( "Pendiente" );
+            solicitudEstudio.set_encuesta( resul );
 
+            SolicitudEstudio resul3 = dao3.update(solicitudEstudio);
+            resultado3.setId( resul3.get_id() );
+
+            if (encuestaDto.getPreguntas()!=null) {
+
+                List<PreguntaDto> pregunta = encuestaDto.getPreguntas();
+
+                for (PreguntaDto obj : pregunta) {
+                    Pregunta_EncuestaDto resultado2 = new Pregunta_EncuestaDto();
+                    PreguntaEncuesta preguntaEncuesta = new PreguntaEncuesta();
+                    preguntaEncuesta.set_encuesta(resul);
+                    Pregunta pregunta1 = new Pregunta(1);
+                    preguntaEncuesta.set_pregunta(pregunta1);
+
+                    PreguntaEncuesta resul2 = dao2.insert(preguntaEncuesta);
+                    resultado2.setId(resul2.get_id());
+
+
+                }
             }
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
+
         }
         catch ( Exception ex )
         {
             String problema = ex.getMessage();
+
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
-        return  resultado;
+        return Response.status(Response.Status.OK).entity(data).build();
     }
 
     @PUT
     @Path( "/addPregunta" )
-    public PreguntaDto addPregunta(PreguntaDto preguntaDto)
+    public Response addPregunta(PreguntaDto preguntaDto)
     {
         PreguntaDto resultado = new PreguntaDto();
-
+        JsonObject data;
         try
         {
             DaoPregunta dao = new DaoPregunta();
+            DaoOpcionSimpleMultiple dao2 = new DaoOpcionSimpleMultiple();
+            DaoOpcion_Simple_Multiple_Pregunta dao3 = new DaoOpcion_Simple_Multiple_Pregunta();
             Pregunta pregunta = new Pregunta();
             pregunta.set_descripcion( preguntaDto.getDescripcion() );
             pregunta.set_tipopregunta( preguntaDto.getTipopregunta() );
-            pregunta.set_valormax( preguntaDto.getValormax() );
-            pregunta.set_valormin( preguntaDto.getValormin() );
 
+            if (preguntaDto.getTipopregunta().equals("Rango")) {
+                pregunta.set_valormax(preguntaDto.getValormax());
+                pregunta.set_valormin(preguntaDto.getValormin());
+            }
             Pregunta resul = dao.insert( pregunta);
             resultado.setId( resul.get_id() );
+
+            JsonObject p = Json.createObjectBuilder().add("id", resul.get_id())
+                    .build();
 
             System.out.println("Id: " + resul.get_id());
             System.out.println("Descripcion: " + preguntaDto.getDescripcion() );
@@ -242,35 +293,228 @@ public class metodos_admin {
             }
 
 
+            if (preguntaDto.getOpciones()!=null) {
+
+                List<Opcion_Simple_MultipleDto> opcion = preguntaDto.getOpciones();
+
+                for (Opcion_Simple_MultipleDto obj : opcion) {
+                    Opcion_Simple_MultipleDto resultado2 = new Opcion_Simple_MultipleDto();
+
+                    OpcionSimpleMultiple opcionSimpleMultiple = new OpcionSimpleMultiple();
+                    opcionSimpleMultiple.set_opcion(obj.getOpcion());
+
+                    OpcionSimpleMultiple resul2 = dao2.insert(opcionSimpleMultiple);
+                    resultado2.setId(resul2.get_id());
+
+                    Opcion_Simple_Multiple_PreguntaDto resultado3 = new Opcion_Simple_Multiple_PreguntaDto();
+                    Opcion_Simple_Multiple_Pregunta opcion_Simple_Multiple_Pregunta = new Opcion_Simple_Multiple_Pregunta();
+                    opcion_Simple_Multiple_Pregunta.set_opcion_Simple_Multiple_Pregunta(resul2);
+                    opcion_Simple_Multiple_Pregunta.set_pregunta(resul);
+
+                    Opcion_Simple_Multiple_Pregunta resul3 = dao3.insert(opcion_Simple_Multiple_Pregunta);
+                    resultado3.setId(resul3.get_id());
+                }
+            }
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200)
+                    .add("Pregunta",p).build();
+
+
+
         }
         catch ( Exception ex )
         {
             String problema = ex.getMessage();
+
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
-        return  resultado;
+        return Response.status(Response.Status.OK).entity(data).build();
     }
+
+
+
     @GET
-    @Path( "/estudios" )
-    public int Participacion_estudio(long  _id)
+    @Path( "/estudios-participacion/{id}" )
+    public Response Participacion_estudio(@PathParam("id")long  _id)
     {
+        JsonObject data;
         JsonArrayBuilder builder = Json.createArrayBuilder();
-        List<Participacion> resultado= null;
+        try {
+            List<Participacion> resultado = null;
 
-        DaoParticipacion dao= new DaoParticipacion();
-        Class<Participacion> type = Participacion.class;
+            DaoParticipacion dao = new DaoParticipacion();
+            Class<Participacion> type = Participacion.class;
 
-        resultado= dao.findAll(type);
-        for(Participacion obj: resultado) {
+            resultado = dao.findAll(type);
+            for (Participacion obj : resultado) {
 
-            if(obj.get_solicitudestudio().get_id() == _id) {
-                System.out.println("Id: " + obj.get_solicitudestudio().get_id());
-                System.out.println("Participante: " + obj.get_encuestado().get_nombre());
+                if (obj.get_solicitudestudio().get_id() == _id) {
 
-            }else{
-                System.out.println("");
+                    JsonObject p = Json.createObjectBuilder().add("id",obj.get_id())
+                            .add("Participante",obj.get_encuestado().get_nombre())
+                            .add("Estado",obj.get_estado()).build();
+
+                    builder.add(p);
+
+                } else {
+                    System.out.println("");
+                }
             }
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200)
+                    .add("categorias",builder).build();
+
+
         }
-        builder.build();
-        return 1;
+        catch ( Exception ex )
+        {
+            String problema = ex.getMessage();
+
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+        //builder.build();
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
+
+    @GET
+    @Path( "/estudio/{id}" )
+    public Response buscarEstudio(@PathParam("id")long  _id)
+    {
+        JsonObject data;
+        JsonObject builder;
+        try {
+            SolicitudEstudio obj = null;
+
+            DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
+            Class<SolicitudEstudio> type = SolicitudEstudio.class;
+
+            obj = dao.find(_id,type);
+
+            JsonObject encuesta = Json.createObjectBuilder().add("Marca",obj.get_marca().get_nombre())
+                    .add("Categoria",obj.get_marca().get_subcategoria().get_categoria().get_nombre())
+                    .add("Subcategoria",obj.get_marca().get_subcategoria().get_nombre()).build();
+            JsonObject tipo = Json.createObjectBuilder().add("id",obj.get_id())
+                    .add("fecha",obj.get_fecha_inicio().toString())
+                    .add("estatus", obj.get_estado())
+                    .add("caracteristicas",encuesta)
+                    .build();
+
+
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200)
+                    .add("estudio",tipo).build();
+
+
+        }
+        catch ( Exception ex )
+        {
+            String problema = ex.getMessage();
+
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+        //builder.build();
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
+
+    @GET
+    @Path( "/test" )
+    public String consulta()
+    {
+        return "test";
+    }
+
+    @GET
+    @Path( "/preguntas-categoria/{id}" )
+    public Response Preguntas_categoria(@PathParam("id")long  _id)
+    {
+        JsonObject data;
+        JsonArrayBuilder builder = Json.createArrayBuilder();
+        try {
+            List<PreguntaEncuesta> resultado = null;
+            List<Pregunta> resultado2 = null;
+
+            DaoPreguntaEncuesta dao = new DaoPreguntaEncuesta();
+            Class<PreguntaEncuesta> type = PreguntaEncuesta.class;
+
+            DaoPregunta dao2 = new DaoPregunta();
+            Class<Pregunta> type2 = Pregunta.class;
+
+            resultado2 = dao2.findAll(type2);
+
+            resultado = dao.findAll(type);
+
+            for (PreguntaEncuesta obj : resultado) {
+
+                if (obj.get_encuesta().get_marca().get_subcategoria().get_categoria().get_id() == _id) {
+
+                    JsonObject p = Json.createObjectBuilder().add("id", obj.get_pregunta().get_id())
+                            .add("descripcion", obj.get_pregunta().get_descripcion())
+                            .add("tipopregunta", obj.get_pregunta().get_tipopregunta())
+                            .build();
+
+
+                    builder.add(p);
+
+                }
+            }
+
+            for (Pregunta obj : resultado2) {
+
+                if (obj.get_preguntaencuesta().isEmpty() == true) {
+                    JsonObject p = Json.createObjectBuilder().add("id", obj.get_id())
+                            .add("descripcion", obj.get_descripcion())
+                            .add("tipopregunta", obj.get_tipopregunta())
+                            .build();
+
+
+                    builder.add(p);
+                }
+            }
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200)
+                    .add("Preguntas",builder).build();
+
+
+        }
+        catch ( Exception ex )
+        {
+            String problema = ex.getMessage();
+
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+        //builder.build();
+        return Response.status(Response.Status.OK).entity(data).build();
     }
 }

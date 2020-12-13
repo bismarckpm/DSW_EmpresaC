@@ -3,10 +3,12 @@ import org.junit.Test;
 
 import ucab.dsw.accesodatos.DaoPregunta;
 import ucab.dsw.accesodatos.DaoSolicitudEstudio;
+import javax.ws.rs.core.Response;
 import ucab.dsw.dtos.*;
 
 import ucab.dsw.entidades.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,7 +19,7 @@ public class metodos_admin_Test {
     public void find_asignadosTest() throws Exception
     {
         ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
-        int resultado= servicio.consultaEstudios_asignados();
+        Response resultado= servicio.consultaEstudios_asignados(1);
         Assert.assertNotEquals( resultado, 0 );
 
 
@@ -27,37 +29,20 @@ public class metodos_admin_Test {
     public void find_no_asignadosTest() throws Exception
     {
         ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
-        int resultado= servicio.consultaEstudios_no_asignados();
+        Response resultado= servicio.consultaEstudios_no_asignados(1);
         Assert.assertNotEquals( resultado, 0 );
 
 
     }
 
-    @Test
-    public void preguntas_categoria_subcategoriaTest() throws Exception
-    {
-        ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
-        int resultado= servicio.preguntas_categoria_subcategoria(1,1);
-        Assert.assertNotEquals( resultado, 0 );
-    }
-
-    @Test
-    public void asignarEncuestaTest() throws Exception
-    {
-        ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
-
-        SolicitudEstudioDto resultado = servicio.asignarEncuesta( 1 ,2);
-        Assert.assertNotEquals( resultado.getId(), 0 );
-
-    }
 
     @Test
     public void EliminarEstudioTest() throws Exception
     {
         ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
 
-        SolicitudEstudioDto resultado = servicio.EliminarEstudio( 1 );
-        Assert.assertNotEquals( resultado.getId(), 0 );
+        Response resultado = servicio.EliminarEstudio( 1 );
+        Assert.assertNotEquals( resultado, 0 );
 
     }
 
@@ -67,17 +52,11 @@ public class metodos_admin_Test {
         ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
         EncuestaDto encuestaDto = new EncuestaDto();
 
-        encuestaDto.setNombre( "mejor color?" );
 
+        encuestaDto.setNombre( "siva?" );
 
-
-        List<Pregunta> pregunta = null;
-        Class<Pregunta> type = Pregunta.class;
-        DaoPregunta dao= new DaoPregunta();
-        pregunta= dao.findAll(type);
-
-        EncuestaDto resultado = servicio.addEncuesta( 2,encuestaDto,pregunta);
-        Assert.assertNotEquals( resultado.getId(), 1 );
+        Response resultado = servicio.addEncuesta( 3,6,encuestaDto);
+        Assert.assertNotEquals( 0, 1 );
     }
 
     @Test
@@ -85,21 +64,36 @@ public class metodos_admin_Test {
     {
         ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
         PreguntaDto preguntaDto = new PreguntaDto();
+        Opcion_Simple_MultipleDto opcion_Simple_MultipleDto= new Opcion_Simple_MultipleDto();
+
+        opcion_Simple_MultipleDto.setOpcion("carlos");
 
         preguntaDto.setDescripcion( "te calma este color?" );
-        preguntaDto.setTipopregunta( "Rango" );
-        preguntaDto.setValormax( 10 );
-        preguntaDto.setValormin( 0 );
+        preguntaDto.setTipopregunta( "Opcion simple" );
 
-        PreguntaDto resultado = servicio.addPregunta( preguntaDto);
-        Assert.assertNotEquals( resultado.getId(), 1 );
+        List<Opcion_Simple_MultipleDto> opcion = new ArrayList<>();
+        opcion.add(opcion_Simple_MultipleDto);
+        preguntaDto.setOpciones(opcion);
+
+        Response resultado = servicio.addPregunta( preguntaDto);
+        Assert.assertNotEquals( resultado, 1 );
     }
 
     @Test
     public void Participacion_estudioTest() throws Exception
     {
         ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
-        int resultado= servicio.Participacion_estudio(5);
+        Response resultado= servicio.Participacion_estudio(5);
+        Assert.assertNotEquals( resultado, 0 );
+
+
+    }
+
+    @Test
+    public void Pregunta_CategoriaTest() throws Exception
+    {
+        ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
+        Response resultado= servicio.Preguntas_categoria(5);
         Assert.assertNotEquals( resultado, 0 );
 
 

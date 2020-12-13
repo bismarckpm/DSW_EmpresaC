@@ -3,6 +3,9 @@ package ucab.dsw.accesodatos;
 import ucab.dsw.entidades.Pregunta;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import java.util.List;
+
 public class DaoPregunta extends Dao<Pregunta> {
 
 
@@ -14,4 +17,5 @@ public class DaoPregunta extends Dao<Pregunta> {
     {
         super( _handler );
     }
+
 }

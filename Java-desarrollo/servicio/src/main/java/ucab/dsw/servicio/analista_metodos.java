@@ -7,6 +7,7 @@ import ucab.dsw.excepciones.PruebaExcepcion;
 
 import javax.json.*;
 import javax.persistence.PersistenceException;
+import javax.json.JsonObject;
 import javax.validation.constraints.Null;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -15,6 +16,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+import javax.ws.rs.core.Response;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -107,6 +109,42 @@ public class analista_metodos {
 
         }
         System.out.println(data);
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
+
+    @PUT
+    @Path( "/empezar-estudio/{id}" )
+    public Response Empezar_estudio(@PathParam("id") long  _id )
+    {
+        JsonObject data;
+        SolicituEstudioDto resultado = new SolicituEstudioDto();
+        try
+        {
+            DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
+            SolicitudEstudio solicitudEstudio = dao.find(_id,SolicitudEstudio.class);
+
+            solicitudEstudio.set_estado( "en progreso" );
+
+            SolicitudEstudio resul = dao.update(solicitudEstudio);
+            resultado.setId( resul.get_id() );
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
+
+        }
+        catch ( Exception ex )
+        {
+            String problema = ex.getMessage();
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+
         return Response.status(Response.Status.OK).entity(data).build();
     }
 }
