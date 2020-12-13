@@ -19,7 +19,7 @@ public class metodos_admin_Test {
     public void find_asignadosTest() throws Exception
     {
         ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
-        Response resultado= servicio.consultaEstudios_asignados(1);
+        Response resultado= servicio.consultaEstudios_asignados(16);
         Assert.assertNotEquals( resultado, 0 );
 
 
@@ -29,7 +29,7 @@ public class metodos_admin_Test {
     public void find_no_asignadosTest() throws Exception
     {
         ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
-        Response resultado= servicio.consultaEstudios_no_asignados(1);
+        Response resultado= servicio.consultaEstudios_no_asignados(16);
         Assert.assertNotEquals( resultado, 0 );
 
 
