@@ -1,5 +1,6 @@
 import { Estudio } from "./estudio";
 import { Pregunta } from "./pregunta";
+import { Participante } from "./participante"
 
 export class Respuesta{
 
@@ -9,5 +10,6 @@ export class Respuesta{
     estudio:Estudio;
     Preguntas:Pregunta[];
     Pregunta:Pregunta;
+    Participantes:Participante[];
 
 }

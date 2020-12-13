@@ -35,7 +35,7 @@ export class Pregunta{
         this.tipopregunta=t;
         this.minimo=null;
         this.maximo=null;
-        this.opciones=o;
+        
     }
 
 

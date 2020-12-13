@@ -50,5 +50,12 @@ export class SolicitudEstudioService {
     
   }
 
+  getParticipantes(id:number): Observable<Respuesta> {
+    // return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000));
+
+    return this.http.get<Respuesta>(this.URL + 'admin/estudios-participacion/'+id)
+    
+  }
+
 
 }

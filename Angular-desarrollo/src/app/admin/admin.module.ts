@@ -23,6 +23,7 @@ import { SolicitudEstudioService } from "./Servicios/solicitud-estudio.service";
 import { PreguntaService } from "./Servicios/pregunta.service";
 import { ContenedorPreguntaNuevaComponent } from './componentes/Preguntas/contenedor-pregunta-nueva/contenedor-pregunta-nueva.component';
 import { ContenedorPreguntaViejaComponent } from './componentes/Preguntas/contenedor-pregunta-vieja/contenedor-pregunta-vieja.component';
+import { TarjetaParticipantesComponent } from './componentes/tarjeta-participantes/tarjeta-participantes.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ContenedorPreguntaViejaComponent } from './componentes/Preguntas/conten
     TarjetaEstudioProgresoComponent,
     EstudioDetalleComponent,
     ContenedorPreguntaNuevaComponent,
-    ContenedorPreguntaViejaComponent
+    ContenedorPreguntaViejaComponent,
+    TarjetaParticipantesComponent
   ],
   imports: [
     CommonModule,
