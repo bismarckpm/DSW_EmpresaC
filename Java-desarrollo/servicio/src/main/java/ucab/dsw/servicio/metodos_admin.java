@@ -229,7 +229,7 @@ public class metodos_admin {
                     Pregunta_EncuestaDto resultado2 = new Pregunta_EncuestaDto();
                     PreguntaEncuesta preguntaEncuesta = new PreguntaEncuesta();
                     preguntaEncuesta.set_encuesta(resul);
-                    Pregunta pregunta1 = new Pregunta(1);
+                    Pregunta pregunta1 = new Pregunta(obj.getId());
                     preguntaEncuesta.set_pregunta(pregunta1);
 
                     PreguntaEncuesta resul2 = dao2.insert(preguntaEncuesta);
