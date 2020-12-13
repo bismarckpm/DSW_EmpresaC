@@ -46,7 +46,9 @@ public class metodos_admin {
                     System.out.println(obj.get_estado());
                     if (obj.get_encuesta() != null && obj.get_usuario2().get_id() == _id && obj.get_estado().equals("en ejecucion")) {
                         JsonObject encuesta = Json.createObjectBuilder().add("Marca", obj.get_marca().get_nombre())
+                                .add("idcategoria", obj.get_marca().get_subcategoria().get_categoria().get_id())
                                 .add("Categoria", obj.get_marca().get_subcategoria().get_categoria().get_nombre())
+                                .add("idsubcategoria", obj.get_marca().get_subcategoria().get_id())
                                 .add("Subcategoria", obj.get_marca().get_subcategoria().get_nombre()).build();
                         JsonObject tipo = Json.createObjectBuilder().add("id", obj.get_id())
                                 .add("fecha", obj.get_fecha_inicio().toString())
@@ -102,7 +104,9 @@ public class metodos_admin {
 
 
                     JsonObject encuesta = Json.createObjectBuilder().add("Marca",obj.get_marca().get_nombre())
+                            .add("idcategoria", obj.get_marca().get_subcategoria().get_categoria().get_id())
                             .add("Categoria",obj.get_marca().get_subcategoria().get_categoria().get_nombre())
+                            .add("idsubcategoria", obj.get_marca().get_subcategoria().get_id())
                             .add("Subcategoria",obj.get_marca().get_subcategoria().get_nombre()).build();
                     JsonObject tipo = Json.createObjectBuilder().add("id",obj.get_id())
                             .add("fecha",obj.get_fecha_inicio().toString())
