@@ -358,7 +358,8 @@ public class metodos_admin {
                 if (obj.get_solicitudestudio().get_id() == _id) {
 
                     JsonObject p = Json.createObjectBuilder().add("id",obj.get_id())
-                            .add("Participante",obj.get_encuestado().get_nombre()).build();
+                            .add("Participante",obj.get_encuestado().get_nombre())
+                            .add("Estado",obj.get_estado()).build();
 
                     builder.add(p);
 
