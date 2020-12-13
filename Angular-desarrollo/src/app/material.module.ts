@@ -61,7 +61,6 @@ import { MatTableModule } from '@angular/material/table';
     exports: [
         MatNativeDateModule,
         MatButtonModule,
-        MatToolbarModule,
         MatIconModule,
         MatSidenavModule,
         MatToolbarModule,
@@ -100,8 +99,6 @@ import { MatTableModule } from '@angular/material/table';
         MatSlideToggleModule,
         MatMenuModule,
         MatSidenavModule,
-        MatToolbarModule,
-        MatCardModule,
         MatDividerModule,
         MatExpansionModule,
         MatGridListModule,

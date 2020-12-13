@@ -62,9 +62,7 @@ public class analista_metodos {
                                                          .add("pais",caracteristicas.get_Parroquia_demografia().get_ciudad().get_estado().get_pais().get_nombre())
                                                          .add("nivel_academico",caracteristicas.get_nivel_academico_demografia().get_nombre()).build();
 
-                Marca marca=daoMarca.find(obj.get_marca().get_id(), Marca.class);
-                Subcategoria subcategoria=daoSubcategoria.find(marca.get_subcategoria().get_id(),Subcategoria.class);
-                Categoria categoria=daoCategoria.find(subcategoria.get_categoria().get_id(),Categoria.class);
+            
                 List<Participacion> participacion= daoParticipacion.getParticipacionByEstudio(obj.get_id());
 
                 for(Participacion j:participacion){
@@ -83,9 +81,9 @@ public class analista_metodos {
                                                       .add("fecha", obj.get_fecha_inicio().toString())
                                                       .add("modo_encuesta",obj.get_modoencuesta())
                                                       .add("caracteristica_demografica",builderObject)
-                                                      .add("marca",marca.get_nombre())
-                                                      .add("subcategoria",subcategoria.get_nombre())
-                                                      .add("categoria",categoria.get_nombre())
+                                                      .add("marca",obj.get_marca().get_nombre())
+                                                      .add("subcategoria",obj.get_marca().get_subcategoria().get_nombre())
+                                                      .add("categoria",obj.get_marca().get_subcategoria().get_categoria().get_nombre())
                                                       .add("participacion",builderArrayEncuestado)
                                                       .add("estado", obj.get_estado()));
 

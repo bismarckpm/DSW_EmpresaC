@@ -26,10 +26,18 @@ export class AnadirModalComponent implements OnInit {
   
     this._adminCategoriaService.addCategoria(this.categoriaDto).subscribe(
       (response)=>{
-        console.log(response);
-        this._toastrService.success("Exito", "Categoria añadida");
-        this._toastrService.info('Espero un momento, por favor.','Actualizando...');
-        this.eventBus.cast('actualizar','actualizar');
+		  console.log(response);
+		  if(response.estado=='success'){
+			    this._toastrService.success("Exito", "Categoria añadida");
+				this._toastrService.info('Espero un momento, por favor.','Actualizando...');
+				this.eventBus.cast('actualizar','actualizar');
+		  }
+		  else{
+			  this._toastrService.error("Esta categoria ya se encuentra en el sistema", "Error");
+			  this.eventBus.cast('fin-progress','chao');
+		  }
+		  
+
       },
       (error)=>{
         console.log(error);

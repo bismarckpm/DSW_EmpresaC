@@ -236,6 +236,24 @@ button.toast-close-button {
     justify-content: space-between;
 }
 
+.estudio-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 0 30px;
+}
+
+.pendiente {
+    display: inline-block;
+    color: red;
+}
+
+.en-progreso {
+    display: inline-block;
+    color: green;
+}
+
 
 /* Responsive Design */
 
