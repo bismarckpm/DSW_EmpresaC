@@ -58,12 +58,14 @@
   </mat-card-header>
   <mat-card-content>
 
+    <form novalidate [formGroup]="encuestaForm" #fform="ngForm" >
     <div class="form-group">
       <label for="exampleInputEncuesta1">Nombre de la Encuesta</label>
-      <input type="text" class="form-control" id="exampleInputEncuesta1" aria-describedby="EncuestaHelp">
+      <input formControlName="nombre" type="text" class="form-control" id="exampleInputEncuesta1" aria-describedby="EncuestaHelp">
     </div>
+    </form>
           <mat-card-actions>
-        <button mat-raised-button color="#ffc107" type="submit">Aceptar encuesta</button>
+        <button mat-raised-button color="#ffc107" (click)="aceptarEncuesta()">Aceptar encuesta</button>
       </mat-card-actions>
     
   </mat-card-content>

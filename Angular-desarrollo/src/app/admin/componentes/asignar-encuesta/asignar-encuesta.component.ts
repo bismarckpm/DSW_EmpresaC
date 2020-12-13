@@ -28,12 +28,14 @@ import { PreguntaService } from "../../Servicios/pregunta.service";
 export class AsignarEncuestaComponent implements OnInit {
   @ViewChild('fform') AgregadorFormDirective;
   AgregadorForm:FormGroup;
-
+  encuestaForm:FormGroup;
   estudio:Estudio;
   preguntas:Pregunta[];
   preguntasSeleccionadas:Pregunta[];
   todasPreguntas:Pregunta[];
   preguntasNuevas:Pregunta[]=[];
+
+  error:string;
 
   constructor(private route: ActivatedRoute,
     private location: Location,
@@ -57,12 +59,20 @@ export class AsignarEncuestaComponent implements OnInit {
 
   ngOnInit(): void {
     this.CrearAgregador();
+    this.CrearEncuesta()
   }
 
 
   CrearAgregador(){
     this.AgregadorForm=this.fb.group({
       tipo: 'none',
+
+    });
+  }
+
+  CrearEncuesta(){
+    this.encuestaForm=this.fb.group({
+      nombre: '',
 
     });
   }
@@ -88,6 +98,49 @@ export class AsignarEncuestaComponent implements OnInit {
     console.log(p);
     this.preguntas.push(p);
     this.preguntasSeleccionadas=this.preguntasSeleccionadas.filter(x=>x.id!=p.id);
+  }
+
+
+  aceptarEncuesta(){
+    console.log(this.preguntasSeleccionadas)
+    console.log(this.encuestaForm.value)
+    if(this.encuestaForm.value.nombre!=""){
+      if(this.preguntasSeleccionadas.length==0){
+        this.error="seleccione 1 pregunta para la encuesta"
+      }
+      else{
+        var encuesta:{}
+        var preguntas=[]
+        var p:{}
+        
+        for (let index = 0; index < this.preguntasSeleccionadas.length; index++) {
+          const element = this.preguntasSeleccionadas[index];
+          p={"id":this.preguntasSeleccionadas[index].id}
+          preguntas.push(p)
+        }
+
+        encuesta={
+          "nombre":this.encuestaForm.value.nombre,
+          "preguntas":preguntas
+
+        }
+
+        console.log(encuesta)
+
+
+
+      }
+
+
+
+    }
+    else{
+      this.error="coloque un nombre a la encuesta"
+    }
+
+
+
+
   }
 
 }
