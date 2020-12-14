@@ -34,10 +34,11 @@
   import {  AdministrarSubcategoriasService } from "./Servicios/administrar-subcategorias/administrar-subcategorias.service";
   import { AnadirModalComponent } from '../admin/componentes/administrar-categoria/anadir/anadir-modal/anadir-modal.component';
   import { TarjetaParticipantesComponent } from './componentes/tarjeta-participantes/tarjeta-participantes.component';
-
-
-
-  @NgModule({
+  import { AnadirComponent } from './componentes/administrar-subcategorias/anadir/anadir.component';
+  import { AnadirMarcaComponent } from './componentes/administrar-marcas/anadir-marca/anadir.component';
+  import { ModifSubcategoriaComponent } from './componentes/administrar-subcategorias/modif-subcategoria/modif-subcategoria.component';
+  
+@NgModule({
     declarations: [
       AdminComponent,
       DashboardComponent,
@@ -54,7 +55,10 @@
       AdministrarSubcategoriasComponent,
       AdministrarUsuariosComponent,
       AnadirModalComponent,
-      TarjetaParticipantesComponent
+      TarjetaParticipantesComponent,
+      AnadirComponent,
+      AnadirMarcaComponent,
+      ModifSubcategoriaComponent
     ],
     imports: [
       CommonModule,
