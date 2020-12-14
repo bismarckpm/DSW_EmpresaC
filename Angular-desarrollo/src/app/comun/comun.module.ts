@@ -4,6 +4,7 @@
   import { MaterialModule } from '../material.module';
   import { RouterModule } from '@angular/router';
   import { ReactiveFormsModule } from '@angular/forms';
+  import { FormsModule } from '@angular/forms';
 
   /* Componentes */
   import { AsideComponent } from './componentes/aside/aside.component';
@@ -22,7 +23,8 @@
       MaterialModule,
       RouterModule,
       CommonModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      FormsModule
     ],
     exports:[NavbarComponent, FooterComponent, LoginComponent,  AsideComponent,CommonModule]
   })

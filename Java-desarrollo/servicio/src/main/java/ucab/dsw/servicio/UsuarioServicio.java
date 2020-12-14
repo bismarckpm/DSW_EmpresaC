@@ -1,14 +1,17 @@
 package ucab.dsw.servicio;
 
+import org.eclipse.persistence.exceptions.DatabaseException;
 import ucab.dsw.accesodatos.DaoCliente;
 import ucab.dsw.accesodatos.DaoEncuesta;
 import ucab.dsw.accesodatos.DaoEncuestado;
 import ucab.dsw.dtos.ClienteDto;
 import ucab.dsw.dtos.EncuestadoDto;
 import ucab.dsw.entidades.*;
+import ucab.dsw.excepciones.PruebaExcepcion;
 
 import javax.json.Json;
 import javax.json.JsonObject;
+import javax.persistence.PersistenceException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -53,17 +56,24 @@ public class UsuarioServicio extends AplicacionBase {
 
 
         }
-        catch ( Exception ex )
-        {
-            ex.printStackTrace();
+        catch (PersistenceException | DatabaseException ex){
             data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
+                    .add("estado","error")
+                    .add("mensaje","El usuario ya se encuestra registrado")
                     .add("codigo",500).build();
 
             System.out.println(data);
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
 
+            return Response.status(Response.Status.OK).entity(data).build();
+        }
+        catch ( Exception ex){
+            data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje",ex.getMessage())
+                    .add("codigo",500).build();
+
+            System.out.println(data);
+            return Response.status(Response.Status.OK).entity(data).build();
 
         }
 
@@ -118,17 +128,24 @@ public class UsuarioServicio extends AplicacionBase {
 
 
         }
-        catch ( Exception ex )
-        {
-            ex.printStackTrace();
+        catch (PersistenceException | DatabaseException ex){
             data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
+                    .add("estado","error")
+                    .add("mensaje","El usuario ya se encuestra registrado")
                     .add("codigo",500).build();
 
             System.out.println(data);
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
 
+            return Response.status(Response.Status.OK).entity(data).build();
+        }
+        catch ( Exception ex){
+            data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje",ex.getMessage())
+                    .add("codigo",500).build();
+
+            System.out.println(data);
+            return Response.status(Response.Status.OK).entity(data).build();
 
         }
 

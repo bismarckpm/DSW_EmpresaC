@@ -6,6 +6,8 @@ import ucab.dsw.dtos.SolicitudEstudioDto;
 import ucab.dsw.dtos.TipoDto;
 import ucab.dsw.entidades.Presentacion;
 
+import javax.ws.rs.core.Response;
+
 
 public class crud_tipo_test
 {
@@ -15,33 +17,34 @@ public class crud_tipo_test
     {
         ucab.dsw.servicio.crud_tipo servicio = new ucab.dsw.servicio.crud_tipo();
         TipoDto tipoDto = new TipoDto();
-        tipoDto.setNombre( "spray" );
+        tipoDto.setNombre( "Polvo" );
 
-        TipoDto resultado = servicio.addTipo( tipoDto);
-        Assert.assertNotEquals( resultado.getId(), 1 );
+        Response resultado = servicio.addTipo( tipoDto);
+        Assert.assertNotEquals( resultado, 1 );
 
     }
 
     @Test
-    public void changePresentacionTest() throws Exception
+    public void changeTipoTest() throws Exception
     {
         ucab.dsw.servicio.crud_tipo servicio = new ucab.dsw.servicio.crud_tipo();
         TipoDto tipoDto = new TipoDto();
-        tipoDto.setNombre( "spray" );
+        tipoDto.setNombre( "Polvo" );
 
 
-        TipoDto resultado = servicio.changeTipo( 1,tipoDto);
-        Assert.assertNotEquals( resultado.getId(), 0 );
+
+        Response resultado = servicio.changeTipo( 1,tipoDto);
+        Assert.assertNotEquals( resultado, 0 );
 
     }
 
     @Test
-    public void EliminarTpoTest() throws Exception
+    public void eliminarTpoTest() throws Exception
     {
         ucab.dsw.servicio.crud_tipo servicio = new ucab.dsw.servicio.crud_tipo();;
 
-        TipoDto resultado = servicio.EliminarTipo( 1 );
-        Assert.assertNotEquals( resultado.getId(), 0 );
+        Response resultado = servicio.EliminarTipo( 1 );
+        Assert.assertNotEquals( resultado, 0 );
 
     }
 
@@ -49,16 +52,16 @@ public class crud_tipo_test
     public void findTipoTest() throws Exception
     {
         ucab.dsw.servicio.crud_tipo servicio = new ucab.dsw.servicio.crud_tipo();
-        int resultado= servicio.findTipo(2);
+        Response resultado= servicio.findTipo(2);
         Assert.assertNotEquals( resultado, 0 );
 
 
     }
     @Test
-    public void findAllPresentacionTest() throws Exception
+    public void findAllTipoTest() throws Exception
     {
         ucab.dsw.servicio.crud_tipo servicio = new ucab.dsw.servicio.crud_tipo();
-        int resultado= servicio.findAllTipo();
+        Response resultado= servicio.findAllTipo();
         Assert.assertNotEquals( resultado, 0 );
 
 

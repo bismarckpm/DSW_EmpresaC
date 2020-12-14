@@ -45,6 +45,16 @@ public class Marca extends EntidadBase{
         this._nombre = _nombre;
     }
 
+    @Column( name = "estado" )
+    private String _estado;
+
+    public String get_estado() {
+        return _estado;
+    }
+
+    public void set_estado(String _estado) {
+        this._estado = _estado;
+    }
 
 
     public Marca( long id )

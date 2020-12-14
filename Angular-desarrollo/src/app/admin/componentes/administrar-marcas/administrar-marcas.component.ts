@@ -1,7 +1,27 @@
-import { Component, OnInit } from '@angular/core';
 import {  AdminMarcasService } from "../../Servicios/administrar-marcas/admin-marcas.service";
 import { ToastrService } from 'ngx-toastr';
 import { NgEventBus } from 'ng-event-bus';
+import { AfterViewInit,Component, OnInit,ViewChild } from '@angular/core';
+import {MatTableDataSource} from '@angular/material/table'
+import {MatSort} from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { AnadirMarcaComponent } from './anadir-marca/anadir.component';
+import { MatDialog } from '@angular/material/dialog';
+
+
+export interface Marca {
+  id: number;
+  nombre: string;
+  subcategoria_id:number;
+  subcategoria: string;
+  estado: string;
+  
+}
+
+const ELEMENT_DATA: Marca[] = [
+  {id: 1, nombre: 'Hydrogen',subcategoria_id:1, subcategoria:'Lacteos' , estado: 'H'},
+];
+
 
 @Component({
   selector: 'app-administrar-marcas',
@@ -9,34 +29,60 @@ import { NgEventBus } from 'ng-event-bus';
   styleUrls: ['./administrar-marcas.component.css'],
   providers:[AdminMarcasService]
 })
-export class AdministrarMarcasComponent implements OnInit {
+export class AdministrarMarcasComponent implements OnInit, AfterViewInit{
+  
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  
+  public displayedColumns: string[] = ['id', 'nombre', 'subcategoria', 'estado', 'acciones'];
+  public dataSource = new MatTableDataSource<Marca>();
+  public dialogRef;
+  
+ 
 
-  public marcas:any;
-
-  constructor(private _adminMarcas:AdminMarcasService,private _toastrService: ToastrService,private eventBus: NgEventBus) { }
-
+  constructor(public dialog: MatDialog,private _adminMarcas:AdminMarcasService,private _toastrService: ToastrService,private eventBus: NgEventBus) { }
+ 
   ngOnInit(): void {
-
     this.init();
   }
 
-  displayedColumns: string[] = ['name', 'subcategoria', 'estado'];
- 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
 
+  init(){
+    this._toastrService.info('Espero un momento, por favor.','Cargando...');
+    this.getAllMarcas();
+    this.eventBus.cast('inicio-progress','hola');
+  }
+  
   getAllMarcas(){
+    //this.dataSource.data=ELEMENT_DATA;
     this._adminMarcas.getAllMarcas().subscribe(
       (response)=>{
         console.log(response);
-        this.marcas=response.marcas;
+        this.dataSource.data=response.marcas;
         this._toastrService.success("Exito", "Todas las marcas");
+        this.eventBus.cast('fin-progress','chao');
       },
       (error)=>{
         console.log(error);
         this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        this.eventBus.cast('fin-progress','chao');
       });
   }
 
-  init(){
-    this.getAllMarcas();
-  }
+   openDialog() {
+     this.dialogRef = this.dialog.open(AnadirMarcaComponent, {
+      width: '500px',
+    });
+    
+    this.dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+    
 }
+}
+
+
+  
+

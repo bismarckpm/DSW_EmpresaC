@@ -15,7 +15,8 @@ import java.util.List;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name="EstudiosByCliente", query="select e FROM SolicitudEstudio e where e._cliente._id=:cliente_id and e._marca_solicitud._id=:marca_id")
+        @NamedQuery(name="EstudiosByCliente", query="select e FROM SolicitudEstudio e where e._cliente._id=:cliente_id and e._marca_solicitud._id=:marca_id"),
+        @NamedQuery(name="EstudiosByAnalista", query="select e FROM SolicitudEstudio e where e._usuario._id=:analista_id")
 })
 @Table( name = "Solicitud_Estudio" )
 public class SolicitudEstudio extends EntidadBase{

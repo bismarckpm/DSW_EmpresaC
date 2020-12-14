@@ -6,6 +6,7 @@
   import { AdminRoutingModule } from './admin-routing.module';
   import { ComunModule } from '../comun/comun.module';
   import { MaterialModule } from '.././material.module';
+  import { FormsModule } from '@angular/forms';
 
 
   /* Componentes */
@@ -20,15 +21,24 @@
   import {AdministrarMarcasComponent} from "./componentes/administrar-marcas/administrar-marcas.component";
   import { ContenedorPreguntaNuevaComponent } from './componentes/Preguntas/contenedor-pregunta-nueva/contenedor-pregunta-nueva.component';
   import { ContenedorPreguntaViejaComponent } from './componentes/Preguntas/contenedor-pregunta-vieja/contenedor-pregunta-vieja.component';
-
+  import { AdministrarCategoriaComponent } from './componentes/administrar-categoria/administrar-categoria.component';
+  import { AdministrarSubcategoriasComponent } from './componentes/administrar-subcategorias/administrar-subcategorias.component';
+  import { AdministrarUsuariosComponent } from './componentes/administrar-usuarios/administrar-usuarios.component';
+  
 
   //Servicios
   import { SolicitudEstudioService } from "./Servicios/solicitud-estudio.service";
   import { PreguntaService } from "./Servicios/pregunta.service";
   import {  AdminMarcasService } from "./Servicios/administrar-marcas/admin-marcas.service";
-
-
-  @NgModule({
+  import {  AdministrarCategoriasService } from "./Servicios/administrar-categorias/administrar-categorias.service";
+  import {  AdministrarSubcategoriasService } from "./Servicios/administrar-subcategorias/administrar-subcategorias.service";
+  import { AnadirModalComponent } from '../admin/componentes/administrar-categoria/anadir/anadir-modal/anadir-modal.component';
+  import { TarjetaParticipantesComponent } from './componentes/tarjeta-participantes/tarjeta-participantes.component';
+  import { AnadirComponent } from './componentes/administrar-subcategorias/anadir/anadir.component';
+  import { AnadirMarcaComponent } from './componentes/administrar-marcas/anadir-marca/anadir.component';
+  import { ModifSubcategoriaComponent } from './componentes/administrar-subcategorias/modif-subcategoria/modif-subcategoria.component';
+  
+@NgModule({
     declarations: [
       AdminComponent,
       DashboardComponent,
@@ -40,17 +50,27 @@
       EstudioDetalleComponent,
       ContenedorPreguntaNuevaComponent,
       ContenedorPreguntaViejaComponent,
-      AdministrarMarcasComponent
+      AdministrarMarcasComponent,
+      AdministrarCategoriaComponent,
+      AdministrarSubcategoriasComponent,
+      AdministrarUsuariosComponent,
+      AnadirModalComponent,
+      TarjetaParticipantesComponent,
+      AnadirComponent,
+      AnadirMarcaComponent,
+      ModifSubcategoriaComponent
     ],
     imports: [
       CommonModule,
       AdminRoutingModule,
       ComunModule,
       MaterialModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      FormsModule
     ],
     providers:[SolicitudEstudioService,
-    PreguntaService,  AdminMarcasService
+    PreguntaService,  AdminMarcasService, AdministrarCategoriasService,AdministrarSubcategoriasService
     ]
   })
   export class AdminModule { }
+

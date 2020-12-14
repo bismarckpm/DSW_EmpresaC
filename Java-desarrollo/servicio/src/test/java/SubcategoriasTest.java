@@ -6,14 +6,14 @@ import ucab.dsw.dtos.SubcategoriaDto;
 import javax.ws.rs.core.Response;
 
 public class SubcategoriasTest {
-    @Test
+    /*@Test
     public void getSubcategorias() throws Exception
     {
         ucab.dsw.servicio.SubcategoriaServicio servicio = new ucab.dsw.servicio.SubcategoriaServicio();
         Response respuesta= servicio.getAllSubcategorias();
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
 
-    }
+    }*/
 
     @Test
     public void getSubcategoria() throws Exception
@@ -28,7 +28,7 @@ public class SubcategoriasTest {
     {
         ucab.dsw.servicio.SubcategoriaServicio servicio = new ucab.dsw.servicio.SubcategoriaServicio();
         SubcategoriaDto subcategoriaDto=new SubcategoriaDto();
-        subcategoriaDto.setNombre("prueba");
+        subcategoriaDto.setNombre("Kali");
         CategoriaDto categoriaDto=new CategoriaDto(1);
         subcategoriaDto.setCategoriaDto(categoriaDto);
         Response respuesta= servicio.addSubcategoria(subcategoriaDto);
@@ -40,6 +40,25 @@ public class SubcategoriasTest {
     {
         ucab.dsw.servicio.SubcategoriaServicio servicio = new ucab.dsw.servicio.SubcategoriaServicio();
         Response respuesta= servicio.getSubcategoriasByCategoriaId(11);
+        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+    }
+
+    @Test
+    public void editSubcategoria() throws Exception {
+        ucab.dsw.servicio.SubcategoriaServicio servicio = new ucab.dsw.servicio.SubcategoriaServicio();
+        SubcategoriaDto subcategoriaDto=new SubcategoriaDto();
+        CategoriaDto categoriaDto=new CategoriaDto(1);
+        subcategoriaDto.setNombre("Probando");
+        subcategoriaDto.setCategoriaDto(categoriaDto);
+        Response respuesta= servicio.editSubcategoria(5,subcategoriaDto);
+        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+    }
+
+    @Test
+    public void deleteSubcategoria() throws Exception {
+        ucab.dsw.servicio.SubcategoriaServicio servicio = new ucab.dsw.servicio.SubcategoriaServicio();
+        CategoriaDto categoriaDto=new CategoriaDto();
+        Response respuesta= servicio.deleteSubcategoria(2);
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
     }
 }

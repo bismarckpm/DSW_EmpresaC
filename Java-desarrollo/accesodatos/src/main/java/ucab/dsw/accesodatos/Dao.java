@@ -42,6 +42,7 @@ public class Dao<T>
         }
         catch ( Exception e )
         {
+            _em.getTransaction().rollback();
             throw  e;
         }
 
@@ -62,6 +63,7 @@ public class Dao<T>
         }
         catch ( Exception e )
         {
+            _em.getTransaction().rollback();
            throw  e;
         }
         return entity;
@@ -89,6 +91,7 @@ public class Dao<T>
         }
         catch ( Exception e )
         {
+            _em.getTransaction().rollback();
             throw e;
         }
         return entity;
@@ -121,6 +124,7 @@ public class Dao<T>
         }
         catch ( Exception e )
         {
+            _em.getTransaction().rollback();
             throw e;
         }
 
@@ -150,6 +154,7 @@ public class Dao<T>
         }
         catch ( Exception e )
         {
+            _em.getTransaction().rollback();
             throw e;
         }
         return entity;

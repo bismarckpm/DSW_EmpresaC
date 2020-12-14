@@ -26,12 +26,32 @@ public class CategoriaTest {
 
 
     @Test
-    public void AddCategoria() throws Exception
+    public void AddCategoria()
     {
         ucab.dsw.servicio.CategoriaServicio servicio = new ucab.dsw.servicio.CategoriaServicio();
         CategoriaDto categoriaDto=new CategoriaDto();
-        categoriaDto.setNombre("Telefonos");
+        categoriaDto.setNombre("Navidad");
         Response respuesta= servicio.addCategoria(categoriaDto);
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
     }
+
+    @Test
+    public void editCategoria() throws Exception {
+        ucab.dsw.servicio.CategoriaServicio servicio = new ucab.dsw.servicio.CategoriaServicio();
+        CategoriaDto categoriaDto=new CategoriaDto();
+        categoriaDto.setNombre("Navidad");
+        Response respuesta= servicio.editCategoria(36,categoriaDto);
+        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+    }
+
+    @Test
+    public void deleteCategoria() throws Exception {
+        ucab.dsw.servicio.CategoriaServicio servicio = new ucab.dsw.servicio.CategoriaServicio();
+        CategoriaDto categoriaDto=new CategoriaDto();
+        Response respuesta= servicio.deleteCategoria(33);
+        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+    }
+
+
+
 }

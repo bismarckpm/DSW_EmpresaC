@@ -1,3 +1,7 @@
-.main-sidebar{
+.main-sidebar {
     position: fixed;
+}
+
+i {
+    padding-right: 5px !important;
 }

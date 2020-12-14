@@ -105,7 +105,7 @@ public class pruebaDirectorioActivo
     public void reSetPasstest()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
-        user.setCn( "MFalcon" );
+        user.setCn( "elrequena" );
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.reSetPass(user,"12345");
     }
