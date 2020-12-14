@@ -10,7 +10,7 @@
 
         </mat-card-header>
 
-        <mat-card-content class="container">
+        <mat-card-content class="container" style="padding: 0 50px;">
 
             <h2>
                 <mat-icon aria-hidden="false" aria-label="Example pie_chart icon">pie_chart</mat-icon>
@@ -74,7 +74,7 @@
                         <mat-label>Seleccionar </mat-label>
                         <mat-select [(ngModel)]="estado_id" (selectionChange)="filterCiudades($event)">
                             <mat-option>None</mat-option>
-                            <mat-option *ngFor="let estado of estados" [value]="estado.id">{{estado.nombre}}</mat-option>
+                            <mat-option *ngFor="let estado of estados_filtered" [value]="estado.id">{{estado.nombre}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
@@ -83,7 +83,7 @@
                         <mat-label>Seleccionar </mat-label>
                         <mat-select [(ngModel)]="ciudad_id" (selectionChange)="filterParroquias($event)">
                             <mat-option>None</mat-option>
-                            <mat-option *ngFor="let ciudad of ciudades" [value]="ciudad.id">{{ciudad.nombre}}</mat-option>
+                            <mat-option *ngFor="let ciudad of ciudades_filtered" [value]="ciudad.id">{{ciudad.nombre}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
@@ -92,7 +92,7 @@
                         <mat-label>Seleccionar </mat-label>
                         <mat-select [(ngModel)]="parroquiaSelected">
                             <mat-option>None</mat-option>
-                            <mat-option *ngFor="let parroquia of parroquias" [value]="parroquia.id">{{parroquia.nombre}}</mat-option>
+                            <mat-option *ngFor="let parroquia of parroquias_filtered" [value]="parroquia.id">{{parroquia.nombre}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>

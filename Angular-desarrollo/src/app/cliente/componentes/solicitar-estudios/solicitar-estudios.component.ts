@@ -200,15 +200,35 @@ export class SolicitarEstudiosComponent implements OnInit {
   }
 
   filterEstados(e){
-    console.log(e);
+    console.log(this.estados);
+    this.estados_filtered=this.estados.filter(estado=>estado.pais_id === this.pais_id);
+    console.log(this.estados_filtered);
+
+    this.estado_id=0;
+    this.ciudades_filtered=this.ciudades.filter(ciudad=>ciudad.estado_id === this.estado_id);
+    
+    this.ciudad_id=0;
+    this.parroquias_filtered=this.parroquias.filter(parroquia=>parroquia.ciudad_id === this.ciudad_id);
+
+    this.parroquiaSelected=0;
   }
 
   filterCiudades(e){
+    console.log(this.ciudades);
+    this.ciudades_filtered=this.ciudades.filter(ciudad=>ciudad.estado_id === this.estado_id);
+    console.log(this.ciudades_filtered);
 
+
+    this.ciudad_id=0;
+    this.parroquias_filtered=this.parroquias.filter(parroquia=>parroquia.ciudad_id === this.ciudad_id);
+    
+    this.parroquiaSelected=0;
   }
   
   filterParroquias(e){
-    console.log(e);
+    console.log(this.parroquias);
+    this.parroquias_filtered=this.parroquias.filter(parroquia=>parroquia.ciudad_id === this.ciudad_id);
+    console.log(this.parroquias_filtered);
   }
 
 
