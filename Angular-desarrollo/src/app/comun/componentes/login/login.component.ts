@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup, Validators, FormArray, FormControl} from '@angu
 import { LoginService } from '../../servicios/login/login.service';
 import { usuarioLdap } from '../../../Entidades/usuarioLDAP'
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { NgEventBus } from 'ng-event-bus';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,8 +17,8 @@ export class LoginComponent implements OnInit {
   loginData: FormGroup;
   res: any;
   res$: Observable<any>;
-
-  constructor( private http: LoginService, private _toastrService: ToastrService, private eventBus: NgEventBus) {
+  entrada: string;
+  constructor( private http: LoginService, private _toastrService: ToastrService, private eventBus: NgEventBus,public router: Router) {
     this.loginData = this.crearFormGroup();
     this.usuario = new usuarioLdap();
   }
@@ -31,42 +31,58 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void { 
-    
+    //this.dataLogin();
   }
 
   iniciarSesion(){
-    this.dataLogin();
-    this.eventBus.cast('inicio-sesion','ok');
-    /*this.eventBus.cast('inicio-progress','hola');
-    this.usuario.cn = this.loginData.value.usuario;
+    this.eventBus.cast('inicio-progress','hola');
+    this.entrada = this.loginData.value.usuario;
+    if(this.entrada.includes('@') && this.entrada.includes('.') ){
+      this.usuario.correoelectronico = this.loginData.value.usuario;
+    }else{
+      this.usuario.cn = this.loginData.value.usuario;
+    }
+
     this.usuario.contrasena = this.loginData.value.pass;
     this._toastrService.info('Espere un momento un momento, por favor', 'Validando....');
     this.http.loginLdap( this.usuario ).subscribe( data =>{
-       this.res = data;
-       console.log(this.res);
-       if(this.res.estado='success'){
+      this.res = data;
+      console.log(this.res);
+      if(this.res.estado ==='success'){
         localStorage.setItem("user_id", this.res.user_id );
         localStorage.setItem("rol", this.res.rol );
         localStorage.setItem("token", this.res.token );
-        this._toastrService.success("Bienvenido", "Credenciales correctas!");
+        this._toastrService.success("Bienvenido a MercadeoUCAB", "Credenciales correctas!");
         this.eventBus.cast('inicio-sesion','ok');
-       }
-       else{
-        this._toastrService.success("Intente de nuevo", "Credenciales incorrectas!");
-       }
-       this.eventBus.cast('fin-progress','chao');
+        this.redireccionar( this.res.rol );
+      }
+      this.eventBus.cast('fin-progress','chao');
     },
     (error)=>{
       console.log(error);
-      this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-      this.eventBus.cast('fin-progress','chao');
-    });*/
+
+      if(error.status == 401 ){
+        this._toastrService.success("Intente de nuevo", "Credenciales incorrectas!");
+      }else{
+        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+      }
+      this.eventBus.cast('fin-progress','chao');  
+    });
   }
 
   dataLogin(){
     //Quitar;
-    localStorage.setItem("user_id", '11' );
-    localStorage.setItem("rol", 'cliente' );
+    this.eventBus.cast('inicio-sesion','ok');
+    localStorage.setItem("user_id", '1' );
+    localStorage.setItem("rol", 'admin' );
     localStorage.setItem("token", '111111111' );
   }
+
+  redireccionar( tipo_usuario: string ){
+    if (tipo_usuario == 'administrador'){
+      tipo_usuario = 'admin'
+    }
+    this.router.navigate([tipo_usuario]);
+  }
+
 }
