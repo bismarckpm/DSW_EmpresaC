@@ -6,25 +6,24 @@
     <div class="table mat-elevation-z8" style=" text-align:center;">
         <table mat-table [dataSource]="dataSource">
 
-            <!-- Position Column -->
+           
             <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400; text-align:center;"> Codigo </th>
                 <td mat-cell *matCellDef="let element"> {{element.id}} </td>
             </ng-container>
 
-            <!-- Name Column -->
+            
             <ng-container matColumnDef="nombre">
                 <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400; text-align:center;"> Nombre </th>
                 <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
             </ng-container>
 
-            <!-- Weight Column -->
             <ng-container matColumnDef="subcategoria">
                 <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400; text-align:center;"> Subcategoria</th>
                 <td mat-cell *matCellDef="let element"> {{element.subcategoria}} </td>
             </ng-container>
 
-            <!-- Symbol Column -->
+            
             <ng-container matColumnDef="estado" class="color">
                 <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400; text-align:center;"> Estatus </th>
                 <td mat-cell *matCellDef="let element"> {{element.estado}} </td>

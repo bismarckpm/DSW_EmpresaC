@@ -16,4 +16,8 @@ export class AdminMarcasService {
     //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
     return this._http.get(global.url+'marca/all');
   }
+  addMarca(marcaDto):Observable<any>{
+    //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
+    return this._http.post(global.url+'categoria/add',marcaDto);
+  }
 }

@@ -33,7 +33,9 @@
   import {  AdministrarCategoriasService } from "./Servicios/administrar-categorias/administrar-categorias.service";
   import {  AdministrarSubcategoriasService } from "./Servicios/administrar-subcategorias/administrar-subcategorias.service";
   import { AnadirModalComponent } from '../admin/componentes/administrar-categoria/anadir/anadir-modal/anadir-modal.component';
-
+  import { AnadirComponent } from './componentes/administrar-subcategorias/anadir/anadir.component';
+  import { AnadirMarcaComponent } from './componentes/administrar-marcas/anadir-marca/anadir.component';
+import { ModifSubcategoriaComponent } from './componentes/administrar-subcategorias/modif-subcategoria/modif-subcategoria.component';
   @NgModule({
     declarations: [
       AdminComponent,
@@ -50,7 +52,10 @@
       AdministrarCategoriaComponent,
       AdministrarSubcategoriasComponent,
       AdministrarUsuariosComponent,
-      AnadirModalComponent
+      AnadirModalComponent,
+      AnadirComponent,
+      AnadirMarcaComponent,
+      ModifSubcategoriaComponent
     ],
     imports: [
       CommonModule,

@@ -5,6 +5,8 @@ import { AfterViewInit,Component, OnInit,ViewChild } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table'
 import {MatSort} from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { AnadirMarcaComponent } from './anadir-marca/anadir.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 export interface Marca {
@@ -33,10 +35,11 @@ export class AdministrarMarcasComponent implements OnInit, AfterViewInit{
   
   public displayedColumns: string[] = ['id', 'nombre', 'subcategoria', 'estado', 'acciones'];
   public dataSource = new MatTableDataSource<Marca>();
+  public dialogRef;
   
  
 
-  constructor(private _adminMarcas:AdminMarcasService,private _toastrService: ToastrService,private eventBus: NgEventBus) { }
+  constructor(public dialog: MatDialog,private _adminMarcas:AdminMarcasService,private _toastrService: ToastrService,private eventBus: NgEventBus) { }
  
   ngOnInit(): void {
     this.init();
@@ -68,13 +71,16 @@ export class AdministrarMarcasComponent implements OnInit, AfterViewInit{
       });
   }
 
-  openDialog() {
-    /*const dialogRef = this.dialog.open();
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });*/
-  }
+   openDialog() {
+     this.dialogRef = this.dialog.open(AnadirMarcaComponent, {
+      width: '500px',
+    });
+    
+    this.dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+    
+}
 }
 
 

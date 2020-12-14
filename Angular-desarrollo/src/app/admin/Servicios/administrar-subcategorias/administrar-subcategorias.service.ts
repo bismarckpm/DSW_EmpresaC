@@ -15,4 +15,8 @@ export class AdministrarSubcategoriasService {
     //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
     return this._http.get(global.url+'subcategoria/all');
   }
+  addSubcategorias(subcategoriaDto):Observable<any>{
+    //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
+    return this._http.post(global.url+'categoria/add',subcategoriaDto);
+  }
 }

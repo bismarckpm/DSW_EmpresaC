@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgEventBus } from 'ng-event-bus';
 import { MatDialog } from '@angular/material/dialog';
 import {  AdministrarSubcategoriasService } from "../../Servicios/administrar-subcategorias/administrar-subcategorias.service";
+import { AnadirComponent } from './anadir/anadir.component';
 
 export interface Subcategoria {
   id: number;
@@ -27,7 +28,7 @@ const ELEMENT_DATA: Subcategoria[] = [
 export class AdministrarSubcategoriasComponent implements OnInit,AfterViewInit {
   public displayedColumns: string[] = ['id', 'nombre','categoria', 'estado', 'acciones'];
   public dataSource = new MatTableDataSource<Subcategoria>();
-
+  public dialogRef;
   constructor(public dialog: MatDialog,private _adminSubcategoriaService:AdministrarSubcategoriasService,private _toastrService: ToastrService,private eventBus: NgEventBus) { }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -67,13 +68,15 @@ export class AdministrarSubcategoriasComponent implements OnInit,AfterViewInit {
   }
 
   openDialog() {
-    /*const dialogRef = this.dialog.open();
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });*/
-  }
+    
+    this.dialogRef = this.dialog.open(AnadirComponent, {
+      width: '500px',
+    });
+    
+    this.dialogRef .afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+    
 }
 
-
-  
+}
