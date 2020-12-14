@@ -116,7 +116,7 @@ public class analista_metodos {
     public Response Empezar_estudio(@PathParam("id") long  _id )
     {
         JsonObject data;
-        SolicitudEstudioDto resultado= new SolicitudEstudioDto();
+        SolicitudEstudioDto resultado = new SolicitudEstudioDto();
         try
         {
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();

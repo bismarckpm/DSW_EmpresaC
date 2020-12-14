@@ -1,8 +1,11 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 
 //Entidades
 import { Pregunta } from "../../../../Entidades/pregunta";
+
+// Servicios
+import { PreguntaService } from "../../../Servicios/pregunta.service";
 
 @Component({
   selector: 'app-contenedor-pregunta-nueva',
@@ -16,6 +19,7 @@ export class ContenedorPreguntaNuevaComponent implements OnInit {
   pregunta:Pregunta;
   tipo:String;
   opciones:string[];
+  @Output() nuevaEvent = new EventEmitter<Pregunta>();
 
   error:String="";
 
@@ -34,7 +38,8 @@ export class ContenedorPreguntaNuevaComponent implements OnInit {
     console.log(this.Opciones.length);
   }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+    private preguntaServicio:PreguntaService) {
     this.pregunta= new Pregunta;
     this.opciones=[];
    }
@@ -66,11 +71,18 @@ export class ContenedorPreguntaNuevaComponent implements OnInit {
   
 
   AceptarPregunta(){
+    var res=0;
+    var pre={};
     if(this.PreguntaForm.value.tipo=="Texto" || this.PreguntaForm.value.tipo=="Bolean" ){
-      
+      res=1;
       this.pregunta.preguntaSimple(this.PreguntaForm.value.pregunta,this.PreguntaForm.value.tipo);
-      console.log(this.pregunta)
-      this.PreguntaForm.reset();
+      pre={
+        "descripcion": this.PreguntaForm.value.pregunta,
+        "tipopregunta": this.PreguntaForm.value.tipo,
+      }
+
+      console.log(pre)
+      
     }
     else if(this.PreguntaForm.value.tipo=="Rango"){
       console.log("pregunta de rango")
@@ -79,10 +91,16 @@ export class ContenedorPreguntaNuevaComponent implements OnInit {
         this.error="agrega un valor a minimo y maximo";
       }
       else{
-
+        res=1;
         this.pregunta.preguntaRango(this.PreguntaForm.value.pregunta,this.PreguntaForm.value.tipo,Number(this.PreguntaForm.value.minimo), Number(this.PreguntaForm.value.maximo));
-        console.log(this.pregunta)
-        this.PreguntaForm.reset();
+        pre={
+          "Descripcion": this.PreguntaForm.value.pregunta,
+          "tipopregunta": this.PreguntaForm.value.tipo,
+          "valormin":Number(this.PreguntaForm.value.minimo),
+          "valormax":Number(this.PreguntaForm.value.maximo)
+        }
+  
+        console.log(pre)
       }
 
     }
@@ -92,18 +110,50 @@ export class ContenedorPreguntaNuevaComponent implements OnInit {
         this.error="Agrega minimo 2 opciones correctas a tu pregunta";
       }
       else{
+        res=1;
+        var op=[];
         console.log("pregunta correcta");
         this.opciones=this.PreguntaForm.value.opciones.filter(x=>x!="");
         this.opciones.push(this.PreguntaForm.value.opcion1);
         this.opciones.push(this.PreguntaForm.value.opcion2);
 
+        var o3={};
 
-        this.pregunta.preguntaMultipleSimple(this.PreguntaForm.value.pregunta,this.PreguntaForm.value.tipo,this.opciones)
-        this.PreguntaForm.reset();
-        console.log(this.pregunta);
+
+        for (let index = 0; index < this.opciones.length; index++) {
+          o3={"opcion":this.opciones[index]};
+          op.push(o3);
+        }
+
+        pre={
+          "descripcion": this.PreguntaForm.value.pregunta,
+          "tipopregunta": this.PreguntaForm.value.tipo,
+          "opciones":op
+        }
+  
+        console.log(pre)
       }
 
 
+      
+    }
+
+    if(res==1){
+      this.preguntaServicio.postPreguntas(pre).subscribe(x=>{
+        console.log(x.codigo)
+        if(x.codigo==200){
+          // this.nuevaEvent.emit(pre);
+          this.pregunta.descripcion=this.PreguntaForm.value.pregunta;
+          this.pregunta.tipopregunta=this.PreguntaForm.value.tipo;
+          this.pregunta.id=x.Pregunta.id;
+          this.nuevaEvent.emit(this.pregunta);
+          this.PreguntaForm.reset();
+
+        }
+
+
+
+      })
       
     }
 

@@ -1,0 +1,52 @@
+<div class="contenido">
+
+    <div class="imagen">
+      <img src="/assets/us.png" alt="">
+    </div>
+
+    <div class="informacion">
+      
+      <div class="info">
+        <p> Nombre: {{participante.Nombre}}</p>
+
+
+      </div>
+
+      <div class="estado" *ngIf="participante.Estado=='inactivo'">
+        
+
+
+        <div class="imagen-estado">
+          <img src="/assets/rojo.png" alt="">
+
+        </div>
+
+        
+        <div class="texto-estado" >
+          <span>No Participo</span>
+        </div>
+
+
+      </div>
+
+      <div class="estado" *ngIf="participante.Estado=='activo'">
+        
+
+
+        <div class="imagen-estado">
+          <img src="/assets/verde.png" alt="">
+
+        </div>
+
+        
+        <div class="texto-estado" >
+          <span>Participo</span>
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </div>

@@ -33,6 +33,9 @@
   import {  AdministrarCategoriasService } from "./Servicios/administrar-categorias/administrar-categorias.service";
   import {  AdministrarSubcategoriasService } from "./Servicios/administrar-subcategorias/administrar-subcategorias.service";
   import { AnadirModalComponent } from '../admin/componentes/administrar-categoria/anadir/anadir-modal/anadir-modal.component';
+  import { TarjetaParticipantesComponent } from './componentes/tarjeta-participantes/tarjeta-participantes.component';
+
+
 
   @NgModule({
     declarations: [
@@ -50,7 +53,8 @@
       AdministrarCategoriaComponent,
       AdministrarSubcategoriasComponent,
       AdministrarUsuariosComponent,
-      AnadirModalComponent
+      AnadirModalComponent,
+      TarjetaParticipantesComponent
     ],
     imports: [
       CommonModule,
@@ -65,3 +69,4 @@
     ]
   })
   export class AdminModule { }
+

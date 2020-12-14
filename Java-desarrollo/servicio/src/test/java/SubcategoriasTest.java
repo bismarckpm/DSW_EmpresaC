@@ -6,14 +6,14 @@ import ucab.dsw.dtos.SubcategoriaDto;
 import javax.ws.rs.core.Response;
 
 public class SubcategoriasTest {
-    @Test
+    /*@Test
     public void getSubcategorias() throws Exception
     {
         ucab.dsw.servicio.SubcategoriaServicio servicio = new ucab.dsw.servicio.SubcategoriaServicio();
         Response respuesta= servicio.getAllSubcategorias();
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
 
-    }
+    }*/
 
     @Test
     public void getSubcategoria() throws Exception

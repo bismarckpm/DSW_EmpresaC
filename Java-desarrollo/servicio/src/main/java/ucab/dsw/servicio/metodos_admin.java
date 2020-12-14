@@ -42,15 +42,16 @@ public class metodos_admin {
 
             resultado = dao.findAll(type);
             for (SolicitudEstudio obj : resultado) {
-                if (obj.get_usuario() != null) {
+                if (obj.get_usuario2() != null) {
 
-                    System.out.println(obj.get_estado());
+
                     if (obj.get_encuesta() != null && obj.get_usuario2().get_id() == _id && obj.get_estado().equals("en ejecucion")) {
                         JsonObject encuesta = Json.createObjectBuilder().add("Marca", obj.get_marca().get_nombre())
                                 .add("idcategoria", obj.get_marca().get_subcategoria().get_categoria().get_id())
                                 .add("Categoria", obj.get_marca().get_subcategoria().get_categoria().get_nombre())
                                 .add("idsubcategoria", obj.get_marca().get_subcategoria().get_id())
                                 .add("Subcategoria", obj.get_marca().get_subcategoria().get_nombre()).build();
+
                         JsonObject tipo = Json.createObjectBuilder().add("id", obj.get_id())
                                 .add("fecha", obj.get_fecha_inicio().toString())
                                 .add("caracteristicas", encuesta).build();
@@ -100,27 +101,27 @@ public class metodos_admin {
 
             resultado = dao.findAll(type);
             for (SolicitudEstudio obj : resultado) {
+                if (obj.get_usuario2() != null) {
 
                 if (obj.get_encuesta() == null && obj.get_usuario2().get_id()== _id) {
 
 
-                    JsonObject encuesta = Json.createObjectBuilder().add("Marca",obj.get_marca().get_nombre())
+                    JsonObject encuesta = Json.createObjectBuilder().add("Marca", obj.get_marca().get_nombre())
                             .add("idcategoria", obj.get_marca().get_subcategoria().get_categoria().get_id())
-                            .add("Categoria",obj.get_marca().get_subcategoria().get_categoria().get_nombre())
+                            .add("Categoria", obj.get_marca().get_subcategoria().get_categoria().get_nombre())
                             .add("idsubcategoria", obj.get_marca().get_subcategoria().get_id())
-                            .add("Subcategoria",obj.get_marca().get_subcategoria().get_nombre()).build();
-                    JsonObject tipo = Json.createObjectBuilder().add("id",obj.get_id())
-                            .add("fecha",obj.get_fecha_inicio().toString())
+                            .add("Subcategoria", obj.get_marca().get_subcategoria().get_nombre()).build();
+                    JsonObject tipo = Json.createObjectBuilder().add("id", obj.get_id())
+                            .add("fecha", obj.get_fecha_inicio().toString())
                             .add("estatus", obj.get_estado())
-                            .add("caracteristicas",encuesta)
+                            .add("caracteristicas", encuesta)
                             .build();
 
                     builder.add(tipo);
-
+                }
                 } else {
                     System.out.println("");
                 }
-
 
 
             }
@@ -153,7 +154,7 @@ public class metodos_admin {
     public Response EliminarEstudio(@PathParam("id") long  _id )
     {
         JsonObject data;
-        SolicitudEstudioDto resultado=new SolicitudEstudioDto();
+        SolicitudEstudioDto resultado = new SolicitudEstudioDto();
         try
         {
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
@@ -187,7 +188,7 @@ public class metodos_admin {
     public Response addEncuesta(@PathParam("id") long  _id,@PathParam("id2") long  _id2,EncuestaDto encuestaDto)
     {
         EncuestaDto resultado = new EncuestaDto();
-        SolicitudEstudioDto resultado3=new SolicitudEstudioDto();
+        SolicitudEstudioDto resultado3 = new SolicitudEstudioDto();
         JsonObject data;
         int analista_random=0;
         Usuario analista_elegido=null;
@@ -230,7 +231,10 @@ public class metodos_admin {
                     Pregunta_EncuestaDto resultado2 = new Pregunta_EncuestaDto();
                     PreguntaEncuesta preguntaEncuesta = new PreguntaEncuesta();
                     preguntaEncuesta.set_encuesta(resul);
-                    Pregunta pregunta1 = new Pregunta(1);
+                    Pregunta pregunta1 = new Pregunta();
+                    DaoPregunta dao4 = new DaoPregunta();
+                    pregunta1 = dao4.find(obj.getId(), Pregunta.class);
+
                     preguntaEncuesta.set_pregunta(pregunta1);
 
                     PreguntaEncuesta resul2 = dao2.insert(preguntaEncuesta);
@@ -440,12 +444,6 @@ public class metodos_admin {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
-    @GET
-    @Path( "/test" )
-    public String consulta()
-    {
-        return "test";
-    }
 
     @GET
     @Path( "/preguntas-categoria/{id}" )
