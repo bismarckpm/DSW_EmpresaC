@@ -33,10 +33,12 @@ public class crud_presentacion_test
     {
         ucab.dsw.servicio.Cruds_presntacion servicio = new ucab.dsw.servicio.Cruds_presntacion();
         PresentacionDto presentacionDto = new PresentacionDto();
-        presentacionDto.setNombre( "100ml" );
+        TipoDto tipoDto=new TipoDto(3);
+        presentacionDto.setNombre( "200ml" );
+        presentacionDto.setTipoDto(tipoDto);
 
 
-        Response resultado = servicio.changePresentacion( 1,5,presentacionDto);
+        Response resultado = servicio.changePresentacion( 5,presentacionDto);
         Assert.assertNotEquals( resultado, 0 );
 
     }

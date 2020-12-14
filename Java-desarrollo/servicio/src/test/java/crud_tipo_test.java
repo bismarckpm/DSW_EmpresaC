@@ -17,7 +17,7 @@ public class crud_tipo_test
     {
         ucab.dsw.servicio.crud_tipo servicio = new ucab.dsw.servicio.crud_tipo();
         TipoDto tipoDto = new TipoDto();
-        tipoDto.setNombre( "spray" );
+        tipoDto.setNombre( "Polvo" );
 
         Response resultado = servicio.addTipo( tipoDto);
         Assert.assertNotEquals( resultado, 1 );
@@ -25,11 +25,12 @@ public class crud_tipo_test
     }
 
     @Test
-    public void changePresentacionTest() throws Exception
+    public void changeTipoTest() throws Exception
     {
         ucab.dsw.servicio.crud_tipo servicio = new ucab.dsw.servicio.crud_tipo();
         TipoDto tipoDto = new TipoDto();
-        tipoDto.setNombre( "spray" );
+        tipoDto.setNombre( "Polvo" );
+
 
 
         Response resultado = servicio.changeTipo( 1,tipoDto);
@@ -38,7 +39,7 @@ public class crud_tipo_test
     }
 
     @Test
-    public void EliminarTpoTest() throws Exception
+    public void eliminarTpoTest() throws Exception
     {
         ucab.dsw.servicio.crud_tipo servicio = new ucab.dsw.servicio.crud_tipo();;
 
@@ -57,7 +58,7 @@ public class crud_tipo_test
 
     }
     @Test
-    public void findAllPresentacionTest() throws Exception
+    public void findAllTipoTest() throws Exception
     {
         ucab.dsw.servicio.crud_tipo servicio = new ucab.dsw.servicio.crud_tipo();
         Response resultado= servicio.findAllTipo();

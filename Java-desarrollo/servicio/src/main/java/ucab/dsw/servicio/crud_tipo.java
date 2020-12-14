@@ -1,8 +1,11 @@
 package ucab.dsw.servicio;
+import org.eclipse.persistence.exceptions.DatabaseException;
 import ucab.dsw.accesodatos.*;
 import ucab.dsw.dtos.*;
 import ucab.dsw.entidades.*;
+import ucab.dsw.excepciones.PruebaExcepcion;
 
+import javax.persistence.PersistenceException;
 import javax.validation.constraints.Null;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -25,7 +28,7 @@ import javax.ws.rs.core.Response;
 @Consumes( MediaType.APPLICATION_JSON )
 public class crud_tipo {
 
-    @PUT
+    @POST
     @Path( "/add-tipo" )
     public Response addTipo(TipoDto tipoDto)
     {
@@ -36,6 +39,7 @@ public class crud_tipo {
             DaoTipo dao = new DaoTipo();
             Tipo tipo= new Tipo();
             tipo.set_nombre( tipoDto.getNombre() );
+            tipo.set_estado("activo");
 
             Tipo resul = dao.insert( tipo);
             resultado.setId( resul.get_id() );
@@ -45,15 +49,26 @@ public class crud_tipo {
                     .add("codigo",200).build();
 
         }
-        catch ( Exception ex )
-        {
-            String problema = ex.getMessage();
+        catch (PersistenceException | DatabaseException ex){
             data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
+                    .add("estado","error")
+                    .add("mensaje","El tipo ya se encuestra registrado")
                     .add("codigo",500).build();
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+
+            System.out.println(data);
+            return Response.status(Response.Status.OK).entity(data).build();
         }
+        catch ( Exception ex){
+            data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje",ex.getMessage())
+                    .add("codigo",500).build();
+
+            System.out.println(data);
+            return Response.status(Response.Status.OK).entity(data).build();
+
+        }
+        System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
@@ -66,8 +81,8 @@ public class crud_tipo {
         try
         {
             DaoTipo dao = new DaoTipo();
-            Tipo tipo =new Tipo(_id);
-            tipo.set_nombre( tipoDto.getNombre() );
+            Tipo tipo = dao.find(_id,Tipo.class);
+            tipo.set_nombre(tipoDto.getNombre());
 
             Tipo resul = dao.update( tipo);
             resultado.setId( resul.get_id() );
@@ -78,14 +93,24 @@ public class crud_tipo {
 
 
         }
-        catch ( Exception ex )
-        {
-            String problema = ex.getMessage();
+        catch (PersistenceException | DatabaseException ex){
             data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
+                    .add("estado","error")
+                    .add("mensaje","El tipo ya se encuestra registrado")
                     .add("codigo",500).build();
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+
+            System.out.println(data);
+            return Response.status(Response.Status.OK).entity(data).build();
+        }
+        catch ( Exception ex){
+            data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje",ex.getMessage())
+                    .add("codigo",500).build();
+
+            System.out.println(data);
+            return Response.status(Response.Status.OK).entity(data).build();
+
         }
 
         return Response.status(Response.Status.OK).entity(data).build();
@@ -102,7 +127,7 @@ public class crud_tipo {
             DaoTipo dao = new DaoTipo ();
             Tipo tipo = dao.find(_id,Tipo.class);
 
-            tipo.set_estado("Eliminado");
+            tipo.set_estado("inactivo");
 
             Tipo resul = dao.update(tipo);
             resultado.setId( resul.get_id() );
@@ -112,6 +137,7 @@ public class crud_tipo {
 
             DaoPresentacion dao2 = new DaoPresentacion();
             resultado2 = dao2.findAll( type );
+
             for(Presentacion obj: resultado2) {
 
                 if (obj.get_tipo().get_id() == resul.get_id()){
@@ -119,7 +145,7 @@ public class crud_tipo {
                     PresentacionDto resultado3 = new PresentacionDto();
                     Presentacion presentacion = dao3.find(obj.get_id(), Presentacion.class);
 
-                    presentacion.set_estado("Eliminado");
+                    presentacion.set_estado("inactivo");
 
                     Presentacion resul2 = dao3.update(presentacion);
                     resultado3.setId( resul2.get_id() );
@@ -201,11 +227,8 @@ public class crud_tipo {
             for(Tipo obj: resultado) {
 
                 JsonObject tipo = Json.createObjectBuilder().add("id",obj.get_id())
-                        .add("nombre",obj.get_nombre()).build();
-
-                if (obj.get_estado() != null){
-                    System.out.println("estado: " + obj.get_estado());
-                }
+                                                            .add("nombre",obj.get_nombre())
+                                                            .add("estado",obj.get_estado()).build();
 
                 tipoArrayJson.add(tipo);
             }
@@ -213,7 +236,7 @@ public class crud_tipo {
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200)
-                    .add("categorias",tipoArrayJson).build();
+                    .add("tipos",tipoArrayJson).build();
 
 
         }
@@ -227,6 +250,7 @@ public class crud_tipo {
 
             return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
+        System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
 }

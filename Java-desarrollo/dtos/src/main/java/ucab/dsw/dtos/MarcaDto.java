@@ -1,6 +1,8 @@
 package ucab.dsw.dtos;
 
 
+import java.util.List;
+
 public class MarcaDto extends DtoBase{
 
     public MarcaDto()
@@ -35,5 +37,15 @@ public class MarcaDto extends DtoBase{
     public void setSubcategoriaDto( SubcategoriaDto subcategoriaDto )
     {
         this.subcategoriaDto = subcategoriaDto;
+    }
+
+    public List<TipoDto> tipoDto;
+
+    public List<TipoDto> getTipo_Dto() {
+        return tipoDto;
+    }
+
+    public void setTipo_Dto(List<TipoDto> tipoDto) {
+        this.tipoDto = tipoDto;
     }
 }

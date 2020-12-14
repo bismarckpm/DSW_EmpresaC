@@ -106,6 +106,7 @@ public class CategoriaServicio extends AplicacionBase{
             return Response.status(Response.Status.OK).entity(data).build();
 
         }
+        System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
@@ -162,15 +163,26 @@ public class CategoriaServicio extends AplicacionBase{
                     .add("codigo",200).build();
 
         }
-        catch ( Exception ex )
-        {
+        catch (PersistenceException | DatabaseException ex){
             data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
+                    .add("estado","error")
+                    .add("mensaje","La categoria ya se encuestra registrada")
                     .add("codigo",500).build();
 
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            System.out.println(data);
+            return Response.status(Response.Status.OK).entity(data).build();
         }
+        catch ( PruebaExcepcion ex){
+            data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje",ex.getMessage())
+                    .add("codigo",500).build();
+
+            System.out.println(data);
+            return Response.status(Response.Status.OK).entity(data).build();
+
+        }
+        System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
 

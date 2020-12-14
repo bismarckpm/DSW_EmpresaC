@@ -153,7 +153,7 @@ public class metodos_admin {
     public Response EliminarEstudio(@PathParam("id") long  _id )
     {
         JsonObject data;
-        SolicituEstudioDto resultado = new SolicituEstudioDto();
+        SolicitudEstudioDto resultado=new SolicitudEstudioDto();
         try
         {
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
@@ -187,7 +187,7 @@ public class metodos_admin {
     public Response addEncuesta(@PathParam("id") long  _id,@PathParam("id2") long  _id2,EncuestaDto encuestaDto)
     {
         EncuestaDto resultado = new EncuestaDto();
-        SolicituEstudioDto resultado3 = new SolicituEstudioDto();
+        SolicitudEstudioDto resultado3=new SolicitudEstudioDto();
         JsonObject data;
         int analista_random=0;
         Usuario analista_elegido=null;

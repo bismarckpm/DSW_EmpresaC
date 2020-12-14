@@ -1,17 +1,14 @@
 package ucab.dsw.entidades;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table( name = "Marca_Tipo" )
+@NamedQueries({
+        @NamedQuery(name="MarcaTiposByMarca", query="select mt FROM Marca_Tipo mt WHERE mt._marca._id=:marca_id"),
+
+})
 public class Marca_Tipo extends EntidadBase{
 
     @ManyToOne(optional = false , fetch = FetchType.EAGER)

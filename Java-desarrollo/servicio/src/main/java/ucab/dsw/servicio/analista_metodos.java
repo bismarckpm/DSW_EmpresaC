@@ -4,7 +4,6 @@ import ucab.dsw.accesodatos.*;
 import ucab.dsw.dtos.*;
 import ucab.dsw.entidades.*;
 import ucab.dsw.excepciones.PruebaExcepcion;
-
 import javax.json.*;
 import javax.persistence.PersistenceException;
 import javax.json.JsonObject;
@@ -117,7 +116,7 @@ public class analista_metodos {
     public Response Empezar_estudio(@PathParam("id") long  _id )
     {
         JsonObject data;
-        SolicituEstudioDto resultado = new SolicituEstudioDto();
+        SolicitudEstudioDto resultado= new SolicitudEstudioDto();
         try
         {
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();

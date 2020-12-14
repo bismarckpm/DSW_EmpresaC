@@ -1,89 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ArtifactsWorkspaceSettings">
-    <artifacts-to-build>
-<<<<<<< HEAD
-      <artifact name="servicio:war exploded" />
-=======
-      <artifact name="servicio:war" />
->>>>>>> a78060f167541065a672e34e2de64ac40c391bf8
-    </artifacts-to-build>
-  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </select>
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c9c357f-2b07-42bd-afe8-0f758d0713a9" name="Default Changelist" comment="">
+    <list default="true" id="ec2ffb06-188c-497f-a321-5e99a189101e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoParticipacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoParticipacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoSolicitudEstudio.java" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoSolicitudEstudio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/target/classes/ucab/dsw/accesodatos/DaoParticipacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/target/classes/ucab/dsw/accesodatos/DaoParticipacion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/target/classes/ucab/dsw/accesodatos/DaoSolicitudEstudio.class" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/target/classes/ucab/dsw/accesodatos/DaoSolicitudEstudio.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Participacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Participacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/SolicitudEstudio.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/SolicitudEstudio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Participacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/Participacion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/SolicitudEstudio.class" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/target/classes/ucab/dsw/entidades/SolicitudEstudio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoMarca_Tipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoMarca_Tipo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoPresentacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoPresentacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/MarcaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/MarcaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Marca_Tipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Marca_Tipo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Presentacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Presentacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CategoriaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CategoriaServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/Cruds_presntacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/Cruds_presntacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/MarcaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/MarcaServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SubcategoriaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SubcategoriaServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/analista_metodos.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/analista_metodos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/analista_metodos_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/analista_metodos_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/analista_metodos.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/analista_metodos.class" afterDir="false" />
-=======
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/crud_tipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/crud_tipo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/metodos_admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/classes/ucab/dsw/servicio/metodos_admin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/pruebaORM-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/pruebaORM-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/classes/ucab/dsw/servicio/metodos_admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/servicio-1.0-SNAPSHOT/WEB-INF/classes/ucab/dsw/servicio/metodos_admin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/surefire-reports/TEST-metodos_admin_Test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/surefire-reports/TEST-metodos_admin_Test.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/surefire-reports/TEST-pruebaORMWS_Test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/surefire-reports/TEST-pruebaORMWS_Test.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/target/surefire-reports/metodos_admin_Test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/target/surefire-reports/metodos_admin_Test.txt" afterDir="false" />
->>>>>>> a78060f167541065a672e34e2de64ac40c391bf8
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/CategoriaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/CategoriaTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/MarcaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/MarcaTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/SubcategoriasTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/SubcategoriasTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/analista_test.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/analista_test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/crud_presentacion_test.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/crud_presentacion_test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/crud_tipo_test.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/crud_tipo_test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DefaultGradleProjectSettings">
-    <option name="isMigrated" value="true" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="LogFilters">
-    <option name="FILTER_ERRORS" value="false" />
-    <option name="FILTER_WARNINGS" value="false" />
-    <option name="FILTER_INFO" value="true" />
-    <option name="FILTER_DEBUG" value="true" />
-    <option name="CUSTOM_FILTER" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -92,91 +44,18 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProblemsViewState">
-    <option name="showPreview" value="true" />
-  </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/entidades/entidades.iml" />
-        <option value="$PROJECT_DIR$/dtos/dtos.iml" />
-        <option value="$PROJECT_DIR$/directorioactivo/directorioactivo.iml" />
-        <option value="$PROJECT_DIR$/excepciones/excepciones.iml" />
-        <option value="$PROJECT_DIR$/accesodatos/accesodatos.iml" />
-        <option value="$PROJECT_DIR$/servicio/servicio.iml" />
-        <option value="$PROJECT_DIR$/orm.iml" />
-        <option value="$PROJECT_DIR$/.idea/compiler.xml" />
-        <option value="$PROJECT_DIR$/.idea/misc.xml" />
-        <option value="$PROJECT_DIR$/.idea/artifacts/servicio_war.xml" />
-        <option value="$PROJECT_DIR$/.idea/artifacts/servicio_war_exploded.xml" />
-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
-        <option value="$PROJECT_DIR$/.idea/encodings.xml" />
-        <option value="$PROJECT_DIR$/.idea/modules.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__com_google_protobuf_protobuf_java_3_6_1.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__com_thetransactioncompany_cors_filter_2_6.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__com_thetransactioncompany_java_property_utils_1_9_1.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_11.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__javax_javaee_web_api_8_0.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13_rc_1.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_18.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_10.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_12.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_0_0.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_core_asl_1_9_13.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_mapper_asl_1_9_13.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_javax_persistence_2_1_1.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_javax_json_1_0_4.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_library_1_3.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_3_1.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_3_1.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_3_1.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_3_1.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_1_1.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_25.xml" />
-        <option value="$PROJECT_DIR$/.idea/dataSources.xml" />
-        <option value="$PROJECT_DIR$/.idea/dataSources.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_org_eclipse_persistence_antlr_2_6_5_RC2.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_org_eclipse_persistence_asm_2_6_5_RC2.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_org_eclipse_persistence_core_2_6_5_RC2.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_org_eclipse_persistence_jpa_2_6_5_RC2.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_org_eclipse_persistence_jpa_jpql_2_6_5_RC2.xml" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectId" id="1kQgJut6PB65NIv9wa06kRlufFe" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
+  <component name="ProjectId" id="1laV85LoUIVxpMYx6I6Lj6UZf1R" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$MAVEN_REPOSITORY$/ucab/dsw/accesodatos/1.0-SNAPSHOT" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
-<<<<<<< HEAD
-  <component name="RunManager" selected="JUnit.analista_metodos_Test.consultaEstudios_asignadosTest">
+  <component name="RunManager" selected="JUnit.MarcaTest.getMarcas">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -190,554 +69,114 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JBoss 21.0.0.Final1" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss 21.0.0.Final1" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="UPDATING_POLICY" value="redeploy-artifacts" />
-      <deployment>
-        <artifact name="servicio:war exploded">
-=======
-  <component name="RunManager" selected="GlassFish Server.desarrollo">
-    <configuration name="desarrollo" type="GlassfishConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="GlassFish 5.0.0" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="UPDATING_POLICY" value="restart-server" />
-      <deployment>
-        <artifact name="servicio:war">
->>>>>>> a78060f167541065a672e34e2de64ac40c391bf8
-          <settings />
-        </artifact>
-      </deployment>
-      <server-settings>
-<<<<<<< HEAD
-        <option name="SERVER" />
-        <option name="BINDING_SET_NAME" value="" />
-        <option name="DOMAIN" value="false" />
-        <option name="SERVER_GROUP" />
-        <option name="USERNAME" value="admin" />
-        <option name="CREDENTIAL_ALIAS" value="48f93d8b-6741-4f9f-8027-a747d34119ab" />
-      </server-settings>
-      <predefined_log_file enabled="true" id="JBoss" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="4198" />
-=======
-        <option name="DOMAIN" value="domain1" />
-        <option name="PRESERVE" value="false" />
-        <option name="COMPATIBILITY" value="false" />
-        <option name="VIRTUAL_SERVER" />
-        <option name="USERNAME" value="admin" />
-        <option name="CREDENTIAL_ALIAS" />
-      </server-settings>
-      <predefined_log_file enabled="true" id="GlassFish" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="9009" />
->>>>>>> a78060f167541065a672e34e2de64ac40c391bf8
-      </RunnerSettings>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <method v="2">
-        <option name="Make" enabled="true" />
-        <option name="BuildArtifacts" enabled="true">
-<<<<<<< HEAD
-          <artifact name="servicio:war exploded" />
-=======
-          <artifact name="servicio:war" />
->>>>>>> a78060f167541065a672e34e2de64ac40c391bf8
-        </option>
-      </method>
-    </configuration>
-    <configuration default="true" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss 21.0.0.Final1" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="UPDATING_POLICY" value="restart-server" />
-      <deployment />
-      <server-settings>
-        <option name="SERVER" />
-        <option name="BINDING_SET_NAME" value="" />
-        <option name="DOMAIN" value="false" />
-        <option name="SERVER_GROUP" />
-        <option name="USERNAME" value="admin" />
-      </server-settings>
-      <predefined_log_file enabled="true" id="JBoss" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="4198" />
-      </RunnerSettings>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SubcategoriasTest.AddSubcategoria" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MarcaTest.AddMarca" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SubcategoriasTest" />
-      <option name="METHOD_NAME" value="AddSubcategoria" />
+      <option name="MAIN_CLASS_NAME" value="MarcaTest" />
+      <option name="METHOD_NAME" value="AddMarca" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SubcategoriasTest.getSubcategorias" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MarcaTest.getMarcas" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SubcategoriasTest" />
-      <option name="METHOD_NAME" value="getSubcategorias" />
+      <option name="MAIN_CLASS_NAME" value="MarcaTest" />
+      <option name="METHOD_NAME" value="getMarcas" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UsuarioTest.AddUserCliente" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="crud_presentacion_test.EliminarPresentacion" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="UsuarioTest" />
-      <option name="METHOD_NAME" value="AddUserCliente" />
+      <option name="MAIN_CLASS_NAME" value="crud_presentacion_test" />
+      <option name="METHOD_NAME" value="EliminarPresentacion" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UsuarioTest.AddUserEncuestado" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="crud_presentacion_test.changePresentacionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="UsuarioTest" />
-      <option name="METHOD_NAME" value="AddUserEncuestado" />
+      <option name="MAIN_CLASS_NAME" value="crud_presentacion_test" />
+      <option name="METHOD_NAME" value="changePresentacionTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="analista_metodos_Test.consultaEstudios_asignadosTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="crud_presentacion_test.findAllPresentacionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="analista_metodos_Test" />
-      <option name="METHOD_NAME" value="consultaEstudios_asignadosTest" />
+      <option name="MAIN_CLASS_NAME" value="crud_presentacion_test" />
+      <option name="METHOD_NAME" value="findAllPresentacionTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-<<<<<<< HEAD
-      <item itemvalue="JBoss Server.JBoss 21.0.0.Final1" />
-      <item itemvalue="JUnit.SubcategoriasTest.AddSubcategoria" />
-      <item itemvalue="JUnit.UsuarioTest.AddUserCliente" />
-      <item itemvalue="JUnit.UsuarioTest.AddUserEncuestado" />
-      <item itemvalue="JUnit.SubcategoriasTest.getSubcategorias" />
-      <item itemvalue="JUnit.analista_metodos_Test.consultaEstudios_asignadosTest" />
-=======
-      <item itemvalue="GlassFish Server.desarrollo" />
-      <item itemvalue="JUnit.All in Java-desarrollo" />
-      <item itemvalue="JUnit.pruebaORMWS_Test" />
-      <item itemvalue="JUnit.pruebaORMWS_Test.addUserTest" />
-      <item itemvalue="JUnit.pruebaORMWS_Test.deleteUsuarioTest" />
-      <item itemvalue="JUnit.pruebaORMWS_Test.updateUserTest" />
->>>>>>> a78060f167541065a672e34e2de64ac40c391bf8
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.analista_metodos_Test.consultaEstudios_asignadosTest" />
-        <item itemvalue="JUnit.SubcategoriasTest.getSubcategorias" />
-        <item itemvalue="JUnit.SubcategoriasTest.AddSubcategoria" />
-        <item itemvalue="JUnit.UsuarioTest.AddUserCliente" />
-        <item itemvalue="JUnit.UsuarioTest.AddUserEncuestado" />
+        <item itemvalue="JUnit.MarcaTest.getMarcas" />
+        <item itemvalue="JUnit.MarcaTest.AddMarca" />
+        <item itemvalue="JUnit.crud_presentacion_test.changePresentacionTest" />
+        <item itemvalue="JUnit.crud_presentacion_test.findAllPresentacionTest" />
+        <item itemvalue="JUnit.crud_presentacion_test.EliminarPresentacion" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9c9c357f-2b07-42bd-afe8-0f758d0713a9" name="Default Changelist" comment="" />
-      <created>1605371906553</created>
+      <changelist id="ec2ffb06-188c-497f-a321-5e99a189101e" name="Default Changelist" comment="" />
+      <created>1607833313009</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1605371906553</updated>
-      <workItem from="1605371910349" duration="3827000" />
-      <workItem from="1605482874917" duration="11519000" />
-      <workItem from="1605541121877" duration="4300000" />
-      <workItem from="1605550044703" duration="926000" />
-      <workItem from="1605638168429" duration="3472000" />
-      <workItem from="1605745568717" duration="1731000" />
-      <workItem from="1605750387835" duration="6837000" />
-      <workItem from="1605819932984" duration="7643000" />
-      <workItem from="1606018378285" duration="706000" />
-      <workItem from="1606021013022" duration="1408000" />
-      <workItem from="1606184056479" duration="5561000" />
-      <workItem from="1606192303216" duration="424000" />
-      <workItem from="1606193817081" duration="3260000" />
-      <workItem from="1606225752106" duration="4423000" />
-      <workItem from="1606419204243" duration="12038000" />
-      <workItem from="1606594566830" duration="1420000" />
-      <workItem from="1606600133231" duration="600000" />
-      <workItem from="1606182628402" duration="1019000" />
-      <workItem from="1606183681760" duration="71000" />
-      <workItem from="1606183767279" duration="183000" />
-      <workItem from="1606184025742" duration="6670000" />
-<<<<<<< HEAD
-      <workItem from="1606927802521" duration="4824000" />
-      <workItem from="1606941981375" duration="16340000" />
-      <workItem from="1607095145133" duration="489000" />
-      <workItem from="1607103808894" duration="10131000" />
-      <workItem from="1607131651203" duration="10372000" />
-      <workItem from="1607176747985" duration="8519000" />
-      <workItem from="1607201571581" duration="5301000" />
-      <workItem from="1607261828132" duration="7540000" />
-      <workItem from="1607272596344" duration="7677000" />
-      <workItem from="1607314092885" duration="4291000" />
-      <workItem from="1607319659305" duration="3858000" />
-      <workItem from="1607369709916" duration="638000" />
-      <workItem from="1607441407383" duration="582000" />
-      <workItem from="1607442163675" duration="5927000" />
-      <workItem from="1607714064597" duration="6696000" />
-      <workItem from="1607723777521" duration="418000" />
-      <workItem from="1607731559769" duration="7595000" />
-=======
-      <workItem from="1607353671414" duration="8463000" />
-      <workItem from="1607368695170" duration="3742000" />
-      <workItem from="1607399860035" duration="1986000" />
-      <workItem from="1607439502353" duration="5378000" />
->>>>>>> a78060f167541065a672e34e2de64ac40c391bf8
+      <updated>1607833313009</updated>
+      <workItem from="1607833343498" duration="1367000" />
+      <workItem from="1607835136732" duration="853000" />
+      <workItem from="1607868225451" duration="10217000" />
+      <workItem from="1607882514213" duration="8000" />
+      <workItem from="1607884420810" duration="1847000" />
+      <workItem from="1607900606617" duration="1202000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="CUSTOM_BOOLEAN_PROPERTIES">
-                <map>
-                  <entry key="Show.Git.Branches" value="true" />
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list />
-          </value>
-        </entry>
-        <entry key="User">
-          <value>
-            <list />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <ignored-roots>
-      <path value="$PROJECT_DIR$" />
-    </ignored-roots>
-  </component>
   <component name="WindowStateProjectService">
-    <state x="436" y="255" key="#Assign_Data_Sources" timestamp="1607570732535">
-      <screen x="0" y="0" width="1024" height="728" />
-    </state>
-    <state x="436" y="255" key="#Assign_Data_Sources/0.0.1024.728@0.0.1024.728" timestamp="1607570732535" />
-    <state x="582" y="255" key="#Assign_Data_Sources/0.0.1366.728@0.0.1366.728" timestamp="1605755498498" />
-    <state x="654" y="289" key="#Assign_Data_Sources/0.0.1536.824@0.0.1536.824" timestamp="1606106263749" />
-    <state x="138" y="41" key="#Inspections" timestamp="1606239647297">
-      <screen x="0" y="0" width="1024" height="728" />
-    </state>
-    <state x="138" y="41" key="#Inspections/0.0.1024.728@0.0.1024.728" timestamp="1606239647297" />
-    <state x="530" y="532" key="#JBoss_Server" timestamp="1606876801678">
+    <state x="449" y="178" key="#com.intellij.ide.util.MemberChooser" timestamp="1607876520367">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state x="530" y="532" key="#JBoss_Server/0.0.1280.980@0.0.1280.980" timestamp="1606876801678" />
-    <state x="550" y="45" key="#Template" timestamp="1605756469644">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="550" y="45" key="#Template/0.0.1366.728@0.0.1366.728" timestamp="1605756469644" />
-<<<<<<< HEAD
-    <state x="199" y="261" width="1081" height="719" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606877439250">
+    <state x="449" y="178" key="#com.intellij.ide.util.MemberChooser/0.0.1280.980@0.0.1280.980" timestamp="1607876520367" />
+    <state width="1238" height="259" key="GridCell.Tab.0.bottom" timestamp="1607902051468">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state x="202" y="43" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1024.728@0.0.1024.728" timestamp="1606185050676" />
-    <state x="199" y="261" width="1081" height="719" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.980@0.0.1280.980" timestamp="1606877439250" />
-    <state x="275" y="22" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1605638240594" />
-    <state x="746" y="127" key="#com.intellij.ide.util.MemberChooser" timestamp="1607716290247">
+    <state width="1238" height="259" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1607902051468" />
+    <state width="1238" height="259" key="GridCell.Tab.0.center" timestamp="1607902051468">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state x="597" y="94" key="#com.intellij.ide.util.MemberChooser/0.0.1024.728@0.0.1024.728" timestamp="1606245738364" />
-    <state x="746" y="127" key="#com.intellij.ide.util.MemberChooser/0.0.1280.980@0.0.1280.980" timestamp="1607716290247" />
-    <state x="796" y="96" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1605851608164" />
-    <state x="139" y="421" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1607448651951">
+    <state width="1238" height="259" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1607902051468" />
+    <state width="1238" height="259" key="GridCell.Tab.0.left" timestamp="1607902051468">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state x="139" y="421" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.980@0.0.1280.980" timestamp="1607448651951" />
-=======
-    <state x="0" y="0" width="1024" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607308790525">
-      <screen x="0" y="0" width="1024" height="728" />
-    </state>
-    <state x="0" y="0" width="1024" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1024.728@0.0.1024.728" timestamp="1607308790525" />
-    <state x="252" y="295" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.980@0.0.1280.980" timestamp="1606022565525" />
-    <state x="275" y="22" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1605638240594" />
-    <state x="597" y="94" key="#com.intellij.ide.util.MemberChooser" timestamp="1607568194304">
-      <screen x="0" y="0" width="1024" height="728" />
-    </state>
-    <state x="597" y="94" key="#com.intellij.ide.util.MemberChooser/0.0.1024.728@0.0.1024.728" timestamp="1607568194304" />
-    <state x="796" y="96" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1605851608164" />
-    <state x="74" y="0" width="768" height="728" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable" timestamp="1607308509421">
-      <screen x="0" y="0" width="1024" height="728" />
-    </state>
-    <state x="74" y="0" width="768" height="728" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable/0.0.1024.728@0.0.1024.728" timestamp="1607308509421" />
->>>>>>> a78060f167541065a672e34e2de64ac40c391bf8
-    <state x="466" y="233" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1605853565747">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="466" y="233" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.728@0.0.1366.728" timestamp="1605853565747" />
-    <state x="360" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606943569268">
+    <state width="1238" height="259" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1607902051468" />
+    <state width="1238" height="259" key="GridCell.Tab.0.right" timestamp="1607902051468">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state x="360" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.980@0.0.1280.980" timestamp="1606943569268" />
-    <state x="303" y="148" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607320819567">
+    <state width="1238" height="259" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1607902051468" />
+    <state x="487" y="269" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1607872245256">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state x="242" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1024.728@0.0.1024.728" timestamp="1606240422453" />
-<<<<<<< HEAD
-    <state x="303" y="148" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.980@0.0.1280.980" timestamp="1607320819566" />
-    <state width="254" height="195" key="DatabaseViewActions_Filter" timestamp="1607448107209">
+    <state x="487" y="269" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1280.980@0.0.1280.980" timestamp="1607872245256" />
+    <state x="300" y="223" key="run.anything.popup" timestamp="1607879831886">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="254" height="195" key="DatabaseViewActions_Filter/0.0.1280.980@0.0.1280.980" timestamp="1607448107209" />
-    <state x="365" y="159" key="FileChooserDialogImpl" timestamp="1607060917526">
-      <screen x="0" y="0" width="1280" height="980" />
-    </state>
-    <state x="292" y="118" key="FileChooserDialogImpl/0.0.1024.728@0.0.1024.728" timestamp="1606183749778" />
-    <state x="365" y="159" key="FileChooserDialogImpl/0.0.1280.980@0.0.1280.980" timestamp="1607060917526" />
-=======
-    <state x="292" y="118" key="FileChooserDialogImpl" timestamp="1607308487644">
-      <screen x="0" y="0" width="1024" height="728" />
-    </state>
-    <state x="292" y="118" key="FileChooserDialogImpl/0.0.1024.728@0.0.1024.728" timestamp="1607308487644" />
->>>>>>> a78060f167541065a672e34e2de64ac40c391bf8
-    <state x="507" y="266" key="Github.CreateGistDialog" timestamp="1605854281039">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="507" y="266" key="Github.CreateGistDialog/0.0.1366.728@0.0.1366.728" timestamp="1605854281039" />
-<<<<<<< HEAD
-    <state width="1238" height="268" key="GridCell.Tab.0.bottom" timestamp="1607746344704">
-      <screen x="0" y="0" width="1280" height="980" />
-    </state>
-    <state width="980" height="193" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1606246012370" />
-    <state width="1238" height="268" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1607746344704" />
-    <state width="1323" height="265" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="1238" height="268" key="GridCell.Tab.0.center" timestamp="1607746344704">
-      <screen x="0" y="0" width="1280" height="980" />
-    </state>
-    <state width="980" height="193" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1606246012370" />
-    <state width="1238" height="268" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1607746344704" />
-    <state width="1323" height="265" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="1238" height="268" key="GridCell.Tab.0.left" timestamp="1607746344704">
-      <screen x="0" y="0" width="1280" height="980" />
-    </state>
-    <state width="980" height="193" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1606246012370" />
-    <state width="1238" height="268" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1607746344704" />
-    <state width="1323" height="265" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="1238" height="268" key="GridCell.Tab.0.right" timestamp="1607746344704">
-      <screen x="0" y="0" width="1280" height="980" />
-    </state>
-    <state width="980" height="193" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1606246012370" />
-    <state width="1238" height="268" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1607746344704" />
-=======
-    <state width="980" height="58" key="GridCell.Tab.0.bottom" timestamp="1607812597944">
-      <screen x="0" y="0" width="1024" height="728" />
-    </state>
-    <state width="980" height="58" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1607812597944" />
-    <state width="1238" height="259" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1606022672289" />
-    <state width="1323" height="265" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="980" height="58" key="GridCell.Tab.0.center" timestamp="1607812597944">
-      <screen x="0" y="0" width="1024" height="728" />
-    </state>
-    <state width="980" height="58" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1607812597944" />
-    <state width="1238" height="259" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1606022672289" />
-    <state width="1323" height="265" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="980" height="58" key="GridCell.Tab.0.left" timestamp="1607812597944">
-      <screen x="0" y="0" width="1024" height="728" />
-    </state>
-    <state width="980" height="58" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1607812597944" />
-    <state width="1238" height="259" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1606022672289" />
-    <state width="1323" height="265" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="980" height="58" key="GridCell.Tab.0.right" timestamp="1607812597944">
-      <screen x="0" y="0" width="1024" height="728" />
-    </state>
-    <state width="980" height="58" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1607812597944" />
-    <state width="1238" height="259" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1606022672289" />
->>>>>>> a78060f167541065a672e34e2de64ac40c391bf8
-    <state width="1323" height="265" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="665" height="140" key="GridCell.Tab.1.bottom" timestamp="1607370934833">
-      <screen x="0" y="0" width="1024" height="728" />
-    </state>
-    <state width="665" height="140" key="GridCell.Tab.1.bottom/0.0.1024.728@0.0.1024.728" timestamp="1607370934833" />
-    <state width="665" height="140" key="GridCell.Tab.1.center" timestamp="1607370934833">
-      <screen x="0" y="0" width="1024" height="728" />
-    </state>
-    <state width="665" height="140" key="GridCell.Tab.1.center/0.0.1024.728@0.0.1024.728" timestamp="1607370934833" />
-    <state width="665" height="140" key="GridCell.Tab.1.left" timestamp="1607370934833">
-      <screen x="0" y="0" width="1024" height="728" />
-    </state>
-    <state width="665" height="140" key="GridCell.Tab.1.left/0.0.1024.728@0.0.1024.728" timestamp="1607370934833" />
-    <state width="665" height="140" key="GridCell.Tab.1.right" timestamp="1607370934833">
-      <screen x="0" y="0" width="1024" height="728" />
-    </state>
-    <state width="665" height="140" key="GridCell.Tab.1.right/0.0.1024.728@0.0.1024.728" timestamp="1607370934833" />
-    <state x="42" y="18" key="Maven.ArtifactSearchDialog" timestamp="1606238498303">
-      <screen x="0" y="0" width="1024" height="728" />
-    </state>
-    <state x="42" y="18" key="Maven.ArtifactSearchDialog/0.0.1024.728@0.0.1024.728" timestamp="1606238498303" />
-<<<<<<< HEAD
-    <state x="124" y="69" key="SettingsEditor" timestamp="1607095757399">
-      <screen x="0" y="0" width="1280" height="980" />
-    </state>
-    <state x="0" y="0" key="SettingsEditor/0.0.1024.728@0.0.1024.728" timestamp="1606234490644" />
-    <state x="124" y="69" key="SettingsEditor/0.0.1280.980@0.0.1280.980" timestamp="1607095757399" />
-=======
-    <state x="0" y="0" key="SettingsEditor" timestamp="1607299428915">
-      <screen x="0" y="0" width="1024" height="728" />
-    </state>
-    <state x="0" y="0" key="SettingsEditor/0.0.1024.728@0.0.1024.728" timestamp="1607299428915" />
-    <state x="124" y="69" key="SettingsEditor/0.0.1280.980@0.0.1280.980" timestamp="1606021555871" />
->>>>>>> a78060f167541065a672e34e2de64ac40c391bf8
-    <state x="668" y="289" key="com.intellij.database.actions.DdlActions$CreateObject$1" timestamp="1606069075245">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="668" y="289" key="com.intellij.database.actions.DdlActions$CreateObject$1/0.0.1536.824@0.0.1536.824" timestamp="1606069075245" />
-<<<<<<< HEAD
-    <state x="526" y="374" width="285" height="231" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1607180893319">
-      <screen x="0" y="0" width="1280" height="980" />
-    </state>
-    <state x="526" y="374" width="285" height="231" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1280.980@0.0.1280.980" timestamp="1607180893319" />
-    <state x="453" y="321" width="373" height="333" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1607181047896">
-      <screen x="0" y="0" width="1280" height="980" />
-=======
-    <state x="118" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1607568180799">
-      <screen x="0" y="0" width="1024" height="728" />
-    </state>
-    <state x="118" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1024.728@0.0.1024.728" timestamp="1607568180799" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1606103331733">
-      <screen x="0" y="0" width="1536" height="824" />
->>>>>>> a78060f167541065a672e34e2de64ac40c391bf8
-    </state>
-    <state x="453" y="321" width="373" height="333" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog/0.0.1280.980@0.0.1280.980" timestamp="1607181047896" />
-    <state x="487" y="269" width="466" height="442" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1607718355704">
-      <screen x="0" y="0" width="1280" height="980" />
-    </state>
-    <state x="487" y="269" width="466" height="442" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1280.980@0.0.1280.980" timestamp="1607718355704" />
-    <state x="300" y="223" key="run.anything.popup" timestamp="1607264596570">
-      <screen x="0" y="0" width="1280" height="980" />
-    </state>
-    <state x="300" y="223" key="run.anything.popup/0.0.1280.980@0.0.1280.980" timestamp="1607264596570" />
-    <state x="359" y="172" width="672" height="807" key="search.everywhere.popup" timestamp="1607719587392">
-      <screen x="0" y="0" width="1280" height="980" />
-    </state>
-    <state x="359" y="172" width="672" height="807" key="search.everywhere.popup/0.0.1280.980@0.0.1280.980" timestamp="1607719587392" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1606103331733" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Tipo.java</url>
-          <line>24</line>
-          <properties field="_marcatipos" class="ucab.dsw.entidades.Tipo" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state x="300" y="223" key="run.anything.popup/0.0.1280.980@0.0.1280.980" timestamp="1607879831886" />
   </component>
 </project>

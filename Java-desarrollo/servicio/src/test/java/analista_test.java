@@ -14,7 +14,7 @@ import java.util.List;
 public class analista_test{
 
         @Test
-        public void asignarEncuestaTest() throws Exception
+        public void empezarEstudioTest() throws Exception
         {
             ucab.dsw.servicio.analista_metodos servicio = new ucab.dsw.servicio.analista_metodos();
 

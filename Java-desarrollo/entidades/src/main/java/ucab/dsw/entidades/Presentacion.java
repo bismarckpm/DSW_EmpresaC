@@ -1,17 +1,14 @@
 package ucab.dsw.entidades;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table( name = "Presentacion" )
+@NamedQueries({
+        @NamedQuery(name="PresentacionesByTipo", query="select p FROM Presentacion p WHERE p._tipo_Presentacion._id=:tipo_id"),
+
+})
 public class Presentacion extends EntidadBase{
 
     @Column( name = "nombre" )

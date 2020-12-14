@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 @NamedQueries({
         @NamedQuery(name="Admins", query="select a FROM Usuario a where a._rol='admin'"),
-        @NamedQuery(name="Encuestados", query="select a FROM Usuario a where a._rol='encuestado' and a._id=:encuestado_id")
+        @NamedQuery(name="Encuestados", query="select a FROM Usuario a where a._rol='encuestado' and a._id=:encuestado_id"),
         @NamedQuery(name="analistas", query="select a FROM Usuario a where a._rol='analista'")
 })
 @Table( name = "usuario")

@@ -1,9 +1,13 @@
 import org.junit.Assert;
 import org.junit.Test;
 import ucab.dsw.dtos.MarcaDto;
+import ucab.dsw.dtos.Marca_TipoDto;
 import ucab.dsw.dtos.SubcategoriaDto;
+import ucab.dsw.dtos.TipoDto;
 
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MarcaTest {
     @Test
@@ -27,11 +31,17 @@ public class MarcaTest {
     public void AddMarca() throws Exception
     {
         ucab.dsw.servicio.MarcaServicio servicio = new ucab.dsw.servicio.MarcaServicio();
-        MarcaDto marcaDto=new MarcaDto();
+        MarcaDto marcaDto=new MarcaDto();;
+        List<TipoDto> tiposDto= new ArrayList<>();
+        TipoDto tipoDto=new TipoDto(8);
+
         SubcategoriaDto subcategoriaDto=new SubcategoriaDto(4);
 
-        marcaDto.setNombre("Juana");
+        tiposDto.add(tipoDto);
+
+        marcaDto.setNombre("pruebaassa");
         marcaDto.setSubcategoriaDto(subcategoriaDto);
+        marcaDto.setTipo_Dto(tiposDto);
 
         Response respuesta= servicio.addMarca(marcaDto);
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
