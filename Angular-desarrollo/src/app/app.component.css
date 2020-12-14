@@ -19,3 +19,12 @@
     max-width: 700px;
     height: 700px;
 }
+
+@media (min-width: 768px) {}
+
+body:not(.sidebar-mini-md) .content-wrapper,
+body:not(.sidebar-mini-md) .main-footer,
+body:not(.sidebar-mini-md) .main-header {
+    transition: margin-left .3s ease-in-out;
+    margin-left: 0!important;
+}

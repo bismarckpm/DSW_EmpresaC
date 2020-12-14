@@ -8,6 +8,9 @@ import {AsignarEncuestaComponent} from "./componentes/asignar-encuesta/asignar-e
 import { AdministrarEstudiosProgresoComponent } from "./componentes/administrar-estudios-progreso/administrar-estudios-progreso.component";
 import { EstudioDetalleComponent } from "./componentes/estudio-detalle/estudio-detalle.component";
 import {AdministrarMarcasComponent} from "./componentes/administrar-marcas/administrar-marcas.component";
+import {AdministrarCategoriaComponent} from "./componentes/administrar-categoria/administrar-categoria.component";
+import {AdministrarSubcategoriasComponent} from "./componentes/administrar-subcategorias/administrar-subcategorias.component";
+import {AdministrarUsuariosComponent} from "./componentes/administrar-usuarios/administrar-usuarios.component";
 
 const routes: Routes = [
   {path:'', component: DashboardComponent},
@@ -16,7 +19,10 @@ const routes: Routes = [
   {path:'administrar-estudios-progreso', component: AdministrarEstudiosProgresoComponent},
   { path: 'AsignarEncuesta/:id',     component:AsignarEncuestaComponent  },
   { path: 'EstudioDetalle/:id',     component:EstudioDetalleComponent  } ,
-  { path: 'administrar-marcas',   component: AdministrarMarcasComponent  }
+  { path: 'administrar-marcas',   component: AdministrarMarcasComponent  },
+  { path: 'administrar-categoria',   component: AdministrarCategoriaComponent  },
+  { path: 'administrar-subcategorias',   component: AdministrarSubcategoriasComponent},
+  { path: 'administrar-usuarios',   component: AdministrarUsuariosComponent  }
 ];
 
 @NgModule({

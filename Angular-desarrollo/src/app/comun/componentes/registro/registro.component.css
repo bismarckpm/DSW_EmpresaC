@@ -1,13 +1,13 @@
 .forma{
     padding: 10px;
-    max-width: 800px;
+    max-width: 850px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .example-form {
   min-width: 150px;
-  max-width: 700px;
+  max-width: 750px;
   width: 100%;
 }
 

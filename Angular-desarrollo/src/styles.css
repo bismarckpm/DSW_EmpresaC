@@ -4,10 +4,8 @@ html,
 body {
     height: 100%;
     overflow-x: hidden;
-}
-
-body {
-    margin: 0;
+    margin: 0 !important;
+    padding: 0 !important;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
@@ -220,6 +218,22 @@ button.toast-close-button {
     height: 4px;
     background-color: #000000;
     opacity: 0.4;
+}
+
+.father {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.father>div {
+    padding: 0 3px;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 

@@ -25,10 +25,13 @@ public class LoginServicio extends AplicacionBase{
         try
         {
             DirectorioActivo ldap = new DirectorioActivo();
+
+            if ( usuarioLdapDto.getCorreoelectronico() != null ){
+                usuarioLdapDto.setCn(ldap.getUserFromMail(usuarioLdapDto));
+            }
             long resultado=ldap.userAuthentication( usuarioLdapDto );
 
             if(resultado==1){
-
                 Jwt jwt=new Jwt();
                 token= jwt.generarToken(usuarioLdapDto);
                 data= Json.createObjectBuilder()
@@ -44,7 +47,6 @@ public class LoginServicio extends AplicacionBase{
                 data= Json.createObjectBuilder()
                         .add("estado","error")
                         .add("codigo",401).build();
-
                 return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
             }
         }

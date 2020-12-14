@@ -3,83 +3,132 @@
     <mat-card-title>Registrate</mat-card-title>
     <br>
     <mat-divider></mat-divider> 
-    <mat-card-content [style.overflow]="'auto'" [style.height.px]="'400'">
+    <mat-card-content [style.overflow]="'auto'" [style.height.px]="'500'">
         <div class="hijo">
         <form [formGroup]="registroData" class="example-form">
             <mat-form-field class="example-full-width">
                 <mat-label>Nombre de usuario</mat-label>
-                <input matInput type="text" >
+                <input matInput type="text" formControlName="usuario">
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <mat-label>Nombre</mat-label>
-                <input matInput type="text">
+                <input matInput type="text" formControlName="nombre">
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <mat-label>Apellido</mat-label>
-                <input matInput type="text">
+                <input matInput type="text" formControlName="apellido">
             </mat-form-field>
             
             <mat-form-field appearance="fill">
                 <mat-label>Fecha de nacimiento</mat-label>
-                <input matInput [matDatepicker]="picker">
+                <input matInput [matDatepicker]="picker" formControlName="fecha_n"> 
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
+            </mat-form-field>          
+            <br><label for="genero">Genero</label><br>
             
+            <mat-radio-group aria-label="Genero" class="row">
+                <div class="col-3">
+                    <mat-radio-button value="M">Masculino</mat-radio-button><br>
+                </div> 
+                <div class="col-3">
+                    <mat-radio-button value="F">Femenino</mat-radio-button>
+                </div>
+            </mat-radio-group>
             <mat-form-field class="example-full-width">
                 <mat-label>Nuemero de personas en su hogar</mat-label>
-                <input matInput type="number">
-            </mat-form-field>
-            <label for="genero">Genero</label><br>
-            <mat-radio-group aria-label="Genero">
-                <mat-radio-button value="M">Masculino</mat-radio-button><br>
-                <mat-radio-button value="F">Femenino</mat-radio-button>
-            </mat-radio-group>
+                <input matInput type="number" formControlName="n_pers">
+            </mat-form-field>          
             
+            <mat-card>
+                <div formArrayName="hijos" *ngFor="let telefono of hijos.controls; let i = index">
+                    <div [formGroupName]="i">
+                        <table class="example-full-width" cellspacing="0">
+                        <tr>
+                        <td><label>Hijo #{{i+1}}</label></td><td></td>
+                        <td><mat-card-actions>
+                            <button mat-fab color="warn" aria-label="Remover hijo"(click)="remHijo(i)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </mat-card-actions></td>
+                        </tr>
+                        <tr>
+                        <td><mat-form-field class="example-full-width">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput type="text" [attr.id]="'nombreh' + i"  formControlName="nombreh">
+                            </mat-form-field></td>
+                        <td><mat-form-field class="example-full-width">
+                            <mat-label>Apellido</mat-label>
+                            <input matInput type="text" [attr.id]="'apellidoh' + i"  formControlName="apellidoh">
+                            </mat-form-field></td>
+                        </tr>
+                        <tr>
+                        <td><mat-form-field appearance="fill">
+                            <mat-label>Fecha de nacimiento</mat-label>
+                            <input matInput [matDatepicker]="picker" [attr.id]="'fec_nac_h' + i"  formControlName="fec_nac_h"> 
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field></td>
+                        <td><label for="genero">Genero</label><br>
+                            <mat-radio-group aria-label="Genero" [attr.id]="'generoh' + i"  formControlName="generoh">
+                            <div class="col-3">
+                                <mat-radio-button value="M">Masculino</mat-radio-button><br>
+                            </div> 
+                            <div class="col-3">
+                                <mat-radio-button value="F">Femenino</mat-radio-button>
+                            </div>
+                            </mat-radio-group></td>
+                        </tr></table>
+                    </div> 
+                </div>
+            </mat-card>
+            <mat-card-actions>
+                <button mat-raised-button (click)="addHijo()">Añadir hijo</button>
+            </mat-card-actions>
+
             <mat-form-field class="example-full-width">
                 <mat-label>Correo electrónico</mat-label>
-                <input matInput type="email">
+                <input matInput type="email" formControlName="email">
             </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <mat-label>Contraseña</mat-label>
-                <input matInput type="password">
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <mat-label>Confirme su contraseña</mat-label>
-                <input matInput type="password">
-            </mat-form-field>
+            
             <mat-form-field class="example-full-width">
                 <mat-label>Telefono</mat-label>
-                <input type="tel" matInput placeholder="+58-04-123-4567">
+                <input type="tel" matInput placeholder="+58-0420-123-4567" formControlName="telf">
                 <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
 
             <table class="example-full-width" cellspacing="0"><tr>
                 <td><mat-form-field class="example-full-width">
                     <mat-label>Pais</mat-label>
-                    <input matInput placeholder="Ex. Caracas">
-                  </mat-form-field></td>
-
+                    <input matInput placeholder="Ex. Caracas" formControlName="pais">
+                    </mat-form-field></td>
                 <td><mat-form-field class="example-full-width">
                     <mat-label>Estado</mat-label>
-                    <input matInput placeholder="Ex. Miranda">
-                </mat-form-field></td>
+                    <input matInput placeholder="Ex. Miranda" formControlName="estado">
+                    </mat-form-field></td>
                 <td><mat-form-field class="example-full-width">
                     <mat-label>Ciudad</mat-label>
-                    <input matInput placeholder="Ex. Caracas">
-                </mat-form-field></td>
+                    <input matInput placeholder="Ex. Caracas" formControlName="ciudad">
+                    </mat-form-field></td>
                 <td><mat-form-field class="example-full-width">
                     <mat-label>Parroquia</mat-label>
-                    <input matInput placeholder="Ex. San Luis">
-                </mat-form-field></td>
+                    <input matInput placeholder="Ex. San Luis" formControlName="parroquia">
+                    </mat-form-field></td>
             </tr></table>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Contraseña</mat-label>
+                <input matInput type="password" formControlName="pass">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Confirme su contraseña</mat-label>
+                <input matInput type="password" formControlName="repass">
+            </mat-form-field>
           </form>
         </div>  
-          
-
     </mat-card-content>
-    <mat-divider></mat-divider> 
+    <mat-divider></mat-divider>
     <mat-card-actions >
-        <button mat-raised-button type="submit">Registrate</button>
+        <button mat-raised-button type="submit" (click)="registro()">Registrate</button>
     </mat-card-actions>
 </mat-card>

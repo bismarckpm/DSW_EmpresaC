@@ -25,10 +25,9 @@ public class RecuperacionServicio extends AplicacionBase{
             DirectorioActivo ldap = new DirectorioActivo();
             RecuperacionPass rec = new RecuperacionPass();
             String newPass = rec.newPass();
-            String user = "";
+            String user = ldap.getUserFromMail(usuarioLdapDto);
 
-            user = ldap.getUserFromMail(usuarioLdapDto);
-            if(user != null){
+            if(!user.equals("")){
                 usuarioLdapDto.setCn(user);
                 ldap.reSetPass(usuarioLdapDto,newPass);
                 rec.recuperar(usuarioLdapDto.getCorreoelectronico(), newPass);
@@ -36,7 +35,6 @@ public class RecuperacionServicio extends AplicacionBase{
             }else{
                 return Response.status(Response.Status.UNAUTHORIZED).build();
             }
-
         }catch ( Exception ex ) {
             System.out.println("Excepcion");
             return Response.status(Response.Status.BAD_REQUEST).build();
