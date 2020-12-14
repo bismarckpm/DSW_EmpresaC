@@ -1,18 +1,18 @@
-
+import { Opcion } from "./opciones";
 
 export class Pregunta{
 
-    Id: number;
-    Descripcion: string;
-    Tipo: string;
+    id: number;
+    descripcion: string;
+    tipopregunta: string;
     minimo:number;
     maximo:number;
-    opciones:string[];
+    opciones:Opcion[];
 
     public preguntaSimple(d:string, t:string){
-        this.Id=null;
-        this.Descripcion=d;
-        this.Tipo=t;
+        this.id=null;
+        this.descripcion=d;
+        this.tipopregunta=t;
         this.minimo=null;
         this.maximo=null;
         this.opciones=null;
@@ -20,9 +20,9 @@ export class Pregunta{
     }
 
     public preguntaRango(d:string, t:string, min:number, max:number){
-        this.Id=null;
-        this.Descripcion=d;
-        this.Tipo=t;
+        this.id=null;
+        this.descripcion=d;
+        this.tipopregunta=t;
         this.minimo=min;
         this.maximo=max;
         this.opciones=null;
@@ -30,12 +30,12 @@ export class Pregunta{
     }
 
     public preguntaMultipleSimple(d:string, t:string, o:string[]){
-        this.Id=null;
-        this.Descripcion=d;
-        this.Tipo=t;
+        this.id=null;
+        this.descripcion=d;
+        this.tipopregunta=t;
         this.minimo=null;
         this.maximo=null;
-        this.opciones=o;
+        
     }
 
 

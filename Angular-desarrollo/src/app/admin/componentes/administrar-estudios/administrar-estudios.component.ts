@@ -4,6 +4,7 @@ import { SolicitudEstudioService } from "../../Servicios/solicitud-estudio.servi
 
 //Entidades
 import { SolicitudEstudio } from "../../../Entidades/solicitudEstudio";
+import { Estudio } from "../../../Entidades/estudio";
 
 @Component({
   selector: 'admin-administrar-estudios',
@@ -11,12 +12,12 @@ import { SolicitudEstudio } from "../../../Entidades/solicitudEstudio";
   styleUrls: ['./administrar-estudios.component.css']
 })
 export class AdministrarEstudiosComponent implements OnInit {
-  estudios:SolicitudEstudio[];
+  estudios:Estudio[];
   constructor(private solicitudservice:SolicitudEstudioService) { }
 
   ngOnInit(): void {
-    this.solicitudservice.getEstudiosPendientes().subscribe(e=> {this.estudios=e ;console.log(this.estudios ) });
-    
+
+    this.solicitudservice.getEstudiosPendientes().subscribe(e=> {this.estudios=e.estudios;console.log(e)})
   }
 
 }

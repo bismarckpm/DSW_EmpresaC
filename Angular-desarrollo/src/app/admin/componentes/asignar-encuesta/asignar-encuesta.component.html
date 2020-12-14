@@ -1,5 +1,5 @@
 
-
+<div *ngIf="estudio">
 <mat-card class="example-card "  *ngIf="estudio">
   <mat-card-header aling-center>
     
@@ -10,9 +10,9 @@
   <mat-card-content>
     
       <div class="form-group">
-        <p> Marca: {{estudio.marca}}</p>
-        <p> Categoria: {{estudio.categoria}}</p>
-        <p> Subcategoria: {{estudio.subcategoria}}</p>
+        <p> Marca: {{estudio.caracteristicas.Marca}}</p>
+        <p> Categoria: {{estudio.caracteristicas.Categoria}}</p>
+        <p> Subcategoria: {{estudio.caracteristicas.Subcategoria}}</p>
       </div>
    
   </mat-card-content>
@@ -20,7 +20,7 @@
 </mat-card>
 
 <mat-divider></mat-divider>
-<app-contenedor-pregunta-nueva></app-contenedor-pregunta-nueva>
+<app-contenedor-pregunta-nueva (nuevaEvent)="PreguntaNueva($event)"></app-contenedor-pregunta-nueva>
 
 <mat-divider></mat-divider>
 
@@ -34,7 +34,7 @@
     <mat-form-field class="half-width">
       <mat-select formControlName="tipo">
         
-        <mat-option *ngFor="let x of preguntas" value={{x.Id}}>{{x.Descripcion}}</mat-option>
+        <mat-option *ngFor="let x of preguntas" value={{x.id}}>{{x.descripcion}}</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -58,18 +58,21 @@
   </mat-card-header>
   <mat-card-content>
 
+    <form novalidate [formGroup]="encuestaForm" #fform="ngForm" >
     <div class="form-group">
       <label for="exampleInputEncuesta1">Nombre de la Encuesta</label>
-      <input type="text" class="form-control" id="exampleInputEncuesta1" aria-describedby="EncuestaHelp">
+      <input formControlName="nombre" type="text" class="form-control" id="exampleInputEncuesta1" aria-describedby="EncuestaHelp">
     </div>
+    </form>
           <mat-card-actions>
-        <button mat-raised-button color="#ffc107" type="submit">Aceptar encuesta</button>
+        <button mat-raised-button color="#ffc107" (click)="aceptarEncuesta()">Aceptar encuesta</button>
       </mat-card-actions>
     
   </mat-card-content>
 
 
 </mat-card>
+</div>
 
 <div [hidden]="estudio">
     <mat-spinner></mat-spinner><h4>Cargando estudio ...</h4>

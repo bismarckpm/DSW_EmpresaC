@@ -26,6 +26,8 @@
   import { SolicitudEstudioService } from "./Servicios/solicitud-estudio.service";
   import { PreguntaService } from "./Servicios/pregunta.service";
   import {  AdminMarcasService } from "./Servicios/administrar-marcas/admin-marcas.service";
+  import { TarjetaParticipantesComponent } from './componentes/tarjeta-participantes/tarjeta-participantes.component';
+
 
 
   @NgModule({
@@ -40,7 +42,8 @@
       EstudioDetalleComponent,
       ContenedorPreguntaNuevaComponent,
       ContenedorPreguntaViejaComponent,
-      AdministrarMarcasComponent
+      AdministrarMarcasComponent,
+      TarjetaParticipantesComponent
     ],
     imports: [
       CommonModule,
@@ -54,3 +57,4 @@
     ]
   })
   export class AdminModule { }
+
