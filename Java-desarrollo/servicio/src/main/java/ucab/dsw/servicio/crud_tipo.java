@@ -14,21 +14,23 @@ import java.util.List;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
-@Path( "/prueba" )
+@Path( "/tipo" )
 @Produces( MediaType.APPLICATION_JSON )
 @Consumes( MediaType.APPLICATION_JSON )
 public class crud_tipo {
 
     @PUT
-    @Path( "/addpresentacion" )
-    public TipoDto addTipo(TipoDto tipoDto)
+    @Path( "/add-tipo" )
+    public Response addTipo(TipoDto tipoDto)
     {
         TipoDto resultado = new TipoDto();
-
+        JsonObject data;
         try
         {
             DaoTipo dao = new DaoTipo();
@@ -38,21 +40,29 @@ public class crud_tipo {
             Tipo resul = dao.insert( tipo);
             resultado.setId( resul.get_id() );
 
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
 
         }
         catch ( Exception ex )
         {
             String problema = ex.getMessage();
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
-        return  resultado;
+        return Response.status(Response.Status.OK).entity(data).build();
     }
 
     @PUT
-    @Path( "/channgepresentacion" )
-    public TipoDto changeTipo(long  _id,TipoDto tipoDto)
+    @Path( "/channge-tipo/{id}" )
+    public Response changeTipo(@PathParam("id")long  _id,TipoDto tipoDto)
     {
         TipoDto resultado = new TipoDto();
-
+        JsonObject data;
         try
         {
             DaoTipo dao = new DaoTipo();
@@ -62,19 +72,30 @@ public class crud_tipo {
             Tipo resul = dao.update( tipo);
             resultado.setId( resul.get_id() );
 
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
+
 
         }
         catch ( Exception ex )
         {
             String problema = ex.getMessage();
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
-        return  resultado;
+
+        return Response.status(Response.Status.OK).entity(data).build();
     }
 
     @DELETE
-    @Path( "/delete/{id}" )
-    public TipoDto EliminarTipo( long  _id )
+    @Path( "/delete-tipo/{id}" )
+    public Response EliminarTipo( @PathParam("id")long  _id )
     {
+        JsonObject data;
         TipoDto resultado = new TipoDto();
         try
         {
@@ -103,7 +124,13 @@ public class crud_tipo {
                     Presentacion resul2 = dao3.update(presentacion);
                     resultado3.setId( resul2.get_id() );
                 }
+
+
+
             }
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
 
 
 
@@ -111,59 +138,95 @@ public class crud_tipo {
         catch ( Exception ex )
         {
             String problema = ex.getMessage();
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
-        return  resultado;
+        return Response.status(Response.Status.OK).entity(data).build();
     }
 
-    @PUT
-    @Path( "/{id}" )
-    public int findTipo( long id )
+    @GET
+    @Path( "/find-tipo/{id}" )
+    public Response findTipo(@PathParam("id") long id )
     {
-
+        JsonObject data;
+        JsonObject tipoJson;
         try {
             DaoTipo dao = new DaoTipo();
             Tipo resul = dao.find( id,Tipo.class );
-            System.out.println("id: " + resul.get_id());
-            System.out.println("nombre: " + resul.get_nombre());
+
+            tipoJson= Json.createObjectBuilder().add("id",resul.get_id() )
+                    .add("nombre",resul.get_nombre()).build();
+
             if (resul.get_estado() != null){
                 System.out.println("estado: " + resul.get_estado());
             }
 
 
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200)
+                    .add("categoria",tipoJson).build();
+
         }
         catch ( Exception ex )
         {
             String problema = ex.getMessage();
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
-        return  1;
+        return Response.status(Response.Status.OK).entity(data).build();
     }
 
-    @PUT
-    @Path( "/{id}" )
-    public int findAllTipo( )
+    @GET
+    @Path( "/findall-tipos" )
+    public Response findAllTipo( )
     {
-
+        JsonObject data;
         try {
             List<Tipo> resultado= null;
             Class<Tipo> type = Tipo.class;
 
             DaoTipo dao = new DaoTipo();
             resultado = dao.findAll( type );
+
+            JsonArrayBuilder tipoArrayJson= Json.createArrayBuilder();
+
             for(Tipo obj: resultado) {
 
-                System.out.println("id: " + obj.get_id());
-                System.out.println("nombre: " + obj.get_nombre());
+                JsonObject tipo = Json.createObjectBuilder().add("id",obj.get_id())
+                        .add("nombre",obj.get_nombre()).build();
+
                 if (obj.get_estado() != null){
                     System.out.println("estado: " + obj.get_estado());
                 }
+
+                tipoArrayJson.add(tipo);
             }
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200)
+                    .add("categorias",tipoArrayJson).build();
 
 
         }
         catch ( Exception ex )
         {
             String problema = ex.getMessage();
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
-        return  1;
+        return Response.status(Response.Status.OK).entity(data).build();
     }
 }
