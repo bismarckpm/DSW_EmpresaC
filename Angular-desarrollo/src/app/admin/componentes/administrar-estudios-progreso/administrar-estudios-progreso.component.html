@@ -1,11 +1,7 @@
 
-
-
-
-
 <div *ngIf="estudios" class="contenedor">
     <div *ngFor="let x of estudios" class="item">
-        <app-tarjeta-estudios [routerLink]="['/admin/AsignarEncuesta', x.id]"   [estudio]=x></app-tarjeta-estudios>
+        <app-tarjeta-estudio-progreso [estudio]=x ></app-tarjeta-estudio-progreso>
     </div>
 </div>
 
