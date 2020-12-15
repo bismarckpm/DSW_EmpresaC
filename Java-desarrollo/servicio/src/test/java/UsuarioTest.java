@@ -12,7 +12,7 @@ public class UsuarioTest {
 
 
         UsuarioDto usuarioDto=new UsuarioDto();
-        usuarioDto.setUsuario("usuario1");
+        usuarioDto.setUsuario("usuario32");
         usuarioDto.setContrasena("12345");
 
         ClienteDto clienteDto= new ClienteDto();
@@ -32,7 +32,7 @@ public class UsuarioTest {
 
 
         UsuarioDto usuarioDto=new UsuarioDto();
-        usuarioDto.setUsuario("usuario159");
+        usuarioDto.setUsuario("usuario167");
         usuarioDto.setContrasena("12345");
 
         EncuestadoDto encuestadoDto=new EncuestadoDto();

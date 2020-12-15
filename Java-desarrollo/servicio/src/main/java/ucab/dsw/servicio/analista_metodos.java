@@ -223,26 +223,28 @@ public class analista_metodos {
                     List<Participacion> participacion = daoParticipacion.getParticipacionByEstudio(obj.get_id());
 
                     for (Participacion j : participacion) {
-                        builderArrayEncuestado.add(Json.createObjectBuilder().add("participacion_id", j.get_id())
+                        builderArrayEncuestado.add(Json.createObjectBuilder().add("id", j.get_id())
                                 .add("doc_id", j.get_encuestado().get_doc_id())
                                 .add("usuario", j.get_encuestado().get_usuario_encuestado().get_usuario())
                                 .add("correo", j.get_encuestado().get_correo())
-                                .add("nombre", j.get_encuestado().get_nombre())
-                                .add("apellido", j.get_encuestado().get_apellido())
-                                .add("estado", j.get_estado()));
+                                .add("Nombre", j.get_encuestado().get_nombre())
+                                .add("Apellido", j.get_encuestado().get_apellido())
+                                .add("Estado", j.get_estado()));
 
 
                     }
+
+                    JsonObject encuesta = Json.createObjectBuilder().add("Marca",obj.get_marca().get_nombre())
+                            .add("Categoria",obj.get_marca().get_subcategoria().get_categoria().get_nombre())
+                            .add("Subcategoria",obj.get_marca().get_subcategoria().get_nombre()).build();
 
                     builder.add(Json.createObjectBuilder().add("id", obj.get_id())
                             .add("fecha", obj.get_fecha_inicio().toString())
                             .add("modo_encuesta", obj.get_modoencuesta())
                             .add("caracteristica_demografica", builderObject)
-                            .add("marca", obj.get_marca().get_nombre())
-                            .add("subcategoria", obj.get_marca().get_subcategoria().get_nombre())
-                            .add("categoria", obj.get_marca().get_subcategoria().get_categoria().get_nombre())
-                            .add("participacion", builderArrayEncuestado)
-                            .add("estado", obj.get_estado()));
+                            .add("caracteristicas",encuesta)
+                            .add("Participantes", builderArrayEncuestado)
+                            .add("estatus", obj.get_estado()));
 
                 }
             }
