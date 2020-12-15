@@ -48,4 +48,14 @@ public class MarcaDto extends DtoBase{
     public void setTipo_Dto(List<TipoDto> tipoDto) {
         this.tipoDto = tipoDto;
     }
+
+    public Marca_TipoDto marcaTipoDto;
+
+    public Marca_TipoDto getMarcaTipo_Dto() {
+        return marcaTipoDto;
+    }
+
+    public void setMarcaTipo_Dto(Marca_TipoDto marcaTipoDto) {
+        this.marcaTipoDto = marcaTipoDto;
+    }
 }

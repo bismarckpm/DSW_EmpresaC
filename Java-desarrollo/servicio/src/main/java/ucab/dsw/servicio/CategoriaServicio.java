@@ -1,9 +1,18 @@
 package ucab.dsw.servicio;
 import org.eclipse.persistence.exceptions.DatabaseException;
 import ucab.dsw.accesodatos.DaoCategoria;
+import ucab.dsw.accesodatos.DaoMarca;
+import ucab.dsw.accesodatos.DaoPresentacion;
+import ucab.dsw.accesodatos.DaoSubcategoria;
 import ucab.dsw.dtos.CategoriaDto;
 
+import ucab.dsw.dtos.MarcaDto;
+import ucab.dsw.dtos.PresentacionDto;
+import ucab.dsw.dtos.SubcategoriaDto;
 import ucab.dsw.entidades.Categoria;
+import ucab.dsw.entidades.Marca;
+import ucab.dsw.entidades.Presentacion;
+import ucab.dsw.entidades.Subcategoria;
 import ucab.dsw.excepciones.PruebaExcepcion;
 
 import javax.json.Json;
@@ -125,6 +134,50 @@ public class CategoriaServicio extends AplicacionBase{
 
             Categoria resul = dao.update(categoria);
             resultado.setId( resul.get_id() );
+
+            List<Subcategoria> resultado2= null;
+            Class<Subcategoria> type = Subcategoria.class;
+
+            DaoSubcategoria dao2 = new DaoSubcategoria();
+            resultado2 = dao2.findAll( type );
+            for(Subcategoria obj: resultado2) {
+
+                if (obj.get_categoria().get_id() == resul.get_id()){
+                    DaoSubcategoria dao3 = new DaoSubcategoria();
+                    SubcategoriaDto resultado3 = new SubcategoriaDto();
+                    Subcategoria subcategoria = dao3.find(obj.get_id(), Subcategoria.class);
+
+                    subcategoria.set_estado("inactivo");
+
+                    Subcategoria resul2 = dao3.update(subcategoria);
+                    resultado3.setId( resul2.get_id() );
+                }
+
+
+
+            }
+
+            List<Marca> resultado4= null;
+            Class<Marca> type2 = Marca.class;
+
+            DaoMarca dao4 = new DaoMarca();
+            resultado4 = dao4.findAll( type2 );
+            for(Marca obj: resultado4) {
+
+                if (obj.get_subcategoria().get_categoria().get_id() == resul.get_id()){
+                    DaoMarca dao5 = new DaoMarca();
+                    MarcaDto resultado5 = new MarcaDto();
+                    Marca marca = dao5.find(obj.get_id(), Marca.class);
+
+                    marca.set_estado("inactivo");
+
+                    Marca resul3 = dao5.update(marca);
+                    resultado5.setId( resul3.get_id() );
+                }
+
+
+
+            }
 
             data= Json.createObjectBuilder()
                     .add("estado","success")

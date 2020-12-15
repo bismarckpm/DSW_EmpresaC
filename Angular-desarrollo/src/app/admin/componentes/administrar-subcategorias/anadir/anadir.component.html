@@ -1,27 +1,24 @@
 <h2 mat-dialog-title>
-    Añadir  SubCategoria
+    Añadir SubCategoria
 </h2>
 
 <mat-dialog-content class="mat-typography">
     <div class="formulario">
-        <mat-form-field appearance="outline">
-            <mat-label>Seleccione la categoria</mat-label>
-            <mat-select [(value)]="selected">
-              <mat-option>None</mat-option>
-              <mat-option value="option1">Option 1</mat-option>
-              <mat-option value="option2">Option 2</mat-option>
-              <mat-option value="option3">Option 3</mat-option>
-            </mat-select>
-          </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>Nombre de la Subcategoria</mat-label>
-            <input matInput [(ngModel)]="subcategoria" placeholder="Ex. Lacteos">
+            <input matInput [(ngModel)]="subcategoria" placeholder="Ex. Leche">
         </mat-form-field>
 
-       
+        <mat-form-field appearance="outline">
+            <mat-label>Seleccione la categoria</mat-label>
+            <mat-select [(value)]="categoria_id">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let item of categorias" [value]="item.id">{{item.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
-    
+
 
 
 </mat-dialog-content>

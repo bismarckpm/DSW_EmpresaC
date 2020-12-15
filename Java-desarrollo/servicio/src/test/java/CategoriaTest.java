@@ -48,7 +48,7 @@ public class CategoriaTest {
     public void deleteCategoria() throws Exception {
         ucab.dsw.servicio.CategoriaServicio servicio = new ucab.dsw.servicio.CategoriaServicio();
         CategoriaDto categoriaDto=new CategoriaDto();
-        Response respuesta= servicio.deleteCategoria(33);
+        Response respuesta= servicio.deleteCategoria(1);
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
     }
 

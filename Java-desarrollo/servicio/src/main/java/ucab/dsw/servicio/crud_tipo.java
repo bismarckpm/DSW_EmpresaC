@@ -154,6 +154,27 @@ public class crud_tipo {
 
 
             }
+            List<Marca_Tipo> resultado4= null;
+            Class<Marca_Tipo> type2 = Marca_Tipo.class;
+
+            DaoMarca_Tipo dao4 = new DaoMarca_Tipo();
+            resultado4 = dao4.findAll( type2 );
+            for(Marca_Tipo obj: resultado4) {
+
+                if (obj.get_tipo().get_id() == resul.get_id()){
+                    DaoMarca dao5 = new DaoMarca();
+                    MarcaDto resultado5 = new MarcaDto();
+                    Marca marca = dao5.find(obj.get_marca().get_id(), Marca.class);
+
+                    marca.set_estado("inactivo");
+
+                    Marca resul3 = dao5.update(marca);
+                    resultado5.setId( resul3.get_id() );
+                }
+
+
+
+            }
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200).build();

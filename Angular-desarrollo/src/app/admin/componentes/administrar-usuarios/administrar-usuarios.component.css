@@ -1,47 +1,53 @@
 table {
-  width: 100%;
+    width: 100%;
 }
 
 .mat-form-field {
-  font-size: 14px;
-  width: 100%;
+    font-size: 14px;
+    width: 100%;
 }
+
 .example-card {
-  max-width: 1000px;
-  
+    max-width: 1000px;
 }
-.divider{
-  max-width: 900px;
-}
-.color{
-  background-color: #ffc400;
-}
-.i{
-max-width: 75px;
 
+.divider {
+    max-width: 900px;
 }
+
+.color {
+    background-color: #ffc400;
+}
+
+.i {
+    max-width: 75px;
+}
+
 .mt-n1 {
-  margin-top: -0.25rem !important;
+    margin-top: -0.25rem !important;
 }
 
-.fuente{
- font-size:25px;
- font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; 
+.fuente {
+    font-size: 25px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-.forma{
-font-size: 20px;
-width: 100%;
+
+.forma {
+    font-size: 20px;
+    width: 100%;
 }
+
 .example-form {
-min-width: 150px;
-max-width: 500px;
-width: 100%;
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
 }
 
-td, th {
-width: 25%;
-}
-.input{
-width: 10%;
+td,
+th {
+    width: 20%;
 }
 
+.input {
+    width: 10%;
+}

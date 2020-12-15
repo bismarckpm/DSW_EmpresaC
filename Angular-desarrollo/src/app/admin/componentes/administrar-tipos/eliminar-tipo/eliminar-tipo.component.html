@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>
+    ¿Estas seguro que desea eliminar este tipo de producto?
+</h2>
+
+<mat-dialog-content class="mat-typography">
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-stroked-button [mat-dialog-close]="true" color="warn">No</button>
+    <button mat-raised-button (click)="deleteTipo()" cdkFocusInitial class="color">Si</button>
+</mat-dialog-actions>
