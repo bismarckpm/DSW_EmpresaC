@@ -57,4 +57,14 @@ public class UsuarioTest {
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
 
     }
+
+    @Test
+    public void activarUsuarioTest() throws Exception
+    {
+        ucab.dsw.servicio.UsuarioServicio servicio = new ucab.dsw.servicio.UsuarioServicio();
+
+        Response resultado = servicio.activarUsuario( 3);
+        Assert.assertNotEquals( resultado, 0 );
+
+    }
 }
