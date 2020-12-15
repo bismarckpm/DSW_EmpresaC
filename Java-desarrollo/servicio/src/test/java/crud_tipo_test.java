@@ -43,7 +43,7 @@ public class crud_tipo_test
     {
         ucab.dsw.servicio.crud_tipo servicio = new ucab.dsw.servicio.crud_tipo();;
 
-        Response resultado = servicio.EliminarTipo( 1 );
+        Response resultado = servicio.EliminarTipo( 2);
         Assert.assertNotEquals( resultado, 0 );
 
     }

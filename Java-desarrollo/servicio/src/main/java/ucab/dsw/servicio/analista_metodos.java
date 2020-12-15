@@ -146,4 +146,38 @@ public class analista_metodos {
 
         return Response.status(Response.Status.OK).entity(data).build();
     }
+
+    @PUT
+    @Path( "/eliminar-participacion/{id}" )
+    public Response Eliminar_Participacion(@PathParam("id") long  _id )
+    {
+        JsonObject data;
+        SolicitudEstudioDto resultado = new SolicitudEstudioDto();
+        try
+        {
+            DaoParticipacion dao = new DaoParticipacion();
+            Participacion participacion = dao.find(_id,Participacion.class);
+            participacion.set_estado("inactivo");
+            Participacion resul = dao.update(participacion);
+            resultado.setId( resul.get_id() );
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
+
+        }
+        catch ( Exception ex )
+        {
+            String problema = ex.getMessage();
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
 }

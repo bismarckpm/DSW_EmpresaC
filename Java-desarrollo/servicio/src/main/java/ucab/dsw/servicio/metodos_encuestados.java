@@ -87,9 +87,11 @@ public class metodos_encuestados {
         JsonArrayBuilder builder = Json.createArrayBuilder();
         try {
             List<PreguntaEncuesta> resultado = null;
+            List<Opcion_Simple_Multiple_Pregunta> resultado2 = null;
 
             DaoPreguntaEncuesta dao = new DaoPreguntaEncuesta();
             DaoSolicitudEstudio dao2 = new DaoSolicitudEstudio();
+            DaoOpcion_Simple_Multiple_Pregunta dao3 = new DaoOpcion_Simple_Multiple_Pregunta();
 
             SolicitudEstudio solicitudEstudio = new SolicitudEstudio();
 
@@ -98,6 +100,10 @@ public class metodos_encuestados {
             Class<PreguntaEncuesta> type = PreguntaEncuesta.class;
 
             resultado = dao.findAll(type);
+
+            Class<Opcion_Simple_Multiple_Pregunta> type2 = Opcion_Simple_Multiple_Pregunta.class;
+
+            resultado2 = dao3.findAll(type2);
             for (PreguntaEncuesta obj : resultado) {
 
 
@@ -111,10 +117,21 @@ public class metodos_encuestados {
                         JsonObject p = Json.createObjectBuilder().add("valor minimo ", obj.get_pregunta().get_valormin())
                                 .add("valor maximo ", obj.get_pregunta().get_valormax()).build();
                         builder.add(p);
-                        System.out.println("id" + obj.get_id());
                     }
 
-                    System.out.println("id" + obj.get_id());
+                    if (obj.get_pregunta().get_tipopregunta().equals("Opcion simple") || obj.get_pregunta().get_tipopregunta().equals("Opcion multiple") ){
+                        for (Opcion_Simple_Multiple_Pregunta obj2 : resultado2) {
+                            if(obj2.get_pregunta().get_id() == obj.get_pregunta().get_id()){
+
+                                JsonObject p = Json.createObjectBuilder().add("opcion", obj2.get_opcionsimplemultiple().get_opcion()).build();
+                                builder.add(p);
+
+                            }
+
+
+                        }
+                    }
+
                 }
             }
 
