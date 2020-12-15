@@ -36,16 +36,15 @@
   import { EliminarSubcategoriaComponent } from './componentes/administrar-subcategorias/eliminar-subcategoria/eliminar-subcategoria.component';
   import { AdministrarTiposComponent } from './componentes/administrar-tipos/administrar-tipos.component';
   import { AdministrarPresentacionesComponent } from './componentes/administrar-presentaciones/administrar-presentaciones.component';
-  import { AnadirUsuarioComponent } from './componentes/administrar-usuarios/anadir-usuario/anadir-usuario.component';
-  import { ModificarUsuarioComponent } from './componentes/administrar-usuarios/modificar-usuario/modificar-usuario.component';
-  import { EliminarUsuarioComponent } from './componentes/administrar-usuarios/eliminar-usuario/eliminar-usuario.component';
   import { AnadirTipoComponent } from './componentes/administrar-tipos/anadir-tipo/anadir-tipo.component';
   import { ModificarTipoComponent } from './componentes/administrar-tipos/modificar-tipo/modificar-tipo.component';
   import { EliminarTipoComponent } from './componentes/administrar-tipos/eliminar-tipo/eliminar-tipo.component';
   import { AnadirPresentacionComponent } from './componentes/administrar-presentaciones/anadir-presentacion/anadir-presentacion.component';
   import { ModificarPresentacionComponent } from './componentes/administrar-presentaciones/modificar-presentacion/modificar-presentacion.component';
   import { EliminarPresentacionComponent } from './componentes/administrar-presentaciones/eliminar-presentacion/eliminar-presentacion.component';
-    
+  import { AnadirAdminAnalistaComponent } from './componentes/administrar-usuarios/anadir/anadir-admin-analista/anadir-admin-analista.component';
+  import { AnadirEncuestadoComponent } from './componentes/administrar-usuarios/anadir/anadir-encuestado/anadir-encuestado.component';
+  import { AnadirClienteComponent } from './componentes/administrar-usuarios/anadir/anadir-cliente/anadir-cliente.component';
 
   //Servicios
   import { SolicitudEstudioService } from "./Servicios/solicitud-estudio.service";
@@ -55,8 +54,10 @@
   import {  AdministrarSubcategoriasService } from "./Servicios/administrar-subcategorias/administrar-subcategorias.service";
   import {  AdministrarTiposService } from "./Servicios/administrar-tipos/administrar-tipos.service";
   import {  AdministrarPresentacionService } from "./Servicios/administrar-presentacion/administrar-presentacion.service";
+  import { AdministrarUsuariosService } from './Servicios/administrar-usuarios/administrar-usuarios.service';
+import { EliminarUsuarioComponent } from './componentes/administrar-usuarios/eliminar/eliminar-usuario/eliminar-usuario.component';
 
-@NgModule({
+  @NgModule({
     declarations: [
       AdminComponent,
       DashboardComponent,
@@ -84,15 +85,16 @@
       EliminarSubcategoriaComponent,
       AdministrarTiposComponent,
       AdministrarPresentacionesComponent,
-      AnadirUsuarioComponent,
-      ModificarUsuarioComponent,
-      EliminarUsuarioComponent,
       AnadirTipoComponent,
       ModificarTipoComponent,
       EliminarTipoComponent,
       AnadirPresentacionComponent,
       ModificarPresentacionComponent,
-      EliminarPresentacionComponent
+      EliminarPresentacionComponent,
+      AnadirAdminAnalistaComponent,
+      AnadirEncuestadoComponent,
+      AnadirClienteComponent,
+      EliminarUsuarioComponent
     ],
     imports: [
       CommonModule,
@@ -109,7 +111,8 @@
       AdministrarCategoriasService,
       AdministrarSubcategoriasService,
       AdministrarTiposService,
-      AdministrarPresentacionService
+      AdministrarPresentacionService,
+      AdministrarUsuariosService
     ]
   })
   export class AdminModule { }

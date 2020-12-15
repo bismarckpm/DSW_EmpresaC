@@ -13,9 +13,9 @@
             </ng-container>
 
 
-            <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400;text-align: center;"> Nombre </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            <ng-container matColumnDef="usuario">
+                <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400;text-align: center;"> Usuario </th>
+                <td mat-cell *matCellDef="let element"> {{element.usuario}} </td>
             </ng-container>
 
             <ng-container matColumnDef="rol">
@@ -36,7 +36,7 @@
                             <a class="btn btn-primary text-white" style="cursor: pointer;"><i class="fas fa-pencil-alt"></i></a>
                         </div>
                         <div aling="center">
-                            <button type="submit" class="btn btn-danger"> <i class=" fas fa-trash"></i></button>
+                            <button type="submit" class="btn btn-danger" (click)="openDialogDelete(element)"> <i class=" fas fa-trash"></i></button>
                         </div>
                     </div>
                 </td>
@@ -52,10 +52,27 @@
 
 
     <div class="row justify-content-end">
-
-        <button mat-fab class="color" aria-label="Example icon button with a home icon">
+        <button mat-fab class="color" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" style="border:0; outline: none;">
             <mat-icon>add</mat-icon>
-          </button>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="openDialog('admin')">
+              <mat-icon>admin_panel_settings</mat-icon>
+              <span>Administrador</span>
+            </button>
+            <button mat-menu-item (click)="openDialog('analista')">
+              <mat-icon>assignment_ind</mat-icon>
+              <span>Analista</span>
+            </button>
+            <button mat-menu-item (click)="openDialogCliente()">
+              <mat-icon>supervisor_account</mat-icon>
+              <span>Cliente</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>recent_actors</mat-icon>
+                <span>Encuestado</span>
+              </button>
+        </mat-menu>
 
     </div>
 </div>
