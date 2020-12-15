@@ -61,4 +61,9 @@ public class ClienteDto extends DtoBase{
         this.usuarioDto = usuarioDto;
     }
 
+    private UsuarioLdapDto usuarioLdapDto;
+
+    public UsuarioLdapDto getUsuarioLdapDto() { return usuarioLdapDto; }
+
+    public void setUsuarioLdapDto(UsuarioLdapDto usuarioLdapDto) { this.usuarioLdapDto = usuarioLdapDto; }
 }

@@ -18,30 +18,40 @@
                 <mat-label>Apellido</mat-label>
                 <input matInput type="text" formControlName="apellido">
             </mat-form-field>
-            
-            <mat-form-field appearance="fill">
-                <mat-label>Fecha de nacimiento</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="fecha_n"> 
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>          
-            <br><label for="genero">Genero</label><br>
-            
-            <mat-radio-group aria-label="Genero" class="row">
-                <div class="col-3">
-                    <mat-radio-button value="M">Masculino</mat-radio-button><br>
-                </div> 
-                <div class="col-3">
-                    <mat-radio-button value="F">Femenino</mat-radio-button>
-                </div>
-            </mat-radio-group>
+            <mat-form-field class="example-full-width">
+                <mat-label>Documento de identidad</mat-label>
+                <input matInput type="number" formControlName="doc_id">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Correo electrónico</mat-label>
+                <input matInput type="email" formControlName="email">
+            </mat-form-field>
+
             <mat-form-field class="example-full-width">
                 <mat-label>Nuemero de personas en su hogar</mat-label>
                 <input matInput type="number" formControlName="n_pers">
-            </mat-form-field>          
-            
+            </mat-form-field>   
+
+            <table class="example-full-width" cellspacing="0"><tr>
+                <td><mat-form-field appearance="fill">
+                    <mat-label>Fecha de nacimiento</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="fecha_n"> 
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field></td>
+                <td><label for="genero">Genero</label><br>
+                    <mat-radio-group aria-label="Genero" class="row" formControlName="genero">
+                    <div class="col-4">
+                        <mat-radio-button value="M">Masculino</mat-radio-button>
+                    </div>
+                    <div class="col-4">
+                        <mat-radio-button value="F">Femenino</mat-radio-button>
+                    </div>
+                </mat-radio-group></td>
+            </tr></table>
+                
             <mat-card>
-                <div formArrayName="hijos" *ngFor="let telefono of hijos.controls; let i = index">
+                <div formArrayName="hijos" *ngFor="let hijo of hijos.controls; let i = index">
                     <div [formGroupName]="i">
                         <table class="example-full-width" cellspacing="0">
                         <tr>
@@ -55,22 +65,22 @@
                         <tr>
                         <td><mat-form-field class="example-full-width">
                             <mat-label>Nombre</mat-label>
-                            <input matInput type="text" [attr.id]="'nombreh' + i"  formControlName="nombreh">
+                            <input matInput type="text" [attr.id]="'nombre' + i"  formControlName="nombre">
                             </mat-form-field></td>
                         <td><mat-form-field class="example-full-width">
                             <mat-label>Apellido</mat-label>
-                            <input matInput type="text" [attr.id]="'apellidoh' + i"  formControlName="apellidoh">
+                            <input matInput type="text" [attr.id]="'apellido' + i"  formControlName="apellido">
                             </mat-form-field></td>
                         </tr>
                         <tr>
                         <td><mat-form-field appearance="fill">
                             <mat-label>Fecha de nacimiento</mat-label>
-                            <input matInput [matDatepicker]="picker" [attr.id]="'fec_nac_h' + i"  formControlName="fec_nac_h"> 
+                            <input matInput [matDatepicker]="picker" [attr.id]="'fecha_nacimiento' + i"  formControlName="fecha_nacimiento"> 
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                             </mat-form-field></td>
                         <td><label for="genero">Genero</label><br>
-                            <mat-radio-group aria-label="Genero" [attr.id]="'generoh' + i"  formControlName="generoh">
+                            <mat-radio-group aria-label="Genero" [attr.id]="'genero' + i"  formControlName="genero">
                             <div class="col-3">
                                 <mat-radio-button value="M">Masculino</mat-radio-button><br>
                             </div> 
@@ -83,36 +93,122 @@
                 </div>
             </mat-card>
             <mat-card-actions>
-                <button mat-raised-button (click)="addHijo()">Añadir hijo</button>
+                <button mat-raised-button color="primary" (click)="addHijo()">Añadir hijo</button>
+            </mat-card-actions>
+            
+            <div formArrayName="tlfns" *ngFor="let tlfn of tlfns.controls; let i = index">
+                <div [formGroupName]="i">
+                    <table class="example-full-width" cellspacing="0"><tr>
+                    <td><label>Teléfono #{{i+1}}</label></td>
+                    <td><mat-form-field class="example-full-width">
+                        <mat-label>Código de área</mat-label>
+                        <input matInput type="number" [attr.id]="'cod_area' + i"  formControlName="codigo_area">
+                        </mat-form-field></td>
+                    <td><mat-form-field class="example-full-width">
+                        <mat-label>Número</mat-label>
+                        <input matInput type="number" [attr.id]="'nuemero' + i" formControlName="numero">
+                        </mat-form-field></td>
+                    <td><mat-card-actions>
+                        <button mat-fab color="warn" aria-label="Remover teléfono"(click)="remTlfns(i)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        </mat-card-actions></td>
+                    </tr></table>
+                </div> 
+            </div>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="addTelf()">Añadir teléfono</button>
             </mat-card-actions>
 
-            <mat-form-field class="example-full-width">
-                <mat-label>Correo electrónico</mat-label>
-                <input matInput type="email" formControlName="email">
-            </mat-form-field>
+            <div formArrayName="met_con" *ngFor="let metodo_conexion of met_con.controls; let i = index">
+                <div [formGroupName]="i">
+                    <table class="example-full-width" cellspacing="0"><tr>
+                    <td><label>Método #{{i+1}}</label></td>
+                    <td><mat-form-field class="example-full-width">
+                        <mat-label>Metodo de Conexión</mat-label>
+                        <input matInput type="text" [attr.id]="'id' + i"  formControlName="id">
+                        <mat-select formControlName="id">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let met of metodos_conexion" [value]="met.id">{{met.nombre}}</mat-option>
+                        </mat-select>
+                        </mat-form-field></td><td></td>
+                    <td><mat-card-actions>
+                        <button mat-fab color="warn" aria-label="Remover método de conexión"(click)="remMetCon(i)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        </mat-card-actions></td>
+                    </tr></table>
+                </div> 
+            </div>
+
+            <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="addMetCon()">Añadir método de conexión</button>
+            </mat-card-actions>
+
+            <div formArrayName="ocupac" *ngFor="let ocupa of ocupac.controls; let i = index">
+                <div [formGroupName]="i">
+                    <table class="example-full-width" cellspacing="0"><tr>
+                        <td><label>Ocupación #{{i+1}}</label></td>
+                        <td><mat-form-field class="example-full-width">
+                            <mat-label>Ocupación</mat-label>
+                            <input matInput type="text" [attr.id]="'id' + i"  formControlName="id">
+                            <mat-select formControlName="id" >
+                                <mat-option>None</mat-option>
+                                <mat-option *ngFor="let ocupacion of ocupaciones" [value]="ocupacion.id">{{ocupacion.nombre}}</mat-option>
+                            </mat-select>
+                        </mat-form-field></td><td></td>
+                        <td><mat-card-actions>
+                            <button mat-fab color="warn" aria-label="Remover método de conexión"(click)="remOcupaciones(i)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            </mat-card-actions></td>
+                        </tr></table>
+                </div> 
+            </div>
             
-            <mat-form-field class="example-full-width">
-                <mat-label>Telefono</mat-label>
-                <input type="tel" matInput placeholder="+58-0420-123-4567" formControlName="telf">
-                <mat-icon matSuffix>mode_edit</mat-icon>
-            </mat-form-field>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="addOcupaciones()">Añadir ocupación</button>
+            </mat-card-actions>
+
+            <table class="example-full-width" cellspacing="0"><tr>
+                <td><mat-form-field class="example-full-width">
+                    <mat-label>Nivel académico</mat-label>
+                    <mat-select formControlName="nivel_academico_id">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let nivel of niveles_academicos" [value]="nivel.id">{{nivel.nombre}}</mat-option>
+                    </mat-select>
+                    </mat-form-field></td>
+                <td></td>
+            </tr></table>
 
             <table class="example-full-width" cellspacing="0"><tr>
                 <td><mat-form-field class="example-full-width">
                     <mat-label>Pais</mat-label>
-                    <input matInput placeholder="Ex. Caracas" formControlName="pais">
+                    <mat-select [(ngModel)]="pais_id" (selectionChange)="filtroEstados($event)" [ngModelOptions]="{standalone: true}">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let pais of paises" [value]="pais.id">{{pais.nombre}}</mat-option>
+                    </mat-select>
                     </mat-form-field></td>
                 <td><mat-form-field class="example-full-width">
                     <mat-label>Estado</mat-label>
-                    <input matInput placeholder="Ex. Miranda" formControlName="estado">
+                    <mat-select [(ngModel)]="estado_id" (selectionChange)="filtroCiudades($event)" [ngModelOptions]="{standalone: true}">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let estado of estados_filtered" [value]="estado.id">{{estado.nombre}}</mat-option>
+                    </mat-select>
                     </mat-form-field></td>
                 <td><mat-form-field class="example-full-width">
                     <mat-label>Ciudad</mat-label>
-                    <input matInput placeholder="Ex. Caracas" formControlName="ciudad">
+                    <mat-select [(ngModel)]="ciudad_id" (selectionChange)="filtroParroquias($event) "[ngModelOptions]="{standalone: true}">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let ciudad of ciudades_filtered" [value]="ciudad.id">{{ciudad.nombre}}</mat-option>
+                    </mat-select>
                     </mat-form-field></td>
                 <td><mat-form-field class="example-full-width">
                     <mat-label>Parroquia</mat-label>
-                    <input matInput placeholder="Ex. San Luis" formControlName="parroquia">
+                    <mat-select formControlName="parroquia" >
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let parroquia of parroquias_filtered" [value]="parroquia.id">{{parroquia.nombre}}</mat-option>
+                    </mat-select>
                     </mat-form-field></td>
             </tr></table>
 

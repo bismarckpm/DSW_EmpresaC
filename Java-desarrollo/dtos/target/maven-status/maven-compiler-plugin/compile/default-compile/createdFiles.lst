@@ -25,6 +25,7 @@ ucab\dsw\dtos\PresentacionDto.class
 ucab\dsw\dtos\UsuarioDto.class
 ucab\dsw\dtos\RespuestaDto.class
 ucab\dsw\dtos\ParroquiaDto.class
+ucab\dsw\dtos\NuevoEncuestadoDto.class
 ucab\dsw\dtos\ClienteDto.class
 ucab\dsw\dtos\CiudadDto.class
 ucab\dsw\dtos\HijoDto.class

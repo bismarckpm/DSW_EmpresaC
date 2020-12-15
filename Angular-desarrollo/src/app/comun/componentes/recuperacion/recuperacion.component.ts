@@ -29,12 +29,14 @@ export class RecuperacionComponent implements OnInit {
   }
 
   recuperacion(){
+    this.eventBus.cast('inicio-progress','hola');
     this.usuario.correoelectronico = this.recuperacionData.value.email;
     this._toastrService.info('Espere un momento un momento, por favor', 'Verificando correo...');
     this.http.recup( this.usuario ).subscribe( data =>{
       console.log(data)
       this._toastrService.success("Correo enviado a: "+ this.usuario.correoelectronico, "Correo encontrado");
       this.router.navigate(['login']);
+      this.eventBus.cast('fin-progress','chao');
    },
     (error)=>{
       console.log(error);

@@ -4,7 +4,7 @@ public class Metodo_ConexionDto extends DtoBase{
 
     private String nombre;
 
-    public String getBombre()
+    public String getNombre()
     {
         return nombre;
     }

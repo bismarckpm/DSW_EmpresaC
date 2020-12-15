@@ -15,13 +15,6 @@ import java.util.List;
 @Table( name = "ocupacion_encuestado" )
 public class Ocupacion_Encuestado extends EntidadBase{
 
-    @Column( name = "nombre" )
-    private String _nombre;
-
-    public String get_nombre() { return _nombre; }
-
-    public void set_nombre( String _nombre ) { this._nombre = _nombre; }
-
     @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Ocupacion_id" )
     private Ocupacion _ocupacion;

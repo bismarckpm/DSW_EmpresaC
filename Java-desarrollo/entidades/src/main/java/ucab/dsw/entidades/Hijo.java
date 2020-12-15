@@ -8,7 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 
@@ -56,7 +56,12 @@ public class Hijo extends EntidadBase {
 
     public void set_fecha_nacimiento( Date _fecha_nacimiento ) { this._fecha_nacimiento = _fecha_nacimiento; }
 
+    @Column( name = "estado" )
+    private String _estado;
 
+    public String get_estado() { return _estado; }
+
+    public void set_estado(String _estado) { this._estado = _estado; }
 
     @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Encuestado_id" )

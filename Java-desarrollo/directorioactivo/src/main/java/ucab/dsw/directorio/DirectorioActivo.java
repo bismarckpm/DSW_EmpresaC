@@ -94,8 +94,7 @@ public class DirectorioActivo
 
             if(exception.getClass().equals(NameAlreadyBoundException.class)){
                 System.out.println("Ya hay un usuario con ese correo registrado en el sistema");
-            }
-            else{
+            }else{
                 exception.printStackTrace();
             }
         }
@@ -384,5 +383,58 @@ public class DirectorioActivo
         } finally {
             disconnectLDAP();
         }
+    }
+
+    public String userExist(UsuarioLdapDto user) {
+        String usuario = "";
+        try {
+            connectLDAP( _user, _password );
+            SearchControls searcCon = new SearchControls();
+            searcCon.setSearchScope( SearchControls.SUBTREE_SCOPE );
+            NamingEnumeration results =
+                    _ldapContext.search( _directory, String.format("cn=%s", user.getCn()), searcCon );
+            if ( results != null ) {
+                while ( results.hasMore() ) {
+                    SearchResult res = ( SearchResult ) results.next();
+                    Attributes atbs = res.getAttributes();
+                    Attribute atb = atbs.get( "cn" );
+                    usuario = (String)atb.get();
+                }
+            } else {
+                System.out.println( "fail" );
+                return null;
+            }
+        } catch(Exception exception) {
+            exception.printStackTrace();
+        } finally {
+            disconnectLDAP();
+        }
+        return usuario;
+    }
+    public String emailExist(UsuarioLdapDto user) {
+        String email = "";
+        try {
+            connectLDAP( _user, _password );
+            SearchControls searcCon = new SearchControls();
+            searcCon.setSearchScope( SearchControls.SUBTREE_SCOPE );
+            NamingEnumeration results =
+                    _ldapContext.search( _directory, String.format("mail=%s", user.getCorreoelectronico()), searcCon );
+            if ( results != null ) {
+                while ( results.hasMore() ) {
+                    SearchResult res = ( SearchResult ) results.next();
+                    Attributes atbs = res.getAttributes();
+                    Attribute atb = atbs.get( "mail" );
+                    email = (String)atb.get();
+                }
+            } else {
+                System.out.println( "fail" );
+                return null;
+            }
+        } catch(Exception exception) {
+            exception.printStackTrace();
+        } finally {
+            disconnectLDAP();
+        }
+        return email;
     }
 }

@@ -35,7 +35,6 @@ public class NivelAcademicoServicio extends AplicacionBase {
                         .add("nombre", obj.get_nombre()).build();
 
                 categoriaArrayJson.add(categoria);
-
             }
 
             data = Json.createObjectBuilder()
