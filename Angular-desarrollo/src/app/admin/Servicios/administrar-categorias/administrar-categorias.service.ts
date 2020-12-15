@@ -25,4 +25,14 @@ export class AdministrarCategoriasService {
     return this._http.post(global.url+'categoria/add',categoriaDto);
   }
 
+  updateCategoria(id,categoriaDto):Observable<any>{
+    //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
+    return this._http.put(global.url+'categoria/edit/'+id,categoriaDto);
+  }
+
+  deleteCategoria(id):Observable<any>{
+    //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
+    return this._http.delete(global.url+'categoria/delete/'+id);
+  }
+
 }

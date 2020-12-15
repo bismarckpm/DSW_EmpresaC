@@ -13,7 +13,11 @@ export class AnadirModalComponent implements OnInit {
 
   public categoria:any;
   public categoriaDto: CategoriaDto; //Organizar mejor con las entidades
-  constructor(private _adminCategoriaService:AdministrarCategoriasService,private _toastrService: ToastrService,private eventBus: NgEventBus) { }
+
+  constructor(private _adminCategoriaService:AdministrarCategoriasService,
+              private _toastrService: ToastrService,
+              private eventBus: NgEventBus
+  ) {}
 
   ngOnInit(): void {
     this.categoriaDto=new CategoriaDto();
@@ -30,7 +34,7 @@ export class AnadirModalComponent implements OnInit {
 		  if(response.estado=='success'){
 			    this._toastrService.success("Exito", "Categoria añadida");
 				this._toastrService.info('Espero un momento, por favor.','Actualizando...');
-				this.eventBus.cast('actualizar','actualizar');
+				this.eventBus.cast('actualizar-categoria','actualizar');
 		  }
 		  else{
 			  this._toastrService.error("Esta categoria ya se encuentra en el sistema", "Error");

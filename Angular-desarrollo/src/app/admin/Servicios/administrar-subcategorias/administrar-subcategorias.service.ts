@@ -17,6 +17,16 @@ export class AdministrarSubcategoriasService {
   }
   addSubcategorias(subcategoriaDto):Observable<any>{
     //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
-    return this._http.post(global.url+'categoria/add',subcategoriaDto);
+    return this._http.post(global.url+'subcategoria/add',subcategoriaDto);
+  }
+
+  updateSubcategoria(id,subcategoriaDto):Observable<any>{
+    //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
+    return this._http.put(global.url+'subcategoria/edit/'+id,subcategoriaDto);
+  }
+
+  deleteSubcategoria(id):Observable<any>{
+    //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
+    return this._http.delete(global.url+'subcategoria/delete/'+id);
   }
 }

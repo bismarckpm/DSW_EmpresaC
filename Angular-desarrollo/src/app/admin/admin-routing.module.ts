@@ -11,6 +11,8 @@ import {AdministrarMarcasComponent} from "./componentes/administrar-marcas/admin
 import {AdministrarCategoriaComponent} from "./componentes/administrar-categoria/administrar-categoria.component";
 import {AdministrarSubcategoriasComponent} from "./componentes/administrar-subcategorias/administrar-subcategorias.component";
 import {AdministrarUsuariosComponent} from "./componentes/administrar-usuarios/administrar-usuarios.component";
+import { AdministrarTiposComponent } from './componentes/administrar-tipos/administrar-tipos.component';
+import { AdministrarPresentacionesComponent } from './componentes/administrar-presentaciones/administrar-presentaciones.component';
 
 const routes: Routes = [
   {path:'', component: DashboardComponent},
@@ -22,7 +24,9 @@ const routes: Routes = [
   { path: 'administrar-marcas',   component: AdministrarMarcasComponent  },
   { path: 'administrar-categoria',   component: AdministrarCategoriaComponent  },
   { path: 'administrar-subcategorias',   component: AdministrarSubcategoriasComponent},
-  { path: 'administrar-usuarios',   component: AdministrarUsuariosComponent  }
+  { path: 'administrar-usuarios',   component: AdministrarUsuariosComponent  },
+  { path: 'administrar-tipos',   component: AdministrarTiposComponent  },
+  { path: 'administrar-presentaciones',   component: AdministrarPresentacionesComponent  }
 ];
 
 @NgModule({

@@ -7,6 +7,9 @@ import { NgEventBus } from 'ng-event-bus';
 import { MatDialog } from '@angular/material/dialog';
 import {  AdministrarSubcategoriasService } from "../../Servicios/administrar-subcategorias/administrar-subcategorias.service";
 import { AnadirComponent } from './anadir/anadir.component';
+import { MetaData } from 'ng-event-bus/lib/meta-data';
+import { EliminarSubcategoriaComponent } from './eliminar-subcategoria/eliminar-subcategoria.component';
+import { ModifSubcategoriaComponent } from '../../componentes/administrar-subcategorias/modif-subcategoria/modif-subcategoria.component';
 
 export interface Subcategoria {
   id: number;
@@ -27,13 +30,25 @@ const ELEMENT_DATA: Subcategoria[] = [
 })
 export class AdministrarSubcategoriasComponent implements OnInit,AfterViewInit {
   public displayedColumns: string[] = ['id', 'nombre','categoria', 'estado', 'acciones'];
-  public dataSource = new MatTableDataSource<Subcategoria>();
+  //public dataSource = new MatTableDataSource<Subcategoria>(ELEMENT_DATA); //solo para probar
+  public dataSource = new MatTableDataSource<Subcategoria>(); //solo para probar
   public dialogRef;
   constructor(public dialog: MatDialog,private _adminSubcategoriaService:AdministrarSubcategoriasService,private _toastrService: ToastrService,private eventBus: NgEventBus) { }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   ngOnInit(): void {
     this.init();
+
+    this.eventBus.on('cerrar-subcategoria-add').subscribe((meta: MetaData) => {
+      console.log(meta.data); // will receive 'started' only
+      this.dialogRef.close();
+    });
+
+    this.eventBus.on('actualizar-subcategoria').subscribe((meta: MetaData) => {
+      console.log(meta.data); // will receive 'started' only
+      this.dialogRef.close();
+      this.getAllSubcategorias();
+    });
   }
 
   ngAfterViewInit() {
@@ -76,7 +91,27 @@ export class AdministrarSubcategoriasComponent implements OnInit,AfterViewInit {
     this.dialogRef .afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
-    
-}
+  }
+  openDialogUpdate(subcategoria): void {
+    this.dialogRef = this.dialog.open(ModifSubcategoriaComponent, {
+      width: '500px',
+      data:{subcategoria:subcategoria}
+    });
+
+    this.dialogRef .afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  openDialogDelete(subcategoria): void {
+    this.dialogRef = this.dialog.open(EliminarSubcategoriaComponent, {
+      width: '500px',
+      data:{subcategoria:subcategoria}
+    });
+
+    this.dialogRef .afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 
 }

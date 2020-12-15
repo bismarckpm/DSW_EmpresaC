@@ -7,6 +7,9 @@ import {MatSort} from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { AnadirMarcaComponent } from './anadir-marca/anadir.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ModificarMarcaComponent } from './modificar-marca/modificar-marca.component';
+import { EliminarMarcaComponent } from './eliminar-marca/eliminar-marca.component';
+import { MetaData } from 'ng-event-bus/lib/meta-data';
 
 
 export interface Marca {
@@ -19,7 +22,7 @@ export interface Marca {
 }
 
 const ELEMENT_DATA: Marca[] = [
-  {id: 1, nombre: 'Hydrogen',subcategoria_id:1, subcategoria:'Lacteos' , estado: 'H'},
+  {id: 1, nombre: 'Hydrogen',subcategoria_id:1, subcategoria:'Lacteos', estado: 'H'},
 ];
 
 
@@ -34,15 +37,27 @@ export class AdministrarMarcasComponent implements OnInit, AfterViewInit{
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
   public displayedColumns: string[] = ['id', 'nombre', 'subcategoria', 'estado', 'acciones'];
+  //public dataSource = new MatTableDataSource<Marca>(ELEMENT_DATA); //solo para probar sin backend
   public dataSource = new MatTableDataSource<Marca>();
   public dialogRef;
   
- 
+  
 
   constructor(public dialog: MatDialog,private _adminMarcas:AdminMarcasService,private _toastrService: ToastrService,private eventBus: NgEventBus) { }
  
   ngOnInit(): void {
     this.init();
+
+    this.eventBus.on('cerrar-marca-add').subscribe((meta: MetaData) => {
+      console.log(meta.data); // will receive 'started' only
+      this.dialogRef.close();
+    });
+
+    this.eventBus.on('actualizar').subscribe((meta: MetaData) => {
+      console.log(meta.data); // will receive 'started' only
+      this.dialogRef.close();
+      this.getAllMarcas();
+    });
   }
 
   ngAfterViewInit() {
@@ -80,7 +95,29 @@ export class AdministrarMarcasComponent implements OnInit, AfterViewInit{
       console.log('The dialog was closed');
     });
     
-}
+  }
+
+  openDialogUpdate(marca): void {
+    this.dialogRef = this.dialog.open(ModificarMarcaComponent, {
+      width: '500px',
+      data:{marca:marca}
+    });
+
+    this.dialogRef .afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  openDialogDelete(marca): void {
+    this.dialogRef = this.dialog.open(EliminarMarcaComponent, {
+      width: '500px',
+      data:{marca:marca}
+    });
+
+    this.dialogRef .afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 }
 
 

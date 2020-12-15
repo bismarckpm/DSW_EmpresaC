@@ -5,9 +5,11 @@ import {MatSort} from '@angular/material/sort';
 import { AdministrarCategoriasService } from '../../Servicios/administrar-categorias/administrar-categorias.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgEventBus } from 'ng-event-bus';
-import { AnadirModalComponent } from './anadir/anadir-modal/anadir-modal.component';
+import { AnadirModalComponent } from './anadir-categoria/anadir-modal.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MetaData } from 'ng-event-bus/lib/meta-data';
+import { ModificarCategoriaComponent } from './modificar-categoria/modificar-categoria.component';
+import { EliminarCategoriaComponent } from './eliminar-categoria/eliminar-categoria.component';
 
 
 export interface Categoria {
@@ -37,11 +39,15 @@ export class AdministrarCategoriaComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   displayedColumns: string[] = ['id', 'nombre', 'estado', 'acciones'];
+  //dataSource = new MatTableDataSource<Categoria>(ELEMENT_DATA); //Para pruebas sin backend
   dataSource = new MatTableDataSource<Categoria>();
-
   public dialogRef;
 
-  constructor(public dialog: MatDialog,private _adminCategoriaService:AdministrarCategoriasService,private _toastrService: ToastrService,private eventBus: NgEventBus) { }
+  constructor(public dialog: MatDialog,
+              private _adminCategoriaService:AdministrarCategoriasService,
+              private _toastrService: ToastrService,
+              private eventBus: NgEventBus
+  ) { }
 
   
   ngOnInit(): void {
@@ -52,7 +58,7 @@ export class AdministrarCategoriaComponent implements OnInit, AfterViewInit {
       this.dialogRef.close();
     });
 
-    this.eventBus.on('actualizar').subscribe((meta: MetaData) => {
+    this.eventBus.on('actualizar-categoria').subscribe((meta: MetaData) => {
       console.log(meta.data); // will receive 'started' only
       this.dialogRef.close();
       this.getAllCategorias();
@@ -98,6 +104,28 @@ export class AdministrarCategoriaComponent implements OnInit, AfterViewInit {
   openDialog(): void {
     this.dialogRef = this.dialog.open(AnadirModalComponent, {
       width: '500px',
+    });
+
+    this.dialogRef .afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  openDialogUpdate(categoria): void {
+    this.dialogRef = this.dialog.open(ModificarCategoriaComponent, {
+      width: '500px',
+      data:{categoria:categoria}
+    });
+
+    this.dialogRef .afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  openDialogDelete(categoria): void {
+    this.dialogRef = this.dialog.open(EliminarCategoriaComponent, {
+      width: '500px',
+      data:{categoria:categoria}
     });
 
     this.dialogRef .afterClosed().subscribe(result => {
