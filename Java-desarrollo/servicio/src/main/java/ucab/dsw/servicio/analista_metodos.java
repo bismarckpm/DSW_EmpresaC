@@ -268,4 +268,106 @@ public class analista_metodos {
         System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
+
+    @GET
+    @Path("/estudio-telefono/{_id}")
+    public Response Estudio_telefono(@PathParam("_id") long _id) {
+
+        JsonArrayBuilder builder = Json.createArrayBuilder();
+        JsonArrayBuilder builderArrayEncuestado =Json.createArrayBuilder();
+        JsonObject builderObject;
+        JsonObject data;
+
+        DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
+        DaoMarca daoMarca = new DaoMarca();
+        DaoSubcategoria daoSubcategoria = new DaoSubcategoria ();
+        DaoCategoria daoCategoria = new DaoCategoria();
+        DaoParticipacion daoParticipacion=new DaoParticipacion();
+        SolicitudEstudio resultado = new SolicitudEstudio();
+
+
+        List<Telefono> telefono = null;
+
+        DaoTelefono daotelefono = new DaoTelefono();
+        Class<Telefono> type = Telefono.class;
+
+        telefono = daotelefono.findAll(type);
+
+        DaoCaracteristica_Demografica daoCaracteristica_demografica = new DaoCaracteristica_Demografica();
+
+        try {
+            resultado = dao.find(_id,SolicitudEstudio.class);
+
+                if(resultado.get_modoencuesta().equals("telefono")) {
+
+                    Caracteristica_Demografica caracteristicas = daoCaracteristica_demografica.find(resultado.get_caracteristicademografica().get_id(), Caracteristica_Demografica.class);
+
+                    builderObject = Json.createObjectBuilder().add("edad_min", caracteristicas.get_edad_min())
+                            .add("edad_max", caracteristicas.get_edad_max())
+                            .add("nivel_socieconomico", caracteristicas.get_nivel_socioeconomico())
+                            .add("nacionalidad", caracteristicas.get_nacionalidad())
+                            .add("cantidad_hijos", caracteristicas.get_cantidad_hijos())
+                            .add("genero", caracteristicas.get_genero())
+                            .add("parroquia", caracteristicas.get_Parroquia_demografia().get_nombre())
+                            .add("estado", caracteristicas.get_Parroquia_demografia().get_ciudad().get_estado().get_nombre())
+                            .add("ciudad", caracteristicas.get_Parroquia_demografia().get_ciudad().get_nombre())
+                            .add("pais", caracteristicas.get_Parroquia_demografia().get_ciudad().get_estado().get_pais().get_nombre())
+                            .add("nivel_academico", caracteristicas.get_nivel_academico_demografia().get_nombre()).build();
+
+
+                    List<Participacion> participacion = daoParticipacion.getParticipacionByEstudio(resultado.get_id());
+
+                    for (Participacion j : participacion) {
+                        builderArrayEncuestado.add(Json.createObjectBuilder().add("id", j.get_id())
+                                .add("doc_id", j.get_encuestado().get_doc_id())
+                                .add("usuario", j.get_encuestado().get_usuario_encuestado().get_usuario())
+                                .add("correo", j.get_encuestado().get_correo())
+                                .add("Nombre", j.get_encuestado().get_nombre())
+                                .add("Apellido", j.get_encuestado().get_apellido())
+                                .add("Estado", j.get_estado()));
+
+                        for (Telefono t : telefono) {
+                            if(t.get_encuestado_telefono().get_id()==j.get_encuestado().get_id()) {
+                                builderArrayEncuestado.add(Json.createObjectBuilder().add("codigo de area", t.get_codigo_area())
+                                        .add("numero", t.get_numero()));
+                            }
+
+                        }
+
+                    }
+
+                    JsonObject encuesta = Json.createObjectBuilder().add("Marca",resultado.get_marca().get_nombre())
+                            .add("Categoria",resultado.get_marca().get_subcategoria().get_categoria().get_nombre())
+                            .add("Subcategoria",resultado.get_marca().get_subcategoria().get_nombre()).build();
+
+                    builder.add(Json.createObjectBuilder().add("id", resultado.get_id())
+                            .add("fecha", resultado.get_fecha_inicio().toString())
+                            .add("modo_encuesta", resultado.get_modoencuesta())
+                            .add("caracteristica_demografica", builderObject)
+                            .add("caracteristicas",encuesta)
+                            .add("Participantes", builderArrayEncuestado)
+                            .add("estatus", resultado.get_estado()));
+
+                }
+
+
+
+            data= Json.createObjectBuilder().add("estado","success")
+                    .add("mensaje","Estudios del analista "+ _id)
+                    .add("codigo",500)
+                    .add("estudios",builder).build();
+        }
+        catch (Exception ex){
+            data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje",ex.getMessage())
+                    .add("codigo",500).build();
+
+            System.out.println(data);
+            return Response.status(Response.Status.OK).entity(data).build();
+
+        }
+        System.out.println(data);
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
 }
