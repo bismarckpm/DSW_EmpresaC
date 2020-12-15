@@ -53,7 +53,7 @@ export class AdministrarMarcasComponent implements OnInit, AfterViewInit{
       this.dialogRef.close();
     });
 
-    this.eventBus.on('actualizar').subscribe((meta: MetaData) => {
+    this.eventBus.on('actualizar-marca').subscribe((meta: MetaData) => {
       console.log(meta.data); // will receive 'started' only
       this.dialogRef.close();
       this.getAllMarcas();

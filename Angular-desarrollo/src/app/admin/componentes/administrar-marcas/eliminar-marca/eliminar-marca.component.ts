@@ -30,8 +30,31 @@ export class EliminarMarcaComponent implements OnInit {
   }
 
   deleteMarca(){
+    this.eventBus.cast('inicio-progress','hola');
+    this._adminMarcasService.deleteMarca(this.marca_id).subscribe(
+      (response)=>{
+		  console.log(response);
+		  if(response.estado=='success'){
+			    this._toastrService.success("Exito", "Marca inactiva");
+          this._toastrService.info('Espero un momento, por favor.','Actualizando...');
+          this.eventBus.cast('actualizar-marca','actualizar');
+		  }
+		  else{
+			  this._toastrService.error("Esta marca no se puede eliminar/inhabilitar", "Error");
+			  this.eventBus.cast('fin-progress','chao');
+		  }
+		  
+
+      },
+      (error)=>{
+        console.log(error);
+        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        this.eventBus.cast('fin-progress','chao');
+        this.eventBus.cast('cerrar-marca-add','cerrar');
+      });
 
   }
+  
 
 
 

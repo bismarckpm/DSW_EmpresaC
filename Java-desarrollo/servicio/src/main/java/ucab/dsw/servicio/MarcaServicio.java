@@ -209,8 +209,17 @@ public class MarcaServicio extends AplicacionBase{
 			
             Marca marca = dao.find(_id,Marca.class);
 			Subcategoria subcategoria = daoSubcategoria.find(marcaDto.getSubcategoriaDto().getId(),Subcategoria.class);
-			
-			
+            Marca_Tipo marca_tipo=daoMarca_tipo.find(marcaDto.getMarcaTipo_Dto().getId(),Marca_Tipo.class);
+
+            for(TipoDto obj: marcaDto.getTipo_Dto()){
+
+				Tipo tipo= daoTipo.find(obj.getId(),Tipo.class);
+				marca_tipo.set_tipo(tipo);
+                Marca_Tipo resul2 = daoMarca_tipo.update(marca_tipo);
+            }
+            
+            daoMarca_tipo.update(marca_tipo);
+
 			marca.set_subcategoria(subcategoria);
             marca.set_nombre(marcaDto.getNombre());
             Marca resul = dao.update(marca);

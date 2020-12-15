@@ -6,6 +6,7 @@ import { MarcaDto } from 'src/app/Entidades/marcaDto';
 import { TipoDto } from 'src/app/Entidades/TipoDto';
 import { AdministrarSubcategoriasService } from 'src/app/admin/Servicios/administrar-subcategorias/administrar-subcategorias.service';
 import {AdministrarTiposService} from 'src/app/admin/Servicios/administrar-tipos/administrar-tipos.service';
+import { SubcategoriaDto } from 'src/app/Entidades/subcategoriaDto';
 
 @Component({
   selector: 'app-anadir',
@@ -20,6 +21,7 @@ export class AnadirMarcaComponent implements OnInit {
   public marcaDto: MarcaDto;
   public tiposDto: TipoDto[];
   public tipoDto:TipoDto;
+  public subcategoriaDto:SubcategoriaDto;
   public subcategorias:any[];
   public tipos:any[];
 
@@ -36,33 +38,47 @@ export class AnadirMarcaComponent implements OnInit {
 
   init(){
     this.marcaDto=new MarcaDto();
+    this.tipoDto=new TipoDto();
+    this.tiposDto=new Array<TipoDto>();
+    this.subcategoriaDto=new SubcategoriaDto();
+
+    this.marcaDto.tipoDto=this.tiposDto;
+    this.marcaDto.subcategoriaDto=this.subcategoriaDto;
+
     this.getAllSubcategorias();
     this.getAllTipos();
   }
 
   addMarca(){
     this.marcaDto.nombre=this.marca;
-    this.tipoDto.id=this.tipo_id;
-    this.tiposDto.push(this.tipoDto);
     this.marcaDto.subcategoriaDto.id=this.subcategoria_id;
 
-    /*this.eventBus.cast('inicio-progress','hola');
-    this.marcaDto.id=this.marca;
+    this.tipoDto.id=this.tipo_id;
+    this.tiposDto.push(this.tipoDto);
+    this.marcaDto.tipoDto=this.tiposDto;
+
+    this.eventBus.cast('inicio-progress','hola');
+
     console.log(this.marcaDto);
   
     this._adminMarcaService.addMarca(this.marcaDto).subscribe(
       (response)=>{
         console.log(response);
-        this._toastrService.success("Exito", "Marca añadida");
-        this._toastrService.info('Espero un momento, por favor.','Actualizando...');
-        this.eventBus.cast('actualizar','actualizar');
+        if(response.estado=='success'){
+          this._toastrService.success("Exito", "Marca añadida");
+          this._toastrService.info('Espero un momento, por favor.','Actualizando...');
+          this.eventBus.cast('actualizar-marca','actualizar');
+        }else{
+          this._toastrService.error("Esta marca ya se encuentra en el sistema", "Error");
+          this.eventBus.cast('fin-progress','chao');
+        }
       },
       (error)=>{
         console.log(error);
         this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
         this.eventBus.cast('fin-progress','chao');
         this.eventBus.cast('cerrar-marca-add','cerrar');
-      });*/
+      });
   }
 
   getAllSubcategorias(){
