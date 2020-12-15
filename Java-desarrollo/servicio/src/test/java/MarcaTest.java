@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MarcaTest {
-    /*@Test
+    @Test
     public void getMarcas() throws Exception
     {
         ucab.dsw.servicio.MarcaServicio servicio = new ucab.dsw.servicio.MarcaServicio();
         Response respuesta= servicio.getAllMarcas();
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
 
-    }*/
+    }
 
     @Test
     public void getMarca() throws Exception
@@ -53,5 +53,24 @@ public class MarcaTest {
         ucab.dsw.servicio.MarcaServicio servicio = new ucab.dsw.servicio.MarcaServicio();
         Response respuesta= servicio.getMarcaBySubcategoriaId(4);
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+    }
+
+    @Test
+    public void eliminarMarcaTest() throws Exception
+    {
+        ucab.dsw.servicio.MarcaServicio servicio = new ucab.dsw.servicio.MarcaServicio();
+
+        Response resultado = servicio.deleteMarca( 1);
+        Assert.assertNotEquals( resultado, 0 );
+
+    }
+    @Test
+    public void activarMarcaTest() throws Exception
+    {
+        ucab.dsw.servicio.MarcaServicio servicio = new ucab.dsw.servicio.MarcaServicio();
+
+        Response resultado = servicio.activarMarca( 1);
+        Assert.assertNotEquals( resultado, 0 );
+
     }
 }

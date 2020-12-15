@@ -61,4 +61,11 @@ public class SubcategoriasTest {
         Response respuesta= servicio.deleteSubcategoria(2);
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
     }
+    @Test
+    public void activarSubcategoria() throws Exception {
+        ucab.dsw.servicio.SubcategoriaServicio servicio = new ucab.dsw.servicio.SubcategoriaServicio();
+        CategoriaDto categoriaDto=new CategoriaDto();
+        Response respuesta= servicio.activarSubcategoria(2);
+        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+    }
 }

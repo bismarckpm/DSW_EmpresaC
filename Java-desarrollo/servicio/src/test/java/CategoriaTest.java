@@ -52,6 +52,13 @@ public class CategoriaTest {
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
     }
 
+    @Test
+    public void activarCategoria() throws Exception {
+        ucab.dsw.servicio.CategoriaServicio servicio = new ucab.dsw.servicio.CategoriaServicio();
+        CategoriaDto categoriaDto=new CategoriaDto();
+        Response respuesta= servicio.activarCategoria(1);
+        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+    }
 
 
 }

@@ -52,6 +52,15 @@ public class crud_presentacion_test
         Assert.assertNotEquals( resultado, 0 );
 
     }
+    @Test
+    public void ActivarPresentacion() throws Exception
+    {
+        ucab.dsw.servicio.Cruds_presntacion servicio = new ucab.dsw.servicio.Cruds_presntacion();;
+
+        Response resultado = servicio.ActivarPresentacion( 2 );
+        Assert.assertNotEquals( resultado, 0 );
+
+    }
 
     @Test
     public void findPresentacionTest() throws Exception
