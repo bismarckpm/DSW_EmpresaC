@@ -1,23 +1,25 @@
 
-<div *ngIf="estudio">
-<mat-card class="example-card "  *ngIf="estudio">
-  <mat-card-header aling-center>
-    
-    <mat-card-title >Mercadeo Ucab</mat-card-title>
-    
-  </mat-card-header>
+<div *ngIf="estudio  && preguntas">
 
-  <mat-card-content>
-    
-      <div class="form-group">
-        <p> Marca: {{estudio.caracteristicas.Marca}}</p>
-        <p> Categoria: {{estudio.caracteristicas.Categoria}}</p>
-        <p> Subcategoria: {{estudio.caracteristicas.Subcategoria}}</p>
-      </div>
-   
-  </mat-card-content>
+  <mat-card class="example-card" >
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Marca: {{estudio.caracteristicas.Marca}}</mat-card-title>
+        <mat-card-subtitle>Cliente: Juan Perez - Estado:
+            <p *ngIf="estudio.estatus!='finalizado'" [class]="estudio.estatus=='pendiente'?'pendiente': 'en-progreso'">{{estudio.estatus}}</p>
+            <p *ngIf="estudio.estatus=='finalizado'" style="color: blue; display: inline-block;">{{estudio.estatus}}</p>
+            
+        </mat-card-subtitle>
 
+    </mat-card-header>
+    <img mat-card-image src="/assets/estudio.png" alt="Estudio">
+    <mat-card-content>
+    </mat-card-content>
 </mat-card>
+
+
+
+
 
 <mat-divider></mat-divider>
 <app-contenedor-pregunta-nueva (nuevaEvent)="PreguntaNueva($event)"></app-contenedor-pregunta-nueva>
@@ -26,7 +28,7 @@
 
 <mat-card >
   <mat-card-header aling-center>  
-    <mat-card-title >Agregador de preguntas</mat-card-title>
+    <mat-card-title >Agregar preguntas existentes</mat-card-title>
   </mat-card-header>
 
   <form novalidate [formGroup]="AgregadorForm" #fform="ngForm" >
@@ -74,6 +76,6 @@
 </mat-card>
 </div>
 
-<div [hidden]="estudio">
+<div [hidden]="estudio || preguntas">
     <mat-spinner></mat-spinner><h4>Cargando estudio ...</h4>
 </div>

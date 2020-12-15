@@ -15,45 +15,46 @@ import { SOLICITUDESPROGRESO } from "../../Entidades/DatosPrueba/SolicitudesProg
 import { Respuesta } from "../../Entidades/respuesta";
 import { Estudio } from "../../Entidades/estudio";
 
+//Base url
+import { global } from "../../../urlGlobal";
+
 @Injectable({
   providedIn: 'root'
 })
 export class SolicitudEstudioService {
-  URL:string="http://127.0.0.1:8080/pruebaORM-1.0-SNAPSHOT/api/"
-  res:{};
   constructor(private http: HttpClient) { }
 
 
   getEstudiosAdministrar(): Observable<Respuesta> {
-    // return of(DISHES.filter((dish) => (dish.id === id))[0]).pipe(delay(2000));
-    return this.http.get<Respuesta>(this.URL + 'admin/estudios-asignados/20')
+
+    return this.http.get<Respuesta>(global.url + 'admin/estudios-asignados/20')
   }
 
   getEstudiosPendientes(): Observable<Respuesta> {
-    // return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000));
     
-    return this.http.get<Respuesta>(this.URL + 'admin/estudios-no-asignados/20')
+    
+    return this.http.get<Respuesta>(global.url + 'admin/estudios-no-asignados/20')
     // 
   }
 
   DeleteEstudios(id:number): Observable<Respuesta> {
-    // return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000));
     
-    return this.http.delete<Respuesta>(this.URL + 'admin/delete-solicitud/'+id)
+    
+    return this.http.delete<Respuesta>(global.url+ 'admin/delete-solicitud/'+id)
     // 
   }
 
   getEstudio(id:number): Observable<Respuesta> {
-    // return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000));
+    
 
-    return this.http.get<Respuesta>(this.URL + 'admin/estudio/'+id)
+    return this.http.get<Respuesta>(global.url + 'admin/estudio/'+id)
     
   }
 
   getParticipantes(id:number): Observable<Respuesta> {
     // return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000));
 
-    return this.http.get<Respuesta>(this.URL + 'admin/estudios-participacion/'+id)
+    return this.http.get<Respuesta>(global.url + 'admin/estudios-participacion/'+id)
     
   }
 

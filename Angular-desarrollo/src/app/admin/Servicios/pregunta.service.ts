@@ -16,22 +16,25 @@ import { Pregunta } from "../../Entidades/pregunta";
 import { PREGUNTAS } from "../../Entidades/DatosPrueba/preguntas";
 
 
+//Base url
+import { global } from "../../../urlGlobal";
+
 @Injectable({
   providedIn: 'root'
 })
 export class PreguntaService {
-  URL:string="http://127.0.0.1:8080/pruebaORM-1.0-SNAPSHOT/api/"
+
 
   constructor(private http: HttpClient) { }
 
   getPreguntas(): Observable<Respuesta> {
-    // return of(DISHES.filter((dish) => (dish.id === id))[0]).pipe(delay(2000));
-    return this.http.get<Respuesta>(this.URL + 'admin/preguntas-categoria/1')
+
+    return this.http.get<Respuesta>(global.url + 'admin/preguntas-categoria/1')
   }
 
   postPreguntas(objeto:{}): Observable<Respuesta> {
-    // return of(DISHES.filter((dish) => (dish.id === id))[0]).pipe(delay(2000));
-    return this.http.put<Respuesta>(this.URL+"admin/addPregunta",objeto)
+  
+    return this.http.put<Respuesta>(global.url+"admin/addPregunta",objeto)
   }
 
 

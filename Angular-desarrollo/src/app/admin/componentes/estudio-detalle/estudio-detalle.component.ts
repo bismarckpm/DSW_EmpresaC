@@ -35,6 +35,7 @@ export class EstudioDetalleComponent implements OnInit {
       .subscribe(x => { this.participantes = x.Participantes; console.log(this.participantes)
       this.activos=this.participantes.filter(x=>x.Estado=="activo").length
       this.inactivos=this.participantes.filter(x=>x.Estado=="inactivo").length
+      console.log(x);
       
       });
 

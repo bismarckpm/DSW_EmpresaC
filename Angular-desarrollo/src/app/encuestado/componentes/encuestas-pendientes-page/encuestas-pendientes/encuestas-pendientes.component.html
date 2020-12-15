@@ -1,13 +1,7 @@
-
-
-<div [hidden]="estudios">
-    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
-</div>
-
-<div class="container" *ngIf="estudios">
+<div class="container">
 
     <div class="row justify-content-md-center">
-        <h1> Estudios En progreso </h1>
+        <h1> Estudios Pendientes </h1>
     </div>
 
     <div class="estudio-cards"> 
@@ -28,7 +22,7 @@
     <mat-card-actions>
         <button mat-button>{{estudio.caracteristicas.Categoria}}</button>
         <button mat-button>{{estudio.caracteristicas.Subcategoria}}</button>
-        <button  mat-button [routerLink]="['/admin/EstudioDetalle', estudio.id]" >Ver</button>
+        <button mat-button >Iniciar</button>
 
 
     </mat-card-actions>
