@@ -437,4 +437,32 @@ public class DirectorioActivo
         }
         return email;
     }
+
+    public String getUserFromUid(UsuarioLdapDto user) {
+        String usuario = "";
+        try {
+            connectLDAP( _user, _password );
+            SearchControls searcCon = new SearchControls();
+            searcCon.setSearchScope( SearchControls.SUBTREE_SCOPE );
+            NamingEnumeration results =
+                    _ldapContext.search( _directory, String.format("uid=%s", user.getUid()), searcCon );
+
+            if ( results != null ) {
+                while ( results.hasMore() ) {
+                    SearchResult res = ( SearchResult ) results.next();
+                    Attributes atbs = res.getAttributes();
+                    Attribute atb = atbs.get( "cn" );
+                    usuario = (String)atb.get();
+                }
+            } else {
+                System.out.println( "fail" );
+                return null;
+            }
+        } catch(Exception exception) {
+            exception.printStackTrace();
+        } finally {
+            disconnectLDAP();
+        }
+        return usuario;
+    }
 }

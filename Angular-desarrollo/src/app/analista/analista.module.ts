@@ -12,6 +12,8 @@ import { MuestraComponent } from './componentes/estudios-asignados/muestra/muest
 import { CaracteristicasComponent } from './componentes/estudios-asignados/caracteristicas/caracteristicas.component';
 import { ResultadosComponent } from './componentes/estudios-asignados/resultados/resultados.component';
 import { ResponderComponent } from './componentes/estudios-asignados/responder/responder.component';
+import { EstudiosTelefonicosComponent } from './componentes/estudios-telefonicos/estudios-telefonicos.component';
+import { ParticipantesEstudioComponent } from './componentes/participantes-estudio/participantes-estudio.component';
 
 
   @NgModule({
@@ -21,7 +23,9 @@ import { ResponderComponent } from './componentes/estudios-asignados/responder/r
       MuestraComponent,
       CaracteristicasComponent,
       ResultadosComponent,
-      ResponderComponent
+      ResponderComponent,
+      EstudiosTelefonicosComponent,
+      ParticipantesEstudioComponent
     ],
     imports: [
       CommonModule,

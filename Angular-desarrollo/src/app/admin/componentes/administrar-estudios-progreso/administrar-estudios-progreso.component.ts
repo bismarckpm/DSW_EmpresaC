@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgEventBus } from 'ng-event-bus';
+import { ToastrService } from 'ngx-toastr';
 
 //Entidades
 import { SolicitudEstudio } from "../../../Entidades/solicitudEstudio";
@@ -14,12 +16,34 @@ import { SolicitudEstudioService } from "../../Servicios/solicitud-estudio.servi
 })
 export class AdministrarEstudiosProgresoComponent implements OnInit {
   estudios:Estudio[];
-  constructor(private solicitudServicio:SolicitudEstudioService) { }
+  public admin_id:any
+
+  constructor(private solicitudServicio:SolicitudEstudioService,
+    private _toastrService: ToastrService,
+    private eventBus: NgEventBus) { }
 
   ngOnInit(): void {
-    this.solicitudServicio.getEstudiosAdministrar().subscribe(x=> this.estudios=x.estudios);
+    this.init();
+    this.solicitudServicio.getEstudiosAdministrar(19).subscribe(x=>{
+      
+      
+      this.estudios=x.estudios
+      this._toastrService.success("Exito", "Todas los estudios asignados");
+      this.eventBus.cast('fin-progress','chao');
+    
+    },
+    err=>{
+      this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+      this.eventBus.cast('fin-progress','chao');
+    });
 
 
+  }
+
+  init(){
+    this.eventBus.cast('inicio-progress','hola');
+    this.admin_id=localStorage.getItem('user_id');
+   
   }
 
 }
