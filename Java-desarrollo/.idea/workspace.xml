@@ -29,8 +29,7 @@
   <component name="ChangeListManager">
     <list default="true" id="90d40db4-ad8c-4243-a03c-37ef11dcf5a8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoSolicitudEstudio.java" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoSolicitudEstudio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/SolicitudEstudio.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/SolicitudEstudio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_clientes.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_clientes.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,17 +65,6 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager" selected="JUnit.metodos_clientes_Test.consultaEstudios_SolicitadosTest">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="CategoriaTest.getCategorias" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <option name="PACKAGE_NAME" value="" />
@@ -129,6 +117,7 @@
       <workItem from="1607968678066" duration="1000000" />
       <workItem from="1608134504426" duration="801000" />
       <workItem from="1608139970412" duration="1434000" />
+      <workItem from="1608143299811" duration="2068000" />
     </task>
     <servers />
   </component>

@@ -80,14 +80,15 @@ public class metodos_clientes {
 
                 }
                 SolicitudEstudio solicitudEstudio = dao.find(obj.get_id(),SolicitudEstudio.class);
+                Marca marca = daoMarca.find(solicitudEstudio.get_marca().get_id(), Marca.class);
 
                 builder.add(Json.createObjectBuilder().add("id", solicitudEstudio.get_id())
                         .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
                         .add("modo_encuesta",solicitudEstudio.get_modoencuesta())
                         .add("caracteristica_demografica",builderObject)
-                        .add("marca",solicitudEstudio.get_marca().get_nombre())
-                        .add("subcategoria",solicitudEstudio.get_marca().get_subcategoria().get_nombre())
-                        .add("categoria",solicitudEstudio.get_marca().get_subcategoria().get_categoria().get_nombre())
+                        .add("marca",marca.get_nombre())
+                        .add("subcategoria",marca.get_subcategoria().get_nombre())
+                        .add("categoria",marca.get_subcategoria().get_categoria().get_nombre())
                         .add("participacion",builderArrayEncuestado)
                         .add("estado", solicitudEstudio.get_estado()));
 
