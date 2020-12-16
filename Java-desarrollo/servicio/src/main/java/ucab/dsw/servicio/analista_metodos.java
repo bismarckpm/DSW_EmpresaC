@@ -67,26 +67,29 @@ public class analista_metodos {
                 List<Participacion> participacion= daoParticipacion.getParticipacionByEstudio(obj.get_id());
 
                 for(Participacion j:participacion){
-                    builderArrayEncuestado.add(Json.createObjectBuilder().add("participacion_id", j.get_id())
-                                                                        .add("doc_id", j.get_encuestado().get_doc_id())
-                                                                        .add("usuario",j.get_encuestado().get_usuario_encuestado().get_usuario())
-                                                                        .add("correo",j.get_encuestado().get_correo())
-                                                                        .add("nombre",j.get_encuestado().get_nombre())
-                                                                        .add("apellido",j.get_encuestado().get_apellido())
-                                                                        .add("estado",j.get_estado()));
+                    Participacion participacion1 = daoParticipacion.find(j.get_id(), Participacion.class);
+
+                    builderArrayEncuestado.add(Json.createObjectBuilder().add("participacion_id", participacion1.get_id())
+                                                                        .add("doc_id", participacion1.get_encuestado().get_doc_id())
+                                                                        .add("usuario",participacion1.get_encuestado().get_usuario_encuestado().get_usuario())
+                                                                        .add("correo",participacion1.get_encuestado().get_correo())
+                                                                        .add("nombre",participacion1.get_encuestado().get_nombre())
+                                                                        .add("apellido",participacion1.get_encuestado().get_apellido())
+                                                                        .add("estado",participacion1.get_estado()));
 
 
                 }
+                SolicitudEstudio solicitudEstudio = dao.find(obj.get_id(),SolicitudEstudio.class);
 
-                builder.add(Json.createObjectBuilder().add("id", obj.get_id())
-                                                      .add("fecha", obj.get_fecha_inicio().toString())
-                                                      .add("modo_encuesta",obj.get_modoencuesta())
+                builder.add(Json.createObjectBuilder().add("id", solicitudEstudio.get_id())
+                                                      .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
+                                                      .add("modo_encuesta",solicitudEstudio.get_modoencuesta())
                                                       .add("caracteristica_demografica",builderObject)
-                                                      .add("marca",obj.get_marca().get_nombre())
-                                                      .add("subcategoria",obj.get_marca().get_subcategoria().get_nombre())
-                                                      .add("categoria",obj.get_marca().get_subcategoria().get_categoria().get_nombre())
+                                                      .add("marca",solicitudEstudio.get_marca().get_nombre())
+                                                      .add("subcategoria",solicitudEstudio.get_marca().get_subcategoria().get_nombre())
+                                                      .add("categoria",solicitudEstudio.get_marca().get_subcategoria().get_categoria().get_nombre())
                                                       .add("participacion",builderArrayEncuestado)
-                                                      .add("estado", obj.get_estado()));
+                                                      .add("estado", solicitudEstudio.get_estado()));
 
 
             }
@@ -223,28 +226,29 @@ public class analista_metodos {
                     List<Participacion> participacion = daoParticipacion.getParticipacionByEstudio(obj.get_id());
 
                     for (Participacion j : participacion) {
-                        builderArrayEncuestado.add(Json.createObjectBuilder().add("id", j.get_id())
-                                .add("doc_id", j.get_encuestado().get_doc_id())
-                                .add("usuario", j.get_encuestado().get_usuario_encuestado().get_usuario())
-                                .add("correo", j.get_encuestado().get_correo())
-                                .add("Nombre", j.get_encuestado().get_nombre())
-                                .add("Apellido", j.get_encuestado().get_apellido())
-                                .add("Estado", j.get_estado()));
+                        Participacion participacion1 = daoParticipacion.find(j.get_id(), Participacion.class);
+                        builderArrayEncuestado.add(Json.createObjectBuilder().add("id", participacion1.get_id())
+                                .add("doc_id", participacion1.get_encuestado().get_doc_id())
+                                .add("usuario", participacion1.get_encuestado().get_usuario_encuestado().get_usuario())
+                                .add("correo", participacion1.get_encuestado().get_correo())
+                                .add("Nombre", participacion1.get_encuestado().get_nombre())
+                                .add("Apellido", participacion1.get_encuestado().get_apellido())
+                                .add("Estado", participacion1.get_estado()));
 
 
                     }
+                    SolicitudEstudio solicitudEstudio = dao.find(obj.get_id(),SolicitudEstudio.class);
+                    JsonObject encuesta = Json.createObjectBuilder().add("Marca",solicitudEstudio.get_marca().get_nombre())
+                            .add("Categoria",solicitudEstudio.get_marca().get_subcategoria().get_categoria().get_nombre())
+                            .add("Subcategoria",solicitudEstudio.get_marca().get_subcategoria().get_nombre()).build();
 
-                    JsonObject encuesta = Json.createObjectBuilder().add("Marca",obj.get_marca().get_nombre())
-                            .add("Categoria",obj.get_marca().get_subcategoria().get_categoria().get_nombre())
-                            .add("Subcategoria",obj.get_marca().get_subcategoria().get_nombre()).build();
-
-                    builder.add(Json.createObjectBuilder().add("id", obj.get_id())
-                            .add("fecha", obj.get_fecha_inicio().toString())
-                            .add("modo_encuesta", obj.get_modoencuesta())
+                    builder.add(Json.createObjectBuilder().add("id", solicitudEstudio.get_id())
+                            .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
+                            .add("modo_encuesta", solicitudEstudio.get_modoencuesta())
                             .add("caracteristica_demografica", builderObject)
                             .add("caracteristicas",encuesta)
                             .add("Participantes", builderArrayEncuestado)
-                            .add("estatus", obj.get_estado()));
+                            .add("estatus", solicitudEstudio.get_estado()));
 
                 }
             }
@@ -318,18 +322,20 @@ public class analista_metodos {
                     List<Participacion> participacion = daoParticipacion.getParticipacionByEstudio(resultado.get_id());
 
                     for (Participacion j : participacion) {
-                        builderArrayEncuestado.add(Json.createObjectBuilder().add("id", j.get_id())
-                                .add("doc_id", j.get_encuestado().get_doc_id())
-                                .add("usuario", j.get_encuestado().get_usuario_encuestado().get_usuario())
-                                .add("correo", j.get_encuestado().get_correo())
-                                .add("Nombre", j.get_encuestado().get_nombre())
-                                .add("Apellido", j.get_encuestado().get_apellido())
-                                .add("Estado", j.get_estado()));
+                        Participacion participacion1 = daoParticipacion.find(j.get_id(), Participacion.class);
+                        builderArrayEncuestado.add(Json.createObjectBuilder().add("id", participacion1.get_id())
+                                .add("doc_id", participacion1.get_encuestado().get_doc_id())
+                                .add("usuario", participacion1.get_encuestado().get_usuario_encuestado().get_usuario())
+                                .add("correo", participacion1.get_encuestado().get_correo())
+                                .add("Nombre", participacion1.get_encuestado().get_nombre())
+                                .add("Apellido", participacion1.get_encuestado().get_apellido())
+                                .add("Estado", participacion1.get_estado()));
 
                         for (Telefono t : telefono) {
                             if(t.get_encuestado_telefono().get_id()==j.get_encuestado().get_id()) {
-                                builderArrayEncuestado.add(Json.createObjectBuilder().add("codigo de area", t.get_codigo_area())
-                                        .add("numero", t.get_numero()));
+                                Telefono telefono1=daotelefono.find(t.get_id(),Telefono.class);
+                                builderArrayEncuestado.add(Json.createObjectBuilder().add("codigo de area", telefono1.get_codigo_area())
+                                        .add("numero", telefono1.get_numero()));
                             }
 
                         }
