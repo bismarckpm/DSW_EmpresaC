@@ -9,6 +9,7 @@ import { CaracteristicaDemograficaDto } from 'src/app/Entidades/CaracteristicaDe
 import { ParroquiaDto } from 'src/app/Entidades/parroquiaDto';
 import { NivelAcademicoDto } from 'src/app/Entidades/nivelAcademicoDto';
 import { NgEventBus } from 'ng-event-bus';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-solicitar-estudios',
@@ -64,7 +65,7 @@ export class SolicitarEstudiosComponent implements OnInit {
   public solicitudEstudioCliente: SolicitudEstudioCliente;
 
 
-  constructor(private _solicitudService:SolicitudEstudiosService, private progress: NgProgress, private _toastrService: ToastrService,private eventBus: NgEventBus) {}
+  constructor(private route: Router,private _solicitudService:SolicitudEstudiosService, private progress: NgProgress, private _toastrService: ToastrService,private eventBus: NgEventBus) {}
 
   ngOnInit(): void {
     this._toastrService.info('Espere unos segundos, por favor. Un momento!');
@@ -248,6 +249,7 @@ export class SolicitarEstudiosComponent implements OnInit {
         console.log(response);
         if(response.estado='success'){
           this._toastrService.success("Todo salio bien!", "Solicitud Procesada");
+          this.route.navigate(['/cliente/consultar-estudios']);
         }else{
           this._toastrService.error("Ops! Hubo un problema.", "Intentelo más tarde");
         }
