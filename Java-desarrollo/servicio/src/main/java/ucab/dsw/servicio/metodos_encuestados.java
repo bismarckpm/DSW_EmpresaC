@@ -174,7 +174,7 @@ public class metodos_encuestados {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
-    /*@PUT
+    @PUT
     @Path( "/Respuesta/{id}/{id2}/{id3}" )
     public Response addRespuesta(@PathParam("id") long  _id,@PathParam("id2") long  _id2,@PathParam("id3") long  _id3,RespuestaDto respuestaDto)
     {
@@ -182,33 +182,48 @@ public class metodos_encuestados {
         JsonObject data;
         try
         {
-            DaoRespuesta dao = new DaoRespuesta();
-            DaoRespuestaOpcion dao2= new DaoRespuestaOpcion();
+            DaoRespuesta daoRespuesta = new DaoRespuesta();
+            DaoPreguntaEncuesta daoPreguntaEncuesta= new DaoPreguntaEncuesta();
+            DaoParticipacion daoParticipacion = new DaoParticipacion();
 
-            Encuesta encuesta = new Encuesta();
-            encuesta.set_nombre( encuestaDto.getNombre() );
+            List<Participacion> participacion = null;
+            Class<Participacion> type = Participacion.class;
+            participacion = daoParticipacion.findAll(type);
 
-            Marca marca = new Marca(_id);
-            encuesta.set_marca( marca );
+            Respuesta respuesta = new Respuesta();
+            PreguntaEncuesta pregunta = daoPreguntaEncuesta.find(_id,PreguntaEncuesta.class);
+            respuesta.set_preguntaencuesta(pregunta);
 
-            Encuesta resul = dao.insert( encuesta);
+            for (Participacion obj : participacion) {
+                if (obj.get_solicitudestudio().get_id()==_id2 && obj.get_encuestado().get_id()==_id3) {
+                    Participacion participacion1 = daoParticipacion.find(obj.get_id(), Participacion.class);
+                    respuesta.set_participacion(participacion1);
+                }
+            }
+
+            respuesta.set_respuestarango(respuestaDto.getRespuestarango());
+            respuesta.set_respuestadesarrollo(respuestaDto.getRespuestadesarrollo());
+            respuesta.set_respuestaboolean(respuestaDto.getRespuestaboolean());
+
+
+
+            Respuesta resul = daoRespuesta.insert( respuesta);
             resultado.setId( resul.get_id() );
 
-            if (encuestaDto.getPreguntas()!=null) {
+            if (respuestaDto.getOpciones()!=null) {
 
-                List<PreguntaDto> pregunta = encuestaDto.getPreguntas();
+                List<Opcion_Simple_Multiple_PreguntaDto> opciones = respuestaDto.getOpciones();
 
-                for (PreguntaDto obj : pregunta) {
-                    Pregunta_EncuestaDto resultado2 = new Pregunta_EncuestaDto();
-                    PreguntaEncuesta preguntaEncuesta = new PreguntaEncuesta();
-                    preguntaEncuesta.set_encuesta(resul);
-                    Pregunta pregunta1 = new Pregunta();
-                    DaoPregunta dao4 = new DaoPregunta();
-                    pregunta1 = dao4.find(obj.getId(), Pregunta.class);
+                for (Opcion_Simple_Multiple_PreguntaDto obj : opciones) {
+                    DaoOpcion_Simple_Multiple_Pregunta daoOpcion_simple_multiple_pregunta= new DaoOpcion_Simple_Multiple_Pregunta();
+                    DaoRespuestaOpcion daoRespuestaOpcion= new DaoRespuestaOpcion();
+                    Respuesta_Opcion resultado2 = new Respuesta_Opcion();
+                    RespuestaOpcion respuestaOpcion = new RespuestaOpcion();
+                    respuestaOpcion.set_respuesta(resul);
+                    Opcion_Simple_Multiple_Pregunta opcion =daoOpcion_simple_multiple_pregunta.find(obj.getId(), Opcion_Simple_Multiple_Pregunta.class);
+                    respuestaOpcion.set_opcionsimplemultiple(opcion);
 
-                    preguntaEncuesta.set_pregunta(pregunta1);
-
-                    PreguntaEncuesta resul2 = dao2.insert(preguntaEncuesta);
+                    RespuestaOpcion resul2 = daoRespuestaOpcion.insert(respuestaOpcion);
                     resultado2.setId(resul2.get_id());
 
 
@@ -232,5 +247,5 @@ public class metodos_encuestados {
             return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
         return Response.status(Response.Status.OK).entity(data).build();
-    }*/
+    }
 }

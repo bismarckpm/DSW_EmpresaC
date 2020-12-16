@@ -1,6 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import ucab.dsw.accesodatos.DaoOpcion_Simple_Multiple_Pregunta;
 import ucab.dsw.accesodatos.DaoPregunta;
 import ucab.dsw.accesodatos.DaoSolicitudEstudio;
 import javax.ws.rs.core.Response;
@@ -30,6 +31,23 @@ public class metodos_encuestadoTest {
         Response resultado = servicio.encuesta_estudio(1);
         Assert.assertNotEquals(resultado, 0);
 
+    }
+
+    @Test
+    public void addRespuestaTest() throws Exception
+    {
+        ucab.dsw.servicio.metodos_encuestados servicio = new ucab.dsw.servicio.metodos_encuestados();
+        RespuestaDto respuestaDto = new RespuestaDto();
+        DaoOpcion_Simple_Multiple_Pregunta dao = new DaoOpcion_Simple_Multiple_Pregunta();
+        Opcion_Simple_Multiple_PreguntaDto opcion = new Opcion_Simple_Multiple_PreguntaDto(1);
+
+        List<Opcion_Simple_Multiple_PreguntaDto> opciones = new ArrayList<>();
+        opciones.add(opcion);
+
+        respuestaDto.setOpciones(opciones);
+
+        Response resultado = servicio.addRespuesta( 1,5,1,respuestaDto);
+        Assert.assertNotEquals( 0, 1 );
     }
 
 }
