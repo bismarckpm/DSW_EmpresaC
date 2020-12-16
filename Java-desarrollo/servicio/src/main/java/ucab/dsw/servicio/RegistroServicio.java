@@ -1,5 +1,6 @@
 package ucab.dsw.servicio;
 
+import org.eclipse.persistence.exceptions.DatabaseException;
 import ucab.dsw.accesodatos.*;
 import ucab.dsw.dtos.*;
 import ucab.dsw.directorio.DirectorioActivo;
@@ -8,6 +9,7 @@ import ucab.dsw.jwt.Jwt;
 
 import javax.json.Json;
 import javax.json.JsonObject;
+import javax.persistence.PersistenceException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -172,6 +174,15 @@ public class RegistroServicio extends AplicacionBase{
             }else{
                 return Response.status(Response.Status.UNAUTHORIZED).build();
             }
+        }catch (PersistenceException | DatabaseException ex){
+            data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje","El usuario ya se encuestra registrado")
+                    .add("codigo",500).build();
+
+            System.out.println(data);
+
+            return Response.status(Response.Status.OK).entity(data).build();
         }catch ( Exception ex ) {
             System.out.println("Excepcion");
             return Response.status(Response.Status.BAD_REQUEST).build();

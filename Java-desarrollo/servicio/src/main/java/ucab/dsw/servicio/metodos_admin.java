@@ -84,6 +84,7 @@ public class metodos_admin {
             return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
         //builder.build();
+        System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
@@ -151,6 +152,7 @@ public class metodos_admin {
 
         }
         //builder.build();
+        System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
