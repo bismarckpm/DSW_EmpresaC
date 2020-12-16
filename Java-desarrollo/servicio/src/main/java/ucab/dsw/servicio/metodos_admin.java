@@ -42,18 +42,18 @@ public class metodos_admin {
 
             resultado = dao.findAll(type);
             for (SolicitudEstudio obj : resultado) {
-                if (obj.get_usuario2() != null) {
+                SolicitudEstudio solicitudEstudio = dao.find(obj.get_id(), SolicitudEstudio.class);
 
+                if (solicitudEstudio.get_usuario2() != null) {
+                    if (solicitudEstudio.get_encuesta() != null && solicitudEstudio.get_usuario2().get_id() == _id && solicitudEstudio.get_estado().equals("en progreso")) {
+                        JsonObject encuesta = Json.createObjectBuilder().add("Marca", solicitudEstudio.get_marca().get_nombre())
+                                .add("idcategoria", solicitudEstudio.get_marca().get_subcategoria().get_categoria().get_id())
+                                .add("Categoria", solicitudEstudio.get_marca().get_subcategoria().get_categoria().get_nombre())
+                                .add("idsubcategoria", solicitudEstudio.get_marca().get_subcategoria().get_id())
+                                .add("Subcategoria", solicitudEstudio.get_marca().get_subcategoria().get_nombre()).build();
 
-                    if (obj.get_encuesta() != null && obj.get_usuario2().get_id() == _id && obj.get_estado().equals("en ejecucion")) {
-                        JsonObject encuesta = Json.createObjectBuilder().add("Marca", obj.get_marca().get_nombre())
-                                .add("idcategoria", obj.get_marca().get_subcategoria().get_categoria().get_id())
-                                .add("Categoria", obj.get_marca().get_subcategoria().get_categoria().get_nombre())
-                                .add("idsubcategoria", obj.get_marca().get_subcategoria().get_id())
-                                .add("Subcategoria", obj.get_marca().get_subcategoria().get_nombre()).build();
-
-                        JsonObject tipo = Json.createObjectBuilder().add("id", obj.get_id())
-                                .add("fecha", obj.get_fecha_inicio().toString())
+                        JsonObject tipo = Json.createObjectBuilder().add("id", solicitudEstudio.get_id())
+                                .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
                                 .add("caracteristicas", encuesta).build();
 
                         builder.add(tipo);
@@ -101,19 +101,21 @@ public class metodos_admin {
 
             resultado = dao.findAll(type);
             for (SolicitudEstudio obj : resultado) {
-                if (obj.get_usuario2() != null) {
+                SolicitudEstudio solicitudEstudio = dao.find(obj.get_id(), SolicitudEstudio.class);
 
-                if (obj.get_encuesta() == null && obj.get_usuario2().get_id()== _id) {
+                if (solicitudEstudio.get_usuario2() != null) {
+
+                if (solicitudEstudio.get_encuesta() == null && solicitudEstudio.get_usuario2().get_id()== _id) {
 
 
-                    JsonObject encuesta = Json.createObjectBuilder().add("Marca", obj.get_marca().get_nombre())
-                            .add("idcategoria", obj.get_marca().get_subcategoria().get_categoria().get_id())
-                            .add("Categoria", obj.get_marca().get_subcategoria().get_categoria().get_nombre())
-                            .add("idsubcategoria", obj.get_marca().get_subcategoria().get_id())
-                            .add("Subcategoria", obj.get_marca().get_subcategoria().get_nombre()).build();
-                    JsonObject tipo = Json.createObjectBuilder().add("id", obj.get_id())
-                            .add("fecha", obj.get_fecha_inicio().toString())
-                            .add("estatus", obj.get_estado())
+                    JsonObject encuesta = Json.createObjectBuilder().add("Marca", solicitudEstudio.get_marca().get_nombre())
+                            .add("idcategoria", solicitudEstudio.get_marca().get_subcategoria().get_categoria().get_id())
+                            .add("Categoria", solicitudEstudio.get_marca().get_subcategoria().get_categoria().get_nombre())
+                            .add("idsubcategoria", solicitudEstudio.get_marca().get_subcategoria().get_id())
+                            .add("Subcategoria", solicitudEstudio.get_marca().get_subcategoria().get_nombre()).build();
+                    JsonObject tipo = Json.createObjectBuilder().add("id", solicitudEstudio.get_id())
+                            .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
+                            .add("estatus", solicitudEstudio.get_estado())
                             .add("caracteristicas", encuesta)
                             .build();
 
@@ -466,12 +468,13 @@ public class metodos_admin {
             resultado = dao.findAll(type);
 
             for (PreguntaEncuesta obj : resultado) {
+                PreguntaEncuesta preguntaEncuesta = dao.find(obj.get_id(),PreguntaEncuesta.class);
 
-                if (obj.get_encuesta().get_marca().get_subcategoria().get_categoria().get_id() == _id) {
+                if (preguntaEncuesta.get_encuesta().get_marca().get_subcategoria().get_categoria().get_id() == _id) {
 
-                    JsonObject p = Json.createObjectBuilder().add("id", obj.get_pregunta().get_id())
-                            .add("descripcion", obj.get_pregunta().get_descripcion())
-                            .add("tipopregunta", obj.get_pregunta().get_tipopregunta())
+                    JsonObject p = Json.createObjectBuilder().add("id", preguntaEncuesta.get_pregunta().get_id())
+                            .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
+                            .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
                             .build();
 
 
@@ -480,12 +483,13 @@ public class metodos_admin {
                 }
             }
 
-            for (Pregunta obj : resultado2) {
+            for (Pregunta obj2 : resultado2) {
+                Pregunta pregunta = dao2.find(obj2.get_id(), Pregunta.class);
 
-                if (obj.get_preguntaencuesta().isEmpty() == true) {
-                    JsonObject p = Json.createObjectBuilder().add("id", obj.get_id())
-                            .add("descripcion", obj.get_descripcion())
-                            .add("tipopregunta", obj.get_tipopregunta())
+                if (pregunta.get_preguntaencuesta().isEmpty() == true) {
+                    JsonObject p = Json.createObjectBuilder().add("id", pregunta.get_id())
+                            .add("descripcion", pregunta.get_descripcion())
+                            .add("tipopregunta", pregunta.get_tipopregunta())
                             .build();
 
 
