@@ -2,10 +2,7 @@ package ucab.dsw.servicio;
 
 import javafx.scene.control.TextFormatter;
 import org.eclipse.persistence.exceptions.DatabaseException;
-import ucab.dsw.accesodatos.DaoCliente;
-import ucab.dsw.accesodatos.DaoEncuesta;
-import ucab.dsw.accesodatos.DaoEncuestado;
-import ucab.dsw.accesodatos.DaoUsuario;
+import ucab.dsw.accesodatos.*;
 import ucab.dsw.directorio.DirectorioActivo;
 import ucab.dsw.dtos.*;
 import ucab.dsw.entidades.*;
@@ -298,4 +295,76 @@ public class UsuarioServicio extends AplicacionBase {
         System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
+
+    @PUT
+    @Path( "/change/admin/{id}" )
+    public Response changeAdmin(@PathParam("id")long  _id, UsuarioLdapDto usuarioLdapDto)
+    {
+        DirectorioActivo ldap = new DirectorioActivo();
+        UsuarioDto resultado = new UsuarioDto();
+        String user_name_original,email_original;
+        JsonObject data;
+        Boolean flag = true;
+        try {
+            UsuarioLdapDto original = new UsuarioLdapDto();
+            original.setUid( String.format("%d",_id) );
+            user_name_original = ldap.getUserFromUid( original );
+            email_original = ldap.getMailFromUid( original );
+            if(!user_name_original.equals(usuarioLdapDto.getCn())){
+                if( usuarioLdapDto.getCn().equals( ldap.userExist( usuarioLdapDto) ) ){
+                    flag = false;
+                }
+            }
+            if(!email_original.equals(usuarioLdapDto.getCorreoelectronico())){
+                if( usuarioLdapDto.getCorreoelectronico().equals( ldap.emailExist( usuarioLdapDto) ) ){
+                    flag = false;
+                }
+            }
+
+
+            if(flag) {
+                //UPDATE USUARIO
+                DaoUsuario dao = new DaoUsuario();
+                Usuario user = dao.find(_id, Usuario.class);
+                user.set_usuario(usuarioLdapDto.getCn());
+
+                Usuario resul = dao.update(user);
+                resultado.setId(resul.get_id());
+
+                //UPDATE USUARIOLDAP
+                ldap.updateUser(usuarioLdapDto, user_name_original);
+                data = Json.createObjectBuilder()
+                        .add("estado", "success")
+                        .add("codigo", 200).build();
+            }else{
+                data = Json.createObjectBuilder()
+                        .add("estado", "error")
+                        .add("codigo", 400).build();
+            }
+
+        } catch (PersistenceException | DatabaseException ex){
+            data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje","El tipo ya se encuestra registrado")
+                    .add("codigo",500).build();
+
+            System.out.println(data);
+            return Response.status(Response.Status.OK).entity(data).build();
+        }
+        catch ( Exception ex){
+            data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje",ex.getMessage())
+                    .add("codigo",500).build();
+
+            System.out.println(data);
+            return Response.status(Response.Status.OK).entity(data).build();
+
+        }
+
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
+
+
+
 }

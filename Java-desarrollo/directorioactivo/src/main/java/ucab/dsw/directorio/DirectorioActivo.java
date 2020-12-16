@@ -465,4 +465,57 @@ public class DirectorioActivo
         }
         return usuario;
     }
+
+    public void updateUser(UsuarioLdapDto user, String originalCn)
+    {
+        try
+        {
+            connectLDAP( _user, _password );
+            Attributes atbs = new BasicAttributes();
+            atbs.put( new BasicAttribute("sn",user.getSn() ) );
+            atbs.put( new BasicAttribute("givenName",user.getNombre() ) );
+            atbs.put( new BasicAttribute("mail",user.getCorreoelectronico() ) );
+
+            _ldapContext.modifyAttributes( String.format(_userDirectory + "," + _directory, originalCn)
+                    , DirContext.REPLACE_ATTRIBUTE,atbs );
+
+            _ldapContext.rename( String.format(_userDirectory + "," + _directory, originalCn),String.format(_userDirectory + "," + _directory, user.getCn()));
+        }
+        catch(Exception exception)
+        {
+            exception.printStackTrace();
+        }
+        finally
+        {
+            disconnectLDAP();
+        }
+    }
+
+    public String getMailFromUid(UsuarioLdapDto user) {
+        String mail = "";
+        try {
+            connectLDAP( _user, _password );
+            SearchControls searcCon = new SearchControls();
+            searcCon.setSearchScope( SearchControls.SUBTREE_SCOPE );
+            NamingEnumeration results =
+                    _ldapContext.search( _directory, String.format("uid=%s", user.getUid()), searcCon );
+
+            if ( results != null ) {
+                while ( results.hasMore() ) {
+                    SearchResult res = ( SearchResult ) results.next();
+                    Attributes atbs = res.getAttributes();
+                    Attribute atb = atbs.get( "mail" );
+                    mail = (String)atb.get();
+                }
+            } else {
+                System.out.println( "fail" );
+                return null;
+            }
+        } catch(Exception exception) {
+            exception.printStackTrace();
+        } finally {
+            disconnectLDAP();
+        }
+        return mail;
+    }
 }

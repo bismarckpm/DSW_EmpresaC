@@ -128,4 +128,15 @@ public class pruebaDirectorioActivo
             System.out.println("No existe");
         }
     }
+
+    @Test
+    public void updateUserLdap(){
+        DirectorioActivo ldap = new DirectorioActivo();
+        UsuarioLdapDto user = new UsuarioLdapDto();
+        user.setCn( "elrequena" );
+        user.setSn("Requena");
+        user.setNombre("Jesus");
+        user.setCorreoelectronico("elrequena123@outlook.com");
+        ldap.updateUser( user , "MFalcon" );
+    }
 }
