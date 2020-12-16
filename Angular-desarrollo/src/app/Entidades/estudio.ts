@@ -1,3 +1,4 @@
+import { Participante } from "./participante";
 import { Caracteristicas } from "./caracteristicas";
 
 export class Estudio{
@@ -6,5 +7,8 @@ export class Estudio{
     fecha: string;
     estatus:string;
     caracteristicas: Caracteristicas;
+    modo_encuesta:string;
+    Participantes:Participante[]
+
 
 }

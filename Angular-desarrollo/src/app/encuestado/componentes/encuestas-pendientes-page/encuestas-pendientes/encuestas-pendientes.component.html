@@ -1,10 +1,7 @@
-
-
-<div class="container" *ngIf="estudios">
+<div class="container">
 
     <div class="row justify-content-md-center">
-        <h1 *ngIf="estudios.length!=0"> Estudios Sin encuestas </h1>
-        <h1 *ngIf="estudios.length==0"> No hay estudios para asignarles encuesta </h1>
+        <h1> Estudios Pendientes </h1>
     </div>
 
     <div class="estudio-cards"> 
@@ -25,7 +22,7 @@
     <mat-card-actions>
         <button mat-button>{{estudio.caracteristicas.Categoria}}</button>
         <button mat-button>{{estudio.caracteristicas.Subcategoria}}</button>
-        <button  mat-button [routerLink]="['/admin/AsignarEncuesta', estudio.id]"  >Ver</button>
+        <button mat-button >Iniciar</button>
 
 
     </mat-card-actions>

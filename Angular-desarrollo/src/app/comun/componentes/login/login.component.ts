@@ -31,10 +31,12 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void { 
-    //this.dataLogin();
+    this.dataLogin();
   }
 
   iniciarSesion(){
+
+
     this.eventBus.cast('inicio-progress','hola');
     this.entrada = this.loginData.value.usuario;
     if(this.entrada.includes('@') && this.entrada.includes('.') ){
@@ -80,7 +82,8 @@ export class LoginComponent implements OnInit {
 
   redireccionar( tipo_usuario: string ){
     if (tipo_usuario == 'administrador'){
-      tipo_usuario = 'admin'
+      // tipo_usuario = 'admin'
+      tipo_usuario = 'analista'
     }
     this.router.navigate([tipo_usuario]);
   }
