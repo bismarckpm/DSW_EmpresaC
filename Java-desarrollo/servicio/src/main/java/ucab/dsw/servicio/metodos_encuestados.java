@@ -133,18 +133,23 @@ public class metodos_encuestados {
                     }
                     else {
 
-                        JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
-                                .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
-                                .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
-                                .build();
-
-                        builder.add(preguntas);
-
                         if (preguntaEncuesta.get_pregunta().get_valormax() !=0){
-                            JsonObject p = Json.createObjectBuilder().add("minimo", preguntaEncuesta.get_pregunta().get_valormin())
+                            JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
+                                    .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
+                                    .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
+                                    .add("minimo", preguntaEncuesta.get_pregunta().get_valormin())
                                     .add("maximo", preguntaEncuesta.get_pregunta().get_valormax()).build();
-                            builder.add(p);
+                            builder.add(preguntas);
+
+                        }else {
+                            JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
+                                    .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
+                                    .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
+                                    .build();
+
+                            builder.add(preguntas);
                         }
+
                     }
 
                 }
@@ -168,4 +173,64 @@ public class metodos_encuestados {
         //builder.build();
         return Response.status(Response.Status.OK).entity(data).build();
     }
+
+    /*@PUT
+    @Path( "/Respuesta/{id}/{id2}/{id3}" )
+    public Response addRespuesta(@PathParam("id") long  _id,@PathParam("id2") long  _id2,@PathParam("id3") long  _id3,RespuestaDto respuestaDto)
+    {
+        RespuestaDto resultado = new RespuestaDto();
+        JsonObject data;
+        try
+        {
+            DaoRespuesta dao = new DaoRespuesta();
+            DaoRespuestaOpcion dao2= new DaoRespuestaOpcion();
+
+            Encuesta encuesta = new Encuesta();
+            encuesta.set_nombre( encuestaDto.getNombre() );
+
+            Marca marca = new Marca(_id);
+            encuesta.set_marca( marca );
+
+            Encuesta resul = dao.insert( encuesta);
+            resultado.setId( resul.get_id() );
+
+            if (encuestaDto.getPreguntas()!=null) {
+
+                List<PreguntaDto> pregunta = encuestaDto.getPreguntas();
+
+                for (PreguntaDto obj : pregunta) {
+                    Pregunta_EncuestaDto resultado2 = new Pregunta_EncuestaDto();
+                    PreguntaEncuesta preguntaEncuesta = new PreguntaEncuesta();
+                    preguntaEncuesta.set_encuesta(resul);
+                    Pregunta pregunta1 = new Pregunta();
+                    DaoPregunta dao4 = new DaoPregunta();
+                    pregunta1 = dao4.find(obj.getId(), Pregunta.class);
+
+                    preguntaEncuesta.set_pregunta(pregunta1);
+
+                    PreguntaEncuesta resul2 = dao2.insert(preguntaEncuesta);
+                    resultado2.setId(resul2.get_id());
+
+
+                }
+            }
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
+
+        }
+        catch ( Exception ex )
+        {
+            String problema = ex.getMessage();
+
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+        return Response.status(Response.Status.OK).entity(data).build();
+    }*/
 }
