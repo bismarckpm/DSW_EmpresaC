@@ -1,7 +1,9 @@
 package ucab.dsw.servicio;
 
 import ucab.dsw.accesodatos.DaoNivel_Academico;
+import ucab.dsw.accesodatos.DaoOcupacion;
 import ucab.dsw.entidades.Nivel_Academico;
+import ucab.dsw.entidades.Ocupacion;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -15,34 +17,30 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 
-@Path( "/niveles_academicos" )
+@Path( "/ocupaciones" )
 @Produces( MediaType.APPLICATION_JSON )
 @Consumes( MediaType.APPLICATION_JSON )
-public class NivelAcademicoServicio extends AplicacionBase {
+public class OcupacionServicio {
     @GET
     @Path("/all")
-    public Response getAllNivelesAcademicos() {
+    public Response getAllOcupaciones() {
         JsonObject data;
         try {
-            DaoNivel_Academico dao = new DaoNivel_Academico();
-            List<Nivel_Academico> resultado = dao.findAll(Nivel_Academico.class);
+            DaoOcupacion dao = new DaoOcupacion();
+            List<Ocupacion> resultado = dao.findAll(Ocupacion.class);
+            JsonArrayBuilder ocupacionArrayJson = Json.createArrayBuilder();
 
-            JsonArrayBuilder categoriaArrayJson = Json.createArrayBuilder();
+            for (Ocupacion obj : resultado) {
 
-            for (Nivel_Academico obj : resultado) {
-
-                JsonObject categoria = Json.createObjectBuilder().add("id", obj.get_id())
+                JsonObject ocupacion = Json.createObjectBuilder().add("id", obj.get_id())
                         .add("nombre", obj.get_nombre()).build();
 
-                categoriaArrayJson.add(categoria);
+                ocupacionArrayJson.add(ocupacion);
             }
-
             data = Json.createObjectBuilder()
                     .add("estado", "success")
                     .add("codigo", 200)
-                    .add("niveles_academicos", categoriaArrayJson).build();
-
-
+                    .add("ocupaciones", ocupacionArrayJson).build();
         } catch (Exception ex) {
             data = Json.createObjectBuilder()
                     .add("estado", "exception!!!")
@@ -51,10 +49,7 @@ public class NivelAcademicoServicio extends AplicacionBase {
 
             System.out.println(data);
             return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
-
-
         }
-
         System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }

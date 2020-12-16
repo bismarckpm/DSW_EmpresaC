@@ -117,4 +117,15 @@ public class pruebaDirectorioActivo
         System.out.println(str);
     }
 
+    @Test
+    public void userExisttest() {
+        UsuarioLdapDto user = new UsuarioLdapDto();
+        user.setCn( "MFalcon" );
+        DirectorioActivo ldap = new DirectorioActivo();
+        if(user.getCn().equals(ldap.userExist(user))){
+            System.out.println("Si existe");
+        }else{
+            System.out.println("No existe");
+        }
+    }
 }

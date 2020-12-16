@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModificarUsuarioComponent } from './modificar-usuario.component';
+import { AnadirClienteComponent } from './anadir-cliente.component';
 
-describe('ModificarUsuarioComponent', () => {
-  let component: ModificarUsuarioComponent;
-  let fixture: ComponentFixture<ModificarUsuarioComponent>;
+describe('AnadirClienteComponent', () => {
+  let component: AnadirClienteComponent;
+  let fixture: ComponentFixture<AnadirClienteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModificarUsuarioComponent ]
+      declarations: [ AnadirClienteComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModificarUsuarioComponent);
+    fixture = TestBed.createComponent(AnadirClienteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

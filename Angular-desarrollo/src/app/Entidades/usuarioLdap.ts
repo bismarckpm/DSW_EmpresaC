@@ -1,6 +1,6 @@
 export class usuarioLdap{
-    cn: string; //cn
-    sn: string; //sn
+    cn: string; //cn -> username
+    sn: string; //sn -> apellido
     tipo_usuario: string;
     nombre: string ;
     correoelectronico: string;
