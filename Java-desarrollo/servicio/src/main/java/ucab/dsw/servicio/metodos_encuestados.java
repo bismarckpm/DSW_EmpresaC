@@ -124,9 +124,9 @@ public class metodos_encuestados {
 
                         }
                         JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
-                                .add("Pregunta ", preguntaEncuesta.get_pregunta().get_descripcion())
-                                .add("Tipo de Pregunta ", preguntaEncuesta.get_pregunta().get_tipopregunta())
-                                .add("participacion",opciones)
+                                .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
+                                .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
+                                .add("opciones",opciones)
                                 .build();
 
                         builder.add(preguntas);
@@ -134,15 +134,15 @@ public class metodos_encuestados {
                     else {
 
                         JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
-                                .add("Pregunta ", preguntaEncuesta.get_pregunta().get_descripcion())
-                                .add("Tipo de Pregunta ", preguntaEncuesta.get_pregunta().get_tipopregunta())
+                                .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
+                                .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
                                 .build();
 
                         builder.add(preguntas);
 
                         if (preguntaEncuesta.get_pregunta().get_valormax() !=0){
-                            JsonObject p = Json.createObjectBuilder().add("valor minimo ", preguntaEncuesta.get_pregunta().get_valormin())
-                                    .add("valor maximo ", preguntaEncuesta.get_pregunta().get_valormax()).build();
+                            JsonObject p = Json.createObjectBuilder().add("minimo", preguntaEncuesta.get_pregunta().get_valormin())
+                                    .add("maximo", preguntaEncuesta.get_pregunta().get_valormax()).build();
                             builder.add(p);
                         }
                     }
@@ -153,7 +153,7 @@ public class metodos_encuestados {
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200)
-                    .add("estudios",builder).build();
+                    .add("Preguntas",builder).build();
 
         }
         catch (Exception ex){

@@ -29,6 +29,12 @@
   <component name="ChangeListManager">
     <list default="true" id="90d40db4-ad8c-4243-a03c-37ef11dcf5a8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_encuestados.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_encuestados.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/CategoriaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/CategoriaTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/MarcaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/MarcaTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/UsuarioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/UsuarioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/pruebaORMWS_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/pruebaORMWS_Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,15 +63,13 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager" selected="JUnit.MarcaTest.getMarcas">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -110,6 +114,7 @@
       <updated>1607968660988</updated>
       <workItem from="1607968678066" duration="1000000" />
       <workItem from="1608134504426" duration="801000" />
+      <workItem from="1608136703935" duration="5366000" />
     </task>
     <servers />
   </component>
@@ -154,21 +159,25 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1238" height="302" key="GridCell.Tab.0.bottom" timestamp="1608135354715">
-      <screen x="0" y="0" width="1280" height="980" />
+    <state width="980" height="174" key="GridCell.Tab.0.bottom" timestamp="1608149477586">
+      <screen x="0" y="0" width="1024" height="728" />
     </state>
+    <state width="980" height="174" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1608149477586" />
     <state width="1238" height="302" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1608135354715" />
-    <state width="1238" height="302" key="GridCell.Tab.0.center" timestamp="1608135354715">
-      <screen x="0" y="0" width="1280" height="980" />
+    <state width="980" height="174" key="GridCell.Tab.0.center" timestamp="1608149477586">
+      <screen x="0" y="0" width="1024" height="728" />
     </state>
+    <state width="980" height="174" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1608149477586" />
     <state width="1238" height="302" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1608135354715" />
-    <state width="1238" height="302" key="GridCell.Tab.0.left" timestamp="1608135354715">
-      <screen x="0" y="0" width="1280" height="980" />
+    <state width="980" height="174" key="GridCell.Tab.0.left" timestamp="1608149477586">
+      <screen x="0" y="0" width="1024" height="728" />
     </state>
+    <state width="980" height="174" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1608149477586" />
     <state width="1238" height="302" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1608135354715" />
-    <state width="1238" height="302" key="GridCell.Tab.0.right" timestamp="1608135354715">
-      <screen x="0" y="0" width="1280" height="980" />
+    <state width="980" height="174" key="GridCell.Tab.0.right" timestamp="1608149477586">
+      <screen x="0" y="0" width="1024" height="728" />
     </state>
+    <state width="980" height="174" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1608149477586" />
     <state width="1238" height="302" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1608135354715" />
   </component>
 </project>

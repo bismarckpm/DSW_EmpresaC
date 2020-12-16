@@ -30,7 +30,7 @@ public class CategoriaTest {
     {
         ucab.dsw.servicio.CategoriaServicio servicio = new ucab.dsw.servicio.CategoriaServicio();
         CategoriaDto categoriaDto=new CategoriaDto();
-        categoriaDto.setNombre("Navidadss");
+        categoriaDto.setNombre("Nadasd");
         Response respuesta= servicio.addCategoria(categoriaDto);
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
     }

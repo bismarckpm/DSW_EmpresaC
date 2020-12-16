@@ -12,7 +12,7 @@ public class pruebaORMWS_Test
     {
         ucab.dsw.servicio.pruebaORMWS servicio = new ucab.dsw.servicio.pruebaORMWS();
         UsuarioDto usuarioDto = new UsuarioDto();
-        usuarioDto.setUsuario( "Bismarck3" );
+        usuarioDto.setUsuario( "Bidasdds" );
         usuarioDto.setEstado( "Activo" );
         usuarioDto.setRol( "admin" );
         UsuarioDto resultado = servicio.addUser( usuarioDto );
