@@ -107,7 +107,7 @@ public class UsuarioServicio extends AplicacionBase {
 
             DirectorioActivo ldap = new DirectorioActivo();
             nuevoUsuarioDto.getUsuarioLdapDto().setUid(String.format("%d",ID_USER));
-            nuevoUsuarioDto.getUsuarioLdapDto().setTipo_usuario("cliente");
+            nuevoUsuarioDto.getUsuarioLdapDto().setTipo_usuario("admin");
             ldap.addEntryToLdap(nuevoUsuarioDto.getUsuarioLdapDto() );
 
             data= Json.createObjectBuilder()
@@ -155,7 +155,7 @@ public class UsuarioServicio extends AplicacionBase {
 
             DirectorioActivo ldap = new DirectorioActivo();
             nuevoUsuarioDto.getUsuarioLdapDto().setUid(String.format("%d",ID_USER));
-            nuevoUsuarioDto.getUsuarioLdapDto().setTipo_usuario("cliente");
+            nuevoUsuarioDto.getUsuarioLdapDto().setTipo_usuario("analista");
             ldap.addEntryToLdap(nuevoUsuarioDto.getUsuarioLdapDto() );
 
             data= Json.createObjectBuilder()

@@ -22,12 +22,12 @@ export class ConsultaEstudiosService {
   go(_id):Observable<any>{
 
     //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
-    return this._http.get(global.url+'/analista/empezar-estudio/'+ _id);
+    return this._http.put(global.url+'analista/empezar-estudio/'+ _id,_id);
   }
 
   eliminar_participacion(_id):Observable<any>{
       //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
-      return this._http.get(global.url+'/analista/eliminar-participacion/'+ _id);
+      return this._http.put(global.url+'analista/eliminar-participacion/'+ _id,_id);
     
   }
   getEstudiosTelefonicos(_id):Observable<Respuesta>{
