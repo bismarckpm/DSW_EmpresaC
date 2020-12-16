@@ -11,16 +11,22 @@ export class AdministrarUsuariosService {
   constructor(public _http: HttpClient) { } //Rutas no oficiales
 
 
-  addUsuarioAdminAnalista(usuarioLdapDto):Observable<any>{
+  addUsuarioAdminAnalista(nuevoUsuarioDto):Observable<any>{
 
     //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
-    return this._http.post(global.url+'usuario/add',usuarioLdapDto);
+    return this._http.post(global.url+'usuario/add/admin',nuevoUsuarioDto);
+  }
+
+  addUsuarioAdminAnalista2(nuevoUsuarioDto):Observable<any>{
+
+    //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
+    return this._http.post(global.url+'usuario/add/analista',nuevoUsuarioDto);
   }
 
   addUsuarioCliente(clienteDto):Observable<any>{
 
     //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
-    return this._http.post(global.url+'usuario/add-cliente',clienteDto);
+    return this._http.post(global.url+'usuario/add/cliente',clienteDto);
   }
   
   getAllUsuarios():Observable<any>{

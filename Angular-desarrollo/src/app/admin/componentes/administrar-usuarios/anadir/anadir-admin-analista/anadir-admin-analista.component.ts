@@ -3,6 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgEventBus } from 'ng-event-bus';
 import { ToastrService } from 'ngx-toastr';
 import { AdministrarUsuariosService } from 'src/app/admin/Servicios/administrar-usuarios/administrar-usuarios.service';
+import { NuevoUsuarioDto } from 'src/app/Entidades/nuevoUsuarioDto';
+import { usuario } from 'src/app/Entidades/usuario';
 import { usuarioLdap } from 'src/app/Entidades/usuarioLDAP';
 
 @Component({
@@ -12,7 +14,9 @@ import { usuarioLdap } from 'src/app/Entidades/usuarioLDAP';
 })
 export class AnadirAdminAnalistaComponent implements OnInit {
 
-  public usuarioLdapDto:usuarioLdap;
+  public nuevoUsuarioDto: NuevoUsuarioDto;
+  public usuarioLdapDto: usuarioLdap;
+  public usuarioDto:usuario;
   public cn: any;
   public sn: any; 
   public nombre: any ;
@@ -32,6 +36,10 @@ export class AnadirAdminAnalistaComponent implements OnInit {
 
   init(){
     this.usuarioLdapDto=new usuarioLdap();
+    this.usuarioDto= new usuario();
+    this.nuevoUsuarioDto=new NuevoUsuarioDto();
+    this.nuevoUsuarioDto.usuarioLdapDto=this.usuarioLdapDto;
+    this.nuevoUsuarioDto.usuarioDto=this.usuarioDto;
     this.rol=this.data.rol;
   }
 
@@ -40,9 +48,9 @@ export class AnadirAdminAnalistaComponent implements OnInit {
   addUsuario(){
     this.eventBus.cast('inicio-progress','chao');
     this.asignarValores();
-    console.log(this.usuarioLdapDto);
+    console.log(this.nuevoUsuarioDto);
 
-    this._adminUsuarioService.addUsuarioAdminAnalista(this.usuarioLdapDto).subscribe(
+    this._adminUsuarioService.addUsuarioAdminAnalista(this.nuevoUsuarioDto).subscribe(
       (response)=>{
 		  console.log(response);
 		  if(response.estado=='success'){
@@ -72,6 +80,10 @@ export class AnadirAdminAnalistaComponent implements OnInit {
     this.usuarioLdapDto.correoelectronico=this.correoelectronico;
     this.usuarioLdapDto.contrasena=this.contrasena;
     this.usuarioLdapDto.tipo_usuario=this.rol;
+    this.usuarioDto.usuario=this.cn;
+
+    this.nuevoUsuarioDto.usuarioLdapDto=this.usuarioLdapDto;
+    this.nuevoUsuarioDto.usuarioDto=this.usuarioDto;
   }
 
 }

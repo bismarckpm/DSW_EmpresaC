@@ -13,11 +13,12 @@
   import { LoginComponent } from './componentes/login/login.component';
   import { RecuperacionComponent } from './componentes/recuperacion/recuperacion.component';
   import { RegistroComponent } from './componentes/registro/registro.component';
+import { ModalPasswordComponent } from './componentes/aside/modal-password/modal-password.component';
 
 
 
   @NgModule({
-    declarations: [NavbarComponent, FooterComponent, LoginComponent, AsideComponent, RecuperacionComponent, RegistroComponent],
+    declarations: [NavbarComponent, FooterComponent, LoginComponent, AsideComponent, RecuperacionComponent, RegistroComponent, ModalPasswordComponent],
     imports: [
   
       MaterialModule,

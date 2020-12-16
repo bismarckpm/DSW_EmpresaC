@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row justify-content-md-center">
+        <h1> Estudios Solicitados </h1>
+    </div>
+
+    <div class="estudio-cards">
+
+        <!--PARA PROBAR
+        <mat-card class="example-card">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Marca: Rexona</mat-card-title>
+                <mat-card-subtitle>Cliente: Juan Perez - Estado: pendiente
+                </mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="/assets/estudio.png" alt="Estudio">
+            <mat-card-content>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>Alimentos de maiz</button>
+                <button mat-button>Harina</button>
+            </mat-card-actions>
+        </mat-card>-->
+
+        <!--PARA EL BACKEND-->
+        <mat-card class="example-card" *ngFor="let estudio of estudios">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Marca: {{estudio.marca}}</mat-card-title>
+                <mat-card-subtitle>Cliente: Juan Perez - Estado:
+                    <p *ngIf="estudio.estado!='finalizado'" [class]="estudio.estado=='pendiente'?'pendiente': 'en-progreso'">{{estudio.estado}}</p>
+                    <p *ngIf="estudio.estado=='finalizado'" style="color: blue; display: inline-block;">{{estudio.estado}}</p>
+                    {{estudio.modo_encuesta}}
+                </mat-card-subtitle>
+
+            </mat-card-header>
+            <img mat-card-image src="/assets/estudio.png" alt="Estudio">
+            <mat-card-content>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>{{estudio.categoria}}</button>
+                <button mat-button>{{estudio.subcategoria}}</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+</div>

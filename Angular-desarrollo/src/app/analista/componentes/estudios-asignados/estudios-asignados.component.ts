@@ -32,6 +32,12 @@ export class EstudiosAsignadosComponent implements OnInit {
       this.dialogRef.close();
       this.getAllEstudios();
     });
+
+    this.eventBus.on('cerrar-modal-analista').subscribe((meta: MetaData) => {
+      console.log(meta.data); // will receive 'started' only
+      this.dialogRef.close();
+    });
+
   }
 
   init(){
@@ -101,7 +107,7 @@ export class EstudiosAsignadosComponent implements OnInit {
     this.dialogRef = this.dialog.open(MuestraComponent, {
       width: '600px',
       height:'400px',
-      //data:{participaciones:MUESTRA}  para probar
+      //data:{participaciones:MUESTRA}
       data:{participaciones:estudio_muestra}
 
     });
@@ -112,7 +118,19 @@ export class EstudiosAsignadosComponent implements OnInit {
   }
 
   go(id){
-
+    this.eventBus.cast('inicio-progress','hola');
+    this._consultaEstudios.go(id).subscribe(
+      (response)=>{
+        console.log(response);
+        this.estudios=response.estudios;
+        this._toastrService.success("Exito", "El estudio ha empezado!");
+        this.getAllEstudios();
+      },
+      (error)=>{
+        console.log(error);
+        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        this.eventBus.cast('fin-progress','chao');
+      });
   }
 
   stop(id){
