@@ -97,22 +97,26 @@ public class metodos_admin {
             List<SolicitudEstudio> resultado = null;
 
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
+			DaoMarca daoMarca = new DaoMarca();
+			
             Class<SolicitudEstudio> type = SolicitudEstudio.class;
 
             resultado = dao.findAll(type);
             for (SolicitudEstudio obj : resultado) {
                 SolicitudEstudio solicitudEstudio = dao.find(obj.get_id(), SolicitudEstudio.class);
+				
 
                 if (solicitudEstudio.get_usuario2() != null) {
 
                 if (solicitudEstudio.get_encuesta() == null && solicitudEstudio.get_usuario2().get_id()== _id) {
+					
+					Marca marca=daoMarca.find(solicitudEstudio.get_marca().get_id(), Marca.class);  //Este fue el dao.find que falto
 
-
-                    JsonObject encuesta = Json.createObjectBuilder().add("Marca", solicitudEstudio.get_marca().get_nombre())
-                            .add("idcategoria", solicitudEstudio.get_marca().get_subcategoria().get_categoria().get_id())
-                            .add("Categoria", solicitudEstudio.get_marca().get_subcategoria().get_categoria().get_nombre())
-                            .add("idsubcategoria", solicitudEstudio.get_marca().get_subcategoria().get_id())
-                            .add("Subcategoria", solicitudEstudio.get_marca().get_subcategoria().get_nombre()).build();
+                    JsonObject encuesta = Json.createObjectBuilder().add("Marca", marca.get_nombre())
+                            .add("idcategoria", marca.get_subcategoria().get_categoria().get_id())
+                            .add("Categoria", marca.get_subcategoria().get_categoria().get_nombre())
+                            .add("idsubcategoria", marca.get_subcategoria().get_id())
+                            .add("Subcategoria", marca.get_subcategoria().get_nombre()).build();
                     JsonObject tipo = Json.createObjectBuilder().add("id", solicitudEstudio.get_id())
                             .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
                             .add("estatus", solicitudEstudio.get_estado())

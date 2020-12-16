@@ -28,13 +28,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90d40db4-ad8c-4243-a03c-37ef11dcf5a8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -43,18 +45,27 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProjectId" id="1lkHgJhvjHg8fkjPkWsVaSgFQnZ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RunManager" selected="JUnit.MarcaTest.getMarcas">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -69,8 +80,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MarcaTest.getMarcas" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MarcaTest" />
+      <option name="METHOD_NAME" value="getMarcas" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MarcaTest.getMarcas" />
         <item itemvalue="JUnit.CategoriaTest.getCategorias" />
       </list>
     </recent_temporary>
@@ -87,6 +109,7 @@
       <option name="presentableId" value="Default" />
       <updated>1607968660988</updated>
       <workItem from="1607968678066" duration="1000000" />
+      <workItem from="1608134504426" duration="801000" />
     </task>
     <servers />
   </component>
@@ -131,21 +154,21 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1238" height="259" key="GridCell.Tab.0.bottom" timestamp="1607970163456">
+    <state width="1238" height="302" key="GridCell.Tab.0.bottom" timestamp="1608135354715">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="259" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1607970163456" />
-    <state width="1238" height="259" key="GridCell.Tab.0.center" timestamp="1607970163456">
+    <state width="1238" height="302" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1608135354715" />
+    <state width="1238" height="302" key="GridCell.Tab.0.center" timestamp="1608135354715">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="259" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1607970163456" />
-    <state width="1238" height="259" key="GridCell.Tab.0.left" timestamp="1607970163456">
+    <state width="1238" height="302" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1608135354715" />
+    <state width="1238" height="302" key="GridCell.Tab.0.left" timestamp="1608135354715">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="259" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1607970163456" />
-    <state width="1238" height="259" key="GridCell.Tab.0.right" timestamp="1607970163456">
+    <state width="1238" height="302" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1608135354715" />
+    <state width="1238" height="302" key="GridCell.Tab.0.right" timestamp="1608135354715">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="259" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1607970163456" />
+    <state width="1238" height="302" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1608135354715" />
   </component>
 </project>
