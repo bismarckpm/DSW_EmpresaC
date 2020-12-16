@@ -7,6 +7,9 @@ import { switchMap } from 'rxjs/operators';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { NgEventBus } from 'ng-event-bus';
+import { ToastrService } from 'ngx-toastr';
+
 
 
 // Entidades
@@ -34,6 +37,8 @@ export class AsignarEncuestaComponent implements OnInit {
   preguntasSeleccionadas:Pregunta[];
   todasPreguntas:Pregunta[];
   preguntasNuevas:Pregunta[]=[];
+  public admin_id:any
+
 
   error:string;
 
@@ -41,20 +46,40 @@ export class AsignarEncuestaComponent implements OnInit {
     private location: Location,
     private solicitudServicio:SolicitudEstudioService,
     private fb: FormBuilder,
-    private preguntaServicio:PreguntaService) { 
+    private preguntaServicio:PreguntaService,
+    private _toastrService: ToastrService,
+    private eventBus: NgEventBus) { 
+      this.init();
       
       this.preguntasSeleccionadas=[];
       this.route.params.pipe(switchMap((params: Params) => { return this.solicitudServicio.getEstudio(params['id']); }))
-      .subscribe(x => { this.estudio = x.estudio; console.log(x)  });
+      .subscribe(x => { 
+        
+        this.estudio = x.estudio
+        this._toastrService.success("Exito", "Informacion del estudio");
+        this.eventBus.cast('fin-progress','chao');
+        this.eventBus.cast('inicio-progress','hola');
 
-      this.preguntaServicio.getPreguntas().subscribe(x=>{
+        console.log(x)  },err=>{
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        });
+
+      this.preguntaServicio.getPreguntas(1).subscribe(x=>{
         this.todasPreguntas= x.Preguntas
         this.preguntas=x.Preguntas;
         console.log(this.preguntas)
+        this._toastrService.success("Exito", "todas las preguntas");
+        this.eventBus.cast('fin-progress','chao');
         
         console.log(x.Preguntas)
         console.log(x)
-      })
+      },
+      err=>{
+        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        this.eventBus.cast('fin-progress','chao');
+      }
+      )
     }
 
   ngOnInit(): void {
@@ -126,7 +151,19 @@ export class AsignarEncuestaComponent implements OnInit {
         }
 
         console.log(encuesta)
+        this.eventBus.cast('inicio-progress','hola');
+        this.preguntaServicio.postEncuesta(5,this.estudio.id,encuesta).subscribe(x=>{
 
+          this._toastrService.success("Exito", "Encuesta creada");
+          this.eventBus.cast('fin-progress','chao');
+          this.location.back();
+          
+
+
+        },err=>{
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        })
 
 
       }
@@ -141,6 +178,12 @@ export class AsignarEncuestaComponent implements OnInit {
 
 
 
+  }
+
+    init(){
+    this.eventBus.cast('inicio-progress','hola');
+    this.admin_id=localStorage.getItem('user_id');
+   
   }
 
 }

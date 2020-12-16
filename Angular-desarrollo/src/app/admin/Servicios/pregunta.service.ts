@@ -27,7 +27,7 @@ export class PreguntaService {
 
   constructor(private http: HttpClient) { }
 
-  getPreguntas(): Observable<Respuesta> {
+  getPreguntas(_id): Observable<Respuesta> {
 
     return this.http.get<Respuesta>(global.url + 'admin/preguntas-categoria/1')
   }
@@ -35,6 +35,10 @@ export class PreguntaService {
   postPreguntas(objeto:{}): Observable<Respuesta> {
   
     return this.http.put<Respuesta>(global.url+"admin/addPregunta",objeto)
+  }
+
+  postEncuesta(id1,id2, objeto):Observable<Respuesta>{
+    return this.http.put<Respuesta>(global.url+"admin/addEncuesta/"+id1+"/"+id2,objeto)
   }
 
 

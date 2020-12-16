@@ -1,6 +1,9 @@
 import { Component, Input, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 
+import { NgEventBus } from 'ng-event-bus';
+import { ToastrService } from 'ngx-toastr';
+
 //Entidades
 import { Pregunta } from "../../../../Entidades/pregunta";
 
@@ -39,7 +42,9 @@ export class ContenedorPreguntaNuevaComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilder,
-    private preguntaServicio:PreguntaService) {
+    private preguntaServicio:PreguntaService,
+    private _toastrService: ToastrService,
+    private eventBus: NgEventBus) {
     this.pregunta= new Pregunta;
     this.opciones=[];
    }
@@ -139,10 +144,14 @@ export class ContenedorPreguntaNuevaComponent implements OnInit {
     }
 
     if(res==1){
+
+      this.eventBus.cast('inicio-progress','hola');
       this.preguntaServicio.postPreguntas(pre).subscribe(x=>{
         console.log(x.codigo)
         if(x.codigo==200){
           // this.nuevaEvent.emit(pre);
+          this._toastrService.success("Exito", "Pregunta creada");
+          this.eventBus.cast('fin-progress','chao');
           this.pregunta.descripcion=this.PreguntaForm.value.pregunta;
           this.pregunta.tipopregunta=this.PreguntaForm.value.tipo;
           this.pregunta.id=x.Pregunta.id;
@@ -150,9 +159,16 @@ export class ContenedorPreguntaNuevaComponent implements OnInit {
           this.PreguntaForm.reset();
 
         }
+        else{
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
 
 
 
+      },err=>{
+        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        this.eventBus.cast('fin-progress','chao');
       })
       
     }

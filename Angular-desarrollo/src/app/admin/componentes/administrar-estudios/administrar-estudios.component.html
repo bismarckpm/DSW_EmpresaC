@@ -1,17 +1,10 @@
 
 
-
-
-<div [hidden]="estudios">
-    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
-</div>
-
-
-
 <div class="container" *ngIf="estudios">
 
     <div class="row justify-content-md-center">
-        <h1> Estudios Pendientes por encuestas </h1>
+        <h1 *ngIf="estudios.length!=0"> Estudios Sin encuestas </h1>
+        <h1 *ngIf="estudios.length==0"> No hay estudios para asignarles encuesta </h1>
     </div>
 
     <div class="estudio-cards"> 

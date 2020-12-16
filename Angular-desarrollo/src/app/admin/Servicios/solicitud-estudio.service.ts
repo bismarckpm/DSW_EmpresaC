@@ -25,15 +25,15 @@ export class SolicitudEstudioService {
   constructor(private http: HttpClient) { }
 
 
-  getEstudiosAdministrar(): Observable<Respuesta> {
+  getEstudiosAdministrar(_id): Observable<Respuesta> {
 
-    return this.http.get<Respuesta>(global.url + 'admin/estudios-asignados/20')
+    return this.http.get<Respuesta>(global.url + 'admin/estudios-asignados/'+_id)
   }
 
-  getEstudiosPendientes(): Observable<Respuesta> {
+  getEstudiosPendientes(_id): Observable<Respuesta> {
     
     
-    return this.http.get<Respuesta>(global.url + 'admin/estudios-no-asignados/20')
+    return this.http.get<Respuesta>(global.url + 'admin/estudios-no-asignados/'+_id)
     // 
   }
 
