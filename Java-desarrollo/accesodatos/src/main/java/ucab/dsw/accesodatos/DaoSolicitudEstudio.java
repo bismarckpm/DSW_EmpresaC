@@ -36,4 +36,12 @@ public class DaoSolicitudEstudio extends Dao<SolicitudEstudio>{
 
         return resultList;
     }
+
+    public List<SolicitudEstudio> getEstudiosByClienteId(long cliente_id){
+        TypedQuery<SolicitudEstudio> estudiosByCliente= this._em.createNamedQuery("EstudiosByClienteId", SolicitudEstudio.class);
+        estudiosByCliente.setParameter("cliente_id", cliente_id);
+        List<SolicitudEstudio> resultList= estudiosByCliente.getResultList();
+
+        return resultList;
+    }
 }
