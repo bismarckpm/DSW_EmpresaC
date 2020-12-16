@@ -37,18 +37,19 @@ public class metodos_encuestados {
             List<Participacion> resultado = null;
 
             DaoParticipacion dao = new DaoParticipacion();
+            DaoMarca daoMarca = new DaoMarca();
             Class<Participacion> type = Participacion.class;
 
             resultado = dao.findAll(type);
             for (Participacion obj : resultado) {
                 Participacion participacion = dao.find(obj.get_id(), Participacion.class);
-
+                Marca marca = daoMarca.find(participacion.get_solicitudestudio().get_marca().get_id(), Marca.class);
                 if (participacion.get_encuestado().get_id() == _id && participacion.get_solicitudestudio().get_estado().equals("en progreso")) {
-                    JsonObject encuesta = Json.createObjectBuilder().add("Marca", participacion.get_solicitudestudio().get_marca().get_nombre())
-                            .add("idcategoria", participacion.get_solicitudestudio().get_marca().get_subcategoria().get_categoria().get_id())
-                            .add("Categoria", participacion.get_solicitudestudio().get_marca().get_subcategoria().get_categoria().get_nombre())
-                            .add("idsubcategoria", participacion.get_solicitudestudio().get_marca().get_subcategoria().get_id())
-                            .add("Subcategoria", participacion.get_solicitudestudio().get_marca().get_subcategoria().get_nombre()).build();
+                    JsonObject encuesta = Json.createObjectBuilder().add("Marca", marca.get_nombre())
+                            .add("idcategoria", marca.get_subcategoria().get_categoria().get_id())
+                            .add("Categoria", marca.get_subcategoria().get_categoria().get_nombre())
+                            .add("idsubcategoria", marca.get_subcategoria().get_id())
+                            .add("Subcategoria", marca.get_subcategoria().get_nombre()).build();
 
                     JsonObject tipo = Json.createObjectBuilder().add("id", participacion.get_id())
                             .add("fecha", participacion.get_solicitudestudio().get_fecha_inicio().toString())
