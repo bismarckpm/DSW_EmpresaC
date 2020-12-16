@@ -38,6 +38,7 @@ public class metodos_admin {
             List<SolicitudEstudio> resultado = null;
 
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
+            DaoMarca daoMarca = new DaoMarca();
             Class<SolicitudEstudio> type = SolicitudEstudio.class;
 
             resultado = dao.findAll(type);
@@ -46,11 +47,12 @@ public class metodos_admin {
 
                 if (solicitudEstudio.get_usuario2() != null) {
                     if (solicitudEstudio.get_encuesta() != null && solicitudEstudio.get_usuario2().get_id() == _id && solicitudEstudio.get_estado().equals("en progreso")) {
-                        JsonObject encuesta = Json.createObjectBuilder().add("Marca", solicitudEstudio.get_marca().get_nombre())
-                                .add("idcategoria", solicitudEstudio.get_marca().get_subcategoria().get_categoria().get_id())
-                                .add("Categoria", solicitudEstudio.get_marca().get_subcategoria().get_categoria().get_nombre())
-                                .add("idsubcategoria", solicitudEstudio.get_marca().get_subcategoria().get_id())
-                                .add("Subcategoria", solicitudEstudio.get_marca().get_subcategoria().get_nombre()).build();
+                        Marca marca=daoMarca.find(solicitudEstudio.get_marca().get_id(), Marca.class);
+                        JsonObject encuesta = Json.createObjectBuilder().add("Marca", marca.get_nombre())
+                                .add("idcategoria", marca.get_subcategoria().get_categoria().get_id())
+                                .add("Categoria", marca.get_subcategoria().get_categoria().get_nombre())
+                                .add("idsubcategoria", marca.get_subcategoria().get_id())
+                                .add("Subcategoria", marca.get_subcategoria().get_nombre()).build();
 
                         JsonObject tipo = Json.createObjectBuilder().add("id", solicitudEstudio.get_id())
                                 .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
@@ -365,12 +367,13 @@ public class metodos_admin {
 
             resultado = dao.findAll(type);
             for (Participacion obj : resultado) {
+                Participacion participacion=dao.find(obj.get_id(), Participacion.class);
 
                 if (obj.get_solicitudestudio().get_id() == _id) {
 
-                    JsonObject p = Json.createObjectBuilder().add("id",obj.get_id())
-                            .add("Nombre",obj.get_encuestado().get_nombre())
-                            .add("Estado",obj.get_estado()).build();
+                    JsonObject p = Json.createObjectBuilder().add("id",participacion.get_id())
+                            .add("Nombre",participacion.get_encuestado().get_nombre())
+                            .add("Estado",participacion.get_estado()).build();
 
                     builder.add(p);
 
@@ -412,13 +415,16 @@ public class metodos_admin {
             SolicitudEstudio obj = null;
 
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
+            DaoMarca daoMarca = new DaoMarca();
             Class<SolicitudEstudio> type = SolicitudEstudio.class;
 
             obj = dao.find(_id,type);
 
-            JsonObject encuesta = Json.createObjectBuilder().add("Marca",obj.get_marca().get_nombre())
-                    .add("Categoria",obj.get_marca().get_subcategoria().get_categoria().get_nombre())
-                    .add("Subcategoria",obj.get_marca().get_subcategoria().get_nombre()).build();
+            Marca marca=daoMarca.find(obj.get_marca().get_id(), Marca.class);
+
+            JsonObject encuesta = Json.createObjectBuilder().add("Marca",marca.get_nombre())
+                    .add("Categoria",marca.get_subcategoria().get_categoria().get_nombre())
+                    .add("Subcategoria",marca.get_subcategoria().get_nombre()).build();
             JsonObject tipo = Json.createObjectBuilder().add("id",obj.get_id())
                     .add("fecha",obj.get_fecha_inicio().toString())
                     .add("estatus", obj.get_estado())
