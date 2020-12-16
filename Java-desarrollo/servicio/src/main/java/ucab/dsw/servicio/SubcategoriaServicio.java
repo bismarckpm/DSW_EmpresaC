@@ -153,6 +153,37 @@ public class SubcategoriaServicio extends AplicacionBase{
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
+    @DELETE
+    @Path( "/activar/{id}" )
+    public Response activarSubcategoria(@PathParam("id") long  _id)
+    {
+        JsonObject data;
+        SubcategoriaDto resultado = new SubcategoriaDto();
+        try
+        {
+            DaoSubcategoria dao = new DaoSubcategoria();
+            Subcategoria subcategoria = dao.find(_id,Subcategoria.class);
+            subcategoria.set_estado("activo");
+
+            Subcategoria resul = dao.update(subcategoria);
+            resultado.setId( resul.get_id() );
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
+        }
+        catch ( Exception ex )
+        {
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
+
 
     @PUT
     @Path( "/edit/{id}" )

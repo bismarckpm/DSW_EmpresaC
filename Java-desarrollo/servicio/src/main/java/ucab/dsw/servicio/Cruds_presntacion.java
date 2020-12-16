@@ -155,6 +155,38 @@ public class Cruds_presntacion {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
+    @DELETE
+    @Path( "/activar-presentacion/{id}" )
+    public Response ActivarPresentacion( @PathParam("id")long  _id )
+    {
+        JsonObject data;
+        PresentacionDto resultado = new PresentacionDto();
+        try
+        {
+            DaoPresentacion dao = new DaoPresentacion ();
+            Presentacion presentacion = dao.find(_id,Presentacion.class);
+
+            presentacion.set_estado("activo");
+
+            Presentacion resul = dao.update(presentacion);
+            resultado.setId( resul.get_id() );
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
+        }
+        catch ( Exception ex )
+        {
+            String problema = ex.getMessage();
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
+
     @GET
     @Path( "/find-presentacion/{id}" )
     public Response findPresentacion( @PathParam("id")long id )

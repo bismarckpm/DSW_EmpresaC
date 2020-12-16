@@ -13,12 +13,14 @@
 
   /* Servicios */
   import { SolicitudEstudiosService} from './servicios/solicitud_estudios/solicitud-estudios.service';
+import { ConsultarEstudiosComponent } from './componentes/consultar-estudios/consultar-estudios.component';
 
   @NgModule({
     declarations: [
       ClienteComponent,
       DashboardComponent,
-      SolicitarEstudiosComponent
+      SolicitarEstudiosComponent,
+      ConsultarEstudiosComponent
     ],
     imports: [
       CommonModule,

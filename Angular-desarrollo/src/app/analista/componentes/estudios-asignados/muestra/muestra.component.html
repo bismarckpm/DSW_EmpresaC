@@ -19,9 +19,15 @@
             <div class="col-3" mat-line style="padding-top: 10px;"> {{item.nombre}} </div>
             <div class="col-3" mat-line style="padding-top: 10px;"> {{item.apellido}} </div>
             <div class="col-3" mat-line>
-                <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" style="border:0; outline: none;">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" style="border:0; outline:none">
                     <mat-icon>more_vert</mat-icon>
                 </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="eliminar_participacion(item.participacion_id)">
+                      <mat-icon>remove_circle</mat-icon>
+                      <span>Eliminar</span>
+                    </button>
+                </mat-menu>
             </div>
         </div>
     </mat-list-item>

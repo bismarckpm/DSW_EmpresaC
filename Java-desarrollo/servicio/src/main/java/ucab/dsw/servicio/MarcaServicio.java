@@ -193,6 +193,39 @@ public class MarcaServicio extends AplicacionBase{
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
+    @DELETE
+    @Path( "/activar/{id}" )
+    public Response activarMarca(@PathParam("id") long  _id)
+    {
+        JsonObject data;
+        MarcaDto resultado = new MarcaDto();
+        try
+        {
+            DaoMarca dao = new DaoMarca();
+            Marca marca = dao.find(_id,Marca.class);
+            marca.set_estado("activo");
+
+
+
+            Marca resul = dao.update(marca);
+            resultado.setId( resul.get_id() );
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
+        }
+        catch ( Exception ex )
+        {
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
+
 
     @PUT
     @Path( "/edit/{id}" )

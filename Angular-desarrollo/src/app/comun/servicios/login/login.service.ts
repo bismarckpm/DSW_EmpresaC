@@ -21,4 +21,9 @@ export class LoginService {
     return this.datajson;
   }
   */
+
+ changePassword(changePasswordDto):Observable<any>{
+  //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
+  return this.http.post(global.url+'usuario/change-password',changePasswordDto);
+}
 }
