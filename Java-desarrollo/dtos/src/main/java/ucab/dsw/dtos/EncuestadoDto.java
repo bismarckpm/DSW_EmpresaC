@@ -53,6 +53,12 @@ public class EncuestadoDto extends DtoBase{
         this.correo = correo;
     }
 
+    private String estado;
+
+    public String getEstado() { return estado; }
+
+    public void setEstado(String estado) { this.estado = estado; }
+
     private String fecha_nacimiento;
 
     public String getFecha_nacimiento()

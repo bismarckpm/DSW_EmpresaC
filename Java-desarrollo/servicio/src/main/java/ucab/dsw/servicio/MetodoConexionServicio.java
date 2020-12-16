@@ -1,7 +1,11 @@
 package ucab.dsw.servicio;
 
+import ucab.dsw.accesodatos.DaoMetodo_Conexion;
 import ucab.dsw.accesodatos.DaoNivel_Academico;
+import ucab.dsw.accesodatos.DaoOcupacion;
+import ucab.dsw.entidades.Metodo_conexion;
 import ucab.dsw.entidades.Nivel_Academico;
+import ucab.dsw.entidades.Ocupacion;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -15,34 +19,30 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 
-@Path( "/niveles_academicos" )
+@Path( "/metodos_conexion" )
 @Produces( MediaType.APPLICATION_JSON )
 @Consumes( MediaType.APPLICATION_JSON )
-public class NivelAcademicoServicio extends AplicacionBase {
+public class MetodoConexionServicio {
     @GET
     @Path("/all")
-    public Response getAllNivelesAcademicos() {
+    public Response getAllMetodoConexion() {
         JsonObject data;
         try {
-            DaoNivel_Academico dao = new DaoNivel_Academico();
-            List<Nivel_Academico> resultado = dao.findAll(Nivel_Academico.class);
+            DaoMetodo_Conexion dao = new DaoMetodo_Conexion();
+            List<Metodo_conexion> resultado = dao.findAll(Metodo_conexion.class);
+            JsonArrayBuilder metodosConexionArrayJson = Json.createArrayBuilder();
 
-            JsonArrayBuilder categoriaArrayJson = Json.createArrayBuilder();
+            for (Metodo_conexion obj : resultado) {
 
-            for (Nivel_Academico obj : resultado) {
-
-                JsonObject categoria = Json.createObjectBuilder().add("id", obj.get_id())
+                JsonObject metodosConexion = Json.createObjectBuilder().add("id", obj.get_id())
                         .add("nombre", obj.get_nombre()).build();
 
-                categoriaArrayJson.add(categoria);
+                metodosConexionArrayJson.add(metodosConexion);
             }
-
             data = Json.createObjectBuilder()
                     .add("estado", "success")
                     .add("codigo", 200)
-                    .add("niveles_academicos", categoriaArrayJson).build();
-
-
+                    .add("metodos_conexion", metodosConexionArrayJson).build();
         } catch (Exception ex) {
             data = Json.createObjectBuilder()
                     .add("estado", "exception!!!")
@@ -51,11 +51,10 @@ public class NivelAcademicoServicio extends AplicacionBase {
 
             System.out.println(data);
             return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
-
-
         }
-
         System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
+
+
 }

@@ -108,6 +108,13 @@ public class Encuestado extends EntidadBase
         this._genero = _genero;
     }
 
+    @Column( name = "estado")
+    private String _estado;
+
+    public String get_estado() { return _estado; }
+
+    public void set_estado(String _estado) { this._estado = _estado; }
+
     @OneToMany( mappedBy = "_encuestado_telefono", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<Telefono> _telefono;
 
@@ -185,7 +192,7 @@ public class Encuestado extends EntidadBase
         this._nivel_academico_encuestado = _nivel_academico_encuestado;
     }
 
-    @ManyToOne(optional = false , fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+    @ManyToOne(optional = false , fetch = FetchType.EAGER /*,cascade = CascadeType.PERSIST*/)
     @JoinColumn( name = "Usuario_id" )
     private Usuario _usuario_encuestado;
 
@@ -199,6 +206,6 @@ public class Encuestado extends EntidadBase
         this._usuario_encuestado = _usuario_encuestado;
     }
 
-    @OneToMany( mappedBy = "_encuestado", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
+    @OneToMany( mappedBy = "_encuestado", fetch = FetchType.LAZY , cascade = CascadeType.PERSIST )
     private List<Participacion> _participacion;
 }
