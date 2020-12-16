@@ -19,20 +19,20 @@ import { Estudio } from "../../Entidades/estudio";
   providedIn: 'root'
 })
 export class SolicitudEstudioService {
-  URL:string="http://127.0.0.1:8080/pruebaORM-1.0-SNAPSHOT/api/"
+  URL:string="http://localhost:8080/MercadeoUcab-1.0-SNAPSHOT/api/"
   res:{};
   constructor(private http: HttpClient) { }
 
 
   getEstudiosAdministrar(): Observable<Respuesta> {
     // return of(DISHES.filter((dish) => (dish.id === id))[0]).pipe(delay(2000));
-    return this.http.get<Respuesta>(this.URL + 'admin/estudios-asignados/20')
+    return this.http.get<Respuesta>(this.URL + 'admin/estudios-asignados/19')
   }
 
   getEstudiosPendientes(): Observable<Respuesta> {
     // return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000));
     
-    return this.http.get<Respuesta>(this.URL + 'admin/estudios-no-asignados/20')
+    return this.http.get<Respuesta>(this.URL + 'admin/estudios-no-asignados/19')
     // 
   }
 

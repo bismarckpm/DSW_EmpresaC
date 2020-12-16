@@ -1,14 +1,13 @@
 package ucab.dsw.servicio;
 
+import javafx.scene.control.TextFormatter;
 import org.eclipse.persistence.exceptions.DatabaseException;
 import ucab.dsw.accesodatos.DaoCliente;
 import ucab.dsw.accesodatos.DaoEncuesta;
 import ucab.dsw.accesodatos.DaoEncuestado;
 import ucab.dsw.accesodatos.DaoUsuario;
 import ucab.dsw.directorio.DirectorioActivo;
-import ucab.dsw.dtos.ClienteDto;
-import ucab.dsw.dtos.EncuestadoDto;
-import ucab.dsw.dtos.NuevoUsuarioDto;
+import ucab.dsw.dtos.*;
 import ucab.dsw.entidades.*;
 import ucab.dsw.excepciones.PruebaExcepcion;
 
@@ -190,6 +189,15 @@ public class UsuarioServicio extends AplicacionBase {
                     .add("estado","success")
                     .add("codigo",200).build();
 
+        } catch (PersistenceException | DatabaseException ex){
+            data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje","El usuario ya se encuestra registrado")
+                    .add("codigo",500).build();
+
+            System.out.println(data);
+
+            return Response.status(Response.Status.OK).entity(data).build();
         } catch ( Exception ex ) {
             ex.printStackTrace();
             data= Json.createObjectBuilder()
@@ -228,6 +236,54 @@ public class UsuarioServicio extends AplicacionBase {
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200).build();
+
+        }catch (PersistenceException | DatabaseException ex){
+            data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje","El usuario ya se encuestra registrado")
+                    .add("codigo",500).build();
+
+            System.out.println(data);
+
+            return Response.status(Response.Status.OK).entity(data).build();
+        } catch ( Exception ex ) {
+            ex.printStackTrace();
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+            System.out.println(data);
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+        System.out.println(data);
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
+
+    @POST
+    @Path( "/change-password" )
+    public Response ChangePassword(ChangePasswordDto changePasswordDto) {
+        JsonObject data;
+
+        try {
+            DirectorioActivo ldap = new DirectorioActivo();
+            UsuarioLdapDto user = new UsuarioLdapDto();
+            user.setUid(changePasswordDto.getUser_id());
+            user.setContrasena(changePasswordDto.getContrasena_actual());
+            user.setCn( ldap.getUserFromUid(user) );
+
+            if(ldap.validateUser(user)){
+
+                ldap.reSetPass( user , changePasswordDto.getContrasena_nueva());
+
+                data= Json.createObjectBuilder()
+                        .add("estado","success")
+                        .add("codigo",200).build();
+            }else{
+                data= Json.createObjectBuilder()
+                        .add("estado","error")
+                        .add("codigo",400).build();
+            }
 
         } catch ( Exception ex ) {
             ex.printStackTrace();

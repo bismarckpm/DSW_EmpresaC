@@ -214,11 +214,7 @@ public class Cruds_presntacion {
                                                          .add("tipo_id",tipo.get_id())
 														 .add("estado",obj.get_estado()).build();
 
-
-
-
                 presentacionArrayJson.add(p);
-
 
             }
 

@@ -31,6 +31,8 @@ public class LoginServicio extends AplicacionBase{
             }
             long resultado=ldap.userAuthentication( usuarioLdapDto );
 
+
+
             if(resultado==1){
                 Jwt jwt=new Jwt();
                 token= jwt.generarToken(usuarioLdapDto);
