@@ -194,6 +194,84 @@ public class crud_tipo {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
+    @DELETE
+    @Path( "/activar-tipo/{id}" )
+    public Response ActivarTipo( @PathParam("id")long  _id )
+    {
+        JsonObject data;
+        TipoDto resultado = new TipoDto();
+        try
+        {
+            DaoTipo dao = new DaoTipo ();
+            Tipo tipo = dao.find(_id,Tipo.class);
+
+            tipo.set_estado("activo");
+
+            Tipo resul = dao.update(tipo);
+            resultado.setId( resul.get_id() );
+
+            List<Presentacion> resultado2= null;
+            Class<Presentacion> type = Presentacion.class;
+
+            DaoPresentacion dao2 = new DaoPresentacion();
+            resultado2 = dao2.findAll( type );
+
+            for(Presentacion obj: resultado2) {
+
+                if (obj.get_tipo().get_id() == resul.get_id()){
+                    DaoPresentacion dao3 = new DaoPresentacion();
+                    PresentacionDto resultado3 = new PresentacionDto();
+                    Presentacion presentacion = dao3.find(obj.get_id(), Presentacion.class);
+
+                    presentacion.set_estado("activo");
+
+                    Presentacion resul2 = dao3.update(presentacion);
+                    resultado3.setId( resul2.get_id() );
+                }
+
+
+
+            }
+            List<Marca_Tipo> resultado4= null;
+            Class<Marca_Tipo> type2 = Marca_Tipo.class;
+
+            DaoMarca_Tipo dao4 = new DaoMarca_Tipo();
+            resultado4 = dao4.findAll( type2 );
+            for(Marca_Tipo obj: resultado4) {
+
+                if (obj.get_tipo().get_id() == resul.get_id()){
+                    DaoMarca dao5 = new DaoMarca();
+                    MarcaDto resultado5 = new MarcaDto();
+                    Marca marca = dao5.find(obj.get_marca().get_id(), Marca.class);
+
+                    marca.set_estado("activo");
+
+                    Marca resul3 = dao5.update(marca);
+                    resultado5.setId( resul3.get_id() );
+                }
+
+
+
+            }
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
+
+
+
+        }
+        catch ( Exception ex )
+        {
+            String problema = ex.getMessage();
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
+
     @GET
     @Path( "/find-tipo/{id}" )
     public Response findTipo(@PathParam("id") long id )

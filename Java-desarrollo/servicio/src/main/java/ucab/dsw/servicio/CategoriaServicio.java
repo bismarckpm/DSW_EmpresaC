@@ -194,7 +194,81 @@ public class CategoriaServicio extends AplicacionBase{
         }
         return Response.status(Response.Status.OK).entity(data).build();
     }
+    @DELETE
+    @Path( "/activar/{id}" )
+    public Response activarCategoria(@PathParam("id") long  _id)
+    {
+        JsonObject data;
+        CategoriaDto resultado = new CategoriaDto();
+        try
+        {
+            DaoCategoria dao = new DaoCategoria();
+            Categoria categoria = dao.find(_id,Categoria.class);
 
+            categoria.set_estado("activo");
+
+            Categoria resul = dao.update(categoria);
+            resultado.setId( resul.get_id() );
+
+            List<Subcategoria> resultado2= null;
+            Class<Subcategoria> type = Subcategoria.class;
+
+            DaoSubcategoria dao2 = new DaoSubcategoria();
+            resultado2 = dao2.findAll( type );
+            for(Subcategoria obj: resultado2) {
+
+                if (obj.get_categoria().get_id() == resul.get_id()){
+                    DaoSubcategoria dao3 = new DaoSubcategoria();
+                    SubcategoriaDto resultado3 = new SubcategoriaDto();
+                    Subcategoria subcategoria = dao3.find(obj.get_id(), Subcategoria.class);
+
+                    subcategoria.set_estado("activo");
+
+                    Subcategoria resul2 = dao3.update(subcategoria);
+                    resultado3.setId( resul2.get_id() );
+                }
+
+
+
+            }
+
+            List<Marca> resultado4= null;
+            Class<Marca> type2 = Marca.class;
+
+            DaoMarca dao4 = new DaoMarca();
+            resultado4 = dao4.findAll( type2 );
+            for(Marca obj: resultado4) {
+
+                if (obj.get_subcategoria().get_categoria().get_id() == resul.get_id()){
+                    DaoMarca dao5 = new DaoMarca();
+                    MarcaDto resultado5 = new MarcaDto();
+                    Marca marca = dao5.find(obj.get_id(), Marca.class);
+
+                    marca.set_estado("activo");
+
+                    Marca resul3 = dao5.update(marca);
+                    resultado5.setId( resul3.get_id() );
+                }
+
+
+
+            }
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
+        }
+        catch ( Exception ex )
+        {
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
 
     @PUT
     @Path( "/edit/{id}" )
