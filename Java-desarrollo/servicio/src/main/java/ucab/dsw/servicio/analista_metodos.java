@@ -71,6 +71,7 @@ public class analista_metodos {
 
                     builderArrayEncuestado.add(Json.createObjectBuilder().add("participacion_id", participacion1.get_id())
                                                                         .add("doc_id", participacion1.get_encuestado().get_doc_id())
+                                                                        .add("id_encuestado", participacion1.get_encuestado().get_id())
                                                                         .add("usuario",participacion1.get_encuestado().get_usuario_encuestado().get_usuario())
                                                                         .add("correo",participacion1.get_encuestado().get_correo())
                                                                         .add("nombre",participacion1.get_encuestado().get_nombre())
