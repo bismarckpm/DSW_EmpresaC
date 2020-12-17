@@ -153,7 +153,7 @@ public class SolicitudServicio {
 
                 /*Para la simulacion*/
                 DaoUsuario daoUsuario=new DaoUsuario();
-                admin_elegido=daoUsuario.find(20,Usuario.class);
+                admin_elegido=daoUsuario.find((long)20,Usuario.class);
                 solicitudEstudio.set_estado("por asignar");
                 solicitudEstudio.set_usuario2(admin_elegido);
             }
