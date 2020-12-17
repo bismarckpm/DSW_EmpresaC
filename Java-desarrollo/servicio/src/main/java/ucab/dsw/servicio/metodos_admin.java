@@ -212,6 +212,7 @@ public class metodos_admin {
 
             Encuesta encuesta = new Encuesta();
             encuesta.set_nombre( encuestaDto.getNombre() );
+            encuesta.set_estado("activo");
 
             Marca marca = new Marca(_id);
             encuesta.set_marca( marca );
@@ -230,7 +231,7 @@ public class metodos_admin {
             analista_elegido=analista.get(analista_random);
             solicitudEstudio.set_usuario(analista_elegido);
 
-            solicitudEstudio.set_estado( "Pendiente" );
+            solicitudEstudio.set_estado( "pendiente" );
             solicitudEstudio.set_encuesta( resul );
 
             SolicitudEstudio resul3 = dao3.update(solicitudEstudio);
@@ -290,8 +291,8 @@ public class metodos_admin {
             Pregunta pregunta = new Pregunta();
             pregunta.set_descripcion( preguntaDto.getDescripcion() );
             pregunta.set_tipopregunta( preguntaDto.getTipopregunta() );
-
-            if (preguntaDto.getTipopregunta().equals("Rango")) {
+            pregunta.set_estado("activo");
+            if (preguntaDto.getTipopregunta().equals("rango")) {
                 pregunta.set_valormax(preguntaDto.getValormax());
                 pregunta.set_valormin(preguntaDto.getValormin());
             }
@@ -316,8 +317,8 @@ public class metodos_admin {
 
                 for (Opcion_Simple_MultipleDto obj : opcion) {
                     Opcion_Simple_MultipleDto resultado2 = new Opcion_Simple_MultipleDto();
-
                     OpcionSimpleMultiple opcionSimpleMultiple = new OpcionSimpleMultiple();
+                    opcionSimpleMultiple.set_estado("activo");
                     opcionSimpleMultiple.set_opcion(obj.getOpcion());
 
                     OpcionSimpleMultiple resul2 = dao2.insert(opcionSimpleMultiple);
