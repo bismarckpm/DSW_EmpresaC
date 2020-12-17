@@ -270,7 +270,7 @@ public class CategoriaServicio extends AplicacionBase{
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
-    @PUT
+    /*@PUT
     @Path( "/edit/{id}" )
     public Response editCategoria(@PathParam("id") long _id, CategoriaDto categoriaDto)
     {
@@ -311,7 +311,7 @@ public class CategoriaServicio extends AplicacionBase{
         }
         System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
-    }
+    }*/
 
     @GET
     @Path( "/{id}" )
