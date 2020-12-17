@@ -39,7 +39,7 @@ public class MarcaTest {
 
         tiposDto.add(tipoDto);
 
-        marcaDto.setNombre("prudasdsa");
+        marcaDto.setNombre("phfghioi");
         marcaDto.setSubcategoriaDto(subcategoriaDto);
         marcaDto.setTipo_Dto(tiposDto);
 

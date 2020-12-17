@@ -429,6 +429,9 @@ public class metodos_admin {
 
             JsonObject encuesta = Json.createObjectBuilder().add("Marca",marca.get_nombre())
                     .add("Categoria",marca.get_subcategoria().get_categoria().get_nombre())
+                    .add("idcategoria", marca.get_subcategoria().get_categoria().get_id())
+                    .add("idMarca", marca.get_id())
+                    .add("idsubcategoria", marca.get_subcategoria().get_id())
                     .add("Subcategoria",marca.get_subcategoria().get_nombre()).build();
             JsonObject tipo = Json.createObjectBuilder().add("id",obj.get_id())
                     .add("fecha",obj.get_fecha_inicio().toString())
