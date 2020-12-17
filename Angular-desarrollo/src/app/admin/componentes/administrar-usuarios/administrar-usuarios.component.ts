@@ -10,13 +10,15 @@ import { MetaData } from 'ng-event-bus/lib/meta-data';
 import { AnadirAdminAnalistaComponent } from './anadir/anadir-admin-analista/anadir-admin-analista.component';
 import { AnadirClienteComponent } from './anadir/anadir-cliente/anadir-cliente.component';
 import { EliminarUsuarioComponent } from './eliminar/eliminar-usuario/eliminar-usuario.component';
+import { ModificarComponent } from './modificar/modificar/modificar.component';
+import { ModificarClienteComponent } from './modificar/modificar-cliente/modificar-cliente.component';
 @Component({
   selector: 'app-administrar-usuarios',
   templateUrl: './administrar-usuarios.component.html',
   styleUrls: ['./administrar-usuarios.component.css']
 })
 export class AdministrarUsuariosComponent implements OnInit,AfterViewInit {
-  displayedColumns: string[] = ['id', 'usuario', 'rol', 'estado', 'acciones'];
+  displayedColumns: string[] = ['uid', 'cn', 'tipo_usuario', 'nombre', 'sn','correoelectronico','estado','acciones'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   public dialogRef;
 
@@ -102,27 +104,43 @@ export class AdministrarUsuariosComponent implements OnInit,AfterViewInit {
     });
   }
 
-
-
+  openDialogModificar(user){
+    if(user.tipo_usuario=='cliente'){
+      this.dialogRef = this.dialog.open(ModificarClienteComponent, {
+        width: '500px',
+        data:{user:user}
+      });
+      this.dialogRef .afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+    }
+    else{
+      this.dialogRef = this.dialog.open(ModificarComponent, {
+        width: '500px',
+        data:{user:user}
+      });
+      this.dialogRef .afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+    }
+  }
 }
 
 export interface PeriodicElement {
-  id: number;
-  usuario: string;
-  estado: string;
-  rol: string;
+  uid: number;
+  cn: string;
+  tipo_usuario: string;
+  nombre: string;
+  sn:string;
+  correoelectronico:string;
+  estado:string;
   
 }
-
 const ELEMENT_DATA: PeriodicElement[] = [
-  {id: 1, usuario: 'Hydrogen', rol: 'admin', estado: 'H'},
-  {id: 2, usuario: 'Helium', rol: 'admin', estado: 'He'},
-  {id: 3, usuario: 'Lithium', rol: 'admin', estado: 'Li'},
-  {id: 4, usuario: 'Beryllium', rol: 'analista', estado: 'Be'},
-  {id: 5, usuario: 'Boron', rol: 'encuestado', estado: 'B'},
-  {id: 1, usuario: 'Hydrogen', rol: 'admin', estado: 'H'},
- 
-  
+  {uid: 1, cn:'admin1', tipo_usuario:'admin',nombre: 'Gabriel', sn:'Romero',correoelectronico: 'gabriel@gmail.com', estado: 'activo'},
+  {uid: 2, cn:'admin1', tipo_usuario:'analista',nombre: 'Gabriel', sn:'Romero',correoelectronico: 'gabriel@gmail.com', estado: 'activo'},
+  {uid: 3, cn:'admin1', tipo_usuario:'encuestado',nombre: 'Gabriel', sn:'Romero',correoelectronico: 'gabriel@gmail.com', estado: 'activo'},
+  {uid: 4, cn:'admin1', tipo_usuario:'cliente',nombre: 'Gabriel', sn:'Romero',correoelectronico: 'gabriel@gmail.com', estado: 'activo'},
   
 ];
   
