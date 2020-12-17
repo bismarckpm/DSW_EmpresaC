@@ -224,12 +224,15 @@ public class metodos_admin {
             SolicitudEstudio solicitudEstudio = dao3.find(_id2,SolicitudEstudio.class);
 
             DaoUsuario daoUsuario=new DaoUsuario();
-            List<Usuario> analista= daoUsuario.getAnalistas();
+
+            /*List<Usuario> analista= daoUsuario.getAnalistas();
             analista_random=(int)(Math.random()* analista.size());
             System.out.println("analista random");
             System.out.println(analista_random);
-            analista_elegido=analista.get(analista_random);
-            solicitudEstudio.set_usuario(analista_elegido);
+            analista_elegido=analista.get(analista_random);*/
+            Usuario analista = new Usuario(15);
+            analista = daoUsuario.find(analista.get_id(),Usuario.class);
+            solicitudEstudio.set_usuario(analista);
 
             solicitudEstudio.set_estado( "pendiente" );
             solicitudEstudio.set_encuesta( resul );
@@ -588,7 +591,7 @@ public class metodos_admin {
 
                 if(solicitudEstudio.get_caracteristicademografica().get_edad_min()<= edad && solicitudEstudio.get_caracteristicademografica().get_edad_max()>= edad){
                     if (solicitudEstudio.get_caracteristicademografica().get_nivel_socioeconomico()==encuestado.get_Parroquia_encuestado().get_categoria_social()){
-                        if(solicitudEstudio.get_caracteristicademografica().get_nacionalidad()==encuestado.get_Parroquia_encuestado().get_ciudad().get_estado().get_pais().get_nombre()){
+                        if(solicitudEstudio.get_caracteristicademografica().get_nacionalidad()==encuestado.get_Parroquia_encuestado().get_ciudad().get_estado().get_pais().get_nacionalidad()){
                             if(solicitudEstudio.get_caracteristicademografica().get_cantidad_hijos()==hijos){
                                 if(solicitudEstudio.get_caracteristicademografica().get_genero()==encuestado.get_genero()){
                                     if(solicitudEstudio.get_caracteristicademografica().get_nivel_academico_demografia()==encuestado.get_nivel_academico_encuestado()){
