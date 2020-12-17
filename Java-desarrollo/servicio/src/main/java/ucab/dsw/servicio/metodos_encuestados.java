@@ -292,47 +292,50 @@ public class metodos_encuestados {
 
             for (PreguntaEncuesta obj : resultado) {
                 PreguntaEncuesta preguntaEncuesta = dao.find(obj.get_id(), PreguntaEncuesta.class);
-
+                int pregunta = 0;
                 if (preguntaEncuesta.get_encuesta().get_id() == solicitudEstudio.get_encuesta().get_id()) {
-
                     for (Respuesta obj3 : respuesta) {
-                        if (obj3.get_preguntaencuesta().get_id() != preguntaEncuesta.get_id() && obj3.get_participacion().get_id()!=participacion1.get_id()) {
 
-                            if (preguntaEncuesta.get_pregunta().get_tipopregunta().equals("Opcion simple") || preguntaEncuesta.get_pregunta().get_tipopregunta().equals("Opcion multiple")) {
-                                for (Opcion_Simple_Multiple_Pregunta obj2 : resultado2) {
-                                    Opcion_Simple_Multiple_Pregunta opcion = dao3.find(obj2.get_id(), Opcion_Simple_Multiple_Pregunta.class);
-                                    if (opcion.get_pregunta().get_id() == preguntaEncuesta.get_pregunta().get_id()) {
+                        if (obj3.get_preguntaencuesta().get_id() == preguntaEncuesta.get_id() && obj3.get_participacion().get_id()==participacion1.get_id()) {
+                            pregunta=1;
+                        }
+                    }
+                    if(pregunta==0) {
+                        if (preguntaEncuesta.get_pregunta().get_tipopregunta().equals("Opcion simple") || preguntaEncuesta.get_pregunta().get_tipopregunta().equals("Opcion multiple")) {
 
-                                        opciones.add(Json.createObjectBuilder().add("id", opcion.get_id())
-                                                .add("opcion", opcion.get_opcionsimplemultiple().get_opcion()));
+                            for (Opcion_Simple_Multiple_Pregunta obj2 : resultado2) {
+                                Opcion_Simple_Multiple_Pregunta opcion = dao3.find(obj2.get_id(), Opcion_Simple_Multiple_Pregunta.class);
+                                if (opcion.get_pregunta().get_id() == preguntaEncuesta.get_pregunta().get_id()) {
 
-                                    }
+                                    opciones.add(Json.createObjectBuilder().add("id", opcion.get_id())
+                                            .add("opcion", opcion.get_opcionsimplemultiple().get_opcion()));
+
                                 }
+                            }
+                            JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
+                                    .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
+                                    .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
+                                    .add("opciones", opciones)
+                                    .build();
+
+                            builder.add(preguntas);
+                        } else {
+
+                            if (preguntaEncuesta.get_pregunta().get_valormax() != 0) {
                                 JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
                                         .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
                                         .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
-                                        .add("opciones", opciones)
+                                        .add("minimo", preguntaEncuesta.get_pregunta().get_valormin())
+                                        .add("maximo", preguntaEncuesta.get_pregunta().get_valormax()).build();
+                                builder.add(preguntas);
+
+                            } else {
+                                JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
+                                        .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
+                                        .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
                                         .build();
 
                                 builder.add(preguntas);
-                            } else {
-
-                                if (preguntaEncuesta.get_pregunta().get_valormax() != 0) {
-                                    JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
-                                            .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
-                                            .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
-                                            .add("minimo", preguntaEncuesta.get_pregunta().get_valormin())
-                                            .add("maximo", preguntaEncuesta.get_pregunta().get_valormax()).build();
-                                    builder.add(preguntas);
-
-                                } else {
-                                    JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
-                                            .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
-                                            .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
-                                            .build();
-
-                                    builder.add(preguntas);
-                                }
                             }
                         }
                     }
