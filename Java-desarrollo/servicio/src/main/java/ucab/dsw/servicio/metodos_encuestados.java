@@ -117,8 +117,8 @@ public class metodos_encuestados {
                             Opcion_Simple_Multiple_Pregunta opcion = dao3.find(obj2.get_id(), Opcion_Simple_Multiple_Pregunta.class);
                             if(opcion.get_pregunta().get_id() == preguntaEncuesta.get_pregunta().get_id()){
 
-                                opciones.add(Json.createObjectBuilder().add("opcion", opcion.get_opcionsimplemultiple().get_opcion()));
-
+                                opciones.add(Json.createObjectBuilder().add("id", opcion.get_id())
+                                        .add("opcion", opcion.get_opcionsimplemultiple().get_opcion()));
                             }
 
 
@@ -303,7 +303,8 @@ public class metodos_encuestados {
                                     Opcion_Simple_Multiple_Pregunta opcion = dao3.find(obj2.get_id(), Opcion_Simple_Multiple_Pregunta.class);
                                     if (opcion.get_pregunta().get_id() == preguntaEncuesta.get_pregunta().get_id()) {
 
-                                        opciones.add(Json.createObjectBuilder().add("opcion", opcion.get_opcionsimplemultiple().get_opcion()));
+                                        opciones.add(Json.createObjectBuilder().add("id", opcion.get_id())
+                                                .add("opcion", opcion.get_opcionsimplemultiple().get_opcion()));
 
                                     }
                                 }
