@@ -12,7 +12,7 @@ public class UsuarioTest {
 
 
         UsuarioDto usuarioDto=new UsuarioDto();
-        usuarioDto.setUsuario("usdsad");
+        usuarioDto.setUsuario("uyuyd");
         usuarioDto.setContrasena("12345");
 
         ClienteDto clienteDto= new ClienteDto();
