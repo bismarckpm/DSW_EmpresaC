@@ -594,6 +594,7 @@ public class metodos_admin {
                                             ParticipacionDto resultado2 = new ParticipacionDto();
                                             participacion.set_encuestado(encuestado);
                                             participacion.set_solicitudestudio(solicitudEstudio);
+                                            participacion.set_estado("activo");
 
                                             Participacion resul = daoParticipacion.insert(participacion);
                                             resultado2.setId(resul.get_id());
