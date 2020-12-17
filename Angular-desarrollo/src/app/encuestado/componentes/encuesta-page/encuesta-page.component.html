@@ -1,0 +1,117 @@
+
+
+
+
+{{encuestaForm.value |json}}
+{{encuestaForm.valid}}
+
+<form novalidate [formGroup]="encuestaForm">
+
+  <!-- formArrayName="fechas" *ngFor="let items of Fechas.controls; let i=index" -->
+  <mat-horizontal-stepper [linear]="isLinear"  #stepper linear>
+
+    <mat-step formArrayName="preguntas" *ngFor="let items of Preguntas.controls; let i=index" >
+      <form [formGroupName]="i">
+        <ng-template matStepLabel>pregunta {{i+1}}</ng-template>
+
+        <div *ngIf="preguntas[i].tipopregunta=='Rango' || preguntas[i].tipopregunta=='Opcion simple' || preguntas[i].tipopregunta=='booleana' || preguntas[i].tipopregunta=='Opcion multiple' ">
+          <p>{{preguntas[i].descripcion}}</p>
+        </div>
+
+
+        <mat-form-field *ngIf="preguntas[i].tipopregunta=='desarrollo'">
+          <mat-label>{{preguntas[i].descripcion}}</mat-label>
+          <input matInput placeholder="Last name, First name" formControlName="pregunta" required>
+        </mat-form-field>
+
+        <!-- <mat-radio-group formControlName="pregunta" aria-label="Select an option" *ngIf="preguntas[i].tipopregunta=='Opcion simple'">
+
+          <mat-radio-button *ngFor="let o of preguntas[i].opciones" value="">{{o.opcion}}</mat-radio-button>
+          
+        </mat-radio-group> -->
+
+        <mat-radio-group formControlName="pregunta" aria-label="Select an option" *ngIf="preguntas[i].tipopregunta=='Opcion simple'">
+
+          <mat-radio-button *ngFor="let o of preguntas[i].opciones" value="{{o.id}}">{{o.opcion}}</mat-radio-button>
+          
+        </mat-radio-group>
+
+        <mat-radio-group formControlName="pregunta" aria-label="Select an option" *ngIf="preguntas[i].tipopregunta=='booleana'" required>
+          <mat-radio-button value="1">Verdadero</mat-radio-button>
+          <mat-radio-button value="0">falso</mat-radio-button>
+        </mat-radio-group>
+        
+        <mat-slider required thumbLabel formControlName="pregunta" *ngIf="preguntas[i].tipopregunta=='Rango'" min="{{preguntas[i].minimo}}" max="{{preguntas[i].maximo}}" step="1" value="{{preguntas[i].minimo}}"></mat-slider>
+        
+
+        <span class="example-list-section" *ngIf="preguntas[i].tipopregunta=='Opcion multiple'">
+          <ul>
+            <li *ngFor="let o of preguntas[i].opciones">
+              <mat-checkbox formControlName="pregunta" value="{{o.id}}">
+                            {{o.opcion}}
+              </mat-checkbox>
+            </li>
+          </ul>
+        </span>
+
+
+        
+        <div>
+          <!-- <button  (click)="verificar()"  mat-button matStepperNext>Next</button> -->
+          <button  (click)="verificar(i)"  mat-button >Siguiente</button>
+        </div>
+
+
+
+
+        
+      </form>
+    </mat-step>
+
+
+  </mat-horizontal-stepper>
+
+</form>
+
+  <!-- <mat-horizontal-stepper [linear]="isLinear" #stepper>
+
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out your name</ng-template>
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+
+
+    <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+      <form [formGroup]="secondFormGroup">
+        <mat-form-field>
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                 required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        
+        <button mat-button (click)="stepper.reset()">aceptar</button>
+      </div>
+    </mat-step>
+
+
+  </mat-horizontal-stepper> -->
