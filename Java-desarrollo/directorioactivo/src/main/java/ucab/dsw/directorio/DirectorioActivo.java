@@ -16,8 +16,10 @@ import javax.naming.directory.ModificationItem;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
+import java.util.List;
 
 public class DirectorioActivo
 {
@@ -90,6 +92,7 @@ public class DirectorioActivo
             entry.put( new BasicAttribute( "userPassword", user.getContrasena() ) );
             entry.put( new BasicAttribute( "pwdLastSuccess", format.format( new Date() ) + "Z" ) );
             _ldapContext.createSubcontext( String.format( _userDirectory + "," + _directory, user.getCn()), entry );
+
         } catch (Exception exception) {
 
             if(exception.getClass().equals(NameAlreadyBoundException.class)){
@@ -517,5 +520,43 @@ public class DirectorioActivo
             disconnectLDAP();
         }
         return mail;
+    }
+
+    public ArrayList<UsuarioLdapDto> getAllUsers(){
+
+        ArrayList<UsuarioLdapDto> usuarios = new ArrayList<UsuarioLdapDto>();
+
+        try {
+            connectLDAP( _user, _password );
+            SearchControls searcCon = new SearchControls();
+            searcCon.setSearchScope( SearchControls.SUBTREE_SCOPE );
+            NamingEnumeration results = _ldapContext.search( _directory, "cn=*", searcCon );
+
+            if ( results != null ) {
+                while ( results.hasMore() ) {
+                    UsuarioLdapDto usuario = new UsuarioLdapDto();
+                    SearchResult res = ( SearchResult ) results.next();
+                    Attributes atbs = res.getAttributes();
+
+                    usuario.setCn( (String)atbs.get( "cn" ).get() );
+                    usuario.setSn( (String)atbs.get( "sn" ).get() );
+                    usuario.setTipo_usuario( (String)atbs.get( "description" ).get() );
+                    usuario.setNombre( (String)atbs.get( "givenName" ).get() );
+                    usuario.setCorreoelectronico( (String)atbs.get( "mail" ).get() );
+                    usuario.setUid( (String)atbs.get( "uid" ).get() );
+                    System.out.println(usuario.getCorreoelectronico());
+                    usuarios.add( usuario );
+                }
+
+            } else {
+                System.out.println( "fail" );
+                return null;
+            }
+        } catch(Exception exception) {
+            exception.printStackTrace();
+        } finally {
+            disconnectLDAP();
+        }
+        return usuarios;
     }
 }
