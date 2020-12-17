@@ -55,8 +55,8 @@ export class ContenedorPreguntaNuevaComponent implements OnInit {
 
   CrearAgregador(){
     this.PreguntaForm=this.fb.group({
-      pregunta: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
-      tipo: ['Texto'],
+      pregunta: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)] ],
+      tipo: ['desarrollo'],
       minimo:[0,[Validators.min(0)]],
       maximo:[5,[Validators.min(5),Validators.max(100)]],
 
@@ -78,7 +78,7 @@ export class ContenedorPreguntaNuevaComponent implements OnInit {
   AceptarPregunta(){
     var res=0;
     var pre={};
-    if(this.PreguntaForm.value.tipo=="Texto" || this.PreguntaForm.value.tipo=="Bolean" ){
+    if(this.PreguntaForm.value.tipo=="desarrollo" || this.PreguntaForm.value.tipo=="booleana" ){
       res=1;
       this.pregunta.preguntaSimple(this.PreguntaForm.value.pregunta,this.PreguntaForm.value.tipo);
       pre={
@@ -96,10 +96,11 @@ export class ContenedorPreguntaNuevaComponent implements OnInit {
         this.error="agrega un valor a minimo y maximo";
       }
       else{
+        console.log("pregunta rango")
         res=1;
         this.pregunta.preguntaRango(this.PreguntaForm.value.pregunta,this.PreguntaForm.value.tipo,Number(this.PreguntaForm.value.minimo), Number(this.PreguntaForm.value.maximo));
         pre={
-          "Descripcion": this.PreguntaForm.value.pregunta,
+          "descripcion": this.PreguntaForm.value.pregunta,
           "tipopregunta": this.PreguntaForm.value.tipo,
           "valormin":Number(this.PreguntaForm.value.minimo),
           "valormax":Number(this.PreguntaForm.value.maximo)
@@ -144,6 +145,8 @@ export class ContenedorPreguntaNuevaComponent implements OnInit {
     }
 
     if(res==1){
+      res=0;
+      
 
       this.eventBus.cast('inicio-progress','hola');
       this.preguntaServicio.postPreguntas(pre).subscribe(x=>{
@@ -152,11 +155,13 @@ export class ContenedorPreguntaNuevaComponent implements OnInit {
           // this.nuevaEvent.emit(pre);
           this._toastrService.success("Exito", "Pregunta creada");
           this.eventBus.cast('fin-progress','chao');
+
           this.pregunta.descripcion=this.PreguntaForm.value.pregunta;
           this.pregunta.tipopregunta=this.PreguntaForm.value.tipo;
           this.pregunta.id=x.Pregunta.id;
           this.nuevaEvent.emit(this.pregunta);
           this.PreguntaForm.reset();
+          this.pregunta=new Pregunta();
 
         }
         else{
@@ -167,6 +172,8 @@ export class ContenedorPreguntaNuevaComponent implements OnInit {
 
 
       },err=>{
+        res=0;
+        pre={};
         this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
         this.eventBus.cast('fin-progress','chao');
       })
