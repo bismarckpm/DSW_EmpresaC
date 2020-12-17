@@ -360,4 +360,62 @@ public class metodos_encuestados {
         //builder.build();
         return Response.status(Response.Status.OK).entity(data).build();
     }
+
+    @DELETE
+    @Path( "/finalizar/{id}/{id2}" )
+    public Response finalizarParticipacion(@PathParam("id") long  _id,@PathParam("id2")long  _id2)
+    {
+        JsonObject data;
+        ParticipacionDto resultado = new ParticipacionDto();
+        try
+        {
+            int restantes=0;
+            DaoParticipacion dao = new DaoParticipacion();
+            List<Participacion> participacion = null;
+            Class<Participacion> type = Participacion.class;
+            participacion = dao.findAll(type);
+
+            for (Participacion obj : participacion) {
+                if (obj.get_solicitudestudio().get_id()==_id && obj.get_encuestado().get_id()==_id2) {
+                    DaoParticipacion dao2 = new DaoParticipacion();
+                    Participacion participacion1 = dao2.find(obj.get_id(), Participacion.class);
+                    participacion1.set_estado("inactivo");
+
+                    Participacion resul = dao.update(participacion1);
+                    resultado.setId( resul.get_id() );
+                }
+            }
+            for (Participacion obj : participacion) {
+                if (obj.get_solicitudestudio().get_id()==_id && obj.get_estado().equals("activo")) {
+                    restantes=1;
+                }
+            }
+            if (restantes==0){
+                DaoSolicitudEstudio daoSolicitudEstudio = new DaoSolicitudEstudio();
+                SolicitudEstudio solicitudEstudio = daoSolicitudEstudio.find(_id,SolicitudEstudio.class);
+
+                solicitudEstudio.set_estado("finalizado");
+
+                SolicitudEstudio resul = daoSolicitudEstudio.update(solicitudEstudio);
+                resultado.setId( resul.get_id() );
+
+            }
+
+
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
+        }
+        catch ( Exception ex )
+        {
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
 }

@@ -173,7 +173,7 @@ public class metodos_admin {
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
             SolicitudEstudio solicitudEstudio = dao.find(_id,SolicitudEstudio.class);
 
-            solicitudEstudio.set_estado("Eliminado");
+            solicitudEstudio.set_estado("inactivo");
 
             SolicitudEstudio resul = dao.update(solicitudEstudio);
             resultado.setId( resul.get_id() );

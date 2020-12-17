@@ -49,5 +49,13 @@ public class metodos_encuestadoTest {
         Response resultado = servicio.addRespuesta( 1,5,1,respuestaDto);
         Assert.assertNotEquals( 0, 1 );
     }
+    @Test
+    public void finalizarTest() throws Exception
+    {
+        ucab.dsw.servicio.metodos_encuestados servicio = new ucab.dsw.servicio.metodos_encuestados();
 
+        Response resultado = servicio.finalizarParticipacion( 5,5);
+        Assert.assertNotEquals( resultado, 0 );
+
+    }
 }
