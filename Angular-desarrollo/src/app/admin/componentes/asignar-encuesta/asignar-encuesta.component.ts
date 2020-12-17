@@ -65,7 +65,7 @@ export class AsignarEncuestaComponent implements OnInit {
           this.eventBus.cast('fin-progress','chao');
         });
 
-      this.preguntaServicio.getPreguntas(1).subscribe(x=>{
+      this.preguntaServicio.getPreguntas(this.estudio.caracteristicas.idcategoria).subscribe(x=>{
         this.todasPreguntas= x.Preguntas
         this.preguntas=x.Preguntas;
         console.log(this.preguntas)
@@ -154,7 +154,7 @@ export class AsignarEncuestaComponent implements OnInit {
 
         console.log(encuesta)
         this.eventBus.cast('inicio-progress','hola');
-        this.preguntaServicio.postEncuesta(5,this.estudio.id,encuesta).subscribe(x=>{
+        this.preguntaServicio.postEncuesta(this.estudio.caracteristicas.idMarca,this.estudio.id,encuesta).subscribe(x=>{
 
           this._toastrService.success("Exito", "Encuesta creada");
           this.eventBus.cast('fin-progress','chao');

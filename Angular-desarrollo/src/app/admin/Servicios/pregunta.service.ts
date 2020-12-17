@@ -29,7 +29,7 @@ export class PreguntaService {
 
   getPreguntas(_id): Observable<Respuesta> {
 
-    return this.http.get<Respuesta>(global.url + 'admin/preguntas-categoria/1')
+    return this.http.get<Respuesta>(global.url + 'admin/preguntas-categoria/'+_id)
   }
 
   postPreguntas(objeto:{}): Observable<Respuesta> {
