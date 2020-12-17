@@ -35,14 +35,14 @@ public class CategoriaTest {
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
     }
 
-    @Test
+    /*@Test
     public void editCategoria() throws Exception {
         ucab.dsw.servicio.CategoriaServicio servicio = new ucab.dsw.servicio.CategoriaServicio();
         CategoriaDto categoriaDto=new CategoriaDto();
         categoriaDto.setNombre("Navidad");
         Response respuesta= servicio.editCategoria(36,categoriaDto);
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
-    }
+    }*/
 
     @Test
     public void deleteCategoria() throws Exception {
