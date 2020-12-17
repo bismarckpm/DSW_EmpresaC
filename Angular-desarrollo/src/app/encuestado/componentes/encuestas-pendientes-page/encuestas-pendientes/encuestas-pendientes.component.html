@@ -22,7 +22,7 @@
     <mat-card-actions>
         <button mat-button>{{estudio.caracteristicas.Categoria}}</button>
         <button mat-button>{{estudio.caracteristicas.Subcategoria}}</button>
-        <button mat-button >Iniciar</button>
+        <button mat-button [routerLink]="['/encuestado/Encuesta', estudio.id]" >Iniciar encuesta</button>
 
 
     </mat-card-actions>

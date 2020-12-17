@@ -5,16 +5,16 @@
    
     <form novalidate [formGroup]="PreguntaForm" #fform="ngForm"  >
 
-
-        <input type="text" placeholder="Pregunta..." formControlName="pregunta" required pattern="[a-zA-Z ]*">
+        <!-- pattern="[a-zA-Z ]*" -->
+        <input type="text" placeholder="Pregunta..." formControlName="pregunta" required >
 
         <mat-form-field class="example-full-width" >
             <mat-select formControlName="tipo">
-            <mat-option value="Texto">Texto</mat-option>
+            <mat-option value="desarrollo">desarrollo</mat-option>
             <mat-option value="Rango">Rango</mat-option>
-            <mat-option value="Multiple">Multiple</mat-option>
-            <mat-option value="Simple">Simple</mat-option>
-            <mat-option value="Bolean">bolean</mat-option>
+            <mat-option value="Opcion multiple">Opcion multiple</mat-option>
+            <mat-option value="Opcion simple">Opcion simple</mat-option>
+            <mat-option value="booleana">booleana</mat-option>
             </mat-select>
         </mat-form-field>
 
@@ -26,7 +26,7 @@
             <label for="max">Maximo</label>
             <input type="number" name="max"  class="num" formControlName="maximo">
         </div>
-        <div *ngIf="tipo=='Multiple' || tipo=='Simple'" >
+        <div *ngIf="tipo=='Opcion multiple' || tipo=='Opcion simple'" >
             
             <input type="text" placeholder="Opcion..." formControlName="opcion1">
             <button mat-raised-button color="#ffc107" (click)="addOpciones()" >Agregar otra</button>

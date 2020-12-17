@@ -116,7 +116,9 @@ export class AsignarEncuestaComponent implements OnInit {
   }
 
   PreguntaNueva(nueva:Pregunta){
+
     this.preguntasSeleccionadas.push(nueva);
+    console.log("Seleccionadas" + this.preguntasSeleccionadas)
   }
 
   Borrador(p:Pregunta){
