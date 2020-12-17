@@ -27,6 +27,19 @@ public class Parroquia extends EntidadBase
         this._nombre = _nombre;
     }
 
+    @Column( name = "categoria_social" )
+    private String _categoria_social;
+
+    public String get_categoria_social()
+    {
+        return _categoria_social;
+    }
+
+    public void set_categoria_social( String _categoria_social )
+    {
+        this._categoria_social = _categoria_social;
+    }
+
     @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Ciudad_id" )
     private Ciudad _ciudad;
