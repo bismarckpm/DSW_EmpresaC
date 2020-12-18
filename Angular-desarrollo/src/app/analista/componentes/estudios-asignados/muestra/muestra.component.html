@@ -27,7 +27,15 @@
                       <mat-icon>remove_circle</mat-icon>
                       <span>Eliminar</span>
                     </button>
+
+                    <button [routerLink]="['/analista/Encuesta', estudioid.id, item.id_encuestado]" *ngIf="estudioid.modo_encuesta=='telefono' && estudioid.estado=='en progreso' && item.estado=='activo' " mat-icon-button aria-label="Example icon button with a vertical three dot icon"
+                        style="border:0; outline: none;">
+                        <mat-icon>content_paste</mat-icon>
+                        <span>Encuestar</span>
+                    </button>
                 </mat-menu>
+
+                <!-- Encuesta/:id/:id2 -->
             </div>
         </div>
     </mat-list-item>

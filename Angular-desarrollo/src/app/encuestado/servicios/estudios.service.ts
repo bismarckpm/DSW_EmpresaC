@@ -16,9 +16,13 @@ export class EstudiosService {
   constructor(private http: HttpClient) { }
 
 
-  getEstudiosPendiente(): Observable<Respuesta> {
+  getEstudiosPendiente(id): Observable<Respuesta> {
     // return of(DISHES.filter((dish) => (dish.id === id))[0]).pipe(delay(2000));
-    return this.http.get<Respuesta>(global.url + 'encuestado/estudios-asignados/1')
+    return this.http.get<Respuesta>(global.url + 'encuestado/estudios-asignados/'+id)
+  }
+
+  getEstudio(id:number): Observable<Respuesta> {
+    return this.http.get<Respuesta>(global.url + 'admin/estudio/'+id)
   }
 
 

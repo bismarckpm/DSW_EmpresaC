@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgEventBus } from 'ng-event-bus';
 import { ToastrService } from 'ngx-toastr';
 import { AdministrarUsuariosService } from 'src/app/admin/Servicios/administrar-usuarios/administrar-usuarios.service';
+import { usuario } from 'src/app/Entidades/usuario';
 
 @Component({
   selector: 'app-eliminar-usuario',
@@ -12,6 +13,7 @@ import { AdministrarUsuariosService } from 'src/app/admin/Servicios/administrar-
 export class EliminarUsuarioComponent implements OnInit {
 
   public user_id:any;
+  public usuarioDto:usuario;
   constructor(
               public dialogRef: MatDialogRef<EliminarUsuarioComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
@@ -21,12 +23,18 @@ export class EliminarUsuarioComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.user_id=this.data.user.id;
+    this.user_id=this.data.user.uid;
+    this.usuarioDto=new usuario();
   }
 
   deleteUsuario(){
+    this.usuarioDto.estado='inactivo';
+    this.usuarioDto.id=this.user_id;
+
+    console.log(this.usuarioDto);
+    
     this.eventBus.cast('inicio-progress','hola');
-    this._adminUsuarioService.deleteUsuario(this.user_id).subscribe(
+    this._adminUsuarioService.deleteUsuario(this.user_id,this.usuarioDto).subscribe(
       (response)=>{
 		  console.log(response);
 		  if(response.estado=='success'){

@@ -142,12 +142,18 @@ public class SolicitudServicio {
             }
             
             else{
-                DaoUsuario daoUsuario=new DaoUsuario();
+
+                /*Para produccion*/
+                /*DaoUsuario daoUsuario=new DaoUsuario();
                 List<Usuario> admins= daoUsuario.getAdmins();
                 admin_random=(int)(Math.random()* admins.size());
                 System.out.println("Admin random");
                 System.out.println(admin_random);
-                admin_elegido=admins.get(admin_random);
+                admin_elegido=admins.get(admin_random);*/
+
+                /*Para la simulacion*/
+                DaoUsuario daoUsuario=new DaoUsuario();
+                admin_elegido=daoUsuario.find((long)20,Usuario.class);
                 solicitudEstudio.set_estado("por asignar");
                 solicitudEstudio.set_usuario2(admin_elegido);
             }

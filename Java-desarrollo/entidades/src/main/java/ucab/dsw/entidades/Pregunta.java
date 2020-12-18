@@ -68,6 +68,19 @@ public class Pregunta extends EntidadBase{
         this._descripcion = _descripcion;
     }
 
+    @Column( name = "estado" )
+    private String _estado;
+
+    public String get_estado()
+    {
+        return _estado;
+    }
+
+    public void set_estado( String _estado )
+    {
+        this._estado = _estado;
+    }
+
     public Pregunta(long id )
     {
         super( id );

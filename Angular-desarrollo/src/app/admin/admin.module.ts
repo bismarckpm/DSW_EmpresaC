@@ -56,6 +56,8 @@
   import {  AdministrarPresentacionService } from "./Servicios/administrar-presentacion/administrar-presentacion.service";
   import { AdministrarUsuariosService } from './Servicios/administrar-usuarios/administrar-usuarios.service';
 import { EliminarUsuarioComponent } from './componentes/administrar-usuarios/eliminar/eliminar-usuario/eliminar-usuario.component';
+import { ModificarComponent } from './componentes/administrar-usuarios/modificar/modificar/modificar.component';
+import { ModificarClienteComponent } from './componentes/administrar-usuarios/modificar/modificar-cliente/modificar-cliente.component';
 
   @NgModule({
     declarations: [
@@ -94,7 +96,9 @@ import { EliminarUsuarioComponent } from './componentes/administrar-usuarios/eli
       AnadirAdminAnalistaComponent,
       AnadirEncuestadoComponent,
       AnadirClienteComponent,
-      EliminarUsuarioComponent
+      EliminarUsuarioComponent,
+      ModificarComponent,
+      ModificarClienteComponent
     ],
     imports: [
       CommonModule,

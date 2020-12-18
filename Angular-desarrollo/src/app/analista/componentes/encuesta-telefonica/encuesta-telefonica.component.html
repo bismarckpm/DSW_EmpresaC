@@ -1,5 +1,6 @@
 
-<mat-card class="example-card" *ngIf="estudio">
+
+<mat-card class="example-card" *ngIf="estudio" >
   <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>Marca: {{estudio.caracteristicas.Marca}}</mat-card-title>
@@ -15,16 +16,12 @@
   </mat-card-content>
 </mat-card>
 
-<!-- 
-{{encuestaForm.value |json}}
-{{encuestaForm.valid}} -->
-
 
 
 <form novalidate [formGroup]="encuestaForm">
 
   <!-- formArrayName="fechas" *ngFor="let items of Fechas.controls; let i=index" -->
-  <mat-horizontal-stepper [linear]="isLinear" *ngIf="preguntas" #stepper linear>
+  <mat-horizontal-stepper [linear]="isLinear"  #stepper linear *ngIf="preguntas">
 
     <mat-step formArrayName="preguntas" *ngFor="let items of Preguntas.controls; let i=index" >
       <form [formGroupName]="i">
@@ -61,14 +58,13 @@
         
 
         <span class="example-list-section" *ngIf="preguntas[i].tipopregunta=='Opcion multiple'">
-          <ul>
-            <li *ngFor="let o of preguntas[i].opciones">
+
+              <div *ngFor="let o of preguntas[i].opciones">
               <mat-checkbox value="{{o.id}}" (click)="check(o.id, i)" >
                             {{o.opcion}}
               </mat-checkbox>
-              
-            </li>
-          </ul>
+            </div>
+
         </span>
 
 
@@ -89,4 +85,3 @@
   </mat-horizontal-stepper>
 
 </form>
-

@@ -11,7 +11,12 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -170,7 +175,7 @@ public class metodos_admin {
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
             SolicitudEstudio solicitudEstudio = dao.find(_id,SolicitudEstudio.class);
 
-            solicitudEstudio.set_estado("Eliminado");
+            solicitudEstudio.set_estado("inactivo");
 
             SolicitudEstudio resul = dao.update(solicitudEstudio);
             resultado.setId( resul.get_id() );
@@ -209,6 +214,7 @@ public class metodos_admin {
 
             Encuesta encuesta = new Encuesta();
             encuesta.set_nombre( encuestaDto.getNombre() );
+            encuesta.set_estado("activo");
 
             Marca marca = new Marca(_id);
             encuesta.set_marca( marca );
@@ -220,14 +226,17 @@ public class metodos_admin {
             SolicitudEstudio solicitudEstudio = dao3.find(_id2,SolicitudEstudio.class);
 
             DaoUsuario daoUsuario=new DaoUsuario();
-            List<Usuario> analista= daoUsuario.getAnalistas();
+
+            /*List<Usuario> analista= daoUsuario.getAnalistas();
             analista_random=(int)(Math.random()* analista.size());
             System.out.println("analista random");
             System.out.println(analista_random);
-            analista_elegido=analista.get(analista_random);
-            solicitudEstudio.set_usuario(analista_elegido);
+            analista_elegido=analista.get(analista_random);*/
+            Usuario analista = new Usuario(15);
+            analista = daoUsuario.find(analista.get_id(),Usuario.class);
+            solicitudEstudio.set_usuario(analista);
 
-            solicitudEstudio.set_estado( "Pendiente" );
+            solicitudEstudio.set_estado( "pendiente" );
             solicitudEstudio.set_encuesta( resul );
 
             SolicitudEstudio resul3 = dao3.update(solicitudEstudio);
@@ -238,6 +247,7 @@ public class metodos_admin {
                 List<PreguntaDto> pregunta = encuestaDto.getPreguntas();
 
                 for (PreguntaDto obj : pregunta) {
+
                     Pregunta_EncuestaDto resultado2 = new Pregunta_EncuestaDto();
                     PreguntaEncuesta preguntaEncuesta = new PreguntaEncuesta();
                     preguntaEncuesta.set_encuesta(resul);
@@ -253,6 +263,7 @@ public class metodos_admin {
 
                 }
             }
+            this.add_Participacion(_id2);
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200).build();
@@ -287,8 +298,8 @@ public class metodos_admin {
             Pregunta pregunta = new Pregunta();
             pregunta.set_descripcion( preguntaDto.getDescripcion() );
             pregunta.set_tipopregunta( preguntaDto.getTipopregunta() );
-
-            if (preguntaDto.getTipopregunta().equals("Rango")) {
+            pregunta.set_estado("activo");
+            if (preguntaDto.getTipopregunta().equals("rango")) {
                 pregunta.set_valormax(preguntaDto.getValormax());
                 pregunta.set_valormin(preguntaDto.getValormin());
             }
@@ -313,8 +324,8 @@ public class metodos_admin {
 
                 for (Opcion_Simple_MultipleDto obj : opcion) {
                     Opcion_Simple_MultipleDto resultado2 = new Opcion_Simple_MultipleDto();
-
                     OpcionSimpleMultiple opcionSimpleMultiple = new OpcionSimpleMultiple();
+                    opcionSimpleMultiple.set_estado("activo");
                     opcionSimpleMultiple.set_opcion(obj.getOpcion());
 
                     OpcionSimpleMultiple resul2 = dao2.insert(opcionSimpleMultiple);
@@ -426,6 +437,9 @@ public class metodos_admin {
 
             JsonObject encuesta = Json.createObjectBuilder().add("Marca",marca.get_nombre())
                     .add("Categoria",marca.get_subcategoria().get_categoria().get_nombre())
+                    .add("idcategoria", marca.get_subcategoria().get_categoria().get_id())
+                    .add("idMarca", marca.get_id())
+                    .add("idsubcategoria", marca.get_subcategoria().get_id())
                     .add("Subcategoria",marca.get_subcategoria().get_nombre()).build();
             JsonObject tipo = Json.createObjectBuilder().add("id",obj.get_id())
                     .add("fecha",obj.get_fecha_inicio().toString())
@@ -508,6 +522,109 @@ public class metodos_admin {
                     builder.add(p);
                 }
             }
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200)
+                    .add("Preguntas",builder).build();
+
+
+        }
+        catch ( Exception ex )
+        {
+            String problema = ex.getMessage();
+
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+        //builder.build();
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
+
+
+    @GET
+    public Response add_Participacion(long  _id)
+    {
+        JsonObject data;
+        JsonArrayBuilder builder = Json.createArrayBuilder();
+        try {
+            DaoSolicitudEstudio daoSolicitudEstudio = new DaoSolicitudEstudio();
+            DaoEncuestado daoEncuestado = new DaoEncuestado();
+            DaoHijo daoHijo = new DaoHijo();
+
+            SolicitudEstudio solicitudEstudio = daoSolicitudEstudio.find(_id,SolicitudEstudio.class);
+
+            List<Encuestado> resultado = null;
+            Class<Encuestado> type = Encuestado.class;
+            resultado = daoEncuestado.findAll(type);
+
+            for (Encuestado obj : resultado) {
+                Encuestado encuestado =daoEncuestado.find(obj.get_id(), Encuestado.class);
+                Date fecha=new Date();
+
+                ZoneId defaultZoneId = ZoneId.systemDefault();
+
+                Instant instant = fecha.toInstant();
+
+                LocalDate localDate = instant.atZone(defaultZoneId).toLocalDate();
+
+                ZoneId defaultZoneId2 = ZoneId.systemDefault();
+
+                Instant instant2 = encuestado.get_fecha_nacimiento().toInstant();
+
+                LocalDate localDate2 = instant2.atZone(defaultZoneId2).toLocalDate();
+
+                int edad = Period.between(localDate2,localDate ).getYears();
+                int hijos =0;
+
+                List<Hijo> hijo = null;
+                Class<Hijo> type2 = Hijo.class;
+                hijo = daoHijo.findAll(type2);
+
+                for (Hijo obj2 : hijo) {
+                    if (obj2.get_encuestado_hijo().get_id()==encuestado.get_id()) {
+                        hijos=hijos+1;
+                    }
+                }
+
+                if(solicitudEstudio.get_caracteristicademografica().get_edad_min()<= edad && solicitudEstudio.get_caracteristicademografica().get_edad_max()>= edad){
+                    if (solicitudEstudio.get_caracteristicademografica().get_nivel_socioeconomico().equals(encuestado.get_Parroquia_encuestado().get_categoria_social())){
+
+                        if(solicitudEstudio.get_caracteristicademografica().get_nacionalidad().equals(encuestado.get_Parroquia_encuestado().get_ciudad().get_estado().get_pais().get_nacionalidad())){
+
+                            if(solicitudEstudio.get_caracteristicademografica().get_cantidad_hijos()==hijos){
+
+                                if(solicitudEstudio.get_caracteristicademografica().get_genero().equals(encuestado.get_genero())){
+
+                                    if(solicitudEstudio.get_caracteristicademografica().get_nivel_academico_demografia().get_nombre().equals(encuestado.get_nivel_academico_encuestado().get_nombre())){
+
+                                        if(solicitudEstudio.get_caracteristicademografica().get_Parroquia_demografia().get_nombre().equals(encuestado.get_Parroquia_encuestado().get_nombre())){
+                                            DaoParticipacion daoParticipacion = new DaoParticipacion();
+                                            Participacion participacion =new Participacion();
+                                            ParticipacionDto resultado2 = new ParticipacionDto();
+                                            participacion.set_encuestado(encuestado);
+                                            participacion.set_solicitudestudio(solicitudEstudio);
+                                            participacion.set_estado("activo");
+
+                                            Participacion resul = daoParticipacion.insert(participacion);
+                                            resultado2.setId(resul.get_id());
+
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+
+            }
+
 
             data= Json.createObjectBuilder()
                     .add("estado","success")

@@ -68,7 +68,6 @@ public class CategoriaServicio extends AplicacionBase{
             System.out.println(data);
             return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
 
-
         }
 
         System.out.println(data);
@@ -194,7 +193,7 @@ public class CategoriaServicio extends AplicacionBase{
         }
         return Response.status(Response.Status.OK).entity(data).build();
     }
-    @DELETE
+    @PUT
     @Path( "/activar/{id}" )
     public Response activarCategoria(@PathParam("id") long  _id)
     {

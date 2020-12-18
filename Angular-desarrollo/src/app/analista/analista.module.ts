@@ -3,6 +3,8 @@
   import { CommonModule } from '@angular/common';
   import { AnalistaRoutingModule } from './analista-routing.module';
   import { MaterialModule } from '../material.module';
+  import { ReactiveFormsModule } from '@angular/forms';
+  import { FormsModule } from '@angular/forms';
 
   /* Componentes */
   import { AnalistaComponent } from './componentes/raiz/analista.component';
@@ -14,6 +16,7 @@ import { ResultadosComponent } from './componentes/estudios-asignados/resultados
 import { ResponderComponent } from './componentes/estudios-asignados/responder/responder.component';
 import { EstudiosTelefonicosComponent } from './componentes/estudios-telefonicos/estudios-telefonicos.component';
 import { ParticipantesEstudioComponent } from './componentes/participantes-estudio/participantes-estudio.component';
+import { EncuestaTelefonicaComponent } from './componentes/encuesta-telefonica/encuesta-telefonica.component';
 
 
   @NgModule({
@@ -25,12 +28,16 @@ import { ParticipantesEstudioComponent } from './componentes/participantes-estud
       ResultadosComponent,
       ResponderComponent,
       EstudiosTelefonicosComponent,
-      ParticipantesEstudioComponent
+      ParticipantesEstudioComponent,
+      EncuestaTelefonicaComponent,
+
     ],
     imports: [
       CommonModule,
       AnalistaRoutingModule,
-	  MaterialModule
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule
     ],
     providers:[ConsultaEstudiosService]
   })

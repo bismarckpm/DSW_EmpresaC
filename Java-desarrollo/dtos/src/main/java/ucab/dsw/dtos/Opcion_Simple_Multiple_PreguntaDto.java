@@ -25,4 +25,13 @@ public class Opcion_Simple_Multiple_PreguntaDto extends DtoBase{
     {
         this.opcion_Simple_MultipleDto = opcion_Simple_MultipleDto;
     }
+
+    public Opcion_Simple_Multiple_PreguntaDto()
+    {
+    }
+
+    public Opcion_Simple_Multiple_PreguntaDto ( long id ) throws Exception
+    {
+        super( id );
+    }
 }

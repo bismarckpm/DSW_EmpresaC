@@ -12,7 +12,7 @@ public class UsuarioTest {
 
 
         UsuarioDto usuarioDto=new UsuarioDto();
-        usuarioDto.setUsuario("usuario32");
+        usuarioDto.setUsuario("uyuyd");
         usuarioDto.setContrasena("12345");
 
         ClienteDto clienteDto= new ClienteDto();
@@ -35,4 +35,5 @@ public class UsuarioTest {
         Assert.assertNotEquals( resultado, 0 );
 
     }
+
 }

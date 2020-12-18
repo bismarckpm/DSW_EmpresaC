@@ -4,7 +4,7 @@
     </mat-card-header>
     <mat-card-content>
   
-      <div class="form-group" *ngIf="pregunta.tipopregunta=='Texto'">
+      <div class="form-group" *ngIf="pregunta.tipopregunta=='desarrollo'">
         <label for="exampleInputEncuesta1">Pregunta de tipo texto</label>
         
       </div>
@@ -13,11 +13,11 @@
         <label for="exampleInputEncuesta1">Pregunta de tipo Rango</label>
       </div>
 
-      <div class="form-group" *ngIf="pregunta.tipopregunta=='Boolean'">
+      <div class="form-group" *ngIf="pregunta.tipopregunta=='booleana'">
         <label for="exampleInputEncuesta1">Pregunta de tipo Boolean</label>
       </div>
 
-      <div class="form-group" *ngIf="pregunta.tipopregunta=='Multiple' ">
+      <div class="form-group" *ngIf="pregunta.tipopregunta=='Opcion multiple' ">
         <label for="exampleInputEncuesta1">Pregunta de tipo Multiple</label>
         <p *ngFor="let x of pregunta.opciones">{{x}}</p>
       </div>
