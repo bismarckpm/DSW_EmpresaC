@@ -5,6 +5,10 @@ import ucab.dsw.directorio.RecuperacionPass;
 import ucab.dsw.dtos.UsuarioLdapDto;
 import ucab.dsw.servicio.LoginServicio;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 public class pruebaDirectorioActivo
 {
     @Test
@@ -126,6 +130,27 @@ public class pruebaDirectorioActivo
             System.out.println("Si existe");
         }else{
             System.out.println("No existe");
+        }
+    }
+
+    @Test
+    public void updateUserLdap(){
+        DirectorioActivo ldap = new DirectorioActivo();
+        UsuarioLdapDto user = new UsuarioLdapDto();
+        user.setCn( "elrequena" );
+        user.setSn("Requena");
+        user.setNombre("Jesus");
+        user.setCorreoelectronico("elrequena123@outlook.com");
+        ldap.updateUser( user , "MFalcon" );
+    }
+
+    @Test
+    public void getAllUsersTest(){
+        DirectorioActivo ldap = new DirectorioActivo();
+        ArrayList<UsuarioLdapDto> usuarios = ldap.getAllUsers();
+
+        for( UsuarioLdapDto usaurio : usuarios){
+            System.out.println(usaurio.getCorreoelectronico());
         }
     }
 }

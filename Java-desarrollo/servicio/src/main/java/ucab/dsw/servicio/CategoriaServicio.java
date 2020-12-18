@@ -68,7 +68,6 @@ public class CategoriaServicio extends AplicacionBase{
             System.out.println(data);
             return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
 
-
         }
 
         System.out.println(data);

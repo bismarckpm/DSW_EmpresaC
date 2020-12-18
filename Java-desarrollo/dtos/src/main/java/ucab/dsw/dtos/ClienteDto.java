@@ -13,7 +13,6 @@ public class ClienteDto extends DtoBase{
         super( id );
     }
 
-
     private String rif;
 
     public String getRif()
@@ -26,7 +25,6 @@ public class ClienteDto extends DtoBase{
         this.rif = rif;
     }
 
-
     private String razon_social;
 
     public String getRazon_social()
@@ -36,6 +34,17 @@ public class ClienteDto extends DtoBase{
 
     public void setRazon_social( String razon_social ) { this.razon_social = razon_social; }
 
+    private String estado;
+
+    public String getEstado()
+    {
+        return estado;
+    }
+
+    public void setEstado( String estado )
+    {
+        this.estado = estado;
+    }
 
     private String nombre_empresa;
 
