@@ -193,7 +193,7 @@ public class CategoriaServicio extends AplicacionBase{
         }
         return Response.status(Response.Status.OK).entity(data).build();
     }
-    @DELETE
+    @PUT
     @Path( "/activar/{id}" )
     public Response activarCategoria(@PathParam("id") long  _id)
     {

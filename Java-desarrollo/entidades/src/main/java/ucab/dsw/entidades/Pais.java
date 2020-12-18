@@ -30,6 +30,19 @@ public class Pais extends EntidadBase
         this._nombre = _nombre;
     }
 
+    @Column( name = "nacionalidad" )
+    private String _nacionalidad;
+
+    public String get_nacionalidad()
+    {
+        return _nacionalidad;
+    }
+
+    public void set_nacionalidad( String _nacionalidad )
+    {
+        this._nacionalidad = _nacionalidad;
+    }
+
     @OneToMany( mappedBy = "_pais", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<Estado> _estado;
 

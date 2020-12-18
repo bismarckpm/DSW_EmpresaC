@@ -51,7 +51,7 @@ public class metodos_encuestados {
                             .add("idsubcategoria", marca.get_subcategoria().get_id())
                             .add("Subcategoria", marca.get_subcategoria().get_nombre()).build();
 
-                    JsonObject tipo = Json.createObjectBuilder().add("id", participacion.get_id())
+                    JsonObject tipo = Json.createObjectBuilder().add("id", participacion.get_solicitudestudio().get_id())
                             .add("fecha", participacion.get_solicitudestudio().get_fecha_inicio().toString())
                             .add("caracteristicas", encuesta).build();
 
@@ -85,6 +85,7 @@ public class metodos_encuestados {
     public Response encuesta_estudio(@PathParam("id")long  _id)
     {
         JsonObject data;
+        JsonArrayBuilder opciones =Json.createArrayBuilder();
         JsonArrayBuilder builder = Json.createArrayBuilder();
         try {
             List<PreguntaEncuesta> resultado = null;
@@ -109,29 +110,46 @@ public class metodos_encuestados {
                 PreguntaEncuesta preguntaEncuesta = dao.find(obj.get_id(), PreguntaEncuesta.class);
 
                 if (preguntaEncuesta.get_encuesta().get_id() == solicitudEstudio.get_encuesta().get_id() ) {
-                    JsonObject encuesta = Json.createObjectBuilder().add("Encuesta ", preguntaEncuesta.get_encuesta().get_nombre())
-                            .add("Pregunta ", preguntaEncuesta.get_pregunta().get_descripcion())
-                            .add("Tipo de Pregunta ", preguntaEncuesta.get_pregunta().get_tipopregunta()).build();
-                    builder.add(encuesta);
 
-                    if (preguntaEncuesta.get_pregunta().get_valormax() !=0){
-                        JsonObject p = Json.createObjectBuilder().add("valor minimo ", preguntaEncuesta.get_pregunta().get_valormin())
-                                .add("valor maximo ", preguntaEncuesta.get_pregunta().get_valormax()).build();
-                        builder.add(p);
-                    }
 
                     if (preguntaEncuesta.get_pregunta().get_tipopregunta().equals("Opcion simple") || preguntaEncuesta.get_pregunta().get_tipopregunta().equals("Opcion multiple") ){
                         for (Opcion_Simple_Multiple_Pregunta obj2 : resultado2) {
                             Opcion_Simple_Multiple_Pregunta opcion = dao3.find(obj2.get_id(), Opcion_Simple_Multiple_Pregunta.class);
                             if(opcion.get_pregunta().get_id() == preguntaEncuesta.get_pregunta().get_id()){
 
-                                JsonObject p = Json.createObjectBuilder().add("opcion", opcion.get_opcionsimplemultiple().get_opcion()).build();
-                                builder.add(p);
-
+                                opciones.add(Json.createObjectBuilder().add("id", opcion.get_id())
+                                        .add("opcion", opcion.get_opcionsimplemultiple().get_opcion()));
                             }
 
 
                         }
+                        JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
+                                .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
+                                .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
+                                .add("opciones",opciones)
+                                .build();
+
+                        builder.add(preguntas);
+                    }
+                    else {
+
+                        if (preguntaEncuesta.get_pregunta().get_valormax() !=0){
+                            JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
+                                    .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
+                                    .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
+                                    .add("minimo", preguntaEncuesta.get_pregunta().get_valormin())
+                                    .add("maximo", preguntaEncuesta.get_pregunta().get_valormax()).build();
+                            builder.add(preguntas);
+
+                        }else {
+                            JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
+                                    .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
+                                    .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
+                                    .build();
+
+                            builder.add(preguntas);
+                        }
+
                     }
 
                 }
@@ -140,7 +158,7 @@ public class metodos_encuestados {
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200)
-                    .add("estudios",builder).build();
+                    .add("Preguntas",builder).build();
 
         }
         catch (Exception ex){
@@ -153,6 +171,251 @@ public class metodos_encuestados {
             return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
         //builder.build();
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
+
+    @PUT
+    @Path( "/Respuesta/{id}/{id2}/{id3}" )
+    public Response addRespuesta(@PathParam("id") long  _id,@PathParam("id2") long  _id2,@PathParam("id3") long  _id3,RespuestaDto respuestaDto)
+    {
+        RespuestaDto resultado = new RespuestaDto();
+        JsonObject data;
+        try
+        {
+            DaoRespuesta daoRespuesta = new DaoRespuesta();
+            DaoPreguntaEncuesta daoPreguntaEncuesta= new DaoPreguntaEncuesta();
+            DaoParticipacion daoParticipacion = new DaoParticipacion();
+
+            List<Participacion> participacion = null;
+            Class<Participacion> type = Participacion.class;
+            participacion = daoParticipacion.findAll(type);
+
+            Respuesta respuesta = new Respuesta();
+            PreguntaEncuesta pregunta = daoPreguntaEncuesta.find(_id,PreguntaEncuesta.class);
+            respuesta.set_preguntaencuesta(pregunta);
+
+            for (Participacion obj : participacion) {
+                if (obj.get_solicitudestudio().get_id()==_id2 && obj.get_encuestado().get_id()==_id3) {
+                    Participacion participacion1 = daoParticipacion.find(obj.get_id(), Participacion.class);
+                    respuesta.set_participacion(participacion1);
+                }
+            }
+
+            respuesta.set_respuestarango(respuestaDto.getRespuestarango());
+            respuesta.set_respuestadesarrollo(respuestaDto.getRespuestadesarrollo());
+            respuesta.set_respuestaboolean(respuestaDto.getRespuestaboolean());
+
+
+
+            Respuesta resul = daoRespuesta.insert( respuesta);
+            resultado.setId( resul.get_id() );
+
+            if (respuestaDto.getOpciones()!=null) {
+
+                List<Opcion_Simple_Multiple_PreguntaDto> opciones = respuestaDto.getOpciones();
+
+                for (Opcion_Simple_Multiple_PreguntaDto obj : opciones) {
+                    DaoOpcion_Simple_Multiple_Pregunta daoOpcion_simple_multiple_pregunta= new DaoOpcion_Simple_Multiple_Pregunta();
+                    DaoRespuestaOpcion daoRespuestaOpcion= new DaoRespuestaOpcion();
+                    Respuesta_Opcion resultado2 = new Respuesta_Opcion();
+                    RespuestaOpcion respuestaOpcion = new RespuestaOpcion();
+                    respuestaOpcion.set_respuesta(resul);
+                    Opcion_Simple_Multiple_Pregunta opcion =daoOpcion_simple_multiple_pregunta.find(obj.getId(), Opcion_Simple_Multiple_Pregunta.class);
+                    respuestaOpcion.set_opcionsimplemultiple(opcion);
+
+                    RespuestaOpcion resul2 = daoRespuestaOpcion.insert(respuestaOpcion);
+                    resultado2.setId(resul2.get_id());
+
+
+                }
+            }
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
+
+        }
+        catch ( Exception ex )
+        {
+            String problema = ex.getMessage();
+
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
+
+    @GET
+    @Path( "/pregunta-estudio/{id}/{id2}" )
+    public Response pregunta_estudio(@PathParam("id")long  _id,@PathParam("id2")long  _id2)
+    {
+        JsonObject data;
+        JsonArrayBuilder opciones =Json.createArrayBuilder();
+        JsonArrayBuilder builder = Json.createArrayBuilder();
+        try {
+            List<PreguntaEncuesta> resultado = null;
+            List<Opcion_Simple_Multiple_Pregunta> resultado2 = null;
+
+            DaoPreguntaEncuesta dao = new DaoPreguntaEncuesta();
+            DaoSolicitudEstudio dao2 = new DaoSolicitudEstudio();
+            DaoOpcion_Simple_Multiple_Pregunta dao3 = new DaoOpcion_Simple_Multiple_Pregunta();
+            DaoParticipacion daoParticipacion = new DaoParticipacion();
+            DaoRespuesta daoRespuesta = new DaoRespuesta();
+
+            SolicitudEstudio solicitudEstudio = new SolicitudEstudio();
+            solicitudEstudio = dao2.find(_id,SolicitudEstudio.class);
+            Class<PreguntaEncuesta> type = PreguntaEncuesta.class;
+            resultado = dao.findAll(type);
+
+            Class<Opcion_Simple_Multiple_Pregunta> type2 = Opcion_Simple_Multiple_Pregunta.class;
+            resultado2 = dao3.findAll(type2);
+
+
+            List<Participacion> participacion = null;
+            Class<Participacion> type3 = Participacion.class;
+            participacion = daoParticipacion.findAll(type3);
+
+            List<Respuesta> respuesta = null;
+            Class<Respuesta> type4 = Respuesta.class;
+            respuesta = daoRespuesta.findAll(type4);
+            Participacion participacion1 = new Participacion();
+
+            for (Participacion obj : participacion) {
+                if (obj.get_solicitudestudio().get_id()==_id && obj.get_encuestado().get_id()==_id2) {
+                    participacion1 = daoParticipacion.find(obj.get_id(), Participacion.class);
+                }
+            }
+
+            for (PreguntaEncuesta obj : resultado) {
+                PreguntaEncuesta preguntaEncuesta = dao.find(obj.get_id(), PreguntaEncuesta.class);
+                int pregunta = 0;
+                if (preguntaEncuesta.get_encuesta().get_id() == solicitudEstudio.get_encuesta().get_id()) {
+                    for (Respuesta obj3 : respuesta) {
+
+                        if (obj3.get_preguntaencuesta().get_id() == preguntaEncuesta.get_id() && obj3.get_participacion().get_id()==participacion1.get_id()) {
+                            pregunta=1;
+                        }
+                    }
+                    if(pregunta==0) {
+                        if (preguntaEncuesta.get_pregunta().get_tipopregunta().equals("Opcion simple") || preguntaEncuesta.get_pregunta().get_tipopregunta().equals("Opcion multiple")) {
+
+                            for (Opcion_Simple_Multiple_Pregunta obj2 : resultado2) {
+                                Opcion_Simple_Multiple_Pregunta opcion = dao3.find(obj2.get_id(), Opcion_Simple_Multiple_Pregunta.class);
+                                if (opcion.get_pregunta().get_id() == preguntaEncuesta.get_pregunta().get_id()) {
+
+                                    opciones.add(Json.createObjectBuilder().add("id", opcion.get_id())
+                                            .add("opcion", opcion.get_opcionsimplemultiple().get_opcion()));
+
+                                }
+                            }
+                            JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
+                                    .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
+                                    .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
+                                    .add("opciones", opciones)
+                                    .build();
+
+                            builder.add(preguntas);
+                        } else {
+
+                            if (preguntaEncuesta.get_pregunta().get_valormax() != 0) {
+                                JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
+                                        .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
+                                        .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
+                                        .add("minimo", preguntaEncuesta.get_pregunta().get_valormin())
+                                        .add("maximo", preguntaEncuesta.get_pregunta().get_valormax()).build();
+                                builder.add(preguntas);
+
+                            } else {
+                                JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
+                                        .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
+                                        .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
+                                        .build();
+
+                                builder.add(preguntas);
+                            }
+                        }
+                    }
+                }
+            }
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200)
+                    .add("Preguntas",builder).build();
+
+        }
+        catch (Exception ex){
+            String problema = ex.getMessage();
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+        //builder.build();
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
+
+    @DELETE
+    @Path( "/finalizar/{id}/{id2}" )
+    public Response finalizarParticipacion(@PathParam("id") long  _id,@PathParam("id2")long  _id2)
+    {
+        JsonObject data;
+        ParticipacionDto resultado = new ParticipacionDto();
+        try
+        {
+            int restantes=0;
+            DaoParticipacion dao = new DaoParticipacion();
+            List<Participacion> participacion = null;
+            Class<Participacion> type = Participacion.class;
+            participacion = dao.findAll(type);
+
+            for (Participacion obj : participacion) {
+                if (obj.get_solicitudestudio().get_id()==_id && obj.get_encuestado().get_id()==_id2) {
+                    DaoParticipacion dao2 = new DaoParticipacion();
+                    Participacion participacion1 = dao2.find(obj.get_id(), Participacion.class);
+                    participacion1.set_estado("inactivo");
+
+                    Participacion resul = dao.update(participacion1);
+                    resultado.setId( resul.get_id() );
+                }
+            }
+            for (Participacion obj : participacion) {
+                if (obj.get_solicitudestudio().get_id()==_id && obj.get_estado().equals("activo")) {
+                    restantes=1;
+                }
+            }
+            if (restantes==0){
+                DaoSolicitudEstudio daoSolicitudEstudio = new DaoSolicitudEstudio();
+                SolicitudEstudio solicitudEstudio = daoSolicitudEstudio.find(_id,SolicitudEstudio.class);
+
+                solicitudEstudio.set_estado("finalizado");
+
+                SolicitudEstudio resul = daoSolicitudEstudio.update(solicitudEstudio);
+                resultado.setId( resul.get_id() );
+
+            }
+
+
+
+            data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("codigo",200).build();
+        }
+        catch ( Exception ex )
+        {
+            data= Json.createObjectBuilder()
+                    .add("estado","exception!!!")
+                    .add("excepcion",ex.getMessage())
+                    .add("codigo",500).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
         return Response.status(Response.Status.OK).entity(data).build();
     }
 }

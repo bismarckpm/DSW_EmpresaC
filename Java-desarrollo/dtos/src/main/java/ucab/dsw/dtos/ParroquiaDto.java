@@ -14,6 +14,18 @@ public class ParroquiaDto extends DtoBase
         this.nombre = nombre;
     }
 
+    private String categoria_social;
+
+    public String getCategoria_social()
+    {
+        return categoria_social;
+    }
+
+    public void setCategoria_social( String categoria_social )
+    {
+        this.categoria_social = categoria_social;
+    }
+
     private CiudadDto ciudadDto;
 
     public CiudadDto getCiudadDto()

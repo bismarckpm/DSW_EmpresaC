@@ -1,6 +1,7 @@
 package ucab.dsw.dtos;
 
 
+import java.util.List;
 
 public class RespuestaDto extends DtoBase{
 
@@ -58,5 +59,15 @@ public class RespuestaDto extends DtoBase{
     public void setPregunta_EncuestaDto( Pregunta_EncuestaDto pregunta_EncuestaDto )
     {
         this.pregunta_EncuestaDto = pregunta_EncuestaDto;
+    }
+
+    private List<Opcion_Simple_Multiple_PreguntaDto> opciones;
+
+    public List<Opcion_Simple_Multiple_PreguntaDto> getOpciones() {
+        return opciones;
+    }
+
+    public void setOpciones(List<Opcion_Simple_Multiple_PreguntaDto> opciones) {
+        this.opciones = opciones;
     }
 }
