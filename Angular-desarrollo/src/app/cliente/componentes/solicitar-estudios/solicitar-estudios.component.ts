@@ -276,7 +276,7 @@ export class SolicitarEstudiosComponent implements OnInit {
     this.solicitudEstudioCliente.caracteristica_DemograficaDto.parroquiaDto.id=this.parroquiaSelected;
     this.solicitudEstudioCliente.caracteristica_DemograficaDto.nivel_AcademicoDto.id=this.nivel_academicoSelected;
 
-    this.solicitudEstudioCliente.clienteDto.id=+localStorage.getItem('user_id');
+    this.solicitudEstudioCliente.clienteDto.id=5;
     this.solicitudEstudioCliente.marcaDto.id=this.marcaSelected[0];
     this.solicitudEstudioCliente.modoencuesta=this.modo_encuestaSelected;
   }
@@ -297,7 +297,7 @@ export class SolicitarEstudiosComponent implements OnInit {
     this.hijos=[0,1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     this.niveles_socioeconomico=['Alta','Media','Baja'];
 
-    //localStorage.setItem('user_id','5');  //QUITAR DESPUES!!!!!!
+    localStorage.setItem('user_id','5');  //QUITAR DESPUES!!!!!!
 
     this.caracteristicaDemograficaDto= new CaracteristicaDemograficaDto(new ParroquiaDto,new NivelAcademicoDto);
     this.solicitudEstudioCliente=new SolicitudEstudioCliente(new MarcaDto,new ClienteDto, this.caracteristicaDemograficaDto);

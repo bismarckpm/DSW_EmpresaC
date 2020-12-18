@@ -44,7 +44,7 @@ public class metodos_encuestados {
             for (Participacion obj : resultado) {
                 Participacion participacion = dao.find(obj.get_id(), Participacion.class);
                 Marca marca = daoMarca.find(participacion.get_solicitudestudio().get_marca().get_id(), Marca.class);
-                if (participacion.get_encuestado().get_id() == _id && participacion.get_solicitudestudio().get_estado().equals("en progreso")) {
+                if (participacion.get_encuestado().get_id() == _id && participacion.get_solicitudestudio().get_estado().equals("en progreso") && participacion.get_estado().equals("activo") ) {
                     JsonObject encuesta = Json.createObjectBuilder().add("Marca", marca.get_nombre())
                             .add("idcategoria", marca.get_subcategoria().get_categoria().get_id())
                             .add("Categoria", marca.get_subcategoria().get_categoria().get_nombre())

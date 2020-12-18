@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="servicio:war" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
@@ -27,7 +32,15 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90d40db4-ad8c-4243-a03c-37ef11dcf5a8" name="Default Changelist" comment="" />
+    <list default="true" id="90d40db4-ad8c-4243-a03c-37ef11dcf5a8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/app/cliente/componentes/solicitar-estudios/solicitar-estudios.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/app/cliente/componentes/solicitar-estudios/solicitar-estudios.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/urlGlobal.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/urlGlobal.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_encuestados.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_encuestados.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/metodos_admin_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/metodos_admin_Test.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,13 +56,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.2.3\plugins\maven\lib\maven3" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
   <component name="ProjectId" id="1lkHgJhvjHg8fkjPkWsVaSgFQnZ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -61,7 +67,79 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
-  <component name="RunManager" selected="JUnit.metodos_clientes_Test.consultaEstudios_SolicitadosTest">
+  <component name="RunManager" selected="JBoss Server.WildFly">
+    <configuration name="WildFly" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss 21.0.0.Final" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/MercadeoUcab-1.0-SNAPSHOT/" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="servicio:war">
+          <settings />
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="SERVER" />
+        <option name="BINDING_SET_NAME" value="" />
+        <option name="DOMAIN" value="false" />
+        <option name="SERVER_GROUP" value="main-server-group" />
+        <option name="USERNAME" value="" />
+        <option name="CREDENTIAL_ALIAS" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="JBoss" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="63738" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="servicio:war" />
+        </option>
+      </method>
+    </configuration>
     <configuration name="CategoriaTest.getCategorias" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <option name="PACKAGE_NAME" value="" />
@@ -92,6 +170,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JBoss Server.WildFly" />
+      <item itemvalue="JUnit.CategoriaTest.getCategorias" />
+      <item itemvalue="JUnit.MarcaTest.getMarcas" />
+      <item itemvalue="JUnit.metodos_clientes_Test.consultaEstudios_SolicitadosTest" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.metodos_clientes_Test.consultaEstudios_SolicitadosTest" />
@@ -158,23 +242,5 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-  </component>
-  <component name="WindowStateProjectService">
-    <state width="1238" height="302" key="GridCell.Tab.0.bottom" timestamp="1608141643958">
-      <screen x="0" y="0" width="1280" height="980" />
-    </state>
-    <state width="1238" height="302" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1608141643958" />
-    <state width="1238" height="302" key="GridCell.Tab.0.center" timestamp="1608141643958">
-      <screen x="0" y="0" width="1280" height="980" />
-    </state>
-    <state width="1238" height="302" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1608141643958" />
-    <state width="1238" height="302" key="GridCell.Tab.0.left" timestamp="1608141643958">
-      <screen x="0" y="0" width="1280" height="980" />
-    </state>
-    <state width="1238" height="302" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1608141643958" />
-    <state width="1238" height="302" key="GridCell.Tab.0.right" timestamp="1608141643958">
-      <screen x="0" y="0" width="1280" height="980" />
-    </state>
-    <state width="1238" height="302" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1608141643958" />
   </component>
 </project>

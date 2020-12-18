@@ -263,7 +263,8 @@ public class metodos_admin {
 
                 }
             }
-            this.add_Participacion(_id2);
+
+            int partipacion =this.add_Participacion(_id2);
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200).build();
@@ -546,106 +547,82 @@ public class metodos_admin {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
-
-    @GET
-    public Response add_Participacion(long  _id)
+    public int add_Participacion(long  _id)throws Exception
     {
         JsonObject data;
         JsonArrayBuilder builder = Json.createArrayBuilder();
-        try {
-            DaoSolicitudEstudio daoSolicitudEstudio = new DaoSolicitudEstudio();
-            DaoEncuestado daoEncuestado = new DaoEncuestado();
-            DaoHijo daoHijo = new DaoHijo();
 
-            SolicitudEstudio solicitudEstudio = daoSolicitudEstudio.find(_id,SolicitudEstudio.class);
+        DaoSolicitudEstudio daoSolicitudEstudio = new DaoSolicitudEstudio();
+        DaoEncuestado daoEncuestado = new DaoEncuestado();
+        DaoHijo daoHijo = new DaoHijo();
 
-            List<Encuestado> resultado = null;
-            Class<Encuestado> type = Encuestado.class;
-            resultado = daoEncuestado.findAll(type);
+        SolicitudEstudio solicitudEstudio = daoSolicitudEstudio.find(_id, SolicitudEstudio.class);
 
-            for (Encuestado obj : resultado) {
-                Encuestado encuestado =daoEncuestado.find(obj.get_id(), Encuestado.class);
-                Date fecha=new Date();
+        List<Encuestado> resultado = null;
+        Class<Encuestado> type = Encuestado.class;
+        resultado = daoEncuestado.findAll(type);
 
-                ZoneId defaultZoneId = ZoneId.systemDefault();
+        for (Encuestado obj : resultado) {
+            Encuestado encuestado = daoEncuestado.find(obj.get_id(), Encuestado.class);
+            Date fecha = new Date();
 
-                Instant instant = fecha.toInstant();
+            ZoneId defaultZoneId = ZoneId.systemDefault();
 
-                LocalDate localDate = instant.atZone(defaultZoneId).toLocalDate();
+            Instant instant = fecha.toInstant();
 
-                ZoneId defaultZoneId2 = ZoneId.systemDefault();
+            LocalDate localDate = instant.atZone(defaultZoneId).toLocalDate();
 
-                Instant instant2 = encuestado.get_fecha_nacimiento().toInstant();
+            ZoneId defaultZoneId2 = ZoneId.systemDefault();
 
-                LocalDate localDate2 = instant2.atZone(defaultZoneId2).toLocalDate();
+            Instant instant2 = encuestado.get_fecha_nacimiento().toInstant();
 
-                int edad = Period.between(localDate2,localDate ).getYears();
-                int hijos =0;
+            LocalDate localDate2 = instant2.atZone(defaultZoneId2).toLocalDate();
 
-                List<Hijo> hijo = null;
-                Class<Hijo> type2 = Hijo.class;
-                hijo = daoHijo.findAll(type2);
+            int edad = Period.between(localDate2, localDate).getYears();
+            int hijos = 0;
 
-                for (Hijo obj2 : hijo) {
-                    if (obj2.get_encuestado_hijo().get_id()==encuestado.get_id()) {
-                        hijos=hijos+1;
-                    }
+            List<Hijo> hijo = null;
+            Class<Hijo> type2 = Hijo.class;
+            hijo = daoHijo.findAll(type2);
+
+            for (Hijo obj2 : hijo) {
+                if (obj2.get_encuestado_hijo().get_id() == encuestado.get_id()) {
+                    hijos = hijos + 1;
                 }
+            }
 
-                if(solicitudEstudio.get_caracteristicademografica().get_edad_min()<= edad && solicitudEstudio.get_caracteristicademografica().get_edad_max()>= edad){
-                    if (solicitudEstudio.get_caracteristicademografica().get_nivel_socioeconomico().equals(encuestado.get_Parroquia_encuestado().get_categoria_social())){
+            if (solicitudEstudio.get_caracteristicademografica().get_edad_min() <= edad && solicitudEstudio.get_caracteristicademografica().get_edad_max() >= edad) {
+                if (solicitudEstudio.get_caracteristicademografica().get_nivel_socioeconomico().equals(encuestado.get_Parroquia_encuestado().get_categoria_social())) {
 
-                        if(solicitudEstudio.get_caracteristicademografica().get_nacionalidad().equals(encuestado.get_Parroquia_encuestado().get_ciudad().get_estado().get_pais().get_nacionalidad())){
+                    if (solicitudEstudio.get_caracteristicademografica().get_nacionalidad().equals(encuestado.get_Parroquia_encuestado().get_ciudad().get_estado().get_pais().get_nacionalidad())) {
 
-                            if(solicitudEstudio.get_caracteristicademografica().get_cantidad_hijos()==hijos){
+                        if (solicitudEstudio.get_caracteristicademografica().get_cantidad_hijos() == hijos) {
 
-                                if(solicitudEstudio.get_caracteristicademografica().get_genero().equals(encuestado.get_genero())){
+                            if (solicitudEstudio.get_caracteristicademografica().get_genero().equals(encuestado.get_genero())) {
 
-                                    if(solicitudEstudio.get_caracteristicademografica().get_nivel_academico_demografia().get_nombre().equals(encuestado.get_nivel_academico_encuestado().get_nombre())){
+                                if (solicitudEstudio.get_caracteristicademografica().get_nivel_academico_demografia().get_nombre().equals(encuestado.get_nivel_academico_encuestado().get_nombre())) {
 
-                                        if(solicitudEstudio.get_caracteristicademografica().get_Parroquia_demografia().get_nombre().equals(encuestado.get_Parroquia_encuestado().get_nombre())){
-                                            DaoParticipacion daoParticipacion = new DaoParticipacion();
-                                            Participacion participacion =new Participacion();
-                                            ParticipacionDto resultado2 = new ParticipacionDto();
-                                            participacion.set_encuestado(encuestado);
-                                            participacion.set_solicitudestudio(solicitudEstudio);
-                                            participacion.set_estado("activo");
+                                    if (solicitudEstudio.get_caracteristicademografica().get_Parroquia_demografia().get_nombre().equals(encuestado.get_Parroquia_encuestado().get_nombre())) {
+                                        DaoParticipacion daoParticipacion = new DaoParticipacion();
+                                        Participacion participacion = new Participacion();
+                                        ParticipacionDto resultado2 = new ParticipacionDto();
+                                        participacion.set_encuestado(encuestado);
+                                        participacion.set_solicitudestudio(solicitudEstudio);
+                                        participacion.set_estado("activo");
 
-                                            Participacion resul = daoParticipacion.insert(participacion);
-                                            resultado2.setId(resul.get_id());
+                                        Participacion resul = daoParticipacion.insert(participacion);
+                                        resultado2.setId(resul.get_id());
 
-                                        }
                                     }
                                 }
-
                             }
+
                         }
                     }
                 }
-
             }
 
-
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200)
-                    .add("Preguntas",builder).build();
-
-
         }
-        catch ( Exception ex )
-        {
-            String problema = ex.getMessage();
-
-            data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
-                    .add("codigo",500).build();
-
-
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
-        }
-        //builder.build();
-        return Response.status(Response.Status.OK).entity(data).build();
+        return 1;
     }
 }
