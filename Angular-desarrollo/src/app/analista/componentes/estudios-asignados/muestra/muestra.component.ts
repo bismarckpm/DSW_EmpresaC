@@ -15,13 +15,23 @@ export interface Participacion {
   estado:string;
 }
 
+export interface estudio {
+  participacion_id:number;
+  doc_id:number;
+  usuario:string;
+  correo:string;
+  nombre:string;
+  apellido:string;
+  estado:string;
+}
+
 @Component({
   selector: 'app-muestra',
   templateUrl: './muestra.component.html',
   styleUrls: ['./muestra.component.css']
 })
 export class MuestraComponent implements OnInit {
-
+  estudioid:any;
   public participaciones:any[];
   constructor(
     public dialogRef: MatDialogRef<MuestraComponent>,
@@ -31,6 +41,10 @@ export class MuestraComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.data.participaciones);
     this.participaciones=this.data.participaciones;
+    this.estudioid=this.data.estudio
+    console.log("este es el id "+ this.estudioid.modo_encuesta)
+    console.log("este es el id "+ this.estudioid.id)
+    console.log("este es el id "+ this.estudioid.estado)
 
   }
 
