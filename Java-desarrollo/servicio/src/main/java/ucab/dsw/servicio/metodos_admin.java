@@ -263,7 +263,8 @@ public class metodos_admin {
 
                 }
             }
-            this.add_Participacion(_id2);
+            Boolean participacion =this.add_Participacion(_id2);
+
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200).build();
@@ -547,8 +548,8 @@ public class metodos_admin {
     }
 
 
-    @GET
-    public Response add_Participacion(long  _id)
+
+    public boolean add_Participacion(long  _id)
     {
         JsonObject data;
         JsonArrayBuilder builder = Json.createArrayBuilder();
@@ -643,9 +644,9 @@ public class metodos_admin {
                     .add("codigo",500).build();
 
 
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return false;
         }
         //builder.build();
-        return Response.status(Response.Status.OK).entity(data).build();
+        return true;
     }
 }

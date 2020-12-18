@@ -93,15 +93,6 @@ public class metodos_admin_Test {
 
     }
 
-    @Test
-    public void add_ParticipacionTest() throws Exception
-    {
-        ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
-        Response resultado= servicio.add_Participacion(11);
-        Assert.assertNotEquals( resultado, 0 );
-
-
-    }
 }
 
 
