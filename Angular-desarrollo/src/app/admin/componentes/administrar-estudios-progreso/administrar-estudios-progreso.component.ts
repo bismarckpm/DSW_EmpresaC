@@ -24,7 +24,7 @@ export class AdministrarEstudiosProgresoComponent implements OnInit {
 
   ngOnInit(): void {
     this.init();
-    this.solicitudServicio.getEstudiosAdministrar(19).subscribe(x=>{
+    this.solicitudServicio.getEstudiosAdministrar(this.admin_id).subscribe(x=>{
       
       
       this.estudios=x.estudios

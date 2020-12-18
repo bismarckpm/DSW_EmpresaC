@@ -26,7 +26,7 @@ export class EncuestasPendientesComponent implements OnInit {
     this.init();
 
 
-    this.servicioEstudio.getEstudiosPendiente().subscribe(x=>{
+    this.servicioEstudio.getEstudiosPendiente(this.encuestado_id).subscribe(x=>{
       this.estudios=x.estudios;
       console.log(x)
       this._toastrService.success("Exito", "Todas los estudios asignados");

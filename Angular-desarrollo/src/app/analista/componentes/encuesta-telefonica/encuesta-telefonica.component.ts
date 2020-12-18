@@ -13,16 +13,15 @@ import { Pregunta } from "../../../Entidades/pregunta";
 import { Opcion } from "../../../Entidades/opciones";
 import { Estudio } from "../../../Entidades/estudio";
 
-//services
-import { PreguntaService } from "../../servicios/pregunta.service";
-import { EstudiosService } from "../../servicios/estudios.service";
+//servicios
+import { ConsultaEstudiosService } from "../../servicios/consulta-estudios/consulta-estudios.service";
 
 @Component({
-  selector: 'app-encuesta-page',
-  templateUrl: './encuesta-page.component.html',
-  styleUrls: ['./encuesta-page.component.css']
+  selector: 'app-encuesta-telefonica',
+  templateUrl: './encuesta-telefonica.component.html',
+  styleUrls: ['./encuesta-telefonica.component.css']
 })
-export class EncuestaPageComponent implements OnInit {
+export class EncuestaTelefonicaComponent implements OnInit {
   estudio:Estudio;
   isLinear = true;
   encuestaForm:FormGroup;
@@ -30,19 +29,16 @@ export class EncuestaPageComponent implements OnInit {
   public encuestado_id:any
   opciones:Opcion[];
   estudioid:number;
-  
+  encuestadoid:number;
 
   @ViewChild('stepper') stepper;
 
-
-
-
   constructor(private fb: FormBuilder,
-    private preguntaServicio:PreguntaService,
+    
     private _toastrService: ToastrService,
     private eventBus: NgEventBus,
     private route: ActivatedRoute,
-    private servicioEstudio:EstudiosService,
+    private servicio:ConsultaEstudiosService,
     private location: Location) { }
 
   ngOnInit(): void {
@@ -50,10 +46,9 @@ export class EncuestaPageComponent implements OnInit {
     this.CrearInicial()
     this.init();
 
-    this.route.params.pipe(switchMap((params: Params) => { this.estudioid=params['id']; return  this.preguntaServicio.getEstudioPreguntas(params['id'],this.encuestado_id); })).subscribe(
-      x=>{
-        console.log(x)
-        
+    this.route.params.pipe(switchMap((params: Params) => { this.estudioid=params['id'];this.encuestadoid=params['id2']; return  this.servicio.getEstudioPreguntas(params['id'],params['id2']); })).subscribe(x=>{
+
+
       this.preguntas=x.Preguntas;
       console.log(this.preguntas)
       this._toastrService.success("Exito", "Preguntas recopiladas");
@@ -61,26 +56,22 @@ export class EncuestaPageComponent implements OnInit {
       this.crearFormulario();
 
     },err=>{
+
       this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
       this.eventBus.cast('fin-progress','chao');
-
     })
 
-    this.servicioEstudio.getEstudio(this.estudioid).subscribe(x=>{
+    this.servicio.getEstudio(this.encuestado_id).subscribe(x=>{
       this.estudio=x.estudio;
+      this._toastrService.success("Exito", "Informacion del estudio");
+
     },err=>{
+
       this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
       this.eventBus.cast('fin-progress','chao');
     })
-
-    
-
-
-
 
   }
-
-
 
   init(){
     this.eventBus.cast('inicio-progress','hola');
@@ -106,7 +97,6 @@ export class EncuestaPageComponent implements OnInit {
 
   }
 
-
   CrearInicial(){
     this.encuestaForm=this.fb.group({
       preguntas:this.fb.array([]),
@@ -123,7 +113,6 @@ export class EncuestaPageComponent implements OnInit {
     });
   }
 
-
   get Preguntas(){
     return this.encuestaForm.get("preguntas") as FormArray;
     
@@ -135,14 +124,35 @@ export class EncuestaPageComponent implements OnInit {
     this.Preguntas.push(this.CrearPregunta());
   }
 
-
-
-
   falseOpciones(){
     for (let index = 0; index < this.opciones.length; index++) {
       this.opciones[index].isSelec=false;
       
     }
+  }
+
+
+
+  check(z, i){
+    console.log(z+"Pregunta" + i);
+
+    for (let index = 0; index < this.preguntas[i].opciones.length; index++) {
+      if(this.preguntas[i].opciones[index].id==z){
+        var sel= this.preguntas[i].opciones[index].isSelec
+        if(sel==true){
+          this.preguntas[i].opciones[index].isSelec=false
+        }
+        else{
+          this.preguntas[i].opciones[index].isSelec=true
+        }
+
+      }
+      
+    }
+
+    console.log(this.preguntas);
+
+
   }
 
   verificar(x){
@@ -256,7 +266,7 @@ export class EncuestaPageComponent implements OnInit {
     if(comando==1){
       comando=0;
       this.eventBus.cast('inicio-progress','hola');
-      this.preguntaServicio.Responder(this.preguntas[x].id,this.estudioid,this.encuestado_id,pre).subscribe(z=>{
+      this.servicio.Responder(this.preguntas[x].id,this.estudioid,this.encuestado_id,pre).subscribe(z=>{
         console.log(z)
         
         this._toastrService.success("Exito", "Respuesta exitosa");
@@ -264,7 +274,7 @@ export class EncuestaPageComponent implements OnInit {
 
         if(this.preguntas.length-1==x){
 
-          this.preguntaServicio.cerrarParticipacion(this.estudioid,this.encuestado_id).subscribe(x=>{
+          this.servicio.cerrarParticipacion(this.estudioid,this.encuestado_id).subscribe(x=>{
 
             this._toastrService.success("Exito", "Estudio finalizado");
             this.location.back();
@@ -275,7 +285,6 @@ export class EncuestaPageComponent implements OnInit {
           
 
         }
-
 
 
         this.stepper.next();
@@ -291,28 +300,6 @@ export class EncuestaPageComponent implements OnInit {
       console.log(pre)
       
     }
-
-  }
-
-  check(z, i){
-    console.log(z+"Pregunta" + i);
-
-    for (let index = 0; index < this.preguntas[i].opciones.length; index++) {
-      if(this.preguntas[i].opciones[index].id==z){
-        var sel= this.preguntas[i].opciones[index].isSelec
-        if(sel==true){
-          this.preguntas[i].opciones[index].isSelec=false
-        }
-        else{
-          this.preguntas[i].opciones[index].isSelec=true
-        }
-
-      }
-      
-    }
-
-    console.log(this.preguntas);
-
 
   }
 
