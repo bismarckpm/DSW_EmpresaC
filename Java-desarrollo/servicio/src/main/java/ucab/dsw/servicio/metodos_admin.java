@@ -245,6 +245,7 @@ public class metodos_admin {
                 List<PreguntaDto> pregunta = encuestaDto.getPreguntas();
 
                 for (PreguntaDto obj : pregunta) {
+
                     Pregunta_EncuestaDto resultado2 = new Pregunta_EncuestaDto();
                     PreguntaEncuesta preguntaEncuesta = new PreguntaEncuesta();
                     preguntaEncuesta.set_encuesta(resul);
@@ -260,6 +261,7 @@ public class metodos_admin {
 
                 }
             }
+            this.add_Participacion(_id2);
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200).build();
@@ -544,8 +546,7 @@ public class metodos_admin {
 
 
     @GET
-    @Path( "/preguntas-categoria/{id}" )
-    public Response add_Participacion(@PathParam("id")long  _id)
+    public Response add_Participacion(long  _id)
     {
         JsonObject data;
         JsonArrayBuilder builder = Json.createArrayBuilder();
@@ -590,12 +591,17 @@ public class metodos_admin {
                 }
 
                 if(solicitudEstudio.get_caracteristicademografica().get_edad_min()<= edad && solicitudEstudio.get_caracteristicademografica().get_edad_max()>= edad){
-                    if (solicitudEstudio.get_caracteristicademografica().get_nivel_socioeconomico()==encuestado.get_Parroquia_encuestado().get_categoria_social()){
-                        if(solicitudEstudio.get_caracteristicademografica().get_nacionalidad()==encuestado.get_Parroquia_encuestado().get_ciudad().get_estado().get_pais().get_nacionalidad()){
+                    if (solicitudEstudio.get_caracteristicademografica().get_nivel_socioeconomico().equals(encuestado.get_Parroquia_encuestado().get_categoria_social())){
+
+                        if(solicitudEstudio.get_caracteristicademografica().get_nacionalidad().equals(encuestado.get_Parroquia_encuestado().get_ciudad().get_estado().get_pais().get_nacionalidad())){
+
                             if(solicitudEstudio.get_caracteristicademografica().get_cantidad_hijos()==hijos){
-                                if(solicitudEstudio.get_caracteristicademografica().get_genero()==encuestado.get_genero()){
-                                    if(solicitudEstudio.get_caracteristicademografica().get_nivel_academico_demografia()==encuestado.get_nivel_academico_encuestado()){
-                                        if(solicitudEstudio.get_caracteristicademografica().get_Parroquia_demografia()==encuestado.get_Parroquia_encuestado()){
+
+                                if(solicitudEstudio.get_caracteristicademografica().get_genero().equals(encuestado.get_genero())){
+
+                                    if(solicitudEstudio.get_caracteristicademografica().get_nivel_academico_demografia().get_nombre().equals(encuestado.get_nivel_academico_encuestado().get_nombre())){
+
+                                        if(solicitudEstudio.get_caracteristicademografica().get_Parroquia_demografia().get_nombre().equals(encuestado.get_Parroquia_encuestado().get_nombre())){
                                             DaoParticipacion daoParticipacion = new DaoParticipacion();
                                             Participacion participacion =new Participacion();
                                             ParticipacionDto resultado2 = new ParticipacionDto();

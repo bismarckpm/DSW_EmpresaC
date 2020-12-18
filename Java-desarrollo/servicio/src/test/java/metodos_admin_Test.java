@@ -50,7 +50,7 @@ public class metodos_admin_Test {
         EncuestaDto encuestaDto = new EncuestaDto();
         encuestaDto.setNombre( "siva?" );
 
-        Response resultado = servicio.addEncuesta( 3,6,encuestaDto);
+        Response resultado = servicio.addEncuesta( 3,11,encuestaDto);
         Assert.assertNotEquals( 0, 1 );
     }
 
@@ -98,7 +98,7 @@ public class metodos_admin_Test {
     public void add_ParticipacionTest() throws Exception
     {
         ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
-        Response resultado= servicio.add_Participacion(2);
+        Response resultado= servicio.add_Participacion(11);
         Assert.assertNotEquals( resultado, 0 );
 
 
