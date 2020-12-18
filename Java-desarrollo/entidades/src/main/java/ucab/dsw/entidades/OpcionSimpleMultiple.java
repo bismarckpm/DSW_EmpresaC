@@ -20,7 +20,18 @@ public class OpcionSimpleMultiple extends EntidadBase{
     @OneToMany( mappedBy = "_opcionsimplemultiple", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<Opcion_Simple_Multiple_Pregunta> _opcion_Simple_Multiple_Pregunta;
 
+    @Column( name = "estado" )
+    private String _estado;
 
+    public String get_estado()
+    {
+        return _estado;
+    }
+
+    public void set_estado( String _estado )
+    {
+        this._estado = _estado;
+    }
 
     public String get_opcion() {
         return _opcion;
