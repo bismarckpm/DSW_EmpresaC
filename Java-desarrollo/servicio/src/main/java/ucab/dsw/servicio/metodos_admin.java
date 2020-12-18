@@ -263,8 +263,8 @@ public class metodos_admin {
 
                 }
             }
-            Boolean participacion =this.add_Participacion(_id2);
 
+            int partipacion =this.add_Participacion(_id2);
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200).build();
@@ -548,25 +548,24 @@ public class metodos_admin {
     }
 
 
-
-    public boolean add_Participacion(long  _id)
+    public int add_Participacion(long  _id)throws Exception
     {
         JsonObject data;
         JsonArrayBuilder builder = Json.createArrayBuilder();
-        try {
+
             DaoSolicitudEstudio daoSolicitudEstudio = new DaoSolicitudEstudio();
             DaoEncuestado daoEncuestado = new DaoEncuestado();
             DaoHijo daoHijo = new DaoHijo();
 
-            SolicitudEstudio solicitudEstudio = daoSolicitudEstudio.find(_id,SolicitudEstudio.class);
+            SolicitudEstudio solicitudEstudio = daoSolicitudEstudio.find(_id, SolicitudEstudio.class);
 
             List<Encuestado> resultado = null;
             Class<Encuestado> type = Encuestado.class;
             resultado = daoEncuestado.findAll(type);
 
             for (Encuestado obj : resultado) {
-                Encuestado encuestado =daoEncuestado.find(obj.get_id(), Encuestado.class);
-                Date fecha=new Date();
+                Encuestado encuestado = daoEncuestado.find(obj.get_id(), Encuestado.class);
+                Date fecha = new Date();
 
                 ZoneId defaultZoneId = ZoneId.systemDefault();
 
@@ -580,33 +579,33 @@ public class metodos_admin {
 
                 LocalDate localDate2 = instant2.atZone(defaultZoneId2).toLocalDate();
 
-                int edad = Period.between(localDate2,localDate ).getYears();
-                int hijos =0;
+                int edad = Period.between(localDate2, localDate).getYears();
+                int hijos = 0;
 
                 List<Hijo> hijo = null;
                 Class<Hijo> type2 = Hijo.class;
                 hijo = daoHijo.findAll(type2);
 
                 for (Hijo obj2 : hijo) {
-                    if (obj2.get_encuestado_hijo().get_id()==encuestado.get_id()) {
-                        hijos=hijos+1;
+                    if (obj2.get_encuestado_hijo().get_id() == encuestado.get_id()) {
+                        hijos = hijos + 1;
                     }
                 }
 
-                if(solicitudEstudio.get_caracteristicademografica().get_edad_min()<= edad && solicitudEstudio.get_caracteristicademografica().get_edad_max()>= edad){
-                    if (solicitudEstudio.get_caracteristicademografica().get_nivel_socioeconomico().equals(encuestado.get_Parroquia_encuestado().get_categoria_social())){
+                if (solicitudEstudio.get_caracteristicademografica().get_edad_min() <= edad && solicitudEstudio.get_caracteristicademografica().get_edad_max() >= edad) {
+                    if (solicitudEstudio.get_caracteristicademografica().get_nivel_socioeconomico().equals(encuestado.get_Parroquia_encuestado().get_categoria_social())) {
 
-                        if(solicitudEstudio.get_caracteristicademografica().get_nacionalidad().equals(encuestado.get_Parroquia_encuestado().get_ciudad().get_estado().get_pais().get_nacionalidad())){
+                        if (solicitudEstudio.get_caracteristicademografica().get_nacionalidad().equals(encuestado.get_Parroquia_encuestado().get_ciudad().get_estado().get_pais().get_nacionalidad())) {
 
-                            if(solicitudEstudio.get_caracteristicademografica().get_cantidad_hijos()==hijos){
+                            if (solicitudEstudio.get_caracteristicademografica().get_cantidad_hijos() == hijos) {
 
-                                if(solicitudEstudio.get_caracteristicademografica().get_genero().equals(encuestado.get_genero())){
+                                if (solicitudEstudio.get_caracteristicademografica().get_genero().equals(encuestado.get_genero())) {
 
-                                    if(solicitudEstudio.get_caracteristicademografica().get_nivel_academico_demografia().get_nombre().equals(encuestado.get_nivel_academico_encuestado().get_nombre())){
+                                    if (solicitudEstudio.get_caracteristicademografica().get_nivel_academico_demografia().get_nombre().equals(encuestado.get_nivel_academico_encuestado().get_nombre())) {
 
-                                        if(solicitudEstudio.get_caracteristicademografica().get_Parroquia_demografia().get_nombre().equals(encuestado.get_Parroquia_encuestado().get_nombre())){
+                                        if (solicitudEstudio.get_caracteristicademografica().get_Parroquia_demografia().get_nombre().equals(encuestado.get_Parroquia_encuestado().get_nombre())) {
                                             DaoParticipacion daoParticipacion = new DaoParticipacion();
-                                            Participacion participacion =new Participacion();
+                                            Participacion participacion = new Participacion();
                                             ParticipacionDto resultado2 = new ParticipacionDto();
                                             participacion.set_encuestado(encuestado);
                                             participacion.set_solicitudestudio(solicitudEstudio);
@@ -625,28 +624,6 @@ public class metodos_admin {
                 }
 
             }
-
-
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200)
-                    .add("Preguntas",builder).build();
-
-
-        }
-        catch ( Exception ex )
-        {
-            String problema = ex.getMessage();
-
-            data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
-                    .add("codigo",500).build();
-
-
-            return false;
-        }
-        //builder.build();
-        return true;
+        return 1;
     }
 }
