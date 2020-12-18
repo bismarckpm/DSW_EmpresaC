@@ -11,9 +11,11 @@ import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@ang
 //entidades
 import { Pregunta } from "../../../Entidades/pregunta";
 import { Opcion } from "../../../Entidades/opciones";
+import { Estudio } from "../../../Entidades/estudio";
 
 //services
 import { PreguntaService } from "../../servicios/pregunta.service";
+import { EstudiosService } from "../../servicios/estudios.service";
 
 @Component({
   selector: 'app-encuesta-page',
@@ -21,6 +23,7 @@ import { PreguntaService } from "../../servicios/pregunta.service";
   styleUrls: ['./encuesta-page.component.css']
 })
 export class EncuestaPageComponent implements OnInit {
+  estudio:Estudio;
   isLinear = true;
   encuestaForm:FormGroup;
   preguntas:Pregunta[]
@@ -38,14 +41,16 @@ export class EncuestaPageComponent implements OnInit {
     private preguntaServicio:PreguntaService,
     private _toastrService: ToastrService,
     private eventBus: NgEventBus,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private servicioEstudio:EstudiosService,
+    private location: Location) { }
 
   ngOnInit(): void {
     this.opciones=[];
     this.CrearInicial()
     this.init();
 
-    this.route.params.pipe(switchMap((params: Params) => { this.estudioid=params['id']; return  this.preguntaServicio.getEstudioPreguntas(params['id'],1); })).subscribe(
+    this.route.params.pipe(switchMap((params: Params) => { this.estudioid=params['id']; return  this.preguntaServicio.getEstudioPreguntas(params['id'],this.encuestado_id); })).subscribe(
       x=>{
         console.log(x)
         
@@ -59,6 +64,13 @@ export class EncuestaPageComponent implements OnInit {
       this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
       this.eventBus.cast('fin-progress','chao');
 
+    })
+
+    this.servicioEstudio.getEstudio(this.estudioid).subscribe(x=>{
+      this.estudio=x.estudio;
+    },err=>{
+      this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+      this.eventBus.cast('fin-progress','chao');
     })
 
     
@@ -170,9 +182,7 @@ export class EncuestaPageComponent implements OnInit {
 
 
         pre={
-          "opciones":{"preguntaDto":{"id":this.preguntas[x].id},
-                      "opcion_Simple_MultipleDto":opciones
-        },
+          "opciones":opciones,
           "pregunta_EncuestaDto":{
                       "encuestaDto":{"id":this.estudioid},
                       "preguntaDto":{"id":this.preguntas[x].id}
@@ -226,9 +236,7 @@ export class EncuestaPageComponent implements OnInit {
 
         if(this.preguntas[x].tipopregunta=="Opcion Simple"){
           pre={
-            "opciones":{"preguntaDto":{"id":this.preguntas[x].id},
-                        "opcion_Simple_MultipleDto":[{id:Number(this.encuestaForm.value.preguntas[x].pregunta)}]
-          },
+            "opciones":[{"id":Number(this.encuestaForm.value.preguntas[x].pregunta)}],
             "pregunta_EncuestaDto":{
                         "encuestaDto":{"id":this.estudioid},
                         "preguntaDto":{"id":this.preguntas[x].id}
@@ -246,9 +254,42 @@ export class EncuestaPageComponent implements OnInit {
 
 
     if(comando==1){
+      comando=0;
+      this.eventBus.cast('inicio-progress','hola');
+      this.preguntaServicio.Responder(this.preguntas[x].id,this.estudioid,this.encuestado_id,pre).subscribe(z=>{
+        console.log(z)
+        
+        this._toastrService.success("Exito", "Respuesta exitosa");
+        this.eventBus.cast('fin-progress','chao');
+
+        if(this.preguntas.length-1==x){
+
+          this.preguntaServicio.cerrarParticipacion(this.estudioid,this.encuestado_id).subscribe(x=>{
+
+            this._toastrService.success("Exito", "Estudio finalizado");
+            this.location.back();
+
+          })
+
+          
+          
+
+        }
+
+
+
+        this.stepper.next();
+
+      },err=>{
+
+        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        this.eventBus.cast('fin-progress','chao');
+        
+        
+      })
 
       console.log(pre)
-      this.stepper.next();
+      
     }
 
   }

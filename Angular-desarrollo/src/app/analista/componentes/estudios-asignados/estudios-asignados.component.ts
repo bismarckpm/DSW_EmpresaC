@@ -47,6 +47,7 @@ export class EstudiosAsignadosComponent implements OnInit {
         this.estudios=response.estudios;
         this._toastrService.success("Exito", "Todas los estudios asignados");
         this.eventBus.cast('fin-progress','chao');
+        
       },
       (error)=>{
         console.log(error);
@@ -74,6 +75,7 @@ export class EstudiosAsignadosComponent implements OnInit {
       width: '500px',
       //data:{id: ESTUDIO.id} para probar
       data:{id:estudio_id}
+      
     });
 
     this.dialogRef .afterClosed().subscribe(result => {
@@ -96,13 +98,14 @@ export class EstudiosAsignadosComponent implements OnInit {
     });
   }
 
-  openDialogMuestra(estudio_muestra): void {
+  openDialogMuestra(estudio_muestra, estudio_id): void {
     console.log(estudio_muestra);
     this.dialogRef = this.dialog.open(MuestraComponent, {
       width: '600px',
       height:'400px',
       //data:{participaciones:MUESTRA}  para probar
-      data:{participaciones:estudio_muestra}
+      data:{participaciones:estudio_muestra,estudio:estudio_id},
+     
 
     });
 

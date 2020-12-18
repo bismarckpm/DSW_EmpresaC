@@ -19,9 +19,14 @@
             <div class="col-3" mat-line style="padding-top: 10px;"> {{item.nombre}} </div>
             <div class="col-3" mat-line style="padding-top: 10px;"> {{item.apellido}} </div>
             <div class="col-3" mat-line>
-                <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" style="border:0; outline: none;">
+                <button *ngIf="estudioid.modo_encuesta!='telefono' && estudioid.estado!='en progreso'" mat-icon-button aria-label="Example icon button with a vertical three dot icon" style="border:0; outline: none;">
                     <mat-icon>more_vert</mat-icon>
                 </button>
+
+                <button [routerLink]="['/analista/Encuesta', estudioid.id, item.id_encuestado]" *ngIf="estudioid.modo_encuesta=='telefono' && estudioid.estado=='en progreso' && item.estado=='activo' " mat-icon-button aria-label="Example icon button with a vertical three dot icon" style="border:0; outline: none;">
+                    Encuestar
+                </button>
+                <!-- Encuesta/:id/:id2 -->
             </div>
         </div>
     </mat-list-item>

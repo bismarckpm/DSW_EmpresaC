@@ -24,7 +24,7 @@ export class AdministrarEstudiosComponent implements OnInit {
   ngOnInit(): void {
     this.init();
 
-    this.solicitudservice.getEstudiosPendientes(19).subscribe(e=> {
+    this.solicitudservice.getEstudiosPendientes(this.admin_id).subscribe(e=> {
       this._toastrService.success("Exito", "Todas los estudios asignados");
       this.eventBus.cast('fin-progress','chao');
       this.estudios=e.estudios;console.log(e)},

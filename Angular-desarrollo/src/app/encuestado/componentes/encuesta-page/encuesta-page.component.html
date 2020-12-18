@@ -1,14 +1,30 @@
 
+<mat-card class="example-card" *ngIf="estudio">
+  <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Marca: {{estudio.caracteristicas.Marca}}</mat-card-title>
+      <mat-card-subtitle>Cliente: Juan Perez - Estado:
+          <p *ngIf="estudio.estatus!='finalizado'" [class]="estudio.estatus=='pendiente'?'pendiente': 'en-progreso'">{{estudio.estatus}}</p>
+          <p *ngIf="estudio.estatus=='finalizado'" style="color: blue; display: inline-block;">{{estudio.estatus}}</p>
+          
+      </mat-card-subtitle>
 
+  </mat-card-header>
+  <img mat-card-image src="/assets/estudio.png" alt="Estudio">
+  <mat-card-content>
+  </mat-card-content>
+</mat-card>
 
-
+<!-- 
 {{encuestaForm.value |json}}
-{{encuestaForm.valid}}
+{{encuestaForm.valid}} -->
+
+
 
 <form novalidate [formGroup]="encuestaForm">
 
   <!-- formArrayName="fechas" *ngFor="let items of Fechas.controls; let i=index" -->
-  <mat-horizontal-stepper [linear]="isLinear"  #stepper linear>
+  <mat-horizontal-stepper [linear]="isLinear" *ngIf="preguntas" #stepper linear>
 
     <mat-step formArrayName="preguntas" *ngFor="let items of Preguntas.controls; let i=index" >
       <form [formGroupName]="i">
@@ -74,45 +90,3 @@
 
 </form>
 
-  <!-- <mat-horizontal-stepper [linear]="isLinear" #stepper>
-
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Fill out your name</ng-template>
-        <mat-form-field>
-          <mat-label>Name</mat-label>
-          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-
-
-
-    <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
-      <form [formGroup]="secondFormGroup">
-        <mat-form-field>
-          <mat-label>Address</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                 required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
-      <div>
-        
-        <button mat-button (click)="stepper.reset()">aceptar</button>
-      </div>
-    </mat-step>
-
-
-  </mat-horizontal-stepper> -->
