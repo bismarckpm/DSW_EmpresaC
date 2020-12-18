@@ -1,0 +1,42 @@
+.contenido{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+
+
+}
+
+.imagen{
+    width: 25%;
+}
+.imagen img{
+    width: 100%;
+}
+
+.informacion{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.estado{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.imagen-estado{
+    width: 5%;   
+}
+.imagen-estado img{
+    width: 100%;
+}
+.texto-estado{
+    width: 90%;
+    margin-left: 5px;
+}

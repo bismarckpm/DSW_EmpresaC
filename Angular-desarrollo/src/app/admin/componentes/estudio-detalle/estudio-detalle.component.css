@@ -1,0 +1,41 @@
+.contenedor{
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    width: 100%;
+
+    
+
+}
+
+.item{
+    margin-top: 10px;
+    
+    width: 40%;
+    margin-left: 10%;
+    border-radius: 5px;
+    -webkit-box-shadow: 7px 6px 14px 1px rgba(0,0,0,0.53);
+    -moz-box-shadow: 7px 6px 14px 1px rgba(0,0,0,0.53);
+    box-shadow: 7px 6px 14px 1px rgba(0,0,0,0.53);
+}
+
+.cancelar button{
+    width: 20%;
+    border-radius: 3px;
+    border: none;
+    background-color: rgba(200, 22, 64, 0.787);
+    color: #ffffff;
+    transition: 1s all ease-in-out;
+  
+
+}
+
+.cancelar button:hover{
+transform: scale(1.1);
+  
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}

@@ -1,0 +1,13 @@
+
+<div class="card" *ngIf="estudio">
+    <div class="right">
+        <h2 class="name">{{estudio.caracteristicas.Marca}}</h2>
+        <div class="interests">
+            <p class="interests_title">Caracteristicas: </p>
+            <span class="interests_item">{{estudio.caracteristicas.Categoria}}</span>
+            <span class="interests_item">{{estudio.caracteristicas.Subcategoria}}</span>
+            <button class="bad" (click)="eliminarEstudio()">Eliminar</button><button class="good" [routerLink]="['/admin/EstudioDetalle', estudio.id]">Ver</button>
+        </div>
+    </div>
+</div>
+

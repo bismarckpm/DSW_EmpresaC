@@ -1,0 +1,189 @@
+<div class="container">
+    <mat-card class="row example-card container">
+        <mat-card-header class="color pg 2rm">
+
+            <div class="row">
+                <div class="col-12" style="display:flex">
+                    <h1 class="fuente"> Solicitar Estudio</h1>
+                </div>
+            </div>
+
+        </mat-card-header>
+
+        <mat-card-content class="container" style="padding: 0 50px;">
+
+            <h2>
+                <mat-icon aria-hidden="false" aria-label="Example pie_chart icon">pie_chart</mat-icon>
+                Productos
+            </h2>
+
+            <div class="row justify-content-md-center">
+                <div class="col-6 col-md-4">Categoria <br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Seleccionar</mat-label>
+                        <mat-select [(ngModel)]="categoria_id" (selectionChange)="filterSubcategorias($event)">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.nombre}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-6 col-md-4">Subcategoria<br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Seleccionar </mat-label>
+                        <mat-select [(ngModel)]="subcategoria_id" (selectionChange)="filterMarcas($event)">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let subcategoria of subcategorias_filtered" [value]="subcategoria.id">{{subcategoria.nombre}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+            <div class="row justify-content-md-center">
+                <div class="row">
+                    <div class="col-md-12">
+                        <mat-selection-list [(ngModel)]="marcaSelected" [multiple]="false">
+                            <mat-list-option *ngFor="let marca of marcas_filtered" [value]="marca.id">
+                                <mat-icon mat-list-icon>category</mat-icon>
+                                {{marca.nombre}}
+                            </mat-list-option>
+                        </mat-selection-list>
+                    </div>
+                </div>
+            </div>
+
+            <mat-divider class="divider" style="padding-bottom: 20px;"></mat-divider>
+
+            <h2>
+                <mat-icon aria-hidden="false" aria-label="Example groups icon">groups</mat-icon>
+                Caracteristicas Demograficas
+            </h2>
+            <div class="row justify-content-md-center">
+                <div class="col-6 col-md-3">Pais<br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Seleccionar </mat-label>
+                        <mat-select [(ngModel)]="pais_id" (selectionChange)="filterEstados($event)">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let pais of paises" [value]="pais.id">{{pais.nombre}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-6 col-md-3">Estados<br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Seleccionar </mat-label>
+                        <mat-select [(ngModel)]="estado_id" (selectionChange)="filterCiudades($event)">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let estado of estados_filtered" [value]="estado.id">{{estado.nombre}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-6 col-md-3">Ciudades<br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Seleccionar </mat-label>
+                        <mat-select [(ngModel)]="ciudad_id" (selectionChange)="filterParroquias($event)">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let ciudad of ciudades_filtered" [value]="ciudad.id">{{ciudad.nombre}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-6 col-md-3">Parroquia<br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Seleccionar </mat-label>
+                        <mat-select [(ngModel)]="parroquiaSelected">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let parroquia of parroquias_filtered" [value]="parroquia.id">{{parroquia.nombre}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row justify-content-md-center">
+                <div class="col-6 col-md-3">Nacionalidad<br>
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Ex. venezolano" [(ngModel)]="nacionalidadSelected">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-6 col-md-3">Edad Minima<br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Seleccionar </mat-label>
+                        <mat-select [(ngModel)]="edad_minimaSelected">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let edad_min of edades" [value]="edad_min">{{edad_min}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-6 col-md-3">Edad Maxima<br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Seleccionar </mat-label>
+                        <mat-select [(ngModel)]="edad_maximaSelected">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let edad_max of edades" [value]="edad_max">{{edad_max}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-6 col-md-3">Niveles Socioeconomico<br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Seleccionar </mat-label>
+                        <mat-select [(ngModel)]="nivel_socioeconomicoSelected">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let nivel of niveles_socioeconomico" [value]="nivel">{{nivel}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-between">
+                <div class="col-6 col-md-4">Genero<br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Select</mat-label>
+                        <mat-select [(ngModel)]="generoSelected">
+                            <mat-option value="M">Masculino</mat-option>
+                            <mat-option value="F">Femenino</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-6 col-md-4">Cantidad de hijos<br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Seleccionar </mat-label>
+                        <mat-select [(ngModel)]="hijoSelected">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let hijo of hijos" [value]="hijo">{{hijo}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-6 col-md-4">Niveles Academicos<br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Seleccionar </mat-label>
+                        <mat-select [(ngModel)]="nivel_academicoSelected">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let nivel of niveles_academicos" [value]="nivel.id">{{nivel.nombre}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <mat-divider class="divider"></mat-divider>
+            <h2>
+                <mat-icon aria-hidden="false" aria-label="Example blur_on icon">blur_on</mat-icon>
+                Modalidad
+            </h2>
+            <mat-radio-group [(ngModel)]="modo_encuestaSelected" aria-label="Select an option" class="row">
+                <div class="col-6">
+                    <mat-radio-button value="telefono">Por Telefono</mat-radio-button>
+                </div>
+                <div class="col-6">
+                    <mat-radio-button value="online">A través de la aplicación</mat-radio-button>
+                </div>
+            </mat-radio-group>
+
+        </mat-card-content>
+
+        <mat-card-actions style="padding: 15px 0;">
+            <div class="row justify-content-md-center">
+                <button mat-flat-button class="color" (click)="enviarSolicitud()">Solicitar</button>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>

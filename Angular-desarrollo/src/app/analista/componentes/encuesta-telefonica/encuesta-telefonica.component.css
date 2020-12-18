@@ -1,0 +1,18 @@
+::ng-deep .mat-horizontal-stepper-header{
+    pointer-events: none !important;
+}
+
+mat-form-field {
+    width: 100%;
+  }
+
+  mat-slider {
+    margin-top: 20px;
+    width: 80%;
+  }
+
+
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }

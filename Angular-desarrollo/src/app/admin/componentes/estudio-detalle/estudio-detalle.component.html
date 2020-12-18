@@ -1,0 +1,61 @@
+
+<div *ngIf="estudio">
+
+  <mat-card class="example-card" >
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Marca: {{estudio.caracteristicas.Marca}}</mat-card-title>
+        <mat-card-subtitle>Cliente: Juan Perez - Estado:
+            <p *ngIf="estudio.estatus!='finalizado'" [class]="estudio.estatus=='pendiente'?'pendiente': 'en-progreso'">{{estudio.estatus}}</p>
+            <p *ngIf="estudio.estatus=='finalizado'" style="color: blue; display: inline-block;">{{estudio.estatus}}</p>
+            
+        </mat-card-subtitle>
+
+    </mat-card-header>
+    <img mat-card-image src="/assets/estudio.png" alt="Estudio">
+    <mat-card-content>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button (click)="eliminarEstudio()" >Parar Estudio</button>
+
+
+  </mat-card-actions>
+</mat-card>
+
+      <mat-divider></mat-divider>
+
+      <mat-card class="example-card "  >
+        <mat-card-header aling-center>
+          
+          <mat-card-title >Participacion</mat-card-title>
+          
+        </mat-card-header>
+
+
+
+
+
+      
+        <mat-card-content>
+
+
+            <div class="participacion">
+              <p>Participantes Totales:{{participantes.length}}</p>
+              <p>Personas que ya cumplieron:{{activos}}</p>
+              <p>Personas faltantes:{{inactivos}}</p>
+            </div>
+          
+
+            <div class="contenedor">
+
+                <div class="item" *ngFor="let x of participantes">
+                  <app-tarjeta-participantes  [participante]=x ></app-tarjeta-participantes>
+                </div>
+            </div>
+         
+        </mat-card-content>
+      
+      </mat-card>
+
+</div>
