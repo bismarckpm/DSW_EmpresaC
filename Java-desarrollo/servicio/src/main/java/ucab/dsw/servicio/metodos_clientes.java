@@ -115,4 +115,35 @@ public class metodos_clientes {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
+
+    @GET
+    @Path("/get-id/{_id}")
+    public Response getClienteId(@PathParam("_id") long _id) {
+
+        JsonObject data;
+
+        DaoCliente dao = new DaoCliente();
+        try {
+
+            Cliente cliente= dao.getClienteId(_id);
+
+            data= Json.createObjectBuilder().add("estado","success")
+                    .add("mensaje","uid del cliente es: "+ _id)
+                    .add("codigo",200)
+                    .add("cliente_id",cliente.get_id()).build();
+        }
+        catch (Exception ex){
+            data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje",ex.getMessage())
+                    .add("codigo",500).build();
+
+            System.out.println(data);
+            return Response.status(Response.Status.OK).entity(data).build();
+
+        }
+        System.out.println(data);
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
+
 }

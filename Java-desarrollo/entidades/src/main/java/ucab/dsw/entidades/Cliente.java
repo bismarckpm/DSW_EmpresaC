@@ -9,10 +9,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
+import javax.persistence.*;
 
 
 @Entity
 @Table( name = "cliente" )
+@NamedQueries({
+        @NamedQuery(name="ClienteId", query="select c FROM Cliente c where c._usuario_cliente._id=:usuario_id")
+})
 public class Cliente extends EntidadBase
 {
     @Column( name = "rif" )

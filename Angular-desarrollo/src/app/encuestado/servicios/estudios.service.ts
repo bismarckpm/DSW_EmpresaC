@@ -25,6 +25,11 @@ export class EstudiosService {
     return this.http.get<Respuesta>(global.url + 'admin/estudio/'+id)
   }
 
+  getEncuestadoId(user_id): Observable<any> {
+    // return of(DISHES.filter((dish) => (dish.id === id))[0]).pipe(delay(2000));
+    return this.http.get<Respuesta>(global.url + 'encuestado/get-id/'+user_id)
+  }
+
 
 
 }

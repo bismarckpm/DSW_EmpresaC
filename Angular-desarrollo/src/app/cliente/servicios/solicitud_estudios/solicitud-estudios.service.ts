@@ -66,6 +66,13 @@ export class SolicitudEstudiosService {
     
   }
 
+  getClienteIdByUsuario(cliente_id):Observable<any>{
+
+    //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
+    return this._http.get(global.url+'cliente/get-id/'+cliente_id);  
+    
+  }
+
   doSolicitudEstudio(solicitud):Observable<any>{
     //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
     return this._http.post(global.url+'solicitud/add',solicitud);

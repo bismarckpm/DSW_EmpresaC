@@ -53,7 +53,9 @@ public class metodos_encuestados {
 
                     JsonObject tipo = Json.createObjectBuilder().add("id", participacion.get_solicitudestudio().get_id())
                             .add("fecha", participacion.get_solicitudestudio().get_fecha_inicio().toString())
-                            .add("caracteristicas", encuesta).build();
+                            .add("caracteristicas", encuesta)
+                            .add("estado",participacion.get_solicitudestudio().get_estado())
+                            .add("modo_encuesta",participacion.get_solicitudestudio().get_modoencuesta()).build();
 
                     builder.add(tipo);
                     System.out.println("id" + obj.get_id());
@@ -416,6 +418,36 @@ public class metodos_encuestados {
 
             return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
+
+    @GET
+    @Path("/get-id/{_id}")
+    public Response getEncuestadoId(@PathParam("_id") long _id) {
+
+        JsonObject data;
+
+        DaoEncuestado dao = new DaoEncuestado();
+        try {
+
+            Encuestado encuestado= dao.getEncuestadoId(_id);
+
+            data= Json.createObjectBuilder().add("estado","success")
+                    .add("mensaje","uid del encuestado es: "+ _id)
+                    .add("codigo",200)
+                    .add("encuestado_id",encuestado.get_id()).build();
+        }
+        catch (Exception ex){
+            data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje",ex.getMessage())
+                    .add("codigo",500).build();
+
+            System.out.println(data);
+            return Response.status(Response.Status.OK).entity(data).build();
+
+        }
+        System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
 }
