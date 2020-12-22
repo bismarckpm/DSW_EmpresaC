@@ -1,0 +1,68 @@
+<div *ngIf="estudio  && preguntas">
+
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Marca: {{estudio.caracteristicas.Marca}}</mat-card-title>
+            <mat-card-subtitle>Cliente: Juan Perez - Estado:
+                <p *ngIf="estudio.estatus!='finalizado'" [class]="estudio.estatus=='pendiente'?'pendiente': 'en-progreso'">{{estudio.estatus}}</p>
+                <p *ngIf="estudio.estatus=='finalizado'" style="color: blue; display: inline-block;">{{estudio.estatus}}</p>
+
+            </mat-card-subtitle>
+
+        </mat-card-header>
+        <img mat-card-image src="/assets/estudio.png" alt="Estudio">
+        <mat-card-content>
+        </mat-card-content>
+    </mat-card>
+
+
+    <app-contenedor-pregunta-nueva (nuevaEvent)="PreguntaNueva($event)"></app-contenedor-pregunta-nueva>
+
+
+
+    <mat-card style="padding-left: 50px; padding-right: 50px;">
+        <mat-card-header aling-center>
+            <mat-card-title>Agregar preguntas existentes</mat-card-title>
+        </mat-card-header>
+
+        <form novalidate [formGroup]="AgregadorForm" #fform="ngForm">
+
+            <mat-form-field class="half-width" style="width: 50%;">
+                <mat-select formControlName="tipo">
+
+                    <mat-option *ngFor="let x of preguntas" value={{x.id}}>{{x.descripcion}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-card-actions style="display: flex; width: 100%; justify-content: center;">
+                <button mat-raised-button color="#ffc107" (click)="Agregador()" style="border-radius: 50px;border:0; outline: none;">Agregar Pregunta</button>
+            </mat-card-actions>
+        </form>
+
+        <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+            <app-contenedor-pregunta-vieja style="width: 45%;" *ngFor="let i of preguntasSeleccionadas" (preguntaEvent)="Borrador($event)" [pregunta]="i"></app-contenedor-pregunta-vieja>
+        </div>
+
+    </mat-card>
+
+    <mat-card style="padding-left: 50px; padding-right: 50px;">
+        <div class="divider div-transparent div-dot"></div>
+        <mat-card-header aling-center>
+            <mat-card-title>Confirma la encuesta</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+
+            <form novalidate [formGroup]="encuestaForm" #fform="ngForm">
+                <mat-form-field style="width: 50%;">
+                    <mat-label>Nombre de la encuesta</mat-label>
+                    <input matInput formControlName="nombre" type="text" id="exampleInputEncuesta1" aria-describedby="EncuestaHelp">
+                </mat-form-field>
+            </form>
+            <mat-card-actions style="display: flex; width: 100%; justify-content: center;">
+                <button mat-raised-button color="#ffc107" (click)="aceptarEncuesta()" style="border-radius: 50px;border:0; outline: none;">Aceptar encuesta</button>
+            </mat-card-actions>
+
+        </mat-card-content>
+    </mat-card>
+</div>

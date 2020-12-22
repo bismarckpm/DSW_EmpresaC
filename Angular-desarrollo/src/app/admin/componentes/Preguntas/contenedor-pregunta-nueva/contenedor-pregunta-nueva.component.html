@@ -1,0 +1,81 @@
+<mat-card style="padding-left: 50px; padding-right: 50px;">
+    <mat-card-header aling-center>
+        <mat-card-title>Agregar pregunta nueva</mat-card-title>
+    </mat-card-header>
+    <p>{{error}}</p>
+
+
+    <form novalidate [formGroup]="PreguntaForm" #fform="ngForm">
+
+        <!-- pattern="[a-zA-Z ]*" -->
+
+        <mat-form-field class="example-full-width" style="width: 75%;">
+            <mat-label>Pregunta</mat-label>
+            <input matInput #message maxlength="256" placeholder="Ex. ¿Considera que..." formControlName="pregunta">
+            <mat-hint align="start"><strong>No incluyas información personal</strong> </mat-hint>
+            <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+        </mat-form-field>
+
+
+        <mat-form-field class="example-full-width" style="width: 15%; margin-left: 3%;">
+            <mat-select formControlName="tipo">
+                <mat-option value="desarrollo">Desarrollo</mat-option>
+                <mat-option value="Rango">Rango</mat-option>
+                <mat-option value="Opcion multiple">Opcion multiple</mat-option>
+                <mat-option value="Opcion simple">Opcion simple</mat-option>
+                <mat-option value="booleana">Booleana</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+
+        <div *ngIf="tipo=='Rango'" style="margin-top: 25px; display: flex; justify-content: center;">
+            <mat-form-field style="width: 10%; margin: 0 5px;">
+                <mat-label>Minimo</mat-label>
+                <input matInput placeholder="Ex. 1,2,3...." formControlName="minimo" type="number" name="min" class="num">
+            </mat-form-field>
+            <mat-form-field style="width: 10%;margin: 0 5px;">
+                <mat-label>Maximo</mat-label>
+                <input matInput placeholder="Ex. 4,5,6...." formControlName="maximo" type="number" name="max" class="num">
+            </mat-form-field>
+        </div>
+
+        <div *ngIf="tipo=='Opcion multiple' || tipo=='Opcion simple'" style="margin-top: 25px; display: flex; justify-content: center; flex-direction: column;">
+
+            <mat-form-field style="width: 10%; margin: 0 5px;">
+                <mat-label>Opcion 1</mat-label>
+                <input matInput placeholder="Ex. opcion 1...." type="text" placeholder="Opcion..." formControlName="opcion1">
+            </mat-form-field>
+
+            <mat-form-field style="width: 10%; margin: 0 5px;">
+                <mat-label>Opcion 2</mat-label>
+                <input matInput placeholder="Ex. opcion 1...." type="text" placeholder="Opcion..." formControlName="opcion2">
+            </mat-form-field>
+
+            <div formArrayName="opciones" *ngFor="let items of Opciones.controls; let i=index">
+                <mat-form-field style="width: 10%; margin: 0 5px;">
+                    <mat-label>Opcion</mat-label>
+                    <input matInput placeholder="Ex. opcion 3...." type="text" placeholder="Opcion..." [formControlName]="i">
+                </mat-form-field>
+            </div>
+
+            <div>
+                <button mat-icon-button *ngIf="Opciones.controls.length>0" style="border-radius: 50px;border:0; outline: none;" color="warn" aria-label="Example icon button with a heart icon" (click)="deleteOpciones()">
+                    <mat-icon>delete</mat-icon>
+                </button>
+
+                <button mat-icon-button style="color: green;border-radius: 50px;border:0; outline: none;" aria-label="Example icon button with a heart icon" (click)="addOpciones()">
+                    <mat-icon>add_circle</mat-icon>
+                </button>
+            </div>
+        </div>
+
+
+        <mat-card-actions style="display: flex; width: 100%; justify-content: center;">
+            <button type="submit" mat-raised-button (click)="AceptarPregunta()" [disabled]="PreguntaForm.invalid" style="border-radius: 50px;border:0; outline: none;">Aceptar Pregunta</button>
+        </mat-card-actions>
+
+    </form>
+
+    <div class="divider div-transparent div-dot"></div>
+</mat-card>

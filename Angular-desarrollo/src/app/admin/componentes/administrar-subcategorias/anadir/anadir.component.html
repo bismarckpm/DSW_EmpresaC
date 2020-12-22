@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>
+    Añadir SubCategoria
+</h2>
+
+<mat-dialog-content class="mat-typography">
+    <div class="formulario">
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Nombre de la Subcategoria</mat-label>
+            <input matInput [(ngModel)]="subcategoria" placeholder="Ex. Leche">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Seleccione la categoria</mat-label>
+            <mat-select [(value)]="categoria_id">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let item of categorias" [value]="item.id">{{item.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="true" color="warn">Cancelar</button>
+    <button mat-raised-button (click)="addSubCategorias()" cdkFocusInitial class="color">Guardar</button>
+</mat-dialog-actions>

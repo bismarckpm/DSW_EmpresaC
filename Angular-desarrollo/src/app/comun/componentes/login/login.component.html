@@ -1,0 +1,32 @@
+<div class="padre">
+    <div class="hijo">
+        <img src="/assets/MUcab.png">
+    </div>
+    <div class="hijo">
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title>Bienvenido a Mercadeo UCAB</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div>
+                    <form [formGroup]="loginData" class="example-form">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Usuario/Correo electrónico</mat-label>
+                            <input matInput type="text" formControlName="usuario">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Contraseña</mat-label>
+                            <input matInput type="password" formControlName="pass">
+                        </mat-form-field>
+                    </form>
+                </div>
+            </mat-card-content>
+            <a routerLink="/recuperacion" class="float-right">¿Olvidaste tu contraseña?</a>
+            <br>
+            <mat-card-actions>
+                <button class="float-right" mat-raised-button color="#ffc107" type="submit" (click)="iniciarSesion()">Ingresar</button>
+                <button mat-raised-button color="#ffc107" routerLink="/registro">Registrarse</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

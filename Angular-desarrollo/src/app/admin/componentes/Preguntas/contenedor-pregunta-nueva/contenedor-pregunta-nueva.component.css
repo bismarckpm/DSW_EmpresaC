@@ -1,0 +1,23 @@
+input {
+    width: 60%;
+    margin-right: 10px;
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: #000000;
+}
+
+.num {
+    width: 90%;
+}
+
+.example-form {
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.boton-valido {
+    border: 1px solid #000000;
+}

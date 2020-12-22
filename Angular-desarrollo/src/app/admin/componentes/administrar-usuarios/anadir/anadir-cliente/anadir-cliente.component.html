@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>
+    Añadir Cliente
+</h2>
+
+<mat-dialog-content class="mat-typography">
+    <div class="formulario">
+        <mat-form-field class="example-full-width">
+            <mat-label>Nombre de usuario</mat-label>
+            <input matInput [(ngModel)]="cn" placeholder="Ex. gjbcd20">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput [(ngModel)]="nombre" placeholder="Ex. Juan">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Apellido</mat-label>
+            <input matInput [(ngModel)]="sn" placeholder="Ex. Perez">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Correo electronico</mat-label>
+            <input matInput [(ngModel)]="correoelectronico" placeholder="Ex. gjbcd20@gmail.com">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Contraseña</mat-label>
+            <input matInput [type]="'password'" [(ngModel)]="contrasena">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>RIF</mat-label>
+            <input matInput [(ngModel)]="rif" placeholder="Ex. Perez">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Nombre de la empresa</mat-label>
+            <input matInput [(ngModel)]="nombre_empresa" placeholder="Ex. gjbcd20@gmail.com">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Razon social</mat-label>
+            <input matInput [(ngModel)]="razon_social">
+        </mat-form-field>
+
+
+    </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-stroked-button [mat-dialog-close]="true" color="warn">Cancelar</button>
+    <button mat-raised-button (click)="addUsuarioCliente()" cdkFocusInitial class="color">Guardar</button>
+</mat-dialog-actions>

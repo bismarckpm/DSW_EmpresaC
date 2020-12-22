@@ -1,0 +1,29 @@
+<div>
+    <div style="display: flex; justify-content: center;">
+        <h3 style="margin: 0; padding-top: 10px;">{{pregunta.descripcion}}</h3>
+        <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon" (click)="Eliminar()">
+          <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+
+    <div>
+        <p *ngIf="pregunta.tipopregunta=='desarrollo'" style="text-align: center;"><strong>Pregunta de tipo texto</strong></p>
+
+        <p *ngIf="pregunta.tipopregunta=='Rango'" style="text-align: center;"><strong>Pregunta de tipo rango</strong></p>
+
+
+        <p *ngIf="pregunta.tipopregunta=='booleana'" style="text-align: center;"><strong>Pregunta de tipo booleana</strong></p>
+
+        <div *ngIf="pregunta.tipopregunta=='Opcion multiple'">
+            <p style="text-align: center;"><strong>Pregunta de tipo multiple</strong></p>
+            <p *ngFor="let x of pregunta.opciones">{{x}}</p>
+        </div>
+
+
+        <div *ngIf="pregunta.tipopregunta=='Opcion simple'">
+            <p style="text-align: center;"><strong>Pregunta de tipo simple</strong></p>
+            <p *ngFor="let x of pregunta.opciones">{{x}}</p>
+        </div>
+    </div>
+
+</div>

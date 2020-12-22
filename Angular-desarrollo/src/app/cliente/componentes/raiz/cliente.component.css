@@ -1,0 +1,19 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+.color {
+    background-color: 
+    #ffc400
+}
+.sidevar {
+ width: 50%;
+}
+.example-card {
+    max-width: 600px;
+    height:500px;
+  }
+  .example-img {
+    max-width: 700px;
+    height:700px;
+  }
+  

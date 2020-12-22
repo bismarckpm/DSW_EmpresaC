@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="row justify-content-md-center">
+        <h1> PRESENTACIONES </h1>
+    </div>
+
+    <div class="table mat-elevation-z8" style="text-align: center;">
+        <table mat-table [dataSource]="dataSource">
+
+
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400; text-align: center;"> Codigo </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400; text-align: center;"> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="tipo">
+                <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400; text-align: center;"> Tipo </th>
+                <td mat-cell *matCellDef="let element"> {{element.tipo}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="estado" class="color">
+                <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400;text-align: center;"> Estatus </th>
+                <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400;text-align: center;">Opciones</th>
+                <td mat-cell *matCellDef="let element">
+                    <div class="father">
+                        <div aling="center">
+                            <a class="btn btn-primary text-white" style="cursor: pointer;" (click)="openDialogUpdate(element)"><i class="fas fa-pencil-alt"></i></a>
+                        </div>
+                        <div aling="center">
+                            <button type="submit" class="btn btn-danger" (click)="openDialogDelete(element)"> <i class=" fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+
+
+
+    <div class="row justify-content-end">
+
+        <button mat-fab class="color" (click)="openDialog()" style="border:0; outline: none;"><mat-icon style="border:0;outline:none">add</mat-icon></button>
+    </div>
+
+</div>

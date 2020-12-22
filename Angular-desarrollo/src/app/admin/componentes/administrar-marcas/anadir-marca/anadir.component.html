@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>
+    Añadir Marca
+</h2>
+
+<mat-dialog-content class="mat-typography">
+    <div class="formulario">
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Nombre de la Marca</mat-label>
+            <input matInput [(ngModel)]="marca" placeholder=" ">
+        </mat-form-field>
+
+        <mat-label>Seleccione la Subcategoria</mat-label>
+
+        <mat-form-field appearance="outline">
+            <mat-select [(value)]="subcategoria_id">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let item of subcategorias" [value]="item.id">{{item.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-label>Seleccione el tipo de producto</mat-label>
+
+        <mat-form-field appearance="outline">
+            <mat-select [(value)]="tipo_id">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let item of tipos" [value]="item.id">{{item.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-stroked-button [mat-dialog-close]="true" color="warn">Cancelar</button>
+    <button mat-raised-button (click)="addMarca()" cdkFocusInitial class="color">Guardar</button>
+</mat-dialog-actions>

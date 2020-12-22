@@ -1,0 +1,226 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a routerLink="" class="brand-link">
+        <img src="/assets/MUcab.png" alt="AdminLTE Logo" class="brand-image">
+        <span class="brand-text font-weight-light">Mercadeo Ucab</span>
+        <br>
+    </a>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">Alexander Pierce</a>
+            </div>
+        </div>
+
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                <div>
+                    <li ng-if="flag" class="nav-item">
+                        <a (click)="refresh()" class="nav-link" style="cursor: pointer;">
+                            <i class="nav-icon fas fa-bars"></i>
+                            <p>
+                                Mis opciones
+                                <span class="right"><i class="nav-icon fas fa-arrow-circle-down"></i></span>
+                            </p>
+                        </a>
+                    </li>
+                </div>
+
+                <!--COMUN-->
+                <div *ngIf="rol=='cliente' || rol=='admin' || rol=='analista' || rol=='encuestado'">
+                    <li class="nav-item">
+                        <a routerLink="/mi-perfil" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>
+                                Mi Perfil
+                                <span class="right badge badge-danger">New</span>
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a (click)="changePassword()" class="nav-link" style="cursor: pointer;">
+                            <i class="nav-icon fas fa-key"></i>
+                            <p>
+                                Cambiar clave
+                                <span class="right badge badge-danger">New</span>
+                            </p>
+                        </a>
+                    </li>
+                </div>
+                <!--CLIENTE-->
+                <div *ngIf="rol=='cliente'">
+                    <li class="nav-item">
+                        <a routerLink="/cliente/solicitar-estudios" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Solicitar Estudios
+                                <span class="right badge badge-danger">New</span>
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/cliente/consultar-estudios" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Consultar estudios solicitados
+                                <span class="right badge badge-danger">New</span>
+                            </p>
+                        </a>
+                    </li>
+                </div>
+
+                <!--ADMIN-->
+                <div *ngIf="rol=='admin'">
+                    <li class="nav-item">
+                        <a routerLink="/admin/administrar-estudios-progreso" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Estudios en progreso
+                                <span class="right badge badge-danger">New</span>
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a routerLink="/admin/administrar-estudios" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Administrar Estudio
+                                <span class="right badge badge-danger">New</span>
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a routerLink="/admin/administrar-usuarios" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Administrar Usuarios
+                                <span class="right badge badge-danger">New</span>
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a routerLink="/admin/administrar-tipos" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Administrar Tipos
+                                <span class="right badge badge-danger">New</span>
+                            </p>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a routerLink="/admin/administrar-presentaciones" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Administrar Presentaciones
+                                <span class="right badge badge-danger">New</span>
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a routerLink="/" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Administrar Preguntas
+                                <span class="right badge badge-danger">New</span>
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a routerLink="/admin/administrar-marcas" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Administrar Marcas
+                                <span class="right badge badge-danger">New</span>
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a routerLink="/admin/administrar-categoria" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Administrar Categoria
+                                <span class="right badge badge-danger">New</span>
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a routerLink="/admin/administrar-subcategorias" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Administrar Subcategorias
+                                <span class="right badge badge-danger">New</span>
+                            </p>
+                        </a>
+                    </li>
+
+                </div>
+
+                <!--ANALISTA-->
+                <div *ngIf="rol=='analista'">
+                    <li class="nav-item">
+                        <a routerLink="/analista/estudios" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Consultar estudios asignados
+
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="#" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Consultar muestras
+
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="#" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Realizar entrevista
+
+                            </p>
+                        </a>
+                    </li>
+                </div>
+
+
+                <!--ENCUESTADO-->
+                <div *ngIf="rol=='encuestado'">
+                    <li class="nav-item">
+                        <a routerLink="/encuestado/pendientes" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Consultar estudios
+                                <span class="right badge badge-danger">New</span>
+                            </p>
+                        </a>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
