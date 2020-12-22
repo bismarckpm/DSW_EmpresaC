@@ -482,15 +482,9 @@ public class metodos_admin {
         JsonArrayBuilder builder = Json.createArrayBuilder();
         try {
             List<PreguntaEncuesta> resultado = null;
-            List<Pregunta> resultado2 = null;
 
             DaoPreguntaEncuesta dao = new DaoPreguntaEncuesta();
             Class<PreguntaEncuesta> type = PreguntaEncuesta.class;
-
-            DaoPregunta dao2 = new DaoPregunta();
-            Class<Pregunta> type2 = Pregunta.class;
-
-            resultado2 = dao2.findAll(type2);
 
             resultado = dao.findAll(type);
 
@@ -507,20 +501,6 @@ public class metodos_admin {
 
                     builder.add(p);
 
-                }
-            }
-
-            for (Pregunta obj2 : resultado2) {
-                Pregunta pregunta = dao2.find(obj2.get_id(), Pregunta.class);
-
-                if (pregunta.get_preguntaencuesta().isEmpty() == true) {
-                    JsonObject p = Json.createObjectBuilder().add("id", pregunta.get_id())
-                            .add("descripcion", pregunta.get_descripcion())
-                            .add("tipopregunta", pregunta.get_tipopregunta())
-                            .build();
-
-
-                    builder.add(p);
                 }
             }
 
