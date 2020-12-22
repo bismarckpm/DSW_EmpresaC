@@ -305,7 +305,7 @@ export class RegistroComponent implements OnInit {
         localStorage.setItem("user_id", data.user_id );
         localStorage.setItem("rol", data.rol );
         localStorage.setItem("token", data.token );
-        this.router.navigate(['encuestado']);
+        this.eventBus.cast('inicio-sesion','ok');
         this.eventBus.cast('fin-progress','chao');
       },
       (error)=>{

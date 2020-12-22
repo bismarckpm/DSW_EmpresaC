@@ -7,7 +7,7 @@ import ucab.dsw.dtos.UsuarioDto;
 public class pruebaORMWS_Test
 {
 
-   /* @Test
+    @Test
     public void addUserTest() throws Exception
     {
         ucab.dsw.servicio.pruebaORMWS servicio = new ucab.dsw.servicio.pruebaORMWS();
@@ -19,6 +19,6 @@ public class pruebaORMWS_Test
         Assert.assertNotEquals( resultado.getId(), 0 );
         System.out.println("HOLA");
 
-    }*/
+    }
 
 }
