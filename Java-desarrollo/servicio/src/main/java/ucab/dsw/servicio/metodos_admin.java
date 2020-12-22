@@ -482,20 +482,31 @@ public class metodos_admin {
         JsonArrayBuilder builder = Json.createArrayBuilder();
         try {
             List<PreguntaEncuesta> resultado = null;
-
+			
+			DaoPregunta daoPregunta = new DaoPregunta();
+			DaoEncuesta daoEncuesta = new DaoEncuesta();
+			DaoMarca daoMarca = new DaoMarca ();
             DaoPreguntaEncuesta dao = new DaoPreguntaEncuesta();
+			
             Class<PreguntaEncuesta> type = PreguntaEncuesta.class;
+			
+			
 
             resultado = dao.findAll(type);
 
-            for (PreguntaEncuesta obj : resultado) {
+            for (PreguntaEncuesta obj : resultado) {                           
+				
                 PreguntaEncuesta preguntaEncuesta = dao.find(obj.get_id(),PreguntaEncuesta.class);
+				Pregunta pregunta=daoPregunta.find(preguntaEncuesta.get_pregunta().get_id(),Pregunta.class);
+				Encuesta encuesta=daoEncuesta.find(preguntaEncuesta.get_encuesta().get_id(),Encuesta.class);
+				Marca marca=daoMarca.find(encuesta.get_marca().get_id(),Marca.class);
+				
+				
+                if (marca.get_subcategoria().get_categoria().get_id() == _id) {
 
-                if (preguntaEncuesta.get_encuesta().get_marca().get_subcategoria().get_categoria().get_id() == _id) {
-
-                    JsonObject p = Json.createObjectBuilder().add("id", preguntaEncuesta.get_pregunta().get_id())
-                            .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
-                            .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
+                    JsonObject p = Json.createObjectBuilder().add("id", pregunta.get_id())
+                            .add("descripcion", pregunta.get_descripcion())
+                            .add("tipopregunta", pregunta.get_tipopregunta())
                             .build();
 
 
@@ -524,6 +535,7 @@ public class metodos_admin {
             return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
         //builder.build();
+        System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
