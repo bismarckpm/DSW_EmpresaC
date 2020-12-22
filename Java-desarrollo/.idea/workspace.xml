@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="servicio:war" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
@@ -27,20 +32,16 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c9c357f-2b07-42bd-afe8-0f758d0713a9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="90d40db4-ad8c-4243-a03c-37ef11dcf5a8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/directorioactivo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/directorioactivo/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dtos/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/metodos_admin_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/metodos_admin_Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="DefaultGradleProjectSettings">
-    <option name="isMigrated" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -59,135 +60,169 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProblemsViewState">
-    <option name="showPreview" value="true" />
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
   </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/entidades/entidades.iml" />
-        <option value="$PROJECT_DIR$/dtos/dtos.iml" />
-        <option value="$PROJECT_DIR$/directorioactivo/directorioactivo.iml" />
-        <option value="$PROJECT_DIR$/excepciones/excepciones.iml" />
-        <option value="$PROJECT_DIR$/accesodatos/accesodatos.iml" />
-        <option value="$PROJECT_DIR$/servicio/servicio.iml" />
-        <option value="$PROJECT_DIR$/orm.iml" />
-        <option value="$PROJECT_DIR$/.idea/compiler.xml" />
-        <option value="$PROJECT_DIR$/.idea/misc.xml" />
-        <option value="$PROJECT_DIR$/.idea/artifacts/servicio_war.xml" />
-        <option value="$PROJECT_DIR$/.idea/artifacts/servicio_war_exploded.xml" />
-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
-        <option value="$PROJECT_DIR$/.idea/encodings.xml" />
-        <option value="$PROJECT_DIR$/.idea/modules.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__com_google_protobuf_protobuf_java_3_6_1.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__com_thetransactioncompany_cors_filter_2_6.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__com_thetransactioncompany_java_property_utils_1_9_1.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_11.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__javax_javaee_web_api_8_0.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13_rc_1.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_18.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_10.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_12.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_0_0.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_core_asl_1_9_13.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_mapper_asl_1_9_13.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_javax_persistence_2_1_1.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_javax_json_1_0_4.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_library_1_3.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_3_1.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_3_1.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_3_1.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_3_1.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_1_1.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_25.xml" />
-        <option value="$PROJECT_DIR$/.idea/dataSources.xml" />
-        <option value="$PROJECT_DIR$/.idea/dataSources.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_org_eclipse_persistence_antlr_2_6_5_RC2.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_org_eclipse_persistence_asm_2_6_5_RC2.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_org_eclipse_persistence_core_2_6_5_RC2.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_org_eclipse_persistence_jpa_2_6_5_RC2.xml" />
-        <option value="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_org_eclipse_persistence_jpa_jpql_2_6_5_RC2.xml" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectId" id="1kQgJut6PB65NIv9wa06kRlufFe" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1lkHgJhvjHg8fkjPkWsVaSgFQnZ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
-  <component name="RunManager" selected="JUnit.All in Java-desarrollo">
-    <configuration name="All in Java-desarrollo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="servicio" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
+  <component name="RunManager" selected="JUnit.metodos_admin_Test.Pregunta_CategoriaTest">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All in servicio" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="servicio" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
+    <configuration name="WildFly" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss 21.0.0.Final" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/MercadeoUcab-1.0-SNAPSHOT/" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="servicio:war">
+          <settings />
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="SERVER" />
+        <option name="BINDING_SET_NAME" value="" />
+        <option name="DOMAIN" value="false" />
+        <option name="SERVER_GROUP" value="main-server-group" />
+        <option name="USERNAME" value="" />
+        <option name="CREDENTIAL_ALIAS" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="JBoss" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="63738" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
       <method v="2">
         <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="servicio:war" />
+        </option>
       </method>
     </configuration>
-    <configuration name="pruebaORMWS_Test.addUserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MarcaTest.getMarcas" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="pruebaORMWS_Test" />
-      <option name="METHOD_NAME" value="addUserTest" />
+      <option name="MAIN_CLASS_NAME" value="MarcaTest" />
+      <option name="METHOD_NAME" value="getMarcas" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="pruebaORMWS_Test.deleteUsuarioTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="metodos_admin_Test.Pregunta_CategoriaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="pruebaORMWS_Test" />
-      <option name="METHOD_NAME" value="deleteUsuarioTest" />
+      <option name="MAIN_CLASS_NAME" value="metodos_admin_Test" />
+      <option name="METHOD_NAME" value="Pregunta_CategoriaTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="pruebaORMWS_Test.updateUserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="metodos_clientes_Test.consultaEstudios_SolicitadosTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="pruebaORMWS_Test" />
-      <option name="METHOD_NAME" value="updateUserTest" />
+      <option name="MAIN_CLASS_NAME" value="metodos_clientes_Test" />
+      <option name="METHOD_NAME" value="consultaEstudios_SolicitadosTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="metodos_clientes_Test.getClienteId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="metodos_clientes_Test" />
+      <option name="METHOD_NAME" value="getClienteId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="metodos_encuestadoTest.getEncuestadoId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="metodos_encuestadoTest" />
+      <option name="METHOD_NAME" value="getEncuestadoId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JBoss Server.WildFly" />
+      <item itemvalue="JUnit.MarcaTest.getMarcas" />
+      <item itemvalue="JUnit.metodos_clientes_Test.consultaEstudios_SolicitadosTest" />
+      <item itemvalue="JUnit.metodos_clientes_Test.getClienteId" />
+      <item itemvalue="JUnit.metodos_encuestadoTest.getEncuestadoId" />
+      <item itemvalue="JUnit.metodos_admin_Test.Pregunta_CategoriaTest" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in Java-desarrollo" />
-        <item itemvalue="JUnit.pruebaORMWS_Test.deleteUsuarioTest" />
-        <item itemvalue="JUnit.pruebaORMWS_Test.updateUserTest" />
-        <item itemvalue="JUnit.pruebaORMWS_Test.addUserTest" />
-        <item itemvalue="JUnit.All in servicio" />
+        <item itemvalue="JUnit.metodos_admin_Test.Pregunta_CategoriaTest" />
+        <item itemvalue="JUnit.metodos_encuestadoTest.getEncuestadoId" />
+        <item itemvalue="JUnit.metodos_clientes_Test.getClienteId" />
+        <item itemvalue="JUnit.metodos_clientes_Test.consultaEstudios_SolicitadosTest" />
+        <item itemvalue="JUnit.MarcaTest.getMarcas" />
       </list>
     </recent_temporary>
   </component>
@@ -197,22 +232,20 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9c9c357f-2b07-42bd-afe8-0f758d0713a9" name="Default Changelist" comment="" />
-      <created>1605371906553</created>
+      <changelist id="90d40db4-ad8c-4243-a03c-37ef11dcf5a8" name="Default Changelist" comment="" />
+      <created>1607968660988</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1605371906553</updated>
-      <workItem from="1605371910349" duration="3827000" />
-      <workItem from="1605482874917" duration="11519000" />
-      <workItem from="1605541121877" duration="4300000" />
-      <workItem from="1605550044703" duration="926000" />
-      <workItem from="1605638168429" duration="3472000" />
-      <workItem from="1605745568717" duration="1731000" />
-      <workItem from="1605750387835" duration="6837000" />
-      <workItem from="1605819932984" duration="7643000" />
-      <workItem from="1606018378285" duration="706000" />
-      <workItem from="1606021013022" duration="1408000" />
-      <workItem from="1606184056479" duration="750000" />
+      <updated>1607968660988</updated>
+      <workItem from="1607968678066" duration="1000000" />
+      <workItem from="1608134504426" duration="801000" />
+      <workItem from="1608139970412" duration="1434000" />
+      <workItem from="1608143299811" duration="2068000" />
+      <workItem from="1608248702688" duration="56000" />
+      <workItem from="1608336084003" duration="1367000" />
+      <workItem from="1608346674995" duration="1748000" />
+      <workItem from="1608508005224" duration="677000" />
+      <workItem from="1608598671498" duration="473000" />
     </task>
     <servers />
   </component>
@@ -257,54 +290,25 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state x="582" y="255" key="#Assign_Data_Sources" timestamp="1605755498498">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="582" y="255" key="#Assign_Data_Sources/0.0.1366.728@0.0.1366.728" timestamp="1605755498498" />
-    <state x="550" y="45" key="#Template" timestamp="1605756469644">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="550" y="45" key="#Template/0.0.1366.728@0.0.1366.728" timestamp="1605756469644" />
-    <state x="252" y="295" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606022565525">
+    <state width="1238" height="171" key="GridCell.Tab.0.bottom" timestamp="1608599308806">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state x="252" y="295" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.980@0.0.1280.980" timestamp="1606022565525" />
-    <state x="275" y="22" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1605638240594" />
-    <state x="796" y="96" key="#com.intellij.ide.util.MemberChooser" timestamp="1605851608164">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="796" y="96" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1605851608164" />
-    <state x="466" y="233" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1605853565747">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="466" y="233" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.728@0.0.1366.728" timestamp="1605853565747" />
-    <state x="507" y="266" key="Github.CreateGistDialog" timestamp="1605854281039">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="507" y="266" key="Github.CreateGistDialog/0.0.1366.728@0.0.1366.728" timestamp="1605854281039" />
-    <state width="1238" height="259" key="GridCell.Tab.0.bottom" timestamp="1606022672289">
+    <state width="1238" height="171" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1608599308806" />
+    <state width="1238" height="171" key="GridCell.Tab.0.center" timestamp="1608599308805">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="259" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1606022672289" />
-    <state width="1323" height="265" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="1238" height="259" key="GridCell.Tab.0.center" timestamp="1606022672289">
+    <state width="1238" height="171" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1608599308805" />
+    <state width="1238" height="171" key="GridCell.Tab.0.left" timestamp="1608599308805">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="259" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1606022672289" />
-    <state width="1323" height="265" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="1238" height="259" key="GridCell.Tab.0.left" timestamp="1606022672289">
+    <state width="1238" height="171" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1608599308805" />
+    <state width="1238" height="171" key="GridCell.Tab.0.right" timestamp="1608599308805">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="259" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1606022672289" />
-    <state width="1323" height="265" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state width="1238" height="259" key="GridCell.Tab.0.right" timestamp="1606022672289">
+    <state width="1238" height="171" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1608599308805" />
+    <state x="236" y="227" key="Vcs.Push.Dialog.v2" timestamp="1608349656721">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="259" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1606022672289" />
-    <state width="1323" height="265" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1605853689922" />
-    <state x="124" y="69" key="SettingsEditor" timestamp="1606184747208">
-      <screen x="0" y="0" width="1280" height="980" />
-    </state>
-    <state x="124" y="69" key="SettingsEditor/0.0.1280.980@0.0.1280.980" timestamp="1606184747208" />
+    <state x="236" y="227" key="Vcs.Push.Dialog.v2/0.0.1280.980@0.0.1280.980" timestamp="1608349656721" />
   </component>
 </project>

@@ -3,6 +3,7 @@ package ucab.dsw.accesodatos;
 import ucab.dsw.entidades.EntidadBase;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Column;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -41,6 +42,7 @@ public class Dao<T>
         }
         catch ( Exception e )
         {
+            _em.getTransaction().rollback();
             throw  e;
         }
 
@@ -61,6 +63,7 @@ public class Dao<T>
         }
         catch ( Exception e )
         {
+            _em.getTransaction().rollback();
            throw  e;
         }
         return entity;
@@ -88,6 +91,7 @@ public class Dao<T>
         }
         catch ( Exception e )
         {
+            _em.getTransaction().rollback();
             throw e;
         }
         return entity;
@@ -120,6 +124,7 @@ public class Dao<T>
         }
         catch ( Exception e )
         {
+            _em.getTransaction().rollback();
             throw e;
         }
 
@@ -149,6 +154,7 @@ public class Dao<T>
         }
         catch ( Exception e )
         {
+            _em.getTransaction().rollback();
             throw e;
         }
         return entity;
@@ -167,4 +173,5 @@ public class Dao<T>
     {
         return _daoHandler;
     }
+
 }

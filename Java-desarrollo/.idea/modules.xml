@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/dtos/dtos.iml" filepath="$PROJECT_DIR$/dtos/dtos.iml" />
       <module fileurl="file://$PROJECT_DIR$/entidades/entidades.iml" filepath="$PROJECT_DIR$/entidades/entidades.iml" />
       <module fileurl="file://$PROJECT_DIR$/excepciones/excepciones.iml" filepath="$PROJECT_DIR$/excepciones/excepciones.iml" />
+      <module fileurl="file://$PROJECT_DIR$/orm.iml" filepath="$PROJECT_DIR$/orm.iml" />
       <module fileurl="file://$PROJECT_DIR$/servicio/servicio.iml" filepath="$PROJECT_DIR$/servicio/servicio.iml" />
     </modules>
   </component>

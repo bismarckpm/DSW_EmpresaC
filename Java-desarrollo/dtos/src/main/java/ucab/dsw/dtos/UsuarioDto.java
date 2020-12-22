@@ -2,73 +2,54 @@ package ucab.dsw.dtos;
 
 public class UsuarioDto extends DtoBase
 {
-    private String nombre;
-
-    public String getNombre()
+    public UsuarioDto()
     {
-        return nombre;
     }
 
-    public void setNombre( String nombre )
+    public UsuarioDto ( long id ) throws Exception
     {
-        this.nombre = nombre;
+        super( id );
+    }
+    private String usuario;
+
+    public String getUsuario() { return usuario; }
+
+    public void setUsuario( String usuario )
+    {
+        this.usuario = usuario;
     }
 
-    public String getApellido()
+    private String estado;
+
+    public String getEstado()
     {
-        return apellido;
+        return estado;
     }
 
-    public void setApellido( String apellido )
+    public void setEstado( String estado )
     {
-        this.apellido = apellido;
+        this.estado = estado;
     }
 
-    public String getCorreoelectronico()
+    private String rol;
+
+    public String getRol()
     {
-        return correoelectronico;
+        return rol;
     }
 
-    public void setCorreoelectronico( String correoelectronico )
+    public void setRol( String rol )
     {
-        this.correoelectronico = correoelectronico;
+        this.rol = rol;
     }
 
-    public TipoUsuarioDto getTipoUsuarioDto()
-    {
-        return tipoUsuarioDto;
-    }
+    public String contrasena;
 
-    public void setTipoUsuarioDto( TipoUsuarioDto tipoUsuarioDto )
-    {
-        this.tipoUsuarioDto = tipoUsuarioDto;
-    }
-
-    private String apellido;
-    private String correoelectronico;
-    private TipoUsuarioDto tipoUsuarioDto;
-
-    public String getContrasena()
-    {
+    public String getContrasena() {
         return contrasena;
     }
 
-    public void setContrasena( String contrasena )
-    {
+    public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
-
-    private String contrasena;
-
-    public String getEstatus()
-    {
-        return estatus;
-    }
-
-    public void setEstatus( String estatus )
-    {
-        this.estatus = estatus;
-    }
-
-    private String estatus;
 }
