@@ -32,16 +32,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90d40db4-ad8c-4243-a03c-37ef11dcf5a8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/app/analista/analista.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/app/analista/analista.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/app/analista/componentes/estudios-asignados/estudios-asignados.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/app/analista/componentes/estudios-asignados/estudios-asignados.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/app/analista/componentes/estudios-asignados/estudios-asignados.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/app/analista/componentes/estudios-asignados/estudios-asignados.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/app/analista/componentes/estudios-asignados/estudios-asignados.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/app/analista/componentes/estudios-asignados/estudios-asignados.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/app/analista/servicios/consulta-estudios/consulta-estudios.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/app/analista/servicios/consulta-estudios/consulta-estudios.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="90d40db4-ad8c-4243-a03c-37ef11dcf5a8" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -252,7 +243,7 @@
       <workItem from="1608346674995" duration="1748000" />
       <workItem from="1608508005224" duration="677000" />
       <workItem from="1608598671498" duration="473000" />
-      <workItem from="1609108482329" duration="1283000" />
+      <workItem from="1609108482329" duration="1574000" />
     </task>
     <servers />
   </component>
@@ -297,22 +288,22 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1238" height="171" key="GridCell.Tab.0.bottom" timestamp="1608599308806">
+    <state width="1238" height="171" key="GridCell.Tab.0.bottom" timestamp="1609110676961">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="171" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1608599308806" />
-    <state width="1238" height="171" key="GridCell.Tab.0.center" timestamp="1608599308805">
+    <state width="1238" height="171" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1609110676961" />
+    <state width="1238" height="171" key="GridCell.Tab.0.center" timestamp="1609110676961">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="171" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1608599308805" />
-    <state width="1238" height="171" key="GridCell.Tab.0.left" timestamp="1608599308805">
+    <state width="1238" height="171" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1609110676961" />
+    <state width="1238" height="171" key="GridCell.Tab.0.left" timestamp="1609110676961">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="171" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1608599308805" />
-    <state width="1238" height="171" key="GridCell.Tab.0.right" timestamp="1608599308805">
+    <state width="1238" height="171" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1609110676961" />
+    <state width="1238" height="171" key="GridCell.Tab.0.right" timestamp="1609110676961">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="171" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1608599308805" />
+    <state width="1238" height="171" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1609110676961" />
     <state x="236" y="227" key="Vcs.Push.Dialog.v2" timestamp="1608349656721">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
