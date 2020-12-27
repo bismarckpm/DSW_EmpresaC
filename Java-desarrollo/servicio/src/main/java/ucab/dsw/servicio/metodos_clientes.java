@@ -66,7 +66,10 @@ public class metodos_clientes {
 
                 List<Participacion> participacion= daoParticipacion.getParticipacionByEstudio(obj.get_id());
 
-                for(Participacion j:participacion){
+                if(participacion!=null){
+
+                    for(Participacion j:participacion){
+                    
                     Participacion participacion1 = daoParticipacion.find(j.get_id(), Participacion.class);
 
                     builderArrayEncuestado.add(Json.createObjectBuilder().add("participacion_id", participacion1.get_id())
@@ -76,9 +79,10 @@ public class metodos_clientes {
                             .add("nombre",participacion1.get_encuestado().get_nombre())
                             .add("apellido",participacion1.get_encuestado().get_apellido())
                             .add("estado",participacion1.get_estado()));
-
+                    }
 
                 }
+                
                 SolicitudEstudio solicitudEstudio = dao.find(obj.get_id(),SolicitudEstudio.class);
                 Marca marca = daoMarca.find(solicitudEstudio.get_marca().get_id(), Marca.class);
 
