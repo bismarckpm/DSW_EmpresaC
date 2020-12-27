@@ -256,6 +256,7 @@ button.toast-close-button {
 
 .mat-card-header-text {
     margin: 0 !important;
+    margin-left: 5px !important;
 }
 
 .wrapper {

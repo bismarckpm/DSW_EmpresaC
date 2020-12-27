@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>
+    Respuestas Individuales</h2>
+
+<mat-dialog-content class="mat-typography">
+    <mat-list-item style="margin-bottom: 5px;">
+        <div class="row" style="text-align: center; font-weight: bold;">
+            <div class="col-3" mat-line>
+                <mat-icon mat-list-icon style="padding: 0;">person</mat-icon>
+            </div>
+            <div class="col-3" mat-line> Encuestado </div>
+            <div class="col-3" mat-line> Usuario </div>
+            <div class="col-3" mat-line> Opciones </div>
+        </div>
+    </mat-list-item>
+    <mat-divider style="margin-bottom: 10px;"></mat-divider>
+    <mat-list-item *ngFor="let item of participaciones">
+        <div class="row" style="text-align: center;">
+            <div class="col-3" mat-line style="padding-top: 10px;">{{item.participacion_id}}</div>
+            <div class="col-3" mat-line style="padding-top: 10px;">{{item.encuestado}}</div>
+            <div class="col-3" mat-line style="padding-top: 10px;">{{item.usuario}}</div>
+            <div class="col-3" mat-line>
+                <button mat-menu-item (click)="ver(item)" style="border: 0; outline: none; display: flex; justify-content: center; flex-direction: column;">
+                    <mat-icon style="margin: 0 auto;">visibility</mat-icon>
+                </button>
+            </div>
+        </div>
+    </mat-list-item>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="true">Atras</button>
+</mat-dialog-actions>

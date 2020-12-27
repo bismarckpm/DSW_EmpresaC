@@ -1373,116 +1373,116 @@ SELECT|sys.sys_config:null
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="389" parent="255" name="nombre">
+    <column id="389" parent="255" name="Ocupacion_id">
       <Position>2</Position>
-      <DataType>varchar(45)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="390" parent="255" name="Ocupacion_id">
+    <column id="390" parent="255" name="Encuestado_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="391" parent="255" name="Encuestado_id">
-      <Position>4</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="392" parent="255" name="fk_Ocupacion_Encuestado_Ocupacion1_idx">
+    <index id="391" parent="255" name="fk_Ocupacion_Encuestado_Ocupacion1_idx">
       <ColNames>Ocupacion_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="393" parent="255" name="fk_Ocupacion_Encuestado_Encuestado1_idx">
+    <index id="392" parent="255" name="fk_Ocupacion_Encuestado_Encuestado1_idx">
       <ColNames>Encuestado_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="394" parent="255" name="PRIMARY">
+    <key id="393" parent="255" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="395" parent="255" name="fk_Ocupacion_Encuestado_Ocupacion1">
+    <foreign-key id="394" parent="255" name="fk_Ocupacion_Encuestado_Ocupacion1">
       <ColNames>Ocupacion_id</ColNames>
       <RefTableName>ocupacion</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="396" parent="255" name="fk_Ocupacion_Encuestado_Encuestado1">
+    <foreign-key id="395" parent="255" name="fk_Ocupacion_Encuestado_Encuestado1">
       <ColNames>Encuestado_id</ColNames>
       <RefTableName>encuestado</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="397" parent="256" name="id">
+    <column id="396" parent="256" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="398" parent="256" name="opcion">
+    <column id="397" parent="256" name="opcion">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="399" parent="256" name="estado">
+    <column id="398" parent="256" name="estado">
       <Position>3</Position>
       <DataType>varchar(45)|0s</DataType>
     </column>
-    <key id="400" parent="256" name="PRIMARY">
+    <key id="399" parent="256" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="401" parent="257" name="id">
+    <column id="400" parent="257" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="402" parent="257" name="Opcion_Simple_Multiple_id">
+    <column id="401" parent="257" name="Opcion_Simple_Multiple_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="403" parent="257" name="Pregunta_id">
+    <column id="402" parent="257" name="Pregunta_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="404" parent="257" name="fk_Opcion_Simple_Multiple_Pregunta_Opcion_Simple_Multiple1_idx">
+    <index id="403" parent="257" name="fk_Opcion_Simple_Multiple_Pregunta_Opcion_Simple_Multiple1_idx">
       <ColNames>Opcion_Simple_Multiple_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="405" parent="257" name="fk_Opcion_Simple_Multiple_Pregunta_Pregunta1_idx">
+    <index id="404" parent="257" name="fk_Opcion_Simple_Multiple_Pregunta_Pregunta1_idx">
       <ColNames>Pregunta_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="406" parent="257" name="PRIMARY">
+    <key id="405" parent="257" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="407" parent="257" name="opcion_simple_multiple_pregunta_ibfk_1">
+    <foreign-key id="406" parent="257" name="opcion_simple_multiple_pregunta_ibfk_1">
       <ColNames>Opcion_Simple_Multiple_id</ColNames>
       <RefTableName>opcion_simple_multiple</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="408" parent="257" name="fk_Opcion_Simple_Multiple_Pregunta1">
+    <foreign-key id="407" parent="257" name="fk_Opcion_Simple_Multiple_Pregunta1">
       <ColNames>Pregunta_id</ColNames>
       <RefTableName>pregunta</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="409" parent="258" name="id">
+    <column id="408" parent="258" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="410" parent="258" name="nombre">
+    <column id="409" parent="258" name="nombre">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="411" parent="258" name="estado">
+    <column id="410" parent="258" name="nacionalidad">
       <Position>3</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="411" parent="258" name="estado">
+      <Position>4</Position>
       <DataType>varchar(45)|0s</DataType>
     </column>
     <key id="412" parent="258" name="PRIMARY">

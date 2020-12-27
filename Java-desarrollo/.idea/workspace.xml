@@ -33,10 +33,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90d40db4-ad8c-4243-a03c-37ef11dcf5a8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/app/analista/analista.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/app/analista/analista.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/app/analista/componentes/estudios-asignados/estudios-asignados.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/app/analista/componentes/estudios-asignados/estudios-asignados.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/app/analista/componentes/estudios-asignados/estudios-asignados.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/app/analista/componentes/estudios-asignados/estudios-asignados.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/app/analista/componentes/estudios-asignados/estudios-asignados.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/app/analista/componentes/estudios-asignados/estudios-asignados.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/app/analista/servicios/consulta-estudios/consulta-estudios.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/app/analista/servicios/consulta-estudios/consulta-estudios.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/metodos_admin_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/metodos_admin_Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,14 +78,16 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
-  <component name="RunManager" selected="JUnit.metodos_admin_Test.Pregunta_CategoriaTest">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.MarcaTest.getMarcas">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -218,11 +224,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MarcaTest.getMarcas" />
         <item itemvalue="JUnit.metodos_admin_Test.Pregunta_CategoriaTest" />
         <item itemvalue="JUnit.metodos_encuestadoTest.getEncuestadoId" />
         <item itemvalue="JUnit.metodos_clientes_Test.getClienteId" />
         <item itemvalue="JUnit.metodos_clientes_Test.consultaEstudios_SolicitadosTest" />
-        <item itemvalue="JUnit.MarcaTest.getMarcas" />
       </list>
     </recent_temporary>
   </component>
@@ -246,6 +252,7 @@
       <workItem from="1608346674995" duration="1748000" />
       <workItem from="1608508005224" duration="677000" />
       <workItem from="1608598671498" duration="473000" />
+      <workItem from="1609108482329" duration="1283000" />
     </task>
     <servers />
   </component>
