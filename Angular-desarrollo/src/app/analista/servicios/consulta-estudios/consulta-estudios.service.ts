@@ -62,7 +62,7 @@ export class ConsultaEstudiosService {
   }
 
   getRespuestasEstudio(estudio_id):Observable<any>{
-    return this._http.get(global.url+'respuestas-estudio/'+estudio_id);
+    return this._http.get(global.url+'analista/respuestas-estudio/'+estudio_id);
 
   }
 

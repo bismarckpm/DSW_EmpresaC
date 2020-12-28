@@ -54,7 +54,7 @@ public class pruebaDirectorioActivo
         ldap.changePassword( user );
     }
 
-   /* @Test
+   @Test
     public void userAuthentication()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
@@ -63,7 +63,7 @@ public class pruebaDirectorioActivo
         DirectorioActivo ldap = new DirectorioActivo();
         long resultado=ldap.userAuthentication( user );
         Assert.assertNotEquals(resultado,   0);
-    }*/
+    }
 
    @Test
     public void login()

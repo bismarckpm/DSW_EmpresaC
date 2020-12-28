@@ -439,6 +439,8 @@ public class analista_metodos {
             DaoRespuestaOpcion dao2 = new DaoRespuestaOpcion();
             DaoSolicitudEstudio dao3 = new DaoSolicitudEstudio();
             DaoParticipacion dao4 = new DaoParticipacion();
+            DaoEncuestado dao5 = new DaoEncuestado();
+            DaoUsuario dao6 = new DaoUsuario();
 
             SolicitudEstudio solicitudEstudio = new SolicitudEstudio();
             solicitudEstudio = dao3.find(_id,SolicitudEstudio.class);
@@ -461,19 +463,27 @@ public class analista_metodos {
                             if (respuesta.get_preguntaencuesta().get_pregunta().get_tipopregunta().equals("desarrollo")) {
                                 respuesta_participacion.add(Json.createObjectBuilder()
                                         .add("pregunta", respuesta.get_preguntaencuesta().get_pregunta().get_descripcion())
-                                        .add("tipo pregunta", respuesta.get_preguntaencuesta().get_pregunta().get_tipopregunta())
+                                        .add("tipo_pregunta", respuesta.get_preguntaencuesta().get_pregunta().get_tipopregunta())
                                         .add("respuesta", respuesta.get_respuestadesarrollo()));
                             }
                             if (respuesta.get_preguntaencuesta().get_pregunta().get_tipopregunta().equals("booleana")) {
+                                
+                                String respuestaBooleana;
+                                if(respuesta.get_respuestaboolean()==1){
+                                    respuestaBooleana="verdadero";
+                                }
+                                else{
+                                    respuestaBooleana="falso";
+                                }
                                 respuesta_participacion.add(Json.createObjectBuilder()
                                         .add("pregunta", respuesta.get_preguntaencuesta().get_pregunta().get_descripcion())
-                                        .add("tipo pregunta", respuesta.get_preguntaencuesta().get_pregunta().get_tipopregunta())
-                                        .add("respuesta", respuesta.get_respuestaboolean()));
+                                        .add("tipo_pregunta", respuesta.get_preguntaencuesta().get_pregunta().get_tipopregunta())
+                                        .add("respuesta", respuestaBooleana));
                             }
                             if (respuesta.get_preguntaencuesta().get_pregunta().get_tipopregunta().equals("rango")) {
                                 respuesta_participacion.add(Json.createObjectBuilder()
                                         .add("pregunta", respuesta.get_preguntaencuesta().get_pregunta().get_descripcion())
-                                        .add("tipo pregunta", respuesta.get_preguntaencuesta().get_pregunta().get_tipopregunta())
+                                        .add("tipo_pregunta", respuesta.get_preguntaencuesta().get_pregunta().get_tipopregunta())
                                         .add("respuesta", respuesta.get_respuestarango()));
                             }
 
@@ -486,7 +496,7 @@ public class analista_metodos {
                                 }
                                 respuesta_participacion.add(Json.createObjectBuilder()
                                         .add("pregunta", respuesta.get_preguntaencuesta().get_pregunta().get_descripcion())
-                                        .add("tipo pregunta", respuesta.get_preguntaencuesta().get_pregunta().get_tipopregunta())
+                                        .add("tipo_pregunta", respuesta.get_preguntaencuesta().get_pregunta().get_tipopregunta())
                                         .add("respuesta", respuesta_opcion));
                             }
                         }
@@ -494,8 +504,14 @@ public class analista_metodos {
 
                     }
 
+
+                    Encuestado encuestado=dao5.find(participacion.get_encuestado().get_id(),Encuestado.class);
+                    Usuario usuario=dao6.find(encuestado.get_usuario_encuestado().get_id(),Usuario.class);
+
                     JsonObject p = Json.createObjectBuilder()
-                            .add("encuestado", participacion.get_encuestado().get_nombre())
+                            .add("participacion_id",participacion.get_id())
+                            .add("usuario", usuario.get_usuario())
+                            .add("encuestado", encuestado.get_nombre())
                             .add("respuestas", respuesta_participacion).build();
                     builder.add(p);
 
@@ -505,7 +521,7 @@ public class analista_metodos {
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200)
-                    .add("Preguntas",builder).build();
+                    .add("participaciones",builder).build();
 
         }
         catch (Exception ex){

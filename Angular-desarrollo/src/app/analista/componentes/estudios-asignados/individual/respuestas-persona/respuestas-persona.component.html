@@ -14,9 +14,16 @@
                     <ng-template matStepLabel><strong>Pregunta: </strong>{{item.pregunta}}</ng-template>
                     <div class="col-12" mat-line style="padding-top: 10px;"><strong>Tipo pregunta: </strong> {{item.tipo_pregunta}}</div>
                     <div class="col-12" mat-line style="padding-top: 10px;"><strong>Respuesta(s): </strong>
-                        <p style="display: inline-block;" *ngFor="let item2 of item.respuesta; let i=index">
-                            {{item2.respuestaOpcion}}<span *ngIf="item.respuesta.length!=(i+1)">,</span><span *ngIf="item.respuesta.length==(i+1)">.</span>
-                        </p>
+						<div *ngIf="item.tipo_pregunta=='Opcion simple' || item.tipo_pregunta=='Opcion multiple'" style="display: inline-block;">
+							<p style="display: inline-block;" *ngFor="let item2 of item.respuesta; let i=index">
+								{{item2.respuestaOpcion}}<span *ngIf="item.respuesta.length!=(i+1)">,</span><span *ngIf="item.respuesta.length==(i+1)">.</span>
+							</p>
+						</div>
+						<div *ngIf="item.tipo_pregunta!='Opcion simple' && item.tipo_pregunta!='Opcion multiple'" style="display: inline-block;">
+							<p style="display: inline-block;">
+								{{item.respuesta}}.
+							</p>
+						</div>
                     </div>
                 </mat-step>
             </mat-vertical-stepper>

@@ -19,13 +19,13 @@ public class MarcaTest {
 
     }
 
-    /*@Test
+    @Test
     public void getMarca() throws Exception
     {
         ucab.dsw.servicio.MarcaServicio servicio = new ucab.dsw.servicio.MarcaServicio();
         Response respuesta= servicio.getMarca(1);
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
-    }*/
+    }
 
     @Test
     public void AddMarca() throws Exception
