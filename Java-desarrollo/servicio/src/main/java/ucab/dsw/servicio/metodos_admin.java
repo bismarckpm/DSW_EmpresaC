@@ -262,6 +262,7 @@ public class metodos_admin {
                     ParticipacionDto resultado2 = new ParticipacionDto();
                     Participacion participacion = new Participacion();
                     participacion.set_solicitudestudio(solicitudEstudio);
+                    participacion.set_estado("activo");
                     Encuestado encuestado1 = new Encuestado();
                     DaoEncuestado dao4 = new DaoEncuestado();
                     encuestado1 = dao4.find(obj.getId(), Encuestado.class);
