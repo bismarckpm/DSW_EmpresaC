@@ -54,6 +54,53 @@
 
 
 
+<!-- participantes -->
+
+<mat-card >
+  <mat-card-header aling-center>  
+    <mat-card-title >Agregar participantes</mat-card-title>
+  </mat-card-header>
+
+  <form novalidate [formGroup]="participanteForm" #fform="ngForm" >
+
+    <mat-form-field class="half-width">
+      <mat-select formControlName="id">
+        
+        <mat-option *ngFor="let x of participantes" value="{{x.id}}">{{x.nombre}} {{x.apellido}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-card-actions>
+      <button mat-raised-button color="#ffc107" (click)="AgregadorParticipante()" >Agregar Pregunta</button>
+    </mat-card-actions>
+  </form>
+</mat-card>
+
+
+<!-- Participantes seleccionados -->
+
+<mat-card *ngFor="let x of participantesSeleccionados">
+  <mat-card-header aling-center>
+    <mat-card-title >{{x.nombre}} {{x.apellido}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+
+      <mat-card-actions>
+        <button mat-raised-button color="#ffc107" (click)="EliminarParticipante(x.id)" >Eliminar Participante</button>
+      </mat-card-actions>
+    
+  </mat-card-content>
+
+</mat-card>
+
+
+
+
+
+<!-- Confirmar encuesta -->
+
+
 <mat-card >
   <mat-card-header aling-center>
     <mat-card-title >Confirma la encuesta</mat-card-title>
