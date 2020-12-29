@@ -381,8 +381,8 @@ public class analista_metodos {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
-    @DELETE
-    @Path( "/responder-solicitud/" )
+    @PUT
+    @Path( "/responder-solicitud" )
     public Response ResponderEstudio( Respuesta_analistaDto respuestaAnalistaDto)
     {
         JsonObject data;

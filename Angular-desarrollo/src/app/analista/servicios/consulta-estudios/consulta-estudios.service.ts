@@ -61,4 +61,9 @@ export class ConsultaEstudiosService {
     return this._http.delete<Respuesta>(global.url + 'encuestado/finalizar/'+id+"/"+id2)
   }
 
+
+  darResultados(objeto): Observable<Respuesta> {
+    
+    return this._http.put<Respuesta>(global.url + 'analista/responder-solicitud', objeto)
+  }
 }

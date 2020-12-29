@@ -28,8 +28,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90d40db4-ad8c-4243-a03c-37ef11dcf5a8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/app/admin/componentes/asignar-encuesta/asignar-encuesta.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/app/admin/componentes/asignar-encuesta/asignar-encuesta.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/analista_metodos.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/analista_metodos.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +123,8 @@
       <workItem from="1608139970412" duration="1434000" />
       <workItem from="1608143299811" duration="2068000" />
       <workItem from="1608248702688" duration="56000" />
-      <workItem from="1609183454636" duration="5727000" />
+      <workItem from="1609183454636" duration="7148000" />
+      <workItem from="1609262880903" duration="3086000" />
     </task>
     <servers />
   </component>
@@ -167,25 +169,25 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state width="980" height="197" key="GridCell.Tab.0.bottom" timestamp="1609193220686">
+    <state width="980" height="197" key="GridCell.Tab.0.bottom" timestamp="1609265270105">
       <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="980" height="197" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1609193220686" />
+    <state width="980" height="197" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1609265270105" />
     <state width="1238" height="302" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1608141643958" />
-    <state width="980" height="197" key="GridCell.Tab.0.center" timestamp="1609193220685">
+    <state width="980" height="197" key="GridCell.Tab.0.center" timestamp="1609265270104">
       <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="980" height="197" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1609193220685" />
+    <state width="980" height="197" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1609265270104" />
     <state width="1238" height="302" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1608141643958" />
-    <state width="980" height="197" key="GridCell.Tab.0.left" timestamp="1609193220685">
+    <state width="980" height="197" key="GridCell.Tab.0.left" timestamp="1609265270103">
       <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="980" height="197" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1609193220685" />
+    <state width="980" height="197" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1609265270103" />
     <state width="1238" height="302" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1608141643958" />
-    <state width="980" height="197" key="GridCell.Tab.0.right" timestamp="1609193220686">
+    <state width="980" height="197" key="GridCell.Tab.0.right" timestamp="1609265270105">
       <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="980" height="197" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1609193220685" />
+    <state width="980" height="197" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1609265270105" />
     <state width="1238" height="302" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1608141643958" />
   </component>
 </project>
