@@ -14,7 +14,7 @@ public class Participacion extends EntidadBase{
     @Column( name = "estado" )
     private String _estado;
 
-    @ManyToOne(optional = false , fetch = FetchType.EAGER)
+    @ManyToOne(optional = false , fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn( name = "Estudio_id" )
     private SolicitudEstudio _solicitudestudio;
 

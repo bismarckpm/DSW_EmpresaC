@@ -207,7 +207,7 @@ export class EncuestaPageComponent implements OnInit {
 
         }
 
-        if(this.preguntas[x].tipopregunta=="Opcion Simple"){
+        if(this.preguntas[x].tipopregunta=="Opcion simple"){
           pre={
             "opciones":[{"id":Number(this.encuestaForm.value.preguntas[x].pregunta)}],
             "pregunta_EncuestaDto":{

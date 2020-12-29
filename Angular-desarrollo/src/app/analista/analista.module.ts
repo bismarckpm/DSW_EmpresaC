@@ -17,6 +17,9 @@ import { ResponderComponent } from './componentes/estudios-asignados/responder/r
 import { EstudiosTelefonicosComponent } from './componentes/estudios-telefonicos/estudios-telefonicos.component';
 import { ParticipantesEstudioComponent } from './componentes/participantes-estudio/participantes-estudio.component';
 import { EncuestaTelefonicaComponent } from './componentes/encuesta-telefonica/encuesta-telefonica.component';
+import { GraficosComponent } from './componentes/estudios-asignados/graficos/graficos.component';
+import { IndividualComponent } from './componentes/estudios-asignados/individual/individual.component';
+import { RespuestasPersonaComponent } from './componentes/estudios-asignados/individual/respuestas-persona/respuestas-persona.component';
 
 
   @NgModule({
@@ -30,6 +33,9 @@ import { EncuestaTelefonicaComponent } from './componentes/encuesta-telefonica/e
       EstudiosTelefonicosComponent,
       ParticipantesEstudioComponent,
       EncuestaTelefonicaComponent,
+      GraficosComponent,
+      IndividualComponent,
+      RespuestasPersonaComponent,
 
     ],
     imports: [

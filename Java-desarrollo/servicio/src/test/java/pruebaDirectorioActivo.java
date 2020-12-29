@@ -54,7 +54,7 @@ public class pruebaDirectorioActivo
         ldap.changePassword( user );
     }
 
-    @Test
+   @Test
     public void userAuthentication()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();

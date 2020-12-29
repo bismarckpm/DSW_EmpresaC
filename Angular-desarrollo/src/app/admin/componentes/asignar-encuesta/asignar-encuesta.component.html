@@ -28,15 +28,17 @@
 
         <form novalidate [formGroup]="AgregadorForm" #fform="ngForm">
 
-            <mat-form-field class="half-width" style="width: 50%;">
+            <mat-form-field class="half-width" style="width: 40%;">
                 <mat-select formControlName="tipo">
 
                     <mat-option *ngFor="let x of preguntas" value={{x.id}}>{{x.descripcion}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
-            <mat-card-actions style="display: flex; width: 100%; justify-content: center;">
-                <button mat-raised-button color="#ffc107" (click)="Agregador()" style="border-radius: 50px;border:0; outline: none;">Agregar Pregunta</button>
+            <mat-card-actions style="display: inline-block; margin-left: 5px;">
+                <button mat-icon-button style="color: green;border-radius: 50px;border:0; outline: none;" aria-label="Example icon button with a heart icon" (click)="Agregador()">
+                    <mat-icon>add_circle</mat-icon>
+                </button>
             </mat-card-actions>
         </form>
 
@@ -45,6 +47,50 @@
         </div>
 
     </mat-card>
+
+    <!-- participantes -->
+
+    <mat-card style="padding-left: 50px; padding-right: 50px;">
+        <div class="divider div-transparent div-dot"></div>
+        <mat-card-header aling-center>
+            <mat-card-title>Agregar participantes (Sugeridos)</mat-card-title>
+        </mat-card-header>
+
+        <form novalidate [formGroup]="participanteForm" #fform="ngForm">
+
+            <mat-form-field class="half-width" style="width: 40%;">
+                <mat-select formControlName="id">
+
+                    <mat-option *ngFor="let x of participantes" value="{{x.id}}">{{x.id}} - {{x.nombre}} {{x.apellido}} - <strong>Usuario:</strong> {{x.username}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-card-actions style="display: inline-block; margin-left: 5px;">
+                <button mat-icon-button style="color: green;border-radius: 50px;border:0; outline: none;" aria-label="Example icon button with a heart icon" (click)="AgregadorParticipante()">
+                    <mat-icon>add_circle</mat-icon>
+                </button>
+            </mat-card-actions>
+        </form>
+
+        <!-- Participantes seleccionados -->
+        <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+            <div *ngFor="let x of participantesSeleccionados" style="width: 30%;">
+                <div style="display: flex; justify-content: center;">
+                    <h3 style="margin: 0; padding-top: 10px;">{{x.nombre}} {{x.apellido}}</h3>
+                    <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon" (click)="EliminarParticipante(x.id)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+
+                <div>
+                    <p style="text-align: center;"><strong>Usuario: </strong>{{x.username}}</p>
+                </div>
+
+            </div>
+        </div>
+    </mat-card>
+
+    <!-- Confirmar encuesta -->
 
     <mat-card style="padding-left: 50px; padding-right: 50px;">
         <div class="divider div-transparent div-dot"></div>

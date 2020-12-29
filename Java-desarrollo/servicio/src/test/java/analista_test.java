@@ -22,4 +22,14 @@ public class analista_test{
             Assert.assertNotEquals( 1, 0 );
 
         }
+
+    @Test
+    public void respuestas_estudio_Test() throws Exception
+    {
+        ucab.dsw.servicio.analista_metodos servicio = new ucab.dsw.servicio.analista_metodos();
+
+        Response resultado = servicio.respuestas_estudio( 5);
+        Assert.assertNotEquals( 1, 0 );
+
+    }
 }

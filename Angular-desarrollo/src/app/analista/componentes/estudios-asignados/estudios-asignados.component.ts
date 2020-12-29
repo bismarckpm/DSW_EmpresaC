@@ -9,6 +9,8 @@ import { MuestraComponent } from '../../componentes/estudios-asignados/muestra/m
 import { CaracteristicasComponent } from '../../componentes/estudios-asignados/caracteristicas/caracteristicas.component';
 import { ResultadosComponent } from '../../componentes/estudios-asignados/resultados/resultados.component';
 import { ResponderComponent } from '../../componentes/estudios-asignados/responder/responder.component';
+import { GraficosComponent } from './graficos/graficos.component';
+import { IndividualComponent } from './individual/individual.component';
 
 @Component({
   selector: 'app-estudios-asignados',
@@ -113,6 +115,34 @@ export class EstudiosAsignadosComponent implements OnInit {
       data:{participaciones:estudio_muestra,estudio:estudio_id},
      
 
+    });
+
+    this.dialogRef .afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  openDialogIndividual(estudio_id): void {
+    console.log(estudio_id);
+    this.dialogRef = this.dialog.open(IndividualComponent, {
+      width: '600px',
+      height:'400px',
+      //data:{estudio:1}  //para probar
+      data:{estudio:estudio_id}
+    });
+
+    this.dialogRef .afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  openDialogGraficos(estudio_id): void {
+    console.log(estudio_id);
+    this.dialogRef = this.dialog.open(GraficosComponent, {
+      width: '600px',
+      height:'400px',
+      //data:{participaciones:MUESTRA}  para probar
+      data:{estudio:estudio_id},
     });
 
     this.dialogRef .afterClosed().subscribe(result => {

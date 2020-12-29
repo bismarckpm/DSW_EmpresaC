@@ -6,6 +6,8 @@ export class encuestado{
     doc_id: number;
     nombre: string;
     apellido: string;
+    username:string;
+    
     correo: string;
     fecha_nacimiento: Date;
     cant_personas_vivienda: number;

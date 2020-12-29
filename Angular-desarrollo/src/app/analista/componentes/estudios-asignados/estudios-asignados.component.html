@@ -12,25 +12,33 @@
                 <mat-card-title>Marca: Rexona</mat-card-title>
                 <mat-card-subtitle>Cliente: Juan Perez - Estado: pendiente
                 </mat-card-subtitle>
-                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" style="border:0; outline:none">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" style="border:0; outline:none;position: absolute; right: 0;">
                     <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="openDialogMuestra()">
+                    <button mat-menu-item (click)="openDialogMuestra(1,1)">
                       <mat-icon>supervisor_account</mat-icon>
                       <span>Muestra</span>
                     </button>
-                    <button mat-menu-item (click)="openDialogCaracteriticas()">
+                    <button mat-menu-item (click)="openDialogCaracteriticas(1)">
                       <mat-icon>tune</mat-icon>
                       <span>Caracteristicas</span>
                     </button>
                     <button mat-menu-item (click)="openDialogResultados(1)">
                       <mat-icon>assignment</mat-icon>
-                      <span>Dar resultados</span>
+                      <span>Dar Reporte</span>
                     </button>
-                    <button mat-menu-item (click)="openDialogResponder(1)">
+                    <button mat-menu-item (click)="openDialogResponder(1,1)">
                         <mat-icon>add_comment</mat-icon>
                         <span>Responder</span>
+                    </button>
+                    <button mat-menu-item (click)="openDialogIndividual(1)">
+                        <mat-icon>gps_fixed</mat-icon>
+                        <span>Resultado Individual</span>
+                    </button>
+                    <button mat-menu-item (click)="openDialogGraficos(1)">
+                        <mat-icon>pie_chart</mat-icon>
+                        <span>Gráficos</span>
                     </button>
                 </mat-menu>
             </mat-card-header>
@@ -56,7 +64,7 @@
                     <p *ngIf="estudio.estado=='finalizado'" style="color: blue; display: inline-block;">{{estudio.estado}}</p>
                     {{estudio.modo_encuesta}}
                 </mat-card-subtitle>
-                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" style="border:0; outline:none">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" style="border:0; outline:none;position: absolute; right: 0;">
                     <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
@@ -75,6 +83,14 @@
                     <button *ngIf="estudio.estado=='en progreso'" mat-menu-item [disabled]="estudio.modo_encuesta!='telefono'" (click)="openDialogResponder(estudio.participacion,estudio.id)">
                         <mat-icon>add_comment</mat-icon>
                         <span>Responder</span>
+                    </button>
+                    <button mat-menu-item (click)="openDialogIndividual(estudio.id)">
+                        <mat-icon>gps_fixed</mat-icon>
+                        <span>Resultado Individual</span>
+                    </button>
+                    <button mat-menu-item (click)="openDialogGraficos(estudio.id)">
+                        <mat-icon>pie_chart</mat-icon>
+                        <span>Gráficos</span>
                     </button>
                 </mat-menu>
             </mat-card-header>

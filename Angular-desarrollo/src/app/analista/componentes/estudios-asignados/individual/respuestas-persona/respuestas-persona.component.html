@@ -1,0 +1,33 @@
+<div style="padding: 3px;margin: 0; position: relative; float: right;">
+    <button [mat-dialog-close]="true" style="border: 0; outline: none; background: transparent;"><mat-icon style="color: darkred;">cancel</mat-icon></button>
+</div>
+
+<div style="width: 100%; padding: 5px; border: 1px solid black; border-radius: 5px;">
+    <div style="padding: 5px;">
+        <h2 mat-dialog-title>
+            Respuestas del encuestado: {{participacion.encuestado}}</h2>
+
+        <div>
+            <mat-vertical-stepper [linear]="isLinear" #stepper>
+
+                <mat-step style="width: 100%; text-align: center;" *ngFor="let item of respuestas">
+                    <ng-template matStepLabel><strong>Pregunta: </strong>{{item.pregunta}}</ng-template>
+                    <div class="col-12" mat-line style="padding-top: 10px;"><strong>Tipo pregunta: </strong> {{item.tipo_pregunta}}</div>
+                    <div class="col-12" mat-line style="padding-top: 10px;"><strong>Respuesta(s): </strong>
+						<div *ngIf="item.tipo_pregunta=='Opcion simple' || item.tipo_pregunta=='Opcion multiple'" style="display: inline-block;">
+							<p style="display: inline-block;" *ngFor="let item2 of item.respuesta; let i=index">
+								{{item2.respuestaOpcion}}<span *ngIf="item.respuesta.length!=(i+1)">,</span><span *ngIf="item.respuesta.length==(i+1)">.</span>
+							</p>
+						</div>
+						<div *ngIf="item.tipo_pregunta!='Opcion simple' && item.tipo_pregunta!='Opcion multiple'" style="display: inline-block;">
+							<p style="display: inline-block;">
+								{{item.respuesta}}.
+							</p>
+						</div>
+                    </div>
+                </mat-step>
+            </mat-vertical-stepper>
+
+        </div>
+    </div>
+</div>
