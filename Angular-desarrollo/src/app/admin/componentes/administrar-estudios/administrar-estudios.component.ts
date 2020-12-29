@@ -29,6 +29,7 @@ export class AdministrarEstudiosComponent implements OnInit {
       this.eventBus.cast('fin-progress','chao');
       this.estudios=e.estudios;console.log(e)},
       err=>{
+        console.log(err)
         this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
         this.eventBus.cast('fin-progress','chao');
 

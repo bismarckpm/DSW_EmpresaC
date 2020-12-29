@@ -58,5 +58,14 @@ export class SolicitudEstudioService {
     
   }
 
+  getEncuestados(id:number): Observable<any> {
+    // return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000));
+
+    return this.http.get<any>(global.url + 'admin/sugerencia-participacion/'+id)
+    
+  }
+
+
+
 
 }

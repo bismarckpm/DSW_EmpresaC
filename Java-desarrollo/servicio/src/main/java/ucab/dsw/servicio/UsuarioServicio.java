@@ -423,7 +423,7 @@ public class UsuarioServicio extends AplicacionBase {
     }
 
 
-  /*  @PUT
+    @PUT
     @Path( "/edit/{id}" )
     public Response changeAdmin(@PathParam("id")long  _id, UsuarioLdapDto usuarioLdapDto)
     {
@@ -632,7 +632,7 @@ public class UsuarioServicio extends AplicacionBase {
         System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
-*/
+
     @GET
     @Path( "/get-cliente/{id}" )
     public Response findCliente(@PathParam("id")long  _id){
