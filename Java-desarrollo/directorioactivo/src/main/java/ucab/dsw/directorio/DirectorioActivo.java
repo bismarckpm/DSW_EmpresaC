@@ -15,6 +15,10 @@ import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.ModificationItem;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -558,5 +562,27 @@ public class DirectorioActivo
             disconnectLDAP();
         }
         return usuarios;
+    }
+
+
+    public void setAllUsersFromFile(String archivo) throws FileNotFoundException, IOException {
+        String cadena;
+        FileReader f = new FileReader(archivo);
+        BufferedReader b = new BufferedReader(f);
+        while((cadena = b.readLine())!=null) {
+            String[] datos = cadena.split(" ");
+            System.out.println(datos[0] +" "+ datos[1]);
+            UsuarioLdapDto user = new UsuarioLdapDto();
+            user.setCn( datos[1] );
+            user.setSn( datos[4] );
+            user.setTipo_usuario( datos[2] );
+            user.setNombre( datos[3] );
+            user.setCorreoelectronico( datos[5] );
+            user.setUid(datos[0]);
+            user.setContrasena( "12345" );
+            DirectorioActivo ldap = new DirectorioActivo();
+            ldap.addEntryToLdap( user );
+        }
+        b.close();
     }
 }

@@ -51,13 +51,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.2.3\plugins\maven\lib\maven3" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
   <component name="MavenRunner">
     <option name="skipTests" value="true" />
   </component>
@@ -70,7 +63,11 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunManager" selected="JUnit.MarcaTest.getMarcas">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
@@ -158,16 +155,6 @@
         </option>
       </method>
     </configuration>
-    <configuration name="MarcaTest.getMarcas" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="servicio" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MarcaTest" />
-      <option name="METHOD_NAME" value="getMarcas" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="metodos_admin_Test.Pregunta_CategoriaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <option name="PACKAGE_NAME" value="" />
@@ -208,13 +195,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="pruebaDirectorioActivo.setAllUsers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="pruebaDirectorioActivo" />
+      <option name="METHOD_NAME" value="setAllUsers" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="JBoss Server.WildFly" />
-      <item itemvalue="JUnit.MarcaTest.getMarcas" />
       <item itemvalue="JUnit.metodos_clientes_Test.consultaEstudios_SolicitadosTest" />
       <item itemvalue="JUnit.metodos_clientes_Test.getClienteId" />
       <item itemvalue="JUnit.metodos_encuestadoTest.getEncuestadoId" />
       <item itemvalue="JUnit.metodos_admin_Test.Pregunta_CategoriaTest" />
+      <item itemvalue="JUnit.pruebaDirectorioActivo.setAllUsers" />
     </list>
     <recent_temporary>
       <list>

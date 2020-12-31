@@ -5,6 +5,7 @@ import ucab.dsw.directorio.RecuperacionPass;
 import ucab.dsw.dtos.UsuarioLdapDto;
 import ucab.dsw.servicio.LoginServicio;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -152,5 +153,11 @@ public class pruebaDirectorioActivo
         for( UsuarioLdapDto usaurio : usuarios){
             System.out.println(usaurio.getCorreoelectronico());
         }
+    }
+
+    @Test
+    public void setAllUsers() throws IOException {
+        DirectorioActivo ldap = new DirectorioActivo();
+        ldap.setAllUsersFromFile("./../../ldap.txt");
     }
 }
