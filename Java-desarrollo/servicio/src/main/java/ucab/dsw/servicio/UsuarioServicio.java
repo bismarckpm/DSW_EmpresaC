@@ -39,7 +39,7 @@ public class UsuarioServicio extends AplicacionBase {
             DaoUsuario daoUsuario = new DaoUsuario();
             Usuario usuario= new Usuario();
 
-            usuario.set_usuario(clienteDto.getUsuarioDto().getUsuario());
+            usuario.set_usuario(clienteDto.getUsuarioLdapDto().getCn());
             usuario.set_estado("activo");
             usuario.set_rol("cliente");
 
