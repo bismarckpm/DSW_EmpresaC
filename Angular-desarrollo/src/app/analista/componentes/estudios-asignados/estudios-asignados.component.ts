@@ -141,7 +141,7 @@ export class EstudiosAsignadosComponent implements OnInit {
     this.dialogRef = this.dialog.open(GraficosComponent, {
       width: '600px',
       height:'400px',
-      //data:{participaciones:MUESTRA}  para probar
+      //data:{estudio:1}  //para probar
       data:{estudio:estudio_id},
     });
 

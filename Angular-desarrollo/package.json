@@ -23,6 +23,7 @@
         "@angular/platform-browser-dynamic": "~10.1.2",
         "@angular/router": "~10.1.2",
         "@popperjs/core": "^2.5.4",
+        "angular-google-charts": "^1.1.6",
         "bootstrap": "^4.5.3",
         "jquery": "^3.5.1",
         "ng-event-bus": "^2.0.0",
