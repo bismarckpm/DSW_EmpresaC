@@ -1,12 +1,13 @@
 <h2 mat-dialog-title>
     Mis resultados - Estudio: {{data.id}}</h2>
 
+
 <mat-dialog-content class="mat-typography">
     <h3></h3>
-    <form class="example-form">
+    <form class="example-form" [formGroup]="resultadoForm">
         <mat-form-field style="width: 100%;">
             <mat-label>Deja tus observaciones</mat-label>
-            <textarea matInput placeholder="Ex. El estudio presentó..."></textarea>
+            <textarea formControlName="resultado" matInput placeholder="Ex. El estudio presentó..."></textarea>
         </mat-form-field>
     </form>
 </mat-dialog-content>
@@ -14,3 +15,4 @@
     <button mat-button [mat-dialog-close]="true">Atras</button>
     <button mat-button (click)="doResultados()">Enviar</button>
 </mat-dialog-actions>
+

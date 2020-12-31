@@ -33,8 +33,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90d40db4-ad8c-4243-a03c-37ef11dcf5a8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/app/admin/componentes/asignar-encuesta/asignar-encuesta.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/app/admin/componentes/asignar-encuesta/asignar-encuesta.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/analista_metodos.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/analista_metodos.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
