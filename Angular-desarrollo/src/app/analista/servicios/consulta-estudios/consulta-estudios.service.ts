@@ -66,4 +66,9 @@ export class ConsultaEstudiosService {
 
   }
 
+
+  darResultados(objeto): Observable<Respuesta> {
+    
+    return this._http.put<Respuesta>(global.url + 'analista/responder-solicitud', objeto)
+  }
 }

@@ -79,12 +79,12 @@ export class AsignarEncuestaComponent implements OnInit {
         this.participantes=x.Preguntas;
         console.log("participantes")
         console.log(this.participantes)
-        this._toastrService.success("Exito", "toda la informacion del estudio y las preguntas");
+        this._toastrService.success("Exito", "toda la informacion del estudio");
         this.eventBus.cast('fin-progress','chao');
 
       }, err=>{
         console.log(err)
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        this._toastrService.error("Ops! Hubo un problema.", "Al cargar los participantes.");
         this.eventBus.cast('fin-progress','chao');
 
       })
@@ -105,7 +105,7 @@ export class AsignarEncuestaComponent implements OnInit {
       },
       err=>{
         console.log(err)
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        this._toastrService.error("Ops! Hubo un problema.", "Error al cargar las preguntas.");
         this.eventBus.cast('fin-progress','chao');
       }
       )
