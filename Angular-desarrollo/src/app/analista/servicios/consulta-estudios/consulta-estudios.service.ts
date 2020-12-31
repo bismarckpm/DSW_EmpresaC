@@ -69,6 +69,11 @@ export class ConsultaEstudiosService {
 
   darResultados(objeto): Observable<Respuesta> {
     
-    return this._http.put<Respuesta>(global.url + 'analista/responder-solicitud', objeto)
+    return this._http.put<Respuesta>(global.url + 'analista/responder-solicitud', objeto);
+  }
+
+  getGraficos(estudio_id): Observable<any> {
+    
+    return this._http.get(global.url + 'analista/graficos-estudio/'+estudio_id);
   }
 }

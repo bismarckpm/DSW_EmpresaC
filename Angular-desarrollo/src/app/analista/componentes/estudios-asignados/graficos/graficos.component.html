@@ -1,1 +1,44 @@
-<p>graficos works!</p>
+<div *ngIf="preguntas.length!=0">
+    <div style="padding: 3px;margin: 0; position: relative; float: right;">
+        <button [mat-dialog-close]="true" style="border: 0; outline: none; background: transparent;"><mat-icon style="color: darkred;">cancel</mat-icon></button>
+    </div>
+
+    <div style="width: 100%; padding: 5px; border: 1px solid black; border-radius: 5px;">
+        <div style="padding: 5px;">
+            <h2 mat-dialog-title>
+                Estadisticas por pregunta </h2>
+            <div>
+                <mat-vertical-stepper [linear]="isLinear" #stepper>
+
+                    <mat-step style="width: 100%; text-align: center;" *ngFor="let item of preguntas">
+                        <ng-template matStepLabel><strong>Pregunta: </strong>{{item.pregunta}}</ng-template>
+                        <div class="col-12" mat-line style="padding-top: 10px;"><strong>Tipo pregunta: </strong> {{item.tipo_pregunta}}</div>
+                        <div class="col-12" mat-line style="padding-top: 10px;">
+                            <google-chart #chart [title]="title" [type]="type" [data]="item.resultados" [columnNames]="columnNames" [options]="options" [width]="width" [height]="height">
+                            </google-chart>
+
+                        </div>
+                    </mat-step>
+                </mat-vertical-stepper>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="preguntas.length==0" style="height: 100%;">
+    <div style="padding: 3px;margin: 0; position: relative; float: right;">
+        <button [mat-dialog-close]="true" style="border: 0; outline: none; background: transparent;"><mat-icon style="color: darkred;">cancel</mat-icon></button>
+    </div>
+
+    <div style="height: 100%; padding: 5px; border: 1px solid black; border-radius: 5px;">
+        <div style="padding: 5px;">
+            <h2 mat-dialog-title>
+                Estadisticas por pregunta </h2>
+            <div style="display: flex; justify-content: center;">
+                <p style="text-align: center; color: darkred;">No hay resultados registrados</p>
+
+            </div>
+        </div>
+    </div>
+</div>

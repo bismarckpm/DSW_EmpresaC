@@ -5,6 +5,7 @@
   import { MaterialModule } from '../material.module';
   import { ReactiveFormsModule } from '@angular/forms';
   import { FormsModule } from '@angular/forms';
+  import { GoogleChartsModule } from 'angular-google-charts';
 
   /* Componentes */
   import { AnalistaComponent } from './componentes/raiz/analista.component';
@@ -41,9 +42,10 @@ import { RespuestasPersonaComponent } from './componentes/estudios-asignados/ind
     imports: [
       CommonModule,
       AnalistaRoutingModule,
-    MaterialModule,
-    ReactiveFormsModule,
-    FormsModule
+      MaterialModule,
+      ReactiveFormsModule,
+      FormsModule,
+      GoogleChartsModule,
     ],
     providers:[ConsultaEstudiosService]
   })
