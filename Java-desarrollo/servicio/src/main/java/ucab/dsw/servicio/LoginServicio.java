@@ -11,10 +11,27 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 
+/**
+ * Una clase para el inicio de sesion en MERCADEOUCAB
+ * @version 1.0, 02/01/2021
+ * @author Gabriel Romero
+ */
 @Path( "/login" )
 @Produces( MediaType.APPLICATION_JSON )
 @Consumes( MediaType.APPLICATION_JSON )
 public class LoginServicio extends AplicacionBase{
+
+    /**
+    * Esta funcion consiste en validar las credenciales de un usuario en nuestro servidor LDAP, y
+    * de esta manera, proporcionar el acceso a las diferentes opciones segun el rol. 
+    * @author Gabriel Romero
+    * @param usuarioLdapDto corresponde al objeto de la capa web que contiene los datos a validar (usuario/correo y contraseña)
+    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna una Response con un estado de respuesta http indicando si la operacion 
+    *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
+    *         en formato JSON con los siguiente atributos: codigo, estado, token, rol, user_id
+    *         y mensaje en caso de ocurrir alguna de las excepciones
+    */
     @POST
     @Path( "/ldap" )
     public Response loginLdap(UsuarioLdapDto usuarioLdapDto)
@@ -47,7 +64,7 @@ public class LoginServicio extends AplicacionBase{
                 return Response.status(Response.Status.OK).entity(data).build();
             }else{
                 data= Json.createObjectBuilder()
-                        .add("estado","error")
+                        .add("estado","Las credenciales no son correctas. Intente de nuevo.")
                         .add("codigo",401).build();
                 return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
             }

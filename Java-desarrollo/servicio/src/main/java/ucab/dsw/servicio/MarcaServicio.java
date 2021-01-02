@@ -16,11 +16,26 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Una clase para la administracion completa de las marcas de MERCADEOUCAB
+ * @version 1.0, 02/01/2021
+ * @author Gabriel Romero
+ * @author Carlos Silva
+ */
 @Path( "/marca" )
 @Produces( MediaType.APPLICATION_JSON )
 @Consumes( MediaType.APPLICATION_JSON )
 public class MarcaServicio extends AplicacionBase{
     
+    /**
+    * Esta funcion consiste el traer todas las marcas disponibles
+    * @author Gabriel Romero
+    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna una Response con un estado de respuesta http indicando si la operacion 
+    *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
+    *         en formato JSON con los siguiente atributos: codigo, estado, marcas (array de objetos) 
+    *         y mensaje en caso de ocurrir alguna de las excepciones
+    */
     @GET
     @Path( "/all" )
     public Response getAllMarcas()
@@ -101,6 +116,18 @@ public class MarcaServicio extends AplicacionBase{
 
     }
 
+    /**
+    * Esta funcion consiste en insertar una nueva marca
+    * @author Gabriel Romero
+    * @param marcaDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar 
+    * @throws PersistenceException si se inserta una marca duplicada
+    * @throws DatabaseException    si existe algun problema con la conexion con el servidor de base de datos
+    * @throws Excepcion      si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna una Response con un estado de respuesta http indicando si la operacion 
+    *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
+    *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir
+    *         alguna de las excepciones
+    */
     @POST
     @Path( "/add" )
     public Response addMarca(MarcaDto marcaDto)
@@ -160,6 +187,16 @@ public class MarcaServicio extends AplicacionBase{
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
+    /**
+    * Esta funcion consiste en inhabilitar una marca. Quedaran inhabilitadas para futuros estudios.
+    * @author Gabriel Romero
+    * @param _id corresponde al id de la marca
+    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna una Response con un estado de respuesta http indicando si la operacion 
+    *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
+    *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir 
+    *         alguna de las excepciones
+    */
     @DELETE
     @Path( "/delete/{id}" )
     public Response deleteMarca(@PathParam("id") long  _id)
@@ -193,7 +230,18 @@ public class MarcaServicio extends AplicacionBase{
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
-    @DELETE
+    /**
+    * Esta funcion consiste en habilitar nuevamente una marca previamente inhabilitada
+    * @author Carlos Silva
+    * @param _id corresponde al id de la marca
+    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna una Response con un estado de respuesta http indicando si la operacion 
+    *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
+    *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir 
+    *         alguna de las excepciones
+    */
+
+    @PUT
     @Path( "/activar/{id}" )
     public Response activarMarca(@PathParam("id") long  _id)
     {
@@ -227,6 +275,19 @@ public class MarcaServicio extends AplicacionBase{
     }
 
 
+    /**
+    * Esta funcion consiste en editar una marca.
+    * @author Gabriel Romero
+    * @param _id corresponde al id de la marca
+    * @param categoriaDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean actualizar
+    * @throws PersistenceException si se inserta una marca duplicada
+    * @throws DatabaseException    si existe algun problema con la conexion con el servidor de base de datos
+    * @throws Excepcion      si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna una Response con un estado de respuesta http indicando si la operacion 
+    *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
+    *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir 
+    *         alguna de las excepciones
+    */
     @PUT
     @Path( "/edit/{id}" )
     public Response editMarca(@PathParam("id") long _id, MarcaDto marcaDto)
@@ -275,6 +336,16 @@ public class MarcaServicio extends AplicacionBase{
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
+    /**
+    * Esta funcion consiste obtener una marca
+    * @author Gabriel Romero
+    * @param _id corresponde al id de la marca
+    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna una Response con un estado de respuesta http indicando si la operacion 
+    *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
+    *         en formato JSON con los siguiente atributos: codigo, estado, marca y mensaje en caso de ocurrir 
+    *         alguna de las excepciones
+    */
     @GET
     @Path( "/{id}" )
     public Response getMarca(@PathParam("id") long  _id)
@@ -312,6 +383,16 @@ public class MarcaServicio extends AplicacionBase{
 
     }
 
+    /**
+    * Esta funcion consiste obtener una marcas por subcategoria
+    * @author Gabriel Romero
+    * @param _id corresponde al id de la subcategoria
+    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna una Response con un estado de respuesta http indicando si la operacion 
+    *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
+    *         en formato JSON con los siguiente atributos: codigo, estado, marcasBySubcategoria y mensaje en caso de ocurrir 
+    *         alguna de las excepciones
+    */
     @GET
     @Path( "/by/subcategoria/{id}" )
     public Response getMarcaBySubcategoriaId(@PathParam("id") long  _id)

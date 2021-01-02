@@ -26,11 +26,27 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
+
+/**
+ * Una clase para la administracion completa de las solicitudes de estudio
+ * @version 1.0, 02/01/2021
+ * @author Gabriel Romero
+ */
 @Path( "/solicitud" )
 @Produces( MediaType.APPLICATION_JSON )
 @Consumes( MediaType.APPLICATION_JSON )
 public class SolicitudServicio {
 
+    /**
+    * Esta funcion consiste en insertar una nueva solicitud de estudio
+    * @author Gabriel Romero
+    * @param solicitudEstudioDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar 
+    * @throws Excepcion  si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna una Response con un estado de respuesta http indicando si la operacion 
+    *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
+    *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir
+    *         alguna de las excepciones
+    */
     @POST
     @Path( "/add" )
     public Response addSolicitud(SolicitudEstudioDto solicitudEstudioDto)
@@ -51,14 +67,14 @@ public class SolicitudServicio {
             Caracteristica_Demografica Caracteristica_Demografica= new Caracteristica_Demografica();
             Caracteristica_Demografica.set_edad_min(solicitudEstudioDto.getCaracteristica_DemograficaDto().getEdad_min());
             Caracteristica_Demografica.set_edad_max(solicitudEstudioDto.getCaracteristica_DemograficaDto().getEdad_max());
-            Caracteristica_Demografica.set_nivel_socioeconomico(solicitudEstudioDto.getCaracteristica_DemograficaDto().getNivel_socioeconomico());
             Caracteristica_Demografica.set_nacionalidad(solicitudEstudioDto.getCaracteristica_DemograficaDto().getNacionalidad());
             Caracteristica_Demografica.set_cantidad_hijos(solicitudEstudioDto.getCaracteristica_DemograficaDto().getCantidad_hijos());
             Caracteristica_Demografica.set_genero(solicitudEstudioDto.getCaracteristica_DemograficaDto().getGenero());
 
             Nivel_Academico nivel_academico=new Nivel_Academico(solicitudEstudioDto.getCaracteristica_DemograficaDto().getNivel_AcademicoDto().getId());
             Parroquia parroquia= new Parroquia(solicitudEstudioDto.getCaracteristica_DemograficaDto().getParroquiaDto().getId());
-
+            
+            Caracteristica_Demografica.set_nivel_socioeconomico(parroquia.get_categoria_social());                
             Caracteristica_Demografica.set_nivel_academico_demografia(nivel_academico);
             Caracteristica_Demografica.set_Parroquia_demografia(parroquia);
 
@@ -91,6 +107,16 @@ public class SolicitudServicio {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
+    /**
+    * Esta funcion consiste en validar o verificar si el cliente ya realizo ese mismo estudio previamente.
+    * Esto implica que sea la mismas caracteristicas demograficas y la marca.
+    * @author Gabriel Romero
+    * @param solicitudEstudioDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar 
+    * @throws Excepcion  si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna una SolicitudEstudio correspondiente al estudio. Hay dos opciones: 
+    *         1- Si el estudio ya existe se asigna la misma encuesta, la misma participacion y el mismo analista
+    *         2- En caso contrario, se envia a un administrador para su respectiva configuración
+    */
     public SolicitudEstudio validarEstudiosPrevio(SolicitudEstudio solicitudEstudio) throws Exception{
 
         
@@ -135,8 +161,6 @@ public class SolicitudServicio {
                     participaciones_actuales.add(participacion);
                 }
 
-                /*FALTA: Añadir metodo para verificar si existen mas encuestados que cumplan las caracteristicas*/
-
                 solicitudEstudio.set_estado("pendiente");
                 solicitudEstudio.set_participacion(participaciones_actuales);
             }
@@ -161,6 +185,16 @@ public class SolicitudServicio {
         return solicitudEstudio;
     }
 
+
+    /**
+    * Esta funcion consiste en chequear las caracteristicas demograficas de un estudio realizado por el cliente
+    * con la nueva solicitud
+    * @author Gabriel Romero
+    * @param a  objeto de tipo Caracteristica_Demografica, que corresponde a las caracteristicas del estudio que se desea realizar
+    * @param b  objeto de tipo Caracteristica_Demografica, que corresponde a las caracteristicas del estudio que ya ha sido realizado
+    * @throws Excepcion  si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna un boolean. True en caso de que sean las mismas caracteristicas demograficas, y False en caso contrario.
+    */
     public boolean CheckearCaracteristicasDemograficas(Caracteristica_Demografica a, Caracteristica_Demografica b) throws Exception{
         Boolean resul=false;
         int cont=0;

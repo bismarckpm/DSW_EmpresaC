@@ -21,12 +21,28 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+/**
+ * Una clase que contiene un conjunto de metodos y/o funciones correspondiente al cliente
+ * @version 1.0, 02/01/2021
+ * @author Gabriel Romero
+ */
+
 @Path( "/cliente" )
 @Produces( MediaType.APPLICATION_JSON )
 @Consumes( MediaType.APPLICATION_JSON )
 public class metodos_clientes {
 
 
+    /**
+    * Esta funcion consiste en traer los estudios que tiene un cliente
+    * @author Gabriel Romero
+    * @param _id corresponde al id del cliente
+    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna una Response con un estado de respuesta http indicando si la operacion 
+    *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
+    *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos) 
+    *         y mensaje en caso de ocurrir alguna de las excepciones
+    */
     @GET
     @Path("/estudios/{_id}")
     public Response consultaEstudios_Solicitados(@PathParam("_id") long _id) {
@@ -119,7 +135,16 @@ public class metodos_clientes {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
-
+    /**
+    * Esta funcion consiste en obtener el id del cliente
+    * @author Gabriel Romero
+    * @param _id corresponde al id del usuario
+    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna una Response con un estado de respuesta http indicando si la operacion 
+    *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
+    *         en formato JSON con los siguiente atributos: codigo, estado, cliente_id 
+    *         y mensaje.
+    */
     @GET
     @Path("/get-id/{_id}")
     public Response getClienteId(@PathParam("_id") long _id) {

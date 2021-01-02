@@ -421,6 +421,17 @@ public class metodos_encuestados {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
+
+    /**
+    * Esta funcion consiste en obtener el id del encuestado
+    * @author Gabriel Romero
+    * @param _id corresponde al id del usuario
+    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna una Response con un estado de respuesta http indicando si la operacion 
+    *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
+    *         en formato JSON con los siguiente atributos: codigo, estado, encuestado_id 
+    *         y mensaje.
+    */
     @GET
     @Path("/get-id/{_id}")
     public Response getEncuestadoId(@PathParam("_id") long _id) {
