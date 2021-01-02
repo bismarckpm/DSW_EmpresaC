@@ -25,6 +25,13 @@ import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 
+
+/**
+ * Una clase para la gestion completa del directorio activo. LDAP
+ * @version 1.0, 02/01/2021
+ * @author Jesus Requena
+ * @author Gabriel Romero
+ */
 public class DirectorioActivo
 {
 
@@ -42,6 +49,14 @@ public class DirectorioActivo
     public DirectorioActivo()
     {}
 
+    /**
+    * Esta metodo es la encargada de realizar la conexion con el servidor LDAP
+    * @author Gabriel Romero
+    * @author Jesus Requena
+    * @param user corresponde al usuario del admin en el servidor LDAP
+    * @param password corresponde a la contrasena de admin en el servidor LDAP
+    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+    */
     private void connectLDAP(String user, String password)
     {
         try
@@ -215,6 +230,13 @@ public class DirectorioActivo
         }
     }
 
+    /**
+    * Esta funcion consiste autenticar las credenciales de un usuario 
+    * @author Gabriel Romero
+    * @param usuarioLdapDto corresponde al objeto de la capa web que contiene los datos que se desean autenticar (usuario/correo y contraseña)
+    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna un long. Devuelve 0 si las credenciales son incorrectas y devuelve 1 en caso de ser correctas.
+    */
     public long userAuthentication(UsuarioLdapDto user)
     {
         try
@@ -245,6 +267,14 @@ public class DirectorioActivo
         }
     }
 
+    /**
+    * Esta funcion consiste validar las credenciales de un usuario con el servidor LDAP
+    * @author Gabriel Romero
+    * @param user corresponde al objeto que contiene los datos a validar (usuario/correo y contraseña)
+    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna un boolean. Devuelve true si el userContext es distinto de nulo, lo que indica 
+    * que las credenciales son validas y devuelve false en caso de ser incorrectas.
+    */
     public Boolean validateUser(UsuarioLdapDto user){
         try
         {
@@ -268,6 +298,13 @@ public class DirectorioActivo
         }
     }
 
+    /**
+    * Esta funcion consiste en obtener el rol del usuario LDAP
+    * @author Gabriel Romero 
+    * @param user corresponde al objeto que contiene los datos basicos del usuario
+    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna un String, que corresponde con al rol
+    */
     public String getEntryRole(UsuarioLdapDto user)
     {
         String role="";
@@ -307,6 +344,13 @@ public class DirectorioActivo
         return role;
     }
 
+    /**
+    * Esta funcion consiste en obtener el uid del usuario LDAP
+    * @author Gabriel Romero 
+    * @param user corresponde al objeto que contiene los datos basicos del usuario
+    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna un String, que corresponde con el uid
+    */
     public String getEntryUid(UsuarioLdapDto user)
     {
         String role="";
