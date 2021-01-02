@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MarcaTest {
-    @Test
+    /*@Test
     public void getMarcas() throws Exception
     {
         ucab.dsw.servicio.MarcaServicio servicio = new ucab.dsw.servicio.MarcaServicio();
