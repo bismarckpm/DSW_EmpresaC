@@ -139,8 +139,8 @@ export class EstudiosAsignadosComponent implements OnInit {
   openDialogGraficos(estudio_id): void {
     console.log(estudio_id);
     this.dialogRef = this.dialog.open(GraficosComponent, {
-      width: '600px',
-      height:'400px',
+      width: '700px',
+      height:'700px',
       //data:{estudio:1}  //para probar
       data:{estudio:estudio_id},
     });

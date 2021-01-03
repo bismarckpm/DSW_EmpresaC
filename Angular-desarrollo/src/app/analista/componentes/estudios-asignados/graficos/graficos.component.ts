@@ -15,16 +15,21 @@ export class GraficosComponent implements OnInit {
   public preguntas:any=[];
   public isLinear=false;
 
-  //Configuracion para grafico
+  //Configuracion para grafico de torta
   title = 'Grafico de la pregunta';
   type = 'PieChart';
+  columns = ['Option', 'Percentage'];
+  options = {  
+    is3D:true  
+  };
+  width = 550;
+  height = 400;
 
-   columnNames = ['Option', 'Percentage'];
-   options = {  
-     is3D:true  
-   };
-   width = 550;
-   height = 400;
+  //Configuracion para grafico de barras
+  typebar = 'BarChart';
+  widthbar = 500;
+  optionsbar = { };
+  columnsbar = ['Option', 'Total'];
 
   constructor(
     public dialogRef: MatDialogRef<GraficosComponent>,
@@ -48,7 +53,7 @@ export class GraficosComponent implements OnInit {
     this._consultaEstudios.getGraficos(this.estudio_id).subscribe(
       (response)=>{
         console.log(response);
-        this.preguntas=response.preguntas;
+        this.preguntas=response.Preguntas;
         this._toastrService.success("Exito", "Todas los graficos");
         this.eventBus.cast('fin-progress','chao');
         
@@ -75,7 +80,7 @@ const JSON=[
       ['opcion 1', 25],
       ['opcion 2', 25],
       ['opcion 3', 25],
-      ['opcion 4', 25],
+      ['opcion 4', 26],
     ]
   },
   {

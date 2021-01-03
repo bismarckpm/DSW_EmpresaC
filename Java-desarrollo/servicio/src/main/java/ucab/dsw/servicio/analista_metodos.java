@@ -518,8 +518,8 @@ public class analista_metodos {
 
 
                         }
-                        si=(si*100)/cont;
-                        no=(no*100)/cont;
+                        //si=(si*100)/cont;
+                        //no=(no*100)/cont;
                         respuesta_opcion.add(Json.createArrayBuilder().add("si").add(si));
                         respuesta_opcion.add(Json.createArrayBuilder().add("no").add(no));
 
@@ -553,8 +553,8 @@ public class analista_metodos {
                                         }
                                     }
                                 }
-                                rango = (rango * 100) / cont;
-                                respuesta_opcion.add(Json.createArrayBuilder().add("valor " + valor).add(rango));
+                                //rango = (rango * 100) / cont;
+                                respuesta_opcion.add(Json.createArrayBuilder().add("valor" + valor).add(rango));
                                 valor = valor - 1;
                             }
                         }
@@ -589,7 +589,7 @@ public class analista_metodos {
                                     }
 
                                     cont2 = cont2 + 1;
-                                    opcion = (opcion * 100) / cont;
+                                    //opcion = (opcion * 100) / cont;
                                     respuesta_opcion.add(Json.createArrayBuilder().add(opcion_simple_multiple_pregunta.get_opcionsimplemultiple().get_opcion()).add(opcion));
 
                                 }

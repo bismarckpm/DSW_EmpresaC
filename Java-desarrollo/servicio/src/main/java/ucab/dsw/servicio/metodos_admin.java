@@ -311,7 +311,7 @@ public class metodos_admin {
             pregunta.set_descripcion(preguntaDto.getDescripcion());
             pregunta.set_tipopregunta(preguntaDto.getTipopregunta());
             pregunta.set_estado("activo");
-            if (preguntaDto.getTipopregunta().equals("rango")) {
+            if (preguntaDto.getTipopregunta().equals("Rango")) {
                 pregunta.set_valormax(preguntaDto.getValormax());
                 pregunta.set_valormin(preguntaDto.getValormin());
             }
