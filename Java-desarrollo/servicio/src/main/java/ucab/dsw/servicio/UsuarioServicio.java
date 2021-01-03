@@ -23,11 +23,25 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Clase para la gestion del usuarios desde el panel del aministrador
+ * @author Jesus Requena
+ */
 @Path( "/usuario" )
 @Produces( MediaType.APPLICATION_JSON )
 @Consumes( MediaType.APPLICATION_JSON )
 public class UsuarioServicio extends AplicacionBase {
 
+    /**
+     * Metodo para añadrir un nuevo cliente
+     * despues de verificar que no existen coincidencias con el registro en la base de datos
+     * @author Jesus Requena
+     * @param clienteDto precargado con el conjunto de datos a ingresar en el registro
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return Response que incluye un estado de respuesta http OK  para indicar si exectivamente
+     *         se pudo completar la solicitud.
+     *         La respuesta posee adjunta un json que incluye (estado codigo y mensaje)
+     */
     @POST
     @Path( "/add/cliente" )
     public Response AddCliente(ClienteDto clienteDto)
@@ -94,6 +108,17 @@ public class UsuarioServicio extends AplicacionBase {
 
     }
 
+    /**
+     * Metodo para añadrir un nuevo encuestado
+     * despues de verificar que no existen coincidencias con el registro en la base de datos
+     * @author Jesus Requena
+     * @param nuevoEncuestadoDto precargado con el conjunto de datos a ingresar en el registro
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return Response que incluye un estado de respuesta http (OK, UNAUTHHORIZED o BAD_REQUEST) para
+     *         indicar si exectivamente se pudo completar la solicitud, se encontro un usuario o correo electronico
+     *         ya registrado u ocurrió un fallo en la comunicación.
+     *         La respuesta posee adjunta un json que incluye (estado codigo y mensaje)
+     */
     @POST
     @Path( "/add/encuestado" )
     public Response AddEncuestado( NuevoEncuestadoDto nuevoEncuestadoDto ){
@@ -254,7 +279,16 @@ public class UsuarioServicio extends AplicacionBase {
     }
 
 
-
+    /**
+     * Metodo para añadrir un nuevo administrador
+     * despues de verificar que no existen coincidencias con el registro en la base de datos
+     * @author Jesus Requena
+     * @param nuevoUsuarioDto precargado con el conjunto de datos a ingresar en el registro
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
+     *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
+     *         La respuesta posee adjunta un json que incluye (estado codigo y mensaje)
+     */
     @POST
     @Path( "/add/admin" )
     public Response AddAdmin(NuevoUsuarioDto nuevoUsuarioDto) {
@@ -303,6 +337,16 @@ public class UsuarioServicio extends AplicacionBase {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
+    /**
+     * Metodo para añadrir un nuevo analista
+     * despues de verificar que no existen coincidencias con el registro en la base de datos
+     * @author Jesus Requena
+     * @param nuevoUsuarioDto precargado con el conjunto de datos a ingresar en el registro
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
+     *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
+     *         La respuesta posee adjunta un json que incluye (estado codigo y mensaje)
+     */
     @POST
     @Path( "/add/analista" )
     public Response AddAnalista(NuevoUsuarioDto nuevoUsuarioDto) {
@@ -351,6 +395,15 @@ public class UsuarioServicio extends AplicacionBase {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
+    /**
+     * Metodo para modificar la contraseña de un usuario existente despues de verificar la contraseña actual
+     * @author Jesus Requena
+     * @param changePasswordDto el cual incluye el usuario a modificar, la conrtraseña actual y la nueva
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
+     *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
+     *         La respuesta posee adjunta un json que incluye (estado y codigo)
+     */
     @POST
     @Path( "/change-password" )
     public Response ChangePassword(ChangePasswordDto changePasswordDto) {
@@ -390,6 +443,7 @@ public class UsuarioServicio extends AplicacionBase {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
+
     @PUT
     @Path( "/activar/{id}" )
     public Response activarUsuario(@PathParam("id") long  _id)
@@ -423,10 +477,19 @@ public class UsuarioServicio extends AplicacionBase {
     }
 
 
+    /**
+     * Metodo para editar los datos de un usuario administrador
+     * @author Jesus Requena
+     * @param usuarioLdapDto precargado con el conjunto de datos a modificar en el registro
+     * @param _id con el id del usuario a modificar
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return Response que incluye un estado de respuesta http OK  para indicar si exectivamente
+     *      se pudo completar la solicitud.
+     *      La respuesta posee adjunta un json que incluye (estado codigo y mensaje)
+     */
     @PUT
     @Path( "/edit/{id}" )
-    public Response changeAdmin(@PathParam("id")long  _id, UsuarioLdapDto usuarioLdapDto)
-    {
+    public Response changeAdmin(@PathParam("id")long  _id, UsuarioLdapDto usuarioLdapDto) {
         DirectorioActivo ldap = new DirectorioActivo();
         UsuarioDto resultado = new UsuarioDto();
         String user_name_original,email_original;
@@ -490,6 +553,16 @@ public class UsuarioServicio extends AplicacionBase {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
+    /**
+     * Metodo para editar los datos de un usuario tipo cliente
+     * @author Jesus Requena
+     * @param clienteDto precargado con el conjunto de datos a modificar en el registro
+     * @param _id con el id del usuario a modificar
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return Response que incluye un estado de respuesta http OK  para indicar si exectivamente
+     *      se pudo completar la solicitud.
+     *      La respuesta posee adjunta un json que incluye (estado codigo y mensaje)
+     */
     @PUT
     @Path( "/cliente/edit/{id}" )
     public Response changeCliente(@PathParam("id")long  _id, ClienteDto clienteDto)
@@ -518,7 +591,6 @@ public class UsuarioServicio extends AplicacionBase {
             }
 
             if(flag){
-                //PENDIENTE DE ACOMODAR
                 DaoUsuario daoUsuario = new DaoUsuario();
                 Usuario usuario = daoUsuario.find( _id ,Usuario.class);
 
@@ -576,6 +648,15 @@ public class UsuarioServicio extends AplicacionBase {
 
     }
 
+    /**
+     * Metodo para obtener a todos los usuarios registrados en el Directorio Activo
+     * @author Jesus Requena
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
+     *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
+     *         La respuesta posee adjunta un json que incluye (estado codigo, mensaje
+     *         y el arreglo con todos los usuarios y sus respectivos datos)
+     */
     @GET
     @Path( "/all" )
     public Response findAllUsers(){
@@ -607,9 +688,10 @@ public class UsuarioServicio extends AplicacionBase {
                         .add("sn",u.getSn())
                         .add("tipo_usuario",u.getTipo_usuario())
                         .add("nombre", u.getNombre())
-                        .add( "correoelectronico",u.getCorreoelectronico())
-                        .add("uid",u.getUid() )
-                        .add( "usuario", user_in )
+                        .add("correoelectronico",u.getCorreoelectronico())
+                        .add("uid",u.getUid())
+                        .add("usuario", user_in)
+                        .add("estado",user_in.getString("estado"))
                         .build();
 
                 usuariosArrayJson.add(usuario);
@@ -618,7 +700,7 @@ public class UsuarioServicio extends AplicacionBase {
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200)
-                    .add("tipos",usuariosArrayJson).build();
+                    .add("usuarios",usuariosArrayJson).build();
 
         } catch ( Exception ex ) {
             String problema = ex.getMessage();
@@ -633,6 +715,17 @@ public class UsuarioServicio extends AplicacionBase {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
+
+    /**
+     * Metodo para obtener a un cliente a partir de su id y retornar sus datos
+     * @author Jesus Requena
+     * @param _id con el id del cliente solicitado
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
+     *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
+     *         La respuesta posee adjunta un json que incluye (estado, codigo
+     *         y los datos del cliente)
+     */
     @GET
     @Path( "/get-cliente/{id}" )
     public Response findCliente(@PathParam("id")long  _id){
@@ -670,6 +763,16 @@ public class UsuarioServicio extends AplicacionBase {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
+    /**
+     * Metodo para inhabilitar a un usuario
+     * @author Jesus Requena
+     * @param _id con el id del usuario a inhabilitar
+     * @param usuarioDto con los datos del usuario a inhabilitar
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return Response que incluye un estado de respuesta http OK  para indicar si exectivamente
+     *         se pudo completar la solicitud.
+     *         La respuesta posee adjunta un json que incluye (estado codigo y mensaje)
+     */
     @PUT
     @Path( "/delete/{id}" )
     public Response deleteUser(@PathParam("id")long  _id, UsuarioDto usuarioDto)

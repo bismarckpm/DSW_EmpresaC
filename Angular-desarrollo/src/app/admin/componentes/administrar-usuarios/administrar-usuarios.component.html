@@ -2,45 +2,48 @@
     <div class="row justify-content-md-center">
         <h1> USUARIOS</h1>
     </div>
-
-    <div class="table mat-elevation-z8" style="text-align: center;">
-        <table mat-table [dataSource]="dataSource">
+    <mat-form-field>
+        <mat-label>Buscar usuario</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Nombre de usuario" #input>
+    </mat-form-field>
+    <div class="table mat-elevation-z8" >
+        <table mat-table [dataSource]="dataSource" matSort>
 
 
             <ng-container matColumnDef="uid">
-                <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400;text-align: center;"> Codigo </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#ffc400;text-align: center;"> Codigo </th>
                 <td mat-cell *matCellDef="let element"> {{element.uid}} </td>
             </ng-container>
 
 
             <ng-container matColumnDef="cn">
-                <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400;text-align: center;"> Usuario </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#ffc400;text-align: center;"> Usuario </th>
                 <td mat-cell *matCellDef="let element"> {{element.cn}} </td>
             </ng-container>
 
             <ng-container matColumnDef="tipo_usuario">
-                <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400;text-align: center;"> Rol</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header  style="background-color:#ffc400;text-align: center;"> Rol</th>
                 <td mat-cell *matCellDef="let element"> {{element.tipo_usuario}} </td>
             </ng-container>
 
             <ng-container matColumnDef="nombre">
-                <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400;text-align: center;"> Nombre</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#ffc400;text-align: center;"> Nombre</th>
                 <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
             </ng-container>
 
             <ng-container matColumnDef="sn">
-                <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400;text-align: center;"> Apellido</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#ffc400;text-align: center;"> Apellido</th>
                 <td mat-cell *matCellDef="let element"> {{element.sn}} </td>
             </ng-container>
 
             <ng-container matColumnDef="correoelectronico">
-                <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400;text-align: center;"> Correo</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#ffc400;text-align: center;"> Correo</th>
                 <td mat-cell *matCellDef="let element"> {{element.correoelectronico}} </td>
             </ng-container>
 
             <ng-container matColumnDef="estado" class="color">
-                <th mat-header-cell *matHeaderCellDef style="background-color:#ffc400;text-align: center;"> Estatus </th>
-                <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#ffc400;text-align: center;"> Estatus </th>
+                <td mat-cell *matCellDef="let element"> {{element.usuario.estado}} </td>
             </ng-container>
 
             <ng-container matColumnDef="acciones">

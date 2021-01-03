@@ -19,8 +19,10 @@ import { ModificarClienteComponent } from './modificar/modificar-cliente/modific
 })
 export class AdministrarUsuariosComponent implements OnInit,AfterViewInit {
   displayedColumns: string[] = ['uid', 'cn', 'tipo_usuario', 'nombre', 'sn','correoelectronico','estado','acciones'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<PeriodicElement>();
   public dialogRef;
+  @ViewChild(MatSort) sort: MatSort;
+
 
   constructor(public dialog: MatDialog,
     private _adminUsuarioService:AdministrarUsuariosService,
@@ -53,11 +55,20 @@ export class AdministrarUsuariosComponent implements OnInit,AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
 
   getAllUsuarios(){
-    //this.dataSource.data=ELEMENT_DATA;
     this._adminUsuarioService.getAllUsuarios().subscribe(
       (response)=>{
         console.log(response);
@@ -134,13 +145,7 @@ export interface PeriodicElement {
   sn:string;
   correoelectronico:string;
   estado:string;
-  
 }
-const ELEMENT_DATA: PeriodicElement[] = [
-  {uid: 1, cn:'admin1', tipo_usuario:'admin',nombre: 'Gabriel', sn:'Romero',correoelectronico: 'gabriel@gmail.com', estado: 'activo'},
-  {uid: 2, cn:'admin1', tipo_usuario:'analista',nombre: 'Gabriel', sn:'Romero',correoelectronico: 'gabriel@gmail.com', estado: 'activo'},
-  {uid: 3, cn:'admin1', tipo_usuario:'encuestado',nombre: 'Gabriel', sn:'Romero',correoelectronico: 'gabriel@gmail.com', estado: 'activo'},
-  {uid: 4, cn:'admin1', tipo_usuario:'cliente',nombre: 'Gabriel', sn:'Romero',correoelectronico: 'gabriel@gmail.com', estado: 'activo'},
-  
-];
+
+
   

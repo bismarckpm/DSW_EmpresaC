@@ -51,3 +51,7 @@ th {
 .input {
     width: 10%;
 }
+
+th.mat-sort-header {
+    width: 10%;
+}

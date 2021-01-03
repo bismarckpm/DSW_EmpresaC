@@ -19,11 +19,27 @@ import javax.ws.rs.core.Response;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+/**
+ * Clase para la gestion del registro de un nuevo encuestado
+ * @author Jesus Requena
+ */
 @Path( "" )
 @Produces( MediaType.APPLICATION_JSON )
 @Consumes( MediaType.APPLICATION_JSON )
 public class RegistroServicio extends AplicacionBase{
 
+    /**
+     * Metodo para añadrir un nuevo encuestado e iniciar sesión
+     * despues de verificar que no existen coincidencias con el registro en la base de datos
+     * @author Jesus Requena
+     * @param nuevoEncuestadoDto precargado con el conjunto de datos a ingresar en el registro
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return Response que incluye un estado de respuesta http (OK, UNAUTHHORIZED o BAD_REQUEST) para
+     *         indicar si exectivamente se pudo completar la solicitud, se encontro un usuario o correo electronico
+     *         ya registrado u ocurrió un fallo en la comunicación.
+     *         La respuesta posee adjunta un json con los datos de inicio de sesion (id, token y rol) en caso de
+     *         respuesta OK
+     */
     @POST
     @Path( "/registro" )
     public Response registro( NuevoEncuestadoDto nuevoEncuestadoDto ){
