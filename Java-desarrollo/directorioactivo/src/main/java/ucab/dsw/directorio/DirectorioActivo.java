@@ -346,6 +346,14 @@ public class DirectorioActivo
         return role;
     }
 
+
+    /**
+     * Método para obtener un nombre de usuario del Directorio activo a partir de su correo eletronico
+     * @author Jesus Requena
+     * @param user precargado con el correo electronico del usuario a buscar en el ldap
+     * @return String con el nombre de usuario o cadena vacia en caso de no encontrarlo
+     * @throws Exception en caso de no lograr la conexion con el Directorio activo
+     */
     public String getUserFromMail(UsuarioLdapDto user) {
         String usuario = "";
         try {
@@ -375,6 +383,13 @@ public class DirectorioActivo
         return usuario;
     }
 
+    /**
+     * Método para establecer una nueva contraseña a un usuario
+     * @author Jesus Requena
+     * @param user precargado con el nombre de usuario a modificar en el Directorio Activo
+     * @param newPass que almacena la nueva contraseña a insertar
+     * @throws Exception en caso de no lograr la conexion con el Directorio activo
+     */
     public void reSetPass(UsuarioLdapDto user, String newPass) {
         try {
             connectLDAP( _user, _password );
@@ -392,6 +407,13 @@ public class DirectorioActivo
         }
     }
 
+    /**
+     * Método para verificar la existencia de un nombre de usuario registrado en el Directorio activo
+     * @author Jesus Requena
+     * @param user precargado con el nombre de ususario a buscar en el ldap
+     * @return String con el nombre de usuario o cadena vacia en caso de no encontrarlo
+     * @throws Exception en caso de no lograr la conexion con el Directorio activo
+     */
     public String userExist(UsuarioLdapDto user) {
         String usuario = "";
         try {
@@ -418,6 +440,14 @@ public class DirectorioActivo
         }
         return usuario;
     }
+
+    /**
+     * Método para verificar la existencia de un correo electronico registrado en el Directorio activo
+     * @author Jesus Requena
+     * @param user precargado con el correo electronico del usuario a buscar en el ldap
+     * @return String con el correo electronico o cadena vacia en caso de no encontrarlo
+     * @throws Exception en caso de no lograr la conexion con el Directorio activo
+     */
     public String emailExist(UsuarioLdapDto user) {
         String email = "";
         try {
@@ -445,6 +475,13 @@ public class DirectorioActivo
         return email;
     }
 
+    /**
+     * Método modificar todos los datos de un usuario en el Directorio activo
+     * @author Jesus Requena
+     * @param user precargado con el id del usuario a buscar en el ldap
+     * @return String con el nombre de usuario
+     * @throws Exception en caso de no lograr la conexion con el Directorio activo o la modificacion del usaurio
+     */
     public String getUserFromUid(UsuarioLdapDto user) {
         String usuario = "";
         try {
@@ -473,6 +510,13 @@ public class DirectorioActivo
         return usuario;
     }
 
+    /**
+     * Método modificar todos los datos de un usuario en el Directorio activo
+     * @author Jesus Requena
+     * @param user precargado con toda la informacion de un usuario a modificar
+     * @param originalCn que incluye el nombre de usuario original en caso de la modificacion del mismo
+     * @throws Exception en caso de no lograr la conexion con el Directorio activo o la modificacion del usaurio
+     */
     public void updateUser(UsuarioLdapDto user, String originalCn)
     {
         try
@@ -498,6 +542,13 @@ public class DirectorioActivo
         }
     }
 
+    /**
+     * Método para obtener el correo electronico de un usuario del Directorio activo a partir de su id
+     * @author Jesus Requena
+     * @param user precargado con el id del usuario a buscar en el ldap
+     * @return String con el correo electronico o cadena vacia en caso de no encontrarlo
+     * @throws Exception en caso de no lograr la conexion con el Directorio activo
+     */
     public String getMailFromUid(UsuarioLdapDto user) {
         String mail = "";
         try {
@@ -526,6 +577,12 @@ public class DirectorioActivo
         return mail;
     }
 
+    /**
+     * Método para obtener todos los usuarios del Directorio activo
+     * @author Jesus Requena
+     * @return ArrayList de usuarios del ldap con sus datos
+     * @throws Exception en caso de no lograr la conexion con el Directorio activo
+     */
     public ArrayList<UsuarioLdapDto> getAllUsers(){
 
         ArrayList<UsuarioLdapDto> usuarios = new ArrayList<UsuarioLdapDto>();
@@ -548,7 +605,6 @@ public class DirectorioActivo
                     usuario.setNombre( (String)atbs.get( "givenName" ).get() );
                     usuario.setCorreoelectronico( (String)atbs.get( "mail" ).get() );
                     usuario.setUid( (String)atbs.get( "uid" ).get() );
-                    System.out.println(usuario.getCorreoelectronico());
                     usuarios.add( usuario );
                 }
 
@@ -564,7 +620,12 @@ public class DirectorioActivo
         return usuarios;
     }
 
-
+    /**
+     * Método para llenar el Directorio activo con los datos de un archivo de texto
+     * @author Jesus Requena
+     * @param archivo con los datos a cargar en la forma de un string la ruta
+     * @throws Exception en caso de no encontrar el archivo en al ruta e IOException
+     */
     public void setAllUsersFromFile(String archivo) throws FileNotFoundException, IOException {
         String cadena;
         FileReader f = new FileReader(archivo);
