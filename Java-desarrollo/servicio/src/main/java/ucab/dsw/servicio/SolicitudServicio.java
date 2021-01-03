@@ -148,7 +148,6 @@ public class SolicitudServicio {
         }
         catch ( Exception ex )
         {
-            ex.printStackTrace();
             String problema = ex.getMessage();
             data= Json.createObjectBuilder()
                       .add("estado","exception!!!")
@@ -172,28 +171,35 @@ public class SolicitudServicio {
     */
     public SolicitudEstudio validarEstudiosPrevio(SolicitudEstudio solicitudEstudio) throws Exception{
 
-        
-        DaoSolicitudEstudio dao=new DaoSolicitudEstudio();
-        List<SolicitudEstudio> estudios_previos=dao.getEstudiosByCliente(solicitudEstudio.get_cliente().get_id(), solicitudEstudio.get_marca().get_id());
-        SolicitudEstudio estudio_elegido = null;
-        Boolean resul=false;         
+            DaoSolicitudEstudio dao=new DaoSolicitudEstudio();
+            SolicitudEstudio estudio_elegido = null;
+            Boolean resul=false;      
+            try
+            {
+                List<SolicitudEstudio> estudios_previos=dao.getEstudiosByCliente(solicitudEstudio.get_cliente().get_id(), solicitudEstudio.get_marca().get_id());
+                for(SolicitudEstudio obj: estudios_previos){
+                    if(!obj.get_estado().equals("por asignar")){
+                            resul=this.CheckearCaracteristicasDemograficas(solicitudEstudio.get_caracteristicademografica(),obj.get_caracteristicademografica());
+                    }
+                    if(resul){
+                        estudio_elegido=obj;
+                        solicitudEstudio.set_caracteristicademografica(obj.get_caracteristicademografica());
+                        System.out.println("Encontre un estudio similar");
+                        break;
+                    }
 
-            for(SolicitudEstudio obj: estudios_previos){
-                if(!obj.get_estado().equals("por asignar")){
-                    resul=this.CheckearCaracteristicasDemograficas(solicitudEstudio.get_caracteristicademografica(),obj.get_caracteristicademografica());
                 }
-                if(resul){
-                    estudio_elegido=obj;
-                    solicitudEstudio.set_caracteristicademografica(obj.get_caracteristicademografica());
-                    System.out.println("Encontre un estudio similar");
-                    break;
-                }
-
             }
-        System.out.println("ESTUDIO ELEGIDOO");
-        System.out.println(estudio_elegido);
+            catch ( Exception ex )
+            {
+                String problema = ex.getMessage();
+                System.out.println(problema);       
+                return null;
+            }
 
-        return estudio_elegido;
+            System.out.println("ESTUDIO ELEGIDOO");
+            System.out.println(estudio_elegido);
+            return estudio_elegido;
     }    
 
 
@@ -210,41 +216,49 @@ public class SolicitudServicio {
         Boolean resul=false;
         int cont=0;
 
-            if(a.get_edad_min()==b.get_edad_min()){
-                cont++;
-            }
-            if(a.get_edad_max()==b.get_edad_max()){
-                cont++;
-            }
+            try
+            {
+                if(a.get_edad_min()==b.get_edad_min()){
+                    cont++;
+                }
+                if(a.get_edad_max()==b.get_edad_max()){
+                    cont++;
+                }
 
-            if(a.get_nivel_socioeconomico().equals(b.get_nivel_socioeconomico())){
-                cont++;
+                if(a.get_nivel_socioeconomico().equals(b.get_nivel_socioeconomico())){
+                    cont++;
+                }
+
+                if(a.get_nacionalidad().equals(b.get_nacionalidad())){
+                    cont++;
+                }
+
+                if(a.get_cantidad_hijos()==b.get_cantidad_hijos()){
+                    cont++;
+                }
+
+                if(a.get_genero().equals(b.get_genero())){
+                    cont++;
+                }
+
+                if(a.get_nivel_academico_demografia().get_id()==b.get_nivel_academico_demografia().get_id()){
+                    cont++;
+                }
+
+                if(a.get_Parroquia_demografia().get_id()==b.get_Parroquia_demografia().get_id()){
+                    cont++;
+                }
+
+                if(cont==8){
+                    resul=true;
+                }  
             }
-
-            if(a.get_nacionalidad().equals(b.get_nacionalidad())){
-                cont++;
+            catch ( Exception ex )
+            {
+                String problema = ex.getMessage();
+                System.out.println(problema);
+                return resul;
             }
-
-            if(a.get_cantidad_hijos()==b.get_cantidad_hijos()){
-                cont++;
-            }
-
-            if(a.get_genero().equals(b.get_genero())){
-                cont++;
-            }
-
-            if(a.get_nivel_academico_demografia().get_id()==b.get_nivel_academico_demografia().get_id()){
-                cont++;
-            }
-
-            if(a.get_Parroquia_demografia().get_id()==b.get_Parroquia_demografia().get_id()){
-                cont++;
-            }
-
-
-        if(cont==8){
-            resul=true;
-        }
 
         return resul;
     }
