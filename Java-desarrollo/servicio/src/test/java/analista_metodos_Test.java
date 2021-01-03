@@ -33,17 +33,6 @@ public class analista_metodos_Test {
 
 
     }
-
-    @Test
-    public void Estudios_telefonoTest() throws Exception
-    {
-        ucab.dsw.servicio.analista_metodos servicio = new ucab.dsw.servicio.analista_metodos();
-        Response respuesta= servicio.Estudio_telefono(5);
-        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
-
-
-    }
-
     @Test
     public void Eliminar_ParticipacionTest() throws Exception
     {

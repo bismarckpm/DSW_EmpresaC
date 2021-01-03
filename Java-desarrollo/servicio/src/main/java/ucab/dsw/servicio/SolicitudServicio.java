@@ -1,7 +1,6 @@
 package ucab.dsw.servicio;
-import ucab.dsw.accesodatos.DaoSolicitudEstudio;
-import ucab.dsw.accesodatos.DaoUsuario;
-import ucab.dsw.dtos.SolicitudEstudioDto;
+import ucab.dsw.accesodatos.*;
+import ucab.dsw.dtos.*;
 import ucab.dsw.entidades.*;
 
 import javax.json.JsonObject;
@@ -41,7 +40,7 @@ public class SolicitudServicio {
     * Esta funcion consiste en insertar una nueva solicitud de estudio
     * @author Gabriel Romero
     * @param solicitudEstudioDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar 
-    * @throws Excepcion  si ocurre cualquier excepcion general no controlada previamente
+    * @throws Exception  si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir
@@ -52,10 +51,18 @@ public class SolicitudServicio {
     public Response addSolicitud(SolicitudEstudioDto solicitudEstudioDto)
     {
         JsonObject data;
-
+        int admin_random=0;
+        Usuario admin_elegido=null;
+        
         try
         {
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
+            DaoParticipacion daoParticipacion=new DaoParticipacion();
+            DaoEncuestado daoEncuestado=new DaoEncuestado();
+			DaoMarca daoMarca=new DaoMarca();
+			DaoNivel_Academico daoNivelAcademico=new DaoNivel_Academico();
+			DaoParroquia daoParroquia= new DaoParroquia();
+			DaoCliente daoCliente= new DaoCliente();
 
             SolicitudEstudio solicitudEstudio=new SolicitudEstudio();
 
@@ -70,24 +77,70 @@ public class SolicitudServicio {
             Caracteristica_Demografica.set_nacionalidad(solicitudEstudioDto.getCaracteristica_DemograficaDto().getNacionalidad());
             Caracteristica_Demografica.set_cantidad_hijos(solicitudEstudioDto.getCaracteristica_DemograficaDto().getCantidad_hijos());
             Caracteristica_Demografica.set_genero(solicitudEstudioDto.getCaracteristica_DemograficaDto().getGenero());
-
-            Nivel_Academico nivel_academico=new Nivel_Academico(solicitudEstudioDto.getCaracteristica_DemograficaDto().getNivel_AcademicoDto().getId());
-            Parroquia parroquia= new Parroquia(solicitudEstudioDto.getCaracteristica_DemograficaDto().getParroquiaDto().getId());
-            
             Caracteristica_Demografica.set_nivel_socioeconomico(solicitudEstudioDto.getCaracteristica_DemograficaDto().getNivel_socioeconomico());
+
+            Nivel_Academico nivel_academico= daoNivelAcademico.find(solicitudEstudioDto.getCaracteristica_DemograficaDto().getNivel_AcademicoDto().getId(),Nivel_Academico.class);
+            Parroquia parroquia= daoParroquia.find(solicitudEstudioDto.getCaracteristica_DemograficaDto().getParroquiaDto().getId(),Parroquia.class);
+
             Caracteristica_Demografica.set_nivel_academico_demografia(nivel_academico);
             Caracteristica_Demografica.set_Parroquia_demografia(parroquia);
 
             solicitudEstudio.set_caracteristicademografica(Caracteristica_Demografica);
 
-            Marca marca=new Marca(solicitudEstudioDto.getMarcaDto().getId());
+            Marca marca=daoMarca.find(solicitudEstudioDto.getMarcaDto().getId(),Marca.class);
             solicitudEstudio.set_marca(marca);
 
-            Cliente cliente= new Cliente(solicitudEstudioDto.getClienteDto().getId());
+            Cliente cliente= daoCliente.find(solicitudEstudioDto.getClienteDto().getId(),Cliente.class);
             solicitudEstudio.set_cliente(cliente);
 
-            SolicitudEstudio solicitudEstudioProcesada = this.validarEstudiosPrevio(solicitudEstudio);    
-            SolicitudEstudio resul = dao.insert(solicitudEstudioProcesada);
+            SolicitudEstudio estudio_elegido = this.validarEstudiosPrevio(solicitudEstudio);
+            System.out.println(estudio_elegido);
+
+            if(estudio_elegido!=null){
+                System.out.println("Entre");
+                solicitudEstudio.set_encuesta(estudio_elegido.get_encuesta());
+                solicitudEstudio.set_usuario(estudio_elegido.get_usuario());
+                solicitudEstudio.set_estado("pendiente");
+
+                SolicitudEstudio resul = dao.insert(solicitudEstudio);
+
+                List<Participacion> participaciones_estudio_previo=estudio_elegido.get_participacion();
+
+                for(Participacion obj1: participaciones_estudio_previo){
+
+                    Encuestado encuestado=daoEncuestado.find(obj1.get_encuestado().get_id(),Encuestado.class);
+                    Participacion participacion=new Participacion();
+                    
+                    participacion.set_encuestado(encuestado);
+                    participacion.set_solicitudestudio(resul);
+                    participacion.set_estado("activo");
+
+                    Participacion resul2 = daoParticipacion.insert(participacion);
+
+                }
+                
+                
+            }
+            
+            else{
+                System.out.println("No Entre");
+                /*PARA PRODUCCION*/
+                /*DaoUsuario daoUsuario=new DaoUsuario();
+                List<Usuario> admins= daoUsuario.getAdmins();
+                admin_random=(int)(Math.random()* admins.size());
+                System.out.println("Admin random");
+                System.out.println(admin_random);
+                admin_elegido=admins.get(admin_random);*/
+
+                /*PARA DESARROLLO*/
+                DaoUsuario daoUsuario=new DaoUsuario();
+                admin_elegido=daoUsuario.find((long)20,Usuario.class);
+                solicitudEstudio.set_estado("por asignar");
+                solicitudEstudio.set_usuario2(admin_elegido);
+
+                SolicitudEstudio resul = dao.insert(solicitudEstudio);
+            }
+
 
             data= Json.createObjectBuilder()
                       .add("estado","success")
@@ -111,8 +164,8 @@ public class SolicitudServicio {
     * Esta funcion consiste en validar o verificar si el cliente ya realizo ese mismo estudio previamente.
     * Esto implica que sea la mismas caracteristicas demograficas y la marca.
     * @author Gabriel Romero
-    * @param solicitudEstudioDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar 
-    * @throws Excepcion  si ocurre cualquier excepcion general no controlada previamente
+    * @param solicitudEstudio corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar
+    * @throws Exception  si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una SolicitudEstudio correspondiente al estudio. Hay dos opciones: 
     *         1- Si el estudio ya existe se asigna la misma encuesta, la misma participacion y el mismo analista
     *         2- En caso contrario, se envia a un administrador para su respectiva configuración
@@ -123,11 +176,7 @@ public class SolicitudServicio {
         DaoSolicitudEstudio dao=new DaoSolicitudEstudio();
         List<SolicitudEstudio> estudios_previos=dao.getEstudiosByCliente(solicitudEstudio.get_cliente().get_id(), solicitudEstudio.get_marca().get_id());
         SolicitudEstudio estudio_elegido = null;
-        Boolean resul=false;
-        int admin_random=0;
-        Usuario admin_elegido=null;
-
-            
+        Boolean resul=false;         
 
             for(SolicitudEstudio obj: estudios_previos){
                 if(!obj.get_estado().equals("por asignar")){
@@ -136,6 +185,7 @@ public class SolicitudServicio {
                 if(resul){
                     estudio_elegido=obj;
                     solicitudEstudio.set_caracteristicademografica(obj.get_caracteristicademografica());
+                    System.out.println("Encontre un estudio similar");
                     break;
                 }
 
@@ -143,47 +193,8 @@ public class SolicitudServicio {
         System.out.println("ESTUDIO ELEGIDOO");
         System.out.println(estudio_elegido);
 
-            
-            if(estudio_elegido!=null){
-                solicitudEstudio.set_encuesta(estudio_elegido.get_encuesta());
-                solicitudEstudio.set_usuario(estudio_elegido.get_usuario());
-
-                
-                List<Participacion> participaciones_estudio_previo=estudio_elegido.get_participacion();
-                List<Participacion> participaciones_actuales= new ArrayList<>();
-
-                for(Participacion obj: participaciones_estudio_previo){
-                    Participacion participacion=new Participacion();
-                    participacion.set_encuestado(obj.get_encuestado());
-                    participacion.set_solicitudestudio(solicitudEstudio);
-                    participacion.set_estado("activo");
-
-                    participaciones_actuales.add(participacion);
-                }
-
-                solicitudEstudio.set_estado("pendiente");
-                solicitudEstudio.set_participacion(participaciones_actuales);
-            }
-            
-            else{
-
-                /*Para produccion*/
-                /*DaoUsuario daoUsuario=new DaoUsuario();
-                List<Usuario> admins= daoUsuario.getAdmins();
-                admin_random=(int)(Math.random()* admins.size());
-                System.out.println("Admin random");
-                System.out.println(admin_random);
-                admin_elegido=admins.get(admin_random);*/
-
-                /*Para la simulacion*/
-                DaoUsuario daoUsuario=new DaoUsuario();
-                admin_elegido=daoUsuario.find((long)20,Usuario.class);
-                solicitudEstudio.set_estado("por asignar");
-                solicitudEstudio.set_usuario2(admin_elegido);
-            }
-
-        return solicitudEstudio;
-    }
+        return estudio_elegido;
+    }    
 
 
     /**
@@ -192,7 +203,7 @@ public class SolicitudServicio {
     * @author Gabriel Romero
     * @param a  objeto de tipo Caracteristica_Demografica, que corresponde a las caracteristicas del estudio que se desea realizar
     * @param b  objeto de tipo Caracteristica_Demografica, que corresponde a las caracteristicas del estudio que ya ha sido realizado
-    * @throws Excepcion  si ocurre cualquier excepcion general no controlada previamente
+    * @throws Exception  si ocurre cualquier excepcion general no controlada previamente
     * @return retorna un boolean. True en caso de que sean las mismas caracteristicas demograficas, y False en caso contrario.
     */
     public boolean CheckearCaracteristicasDemograficas(Caracteristica_Demografica a, Caracteristica_Demografica b) throws Exception{

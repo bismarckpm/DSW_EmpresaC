@@ -20,10 +20,10 @@ public class SolicitudEstudioTest {
 
         Caracteristica_DemograficaDto Caracteristica_DemograficaDto= new Caracteristica_DemograficaDto();
         Caracteristica_DemograficaDto.setEdad_min(15);
-        Caracteristica_DemograficaDto.setEdad_max(30);
-        Caracteristica_DemograficaDto.setNivel_socioeconomico("Media");
-        Caracteristica_DemograficaDto.setNacionalidad("venezolano");
-        Caracteristica_DemograficaDto.setCantidad_hijos(1);
+        Caracteristica_DemograficaDto.setEdad_max(60);
+        Caracteristica_DemograficaDto.setNivel_socioeconomico("Alta");
+        Caracteristica_DemograficaDto.setNacionalidad("cubano");
+        Caracteristica_DemograficaDto.setCantidad_hijos(2);
         Caracteristica_DemograficaDto.setGenero("M");
 
         Nivel_AcademicoDto nivel_academicoDto=new Nivel_AcademicoDto(4);
@@ -34,10 +34,10 @@ public class SolicitudEstudioTest {
 
         solicitudEstudioDto.setCaracteristica_DemograficaDto(Caracteristica_DemograficaDto);
 
-        MarcaDto marcaDto=new MarcaDto(5);
+        MarcaDto marcaDto=new MarcaDto(3);
         solicitudEstudioDto.setMarcaDto(marcaDto);
 
-        ClienteDto clienteDto= new ClienteDto(5);
+        ClienteDto clienteDto= new ClienteDto(3);
         solicitudEstudioDto.setClienteDto(clienteDto);
 
         Response respuesta= servicio.addSolicitud(solicitudEstudioDto);
