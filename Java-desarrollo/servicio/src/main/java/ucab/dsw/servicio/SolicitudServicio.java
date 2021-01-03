@@ -74,7 +74,7 @@ public class SolicitudServicio {
             Nivel_Academico nivel_academico=new Nivel_Academico(solicitudEstudioDto.getCaracteristica_DemograficaDto().getNivel_AcademicoDto().getId());
             Parroquia parroquia= new Parroquia(solicitudEstudioDto.getCaracteristica_DemograficaDto().getParroquiaDto().getId());
             
-            Caracteristica_Demografica.set_nivel_socioeconomico(parroquia.get_categoria_social());                
+            Caracteristica_Demografica.set_nivel_socioeconomico(solicitudEstudioDto.getCaracteristica_DemograficaDto().getNivel_socioeconomico());
             Caracteristica_Demografica.set_nivel_academico_demografia(nivel_academico);
             Caracteristica_Demografica.set_Parroquia_demografia(parroquia);
 

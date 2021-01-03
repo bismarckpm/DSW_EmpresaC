@@ -37,15 +37,15 @@
 
                 <!--COMUN-->
                 <div *ngIf="rol=='cliente' || rol=='admin' || rol=='analista' || rol=='encuestado'">
-                    <li class="nav-item">
+                    <!--li class="nav-item">
                         <a routerLink="/mi-perfil" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
                             <p>
                                 Mi Perfil
-                                <!--span class="right badge badge-danger">New</span-->
+                                <span class="right badge badge-danger">New</span>
                             </p>
                         </a>
-                    </li>
+                    </li-->
 
                     <li class="nav-item">
                         <a (click)="changePassword()" class="nav-link" style="cursor: pointer;">
@@ -132,15 +132,15 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <!--li class="nav-item">
                         <a routerLink="/" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Administrar Preguntas
-                                <!--span class="right badge badge-danger">New</span-->
+                                <span class="right badge badge-danger">New</span>
                             </p>
                         </a>
-                    </li>
+                    </li-->
 
                     <li class="nav-item">
                         <a routerLink="/admin/administrar-marcas" class="nav-link">

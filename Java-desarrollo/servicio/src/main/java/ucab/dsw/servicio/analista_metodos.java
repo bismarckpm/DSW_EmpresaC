@@ -125,6 +125,7 @@ public class analista_metodos {
                                             .add("estudios",builder).build();
         }
         catch (Exception ex){
+            ex.printStackTrace();
             data= Json.createObjectBuilder()
                     .add("estado","error")
                     .add("mensaje",ex.getMessage())
@@ -403,7 +404,7 @@ public class analista_metodos {
                                         .add("tipo_pregunta", respuesta.get_preguntaencuesta().get_pregunta().get_tipopregunta())
                                         .add("respuesta", respuestaBooleana));
                             }
-                            if (respuesta.get_preguntaencuesta().get_pregunta().get_tipopregunta().equals("rango")) {
+                            if (respuesta.get_preguntaencuesta().get_pregunta().get_tipopregunta().equals("Rango")) {
                                 respuesta_participacion.add(Json.createObjectBuilder()
                                         .add("pregunta", respuesta.get_preguntaencuesta().get_pregunta().get_descripcion())
                                         .add("tipo_pregunta", respuesta.get_preguntaencuesta().get_pregunta().get_tipopregunta())
@@ -529,7 +530,7 @@ public class analista_metodos {
                         builder.add(p);
                     }
 
-                    if (preguntaEncuesta.get_pregunta().get_tipopregunta().equals("rango") ) {
+                    if (preguntaEncuesta.get_pregunta().get_tipopregunta().equals("Rango") ) {
                         int cont = 0;
                         int valor = preguntaEncuesta.get_pregunta().get_valormax();
 

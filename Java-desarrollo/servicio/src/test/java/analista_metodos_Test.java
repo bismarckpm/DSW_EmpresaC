@@ -18,7 +18,7 @@ public class analista_metodos_Test {
     public void consultaEstudios_asignadosTest() throws Exception
     {
         ucab.dsw.servicio.analista_metodos servicio = new ucab.dsw.servicio.analista_metodos();
-        Response respuesta= servicio.consultaEstudios_asignados(11);
+        Response respuesta= servicio.consultaEstudios_asignados(15);
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
 
 
