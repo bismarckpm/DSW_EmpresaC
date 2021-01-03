@@ -13,17 +13,25 @@
                     <mat-step style="width: 100%; text-align: center;" *ngFor="let item of preguntas">
                         <ng-template matStepLabel><strong>Pregunta: </strong>{{item.pregunta}}</ng-template>
                         <div class="col-12" mat-line style="padding-top: 10px;"><strong>Tipo pregunta: </strong> {{item.tipo_pregunta}}</div>
-                        <div class="col-12" mat-line style="padding-top: 10px;">
-                            <google-chart #chart [title]="title" [type]="type" [data]="item.resultados" [columnNames]="columnNames" [options]="options" [width]="width" [height]="height">
+                        <div *ngIf="item.tipo_pregunta=='Opcion multiple'; else elseBar" class="col-12" mat-line style="padding-top: 10px; text-align: left;">
+                            <google-chart #chart [title]="title" [type]="typebar" [data]="item.resultado" [columns]="columnsbar" [options]="optionsbar" [width]="widthbar" [height]="height">
                             </google-chart>
-
                         </div>
+                        <ng-template #elseBar>
+                            <div class="col-12" mat-line style="padding-top: 10px;">
+                                <google-chart #chart [title]="title" [type]="type" [data]="item.resultado" [columns]="columns" [options]="options" [width]="width" [height]="height">
+                                </google-chart>
+                            </div>
+                        </ng-template>
+                        
+
                     </mat-step>
                 </mat-vertical-stepper>
 
             </div>
         </div>
     </div>
+    
 </div>
 
 <div *ngIf="preguntas.length==0" style="height: 100%;">
