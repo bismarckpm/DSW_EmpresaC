@@ -35,10 +35,20 @@ public class analista_metodos_Test {
     }
 
     @Test
+    public void Estudios_telefonoTest() throws Exception
+    {
+        ucab.dsw.servicio.analista_metodos servicio = new ucab.dsw.servicio.analista_metodos();
+        Response respuesta= servicio.Estudio_telefono(5);
+        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+
+
+    }
+
+    @Test
     public void Eliminar_ParticipacionTest() throws Exception
     {
         ucab.dsw.servicio.analista_metodos servicio = new ucab.dsw.servicio.analista_metodos();
-        Response respuesta= servicio.Eliminar_Participacion(2);
+        Response respuesta= servicio.Eliminar_Participacion(13);
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
     }
 
@@ -46,7 +56,7 @@ public class analista_metodos_Test {
     public void respuestas_porcentajeTest() throws Exception
     {
         ucab.dsw.servicio.analista_metodos servicio = new ucab.dsw.servicio.analista_metodos();
-        Response respuesta= servicio.respuestas_porcentaje(1);
+        Response respuesta= servicio.respuestas_porcentaje(17);
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
     }
 }
