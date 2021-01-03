@@ -586,7 +586,7 @@ public class analista_metodos {
                         builder.add(p);
                     }
 
-                    if (preguntaEncuesta.get_pregunta().get_tipopregunta().equals("rango") ) {
+                    if (preguntaEncuesta.get_pregunta().get_tipopregunta().equals("Rango") ) {
                         int cont = 0;
                         int valor = preguntaEncuesta.get_pregunta().get_valormax();
 
@@ -610,7 +610,7 @@ public class analista_metodos {
                                     }
                                 }
                                 rango = (rango * 100) / cont;
-                                respuesta_opcion.add(Json.createArrayBuilder().add("valor" + valor).add(rango));
+                                respuesta_opcion.add(Json.createArrayBuilder().add("valor " + valor).add(rango));
                                 valor = valor - 1;
                             }
                         }
@@ -625,9 +625,9 @@ public class analista_metodos {
                     if (preguntaEncuesta.get_pregunta().get_tipopregunta().equals("Opcion simple") ||preguntaEncuesta.get_pregunta().get_tipopregunta().equals("Opcion multiple")) {
                         int cont = 0;
                         int cont2=0;
-                        for (Respuesta obj2 : resultado) {
-                            Respuesta respuesta = dao.find(obj2.get_id(), Respuesta.class);
-                            if (respuesta.get_preguntaencuesta().get_id() == preguntaEncuesta.get_id() && respuesta.get_participacion().get_solicitudestudio().get_id() == solicitudEstudio.get_id()) {
+                        for (RespuestaOpcion obj4 : resultado2) {
+                            RespuestaOpcion respuestaOpcion = dao2.find(obj4.get_id(), RespuestaOpcion.class);
+                            if ( respuestaOpcion.get_respuesta().get_preguntaencuesta().get_id() == preguntaEncuesta.get_id() && respuestaOpcion.get_respuesta().get_participacion().get_solicitudestudio().get_id() == solicitudEstudio.get_id()) {
                                 cont = cont + 1;
                             }
                         }
