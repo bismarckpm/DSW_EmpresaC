@@ -14,10 +14,25 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+/**
+ * Clase para la gestion de la recuperación de contraseñas a traves de un envio por correo electronico
+ * @author Jesus Requena
+ */
 @Path( "" )
 @Produces( MediaType.APPLICATION_JSON )
 @Consumes( MediaType.APPLICATION_JSON )
 public class RecuperacionServicio extends AplicacionBase{
+
+    /**
+     * Metodo para enviar un correo electronico con una contraseñá alfanumerica generada aleatoriamente
+     * despues de verificar la existencia del correo electronico en el Directorio Activo
+     * @author Jesus Requena
+     * @param usuarioLdapDto precargado con el correo electronico para enviar el mensaje
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return Response que incluye un estado de respuesta http (OK, UNAUTHHORIZED o BAD_REQUEST) para
+     *         indicar si exectivamente se pudo completar la solicitud, no se encontró el correo electronico
+     *         u ocurrió un fallo en la comunicación.
+     */
     @POST
     @Path( "/recuperacion" )
     public Response recuperacion(UsuarioLdapDto usuarioLdapDto) {

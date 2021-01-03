@@ -15,16 +15,16 @@ public class RequenaTest extends AplicacionBase
     @GET
     @Path( "/enviar1" )
     public String enviarString() {
-        return "Epa este es un mensaje de ElRequena";
+        return "Este es un mensaje de prueba de ElRequena";
     }
 
     @GET
     @Path( "/enviar2" )
     public JsonArray enviarArreglo() {
         return Json.createArrayBuilder().
-                add(objeto("Saludos","arrecho")).
-                add(objeto("desde el","de_pinga")).
-                add(objeto("Backend","martha")).build();
+                add(objeto("Saludos","cordiales")).
+                add(objeto("desde","el")).
+                add(objeto("Backend","!!!")).build();
     }
 
     public JsonObject objeto(String nombre, String clave){

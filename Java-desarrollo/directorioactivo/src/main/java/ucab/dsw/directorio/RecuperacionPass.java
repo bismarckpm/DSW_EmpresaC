@@ -7,8 +7,18 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 import java.util.Random;
 
+/**
+ * Clase para realizar envios de correos electronicos con contraseñas generadas aleatoriamente
+ * @author Jesus Requena
+ */
 public class RecuperacionPass{
 
+    /**
+     * Método para enviar un correo electronico con una nueva contraseña a un usuario
+     * @author Jesus Requena
+     * @param email con la direccion de correo electronico a enviar
+     * @param newPass con la nueva contraseña que se establecera en el usuario
+     */
     public void recuperar(String email, String newPass) {
 
         try {
@@ -48,6 +58,11 @@ public class RecuperacionPass{
         }
     }
 
+    /**
+     * Método para generar una contraseña alfanumerica aleatoria
+     * @author Jesus Requena
+     * @return String con el la nueva contraseña generada
+     */
     public String newPass(){
         String caracteres = "ABCDEFGHIJKLNMOPKRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789001234567890";
         String newpass= "";

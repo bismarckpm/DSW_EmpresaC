@@ -19,7 +19,7 @@
             <div class="col-3" mat-line style="padding-top: 10px;"> {{item.nombre}} </div>
             <div class="col-3" mat-line style="padding-top: 10px;"> {{item.apellido}} </div>
             <div class="col-3" mat-line>
-                <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" style="border:0; outline: none;">
+                <button mat-icon-button [routerLink]="['/analista/Encuestar',data.id,item.id_encuestado]" aria-label="Example icon button with a vertical three dot icon" style="border:0; outline: none;">
                     <mat-icon>play_circle_filled</mat-icon>
                 </button>
             </div>
