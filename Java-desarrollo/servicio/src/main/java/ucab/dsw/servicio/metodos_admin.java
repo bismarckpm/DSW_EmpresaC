@@ -32,7 +32,17 @@ import javax.ws.rs.core.MediaType;
 @Consumes( MediaType.APPLICATION_JSON )
 public class metodos_admin {
 
-
+    /**
+     * Esta funcion consiste en enviar los datos de los estudios que tiene asignado un admin
+     * en especifico y que ya se le asigno una encuesta
+     * @author Carlos Silva
+     * @param _id corresponde al id del admin
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @GET
     @Path("/estudios-asignados/{id}")
     public Response consultaEstudios_asignados(@PathParam("id") long _id) {
@@ -90,7 +100,17 @@ public class metodos_admin {
         System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en enviar los datos de los estudios que tiene asignado un admin
+     * en especifico y que no se le a asignado una encuesta
+     * @author Carlos Silva
+     * @param _id corresponde al id del admin
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @GET
     @Path("/estudios-no-asignados/{id}")
     public Response consultaEstudios_no_asignados(@PathParam("id") long _id) {
@@ -158,6 +178,16 @@ public class metodos_admin {
     }
 
 
+    /**
+     * Esta funcion consiste en cambiar el estado de un estudio a inactivo
+     * @author Carlos Silva
+     * @param _id corresponde al id del estudio
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @DELETE
     @Path("/delete-solicitud/{id}")
     public Response EliminarEstudio(@PathParam("id") long _id) {
@@ -187,7 +217,21 @@ public class metodos_admin {
         }
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en asignarle una encuesta a un estudio creandolo y
+     * asignandole un analista aleatorio, aparte tambien recibe una lista de preguntas
+     * que se le asignan a la encuesta y otra lista de participantes que se le asignaron al estudio
+     * @author Carlos Silva
+     * @param _id corresponde al id de la marca
+     * @param _id2 corresponde al id del estudio
+     * @param encuestaDto corresponde al objeto de la capa web que contiene los nuevos datos
+     * que se van a ingresar y las listas de participantes y preguntas
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @PUT
     @Path("/addEncuesta/{id}/{id2}")
     public Response addEncuesta(@PathParam("id") long _id, @PathParam("id2") long _id2, EncuestaDto encuestaDto) {
@@ -297,7 +341,18 @@ public class metodos_admin {
         }
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en ingresar nuevas preguntas y si la pregunta es de tipo opcion
+     * simple o multiple ingresar nuevas opciones para ellas
+     * @author Carlos Silva
+     * @param preguntaDto corresponde al objeto de la capa web que contiene los nuevos datos
+     * que se van a ingresar y la lista de opnciones que se le puede asigbar
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @PUT
     @Path("/addPregunta")
     public Response addPregunta(PreguntaDto preguntaDto) {
@@ -373,7 +428,17 @@ public class metodos_admin {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
-
+    /**
+     * Esta funcion consiste en enviar los datos de los participantes que tiene un estudio
+     * @author Carlos Silva
+     * @param _id corresponde al del estudio
+     * que se van a ingresar y la lista de opnciones que se le puede asigbar
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @GET
     @Path("/estudios-participacion/{id}")
     public Response Participacion_estudio(@PathParam("id") long _id) {
@@ -422,7 +487,17 @@ public class metodos_admin {
         //builder.build();
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en enviar los datos de un estudio en especifico
+     * @author Carlos Silva
+     * @param _id corresponde al del estudio
+     * que se van a ingresar y la lista de opnciones que se le puede asigbar
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @GET
     @Path("/estudio/{id}")
     public Response buscarEstudio(@PathParam("id") long _id) {
@@ -473,6 +548,18 @@ public class metodos_admin {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
+    /**
+     * Esta funcion consiste en enviar los datos de las preguntas que estan relacionadas a una categoria
+     * @author Carlos Silva
+     * @param _id corresponde al de la categoria
+     * que se van a ingresar y la lista de opnciones que se le puede asigbar
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
+
     @GET
     @Path("/preguntas-categoria/{id}")
     public Response Preguntas_categoria(@PathParam("id") long _id) {
@@ -480,6 +567,7 @@ public class metodos_admin {
         JsonArrayBuilder builder = Json.createArrayBuilder();
         try {
             List<PreguntaEncuesta> resultado = null;
+            List<Pregunta> resultado2 = null;
 
             DaoPregunta daoPregunta = new DaoPregunta();
             DaoEncuesta daoEncuesta = new DaoEncuesta();
@@ -487,30 +575,39 @@ public class metodos_admin {
             DaoPreguntaEncuesta dao = new DaoPreguntaEncuesta();
 
             Class<PreguntaEncuesta> type = PreguntaEncuesta.class;
+            Class<Pregunta> type2 = Pregunta.class;
 
 
 
             resultado = dao.findAll(type);
+            resultado2 = daoPregunta.findAll(type2);
+            for (Pregunta obj2 : resultado2) {
+                int cont = 0;
+                Pregunta pregunta2 = daoPregunta.find(obj2.get_id(), Pregunta.class);
+                for (PreguntaEncuesta obj : resultado) {
 
-            for (PreguntaEncuesta obj : resultado) {
-
-                PreguntaEncuesta preguntaEncuesta = dao.find(obj.get_id(),PreguntaEncuesta.class);
-                Pregunta pregunta=daoPregunta.find(preguntaEncuesta.get_pregunta().get_id(),Pregunta.class);
-                Encuesta encuesta=daoEncuesta.find(preguntaEncuesta.get_encuesta().get_id(),Encuesta.class);
-                Marca marca=daoMarca.find(encuesta.get_marca().get_id(),Marca.class);
-
-
-                if (marca.get_subcategoria().get_categoria().get_id() == _id) {
-                        JsonObject p = Json.createObjectBuilder().add("id", pregunta.get_id())
-                                .add("descripcion", pregunta.get_descripcion())
-                                .add("tipopregunta", pregunta.get_tipopregunta())
-                                .build();
+                    PreguntaEncuesta preguntaEncuesta = dao.find(obj.get_id(), PreguntaEncuesta.class);
+                    Pregunta pregunta = daoPregunta.find(preguntaEncuesta.get_pregunta().get_id(), Pregunta.class);
+                    Encuesta encuesta = daoEncuesta.find(preguntaEncuesta.get_encuesta().get_id(), Encuesta.class);
+                    Marca marca = daoMarca.find(encuesta.get_marca().get_id(), Marca.class);
 
 
-                        builder.add(p);
+                    if (marca.get_subcategoria().get_categoria().get_id() == _id && pregunta.get_id() == pregunta2.get_id()) {
+                        cont=cont+1;
+                    }
                 }
-            }
 
+                if (cont !=0 || pregunta2.get_preguntaencuesta().isEmpty()) {
+                    JsonObject p = Json.createObjectBuilder().add("id", pregunta2.get_id())
+                            .add("descripcion", pregunta2.get_descripcion())
+                            .add("tipopregunta", pregunta2.get_tipopregunta())
+                            .build();
+
+
+                    builder.add(p);
+                }
+
+            }
             data = Json.createObjectBuilder()
                     .add("estado", "success")
                     .add("codigo", 200)
@@ -532,6 +629,18 @@ public class metodos_admin {
         System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
+    /**
+     * Esta funcion consiste en enviar los datos de los posibles participantes de un estudio
+     * verificando sus datos con las caracteristicas demograficas
+     * @author Carlos Silva
+     * @param _id corresponde al del estudio
+     * que se van a ingresar y la lista de opnciones que se le puede asigbar
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @GET
     @Path("/sugerencia-participacion/{id}")
     public Response add_Participacion(@PathParam("id")  long _id) throws Exception {
