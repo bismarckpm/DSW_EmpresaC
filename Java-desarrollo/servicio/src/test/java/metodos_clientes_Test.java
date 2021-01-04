@@ -22,4 +22,12 @@ public class metodos_clientes_Test {
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
     }
 
+    @Test
+    public void getClienteId() throws Exception
+    {
+        ucab.dsw.servicio.metodos_clientes servicio = new ucab.dsw.servicio.metodos_clientes();
+        Response respuesta= servicio.getClienteId(10);
+        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+    }
+
 }

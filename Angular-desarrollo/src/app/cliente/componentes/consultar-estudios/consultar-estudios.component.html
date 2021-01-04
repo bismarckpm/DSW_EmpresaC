@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row justify-content-md-center">
-        <h1> Estudios Solicitados </h1>
+        <h1> Estudios Asignados </h1>
     </div>
 
     <div class="estudio-cards">
@@ -12,6 +12,35 @@
                 <mat-card-title>Marca: Rexona</mat-card-title>
                 <mat-card-subtitle>Cliente: Juan Perez - Estado: pendiente
                 </mat-card-subtitle>
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" style="border:0; outline:none;position: absolute; right: 0;">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="openDialogMuestra(1,1)">
+                      <mat-icon>supervisor_account</mat-icon>
+                      <span>Muestra</span>
+                    </button>
+                    <button mat-menu-item (click)="openDialogCaracteriticas(1)">
+                      <mat-icon>tune</mat-icon>
+                      <span>Caracteristicas</span>
+                    </button>
+                    <button mat-menu-item (click)="openDialogResultados(1)">
+                      <mat-icon>assignment</mat-icon>
+                      <span>Dar Reporte</span>
+                    </button>
+                    <button mat-menu-item (click)="openDialogResponder(1,1)">
+                        <mat-icon>add_comment</mat-icon>
+                        <span>Responder</span>
+                    </button>
+                    <button mat-menu-item (click)="openDialogIndividual(1)">
+                        <mat-icon>gps_fixed</mat-icon>
+                        <span>Resultado Individual</span>
+                    </button>
+                    <button mat-menu-item (click)="openDialogGraficos(1)">
+                        <mat-icon>pie_chart</mat-icon>
+                        <span>Gráficos</span>
+                    </button>
+                </mat-menu>
             </mat-card-header>
             <img mat-card-image src="/assets/estudio.png" alt="Estudio">
             <mat-card-content>
@@ -19,6 +48,9 @@
             <mat-card-actions>
                 <button mat-button>Alimentos de maiz</button>
                 <button mat-button>Harina</button>
+                <button mat-button (click)="go(1)">Iniciar</button>
+                <button mat-button (click)="stop(1)">Detener</button>
+
             </mat-card-actions>
         </mat-card>-->
 
@@ -32,7 +64,31 @@
                     <p *ngIf="estudio.estado=='finalizado'" style="color: blue; display: inline-block;">{{estudio.estado}}</p>
                     {{estudio.modo_encuesta}}
                 </mat-card-subtitle>
-
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" style="border:0; outline:none;position: absolute; right: 0;">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="openDialogMuestra(estudio.participacion, estudio)">
+                      <mat-icon>supervisor_account</mat-icon>
+                      <span>Muestra</span>
+                    </button>
+                    <button mat-menu-item (click)="openDialogCaracteriticas(estudio.caracteristica_demografica)">
+                      <mat-icon>tune</mat-icon>
+                      <span>Caracteristicas</span>
+                    </button>
+                    <button mat-menu-item (click)="openDialogIndividual(estudio.id)">
+                        <mat-icon>gps_fixed</mat-icon>
+                        <span>Resultado Individual</span>
+                    </button>
+                    <button mat-menu-item (click)="openDialogGraficos(estudio.id)">
+                        <mat-icon>pie_chart</mat-icon>
+                        <span>Gráficos</span>
+                    </button>
+                    <button *ngIf="estudio.estado=='finalizado'" mat-menu-item (click)="openDialogResultadosAnalista(estudio.id)">
+                        <mat-icon>assignment_turned_in</mat-icon>
+                        <span>Respuesta analista</span>
+                    </button>
+                </mat-menu>
             </mat-card-header>
             <img mat-card-image src="/assets/estudio.png" alt="Estudio">
             <mat-card-content>

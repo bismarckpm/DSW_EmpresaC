@@ -23,13 +23,15 @@ import { EstudiosService } from "../../servicios/estudios.service";
   styleUrls: ['./encuesta-page.component.css']
 })
 export class EncuestaPageComponent implements OnInit {
-  estudio:Estudio;
-  isLinear = true;
-  encuestaForm:FormGroup;
-  preguntas:Pregunta[]
-  public encuestado_id:any
-  opciones:Opcion[];
-  estudioid:number;
+  public estudio:Estudio;
+  public isLinear = true;
+  public encuestaForm:FormGroup;
+  public preguntas:Pregunta[];
+  public encuestado_id:any;
+  public user_id:any;
+  public opciones:Opcion[];
+  public estudioid:number;
+
   
 
   @ViewChild('stepper') stepper;
@@ -50,42 +52,13 @@ export class EncuestaPageComponent implements OnInit {
     this.CrearInicial()
     this.init();
 
-    this.route.params.pipe(switchMap((params: Params) => { this.estudioid=params['id']; return  this.preguntaServicio.getEstudioPreguntas(params['id'],this.encuestado_id); })).subscribe(
-      x=>{
-        console.log(x)
-        
-      this.preguntas=x.Preguntas;
-      console.log(this.preguntas)
-      this._toastrService.success("Exito", "Preguntas recopiladas");
-      this.eventBus.cast('fin-progress','chao');
-      this.crearFormulario();
-
-    },err=>{
-      this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-      this.eventBus.cast('fin-progress','chao');
-
-    })
-
-    this.servicioEstudio.getEstudio(this.estudioid).subscribe(x=>{
-      this.estudio=x.estudio;
-    },err=>{
-      this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-      this.eventBus.cast('fin-progress','chao');
-    })
-
-    
-
-
-
-
   }
 
 
 
   init(){
     this.eventBus.cast('inicio-progress','hola');
-    this.encuestado_id=localStorage.getItem('user_id');
-   
+    this.getEncuestadoId();
   }
 
   crearFormulario(){
@@ -234,7 +207,7 @@ export class EncuestaPageComponent implements OnInit {
 
         }
 
-        if(this.preguntas[x].tipopregunta=="Opcion Simple"){
+        if(this.preguntas[x].tipopregunta=="Opcion simple"){
           pre={
             "opciones":[{"id":Number(this.encuestaForm.value.preguntas[x].pregunta)}],
             "pregunta_EncuestaDto":{
@@ -314,6 +287,47 @@ export class EncuestaPageComponent implements OnInit {
     console.log(this.preguntas);
 
 
+  }
+
+  getEncuestadoId(){
+    this.user_id=+localStorage.getItem('user_id');
+    this.servicioEstudio.getEncuestadoId(this.user_id).subscribe(
+      (response)=>{
+        console.log(response);
+        this.encuestado_id=response.encuestado_id;
+        console.log('Encuestado: '+this.encuestado_id);
+        this.dataEncuesta();
+      },
+      (error)=>{
+        console.log(error);
+        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+      });
+  }
+
+
+  dataEncuesta(){
+    this.route.params.pipe(switchMap((params: Params) => { this.estudioid=params['id']; return  this.preguntaServicio.getEstudioPreguntas(params['id'],this.encuestado_id); })).subscribe(
+      x=>{
+        console.log(x)
+        
+      this.preguntas=x.Preguntas;
+      console.log(this.preguntas)
+      this._toastrService.success("Exito", "Preguntas recopiladas");
+      this.eventBus.cast('fin-progress','chao');
+      this.crearFormulario();
+
+    },err=>{
+      this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+      this.eventBus.cast('fin-progress','chao');
+
+    });
+
+    this.servicioEstudio.getEstudio(this.estudioid).subscribe(x=>{
+      this.estudio=x.estudio;
+    },err=>{
+      this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+      this.eventBus.cast('fin-progress','chao');
+    });
   }
 
 

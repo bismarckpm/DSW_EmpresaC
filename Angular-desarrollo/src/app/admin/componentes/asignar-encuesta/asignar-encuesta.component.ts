@@ -32,12 +32,16 @@ export class AsignarEncuestaComponent implements OnInit {
   @ViewChild('fform') AgregadorFormDirective;
   AgregadorForm:FormGroup;
   encuestaForm:FormGroup;
+  participanteForm:FormGroup;
   estudio:Estudio;
   preguntas:Pregunta[];
   preguntasSeleccionadas:Pregunta[];
   todasPreguntas:Pregunta[];
   preguntasNuevas:Pregunta[]=[];
   public admin_id:any
+
+  participantes:any[];
+  participantesSeleccionados:any[];
 
 
   error:string;
@@ -60,14 +64,30 @@ export class AsignarEncuestaComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.participantesSeleccionados=[]
     this.CrearAgregador();
     this.CrearEncuesta();
+    this.CrearParticipantes();
     this.init();
 
     this.route.params.pipe(switchMap((params: Params) => { return this.solicitudServicio.getEstudio(params['id']); }))
     .subscribe(x => { 
       console.log("entre "+ x)
       this.estudio = x.estudio
+
+      this.solicitudServicio.getEncuestados(this.estudio.id).subscribe(x=>{
+        this.participantes=x.Preguntas;
+        console.log("participantes")
+        console.log(this.participantes)
+        this._toastrService.success("Exito", "toda la informacion del estudio");
+        this.eventBus.cast('fin-progress','chao');
+
+      }, err=>{
+        console.log(err)
+        this._toastrService.error("Ops! Hubo un problema.", "Al cargar los participantes.");
+        this.eventBus.cast('fin-progress','chao');
+
+      })
 
       
       this.preguntaServicio.getPreguntas(this.estudio.caracteristicas.idcategoria).subscribe(x=>{
@@ -79,9 +99,13 @@ export class AsignarEncuestaComponent implements OnInit {
         
         console.log(x.Preguntas)
         console.log(x)
+
+
+
       },
       err=>{
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        console.log(err)
+        this._toastrService.error("Ops! Hubo un problema.", "Error al cargar las preguntas.");
         this.eventBus.cast('fin-progress','chao');
       }
       )
@@ -89,6 +113,7 @@ export class AsignarEncuestaComponent implements OnInit {
 
       
         },err=>{
+          console.log(err)
         this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
         this.eventBus.cast('fin-progress','chao');
       });
@@ -112,6 +137,13 @@ export class AsignarEncuestaComponent implements OnInit {
     });
   }
 
+  CrearParticipantes(){
+    this.participanteForm=this.fb.group({
+      id: 'none',
+
+    });
+  }
+
   Agregador(){
     console.log(this.AgregadorForm.value.tipo);
     if(this.AgregadorForm.value.tipo!='none'){
@@ -123,6 +155,28 @@ export class AsignarEncuestaComponent implements OnInit {
     this.AgregadorForm.reset({
       tipo: 'none'
     });
+  }
+
+  AgregadorParticipante(){
+    
+    console.log(this.participanteForm.value);
+
+    if(this.participanteForm.value.id!='none'){
+      this.participantesSeleccionados.push(this.participantes.filter(x=>x.id==Number(this.participanteForm.value.id))[0])
+      this.participantes=this.participantes.filter(x=>x.id!=Number(this.participanteForm.value.id))
+      
+      console.log(this.participantesSeleccionados)
+    }
+    this.participanteForm.reset({
+      id: 'none'
+    });
+
+  }
+
+  EliminarParticipante(id){
+    this.participantes.push(this.participantesSeleccionados.filter(x=>x.id==id)[0])
+    this.participantesSeleccionados=this.participantesSeleccionados.filter(x=>x.id!=id)
+
   }
 
   PreguntaNueva(nueva:Pregunta){
@@ -142,13 +196,16 @@ export class AsignarEncuestaComponent implements OnInit {
     console.log(this.preguntasSeleccionadas)
     console.log(this.encuestaForm.value)
     if(this.encuestaForm.value.nombre!=""){
-      if(this.preguntasSeleccionadas.length==0){
-        this.error="seleccione 1 pregunta para la encuesta"
+      if(this.preguntasSeleccionadas.length==0 && this.participantesSeleccionados.length==0){
+        this.error="selecciona al menos una pregunta y un participante"
       }
       else{
         var encuesta:{}
         var preguntas=[]
         var p:{}
+
+        var par=[]
+        var pa={}
         
         for (let index = 0; index < this.preguntasSeleccionadas.length; index++) {
           const element = this.preguntasSeleccionadas[index];
@@ -156,11 +213,21 @@ export class AsignarEncuestaComponent implements OnInit {
           preguntas.push(p)
         }
 
+        for (let index = 0; index < this.participantesSeleccionados.length; index++) {
+          const element = this.participantesSeleccionados[index];
+          pa={"id":this.participantesSeleccionados[index].id}
+          par.push(pa)
+        }
+
         encuesta={
           "nombre":this.encuestaForm.value.nombre,
-          "preguntas":preguntas
+          "preguntas":preguntas,
+          "encuestado":par
 
         }
+
+
+
 
         console.log(encuesta)
         this.eventBus.cast('inicio-progress','hola');
@@ -173,6 +240,7 @@ export class AsignarEncuestaComponent implements OnInit {
 
 
         },err=>{
+          console.log(err)
           this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
           this.eventBus.cast('fin-progress','chao');
         })

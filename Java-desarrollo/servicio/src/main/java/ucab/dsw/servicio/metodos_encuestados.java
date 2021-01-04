@@ -53,7 +53,9 @@ public class metodos_encuestados {
 
                     JsonObject tipo = Json.createObjectBuilder().add("id", participacion.get_solicitudestudio().get_id())
                             .add("fecha", participacion.get_solicitudestudio().get_fecha_inicio().toString())
-                            .add("caracteristicas", encuesta).build();
+                            .add("caracteristicas", encuesta)
+                            .add("estado",participacion.get_solicitudestudio().get_estado())
+                            .add("modo_encuesta",participacion.get_solicitudestudio().get_modoencuesta()).build();
 
                     builder.add(tipo);
                     System.out.println("id" + obj.get_id());
@@ -416,6 +418,47 @@ public class metodos_encuestados {
 
             return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
+
+
+    /**
+    * Esta funcion consiste en obtener el id del encuestado
+    * @author Gabriel Romero
+    * @param _id corresponde al id del usuario
+    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna una Response con un estado de respuesta http indicando si la operacion 
+    *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
+    *         en formato JSON con los siguiente atributos: codigo, estado, encuestado_id 
+    *         y mensaje.
+    */
+    @GET
+    @Path("/get-id/{_id}")
+    public Response getEncuestadoId(@PathParam("_id") long _id) {
+
+        JsonObject data;
+
+        DaoEncuestado dao = new DaoEncuestado();
+        try {
+
+            Encuestado encuestado= dao.getEncuestadoId(_id);
+
+            data= Json.createObjectBuilder().add("estado","success")
+                    .add("mensaje","uid del encuestado es: "+ _id)
+                    .add("codigo",200)
+                    .add("encuestado_id",encuestado.get_id()).build();
+        }
+        catch (Exception ex){
+            data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje",ex.getMessage())
+                    .add("codigo",500).build();
+
+            System.out.println(data);
+            return Response.status(Response.Status.OK).entity(data).build();
+
+        }
+        System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
 }

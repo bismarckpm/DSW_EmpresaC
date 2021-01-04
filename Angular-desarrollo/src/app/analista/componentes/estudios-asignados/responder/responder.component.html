@@ -1,5 +1,5 @@
 <h2 mat-dialog-title>
-    Muestra</h2>
+    Participación activa</h2>
 
 <mat-dialog-content class="mat-typography">
     <mat-list-item style="margin-bottom: 5px;">
@@ -14,12 +14,12 @@
     </mat-list-item>
     <mat-divider style="margin-bottom: 10px;"></mat-divider>
     <mat-list-item *ngFor="let item of data.participaciones">
-        <div class="row" style="text-align: center;">
+        <div *ngIf="item.estado=='activo'" class="row" style="text-align: center;">
             <div class="col-3" mat-line style="padding-top: 10px;">{{item.participacion_id}} </div>
             <div class="col-3" mat-line style="padding-top: 10px;"> {{item.nombre}} </div>
             <div class="col-3" mat-line style="padding-top: 10px;"> {{item.apellido}} </div>
             <div class="col-3" mat-line>
-                <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" style="border:0; outline: none;">
+                <button mat-icon-button [routerLink]="['analista/Encuesta',data.id,item.id_encuestado]" (click)="cerrarModal()" aria-label="Example icon button with a vertical three dot icon" style="border:0; outline: none;">
                     <mat-icon>play_circle_filled</mat-icon>
                 </button>
             </div>

@@ -4,20 +4,22 @@
 <mat-dialog-content class="mat-typography">
     <mat-list-item style="margin-bottom: 5px;">
         <div class="row" style="text-align: center; font-weight: bold;">
-            <div class="col-3" mat-line>
-                <mat-icon class="col-3" mat-list-icon style="padding: 0;">person</mat-icon>
+            <div class="col-1" mat-line>
+                <mat-icon class="col-1" mat-list-icon style="padding: 0;">person</mat-icon>
             </div>
-            <div class="col-3" mat-line> Nombre </div>
-            <div class="col-3" mat-line> Apellido</div>
+            <div class="col-4" mat-line> Usuario </div>
+            <div class="col-2" mat-line> Nombre </div>
+            <div class="col-2" mat-line> Apellido</div>
             <div class="col-3" mat-line> Opciones</div>
         </div>
     </mat-list-item>
     <mat-divider style="margin-bottom: 10px;"></mat-divider>
     <mat-list-item *ngFor="let item of data.participaciones">
         <div class="row" style="text-align: center;">
-            <div class="col-3" mat-line style="padding-top: 10px;">{{item.participacion_id}} </div>
-            <div class="col-3" mat-line style="padding-top: 10px;"> {{item.nombre}} </div>
-            <div class="col-3" mat-line style="padding-top: 10px;"> {{item.apellido}} </div>
+            <div class="col-1" mat-line style="padding-top: 10px;">{{item.participacion_id}} </div>
+            <div class="col-4" mat-line style="padding-top: 10px;"> {{item.usuario}} </div>
+            <div class="col-2" mat-line style="padding-top: 10px;"> {{item.nombre}} </div>
+            <div class="col-2" mat-line style="padding-top: 10px;"> {{item.apellido}} </div>
             <div class="col-3" mat-line>
                 <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" style="border:0; outline:none">
                     <mat-icon>more_vert</mat-icon>

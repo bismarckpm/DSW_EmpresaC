@@ -18,11 +18,26 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+/**
+ * Una clase para la administracion los metodos de conexion
+ * @version 1.0, 02/01/2021
+ * @author Jesus Requena
+ */
 
 @Path( "/metodos_conexion" )
 @Produces( MediaType.APPLICATION_JSON )
 @Consumes( MediaType.APPLICATION_JSON )
 public class MetodoConexionServicio {
+    
+    /**
+    * Esta funcion consiste en traer todos los metodos de conexion disponibles
+    * @author Jesus Requena
+    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna una Response con un estado de respuesta http indicando si la operacion 
+    *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
+    *         en formato JSON con los siguiente atributos: codigo, estado, metodos_conexion (array de objetos) 
+    *         y mensaje en caso de ocurrir alguna de las excepciones.
+    */
     @GET
     @Path("/all")
     public Response getAllMetodoConexion() {

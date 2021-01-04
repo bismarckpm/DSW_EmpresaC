@@ -9,10 +9,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
+import javax.persistence.*;
 
 
 @Entity
 @Table( name = "cliente" )
+@NamedQueries({
+        @NamedQuery(name="ClienteId", query="select c FROM Cliente c where c._usuario_cliente._id=:usuario_id")
+})
 public class Cliente extends EntidadBase
 {
     @Column( name = "rif" )
@@ -38,6 +42,19 @@ public class Cliente extends EntidadBase
 
     public void set_razon_social( String _razon_social ) { this._razon_social = _razon_social; }
 
+    @Column( name = "estado" )
+    private String _estado;
+
+    public String get_estado()
+    {
+        return _estado;
+    }
+
+    public void set_estado( String _estado )
+    {
+        this._estado = _estado;
+    }
+
     @Column( name = "nombre_empresa" )
     private String _nombre_empresa;
 
@@ -51,7 +68,7 @@ public class Cliente extends EntidadBase
         this._nombre_empresa = _nombre_empresa;
     }
 
-    @ManyToOne(optional = false , fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+    @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Usuario_id" )
     private Usuario _usuario_cliente;
 

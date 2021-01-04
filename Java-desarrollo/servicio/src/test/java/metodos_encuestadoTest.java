@@ -58,4 +58,12 @@ public class metodos_encuestadoTest {
         Assert.assertNotEquals( resultado, 0 );
 
     }
+
+    @Test
+    public void getEncuestadoId() throws Exception
+    {
+        ucab.dsw.servicio.metodos_encuestados servicio = new ucab.dsw.servicio.metodos_encuestados();
+        Response respuesta= servicio.getEncuestadoId(2);
+        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+    }
 }

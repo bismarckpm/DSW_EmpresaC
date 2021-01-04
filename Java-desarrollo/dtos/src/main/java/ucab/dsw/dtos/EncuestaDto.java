@@ -47,4 +47,14 @@ public class EncuestaDto extends DtoBase{
     public void setPreguntas(List<PreguntaDto> preguntas) {
         this.preguntas = preguntas;
     }
+
+    private List<EncuestadoDto> encuestado;
+
+    public List<EncuestadoDto> getEncuestado() {
+        return encuestado;
+    }
+
+    public void setEncuestado(List<EncuestadoDto> encuestado) {
+        this.encuestado = encuestado;
+    }
 }

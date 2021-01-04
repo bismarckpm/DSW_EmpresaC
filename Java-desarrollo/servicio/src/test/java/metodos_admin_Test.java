@@ -87,7 +87,17 @@ public class metodos_admin_Test {
     public void Pregunta_CategoriaTest() throws Exception
     {
         ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
-        Response resultado= servicio.Preguntas_categoria(5);
+        Response resultado= servicio.Preguntas_categoria(1);
+        Assert.assertNotEquals( resultado, 0 );
+
+
+    }
+
+    @Test
+    public void add_Participacion_test() throws Exception
+    {
+        ucab.dsw.servicio.metodos_admin servicio = new ucab.dsw.servicio.metodos_admin();
+        Response resultado= servicio.add_Participacion(10);
         Assert.assertNotEquals( resultado, 0 );
 
 

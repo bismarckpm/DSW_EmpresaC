@@ -14,11 +14,25 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-
+/**
+ * Una clase para la administracion los niveles academicos
+ * @version 1.0, 02/01/2021
+ * @author Gabriel Romero
+ */
 @Path( "/niveles_academicos" )
 @Produces( MediaType.APPLICATION_JSON )
 @Consumes( MediaType.APPLICATION_JSON )
 public class NivelAcademicoServicio extends AplicacionBase {
+
+    /**
+    * Esta funcion consiste en traer todos los niveles academicos disponibles
+    * @author Gabriel Romero
+    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna una Response con un estado de respuesta http indicando si la operacion 
+    *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
+    *         en formato JSON con los siguiente atributos: codigo, estado, niveles_academicos (array de objetos) 
+    *         y mensaje en caso de ocurrir alguna de las excepciones.
+    */
     @GET
     @Path("/all")
     public Response getAllNivelesAcademicos() {

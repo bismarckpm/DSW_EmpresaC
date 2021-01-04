@@ -35,4 +35,5 @@ public class UsuarioTest {
         Assert.assertNotEquals( resultado, 0 );
 
     }
+
 }

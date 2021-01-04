@@ -21,12 +21,28 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+/**
+ * Una clase que contiene un conjunto de metodos y/o funciones correspondiente al cliente
+ * @version 1.0, 02/01/2021
+ * @author Gabriel Romero
+ */
+
 @Path( "/cliente" )
 @Produces( MediaType.APPLICATION_JSON )
 @Consumes( MediaType.APPLICATION_JSON )
 public class metodos_clientes {
 
 
+    /**
+    * Esta funcion consiste en traer los estudios que tiene un cliente
+    * @author Gabriel Romero
+    * @param _id corresponde al id del cliente
+    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna una Response con un estado de respuesta http indicando si la operacion 
+    *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
+    *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos) 
+    *         y mensaje en caso de ocurrir alguna de las excepciones
+    */
     @GET
     @Path("/estudios/{_id}")
     public Response consultaEstudios_Solicitados(@PathParam("_id") long _id) {
@@ -66,7 +82,10 @@ public class metodos_clientes {
 
                 List<Participacion> participacion= daoParticipacion.getParticipacionByEstudio(obj.get_id());
 
-                for(Participacion j:participacion){
+                if(participacion!=null){
+
+                    for(Participacion j:participacion){
+                    
                     Participacion participacion1 = daoParticipacion.find(j.get_id(), Participacion.class);
 
                     builderArrayEncuestado.add(Json.createObjectBuilder().add("participacion_id", participacion1.get_id())
@@ -76,9 +95,10 @@ public class metodos_clientes {
                             .add("nombre",participacion1.get_encuestado().get_nombre())
                             .add("apellido",participacion1.get_encuestado().get_apellido())
                             .add("estado",participacion1.get_estado()));
-
+                    }
 
                 }
+                
                 SolicitudEstudio solicitudEstudio = dao.find(obj.get_id(),SolicitudEstudio.class);
                 Marca marca = daoMarca.find(solicitudEstudio.get_marca().get_id(), Marca.class);
 
@@ -111,6 +131,84 @@ public class metodos_clientes {
             return Response.status(Response.Status.OK).entity(data).build();
 
         }
+        System.out.println(data);
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
+
+    /**
+    * Esta funcion consiste en obtener el id del cliente
+    * @author Gabriel Romero
+    * @param _id corresponde al id del usuario
+    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+    * @return retorna una Response con un estado de respuesta http indicando si la operacion 
+    *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
+    *         en formato JSON con los siguiente atributos: codigo, estado, cliente_id 
+    *         y mensaje.
+    */
+    @GET
+    @Path("/get-id/{_id}")
+    public Response getClienteId(@PathParam("_id") long _id) {
+
+        JsonObject data;
+
+        DaoCliente dao = new DaoCliente();
+        try {
+
+            Cliente cliente= dao.getClienteId(_id);
+
+            data= Json.createObjectBuilder().add("estado","success")
+                    .add("mensaje","uid del cliente es: "+ _id)
+                    .add("codigo",200)
+                    .add("cliente_id",cliente.get_id()).build();
+        }
+        catch (Exception ex){
+            data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje",ex.getMessage())
+                    .add("codigo",500).build();
+
+            System.out.println(data);
+            return Response.status(Response.Status.OK).entity(data).build();
+
+        }
+        System.out.println(data);
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
+    
+    @GET
+    @Path("/respuesta-analista/{id}")
+    public Response respuesta_analista(@PathParam("id") long _id) {
+        JsonObject data;
+        JsonArrayBuilder builder = Json.createArrayBuilder();
+        try {
+
+            DaoSolicitudEstudio daoSolicitudEstudio = new DaoSolicitudEstudio();
+            SolicitudEstudio solicitudEstudio=daoSolicitudEstudio.find(_id,SolicitudEstudio.class);
+
+                if (solicitudEstudio.get_resultadoanalista() != null) {
+                    JsonObject p = Json.createObjectBuilder().add("resultado", solicitudEstudio.get_resultadoanalista())
+                            .build();
+                    builder.add(p);
+                }
+
+            data = Json.createObjectBuilder()
+                    .add("estado", "success")
+                    .add("codigo", 200)
+                    .add("Preguntas", builder).build();
+
+
+        } catch (Exception ex) {
+            String problema = ex.getMessage();
+
+            data = Json.createObjectBuilder()
+                    .add("estado", "exception!!!")
+                    .add("excepcion", ex.getMessage())
+                    .add("codigo", 500).build();
+
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+        //builder.build();
         System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }

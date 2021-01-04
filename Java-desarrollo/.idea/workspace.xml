@@ -33,13 +33,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90d40db4-ad8c-4243-a03c-37ef11dcf5a8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/app/cliente/componentes/solicitar-estudios/solicitar-estudios.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/app/cliente/componentes/solicitar-estudios/solicitar-estudios.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/urlGlobal.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/urlGlobal.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/servicio_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/servicio_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_encuestados.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/metodos_encuestados.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/metodos_admin_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/metodos_admin_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SolicitudServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SolicitudServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/SolicitudEstudioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/SolicitudEstudioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/analista_metodos_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/analista_metodos_Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +56,16 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.2.3\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
   <component name="ProjectId" id="1lkHgJhvjHg8fkjPkWsVaSgFQnZ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -65,9 +75,24 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="JBoss Server.WildFly">
+  <component name="RunManager" selected="JUnit.SolicitudEstudioTest.AddSolicitud">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="WildFly" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss 21.0.0.Final" ALTERNATIVE_JRE_ENABLED="false">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/MercadeoUcab-1.0-SNAPSHOT/" />
       <option name="UPDATING_POLICY" value="restart-server" />
@@ -140,21 +165,21 @@
         </option>
       </method>
     </configuration>
-    <configuration name="CategoriaTest.getCategorias" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SolicitudEstudioTest.AddSolicitud" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CategoriaTest" />
-      <option name="METHOD_NAME" value="getCategorias" />
+      <option name="MAIN_CLASS_NAME" value="SolicitudEstudioTest" />
+      <option name="METHOD_NAME" value="AddSolicitud" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MarcaTest.getMarcas" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="metodos_admin_Test.Pregunta_CategoriaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MarcaTest" />
-      <option name="METHOD_NAME" value="getMarcas" />
+      <option name="MAIN_CLASS_NAME" value="metodos_admin_Test" />
+      <option name="METHOD_NAME" value="Pregunta_CategoriaTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -170,17 +195,41 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="metodos_clientes_Test.getClienteId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="metodos_clientes_Test" />
+      <option name="METHOD_NAME" value="getClienteId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="metodos_encuestadoTest.getEncuestadoId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="metodos_encuestadoTest" />
+      <option name="METHOD_NAME" value="getEncuestadoId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="JBoss Server.WildFly" />
-      <item itemvalue="JUnit.CategoriaTest.getCategorias" />
-      <item itemvalue="JUnit.MarcaTest.getMarcas" />
       <item itemvalue="JUnit.metodos_clientes_Test.consultaEstudios_SolicitadosTest" />
+      <item itemvalue="JUnit.metodos_clientes_Test.getClienteId" />
+      <item itemvalue="JUnit.metodos_encuestadoTest.getEncuestadoId" />
+      <item itemvalue="JUnit.metodos_admin_Test.Pregunta_CategoriaTest" />
+      <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitud" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitud" />
+        <item itemvalue="JUnit.metodos_admin_Test.Pregunta_CategoriaTest" />
+        <item itemvalue="JUnit.metodos_encuestadoTest.getEncuestadoId" />
+        <item itemvalue="JUnit.metodos_clientes_Test.getClienteId" />
         <item itemvalue="JUnit.metodos_clientes_Test.consultaEstudios_SolicitadosTest" />
-        <item itemvalue="JUnit.MarcaTest.getMarcas" />
-        <item itemvalue="JUnit.CategoriaTest.getCategorias" />
       </list>
     </recent_temporary>
   </component>
@@ -200,6 +249,13 @@
       <workItem from="1608139970412" duration="1434000" />
       <workItem from="1608143299811" duration="2068000" />
       <workItem from="1608248702688" duration="56000" />
+      <workItem from="1608336084003" duration="1367000" />
+      <workItem from="1608346674995" duration="1748000" />
+      <workItem from="1608508005224" duration="677000" />
+      <workItem from="1608598671498" duration="473000" />
+      <workItem from="1609108482329" duration="1574000" />
+      <workItem from="1609689727799" duration="909000" />
+      <workItem from="1609690979650" duration="1668000" />
     </task>
     <servers />
   </component>
@@ -242,5 +298,27 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1238" height="272" key="GridCell.Tab.0.bottom" timestamp="1609692811125">
+      <screen x="0" y="0" width="1280" height="980" />
+    </state>
+    <state width="1238" height="272" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1609692811125" />
+    <state width="1238" height="272" key="GridCell.Tab.0.center" timestamp="1609692811125">
+      <screen x="0" y="0" width="1280" height="980" />
+    </state>
+    <state width="1238" height="272" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1609692811125" />
+    <state width="1238" height="272" key="GridCell.Tab.0.left" timestamp="1609692811125">
+      <screen x="0" y="0" width="1280" height="980" />
+    </state>
+    <state width="1238" height="272" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1609692811125" />
+    <state width="1238" height="272" key="GridCell.Tab.0.right" timestamp="1609692811125">
+      <screen x="0" y="0" width="1280" height="980" />
+    </state>
+    <state width="1238" height="272" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1609692811125" />
+    <state x="236" y="227" key="Vcs.Push.Dialog.v2" timestamp="1608349656721">
+      <screen x="0" y="0" width="1280" height="980" />
+    </state>
+    <state x="236" y="227" key="Vcs.Push.Dialog.v2/0.0.1280.980@0.0.1280.980" timestamp="1608349656721" />
   </component>
 </project>

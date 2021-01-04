@@ -13,7 +13,7 @@ public class LugarTest {
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
     }
 
-    @Test
+   @Test
     public void getEstados() throws Exception
     {
         ucab.dsw.servicio.EstadoServicio servicio = new ucab.dsw.servicio.EstadoServicio();
