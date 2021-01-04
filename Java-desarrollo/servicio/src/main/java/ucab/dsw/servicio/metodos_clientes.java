@@ -102,6 +102,13 @@ public class metodos_clientes {
                 SolicitudEstudio solicitudEstudio = dao.find(obj.get_id(),SolicitudEstudio.class);
                 Marca marca = daoMarca.find(solicitudEstudio.get_marca().get_id(), Marca.class);
 
+                String nombre_encuesta = "";
+                if (solicitudEstudio.get_encuesta()==null){
+                    nombre_encuesta = "Encuesta sin nombre";
+                }else{
+                    nombre_encuesta = solicitudEstudio.get_encuesta().get_nombre();
+                }
+
                 builder.add(Json.createObjectBuilder().add("id", solicitudEstudio.get_id())
                         .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
                         .add("modo_encuesta",solicitudEstudio.get_modoencuesta())
@@ -110,6 +117,7 @@ public class metodos_clientes {
                         .add("subcategoria",marca.get_subcategoria().get_nombre())
                         .add("categoria",marca.get_subcategoria().get_categoria().get_nombre())
                         .add("participacion",builderArrayEncuestado)
+                        .add("nombre_encuesta", nombre_encuesta)
                         .add("estado", solicitudEstudio.get_estado()));
 
 
@@ -122,6 +130,7 @@ public class metodos_clientes {
                     .add("estudios",builder).build();
         }
         catch (Exception ex){
+            ex.printStackTrace();
             data= Json.createObjectBuilder()
                     .add("estado","error")
                     .add("mensaje",ex.getMessage())

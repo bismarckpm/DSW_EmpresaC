@@ -62,7 +62,8 @@
                 <mat-card-subtitle>Cliente: Juan Perez - Estado:
                     <p *ngIf="estudio.estado!='finalizado'" [class]="estudio.estado=='pendiente'?'pendiente': 'en-progreso'">{{estudio.estado}}</p>
                     <p *ngIf="estudio.estado=='finalizado'" style="color: blue; display: inline-block;">{{estudio.estado}}</p>
-                    {{estudio.modo_encuesta}}
+                    <p>Modo de encuesta: {{estudio.modo_encuesta}}</p>
+                    <p><strong>Nombre encuesta: {{estudio.nombre_encuesta}}</strong></p>
                 </mat-card-subtitle>
                 <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" style="border:0; outline:none;position: absolute; right: 0;">
                     <mat-icon>more_vert</mat-icon>

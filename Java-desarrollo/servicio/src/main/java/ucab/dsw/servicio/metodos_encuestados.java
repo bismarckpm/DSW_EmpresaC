@@ -38,6 +38,8 @@ public class metodos_encuestados {
 
             DaoParticipacion dao = new DaoParticipacion();
             DaoMarca daoMarca = new DaoMarca();
+            DaoSolicitudEstudio  daoSolicitudEstudio = new DaoSolicitudEstudio();
+
             Class<Participacion> type = Participacion.class;
 
             resultado = dao.findAll(type);
@@ -51,11 +53,21 @@ public class metodos_encuestados {
                             .add("idsubcategoria", marca.get_subcategoria().get_id())
                             .add("Subcategoria", marca.get_subcategoria().get_nombre()).build();
 
+                    SolicitudEstudio solicitudEstudio = daoSolicitudEstudio.find(participacion.get_solicitudestudio().get_id(), SolicitudEstudio.class);
+
+                    String nombre_encuesta = "";
+                    if (solicitudEstudio.get_encuesta()==null){
+                        nombre_encuesta = "Encuesta sin nombre";
+                    }else{
+                        nombre_encuesta = solicitudEstudio.get_encuesta().get_nombre();
+                    }
                     JsonObject tipo = Json.createObjectBuilder().add("id", participacion.get_solicitudestudio().get_id())
-                            .add("fecha", participacion.get_solicitudestudio().get_fecha_inicio().toString())
+                            .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
                             .add("caracteristicas", encuesta)
-                            .add("estado",participacion.get_solicitudestudio().get_estado())
-                            .add("modo_encuesta",participacion.get_solicitudestudio().get_modoencuesta()).build();
+                            .add("estado",solicitudEstudio.get_estado())
+                            .add("modo_encuesta", solicitudEstudio.get_modoencuesta())
+                            .add("nombre_encuesta",nombre_encuesta).build();
+
 
                     builder.add(tipo);
                     System.out.println("id" + obj.get_id());

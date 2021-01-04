@@ -111,6 +111,12 @@ public class analista_metodos {
                 }else{
                     resultadoAnalista="";
                 }
+                String nombre_encuesta = "";
+                if (solicitudEstudio.get_encuesta()==null){
+                    nombre_encuesta = "Encuesta sin nombre";
+                }else{
+                    nombre_encuesta = solicitudEstudio.get_encuesta().get_nombre();
+                }
                 builder.add(Json.createObjectBuilder().add("id", solicitudEstudio.get_id())
                                                       .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
                                                       .add("modo_encuesta",solicitudEstudio.get_modoencuesta())
@@ -120,6 +126,7 @@ public class analista_metodos {
                                                       .add("categoria",marca.get_subcategoria().get_categoria().get_nombre())
                                                       .add("participacion",builderArrayEncuestado)
                                                       .add("resultado",resultadoAnalista)
+                                                      .add("nombre_encuesta",nombre_encuesta)
                                                       .add("estado", solicitudEstudio.get_estado()));
 
 

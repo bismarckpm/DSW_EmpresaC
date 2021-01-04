@@ -96,6 +96,7 @@ export class SolicitarEstudiosComponent implements OnInit {
       (response)=>{
         console.log(response);
         this.categorias=response.categorias;
+        this.categorias_filtered=this.categorias.filter( categoria => categoria.estado === 'activo');
         this._toastrService.success("Exito", "Todas las categorias");
       },
       (error)=>{
@@ -200,10 +201,14 @@ export class SolicitarEstudiosComponent implements OnInit {
 
 
   /*Filters*/
+  filterCategorias(e){
+    this.categorias_filtered=this.categorias.filter( categoria => categoria.estado === 'activo');
+    console.log(this.categorias_filtered);
+  }
 
   filterSubcategorias(e){
     console.log(this.categoria_id);
-    this.subcategorias_filtered=this.subcategorias.filter( subcategoria => subcategoria.categoria_id === this.categoria_id);
+    this.subcategorias_filtered=this.subcategorias.filter( subcategoria => subcategoria.categoria_id === this.categoria_id && subcategoria.estado === 'activo');
     
     this.subcategoria_id=0;
     this.marcas_filtered=this.marcas.filter( marca => marca.subcategoria_id === this.subcategoria_id);
@@ -212,7 +217,7 @@ export class SolicitarEstudiosComponent implements OnInit {
 
   filterMarcas(e){
     console.log(this.subcategoria_id);
-    this.marcas_filtered=this.marcas.filter( marca => marca.subcategoria_id === this.subcategoria_id);
+    this.marcas_filtered=this.marcas.filter( marca => marca.subcategoria_id === this.subcategoria_id && marca.estado === 'activo');
     console.log(this.marcas_filtered);
   }
 
