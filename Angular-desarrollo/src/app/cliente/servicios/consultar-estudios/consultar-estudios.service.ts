@@ -14,5 +14,12 @@ export class ConsultarEstudiosService {
     //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
     return this._http.get(global.url+'cliente/estudios/'+ _id);
   }
+
+  getRespuestaAnalista(_id):Observable<any>{
+
+    //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
+    return this._http.get(global.url+'cliente/respuesta-analista/'+ _id);
+  }
+
 }
 

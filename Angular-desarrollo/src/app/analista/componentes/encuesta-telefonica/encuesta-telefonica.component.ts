@@ -30,6 +30,7 @@ export class EncuestaTelefonicaComponent implements OnInit {
   opciones:Opcion[];
   estudioid:number;
   encuestadoid:number;
+  public estudio_id: any;
 
   @ViewChild('stepper') stepper;
 
@@ -45,6 +46,7 @@ export class EncuestaTelefonicaComponent implements OnInit {
     this.opciones=[];
     this.CrearInicial()
     this.init();
+    this.estudio_id = this.route.snapshot.paramMap.get("id");
 
     this.route.params.pipe(switchMap((params: Params) => { this.estudioid=params['id'];this.encuestadoid=params['id2']; return  this.servicio.getEstudioPreguntas(params['id'],params['id2']); })).subscribe(x=>{
 
@@ -61,7 +63,7 @@ export class EncuestaTelefonicaComponent implements OnInit {
       this.eventBus.cast('fin-progress','chao');
     })
 
-    this.servicio.getEstudio(this.encuestado_id).subscribe(x=>{
+    this.servicio.getEstudio(this.estudio_id).subscribe(x=>{
       this.estudio=x.estudio;
       this._toastrService.success("Exito", "Informacion del estudio");
 
@@ -75,7 +77,7 @@ export class EncuestaTelefonicaComponent implements OnInit {
 
   init(){
     this.eventBus.cast('inicio-progress','hola');
-    this.encuestado_id=localStorage.getItem('user_id');
+    this.encuestado_id=this.route.snapshot.paramMap.get("id2");
    
   }
 
@@ -244,7 +246,7 @@ export class EncuestaTelefonicaComponent implements OnInit {
 
         }
 
-        if(this.preguntas[x].tipopregunta=="Opcion Simple"){
+        if(this.preguntas[x].tipopregunta=="Opcion simple"){
           pre={
             "opciones":[{"id":Number(this.encuestaForm.value.preguntas[x].pregunta)}],
             "pregunta_EncuestaDto":{

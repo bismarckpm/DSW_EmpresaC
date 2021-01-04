@@ -76,4 +76,10 @@ export class ConsultaEstudiosService {
     
     return this._http.get(global.url + 'analista/graficos-estudio/'+estudio_id);
   }
+
+  getRespuestaAnalista(_id):Observable<any>{
+
+    //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
+    return this._http.get(global.url+'cliente/respuesta-analista/'+ _id);
+  }
 }

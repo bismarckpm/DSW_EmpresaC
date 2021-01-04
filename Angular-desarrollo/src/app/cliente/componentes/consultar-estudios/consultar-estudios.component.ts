@@ -4,8 +4,13 @@ import { NgEventBus } from 'ng-event-bus';
 import { MetaData } from 'ng-event-bus/lib/meta-data';
 import { ToastrService } from 'ngx-toastr';
 import { SolicitudEstudioService } from 'src/app/admin/Servicios/solicitud-estudio.service';
+import { CaracteristicasComponent } from 'src/app/cliente/componentes/consultar-estudios/caracteristicas/caracteristicas.component';
+import { GraficosComponent } from 'src/app/cliente/componentes/consultar-estudios/graficos/graficos.component';
+import { IndividualComponent } from 'src/app/cliente/componentes/consultar-estudios/individual/individual.component';
+import { MuestraComponent } from 'src/app/cliente/componentes/consultar-estudios/muestra/muestra.component';
 import { ConsultarEstudiosService } from '../../servicios/consultar-estudios/consultar-estudios.service';
 import { SolicitudEstudiosService } from '../../servicios/solicitud_estudios/solicitud-estudios.service';
+import { ResultadosAnalistaComponent } from './resultados-analista/resultados-analista.component';
 
 @Component({
   selector: 'app-consultar-estudios',
@@ -17,6 +22,7 @@ export class ConsultarEstudiosComponent implements OnInit {
   public cliente_id;
   public user_id;
   public estudios:any[];
+  public dialogRef;
 
   constructor(public dialog: MatDialog,
               private _consultaEstudios:ConsultarEstudiosService,
@@ -69,5 +75,76 @@ export class ConsultarEstudiosComponent implements OnInit {
       });
   }
   
+  openDialogCaracteriticas(estudio_caracteristicas){
+    console.log(estudio_caracteristicas);
+    this.dialogRef = this.dialog.open(CaracteristicasComponent, {
+      width: '500px',
+      //data:{caracteristicas: DATAC} para probar
+      data:{caracteristicas: estudio_caracteristicas}
+    });
 
+    this.dialogRef .afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+
+  }
+  
+  openDialogMuestra(estudio_muestra, estudio_id): void {
+    console.log(estudio_muestra);
+    this.dialogRef = this.dialog.open(MuestraComponent, {
+      width: '600px',
+      height:'400px',
+      //data:{participaciones:MUESTRA}  para probar
+      data:{participaciones:estudio_muestra,estudio:estudio_id},
+     
+
+    });
+
+    this.dialogRef .afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+  
+  openDialogIndividual(estudio_id): void {
+    console.log(estudio_id);
+    this.dialogRef = this.dialog.open(IndividualComponent, {
+      width: '600px',
+      height:'400px',
+      //data:{estudio:1}  //para probar
+      data:{estudio:estudio_id}
+    });
+
+    this.dialogRef .afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  openDialogGraficos(estudio_id): void {
+    console.log(estudio_id);
+    this.dialogRef = this.dialog.open(GraficosComponent, {
+      width: '700px',
+      height:'700px',
+      //data:{estudio:1}  //para probar
+      data:{estudio:estudio_id},
+    });
+
+    this.dialogRef .afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  openDialogResultadosAnalista(estudio_id):void {
+    console.log(estudio_id);
+    this.dialogRef = this.dialog.open(ResultadosAnalistaComponent, {
+      width: '400px',
+      height:'400px',
+      //data:{estudio:1}  //para probar
+      data:{estudio:estudio_id},
+    });
+
+    this.dialogRef .afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+  
 }

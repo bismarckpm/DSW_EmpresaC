@@ -29,4 +29,8 @@ export class ResponderComponent implements OnInit {
 
   }
 
+  cerrarModal(){
+    this.dialogRef.close();
+  }
+
 }
