@@ -33,13 +33,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90d40db4-ad8c-4243-a03c-37ef11dcf5a8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/servicio_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/servicio_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SolicitudServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SolicitudServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/src/test/java/SolicitudEstudioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/SolicitudEstudioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/analista_metodos_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/analista_metodos_Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,13 +79,15 @@
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunManager" selected="JUnit.SolicitudEstudioTest.AddSolicitud">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -175,6 +174,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SolicitudEstudioTest.AddSolicitudCamposNulos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="SolicitudEstudioTest" />
+      <option name="METHOD_NAME" value="AddSolicitudCamposNulos" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SolicitudEstudioTest.AddSolicitudCamposNulosYVacios" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="SolicitudEstudioTest" />
+      <option name="METHOD_NAME" value="AddSolicitudCamposNulosYVacios" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SolicitudEstudioTest.AddSolicitudSinDatosCompletos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="SolicitudEstudioTest" />
+      <option name="METHOD_NAME" value="AddSolicitudSinDatosCompletos" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="metodos_admin_Test.Pregunta_CategoriaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <option name="PACKAGE_NAME" value="" />
@@ -185,51 +214,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="metodos_clientes_Test.consultaEstudios_SolicitadosTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="servicio" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="metodos_clientes_Test" />
-      <option name="METHOD_NAME" value="consultaEstudios_SolicitadosTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="metodos_clientes_Test.getClienteId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="servicio" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="metodos_clientes_Test" />
-      <option name="METHOD_NAME" value="getClienteId" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="metodos_encuestadoTest.getEncuestadoId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="servicio" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="metodos_encuestadoTest" />
-      <option name="METHOD_NAME" value="getEncuestadoId" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="JBoss Server.WildFly" />
-      <item itemvalue="JUnit.metodos_clientes_Test.consultaEstudios_SolicitadosTest" />
-      <item itemvalue="JUnit.metodos_clientes_Test.getClienteId" />
-      <item itemvalue="JUnit.metodos_encuestadoTest.getEncuestadoId" />
       <item itemvalue="JUnit.metodos_admin_Test.Pregunta_CategoriaTest" />
       <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitud" />
+      <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitudCamposNulos" />
+      <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitudCamposNulosYVacios" />
+      <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitudSinDatosCompletos" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitud" />
+        <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitudSinDatosCompletos" />
+        <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitudCamposNulosYVacios" />
+        <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitudCamposNulos" />
         <item itemvalue="JUnit.metodos_admin_Test.Pregunta_CategoriaTest" />
-        <item itemvalue="JUnit.metodos_encuestadoTest.getEncuestadoId" />
-        <item itemvalue="JUnit.metodos_clientes_Test.getClienteId" />
-        <item itemvalue="JUnit.metodos_clientes_Test.consultaEstudios_SolicitadosTest" />
       </list>
     </recent_temporary>
   </component>
@@ -256,6 +255,7 @@
       <workItem from="1609108482329" duration="1574000" />
       <workItem from="1609689727799" duration="909000" />
       <workItem from="1609690979650" duration="1668000" />
+      <workItem from="1609773902805" duration="8973000" />
     </task>
     <servers />
   </component>
@@ -300,22 +300,26 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1238" height="272" key="GridCell.Tab.0.bottom" timestamp="1609692811125">
+    <state x="449" y="210" key="#com.intellij.ide.util.MemberChooser" timestamp="1609780123753">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="272" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1609692811125" />
-    <state width="1238" height="272" key="GridCell.Tab.0.center" timestamp="1609692811125">
+    <state x="449" y="210" key="#com.intellij.ide.util.MemberChooser/0.0.1280.980@0.0.1280.980" timestamp="1609780123753" />
+    <state width="1230" height="269" key="GridCell.Tab.0.bottom" timestamp="1609785134105">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="272" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1609692811125" />
-    <state width="1238" height="272" key="GridCell.Tab.0.left" timestamp="1609692811125">
+    <state width="1230" height="269" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1609785134105" />
+    <state width="1230" height="269" key="GridCell.Tab.0.center" timestamp="1609785134105">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="272" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1609692811125" />
-    <state width="1238" height="272" key="GridCell.Tab.0.right" timestamp="1609692811125">
+    <state width="1230" height="269" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1609785134105" />
+    <state width="1230" height="269" key="GridCell.Tab.0.left" timestamp="1609785134105">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="272" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1609692811125" />
+    <state width="1230" height="269" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1609785134105" />
+    <state width="1230" height="269" key="GridCell.Tab.0.right" timestamp="1609785134105">
+      <screen x="0" y="0" width="1280" height="980" />
+    </state>
+    <state width="1230" height="269" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1609785134105" />
     <state x="236" y="227" key="Vcs.Push.Dialog.v2" timestamp="1608349656721">
       <screen x="0" y="0" width="1280" height="980" />
     </state>

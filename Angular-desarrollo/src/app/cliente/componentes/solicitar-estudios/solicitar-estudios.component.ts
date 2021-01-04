@@ -254,29 +254,34 @@ export class SolicitarEstudiosComponent implements OnInit {
 
   enviarSolicitud(){
 
-    this.eventBus.cast('inicio-progress','hola');
-        
-    this.dataToSend();
-    console.log(this.solicitudEstudioCliente);
-    
-    this._toastrService.info('Espere unos segundos', 'por favor. Un momento!');
-    this._solicitudService.doSolicitudEstudio(this.solicitudEstudioCliente).subscribe(
-      (response)=>{
-        console.log(response);
-        if(response.estado='success'){
-          this._toastrService.success("Todo salio bien!", "Solicitud Procesada");
-          this.route.navigate(['/cliente/consultar-estudios']);
-        }else{
-          this._toastrService.error("Ops! Hubo un problema.", "Intentelo más tarde");
-        }
-        this.eventBus.cast('fin-progress','chao');
+	if(this.marcaSelected!=undefined){
+		this.eventBus.cast('inicio-progress','hola');
+			
+		this.dataToSend();
+		console.log(this.solicitudEstudioCliente);
+		
+		this._toastrService.info('Espere unos segundos', 'por favor. Un momento!');
+		this._solicitudService.doSolicitudEstudio(this.solicitudEstudioCliente).subscribe(
+		  (response)=>{
+			console.log(response);
+			if(response.estado=='success'){
+			  this._toastrService.success("Todo salio bien!", "Solicitud Procesada");
+			  this.route.navigate(['/cliente/consultar-estudios']);
+			}else{
+			  this._toastrService.error(response.mensaje, "Ops! Hubo un problema");
+			}
 
-      },
-      (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
-      });
+			this.eventBus.cast('fin-progress','chao');
+
+		  },
+		  (error)=>{
+			console.log(error);
+			this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+			this.eventBus.cast('fin-progress','chao');
+		  });
+	}else{
+		this._toastrService.error("Debe seleccioanar una marca", "Recuerde");
+	}
 
 }
 

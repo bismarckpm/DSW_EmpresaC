@@ -1,7 +1,9 @@
 package ucab.dsw.servicio;
 import ucab.dsw.accesodatos.*;
+import ucab.dsw.clases.ValidaCamposSolicitudDto;
 import ucab.dsw.dtos.*;
 import ucab.dsw.entidades.*;
+import ucab.dsw.excepciones.CamposNulosExcepcion;
 
 import javax.json.JsonObject;
 import javax.validation.constraints.Null;
@@ -12,6 +14,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -53,9 +56,12 @@ public class SolicitudServicio {
         JsonObject data;
         int admin_random=0;
         Usuario admin_elegido=null;
+        ValidaCamposSolicitudDto valida=new ValidaCamposSolicitudDto();
+        Boolean isValidaSolitud;
         
         try
         {
+            isValidaSolitud=valida.ValidarSolicitudDto(solicitudEstudioDto);
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
             DaoParticipacion daoParticipacion=new DaoParticipacion();
             DaoEncuestado daoEncuestado=new DaoEncuestado();
@@ -146,15 +152,45 @@ public class SolicitudServicio {
                       .add("estado","success")
                       .add("codigo",200).build();
         }
-        catch ( Exception ex )
+        catch ( CamposNulosExcepcion ex )
         {
-            String problema = ex.getMessage();
-            data= Json.createObjectBuilder()
-                      .add("estado","exception!!!")
-                      .add("excepcion",problema)
-                      .add("codigo",500).build();
-                      
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            ex.printStackTrace();
+            String mensaje_excepcion = ex.getMessage();     //mensaje del Exception
+
+            if(mensaje_excepcion!=null){
+                mensaje_excepcion="Ha ocurrido una excepcion - Catch en Linea 155 - Solicitud Estudio";
+                data= Json.createObjectBuilder()
+                        .add("estado","exception")
+                        .add("mensaje","Error del servidor. Intente mas tarde.") //mensaje personalizado
+                        .add("excepcion",mensaje_excepcion)
+                        .add("codigo",400).build();
+
+                System.out.println(data);
+                return Response.status(Response.Status.OK).entity(data).build();
+            }
+            
+
+            if(ex.getMensaje()==null){
+                data= Json.createObjectBuilder()
+                            .add("estado","error")
+                            .add("mensaje","Error del servidor. Intente mas tarde.") //mensaje personalizado
+                            .add("codigo",400).build();
+                
+                System.out.println(data);
+                return Response.status(Response.Status.OK).entity(data).build();
+            }
+            else{
+                data= Json.createObjectBuilder()
+                            .add("estado","error")
+                            .add("mensaje",ex.getMensaje()) //mensaje personalizado
+                            .add("codigo",400).build();
+                
+                System.out.println(data);
+                return Response.status(Response.Status.OK).entity(data).build();
+
+            }
+
+
         }
         return Response.status(Response.Status.OK).entity(data).build();
     }
@@ -169,7 +205,7 @@ public class SolicitudServicio {
     *         1- Si el estudio ya existe se asigna la misma encuesta, la misma participacion y el mismo analista
     *         2- En caso contrario, se envia a un administrador para su respectiva configuración
     */
-    public SolicitudEstudio validarEstudiosPrevio(SolicitudEstudio solicitudEstudio) throws Exception{
+    public SolicitudEstudio validarEstudiosPrevio(SolicitudEstudio solicitudEstudio) {
 
             DaoSolicitudEstudio dao=new DaoSolicitudEstudio();
             SolicitudEstudio estudio_elegido = null;
@@ -212,7 +248,7 @@ public class SolicitudServicio {
     * @throws Exception  si ocurre cualquier excepcion general no controlada previamente
     * @return retorna un boolean. True en caso de que sean las mismas caracteristicas demograficas, y False en caso contrario.
     */
-    public boolean CheckearCaracteristicasDemograficas(Caracteristica_Demografica a, Caracteristica_Demografica b) throws Exception{
+    public boolean CheckearCaracteristicasDemograficas(Caracteristica_Demografica a, Caracteristica_Demografica b){
         Boolean resul=false;
         int cont=0;
 
