@@ -26,7 +26,17 @@ import javax.ws.rs.core.MediaType;
 @Consumes( MediaType.APPLICATION_JSON )
 public class metodos_encuestados {
 
-
+    /**
+     * Esta funcion consiste en enviar los datos de los estudios que tiene asignado un encuestado
+     * en especifico
+     * @author Carlos Silva
+     * @param _id corresponde al id del encuestado
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @GET
     @Path( "/estudios-asignados/{id}" )
     public Response consultaEstudios_asignados(@PathParam("id")long  _id)
@@ -81,7 +91,17 @@ public class metodos_encuestados {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
-
+    /**
+     * Esta funcion consiste en enviar los datos de las preguntas relacionadas con la encuesta de un estudio
+     * en especifico
+     * @author Carlos Silva
+     * @param _id corresponde al id del estudio
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @GET
     @Path( "/encuesta-estudio/{id}" )
     public Response encuesta_estudio(@PathParam("id")long  _id)
@@ -175,7 +195,19 @@ public class metodos_encuestados {
         //builder.build();
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en ingresar las respuestas de un encuestado
+     * @author Carlos Silva
+     * @param _id corresponde al id de la pregunta encuesta
+     * @param _id2 corresponde al id del estudio
+     * @param _id3 corresponde al id de la participacion
+     * @param respuestaDto corresponde al objeto de la capa web que contiene los nuevos datos
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @PUT
     @Path( "/Respuesta/{id}/{id2}/{id3}" )
     public Response addRespuesta(@PathParam("id") long  _id,@PathParam("id2") long  _id2,@PathParam("id3") long  _id3,RespuestaDto respuestaDto)
@@ -250,7 +282,17 @@ public class metodos_encuestados {
         }
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en enviar los datos de las preguntas que el encuestado no a contestado
+     * @author Carlos Silva
+     * @param _id corresponde al id del estudio
+     * @param _id2 corresponde al id de la participacion
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @GET
     @Path( "/pregunta-estudio/{id}/{id2}" )
     public Response pregunta_estudio(@PathParam("id")long  _id,@PathParam("id2")long  _id2)
@@ -363,6 +405,18 @@ public class metodos_encuestados {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
+    /**
+     * Esta funcion consiste en cambiar el estado de la participacion del encuestado a inactivo cuando responde todas las preguntas
+     * ademas en el caso de que sea el ultimo encuestado en responder el estado del estudio cambia a finalizado
+     * @author Carlos Silva
+     * @param _id corresponde al id del estudio
+     * @param _id2 corresponde al id de la participacion
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @DELETE
     @Path( "/finalizar/{id}/{id2}" )
     public Response finalizarParticipacion(@PathParam("id") long  _id,@PathParam("id2")long  _id2)

@@ -28,6 +28,17 @@ import javax.ws.rs.core.Response;
 @Consumes( MediaType.APPLICATION_JSON )
 public class crud_tipo {
 
+    /**
+     * Esta funcion consiste en agregar un tipo al sistema
+     * @author Carlos Silva
+     * @param tipoDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
+
     @POST
     @Path( "/add-tipo" )
     public Response addTipo(TipoDto tipoDto)
@@ -71,7 +82,17 @@ public class crud_tipo {
         System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en cambiar algun elemento de un tipo
+     * @author Carlos Silva
+     * @param _id corresponde al id del tipo
+     * @param tipoDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @PUT
     @Path( "/channge-tipo/{id}" )
     public Response changeTipo(@PathParam("id")long  _id,TipoDto tipoDto)
@@ -115,7 +136,17 @@ public class crud_tipo {
 
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en cambiar el estado de un tipo a inactivo lo que hace que tambien se
+     * cambien los estados de las presentaciones y marcas que esten relacionadas a al tipo
+     * @author Carlos Silva
+     * @param _id corresponde al id del tipo
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @DELETE
     @Path( "/delete-tipo/{id}" )
     public Response EliminarTipo( @PathParam("id")long  _id )
@@ -193,7 +224,17 @@ public class crud_tipo {
         }
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en cambiar el estado de un tipo a activo lo que hace que tambien se
+     * cambien los estados de las presentaciones y marcas que esten relacionadas a al tipo
+     * @author Carlos Silva
+     * @param _id corresponde al id del tipo
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @DELETE
     @Path( "/activar-tipo/{id}" )
     public Response ActivarTipo( @PathParam("id")long  _id )
@@ -272,6 +313,16 @@ public class crud_tipo {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
+    /**
+     * Esta funcion consiste en mostrar los datos de un tipo en especifico
+     * @author Carlos Silva
+     * @param id corresponde al id del tipo
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @GET
     @Path( "/find-tipo/{id}" )
     public Response findTipo(@PathParam("id") long id )
@@ -308,7 +359,15 @@ public class crud_tipo {
         }
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en mostrar los datos de todos los tipos
+     * @author Carlos Silva
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @GET
     @Path( "/findall-tipos" )
     public Response findAllTipo( )
