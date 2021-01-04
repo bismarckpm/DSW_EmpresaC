@@ -53,10 +53,8 @@ export class ResultadosComponent implements OnInit {
       this.eventBus.cast('inicio-progress','hola');
 
       this.servicio.darResultados(objeto).subscribe(x=>{
-        this.dialogRef.close()
-
         this._toastrService.success("Exito", "Resultado agregado");
-        this.eventBus.cast('fin-progress','chao');
+        this.eventBus.cast('actualizar','hola');
       },err=>{
         console.log(err)
         this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");

@@ -23,6 +23,7 @@ export class ResultadosAnalistaComponent implements OnInit {
 
   ngOnInit(): void {
     this.estudio_id = this.data.estudio;
+    this.getResult();
   }
 
   getResult() {
@@ -31,7 +32,7 @@ export class ResultadosAnalistaComponent implements OnInit {
     this._consultaEstudios.getRespuestaAnalista(this.estudio_id).subscribe(
       (response)=>{
         console.log(response);
-        this.resultado=response.Preguntas;
+        this.resultado=response.Preguntas[0].resultado;
         this._toastrService.success("Exito", "Todas los graficos");
         this.eventBus.cast('fin-progress','chao');
         

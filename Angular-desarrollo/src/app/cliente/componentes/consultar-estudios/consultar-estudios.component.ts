@@ -137,7 +137,7 @@ export class ConsultarEstudiosComponent implements OnInit {
     console.log(estudio_id);
     this.dialogRef = this.dialog.open(ResultadosAnalistaComponent, {
       width: '400px',
-      height:'400px',
+      
       //data:{estudio:1}  //para probar
       data:{estudio:estudio_id},
     });

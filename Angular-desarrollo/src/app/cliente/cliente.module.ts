@@ -4,6 +4,7 @@
   import { ClienteRoutingModule } from './cliente-routing.module';
   import { FormsModule } from '@angular/forms';
   import { MaterialModule } from '../material.module';
+  import { GoogleChartsModule } from 'angular-google-charts';
 
   /* Componentes */
   import { ClienteComponent } from './componentes/raiz/cliente.component';
@@ -37,8 +38,8 @@ import { ResultadosAnalistaComponent } from './componentes/consultar-estudios/re
       CommonModule,
       ClienteRoutingModule,
       FormsModule,
-      MaterialModule
-      
+      MaterialModule,
+      GoogleChartsModule
     ],
     providers:[SolicitudEstudiosService],
     bootstrap: [ClienteComponent]

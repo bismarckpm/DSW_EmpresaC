@@ -102,9 +102,15 @@ public class analista_metodos {
 
                     }
                 }
-                
+
+                String resultadoAnalista="";
                 SolicitudEstudio solicitudEstudio = dao.find(obj.get_id(),SolicitudEstudio.class);
                 Marca marca = daoMarca.find(solicitudEstudio.get_marca().get_id(), Marca.class);
+                if (solicitudEstudio.get_resultadoanalista() != null){
+                    resultadoAnalista = solicitudEstudio.get_resultadoanalista();
+                }else{
+                    resultadoAnalista="";
+                }
                 builder.add(Json.createObjectBuilder().add("id", solicitudEstudio.get_id())
                                                       .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
                                                       .add("modo_encuesta",solicitudEstudio.get_modoencuesta())
@@ -113,6 +119,7 @@ public class analista_metodos {
                                                       .add("subcategoria",marca.get_subcategoria().get_nombre())
                                                       .add("categoria",marca.get_subcategoria().get_categoria().get_nombre())
                                                       .add("participacion",builderArrayEncuestado)
+                                                      .add("resultado",resultadoAnalista)
                                                       .add("estado", solicitudEstudio.get_estado()));
 
 

@@ -76,7 +76,7 @@
                       <mat-icon>tune</mat-icon>
                       <span>Caracteristicas</span>
                     </button>
-                    <button mat-menu-item [disabled]="estudio.estado!='finalizado'" (click)="openDialogResultados(estudio.id)">
+                    <button *ngIf="estudio.resultado==''" mat-menu-item [disabled]="estudio.estado!='finalizado'" (click)="openDialogResultados(estudio.id)">
                       <mat-icon>assignment</mat-icon>
                       <span>Dar resultados</span>
                     </button>
