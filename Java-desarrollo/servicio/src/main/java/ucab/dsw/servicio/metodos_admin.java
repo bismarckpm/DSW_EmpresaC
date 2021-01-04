@@ -470,7 +470,6 @@ public class metodos_admin {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
-
     @GET
     @Path("/preguntas-categoria/{id}")
     public Response Preguntas_categoria(@PathParam("id") long _id) {
@@ -478,45 +477,34 @@ public class metodos_admin {
         JsonArrayBuilder builder = Json.createArrayBuilder();
         try {
             List<PreguntaEncuesta> resultado = null;
-            List<Pregunta> resultado2 = null;
 
+            DaoPregunta daoPregunta = new DaoPregunta();
+            DaoEncuesta daoEncuesta = new DaoEncuesta();
+            DaoMarca daoMarca = new DaoMarca ();
             DaoPreguntaEncuesta dao = new DaoPreguntaEncuesta();
+
             Class<PreguntaEncuesta> type = PreguntaEncuesta.class;
 
-            DaoPregunta dao2 = new DaoPregunta();
-            Class<Pregunta> type2 = Pregunta.class;
 
-            resultado2 = dao2.findAll(type2);
 
             resultado = dao.findAll(type);
 
             for (PreguntaEncuesta obj : resultado) {
-                PreguntaEncuesta preguntaEncuesta = dao.find(obj.get_id(), PreguntaEncuesta.class);
 
-                if (preguntaEncuesta.get_encuesta().get_marca().get_subcategoria().get_categoria().get_id() == _id) {
-
-                    JsonObject p = Json.createObjectBuilder().add("id", preguntaEncuesta.get_pregunta().get_id())
-                            .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
-                            .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
-                            .build();
+                PreguntaEncuesta preguntaEncuesta = dao.find(obj.get_id(),PreguntaEncuesta.class);
+                Pregunta pregunta=daoPregunta.find(preguntaEncuesta.get_pregunta().get_id(),Pregunta.class);
+                Encuesta encuesta=daoEncuesta.find(preguntaEncuesta.get_encuesta().get_id(),Encuesta.class);
+                Marca marca=daoMarca.find(encuesta.get_marca().get_id(),Marca.class);
 
 
-                    builder.add(p);
-
-                }
-            }
-
-            for (Pregunta obj2 : resultado2) {
-                Pregunta pregunta = dao2.find(obj2.get_id(), Pregunta.class);
-
-                if (pregunta.get_preguntaencuesta().isEmpty() == true) {
-                    JsonObject p = Json.createObjectBuilder().add("id", pregunta.get_id())
-                            .add("descripcion", pregunta.get_descripcion())
-                            .add("tipopregunta", pregunta.get_tipopregunta())
-                            .build();
+                if (marca.get_subcategoria().get_categoria().get_id() == _id) {
+                        JsonObject p = Json.createObjectBuilder().add("id", pregunta.get_id())
+                                .add("descripcion", pregunta.get_descripcion())
+                                .add("tipopregunta", pregunta.get_tipopregunta())
+                                .build();
 
 
-                    builder.add(p);
+                        builder.add(p);
                 }
             }
 
@@ -538,10 +526,9 @@ public class metodos_admin {
             return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
         //builder.build();
+        System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
-
     @GET
     @Path("/sugerencia-participacion/{id}")
     public Response add_Participacion(@PathParam("id")  long _id) throws Exception {
