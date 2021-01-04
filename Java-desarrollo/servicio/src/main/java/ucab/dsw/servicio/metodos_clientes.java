@@ -174,5 +174,43 @@ public class metodos_clientes {
         System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
+    
+    @GET
+    @Path("/respuesta-analista/{id}")
+    public Response respuesta_analista(@PathParam("id") long _id) {
+        JsonObject data;
+        JsonArrayBuilder builder = Json.createArrayBuilder();
+        try {
+
+            DaoSolicitudEstudio daoSolicitudEstudio = new DaoSolicitudEstudio();
+            SolicitudEstudio solicitudEstudio=daoSolicitudEstudio.find(_id,SolicitudEstudio.class);
+
+                if (solicitudEstudio.get_resultadoanalista() != null) {
+                    JsonObject p = Json.createObjectBuilder().add("resultado", solicitudEstudio.get_resultadoanalista())
+                            .build();
+                    builder.add(p);
+                }
+
+            data = Json.createObjectBuilder()
+                    .add("estado", "success")
+                    .add("codigo", 200)
+                    .add("Preguntas", builder).build();
+
+
+        } catch (Exception ex) {
+            String problema = ex.getMessage();
+
+            data = Json.createObjectBuilder()
+                    .add("estado", "exception!!!")
+                    .add("excepcion", ex.getMessage())
+                    .add("codigo", 500).build();
+
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+        //builder.build();
+        System.out.println(data);
+        return Response.status(Response.Status.OK).entity(data).build();
+    }
 
 }
