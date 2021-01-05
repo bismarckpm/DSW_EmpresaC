@@ -24,6 +24,8 @@ export class AnadirMarcaComponent implements OnInit {
   public subcategoriaDto:SubcategoriaDto;
   public subcategorias:any[];
   public tipos:any[];
+  public subcategorias_filtered: any;
+  public tipos_filtered: any;
 
   constructor(private _adminMarcaService:AdminMarcasService,
               private _toastrService: ToastrService,
@@ -87,6 +89,7 @@ export class AnadirMarcaComponent implements OnInit {
       (response)=>{
         console.log(response);
         this.subcategorias=response.subcategorias;
+        this.subcategorias_filtered=this.subcategorias.filter( subcategoria => subcategoria.estado === 'activo');
       },
       (error)=>{
         console.log(error);
@@ -100,11 +103,13 @@ export class AnadirMarcaComponent implements OnInit {
       (response)=>{
         console.log(response);
         this.tipos=response.tipos;
+        this.tipos_filtered=this.tipos.filter( tipo => tipo.estado === 'activo');
       },
       (error)=>{
         console.log(error);
         this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
       });
   }
+
 
 }

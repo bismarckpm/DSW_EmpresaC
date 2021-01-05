@@ -14,7 +14,7 @@
             <mat-label>Seleccione la categoria</mat-label>
             <mat-select [(value)]="categoria_id">
                 <mat-option>None</mat-option>
-                <mat-option *ngFor="let item of categorias" [value]="item.id">{{item.nombre}}</mat-option>
+                <mat-option *ngFor="let item of categorias_filtered" [value]="item.id">{{item.nombre}}</mat-option>
             </mat-select>
         </mat-form-field>
     </div>

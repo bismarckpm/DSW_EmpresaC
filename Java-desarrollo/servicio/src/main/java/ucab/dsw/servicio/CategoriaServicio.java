@@ -192,6 +192,17 @@ public class CategoriaServicio extends AplicacionBase{
 
                     Subcategoria resul2 = dao3.update(subcategoria);
                     resultado3.setId( resul2.get_id() );
+
+                    DaoMarca daoMarca = new DaoMarca();
+                    List<Marca> marcas =daoMarca.findAll(Marca.class);
+                    for(Marca obj2: marcas) {
+                        if (obj2.get_subcategoria().get_id() == resul2.get_id()){
+                            Marca marca = daoMarca.find(obj2.get_id(),Marca.class);
+                            marca.set_estado("inactivo");
+
+                            Marca marcaActualizada = daoMarca.update(marca);
+                        }
+                    }
                 }
 
 
@@ -246,7 +257,7 @@ public class CategoriaServicio extends AplicacionBase{
     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir 
     *         alguna de las excepciones
     */
-    @PUT
+    @DELETE
     @Path( "/activar/{id}" )
     public Response activarCategoria(@PathParam("id") long  _id)
     {

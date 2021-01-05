@@ -31,6 +31,11 @@ export class AdministrarPresentacionService {
     return this._http.delete(global.url+'presentacion/delete-presentacion/'+id);
   }
 
+  activarPresentacion(id):Observable<any>{
+    //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
+    return this._http.delete(global.url+'presentacion/activar-presentacion/'+id);
+  }
+
 }
 
 

@@ -27,6 +27,17 @@ import javax.ws.rs.core.MediaType;
 @Consumes( MediaType.APPLICATION_JSON )
 public class Cruds_presntacion {
 
+    /**
+     * Esta funcion consiste agregar una nueva presentacion
+     * @author Carlos Silva
+     * @param presentacionDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
+
     @POST
     @Path( "/add-presentacion" )
     public Response addPresentacion(PresentacionDto presentacionDto)
@@ -75,7 +86,17 @@ public class Cruds_presntacion {
         System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en cambiar algun elemento de una presentacion
+     * @author Carlos Silva
+     * @param _id corresponde al id de la presentacion
+     * @param presentacionDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @PUT
     @Path( "/channge-presentacion/{id}" )
     public Response changePresentacion(@PathParam("id")long  _id,PresentacionDto presentacionDto)
@@ -122,7 +143,16 @@ public class Cruds_presntacion {
         System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en cambiar el estado de una presentacion a inactivo
+     * @author Carlos Silva
+     * @param _id corresponde al id de la presentacion
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @DELETE
     @Path( "/delete-presentacion/{id}" )
     public Response EliminarPresentacion( @PathParam("id")long  _id )
@@ -154,7 +184,16 @@ public class Cruds_presntacion {
         }
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en cambiar el estado de una presentacion a activo
+     * @author Carlos Silva
+     * @param _id corresponde al id de la presentacion
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @DELETE
     @Path( "/activar-presentacion/{id}" )
     public Response ActivarPresentacion( @PathParam("id")long  _id )
@@ -186,7 +225,16 @@ public class Cruds_presntacion {
         }
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en mostrar los datos de una presentacion en especifico
+     * @author Carlos Silva
+     * @param id corresponde al id de la presentacion
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @GET
     @Path( "/find-presentacion/{id}" )
     public Response findPresentacion( @PathParam("id")long id )
@@ -220,7 +268,15 @@ public class Cruds_presntacion {
         }
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en mostrar los datos de todas las presentaciones
+     * @author Carlos Silva
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @GET
     @Path( "/findall-presentaciones" )
     public Response findAllPresentacion( )

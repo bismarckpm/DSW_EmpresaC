@@ -20,6 +20,7 @@ export class ModifSubcategoriaComponent implements OnInit {
   public categorias:any[];
   public subcategoriaDto: SubcategoriaDto; 
   public categoriaDto: CategoriaDto;
+  public categorias_filtered: any;
 
     constructor(
                 public dialogRef: MatDialogRef<ModifSubcategoriaComponent>,
@@ -83,6 +84,7 @@ export class ModifSubcategoriaComponent implements OnInit {
         (response)=>{
           console.log(response);
           this.categorias=response.categorias;
+          this.categorias_filtered=this.categorias.filter( categoria => categoria.estado === 'activo');
         },
         (error)=>{
           console.log(error);

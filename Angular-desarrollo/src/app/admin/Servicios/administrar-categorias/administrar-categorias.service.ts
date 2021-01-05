@@ -35,4 +35,9 @@ export class AdministrarCategoriasService {
     return this._http.delete(global.url+'categoria/delete/'+id);
   }
 
+  activarCategoria(id):Observable<any>{
+    //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
+    return this._http.delete(global.url+'categoria/activar/'+id);
+  }
+
 }

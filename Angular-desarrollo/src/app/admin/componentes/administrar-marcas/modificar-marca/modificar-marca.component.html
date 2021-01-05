@@ -14,7 +14,7 @@
         <mat-form-field appearance="outline">
             <mat-select [(value)]="subcategoria_id">
                 <mat-option>None</mat-option>
-                <mat-option *ngFor="let item of subcategorias" [value]="item.id">{{item.nombre}}</mat-option>
+                <mat-option *ngFor="let item of subcategorias_filtered" [value]="item.id">{{item.nombre}}</mat-option>
             </mat-select>
         </mat-form-field>
 
@@ -23,7 +23,7 @@
         <mat-form-field appearance="outline">
             <mat-select [(value)]="tipo_id">
                 <mat-option>None</mat-option>
-                <mat-option *ngFor="let item of tipos" [value]="item.id">{{item.nombre}}</mat-option>
+                <mat-option *ngFor="let item of tipos_filtered" [value]="item.id">{{item.nombre}}</mat-option>
             </mat-select>
         </mat-form-field>
     </div>

@@ -32,7 +32,17 @@ import javax.ws.rs.core.MediaType;
 @Consumes( MediaType.APPLICATION_JSON )
 public class metodos_admin {
 
-
+    /**
+     * Esta funcion consiste en enviar los datos de los estudios que tiene asignado un admin
+     * en especifico y que ya se le asigno una encuesta
+     * @author Carlos Silva
+     * @param _id corresponde al id del admin
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @GET
     @Path("/estudios-asignados/{id}")
     public Response consultaEstudios_asignados(@PathParam("id") long _id) {
@@ -43,6 +53,8 @@ public class metodos_admin {
 
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
             DaoMarca daoMarca = new DaoMarca();
+            DaoSubcategoria daoSubcategoria = new DaoSubcategoria();
+            DaoCategoria daoCategoria = new DaoCategoria();
             Class<SolicitudEstudio> type = SolicitudEstudio.class;
 
             resultado = dao.findAll(type);
@@ -52,15 +64,19 @@ public class metodos_admin {
                 if (solicitudEstudio.get_usuario2() != null) {
                     if (solicitudEstudio.get_encuesta() != null && solicitudEstudio.get_usuario2().get_id() == _id && solicitudEstudio.get_estado().equals("en progreso")) {
                         Marca marca = daoMarca.find(solicitudEstudio.get_marca().get_id(), Marca.class);
+                        Subcategoria subcategoria = daoSubcategoria.find(marca.get_subcategoria().get_id(),Subcategoria.class);
+                        Categoria categoria = daoCategoria.find(subcategoria.get_categoria().get_id(),Categoria.class);
+
                         JsonObject encuesta = Json.createObjectBuilder().add("Marca", marca.get_nombre())
-                                .add("idcategoria", marca.get_subcategoria().get_categoria().get_id())
-                                .add("Categoria", marca.get_subcategoria().get_categoria().get_nombre())
-                                .add("idsubcategoria", marca.get_subcategoria().get_id())
-                                .add("Subcategoria", marca.get_subcategoria().get_nombre()).build();
+                                .add("idcategoria", categoria.get_id())
+                                .add("Categoria", categoria.get_nombre())
+                                .add("idsubcategoria", subcategoria.get_id())
+                                .add("Subcategoria", subcategoria.get_nombre()).build();
 
                         JsonObject tipo = Json.createObjectBuilder().add("id", solicitudEstudio.get_id())
                                 .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
-                                .add("caracteristicas", encuesta).build();
+                                .add("caracteristicas", encuesta)
+                                .add("estatus",solicitudEstudio.get_estado()).build();
 
                         builder.add(tipo);
 
@@ -90,7 +106,17 @@ public class metodos_admin {
         System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en enviar los datos de los estudios que tiene asignado un admin
+     * en especifico y que no se le a asignado una encuesta
+     * @author Carlos Silva
+     * @param _id corresponde al id del admin
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @GET
     @Path("/estudios-no-asignados/{id}")
     public Response consultaEstudios_no_asignados(@PathParam("id") long _id) {
@@ -103,6 +129,8 @@ public class metodos_admin {
 
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
             DaoMarca daoMarca = new DaoMarca();
+            DaoSubcategoria daoSubcategoria = new DaoSubcategoria();
+            DaoCategoria daoCategoria = new DaoCategoria();
 
             Class<SolicitudEstudio> type = SolicitudEstudio.class;
 
@@ -116,12 +144,14 @@ public class metodos_admin {
                     if (solicitudEstudio.get_encuesta() == null && solicitudEstudio.get_usuario2().get_id() == _id) {
 
                         Marca marca = daoMarca.find(solicitudEstudio.get_marca().get_id(), Marca.class);  //Este fue el dao.find que falto
+                        Subcategoria subcategoria = daoSubcategoria.find(marca.get_subcategoria().get_id(),Subcategoria.class);
+                        Categoria categoria = daoCategoria.find(subcategoria.get_categoria().get_id(),Categoria.class);
 
                         JsonObject encuesta = Json.createObjectBuilder().add("Marca", marca.get_nombre())
-                                .add("idcategoria", marca.get_subcategoria().get_categoria().get_id())
-                                .add("Categoria", marca.get_subcategoria().get_categoria().get_nombre())
-                                .add("idsubcategoria", marca.get_subcategoria().get_id())
-                                .add("Subcategoria", marca.get_subcategoria().get_nombre()).build();
+                                .add("idcategoria", categoria.get_id())
+                                .add("Categoria", categoria.get_nombre())
+                                .add("idsubcategoria", subcategoria.get_id())
+                                .add("Subcategoria", subcategoria.get_nombre()).build();
                         JsonObject tipo = Json.createObjectBuilder().add("id", solicitudEstudio.get_id())
                                 .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
                                 .add("estatus", solicitudEstudio.get_estado())
@@ -158,6 +188,16 @@ public class metodos_admin {
     }
 
 
+    /**
+     * Esta funcion consiste en cambiar el estado de un estudio a inactivo
+     * @author Carlos Silva
+     * @param _id corresponde al id del estudio
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @DELETE
     @Path("/delete-solicitud/{id}")
     public Response EliminarEstudio(@PathParam("id") long _id) {
@@ -187,7 +227,21 @@ public class metodos_admin {
         }
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en asignarle una encuesta a un estudio creandolo y
+     * asignandole un analista aleatorio, aparte tambien recibe una lista de preguntas
+     * que se le asignan a la encuesta y otra lista de participantes que se le asignaron al estudio
+     * @author Carlos Silva
+     * @param _id corresponde al id de la marca
+     * @param _id2 corresponde al id del estudio
+     * @param encuestaDto corresponde al objeto de la capa web que contiene los nuevos datos
+     * que se van a ingresar y las listas de participantes y preguntas
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @PUT
     @Path("/addEncuesta/{id}/{id2}")
     public Response addEncuesta(@PathParam("id") long _id, @PathParam("id2") long _id2, EncuestaDto encuestaDto) {
@@ -297,7 +351,18 @@ public class metodos_admin {
         }
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en ingresar nuevas preguntas y si la pregunta es de tipo opcion
+     * simple o multiple ingresar nuevas opciones para ellas
+     * @author Carlos Silva
+     * @param preguntaDto corresponde al objeto de la capa web que contiene los nuevos datos
+     * que se van a ingresar y la lista de opnciones que se le puede asigbar
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @PUT
     @Path("/addPregunta")
     public Response addPregunta(PreguntaDto preguntaDto) {
@@ -373,7 +438,17 @@ public class metodos_admin {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
-
+    /**
+     * Esta funcion consiste en enviar los datos de los participantes que tiene un estudio
+     * @author Carlos Silva
+     * @param _id corresponde al del estudio
+     * que se van a ingresar y la lista de opnciones que se le puede asigbar
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @GET
     @Path("/estudios-participacion/{id}")
     public Response Participacion_estudio(@PathParam("id") long _id) {
@@ -383,16 +458,18 @@ public class metodos_admin {
             List<Participacion> resultado = null;
 
             DaoParticipacion dao = new DaoParticipacion();
+            DaoEncuestado daoEncuestado = new DaoEncuestado();
             Class<Participacion> type = Participacion.class;
 
             resultado = dao.findAll(type);
             for (Participacion obj : resultado) {
                 Participacion participacion = dao.find(obj.get_id(), Participacion.class);
+                Encuestado encuestado = daoEncuestado.find(participacion.get_encuestado().get_id(),Encuestado.class);
 
                 if (obj.get_solicitudestudio().get_id() == _id) {
 
                     JsonObject p = Json.createObjectBuilder().add("id", participacion.get_id())
-                            .add("Nombre", participacion.get_encuestado().get_nombre())
+                            .add("Nombre", encuestado.get_nombre())
                             .add("Estado", participacion.get_estado()).build();
 
                     builder.add(p);
@@ -422,7 +499,17 @@ public class metodos_admin {
         //builder.build();
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en enviar los datos de un estudio en especifico
+     * @author Carlos Silva
+     * @param _id corresponde al del estudio
+     * que se van a ingresar y la lista de opnciones que se le puede asigbar
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @GET
     @Path("/estudio/{id}")
     public Response buscarEstudio(@PathParam("id") long _id) {
@@ -433,18 +520,23 @@ public class metodos_admin {
 
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
             DaoMarca daoMarca = new DaoMarca();
+            DaoSubcategoria daoSubcategoria = new DaoSubcategoria ();
+            DaoCategoria daoCategoria = new DaoCategoria();
+
             Class<SolicitudEstudio> type = SolicitudEstudio.class;
 
             obj = dao.find(_id, type);
 
             Marca marca = daoMarca.find(obj.get_marca().get_id(), Marca.class);
+            Subcategoria subcategoria = daoSubcategoria.find(marca.get_subcategoria().get_id(),Subcategoria.class);
+            Categoria categoria = daoCategoria.find(subcategoria.get_categoria().get_id(),Categoria.class);
 
             JsonObject encuesta = Json.createObjectBuilder().add("Marca", marca.get_nombre())
-                    .add("Categoria", marca.get_subcategoria().get_categoria().get_nombre())
-                    .add("idcategoria", marca.get_subcategoria().get_categoria().get_id())
+                    .add("Categoria", categoria.get_nombre())
+                    .add("idcategoria", categoria.get_id())
                     .add("idMarca", marca.get_id())
-                    .add("idsubcategoria", marca.get_subcategoria().get_id())
-                    .add("Subcategoria", marca.get_subcategoria().get_nombre()).build();
+                    .add("idsubcategoria", subcategoria.get_id())
+                    .add("Subcategoria", subcategoria.get_nombre()).build();
             JsonObject tipo = Json.createObjectBuilder().add("id", obj.get_id())
                     .add("fecha", obj.get_fecha_inicio().toString())
                     .add("estatus", obj.get_estado())
@@ -473,6 +565,18 @@ public class metodos_admin {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
+    /**
+     * Esta funcion consiste en enviar los datos de las preguntas que estan relacionadas a una categoria
+     * @author Carlos Silva
+     * @param _id corresponde al de la categoria
+     * que se van a ingresar y la lista de opnciones que se le puede asigbar
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
+
     @GET
     @Path("/preguntas-categoria/{id}")
     public Response Preguntas_categoria(@PathParam("id") long _id) {
@@ -480,37 +584,50 @@ public class metodos_admin {
         JsonArrayBuilder builder = Json.createArrayBuilder();
         try {
             List<PreguntaEncuesta> resultado = null;
+            List<Pregunta> resultado2 = null;
 
             DaoPregunta daoPregunta = new DaoPregunta();
             DaoEncuesta daoEncuesta = new DaoEncuesta();
             DaoMarca daoMarca = new DaoMarca ();
             DaoPreguntaEncuesta dao = new DaoPreguntaEncuesta();
+            DaoSubcategoria daoSubcategoria = new DaoSubcategoria();
+            DaoCategoria daoCategoria = new DaoCategoria();
 
             Class<PreguntaEncuesta> type = PreguntaEncuesta.class;
+            Class<Pregunta> type2 = Pregunta.class;
 
 
 
             resultado = dao.findAll(type);
+            resultado2 = daoPregunta.findAll(type2);
+            for (Pregunta obj2 : resultado2) {
+                int cont = 0;
+                Pregunta pregunta2 = daoPregunta.find(obj2.get_id(), Pregunta.class);
+                for (PreguntaEncuesta obj : resultado) {
 
-            for (PreguntaEncuesta obj : resultado) {
+                    PreguntaEncuesta preguntaEncuesta = dao.find(obj.get_id(), PreguntaEncuesta.class);
+                    Pregunta pregunta = daoPregunta.find(preguntaEncuesta.get_pregunta().get_id(), Pregunta.class);
+                    Encuesta encuesta = daoEncuesta.find(preguntaEncuesta.get_encuesta().get_id(), Encuesta.class);
+                    Marca marca = daoMarca.find(encuesta.get_marca().get_id(), Marca.class);
+                    Subcategoria subcategoria = daoSubcategoria.find(marca.get_subcategoria().get_id(),Subcategoria.class);
+                    Categoria categoria = daoCategoria.find(subcategoria.get_categoria().get_id(),Categoria.class);
 
-                PreguntaEncuesta preguntaEncuesta = dao.find(obj.get_id(),PreguntaEncuesta.class);
-                Pregunta pregunta=daoPregunta.find(preguntaEncuesta.get_pregunta().get_id(),Pregunta.class);
-                Encuesta encuesta=daoEncuesta.find(preguntaEncuesta.get_encuesta().get_id(),Encuesta.class);
-                Marca marca=daoMarca.find(encuesta.get_marca().get_id(),Marca.class);
-
-
-                if (marca.get_subcategoria().get_categoria().get_id() == _id) {
-                        JsonObject p = Json.createObjectBuilder().add("id", pregunta.get_id())
-                                .add("descripcion", pregunta.get_descripcion())
-                                .add("tipopregunta", pregunta.get_tipopregunta())
-                                .build();
-
-
-                        builder.add(p);
+                    if (categoria.get_id() == _id && pregunta.get_id() == pregunta2.get_id()) {
+                        cont=cont+1;
+                    }
                 }
-            }
 
+                if (cont !=0 || pregunta2.get_preguntaencuesta().isEmpty()) {
+                    JsonObject p = Json.createObjectBuilder().add("id", pregunta2.get_id())
+                            .add("descripcion", pregunta2.get_descripcion())
+                            .add("tipopregunta", pregunta2.get_tipopregunta())
+                            .build();
+
+
+                    builder.add(p);
+                }
+
+            }
             data = Json.createObjectBuilder()
                     .add("estado", "success")
                     .add("codigo", 200)
@@ -532,6 +649,18 @@ public class metodos_admin {
         System.out.println(data);
         return Response.status(Response.Status.OK).entity(data).build();
     }
+    /**
+     * Esta funcion consiste en enviar los datos de los posibles participantes de un estudio
+     * verificando sus datos con las caracteristicas demograficas
+     * @author Carlos Silva
+     * @param _id corresponde al del estudio
+     * que se van a ingresar y la lista de opnciones que se le puede asigbar
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @GET
     @Path("/sugerencia-participacion/{id}")
     public Response add_Participacion(@PathParam("id")  long _id) throws Exception {
@@ -543,6 +672,7 @@ public class metodos_admin {
             DaoEncuestado daoEncuestado = new DaoEncuestado();
             DaoHijo daoHijo = new DaoHijo();
             DaoCaracteristica_Demografica daoCaracteristicaDemografica=new DaoCaracteristica_Demografica();
+            DaoUsuario daoUsuario = new DaoUsuario();
 
             SolicitudEstudio solicitudEstudio = daoSolicitudEstudio.find(_id, SolicitudEstudio.class);
 
@@ -552,6 +682,7 @@ public class metodos_admin {
 
             for (Encuestado obj : resultado) {
                 Encuestado encuestado = daoEncuestado.find(obj.get_id(), Encuestado.class);
+                Usuario usuario = daoUsuario.find(encuestado.get_usuario_encuestado().get_id(),Usuario.class);
                 Date fecha = new Date();
 
                 ZoneId defaultZoneId = ZoneId.systemDefault();
@@ -616,7 +747,7 @@ public class metodos_admin {
                                 JsonObject p = Json.createObjectBuilder().add("id", encuestado.get_id())
                                         .add("nombre", encuestado.get_nombre())
                                         .add("apellido", encuestado.get_apellido())
-                                        .add("username", encuestado.get_usuario_encuestado().get_usuario())
+                                        .add("username", usuario.get_usuario())
                                         .add("campos_aprobados", aprobado)
                                         .build();
 

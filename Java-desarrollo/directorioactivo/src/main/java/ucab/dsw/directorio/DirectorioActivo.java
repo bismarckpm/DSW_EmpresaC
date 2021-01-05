@@ -233,7 +233,7 @@ public class DirectorioActivo
     /**
     * Esta funcion consiste autenticar las credenciales de un usuario 
     * @author Gabriel Romero
-    * @param usuarioLdapDto corresponde al objeto de la capa web que contiene los datos que se desean autenticar (usuario/correo y contraseña)
+    * @param user corresponde al objeto de la capa web que contiene los datos que se desean autenticar (usuario/correo y contraseña)
     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna un long. Devuelve 0 si las credenciales son incorrectas y devuelve 1 en caso de ser correctas.
     */

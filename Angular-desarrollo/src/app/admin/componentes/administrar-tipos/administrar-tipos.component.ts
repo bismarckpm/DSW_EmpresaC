@@ -133,6 +133,20 @@ export class AdministrarTiposComponent implements OnInit, AfterViewInit {
     });
   }
 
+  activarTipo(tipo_id){
+    this.eventBus.cast('inicio-progress','hola');
+    this._adminTiposService.activarTipo(tipo_id).subscribe(
+      (response)=>{
+        console.log(response);
+        this._toastrService.success("Exito", "Tipo Activada");
+        this.getAllTipos();
+      },
+      (error)=>{
+        console.log(error);
+        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        this.eventBus.cast('fin-progress','chao');
+      });
+  }
 
 }
   

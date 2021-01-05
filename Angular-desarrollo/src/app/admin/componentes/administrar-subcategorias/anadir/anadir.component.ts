@@ -17,6 +17,7 @@ export class AnadirComponent implements OnInit {
   public categorias:any[];
   public subcategoriasDto: SubcategoriaDto; 
   public categoriaDto:CategoriaDto;
+  public categorias_filtered: any;
 
   constructor(private _adminSubcategoriasService:AdministrarSubcategoriasService,
               private _adminCategoriaService: AdministrarCategoriasService,
@@ -73,6 +74,7 @@ export class AnadirComponent implements OnInit {
       (response)=>{
         console.log(response);
         this.categorias=response.categorias;
+        this.categorias_filtered=this.categorias.filter( categoria => categoria.estado === 'activo');
       },
       (error)=>{
         console.log(error);

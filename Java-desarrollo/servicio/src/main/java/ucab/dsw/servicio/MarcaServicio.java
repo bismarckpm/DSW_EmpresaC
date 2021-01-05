@@ -241,7 +241,7 @@ public class MarcaServicio extends AplicacionBase{
     *         alguna de las excepciones
     */
 
-    @PUT
+    @DELETE
     @Path( "/activar/{id}" )
     public Response activarMarca(@PathParam("id") long  _id)
     {
@@ -279,10 +279,10 @@ public class MarcaServicio extends AplicacionBase{
     * Esta funcion consiste en editar una marca.
     * @author Gabriel Romero
     * @param _id corresponde al id de la marca
-    * @param categoriaDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean actualizar
+    * @param marcaDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean actualizar
     * @throws PersistenceException si se inserta una marca duplicada
     * @throws DatabaseException    si existe algun problema con la conexion con el servidor de base de datos
-    * @throws Excepcion      si ocurre cualquier excepcion general no controlada previamente
+    * @throws Exception      si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir 

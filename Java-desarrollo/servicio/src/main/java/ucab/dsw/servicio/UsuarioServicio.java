@@ -444,7 +444,7 @@ public class UsuarioServicio extends AplicacionBase {
     }
 
 
-    @PUT
+    @DELETE
     @Path( "/activar/{id}" )
     public Response activarUsuario(@PathParam("id") long  _id)
     {

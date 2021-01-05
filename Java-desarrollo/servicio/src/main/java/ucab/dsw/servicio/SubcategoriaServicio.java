@@ -1,6 +1,11 @@
 package ucab.dsw.servicio;
 
 import org.eclipse.persistence.exceptions.DatabaseException;
+import ucab.dsw.accesodatos.DaoMarca;
+import ucab.dsw.accesodatos.DaoPresentacion;
+import ucab.dsw.dtos.PresentacionDto;
+import ucab.dsw.entidades.Marca;
+import ucab.dsw.entidades.Presentacion;
 import ucab.dsw.entidades.Subcategoria;
 import ucab.dsw.accesodatos.DaoSubcategoria;
 import ucab.dsw.accesodatos.DaoCategoria;
@@ -89,7 +94,16 @@ public class SubcategoriaServicio extends AplicacionBase{
         return Response.status(Response.Status.OK).entity(data).build();
 
     }
-
+    /**
+     * Esta funcion consiste en ingresar una subcategoria
+     * @author Carlos Silva
+     * @param subcategoriaDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir
+     *         alguna de las excepciones
+     */
     @POST
     @Path( "/add" )
     public Response addSubcategoria(SubcategoriaDto subcategoriaDto)
@@ -136,7 +150,16 @@ public class SubcategoriaServicio extends AplicacionBase{
         }
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en cambiar el estado de una subcategoria a inactivo
+     * @author Carlos Silva
+     * @param _id corresponde al id de la subcategoria
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir
+     *         alguna de las excepciones
+     */
     @DELETE
     @Path( "/delete/{id}" )
     public Response deleteSubcategoria(@PathParam("id") long  _id)
@@ -152,6 +175,18 @@ public class SubcategoriaServicio extends AplicacionBase{
             Subcategoria resul = dao.update(subcategoria);
             resultado.setId( resul.get_id() );
 
+            DaoMarca daoMarca = new DaoMarca();
+            List<Marca> marcas =daoMarca.findAll(Marca.class);
+            for(Marca obj: marcas) {
+
+                if (obj.get_subcategoria().get_id() == resul.get_id()){
+                    Marca marca = daoMarca.find(obj.get_id(),Marca.class);
+                    marca.set_estado("inactivo");
+
+                    Marca marcaActualizada = daoMarca.update(marca);
+                }
+            }
+
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200).build();
@@ -167,7 +202,16 @@ public class SubcategoriaServicio extends AplicacionBase{
         }
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en cambiar el estado de una subcategoria a activo
+     * @author Carlos Silva
+     * @param _id corresponde al id de la subcategoria
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir
+     *         alguna de las excepciones
+     */
     @DELETE
     @Path( "/activar/{id}" )
     public Response activarSubcategoria(@PathParam("id") long  _id)
@@ -183,6 +227,18 @@ public class SubcategoriaServicio extends AplicacionBase{
             Subcategoria resul = dao.update(subcategoria);
             resultado.setId( resul.get_id() );
 
+            DaoMarca daoMarca = new DaoMarca();
+            List<Marca> marcas =daoMarca.findAll(Marca.class);
+            for(Marca obj: marcas) {
+
+                if (obj.get_subcategoria().get_id() == resul.get_id()){
+                    Marca marca = daoMarca.find(obj.get_id(),Marca.class);
+                    marca.set_estado("activo");
+
+                    Marca marcaActualizada = daoMarca.update(marca);
+                }
+            }
+
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200).build();
@@ -199,7 +255,17 @@ public class SubcategoriaServicio extends AplicacionBase{
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
-
+    /**
+     * Esta funcion consiste en cambiar algun elemento de una subcategoria
+     * @author Carlos Silva
+     * @param _id corresponde al id de la subcategoria
+     * @param subcategoriaDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir
+     *         alguna de las excepciones
+     */
     @PUT
     @Path( "/edit/{id}" )
     public Response editSubcategoria(@PathParam("id") long _id, SubcategoriaDto subcategoriaDto)
@@ -246,7 +312,16 @@ public class SubcategoriaServicio extends AplicacionBase{
         }
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en enviar los datos de una subcategoria en especifico
+     * @author Carlos Silva
+     * @param _id corresponde al id de la subcategoria
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir
+     *         alguna de las excepciones
+     */
     @GET
     @Path( "/{id}" )
     public Response getSubcategoria(@PathParam("id") long  _id)

@@ -20,6 +20,7 @@ export class ModificarPresentacionComponent implements OnInit {
   public tipos:any[];
   public presentacionDto: PresentacionDto; 
   public tipoDto:TipoDto;
+  public tipos_filtered: any;
 
     constructor(
                 public dialogRef: MatDialogRef<ModificarPresentacionComponent>,
@@ -83,6 +84,7 @@ export class ModificarPresentacionComponent implements OnInit {
         (response)=>{
           console.log(response);
           this.tipos=response.tipos;
+          this.tipos_filtered=this.tipos.filter( tipo => tipo.estado === 'activo');
         },
         (error)=>{
           console.log(error);

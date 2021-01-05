@@ -26,7 +26,17 @@ import javax.ws.rs.core.MediaType;
 @Consumes( MediaType.APPLICATION_JSON )
 public class metodos_encuestados {
 
-
+    /**
+     * Esta funcion consiste en enviar los datos de los estudios que tiene asignado un encuestado
+     * en especifico
+     * @author Carlos Silva
+     * @param _id corresponde al id del encuestado
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @GET
     @Path( "/estudios-asignados/{id}" )
     public Response consultaEstudios_asignados(@PathParam("id")long  _id)
@@ -38,24 +48,40 @@ public class metodos_encuestados {
 
             DaoParticipacion dao = new DaoParticipacion();
             DaoMarca daoMarca = new DaoMarca();
+            DaoSolicitudEstudio  daoSolicitudEstudio = new DaoSolicitudEstudio();
+            DaoSubcategoria daoSubcategoria = new DaoSubcategoria ();
+            DaoCategoria daoCategoria = new DaoCategoria();
+
             Class<Participacion> type = Participacion.class;
 
             resultado = dao.findAll(type);
             for (Participacion obj : resultado) {
                 Participacion participacion = dao.find(obj.get_id(), Participacion.class);
                 Marca marca = daoMarca.find(participacion.get_solicitudestudio().get_marca().get_id(), Marca.class);
+                Subcategoria subcategoria = daoSubcategoria.find(marca.get_subcategoria().get_id(),Subcategoria.class);
+                Categoria categoria = daoCategoria.find(subcategoria.get_categoria().get_id(),Categoria.class);
                 if (participacion.get_encuestado().get_id() == _id && participacion.get_solicitudestudio().get_estado().equals("en progreso") && participacion.get_estado().equals("activo") ) {
                     JsonObject encuesta = Json.createObjectBuilder().add("Marca", marca.get_nombre())
-                            .add("idcategoria", marca.get_subcategoria().get_categoria().get_id())
-                            .add("Categoria", marca.get_subcategoria().get_categoria().get_nombre())
-                            .add("idsubcategoria", marca.get_subcategoria().get_id())
-                            .add("Subcategoria", marca.get_subcategoria().get_nombre()).build();
+                            .add("idcategoria", categoria.get_id())
+                            .add("Categoria", categoria.get_nombre())
+                            .add("idsubcategoria", subcategoria.get_id())
+                            .add("Subcategoria", subcategoria.get_nombre()).build();
 
+                    SolicitudEstudio solicitudEstudio = daoSolicitudEstudio.find(participacion.get_solicitudestudio().get_id(), SolicitudEstudio.class);
+
+                    String nombre_encuesta = "";
+                    if (solicitudEstudio.get_encuesta()==null){
+                        nombre_encuesta = "Encuesta sin nombre";
+                    }else{
+                        nombre_encuesta = solicitudEstudio.get_encuesta().get_nombre();
+                    }
                     JsonObject tipo = Json.createObjectBuilder().add("id", participacion.get_solicitudestudio().get_id())
-                            .add("fecha", participacion.get_solicitudestudio().get_fecha_inicio().toString())
+                            .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
                             .add("caracteristicas", encuesta)
-                            .add("estado",participacion.get_solicitudestudio().get_estado())
-                            .add("modo_encuesta",participacion.get_solicitudestudio().get_modoencuesta()).build();
+                            .add("estado",solicitudEstudio.get_estado())
+                            .add("modo_encuesta", solicitudEstudio.get_modoencuesta())
+                            .add("nombre_encuesta",nombre_encuesta).build();
+
 
                     builder.add(tipo);
                     System.out.println("id" + obj.get_id());
@@ -81,7 +107,17 @@ public class metodos_encuestados {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
-
+    /**
+     * Esta funcion consiste en enviar los datos de las preguntas relacionadas con la encuesta de un estudio
+     * en especifico
+     * @author Carlos Silva
+     * @param _id corresponde al id del estudio
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @GET
     @Path( "/encuesta-estudio/{id}" )
     public Response encuesta_estudio(@PathParam("id")long  _id)
@@ -175,7 +211,19 @@ public class metodos_encuestados {
         //builder.build();
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en ingresar las respuestas de un encuestado
+     * @author Carlos Silva
+     * @param _id corresponde al id de la pregunta encuesta
+     * @param _id2 corresponde al id del estudio
+     * @param _id3 corresponde al id de la participacion
+     * @param respuestaDto corresponde al objeto de la capa web que contiene los nuevos datos
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @PUT
     @Path( "/Respuesta/{id}/{id2}/{id3}" )
     public Response addRespuesta(@PathParam("id") long  _id,@PathParam("id2") long  _id2,@PathParam("id3") long  _id3,RespuestaDto respuestaDto)
@@ -250,7 +298,17 @@ public class metodos_encuestados {
         }
         return Response.status(Response.Status.OK).entity(data).build();
     }
-
+    /**
+     * Esta funcion consiste en enviar los datos de las preguntas que el encuestado no a contestado
+     * @author Carlos Silva
+     * @param _id corresponde al id del estudio
+     * @param _id2 corresponde al id de la participacion
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @GET
     @Path( "/pregunta-estudio/{id}/{id2}" )
     public Response pregunta_estudio(@PathParam("id")long  _id,@PathParam("id2")long  _id2)
@@ -267,6 +325,7 @@ public class metodos_encuestados {
             DaoOpcion_Simple_Multiple_Pregunta dao3 = new DaoOpcion_Simple_Multiple_Pregunta();
             DaoParticipacion daoParticipacion = new DaoParticipacion();
             DaoRespuesta daoRespuesta = new DaoRespuesta();
+            DaoPregunta daoPregunta = new DaoPregunta();
 
             SolicitudEstudio solicitudEstudio = new SolicitudEstudio();
             solicitudEstudio = dao2.find(_id,SolicitudEstudio.class);
@@ -294,6 +353,7 @@ public class metodos_encuestados {
 
             for (PreguntaEncuesta obj : resultado) {
                 PreguntaEncuesta preguntaEncuesta = dao.find(obj.get_id(), PreguntaEncuesta.class);
+                Pregunta pregunta1 = daoPregunta.find(preguntaEncuesta.get_pregunta().get_id(),Pregunta.class);
                 int pregunta = 0;
                 if (preguntaEncuesta.get_encuesta().get_id() == solicitudEstudio.get_encuesta().get_id()) {
                     for (Respuesta obj3 : respuesta) {
@@ -315,8 +375,8 @@ public class metodos_encuestados {
                                 }
                             }
                             JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
-                                    .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
-                                    .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
+                                    .add("descripcion", pregunta1.get_descripcion())
+                                    .add("tipopregunta", pregunta1.get_tipopregunta())
                                     .add("opciones", opciones)
                                     .build();
 
@@ -325,16 +385,16 @@ public class metodos_encuestados {
 
                             if (preguntaEncuesta.get_pregunta().get_valormax() != 0) {
                                 JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
-                                        .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
-                                        .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
-                                        .add("minimo", preguntaEncuesta.get_pregunta().get_valormin())
-                                        .add("maximo", preguntaEncuesta.get_pregunta().get_valormax()).build();
+                                        .add("descripcion", pregunta1.get_descripcion())
+                                        .add("tipopregunta", pregunta1.get_tipopregunta())
+                                        .add("minimo", pregunta1.get_valormin())
+                                        .add("maximo", pregunta1.get_valormax()).build();
                                 builder.add(preguntas);
 
                             } else {
                                 JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
-                                        .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
-                                        .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
+                                        .add("descripcion", pregunta1.get_descripcion())
+                                        .add("tipopregunta", pregunta1.get_tipopregunta())
                                         .build();
 
                                 builder.add(preguntas);
@@ -363,6 +423,18 @@ public class metodos_encuestados {
         return Response.status(Response.Status.OK).entity(data).build();
     }
 
+    /**
+     * Esta funcion consiste en cambiar el estado de la participacion del encuestado a inactivo cuando responde todas las preguntas
+     * ademas en el caso de que sea el ultimo encuestado en responder el estado del estudio cambia a finalizado
+     * @author Carlos Silva
+     * @param _id corresponde al id del estudio
+     * @param _id2 corresponde al id de la participacion
+     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * @return retorna una Response con un estado de respuesta http indicando si la operacion
+     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     *         y mensaje en caso de ocurrir alguna de las excepciones
+     */
     @DELETE
     @Path( "/finalizar/{id}/{id2}" )
     public Response finalizarParticipacion(@PathParam("id") long  _id,@PathParam("id2")long  _id2)

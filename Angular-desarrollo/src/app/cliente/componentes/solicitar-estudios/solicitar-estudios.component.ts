@@ -96,6 +96,7 @@ export class SolicitarEstudiosComponent implements OnInit {
       (response)=>{
         console.log(response);
         this.categorias=response.categorias;
+        this.categorias_filtered=this.categorias.filter( categoria => categoria.estado === 'activo');
         this._toastrService.success("Exito", "Todas las categorias");
       },
       (error)=>{
@@ -200,10 +201,14 @@ export class SolicitarEstudiosComponent implements OnInit {
 
 
   /*Filters*/
+  filterCategorias(e){
+    this.categorias_filtered=this.categorias.filter( categoria => categoria.estado === 'activo');
+    console.log(this.categorias_filtered);
+  }
 
   filterSubcategorias(e){
     console.log(this.categoria_id);
-    this.subcategorias_filtered=this.subcategorias.filter( subcategoria => subcategoria.categoria_id === this.categoria_id);
+    this.subcategorias_filtered=this.subcategorias.filter( subcategoria => subcategoria.categoria_id === this.categoria_id && subcategoria.estado === 'activo');
     
     this.subcategoria_id=0;
     this.marcas_filtered=this.marcas.filter( marca => marca.subcategoria_id === this.subcategoria_id);
@@ -212,7 +217,7 @@ export class SolicitarEstudiosComponent implements OnInit {
 
   filterMarcas(e){
     console.log(this.subcategoria_id);
-    this.marcas_filtered=this.marcas.filter( marca => marca.subcategoria_id === this.subcategoria_id);
+    this.marcas_filtered=this.marcas.filter( marca => marca.subcategoria_id === this.subcategoria_id && marca.estado === 'activo');
     console.log(this.marcas_filtered);
   }
 
@@ -254,29 +259,34 @@ export class SolicitarEstudiosComponent implements OnInit {
 
   enviarSolicitud(){
 
-    this.eventBus.cast('inicio-progress','hola');
-        
-    this.dataToSend();
-    console.log(this.solicitudEstudioCliente);
-    
-    this._toastrService.info('Espere unos segundos', 'por favor. Un momento!');
-    this._solicitudService.doSolicitudEstudio(this.solicitudEstudioCliente).subscribe(
-      (response)=>{
-        console.log(response);
-        if(response.estado='success'){
-          this._toastrService.success("Todo salio bien!", "Solicitud Procesada");
-          this.route.navigate(['/cliente/consultar-estudios']);
-        }else{
-          this._toastrService.error("Ops! Hubo un problema.", "Intentelo más tarde");
-        }
-        this.eventBus.cast('fin-progress','chao');
+	if(this.marcaSelected!=undefined){
+		this.eventBus.cast('inicio-progress','hola');
+			
+		this.dataToSend();
+		console.log(this.solicitudEstudioCliente);
+		
+		this._toastrService.info('Espere unos segundos', 'por favor. Un momento!');
+		this._solicitudService.doSolicitudEstudio(this.solicitudEstudioCliente).subscribe(
+		  (response)=>{
+			console.log(response);
+			if(response.estado=='success'){
+			  this._toastrService.success("Todo salio bien!", "Solicitud Procesada");
+			  this.route.navigate(['/cliente/consultar-estudios']);
+			}else{
+			  this._toastrService.error(response.mensaje, "Ops! Hubo un problema");
+			}
 
-      },
-      (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
-      });
+			this.eventBus.cast('fin-progress','chao');
+
+		  },
+		  (error)=>{
+			console.log(error);
+			this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+			this.eventBus.cast('fin-progress','chao');
+		  });
+	}else{
+		this._toastrService.error("Debe seleccioanar una marca", "Recuerde");
+	}
 
 }
 

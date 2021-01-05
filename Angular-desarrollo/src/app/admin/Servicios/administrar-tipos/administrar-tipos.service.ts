@@ -29,4 +29,9 @@ export class AdministrarTiposService {
     //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
     return this._http.delete(global.url+'tipo/delete-tipo/'+id);
   }
+
+  activarTipo(id):Observable<any>{
+    //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
+    return this._http.delete(global.url+'tipo/activar-tipo/'+id);
+  }
 }

@@ -114,4 +114,19 @@ export class AdministrarSubcategoriasComponent implements OnInit,AfterViewInit {
     });
   }
 
+  activarSubcategoria(subcategoria_id){
+    this.eventBus.cast('inicio-progress','hola');
+    this._adminSubcategoriaService.activarSubcategoria(subcategoria_id).subscribe(
+      (response)=>{
+        console.log(response);
+        this._toastrService.success("Exito", "Subcategoria activada");
+        this.getAllSubcategorias();
+      },
+      (error)=>{
+        console.log(error);
+        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        this.eventBus.cast('fin-progress','chao');
+      });
+  }
+
 }
