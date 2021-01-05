@@ -35,6 +35,12 @@ export class AdministrarUsuariosService {
     return this._http.put(global.url+'usuario/delete/'+id,usuarioDto);
   }
 
+  activarUsuario(id):Observable<any>{
+
+    //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
+    return this._http.delete(global.url+'usuario/activar/'+id);
+  }
+
   updateUsuario(id,usuarioLdapDto):Observable<any>{
 
     //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');

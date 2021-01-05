@@ -53,6 +53,8 @@ public class metodos_admin {
 
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
             DaoMarca daoMarca = new DaoMarca();
+            DaoSubcategoria daoSubcategoria = new DaoSubcategoria();
+            DaoCategoria daoCategoria = new DaoCategoria();
             Class<SolicitudEstudio> type = SolicitudEstudio.class;
 
             resultado = dao.findAll(type);
@@ -62,15 +64,19 @@ public class metodos_admin {
                 if (solicitudEstudio.get_usuario2() != null) {
                     if (solicitudEstudio.get_encuesta() != null && solicitudEstudio.get_usuario2().get_id() == _id && solicitudEstudio.get_estado().equals("en progreso")) {
                         Marca marca = daoMarca.find(solicitudEstudio.get_marca().get_id(), Marca.class);
+                        Subcategoria subcategoria = daoSubcategoria.find(marca.get_subcategoria().get_id(),Subcategoria.class);
+                        Categoria categoria = daoCategoria.find(subcategoria.get_categoria().get_id(),Categoria.class);
+
                         JsonObject encuesta = Json.createObjectBuilder().add("Marca", marca.get_nombre())
-                                .add("idcategoria", marca.get_subcategoria().get_categoria().get_id())
-                                .add("Categoria", marca.get_subcategoria().get_categoria().get_nombre())
-                                .add("idsubcategoria", marca.get_subcategoria().get_id())
-                                .add("Subcategoria", marca.get_subcategoria().get_nombre()).build();
+                                .add("idcategoria", categoria.get_id())
+                                .add("Categoria", categoria.get_nombre())
+                                .add("idsubcategoria", subcategoria.get_id())
+                                .add("Subcategoria", subcategoria.get_nombre()).build();
 
                         JsonObject tipo = Json.createObjectBuilder().add("id", solicitudEstudio.get_id())
                                 .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
-                                .add("caracteristicas", encuesta).build();
+                                .add("caracteristicas", encuesta)
+                                .add("estatus",solicitudEstudio.get_estado()).build();
 
                         builder.add(tipo);
 
@@ -123,6 +129,8 @@ public class metodos_admin {
 
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
             DaoMarca daoMarca = new DaoMarca();
+            DaoSubcategoria daoSubcategoria = new DaoSubcategoria();
+            DaoCategoria daoCategoria = new DaoCategoria();
 
             Class<SolicitudEstudio> type = SolicitudEstudio.class;
 
@@ -136,12 +144,14 @@ public class metodos_admin {
                     if (solicitudEstudio.get_encuesta() == null && solicitudEstudio.get_usuario2().get_id() == _id) {
 
                         Marca marca = daoMarca.find(solicitudEstudio.get_marca().get_id(), Marca.class);  //Este fue el dao.find que falto
+                        Subcategoria subcategoria = daoSubcategoria.find(marca.get_subcategoria().get_id(),Subcategoria.class);
+                        Categoria categoria = daoCategoria.find(subcategoria.get_categoria().get_id(),Categoria.class);
 
                         JsonObject encuesta = Json.createObjectBuilder().add("Marca", marca.get_nombre())
-                                .add("idcategoria", marca.get_subcategoria().get_categoria().get_id())
-                                .add("Categoria", marca.get_subcategoria().get_categoria().get_nombre())
-                                .add("idsubcategoria", marca.get_subcategoria().get_id())
-                                .add("Subcategoria", marca.get_subcategoria().get_nombre()).build();
+                                .add("idcategoria", categoria.get_id())
+                                .add("Categoria", categoria.get_nombre())
+                                .add("idsubcategoria", subcategoria.get_id())
+                                .add("Subcategoria", subcategoria.get_nombre()).build();
                         JsonObject tipo = Json.createObjectBuilder().add("id", solicitudEstudio.get_id())
                                 .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
                                 .add("estatus", solicitudEstudio.get_estado())
@@ -448,16 +458,18 @@ public class metodos_admin {
             List<Participacion> resultado = null;
 
             DaoParticipacion dao = new DaoParticipacion();
+            DaoEncuestado daoEncuestado = new DaoEncuestado();
             Class<Participacion> type = Participacion.class;
 
             resultado = dao.findAll(type);
             for (Participacion obj : resultado) {
                 Participacion participacion = dao.find(obj.get_id(), Participacion.class);
+                Encuestado encuestado = daoEncuestado.find(participacion.get_encuestado().get_id(),Encuestado.class);
 
                 if (obj.get_solicitudestudio().get_id() == _id) {
 
                     JsonObject p = Json.createObjectBuilder().add("id", participacion.get_id())
-                            .add("Nombre", participacion.get_encuestado().get_nombre())
+                            .add("Nombre", encuestado.get_nombre())
                             .add("Estado", participacion.get_estado()).build();
 
                     builder.add(p);
@@ -508,18 +520,23 @@ public class metodos_admin {
 
             DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
             DaoMarca daoMarca = new DaoMarca();
+            DaoSubcategoria daoSubcategoria = new DaoSubcategoria ();
+            DaoCategoria daoCategoria = new DaoCategoria();
+
             Class<SolicitudEstudio> type = SolicitudEstudio.class;
 
             obj = dao.find(_id, type);
 
             Marca marca = daoMarca.find(obj.get_marca().get_id(), Marca.class);
+            Subcategoria subcategoria = daoSubcategoria.find(marca.get_subcategoria().get_id(),Subcategoria.class);
+            Categoria categoria = daoCategoria.find(subcategoria.get_categoria().get_id(),Categoria.class);
 
             JsonObject encuesta = Json.createObjectBuilder().add("Marca", marca.get_nombre())
-                    .add("Categoria", marca.get_subcategoria().get_categoria().get_nombre())
-                    .add("idcategoria", marca.get_subcategoria().get_categoria().get_id())
+                    .add("Categoria", categoria.get_nombre())
+                    .add("idcategoria", categoria.get_id())
                     .add("idMarca", marca.get_id())
-                    .add("idsubcategoria", marca.get_subcategoria().get_id())
-                    .add("Subcategoria", marca.get_subcategoria().get_nombre()).build();
+                    .add("idsubcategoria", subcategoria.get_id())
+                    .add("Subcategoria", subcategoria.get_nombre()).build();
             JsonObject tipo = Json.createObjectBuilder().add("id", obj.get_id())
                     .add("fecha", obj.get_fecha_inicio().toString())
                     .add("estatus", obj.get_estado())
@@ -573,6 +590,8 @@ public class metodos_admin {
             DaoEncuesta daoEncuesta = new DaoEncuesta();
             DaoMarca daoMarca = new DaoMarca ();
             DaoPreguntaEncuesta dao = new DaoPreguntaEncuesta();
+            DaoSubcategoria daoSubcategoria = new DaoSubcategoria();
+            DaoCategoria daoCategoria = new DaoCategoria();
 
             Class<PreguntaEncuesta> type = PreguntaEncuesta.class;
             Class<Pregunta> type2 = Pregunta.class;
@@ -590,9 +609,10 @@ public class metodos_admin {
                     Pregunta pregunta = daoPregunta.find(preguntaEncuesta.get_pregunta().get_id(), Pregunta.class);
                     Encuesta encuesta = daoEncuesta.find(preguntaEncuesta.get_encuesta().get_id(), Encuesta.class);
                     Marca marca = daoMarca.find(encuesta.get_marca().get_id(), Marca.class);
+                    Subcategoria subcategoria = daoSubcategoria.find(marca.get_subcategoria().get_id(),Subcategoria.class);
+                    Categoria categoria = daoCategoria.find(subcategoria.get_categoria().get_id(),Categoria.class);
 
-
-                    if (marca.get_subcategoria().get_categoria().get_id() == _id && pregunta.get_id() == pregunta2.get_id()) {
+                    if (categoria.get_id() == _id && pregunta.get_id() == pregunta2.get_id()) {
                         cont=cont+1;
                     }
                 }
@@ -652,6 +672,7 @@ public class metodos_admin {
             DaoEncuestado daoEncuestado = new DaoEncuestado();
             DaoHijo daoHijo = new DaoHijo();
             DaoCaracteristica_Demografica daoCaracteristicaDemografica=new DaoCaracteristica_Demografica();
+            DaoUsuario daoUsuario = new DaoUsuario();
 
             SolicitudEstudio solicitudEstudio = daoSolicitudEstudio.find(_id, SolicitudEstudio.class);
 
@@ -661,6 +682,7 @@ public class metodos_admin {
 
             for (Encuestado obj : resultado) {
                 Encuestado encuestado = daoEncuestado.find(obj.get_id(), Encuestado.class);
+                Usuario usuario = daoUsuario.find(encuestado.get_usuario_encuestado().get_id(),Usuario.class);
                 Date fecha = new Date();
 
                 ZoneId defaultZoneId = ZoneId.systemDefault();
@@ -725,7 +747,7 @@ public class metodos_admin {
                                 JsonObject p = Json.createObjectBuilder().add("id", encuestado.get_id())
                                         .add("nombre", encuestado.get_nombre())
                                         .add("apellido", encuestado.get_apellido())
-                                        .add("username", encuestado.get_usuario_encuestado().get_usuario())
+                                        .add("username", usuario.get_usuario())
                                         .add("campos_aprobados", aprobado)
                                         .build();
 

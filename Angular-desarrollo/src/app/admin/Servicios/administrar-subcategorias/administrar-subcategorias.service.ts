@@ -29,4 +29,9 @@ export class AdministrarSubcategoriasService {
     //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
     return this._http.delete(global.url+'subcategoria/delete/'+id);
   }
+
+  activarSubcategoria(id):Observable<any>{
+    //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
+    return this._http.delete(global.url+'subcategoria/activar/'+id);
+  }
 }

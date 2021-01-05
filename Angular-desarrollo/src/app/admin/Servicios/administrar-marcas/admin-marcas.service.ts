@@ -31,4 +31,8 @@ export class AdminMarcasService {
     return this._http.delete(global.url+'marca/delete/'+id);
   }
 
+  activarMarca(id):Observable<any>{
+    //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
+    return this._http.delete(global.url+'marca/activar/'+id);
+  }
 }

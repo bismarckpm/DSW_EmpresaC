@@ -1,7 +1,9 @@
 package ucab.dsw.servicio;
 
+import ucab.dsw.accesodatos.DaoUsuario;
 import ucab.dsw.directorio.DirectorioActivo;
 import ucab.dsw.dtos.UsuarioLdapDto;
+import ucab.dsw.entidades.Usuario;
 import ucab.dsw.jwt.Jwt;
 
 import javax.json.Json;
@@ -42,7 +44,10 @@ public class LoginServicio extends AplicacionBase{
         try
         {
             DirectorioActivo ldap = new DirectorioActivo();
+            DaoUsuario daoUsuario = new DaoUsuario();
+            
 
+            
             if ( usuarioLdapDto.getCorreoelectronico() != null ){
                 usuarioLdapDto.setCn(ldap.getUserFromMail(usuarioLdapDto));
             }
@@ -51,6 +56,15 @@ public class LoginServicio extends AplicacionBase{
 
 
             if(resultado==1){
+                Usuario usuario = daoUsuario.find(Long.parseLong(ldap.getEntryUid(usuarioLdapDto)), Usuario.class);
+                if (usuario.get_estado().equals("inactivo")){
+                    data= Json.createObjectBuilder()
+                            .add("estado","Usuario Inactivo")
+                            .add("codigo",401).build();
+                    return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
+                }
+
+
                 Jwt jwt=new Jwt();
                 token= jwt.generarToken(usuarioLdapDto);
                 data= Json.createObjectBuilder()
@@ -71,6 +85,7 @@ public class LoginServicio extends AplicacionBase{
         }
         catch ( Exception ex )
         {
+            ex.printStackTrace();
             System.out.println("Excepcion");
             return Response.status(Response.Status.BAD_REQUEST).build();
         }

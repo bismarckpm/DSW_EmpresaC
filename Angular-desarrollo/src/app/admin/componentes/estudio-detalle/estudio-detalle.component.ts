@@ -23,7 +23,7 @@ import { Participante } from 'src/app/Entidades/participante';
 })
 export class EstudioDetalleComponent implements OnInit {
   estudio:Estudio;
-  participantes:Participante[];
+  participantes:Participante[]=[];
   error:string;
   activos:number;
   inactivos:number;

@@ -118,6 +118,22 @@ export class AdministrarMarcasComponent implements OnInit, AfterViewInit{
       console.log('The dialog was closed');
     });
   }
+
+  activarMarca(marca_id){
+    this.eventBus.cast('inicio-progress','hola');
+    
+    this._adminMarcas.activarMarca(marca_id).subscribe(
+      (response)=>{
+        console.log(response);
+        this._toastrService.success("Exito", "Marca Activada");
+        this.getAllMarcas();
+      },
+      (error)=>{
+        console.log(error);
+        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        this.eventBus.cast('fin-progress','chao');
+      });
+  }
 }
 
 

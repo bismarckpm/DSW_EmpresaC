@@ -135,6 +135,21 @@ export class AdministrarUsuariosComponent implements OnInit,AfterViewInit {
       });
     }
   }
+
+  activarUsuario(usuario_id){
+    this.eventBus.cast('inicio-progress','hola');
+    this._adminUsuarioService.activarUsuario(usuario_id).subscribe(
+      (response)=>{
+        console.log(response);
+        this._toastrService.success("Exito", "Usuario Activado");
+        this.getAllUsuarios()
+      },
+      (error)=>{
+        console.log(error);
+        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        this.eventBus.cast('fin-progress','chao');
+      });
+  }
 }
 
 export interface PeriodicElement {

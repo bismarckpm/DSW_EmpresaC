@@ -135,7 +135,20 @@ export class AdministrarPresentacionesComponent implements OnInit, AfterViewInit
     });
   }
 
-
+  activarPresentacion(presentacion_id){
+    this.eventBus.cast('inicio-progress','hola');
+    this._adminPresentacionService.activarPresentacion(presentacion_id).subscribe(
+      (response)=>{
+        console.log(response);
+        this._toastrService.success("Exito", "Presentacion Activada");
+        this.getAllPresentaciones();
+      },
+      (error)=>{
+        console.log(error);
+        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        this.eventBus.cast('fin-progress','chao');
+      });
+  }
 }
   
 

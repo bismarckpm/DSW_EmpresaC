@@ -17,6 +17,7 @@ export class AnadirPresentacionComponent implements OnInit {
   public tipos:any[];
   public presentacionDto: PresentacionDto; 
   public tipoDto:TipoDto;
+  public tipos_filtered: any;
 
   constructor(private _adminTipoService:AdministrarTiposService,
               private _adminPresentacionService: AdministrarPresentacionService,
@@ -73,6 +74,7 @@ export class AnadirPresentacionComponent implements OnInit {
       (response)=>{
         console.log(response);
         this.tipos=response.tipos;
+        this.tipos_filtered=this.tipos.filter( tipo => tipo.estado === 'activo');
       },
       (error)=>{
         console.log(error);

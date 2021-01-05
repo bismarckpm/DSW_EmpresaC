@@ -49,6 +49,8 @@ public class metodos_encuestados {
             DaoParticipacion dao = new DaoParticipacion();
             DaoMarca daoMarca = new DaoMarca();
             DaoSolicitudEstudio  daoSolicitudEstudio = new DaoSolicitudEstudio();
+            DaoSubcategoria daoSubcategoria = new DaoSubcategoria ();
+            DaoCategoria daoCategoria = new DaoCategoria();
 
             Class<Participacion> type = Participacion.class;
 
@@ -56,12 +58,14 @@ public class metodos_encuestados {
             for (Participacion obj : resultado) {
                 Participacion participacion = dao.find(obj.get_id(), Participacion.class);
                 Marca marca = daoMarca.find(participacion.get_solicitudestudio().get_marca().get_id(), Marca.class);
+                Subcategoria subcategoria = daoSubcategoria.find(marca.get_subcategoria().get_id(),Subcategoria.class);
+                Categoria categoria = daoCategoria.find(subcategoria.get_categoria().get_id(),Categoria.class);
                 if (participacion.get_encuestado().get_id() == _id && participacion.get_solicitudestudio().get_estado().equals("en progreso") && participacion.get_estado().equals("activo") ) {
                     JsonObject encuesta = Json.createObjectBuilder().add("Marca", marca.get_nombre())
-                            .add("idcategoria", marca.get_subcategoria().get_categoria().get_id())
-                            .add("Categoria", marca.get_subcategoria().get_categoria().get_nombre())
-                            .add("idsubcategoria", marca.get_subcategoria().get_id())
-                            .add("Subcategoria", marca.get_subcategoria().get_nombre()).build();
+                            .add("idcategoria", categoria.get_id())
+                            .add("Categoria", categoria.get_nombre())
+                            .add("idsubcategoria", subcategoria.get_id())
+                            .add("Subcategoria", subcategoria.get_nombre()).build();
 
                     SolicitudEstudio solicitudEstudio = daoSolicitudEstudio.find(participacion.get_solicitudestudio().get_id(), SolicitudEstudio.class);
 
@@ -321,6 +325,7 @@ public class metodos_encuestados {
             DaoOpcion_Simple_Multiple_Pregunta dao3 = new DaoOpcion_Simple_Multiple_Pregunta();
             DaoParticipacion daoParticipacion = new DaoParticipacion();
             DaoRespuesta daoRespuesta = new DaoRespuesta();
+            DaoPregunta daoPregunta = new DaoPregunta();
 
             SolicitudEstudio solicitudEstudio = new SolicitudEstudio();
             solicitudEstudio = dao2.find(_id,SolicitudEstudio.class);
@@ -348,6 +353,7 @@ public class metodos_encuestados {
 
             for (PreguntaEncuesta obj : resultado) {
                 PreguntaEncuesta preguntaEncuesta = dao.find(obj.get_id(), PreguntaEncuesta.class);
+                Pregunta pregunta1 = daoPregunta.find(preguntaEncuesta.get_pregunta().get_id(),Pregunta.class);
                 int pregunta = 0;
                 if (preguntaEncuesta.get_encuesta().get_id() == solicitudEstudio.get_encuesta().get_id()) {
                     for (Respuesta obj3 : respuesta) {
@@ -369,8 +375,8 @@ public class metodos_encuestados {
                                 }
                             }
                             JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
-                                    .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
-                                    .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
+                                    .add("descripcion", pregunta1.get_descripcion())
+                                    .add("tipopregunta", pregunta1.get_tipopregunta())
                                     .add("opciones", opciones)
                                     .build();
 
@@ -379,16 +385,16 @@ public class metodos_encuestados {
 
                             if (preguntaEncuesta.get_pregunta().get_valormax() != 0) {
                                 JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
-                                        .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
-                                        .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
-                                        .add("minimo", preguntaEncuesta.get_pregunta().get_valormin())
-                                        .add("maximo", preguntaEncuesta.get_pregunta().get_valormax()).build();
+                                        .add("descripcion", pregunta1.get_descripcion())
+                                        .add("tipopregunta", pregunta1.get_tipopregunta())
+                                        .add("minimo", pregunta1.get_valormin())
+                                        .add("maximo", pregunta1.get_valormax()).build();
                                 builder.add(preguntas);
 
                             } else {
                                 JsonObject preguntas = Json.createObjectBuilder().add("id", preguntaEncuesta.get_id())
-                                        .add("descripcion", preguntaEncuesta.get_pregunta().get_descripcion())
-                                        .add("tipopregunta", preguntaEncuesta.get_pregunta().get_tipopregunta())
+                                        .add("descripcion", pregunta1.get_descripcion())
+                                        .add("tipopregunta", pregunta1.get_tipopregunta())
                                         .build();
 
                                 builder.add(preguntas);

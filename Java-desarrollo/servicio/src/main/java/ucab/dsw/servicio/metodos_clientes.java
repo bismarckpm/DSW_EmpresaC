@@ -57,6 +57,8 @@ public class metodos_clientes {
         DaoSubcategoria daoSubcategoria = new DaoSubcategoria ();
         DaoCategoria daoCategoria = new DaoCategoria();
         DaoParticipacion daoParticipacion=new DaoParticipacion();
+        DaoEncuestado daoEncuestado = new DaoEncuestado();
+        DaoUsuario daoUsuario = new DaoUsuario();
 
         DaoCaracteristica_Demografica daoCaracteristica_demografica = new DaoCaracteristica_Demografica();
 
@@ -87,13 +89,15 @@ public class metodos_clientes {
                     for(Participacion j:participacion){
                     
                     Participacion participacion1 = daoParticipacion.find(j.get_id(), Participacion.class);
+                    Encuestado encuestado1 = daoEncuestado.find(j.get_encuestado().get_id(),Encuestado.class);
+                    Usuario usuario1 = daoUsuario.find(encuestado1.get_usuario_encuestado().get_id(),Usuario.class);
 
                     builderArrayEncuestado.add(Json.createObjectBuilder().add("participacion_id", participacion1.get_id())
-                            .add("doc_id", participacion1.get_encuestado().get_doc_id())
-                            .add("usuario",participacion1.get_encuestado().get_usuario_encuestado().get_usuario())
-                            .add("correo",participacion1.get_encuestado().get_correo())
-                            .add("nombre",participacion1.get_encuestado().get_nombre())
-                            .add("apellido",participacion1.get_encuestado().get_apellido())
+                            .add("doc_id", encuestado1.get_doc_id())
+                            .add("usuario",usuario1.get_usuario())
+                            .add("correo",encuestado1.get_correo())
+                            .add("nombre",encuestado1.get_nombre())
+                            .add("apellido",encuestado1.get_apellido())
                             .add("estado",participacion1.get_estado()));
                     }
 
@@ -101,6 +105,8 @@ public class metodos_clientes {
                 
                 SolicitudEstudio solicitudEstudio = dao.find(obj.get_id(),SolicitudEstudio.class);
                 Marca marca = daoMarca.find(solicitudEstudio.get_marca().get_id(), Marca.class);
+                Subcategoria subcategoria = daoSubcategoria.find(marca.get_subcategoria().get_id(),Subcategoria.class);
+                Categoria categoria = daoCategoria.find(subcategoria.get_categoria().get_id(),Categoria.class);
 
                 String nombre_encuesta = "";
                 if (solicitudEstudio.get_encuesta()==null){
@@ -114,13 +120,11 @@ public class metodos_clientes {
                         .add("modo_encuesta",solicitudEstudio.get_modoencuesta())
                         .add("caracteristica_demografica",builderObject)
                         .add("marca",marca.get_nombre())
-                        .add("subcategoria",marca.get_subcategoria().get_nombre())
-                        .add("categoria",marca.get_subcategoria().get_categoria().get_nombre())
+                        .add("subcategoria",subcategoria.get_nombre())
+                        .add("categoria",categoria.get_nombre())
                         .add("participacion",builderArrayEncuestado)
                         .add("nombre_encuesta", nombre_encuesta)
                         .add("estado", solicitudEstudio.get_estado()));
-
-
             }
 
 

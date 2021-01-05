@@ -1,6 +1,11 @@
 package ucab.dsw.servicio;
 
 import org.eclipse.persistence.exceptions.DatabaseException;
+import ucab.dsw.accesodatos.DaoMarca;
+import ucab.dsw.accesodatos.DaoPresentacion;
+import ucab.dsw.dtos.PresentacionDto;
+import ucab.dsw.entidades.Marca;
+import ucab.dsw.entidades.Presentacion;
 import ucab.dsw.entidades.Subcategoria;
 import ucab.dsw.accesodatos.DaoSubcategoria;
 import ucab.dsw.accesodatos.DaoCategoria;
@@ -170,6 +175,18 @@ public class SubcategoriaServicio extends AplicacionBase{
             Subcategoria resul = dao.update(subcategoria);
             resultado.setId( resul.get_id() );
 
+            DaoMarca daoMarca = new DaoMarca();
+            List<Marca> marcas =daoMarca.findAll(Marca.class);
+            for(Marca obj: marcas) {
+
+                if (obj.get_subcategoria().get_id() == resul.get_id()){
+                    Marca marca = daoMarca.find(obj.get_id(),Marca.class);
+                    marca.set_estado("inactivo");
+
+                    Marca marcaActualizada = daoMarca.update(marca);
+                }
+            }
+
             data= Json.createObjectBuilder()
                     .add("estado","success")
                     .add("codigo",200).build();
@@ -209,6 +226,18 @@ public class SubcategoriaServicio extends AplicacionBase{
 
             Subcategoria resul = dao.update(subcategoria);
             resultado.setId( resul.get_id() );
+
+            DaoMarca daoMarca = new DaoMarca();
+            List<Marca> marcas =daoMarca.findAll(Marca.class);
+            for(Marca obj: marcas) {
+
+                if (obj.get_subcategoria().get_id() == resul.get_id()){
+                    Marca marca = daoMarca.find(obj.get_id(),Marca.class);
+                    marca.set_estado("activo");
+
+                    Marca marcaActualizada = daoMarca.update(marca);
+                }
+            }
 
             data= Json.createObjectBuilder()
                     .add("estado","success")

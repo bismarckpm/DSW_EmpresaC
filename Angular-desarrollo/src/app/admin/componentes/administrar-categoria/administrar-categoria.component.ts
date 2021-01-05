@@ -133,7 +133,21 @@ export class AdministrarCategoriaComponent implements OnInit, AfterViewInit {
     });
   }
 
-
+  activarCategoria(categoria_id){
+    this.eventBus.cast('inicio-progress','hola');
+    this._adminCategoriaService.activarCategoria(categoria_id).subscribe(
+      (response)=>{
+        console.log(response);
+        this._toastrService.success("Exito", "Categoria Activada");
+        
+        this.getAllCategorias();
+      },
+      (error)=>{
+        console.log(error);
+        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        this.eventBus.cast('fin-progress','chao');
+      });
+  }
 }
   
 

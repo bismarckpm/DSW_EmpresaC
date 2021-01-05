@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
       console.log(error);
 
       if(error.status == 401 ){
-        this._toastrService.success("Intente de nuevo", "Credenciales incorrectas!");
+        this._toastrService.error("Intente de nuevo", "Credenciales incorrectas! o Usuario inactivo");
       }else{
         this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
       }

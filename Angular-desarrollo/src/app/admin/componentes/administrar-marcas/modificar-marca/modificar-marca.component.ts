@@ -27,7 +27,9 @@ export class ModificarMarcaComponent implements OnInit {
   public marcaTipoDto:MarcaTipoDto;
   public subcategoriaDto:SubcategoriaDto;
   public subcategorias: any[];
-  public tipos:[];
+  public tipos:any[];
+  public subcategorias_filtered: any;
+  public tipos_filtered: any;
 
   constructor(
               public dialogRef: MatDialogRef<ModificarMarcaComponent>,
@@ -102,6 +104,7 @@ export class ModificarMarcaComponent implements OnInit {
       (response)=>{
         console.log(response);
         this.subcategorias=response.subcategorias;
+        this.subcategorias_filtered=this.subcategorias.filter( subcategoria => subcategoria.estado === 'activo');
       },
       (error)=>{
         console.log(error);
@@ -115,6 +118,7 @@ export class ModificarMarcaComponent implements OnInit {
       (response)=>{
         console.log(response);
         this.tipos=response.tipos;
+        this.tipos_filtered=this.tipos.filter( tipo => tipo.estado === 'activo');
       },
       (error)=>{
         console.log(error);
