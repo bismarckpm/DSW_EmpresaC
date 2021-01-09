@@ -4,8 +4,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
@@ -18,7 +16,7 @@ public class OpcionSimpleMultiple extends EntidadBase{
     private String _opcion;
 
     @OneToMany( mappedBy = "_opcionsimplemultiple", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
-    private List<Opcion_Simple_Multiple_Pregunta> _opcion_Simple_Multiple_Pregunta;
+    private List<OpcionSimpleMultiplePregunta> _opcion_Simple_Multiple_Pregunta;
 
     @Column( name = "estado" )
     private String _estado;

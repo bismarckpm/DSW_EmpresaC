@@ -2,7 +2,7 @@ package ucab.dsw.dtos;
 
 
 
-public class ClienteDto extends DtoBase{
+public class ClienteDto extends BaseDto {
 
     public ClienteDto()
     {

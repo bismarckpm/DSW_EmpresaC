@@ -1,9 +1,7 @@
 package ucab.dsw.dtos;
 
-import javax.persistence.Column;
 
-
-public class EncuestadoDto extends DtoBase{
+public class EncuestadoDto extends BaseDto {
 
     private int doc_id;
 
@@ -119,14 +117,14 @@ public class EncuestadoDto extends DtoBase{
         this.parroquiaDto = parroquiaDto;
     }
 
-    private Nivel_AcademicoDto nivel_AcademicoDto;
+    private NivelAcademicoDto nivel_AcademicoDto;
 
-    public Nivel_AcademicoDto getNivel_AcademicoDto()
+    public NivelAcademicoDto getNivel_AcademicoDto()
     {
         return nivel_AcademicoDto;
     }
 
-    public void setNivel_AcademicoDto( Nivel_AcademicoDto nivel_AcademicoDto )
+    public void setNivel_AcademicoDto( NivelAcademicoDto nivel_AcademicoDto )
     {
         this.nivel_AcademicoDto = nivel_AcademicoDto;
     }

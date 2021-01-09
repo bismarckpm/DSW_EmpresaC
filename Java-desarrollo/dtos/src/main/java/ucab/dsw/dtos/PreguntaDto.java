@@ -1,13 +1,9 @@
 package ucab.dsw.dtos;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import java.util.List;
 
 
-public class PreguntaDto extends DtoBase{
+public class PreguntaDto extends BaseDto {
 
     public PreguntaDto()
     {
@@ -28,13 +24,13 @@ public class PreguntaDto extends DtoBase{
 
     private int valormax;
 
-    private List<Opcion_Simple_MultipleDto> opciones;
+    private List<OpcionSimpleMultipleDto> opciones;
 
-    public List<Opcion_Simple_MultipleDto> getOpciones() {
+    public List<OpcionSimpleMultipleDto> getOpciones() {
         return opciones;
     }
 
-    public void setOpciones(List<Opcion_Simple_MultipleDto> opciones) {
+    public void setOpciones(List<OpcionSimpleMultipleDto> opciones) {
         this.opciones = opciones;
     }
 

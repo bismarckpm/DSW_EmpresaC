@@ -4,7 +4,6 @@ import org.eclipse.persistence.exceptions.DatabaseException;
 import ucab.dsw.accesodatos.*;
 import ucab.dsw.dtos.*;
 import ucab.dsw.entidades.*;
-import ucab.dsw.excepciones.PruebaExcepcion;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -13,7 +12,6 @@ import javax.persistence.PersistenceException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,7 +45,7 @@ public class MarcaServicio extends AplicacionBase{
             DaoMarca dao= new DaoMarca();
 			DaoSubcategoria daoSubcategoria= new DaoSubcategoria();
 			DaoPresentacion daoPresentacion=new DaoPresentacion();
-			DaoMarca_Tipo daoMarca_tipo=new DaoMarca_Tipo();
+			DaoMarcaTipo daoMarca_tipo=new DaoMarcaTipo();
 			
             List<Marca> resultado= dao.findAll(Marca.class);
 			
@@ -57,9 +55,9 @@ public class MarcaServicio extends AplicacionBase{
 
             for(Marca obj: resultado){
 				
-				List<Marca_Tipo> marca_tipos=daoMarca_tipo.getAllMarcaTiposByMarca(obj.get_id());
+				List<MarcaTipo> marca_tipos=daoMarca_tipo.getAllMarcaTiposByMarca(obj.get_id());
 				
-				for(Marca_Tipo obj2: marca_tipos){
+				for(MarcaTipo obj2: marca_tipos){
 														 
 						List<Presentacion> presentaciones=daoPresentacion.getAllPresentacionesByTipo(obj2.get_tipo().get_id());
 						
@@ -137,7 +135,7 @@ public class MarcaServicio extends AplicacionBase{
         try
         {
             DaoMarca DaoMarca = new DaoMarca();
-            DaoMarca_Tipo daoMarca_tipo= new DaoMarca_Tipo();
+            DaoMarcaTipo daoMarca_tipo= new DaoMarcaTipo();
 			DaoTipo daoTipo= new DaoTipo();
 			
             Marca marca= new Marca();
@@ -152,12 +150,12 @@ public class MarcaServicio extends AplicacionBase{
 
             for(TipoDto obj: marcaDto.getTipo_Dto()){
 				
-				Marca_Tipo marca_tipo=new Marca_Tipo();
+				MarcaTipo marca_tipo=new MarcaTipo();
 				Tipo tipo= daoTipo.find(obj.getId(),Tipo.class);
 				marca_tipo.set_tipo(tipo);
 				marca_tipo.set_marca(resul);
 
-                Marca_Tipo resul2 = daoMarca_tipo.insert(marca_tipo);
+                MarcaTipo resul2 = daoMarca_tipo.insert(marca_tipo);
             }
 
             data= Json.createObjectBuilder()
@@ -297,19 +295,19 @@ public class MarcaServicio extends AplicacionBase{
         try
         {
             DaoMarca dao = new DaoMarca();
-			DaoMarca_Tipo daoMarca_tipo= new DaoMarca_Tipo();
+			DaoMarcaTipo daoMarca_tipo= new DaoMarcaTipo();
 			DaoTipo daoTipo= new DaoTipo();
 			DaoSubcategoria daoSubcategoria=new DaoSubcategoria();
 			
             Marca marca = dao.find(_id,Marca.class);
 			Subcategoria subcategoria = daoSubcategoria.find(marcaDto.getSubcategoriaDto().getId(),Subcategoria.class);
-            Marca_Tipo marca_tipo=daoMarca_tipo.find(marcaDto.getMarcaTipo_Dto().getId(),Marca_Tipo.class);
+            MarcaTipo marca_tipo=daoMarca_tipo.find(marcaDto.getMarcaTipo_Dto().getId(), MarcaTipo.class);
 
             for(TipoDto obj: marcaDto.getTipo_Dto()){
 
 				Tipo tipo= daoTipo.find(obj.getId(),Tipo.class);
 				marca_tipo.set_tipo(tipo);
-                Marca_Tipo resul2 = daoMarca_tipo.update(marca_tipo);
+                MarcaTipo resul2 = daoMarca_tipo.update(marca_tipo);
             }
             
             daoMarca_tipo.update(marca_tipo);

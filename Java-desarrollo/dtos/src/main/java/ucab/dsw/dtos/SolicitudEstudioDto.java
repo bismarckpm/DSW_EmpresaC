@@ -3,7 +3,7 @@ package ucab.dsw.dtos;
 
 import java.util.Date;
 
-public class SolicitudEstudioDto extends DtoBase{
+public class SolicitudEstudioDto extends BaseDto {
 
 
     public SolicitudEstudioDto()
@@ -130,14 +130,14 @@ public class SolicitudEstudioDto extends DtoBase{
         this.clienteDto = clienteDto;
     }
 
-    private Caracteristica_DemograficaDto caracteristica_DemograficaDto;
+    private CaracteristicaDemograficaDto caracteristica_DemograficaDto;
 
-    public Caracteristica_DemograficaDto getCaracteristica_DemograficaDto()
+    public CaracteristicaDemograficaDto getCaracteristica_DemograficaDto()
     {
         return caracteristica_DemograficaDto;
     }
 
-    public void setCaracteristica_DemograficaDto( Caracteristica_DemograficaDto caracteristica_DemograficaDto )
+    public void setCaracteristica_DemograficaDto( CaracteristicaDemograficaDto caracteristica_DemograficaDto )
     {
         this.caracteristica_DemograficaDto = caracteristica_DemograficaDto;
     }

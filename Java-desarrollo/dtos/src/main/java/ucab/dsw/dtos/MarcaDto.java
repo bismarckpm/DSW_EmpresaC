@@ -3,7 +3,7 @@ package ucab.dsw.dtos;
 
 import java.util.List;
 
-public class MarcaDto extends DtoBase{
+public class MarcaDto extends BaseDto {
 
     public MarcaDto()
     {
@@ -49,13 +49,13 @@ public class MarcaDto extends DtoBase{
         this.tipoDto = tipoDto;
     }
 
-    public Marca_TipoDto marcaTipoDto;
+    public MarcaTipoDto marcaTipoDto;
 
-    public Marca_TipoDto getMarcaTipo_Dto() {
+    public MarcaTipoDto getMarcaTipo_Dto() {
         return marcaTipoDto;
     }
 
-    public void setMarcaTipo_Dto(Marca_TipoDto marcaTipoDto) {
+    public void setMarcaTipo_Dto(MarcaTipoDto marcaTipoDto) {
         this.marcaTipoDto = marcaTipoDto;
     }
 }

@@ -2,7 +2,7 @@ package ucab.dsw.dtos;
 
 import java.util.List;
 
-public class EncuestaDto extends DtoBase{
+public class EncuestaDto extends BaseDto {
 
 
     public EncuestaDto()

@@ -138,24 +138,24 @@ public class Encuestado extends EntidadBase
     }
 
     @OneToMany( mappedBy = "_encuestado_metodo_conexion", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
-    private List<Metodo_Conexion_Encuestado> _metodo_Conexion_Encuestado;
+    private List<MetodoConexionEncuestado> _metodo_Conexion_Encuestado;
 
-    public List<Metodo_Conexion_Encuestado> get_metodo_Conexion_Encuestado() { return _metodo_Conexion_Encuestado; }
+    public List<MetodoConexionEncuestado> get_metodo_Conexion_Encuestado() { return _metodo_Conexion_Encuestado; }
 
-    public void set_metodo_Conexion_Encuestado( List<Metodo_Conexion_Encuestado> _metodo_Conexion_Encuestado )
+    public void set_metodo_Conexion_Encuestado( List<MetodoConexionEncuestado> _metodo_Conexion_Encuestado )
     {
         this._metodo_Conexion_Encuestado = _metodo_Conexion_Encuestado;
     }
 
     @OneToMany( mappedBy = "_encuestado_ocupacion", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
-    private List<Ocupacion_Encuestado> _ocupacion_Encuestado;
+    private List<OcupacionEncuestado> _ocupacion_Encuestado;
 
-    public List<Ocupacion_Encuestado> get_ocupacion_Encuestado()
+    public List<OcupacionEncuestado> get_ocupacion_Encuestado()
     {
         return _ocupacion_Encuestado;
     }
 
-    public void set_ocupacion_Encuestado( List<Ocupacion_Encuestado> _ocupacion_Encuestado )
+    public void set_ocupacion_Encuestado( List<OcupacionEncuestado> _ocupacion_Encuestado )
     {
         this._ocupacion_Encuestado = _ocupacion_Encuestado;
     }
@@ -176,14 +176,14 @@ public class Encuestado extends EntidadBase
 
     @ManyToOne(optional = false , fetch = FetchType.EAGER)
     @JoinColumn( name = "Nivel_academico_id" )
-    private Nivel_Academico _nivel_academico_encuestado;
+    private NivelAcademico _nivel_academico_encuestado;
 
-    public Nivel_Academico get_nivel_academico_encuestado()
+    public NivelAcademico get_nivel_academico_encuestado()
     {
         return _nivel_academico_encuestado;
     }
 
-    public void set_nivel_academico_encuestado( Nivel_Academico _nivel_academico_encuestado )
+    public void set_nivel_academico_encuestado( NivelAcademico _nivel_academico_encuestado )
     {
         this._nivel_academico_encuestado = _nivel_academico_encuestado;
     }

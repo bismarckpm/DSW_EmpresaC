@@ -1,6 +1,6 @@
 package ucab.dsw.dtos;
 
-public class TipoDto extends DtoBase{
+public class TipoDto extends BaseDto {
 
     private String nombre;
 

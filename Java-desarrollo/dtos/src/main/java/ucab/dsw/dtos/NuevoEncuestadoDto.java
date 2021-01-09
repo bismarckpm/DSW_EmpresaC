@@ -1,11 +1,11 @@
 package ucab.dsw.dtos;
 
 
-public class NuevoEncuestadoDto extends DtoBase{
+public class NuevoEncuestadoDto extends BaseDto {
     private UsuarioLdapDto usuarioLdap;
     private EncuestadoDto encuestado;
     private TelefonoDto telefono[];
-    private Metodo_ConexionDto metodo_conexion[];
+    private MetodoConexionDto metodo_conexion[];
     private HijoDto hijo[];
     private OcupacionDto ocupacion[];
 
@@ -21,9 +21,9 @@ public class NuevoEncuestadoDto extends DtoBase{
 
     public void setTelefono(TelefonoDto[] telefono) { this.telefono = telefono; }
 
-    public Metodo_ConexionDto[] getMetodo_conexion() { return metodo_conexion; }
+    public MetodoConexionDto[] getMetodo_conexion() { return metodo_conexion; }
 
-    public void setMetodo_conexion(Metodo_ConexionDto[] metodo_conexion) { this.metodo_conexion = metodo_conexion; }
+    public void setMetodo_conexion(MetodoConexionDto[] metodo_conexion) { this.metodo_conexion = metodo_conexion; }
 
     public HijoDto[] getHijo() { return hijo; }
 

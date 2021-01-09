@@ -1,7 +1,7 @@
 package ucab.dsw.servicio;
 
-import ucab.dsw.accesodatos.DaoNivel_Academico;
-import ucab.dsw.entidades.Nivel_Academico;
+import ucab.dsw.accesodatos.DaoNivelAcademico;
+import ucab.dsw.entidades.NivelAcademico;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -38,12 +38,12 @@ public class NivelAcademicoServicio extends AplicacionBase {
     public Response getAllNivelesAcademicos() {
         JsonObject data;
         try {
-            DaoNivel_Academico dao = new DaoNivel_Academico();
-            List<Nivel_Academico> resultado = dao.findAll(Nivel_Academico.class);
+            DaoNivelAcademico dao = new DaoNivelAcademico();
+            List<NivelAcademico> resultado = dao.findAll(NivelAcademico.class);
 
             JsonArrayBuilder categoriaArrayJson = Json.createArrayBuilder();
 
-            for (Nivel_Academico obj : resultado) {
+            for (NivelAcademico obj : resultado) {
 
                 JsonObject categoria = Json.createObjectBuilder().add("id", obj.get_id())
                         .add("nombre", obj.get_nombre()).build();

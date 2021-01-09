@@ -1,11 +1,7 @@
 package ucab.dsw.servicio;
 
-import ucab.dsw.accesodatos.DaoMetodo_Conexion;
-import ucab.dsw.accesodatos.DaoNivel_Academico;
-import ucab.dsw.accesodatos.DaoOcupacion;
-import ucab.dsw.entidades.Metodo_conexion;
-import ucab.dsw.entidades.Nivel_Academico;
-import ucab.dsw.entidades.Ocupacion;
+import ucab.dsw.accesodatos.DaoMetodoConexion;
+import ucab.dsw.entidades.MetodoConexion;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -43,11 +39,11 @@ public class MetodoConexionServicio {
     public Response getAllMetodoConexion() {
         JsonObject data;
         try {
-            DaoMetodo_Conexion dao = new DaoMetodo_Conexion();
-            List<Metodo_conexion> resultado = dao.findAll(Metodo_conexion.class);
+            DaoMetodoConexion dao = new DaoMetodoConexion();
+            List<MetodoConexion> resultado = dao.findAll(MetodoConexion.class);
             JsonArrayBuilder metodosConexionArrayJson = Json.createArrayBuilder();
 
-            for (Metodo_conexion obj : resultado) {
+            for (MetodoConexion obj : resultado) {
 
                 JsonObject metodosConexion = Json.createObjectBuilder().add("id", obj.get_id())
                         .add("nombre", obj.get_nombre()).build();

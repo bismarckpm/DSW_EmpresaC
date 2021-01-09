@@ -1,8 +1,6 @@
 package ucab.dsw.servicio;
 
-import ucab.dsw.accesodatos.DaoNivel_Academico;
 import ucab.dsw.accesodatos.DaoOcupacion;
-import ucab.dsw.entidades.Nivel_Academico;
 import ucab.dsw.entidades.Ocupacion;
 
 import javax.json.Json;
