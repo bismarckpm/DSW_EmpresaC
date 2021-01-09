@@ -2,7 +2,7 @@ package ucab.dsw.dtos;
 
 
 
-public class TelefonoDto extends DtoBase{
+public class TelefonoDto extends BaseDto {
 
 
     private String numero;

@@ -35,7 +35,7 @@ public class Marca extends EntidadBase{
 
 
     @OneToMany( mappedBy = "_marca", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
-    private List<Marca_Tipo> _marcatipos;
+    private List<MarcaTipo> _marcatipos;
 
     public String get_nombre() {
         return _nombre;

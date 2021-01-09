@@ -51,16 +51,16 @@ public class SolicitudEstudio extends EntidadBase{
 
     @ManyToOne(optional = false , fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn( name = "Caracteristica_demografica_id" )
-    private Caracteristica_Demografica _caracteristicademografica;
+    private CaracteristicaDemografica _caracteristicademografica;
 
     @OneToMany( mappedBy = "_solicitudestudio", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<Participacion> _participacion;
 
-    public Caracteristica_Demografica get_caracteristicademografica() {
+    public CaracteristicaDemografica get_caracteristicademografica() {
         return _caracteristicademografica;
     }
 
-    public void set_caracteristicademografica(Caracteristica_Demografica _caracteristicademografica) {
+    public void set_caracteristicademografica(CaracteristicaDemografica _caracteristicademografica) {
         this._caracteristicademografica = _caracteristicademografica;
     }
 

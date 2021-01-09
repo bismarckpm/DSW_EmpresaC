@@ -1,6 +1,6 @@
 package ucab.dsw.dtos;
 
-public class CiudadDto extends DtoBase
+public class CiudadDto extends BaseDto
 {
     private String nombre;
 

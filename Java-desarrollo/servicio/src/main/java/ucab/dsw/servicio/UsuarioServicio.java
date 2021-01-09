@@ -1,14 +1,11 @@
 package ucab.dsw.servicio;
 
-import javafx.scene.control.TextFormatter;
 import org.eclipse.persistence.exceptions.DatabaseException;
 
 import ucab.dsw.directorio.DirectorioActivo;
 import ucab.dsw.accesodatos.*;
 import ucab.dsw.dtos.*;
 import ucab.dsw.entidades.*;
-import ucab.dsw.excepciones.PruebaExcepcion;
-import ucab.dsw.jwt.Jwt;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -20,7 +17,6 @@ import javax.ws.rs.core.Response;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -153,8 +149,8 @@ public class UsuarioServicio extends AplicacionBase {
                 DaoEncuestado daoIE = new DaoEncuestado();
                 Encuestado encuestado = new Encuestado();
 
-                DaoNivel_Academico daoNivelAcademicoE = new DaoNivel_Academico();
-                Nivel_Academico nivel_academico = daoNivelAcademicoE.find( nuevoEncuestadoDto.getEncuestado().getNivel_AcademicoDto().getId(), Nivel_Academico.class  );
+                DaoNivelAcademico daoNivelAcademicoE = new DaoNivelAcademico();
+                NivelAcademico nivel_academico = daoNivelAcademicoE.find( nuevoEncuestadoDto.getEncuestado().getNivel_AcademicoDto().getId(), NivelAcademico.class  );
 
                 DaoUsuario daoUsuarioE = new DaoUsuario();
                 Usuario usuarioE = daoUsuarioE.find( ID_USER, Usuario.class);
@@ -216,30 +212,30 @@ public class UsuarioServicio extends AplicacionBase {
                 }
 
                 //INSERT METODOS_CONEXION_ENCUESTADO
-                for(Metodo_ConexionDto m : nuevoEncuestadoDto.getMetodo_conexion()){
+                for(MetodoConexionDto m : nuevoEncuestadoDto.getMetodo_conexion()){
 
-                    Metodo_Conexion_EncuestadoDto resultadoM = new Metodo_Conexion_EncuestadoDto();
-                    DaoMetodo_Conexion_Encuestado daoM = new DaoMetodo_Conexion_Encuestado();
-                    Metodo_Conexion_Encuestado metodo_conexion_encuestado = new Metodo_Conexion_Encuestado();
+                    MetodoConexionEncuestadoDto resultadoM = new MetodoConexionEncuestadoDto();
+                    DaoMetodoConexionEncuestado daoM = new DaoMetodoConexionEncuestado();
+                    MetodoConexionEncuestado metodo_conexion_encuestado = new MetodoConexionEncuestado();
 
                     DaoEncuestado daoEncuestadoM = new DaoEncuestado();
                     Encuestado encuestadoM = daoEncuestadoM.find( ID_ENC , Encuestado.class);
 
-                    DaoMetodo_Conexion daoMetodo_conexion = new DaoMetodo_Conexion();
-                    Metodo_conexion metodo_conexionM = daoMetodo_conexion.find( m.getId() ,Metodo_conexion.class );
+                    DaoMetodoConexion daoMetodo_conexion = new DaoMetodoConexion();
+                    MetodoConexion metodo_conexionM = daoMetodo_conexion.find( m.getId() , MetodoConexion.class );
 
                     metodo_conexion_encuestado.set_encuestado_metodo_conexion( encuestadoM );
                     metodo_conexion_encuestado.set_metodo_conexion( metodo_conexionM );
 
-                    Metodo_Conexion_Encuestado resulM = daoM.insert( metodo_conexion_encuestado );
+                    MetodoConexionEncuestado resulM = daoM.insert( metodo_conexion_encuestado );
                     resultadoM.setId( resulM.get_id() );
                 }
 
                 //INSERT OCUPACION_ENCUESTADO
                 for (OcupacionDto o : nuevoEncuestadoDto.getOcupacion()){
-                    Ocupacion_EncuestadoDto resultadoO = new Ocupacion_EncuestadoDto();
-                    DaoOcupacion_Encuestado daoO = new DaoOcupacion_Encuestado();
-                    Ocupacion_Encuestado ocupacion_encuestado = new Ocupacion_Encuestado();
+                    OcupacionEncuestadoDto resultadoO = new OcupacionEncuestadoDto();
+                    DaoOcupacionEncuestado daoO = new DaoOcupacionEncuestado();
+                    OcupacionEncuestado ocupacion_encuestado = new OcupacionEncuestado();
 
                     DaoOcupacion daoOcupacion = new DaoOcupacion();
                     Ocupacion ocupacionO = daoOcupacion.find( o.getId() ,Ocupacion.class);
@@ -250,7 +246,7 @@ public class UsuarioServicio extends AplicacionBase {
                     ocupacion_encuestado.set_ocupacion( ocupacionO );
                     ocupacion_encuestado.set_encuestado_ocupacion( encuestadoO );
 
-                    Ocupacion_Encuestado resulO = daoO.insert( ocupacion_encuestado );
+                    OcupacionEncuestado resulO = daoO.insert( ocupacion_encuestado );
                     resultadoO.setId( resulO.get_id() );
                 }
 
@@ -398,7 +394,7 @@ public class UsuarioServicio extends AplicacionBase {
     /**
      * Metodo para modificar la contraseña de un usuario existente despues de verificar la contraseña actual
      * @author Jesus Requena
-     * @param changePasswordDto el cual incluye el usuario a modificar, la conrtraseña actual y la nueva
+     * @param cambiarClaveDto el cual incluye el usuario a modificar, la conrtraseña actual y la nueva
      * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
      *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
@@ -406,19 +402,19 @@ public class UsuarioServicio extends AplicacionBase {
      */
     @POST
     @Path( "/change-password" )
-    public Response ChangePassword(ChangePasswordDto changePasswordDto) {
+    public Response ChangePassword(CambiarClaveDto cambiarClaveDto) {
         JsonObject data;
 
         try {
             DirectorioActivo ldap = new DirectorioActivo();
             UsuarioLdapDto user = new UsuarioLdapDto();
-            user.setUid(changePasswordDto.getUser_id());
-            user.setContrasena(changePasswordDto.getContrasena_actual());
+            user.setUid(cambiarClaveDto.getUser_id());
+            user.setContrasena(cambiarClaveDto.getContrasena_actual());
             user.setCn( ldap.getUserFromUid(user) );
 
             if(ldap.validateUser(user)){
 
-                ldap.reSetPass( user , changePasswordDto.getContrasena_nueva());
+                ldap.reSetPass( user , cambiarClaveDto.getContrasena_nueva());
 
                 data= Json.createObjectBuilder()
                         .add("estado","success")

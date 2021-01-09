@@ -63,14 +63,14 @@ public class Parroquia extends EntidadBase
     }
 
     @OneToMany( mappedBy = "_Parroquia_demografia", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
-    private List<Caracteristica_Demografica> _caracteristica_Demografica;
+    private List<CaracteristicaDemografica> _caracteristica_Demografica;
 
-    public List<Caracteristica_Demografica> get_caracteristica_Demografica()
+    public List<CaracteristicaDemografica> get_caracteristica_Demografica()
     {
         return _caracteristica_Demografica;
     }
 
-    public void set_caracteristica_Demografica( List<Caracteristica_Demografica> _caracteristica_Demografica )
+    public void set_caracteristica_Demografica( List<CaracteristicaDemografica> _caracteristica_Demografica )
     {
         this._caracteristica_Demografica = _caracteristica_Demografica;
     }

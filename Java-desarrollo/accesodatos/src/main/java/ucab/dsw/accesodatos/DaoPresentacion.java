@@ -1,6 +1,5 @@
 package ucab.dsw.accesodatos;
 
-import ucab.dsw.entidades.Marca_Tipo;
 import ucab.dsw.entidades.Presentacion;
 
 import javax.persistence.EntityManager;
