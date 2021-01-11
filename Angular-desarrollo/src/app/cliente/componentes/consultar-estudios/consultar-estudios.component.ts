@@ -22,6 +22,8 @@ export class ConsultarEstudiosComponent implements OnInit {
   public cliente_id;
   public user_id;
   public estudios:any[];
+  public estudios_filtered:any[];
+
   public dialogRef;
 
   constructor(public dialog: MatDialog,
@@ -50,6 +52,7 @@ export class ConsultarEstudiosComponent implements OnInit {
       (response)=>{
         console.log(response);
         this.estudios=response.estudios;
+        this.estudios_filtered = this.estudios;
         this._toastrService.success("Exito", "Todas los estudios solicitados");
         this.eventBus.cast('fin-progress','chao');
       },
@@ -147,4 +150,11 @@ export class ConsultarEstudiosComponent implements OnInit {
     });
   }
   
+  estudiosFiltered(estado){   
+    if (estado == 'all') {
+      this.estudios_filtered = this.estudios;
+    }else{
+      this.estudios_filtered = this.estudios.filter( estudio => estudio.estado === estado);
+    }
+  }
 }
