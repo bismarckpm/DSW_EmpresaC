@@ -27,7 +27,6 @@ public class EncuestadoServicio {
      * en especifico
      * @author Carlos Silva
      * @param _id corresponde al id del encuestado
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -108,7 +107,6 @@ public class EncuestadoServicio {
      * en especifico
      * @author Carlos Silva
      * @param _id corresponde al id del estudio
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -129,9 +127,7 @@ public class EncuestadoServicio {
             DaoSolicitudEstudio dao2 = new DaoSolicitudEstudio();
             DaoOpcionSimpleMultiplePregunta dao3 = new DaoOpcionSimpleMultiplePregunta();
 
-            SolicitudEstudio solicitudEstudio = new SolicitudEstudio();
-
-            solicitudEstudio = dao2.find(_id,SolicitudEstudio.class);
+            SolicitudEstudio solicitudEstudio = dao2.find(_id,SolicitudEstudio.class);
 
             Class<PreguntaEncuesta> type = PreguntaEncuesta.class;
 
@@ -214,7 +210,6 @@ public class EncuestadoServicio {
      * @param _id2 corresponde al id del estudio
      * @param _id3 corresponde al id de la participacion
      * @param respuestaDto corresponde al objeto de la capa web que contiene los nuevos datos
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -299,7 +294,6 @@ public class EncuestadoServicio {
      * @author Carlos Silva
      * @param _id corresponde al id del estudio
      * @param _id2 corresponde al id de la participacion
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -425,7 +419,6 @@ public class EncuestadoServicio {
      * @author Carlos Silva
      * @param _id corresponde al id del estudio
      * @param _id2 corresponde al id de la participacion
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -494,7 +487,6 @@ public class EncuestadoServicio {
     * Esta funcion consiste en obtener el id del encuestado
     * @author Gabriel Romero
     * @param _id corresponde al id del usuario
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, encuestado_id 

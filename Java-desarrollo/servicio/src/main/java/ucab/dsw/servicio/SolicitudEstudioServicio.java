@@ -30,8 +30,7 @@ public class SolicitudEstudioServicio {
     /**
     * Esta funcion consiste en insertar una nueva solicitud de estudio
     * @author Gabriel Romero
-    * @param solicitudEstudioDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar 
-    * @throws Exception  si ocurre cualquier excepcion general no controlada previamente
+    * @param solicitudEstudioDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir
@@ -188,7 +187,6 @@ public class SolicitudEstudioServicio {
     * Esto implica que sea la mismas caracteristicas demograficas y la marca.
     * @author Gabriel Romero
     * @param solicitudEstudio corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar
-    * @throws Exception  si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una SolicitudEstudio correspondiente al estudio. Hay dos opciones: 
     *         1- Si el estudio ya existe se asigna la misma encuesta, la misma participacion y el mismo analista
     *         2- En caso contrario, se envia a un administrador para su respectiva configuración
@@ -233,7 +231,6 @@ public class SolicitudEstudioServicio {
     * @author Gabriel Romero
     * @param a  objeto de tipo Caracteristica_Demografica, que corresponde a las caracteristicas del estudio que se desea realizar
     * @param b  objeto de tipo Caracteristica_Demografica, que corresponde a las caracteristicas del estudio que ya ha sido realizado
-    * @throws Exception  si ocurre cualquier excepcion general no controlada previamente
     * @return retorna un boolean. True en caso de que sean las mismas caracteristicas demograficas, y False en caso contrario.
     */
     public boolean CheckearCaracteristicasDemograficas(CaracteristicaDemografica a, CaracteristicaDemografica b){

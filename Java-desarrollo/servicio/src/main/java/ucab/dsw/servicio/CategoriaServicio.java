@@ -40,7 +40,6 @@ public class CategoriaServicio extends AplicacionBase{
     /**
     * Esta funcion consiste el traer todas las categorias disponibles
     * @author Gabriel Romero
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, categorias (array de objetos) 
@@ -95,10 +94,7 @@ public class CategoriaServicio extends AplicacionBase{
     /**
     * Esta funcion consiste en insertar una nueva categoria
     * @author Gabriel Romero
-    * @param categoriaDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar 
-    * @throws PersistenceException si se inserta una categoria duplicada
-    * @throws DatabaseException    si existe algun problema con la conexion con el servidor de base de datos
-    * @throws PruebaExcepcion      si ocurre cualquier excepcion general no controlada previamente
+    * @param categoriaDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir
@@ -153,7 +149,6 @@ public class CategoriaServicio extends AplicacionBase{
     * y asimismo, las marcas de esas subcategorias. Quedaran inhabilitadas para futuros estudios.
     * @author Gabriel Romero
     * @param _id corresponde al id de la categoria
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir 
@@ -251,7 +246,6 @@ public class CategoriaServicio extends AplicacionBase{
     * Esta funcion consiste en habilitar nuevamente una categoria previamente inhabilitada
     * @author Carlos Silva
     * @param _id corresponde al id de la categoria
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir 
@@ -338,9 +332,6 @@ public class CategoriaServicio extends AplicacionBase{
     * @author Gabriel Romero
     * @param _id corresponde al id de la categoria
     * @param categoriaDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean actualizar
-    * @throws PersistenceException si se inserta una categoria duplicada
-    * @throws DatabaseException    si existe algun problema con la conexion con el servidor de base de datos
-    * @throws PruebaExcepcion      si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir 
@@ -393,7 +384,6 @@ public class CategoriaServicio extends AplicacionBase{
     * Esta funcion consiste obtener una categoria
     * @author Gabriel Romero
     * @param _id corresponde al id de la categoria
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, categoria y mensaje en caso de ocurrir 

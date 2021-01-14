@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Java-desarrollo.iml" filepath="$PROJECT_DIR$/.idea/Java-desarrollo.iml" />
       <module fileurl="file://$PROJECT_DIR$/accesodatos/accesodatos.iml" filepath="$PROJECT_DIR$/accesodatos/accesodatos.iml" />
       <module fileurl="file://$PROJECT_DIR$/directorioactivo/directorioactivo.iml" filepath="$PROJECT_DIR$/directorioactivo/directorioactivo.iml" />
       <module fileurl="file://$PROJECT_DIR$/dtos/dtos.iml" filepath="$PROJECT_DIR$/dtos/dtos.iml" />

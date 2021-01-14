@@ -31,7 +31,6 @@ public class PresentacionServicio {
      * Esta funcion consiste agregar una nueva presentacion
      * @author Carlos Silva
      * @param presentacionDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -91,7 +90,6 @@ public class PresentacionServicio {
      * @author Carlos Silva
      * @param _id corresponde al id de la presentacion
      * @param presentacionDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -147,7 +145,6 @@ public class PresentacionServicio {
      * Esta funcion consiste en cambiar el estado de una presentacion a inactivo
      * @author Carlos Silva
      * @param _id corresponde al id de la presentacion
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -188,7 +185,6 @@ public class PresentacionServicio {
      * Esta funcion consiste en cambiar el estado de una presentacion a activo
      * @author Carlos Silva
      * @param _id corresponde al id de la presentacion
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -229,7 +225,6 @@ public class PresentacionServicio {
      * Esta funcion consiste en mostrar los datos de una presentacion en especifico
      * @author Carlos Silva
      * @param id corresponde al id de la presentacion
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -271,7 +266,6 @@ public class PresentacionServicio {
     /**
      * Esta funcion consiste en mostrar los datos de todas las presentaciones
      * @author Carlos Silva
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)

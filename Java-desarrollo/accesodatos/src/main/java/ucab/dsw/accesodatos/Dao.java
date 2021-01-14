@@ -77,6 +77,7 @@ public class Dao<T>
      *
      * @author teixbr
      * @since 20/10/17
+     * @return deleted entity
      */
     public T delete( T entity )
     {
@@ -105,6 +106,7 @@ public class Dao<T>
      *
      * @author teixbr
      * @since 20/10/17
+     * @return all records
      */
     public List<T> findAll( Class<T> type )
     {
@@ -140,6 +142,7 @@ public class Dao<T>
      *
      * @author teixbr
      * @since 20/10/17
+     * @return one record
      */
     public T find( Long id, Class<T> type )
     {

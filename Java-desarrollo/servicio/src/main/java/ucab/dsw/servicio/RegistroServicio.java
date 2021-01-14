@@ -33,7 +33,6 @@ public class RegistroServicio extends AplicacionBase{
      * despues de verificar que no existen coincidencias con el registro en la base de datos
      * @author Jesus Requena
      * @param nuevoEncuestadoDto precargado con el conjunto de datos a ingresar en el registro
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return Response que incluye un estado de respuesta http (OK, UNAUTHHORIZED o BAD_REQUEST) para
      *         indicar si exectivamente se pudo completar la solicitud, se encontro un usuario o correo electronico
      *         ya registrado u ocurrió un fallo en la comunicación.

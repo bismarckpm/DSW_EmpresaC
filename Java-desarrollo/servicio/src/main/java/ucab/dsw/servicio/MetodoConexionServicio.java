@@ -28,7 +28,6 @@ public class MetodoConexionServicio {
     /**
     * Esta funcion consiste en traer todos los metodos de conexion disponibles
     * @author Jesus Requena
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, metodos_conexion (array de objetos) 
