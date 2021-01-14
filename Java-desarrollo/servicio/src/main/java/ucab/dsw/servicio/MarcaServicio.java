@@ -28,7 +28,6 @@ public class MarcaServicio extends AplicacionBase{
     /**
     * Esta funcion consiste el traer todas las marcas disponibles
     * @author Gabriel Romero
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, marcas (array de objetos) 
@@ -117,10 +116,7 @@ public class MarcaServicio extends AplicacionBase{
     /**
     * Esta funcion consiste en insertar una nueva marca
     * @author Gabriel Romero
-    * @param marcaDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar 
-    * @throws PersistenceException si se inserta una marca duplicada
-    * @throws DatabaseException    si existe algun problema con la conexion con el servidor de base de datos
-    * @throws Excepcion      si ocurre cualquier excepcion general no controlada previamente
+    * @param marcaDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir
@@ -189,7 +185,6 @@ public class MarcaServicio extends AplicacionBase{
     * Esta funcion consiste en inhabilitar una marca. Quedaran inhabilitadas para futuros estudios.
     * @author Gabriel Romero
     * @param _id corresponde al id de la marca
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir 
@@ -232,7 +227,6 @@ public class MarcaServicio extends AplicacionBase{
     * Esta funcion consiste en habilitar nuevamente una marca previamente inhabilitada
     * @author Carlos Silva
     * @param _id corresponde al id de la marca
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir 
@@ -278,9 +272,6 @@ public class MarcaServicio extends AplicacionBase{
     * @author Gabriel Romero
     * @param _id corresponde al id de la marca
     * @param marcaDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean actualizar
-    * @throws PersistenceException si se inserta una marca duplicada
-    * @throws DatabaseException    si existe algun problema con la conexion con el servidor de base de datos
-    * @throws Exception      si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir 
@@ -338,7 +329,6 @@ public class MarcaServicio extends AplicacionBase{
     * Esta funcion consiste obtener una marca
     * @author Gabriel Romero
     * @param _id corresponde al id de la marca
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, marca y mensaje en caso de ocurrir 
@@ -385,7 +375,6 @@ public class MarcaServicio extends AplicacionBase{
     * Esta funcion consiste obtener una marcas por subcategoria
     * @author Gabriel Romero
     * @param _id corresponde al id de la subcategoria
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, marcasBySubcategoria y mensaje en caso de ocurrir 

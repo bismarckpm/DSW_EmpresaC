@@ -2,6 +2,7 @@ package ucab.dsw.servicio;
 
 import ucab.dsw.accesodatos.DaoEstado;
 import ucab.dsw.entidades.Estado;
+import ucab.dsw.logica.fabrica.Fabrica;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -27,7 +28,6 @@ public class EstadoServicio extends AplicacionBase {
     /**
     * Esta funcion consiste el traer todas los estados disponibles
     * @author Gabriel Romero
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, estados (array de objetos) 
@@ -40,7 +40,7 @@ public class EstadoServicio extends AplicacionBase {
         JsonObject data;
         try
         {
-            DaoEstado dao= new DaoEstado();
+            DaoEstado dao= Fabrica.crear(DaoEstado.class).getInstancia();
             List<Estado> resultado= dao.findAll(Estado.class);
 
             JsonArrayBuilder estadosArrayJson= Json.createArrayBuilder();

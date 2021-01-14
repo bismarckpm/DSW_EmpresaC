@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ArtifactsWorkspaceSettings">
-    <artifacts-to-build>
-      <artifact name="servicio:war" />
-    </artifacts-to-build>
-  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
@@ -24,19 +19,81 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </select>
+    <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90d40db4-ad8c-4243-a03c-37ef11dcf5a8" name="Default Changelist" comment="">
+    <list default="true" id="87c6d671-881a-45a8-ab00-e16a3b9c4375" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/logica/fabrica/Fabrica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.corrupted.20201213-122320.reason.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.corrupted.20201213-122320.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.corrupted.20201214-015849.reason.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.corrupted.20201214-015849.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf/storage_v2/_src_/schema/bases1.r6THrA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf/storage_v2/_src_/schema/database_name.z9arsA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf/storage_v2/_src_/schema/loteria.VjUdFQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf/storage_v2/_src_/schema/loteria3.nXWJjg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf/storage_v2/_src_/schema/loteria_2.iUOlQg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf/storage_v2/_src_/schema/mydb.Kl8zAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf/storage_v2/_src_/schema/queremos_graduarnos.HJXQxw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf/storage_v2/_src_/schema/sakila.oXLGyQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf/storage_v2/_src_/schema/world.khvBBg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/890fc744-face-476e-b37e-51eb297ab6f1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/890fc744-face-476e-b37e-51eb297ab6f1/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/Dao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SolicitudServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SolicitudServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/SolicitudEstudioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/SolicitudEstudioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/directorioactivo/src/main/java/ucab/dsw/directorio/DirectorioActivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/directorioactivo/src/main/java/ucab/dsw/directorio/DirectorioActivo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/logica/comandos/java/ucab/dsw/comandos/PruebaComando.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/logica/fabricas/java/ucab/dsw/fabricas/PruebaFabrica.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/clases/ValidaCamposSolicitudDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/clases/ValidaCamposSolicitudDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/jwt/Jwt.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/jwt/Jwt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/AdminServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/AdminServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/AnalistaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/AnalistaServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/AplicacionBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/AplicacionBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CategoriaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CategoriaServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CiudadServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CiudadServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/ClienteServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/ClienteServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/EncuestadoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/EncuestadoServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/EstadoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/EstadoServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/LoginServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/LoginServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/MarcaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/MarcaServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/MetodoConexionServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/MetodoConexionServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/NivelAcademicoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/NivelAcademicoServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/OcupacionServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/OcupacionServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PaisServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PaisServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/ParroquiaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/ParroquiaServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PresentacionServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PresentacionServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/RecuperacionServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/RecuperacionServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/RegistroServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/RegistroServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SolicitudEstudioServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SolicitudEstudioServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SubcategoriaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SubcategoriaServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/TipoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/TipoServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/UsuarioServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/UsuarioServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/AdminServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/AdminServicioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/AnalistaServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/AnalistaServicioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/CategoriaServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/CategoriaServicioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/ClienteServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/ClienteServicioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/DirectorioActivoServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/DirectorioActivoServicioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/EncuestadoServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/EncuestadoServicioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/LugarServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/LugarServicioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/MarcaServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/MarcaServicioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/NivelAcademicoServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/NivelAcademicoServicioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/PresentacionServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/PresentacionServicioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/PruebaServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/PruebaServicioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/SolicitudEstudioServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/SolicitudEstudioServicioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/SubcategoriasServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/SubcategoriasServicioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/TipoServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/TipoServicioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/UsuarioServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/UsuarioServicioTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,22 +120,24 @@
   <component name="MavenRunner">
     <option name="skipTests" value="true" />
   </component>
-  <component name="ProjectId" id="1lkHgJhvjHg8fkjPkWsVaSgFQnZ" />
+  <component name="ProjectId" id="1n0ForMTwbexOGxdOsYWwm0AFEE" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="JUnit.SolicitudEstudioTest.AddSolicitud">
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -92,170 +151,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WildFly" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss 21.0.0.Final" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/MercadeoUcab-1.0-SNAPSHOT/" />
-      <option name="UPDATING_POLICY" value="restart-server" />
-      <deployment>
-        <artifact name="servicio:war">
-          <settings />
-        </artifact>
-      </deployment>
-      <server-settings>
-        <option name="SERVER" />
-        <option name="BINDING_SET_NAME" value="" />
-        <option name="DOMAIN" value="false" />
-        <option name="SERVER_GROUP" value="main-server-group" />
-        <option name="USERNAME" value="" />
-        <option name="CREDENTIAL_ALIAS" />
-      </server-settings>
-      <predefined_log_file enabled="true" id="JBoss" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="63738" />
-      </RunnerSettings>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <method v="2">
-        <option name="Make" enabled="true" />
-        <option name="BuildArtifacts" enabled="true">
-          <artifact name="servicio:war" />
-        </option>
-      </method>
-    </configuration>
-    <configuration name="SolicitudEstudioTest.AddSolicitud" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LugarServicioTest.getEstados" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SolicitudEstudioTest" />
-      <option name="METHOD_NAME" value="AddSolicitud" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ucab.dsw.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ucab.dsw.test" />
+      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.LugarServicioTest" />
+      <option name="METHOD_NAME" value="getEstados" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SolicitudEstudioTest.AddSolicitudCamposNulos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="servicio" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SolicitudEstudioTest" />
-      <option name="METHOD_NAME" value="AddSolicitudCamposNulos" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SolicitudEstudioTest.AddSolicitudCamposNulosYVacios" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="servicio" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SolicitudEstudioTest" />
-      <option name="METHOD_NAME" value="AddSolicitudCamposNulosYVacios" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SolicitudEstudioTest.AddSolicitudSinDatosCompletos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="servicio" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SolicitudEstudioTest" />
-      <option name="METHOD_NAME" value="AddSolicitudSinDatosCompletos" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="metodos_admin_Test.Pregunta_CategoriaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="servicio" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="metodos_admin_Test" />
-      <option name="METHOD_NAME" value="Pregunta_CategoriaTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="JBoss Server.WildFly" />
-      <item itemvalue="JUnit.metodos_admin_Test.Pregunta_CategoriaTest" />
-      <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitud" />
-      <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitudCamposNulos" />
-      <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitudCamposNulosYVacios" />
-      <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitudSinDatosCompletos" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitud" />
-        <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitudSinDatosCompletos" />
-        <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitudCamposNulosYVacios" />
-        <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitudCamposNulos" />
-        <item itemvalue="JUnit.metodos_admin_Test.Pregunta_CategoriaTest" />
+        <item itemvalue="JUnit.LugarServicioTest.getEstados" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="90d40db4-ad8c-4243-a03c-37ef11dcf5a8" name="Default Changelist" comment="" />
-      <created>1607968660988</created>
+      <changelist id="87c6d671-881a-45a8-ab00-e16a3b9c4375" name="Default Changelist" comment="" />
+      <created>1610519289619</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1607968660988</updated>
-      <workItem from="1607968678066" duration="1000000" />
-      <workItem from="1608134504426" duration="801000" />
-      <workItem from="1608139970412" duration="1434000" />
-      <workItem from="1608143299811" duration="2068000" />
-      <workItem from="1608248702688" duration="56000" />
-      <workItem from="1608336084003" duration="1367000" />
-      <workItem from="1608346674995" duration="1748000" />
-      <workItem from="1608508005224" duration="677000" />
-      <workItem from="1608598671498" duration="473000" />
-      <workItem from="1609108482329" duration="1574000" />
-      <workItem from="1609689727799" duration="909000" />
-      <workItem from="1609690979650" duration="1668000" />
-      <workItem from="1609773902805" duration="8973000" />
+      <updated>1610519289619</updated>
+      <workItem from="1610519291197" duration="1062000" />
+      <workItem from="1610637247895" duration="2174000" />
     </task>
     <servers />
   </component>
@@ -267,62 +194,37 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="CUSTOM_BOOLEAN_PROPERTIES">
-                <map>
-                  <entry key="Show.Git.Branches" value="true" />
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list />
-          </value>
-        </entry>
-        <entry key="User">
-          <value>
-            <list />
+            <State />
           </value>
         </entry>
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <ignored-roots>
-      <path value="$PROJECT_DIR$" />
-    </ignored-roots>
-  </component>
   <component name="WindowStateProjectService">
-    <state x="449" y="210" key="#com.intellij.ide.util.MemberChooser" timestamp="1609780123753">
+    <state x="199" y="167" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1610639466327">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state x="449" y="210" key="#com.intellij.ide.util.MemberChooser/0.0.1280.980@0.0.1280.980" timestamp="1609780123753" />
-    <state width="1230" height="269" key="GridCell.Tab.0.bottom" timestamp="1609785134105">
+    <state x="199" y="167" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.980@0.0.1280.980" timestamp="1610639466327" />
+    <state x="431" y="379" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1610519959664">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1230" height="269" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1609785134105" />
-    <state width="1230" height="269" key="GridCell.Tab.0.center" timestamp="1609785134105">
+    <state x="431" y="379" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1280.980@0.0.1280.980" timestamp="1610519959664" />
+    <state width="1238" height="259" key="GridCell.Tab.0.bottom" timestamp="1610640893180">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1230" height="269" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1609785134105" />
-    <state width="1230" height="269" key="GridCell.Tab.0.left" timestamp="1609785134105">
+    <state width="1238" height="259" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1610640893180" />
+    <state width="1238" height="259" key="GridCell.Tab.0.center" timestamp="1610640893180">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1230" height="269" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1609785134105" />
-    <state width="1230" height="269" key="GridCell.Tab.0.right" timestamp="1609785134105">
+    <state width="1238" height="259" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1610640893180" />
+    <state width="1238" height="259" key="GridCell.Tab.0.left" timestamp="1610640893180">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1230" height="269" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1609785134105" />
-    <state x="236" y="227" key="Vcs.Push.Dialog.v2" timestamp="1608349656721">
+    <state width="1238" height="259" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1610640893180" />
+    <state width="1238" height="259" key="GridCell.Tab.0.right" timestamp="1610640893180">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state x="236" y="227" key="Vcs.Push.Dialog.v2/0.0.1280.980@0.0.1280.980" timestamp="1608349656721" />
+    <state width="1238" height="259" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1610640893180" />
   </component>
 </project>

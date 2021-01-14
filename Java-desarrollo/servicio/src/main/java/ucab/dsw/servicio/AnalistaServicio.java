@@ -35,7 +35,6 @@ public class AnalistaServicio {
     * Esta funcion consiste en traer los estudios que tiene un analista
     * @author Gabriel Romero
     * @param _id corresponde al id del analista
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos) 
@@ -155,7 +154,6 @@ public class AnalistaServicio {
      * Esta funcion consiste en cambiar el estado de un estudio al que ya se le asigno una encuesta
      * @author Carlos Silva
      * @param _id corresponde al id del estudio
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -202,7 +200,6 @@ public class AnalistaServicio {
      * Esta funcion consiste en cambiar el estado de una una participacion a inactivo
      * @author Carlos Silva
      * @param _id corresponde al id de la participacion
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -248,7 +245,6 @@ public class AnalistaServicio {
     * @author Carlos Silva
     * @author Gabriel Romero
     * @param _id corresponde al id del analista
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos) 
@@ -356,7 +352,6 @@ public class AnalistaServicio {
      * Esta funcion permite que el analista ponga su comentario final en el estudio
      * @author Carlos Silva
      * @param respuestaAnalistaDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -403,7 +398,6 @@ public class AnalistaServicio {
      * Esta funcion consiste en mostrar todos todas las respuestas que tiene una encuesta segun su estudio
      * @author Carlos Silva
      * @param _id corresponde al id del estudio
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -530,7 +524,6 @@ public class AnalistaServicio {
      * Esta funcion consiste en enviar los datos que requieren las graficas de respuesra por estudio
      * @author Carlos Silva
      * @param _id corresponde al id del estudio
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)

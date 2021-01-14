@@ -33,7 +33,6 @@ public class UsuarioServicio extends AplicacionBase {
      * despues de verificar que no existen coincidencias con el registro en la base de datos
      * @author Jesus Requena
      * @param clienteDto precargado con el conjunto de datos a ingresar en el registro
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return Response que incluye un estado de respuesta http OK  para indicar si exectivamente
      *         se pudo completar la solicitud.
      *         La respuesta posee adjunta un json que incluye (estado codigo y mensaje)
@@ -109,7 +108,6 @@ public class UsuarioServicio extends AplicacionBase {
      * despues de verificar que no existen coincidencias con el registro en la base de datos
      * @author Jesus Requena
      * @param nuevoEncuestadoDto precargado con el conjunto de datos a ingresar en el registro
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return Response que incluye un estado de respuesta http (OK, UNAUTHHORIZED o BAD_REQUEST) para
      *         indicar si exectivamente se pudo completar la solicitud, se encontro un usuario o correo electronico
      *         ya registrado u ocurrió un fallo en la comunicación.
@@ -280,7 +278,6 @@ public class UsuarioServicio extends AplicacionBase {
      * despues de verificar que no existen coincidencias con el registro en la base de datos
      * @author Jesus Requena
      * @param nuevoUsuarioDto precargado con el conjunto de datos a ingresar en el registro
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
      *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
      *         La respuesta posee adjunta un json que incluye (estado codigo y mensaje)
@@ -338,7 +335,6 @@ public class UsuarioServicio extends AplicacionBase {
      * despues de verificar que no existen coincidencias con el registro en la base de datos
      * @author Jesus Requena
      * @param nuevoUsuarioDto precargado con el conjunto de datos a ingresar en el registro
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
      *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
      *         La respuesta posee adjunta un json que incluye (estado codigo y mensaje)
@@ -395,7 +391,6 @@ public class UsuarioServicio extends AplicacionBase {
      * Metodo para modificar la contraseña de un usuario existente despues de verificar la contraseña actual
      * @author Jesus Requena
      * @param cambiarClaveDto el cual incluye el usuario a modificar, la conrtraseña actual y la nueva
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
      *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
      *         La respuesta posee adjunta un json que incluye (estado y codigo)
@@ -440,6 +435,15 @@ public class UsuarioServicio extends AplicacionBase {
     }
 
 
+    /**
+     * Metodo para activar cuenta a un usuario
+     * @author Jesus Requena
+     * @param _id representa el id del usuario que se necesita activar
+     * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
+     *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
+     *         La respuesta posee adjunta un json que incluye (estado, codigo y/o mensaje)
+     */
+
     @DELETE
     @Path( "/activar/{id}" )
     public Response activarUsuario(@PathParam("id") long  _id)
@@ -478,7 +482,6 @@ public class UsuarioServicio extends AplicacionBase {
      * @author Jesus Requena
      * @param usuarioLdapDto precargado con el conjunto de datos a modificar en el registro
      * @param _id con el id del usuario a modificar
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return Response que incluye un estado de respuesta http OK  para indicar si exectivamente
      *      se pudo completar la solicitud.
      *      La respuesta posee adjunta un json que incluye (estado codigo y mensaje)
@@ -554,7 +557,6 @@ public class UsuarioServicio extends AplicacionBase {
      * @author Jesus Requena
      * @param clienteDto precargado con el conjunto de datos a modificar en el registro
      * @param _id con el id del usuario a modificar
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return Response que incluye un estado de respuesta http OK  para indicar si exectivamente
      *      se pudo completar la solicitud.
      *      La respuesta posee adjunta un json que incluye (estado codigo y mensaje)
@@ -647,7 +649,6 @@ public class UsuarioServicio extends AplicacionBase {
     /**
      * Metodo para obtener a todos los usuarios registrados en el Directorio Activo
      * @author Jesus Requena
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
      *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
      *         La respuesta posee adjunta un json que incluye (estado codigo, mensaje
@@ -716,7 +717,6 @@ public class UsuarioServicio extends AplicacionBase {
      * Metodo para obtener a un cliente a partir de su id y retornar sus datos
      * @author Jesus Requena
      * @param _id con el id del cliente solicitado
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
      *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
      *         La respuesta posee adjunta un json que incluye (estado, codigo
@@ -764,7 +764,6 @@ public class UsuarioServicio extends AplicacionBase {
      * @author Jesus Requena
      * @param _id con el id del usuario a inhabilitar
      * @param usuarioDto con los datos del usuario a inhabilitar
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return Response que incluye un estado de respuesta http OK  para indicar si exectivamente
      *         se pudo completar la solicitud.
      *         La respuesta posee adjunta un json que incluye (estado codigo y mensaje)

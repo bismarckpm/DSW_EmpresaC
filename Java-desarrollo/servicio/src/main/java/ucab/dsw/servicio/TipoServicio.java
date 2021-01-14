@@ -28,7 +28,6 @@ public class TipoServicio {
      * Esta funcion consiste en agregar un tipo al sistema
      * @author Carlos Silva
      * @param tipoDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -83,7 +82,6 @@ public class TipoServicio {
      * @author Carlos Silva
      * @param _id corresponde al id del tipo
      * @param tipoDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -137,7 +135,6 @@ public class TipoServicio {
      * cambien los estados de las presentaciones y marcas que esten relacionadas a al tipo
      * @author Carlos Silva
      * @param _id corresponde al id del tipo
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -225,7 +222,6 @@ public class TipoServicio {
      * cambien los estados de las presentaciones y marcas que esten relacionadas a al tipo
      * @author Carlos Silva
      * @param _id corresponde al id del tipo
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -313,7 +309,6 @@ public class TipoServicio {
      * Esta funcion consiste en mostrar los datos de un tipo en especifico
      * @author Carlos Silva
      * @param id corresponde al id del tipo
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -358,7 +353,6 @@ public class TipoServicio {
     /**
      * Esta funcion consiste en mostrar los datos de todos los tipos
      * @author Carlos Silva
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)

@@ -36,7 +36,6 @@ public class SubcategoriaServicio extends AplicacionBase{
     /**
     * Esta funcion consiste el traer todas las subcategorias disponibles
     * @author Gabriel Romero
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, subcategorias (array de objetos) 
@@ -98,7 +97,6 @@ public class SubcategoriaServicio extends AplicacionBase{
      * Esta funcion consiste en ingresar una subcategoria
      * @author Carlos Silva
      * @param subcategoriaDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir
@@ -154,7 +152,6 @@ public class SubcategoriaServicio extends AplicacionBase{
      * Esta funcion consiste en cambiar el estado de una subcategoria a inactivo
      * @author Carlos Silva
      * @param _id corresponde al id de la subcategoria
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir
@@ -206,7 +203,6 @@ public class SubcategoriaServicio extends AplicacionBase{
      * Esta funcion consiste en cambiar el estado de una subcategoria a activo
      * @author Carlos Silva
      * @param _id corresponde al id de la subcategoria
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir
@@ -260,7 +256,6 @@ public class SubcategoriaServicio extends AplicacionBase{
      * @author Carlos Silva
      * @param _id corresponde al id de la subcategoria
      * @param subcategoriaDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir
@@ -316,7 +311,6 @@ public class SubcategoriaServicio extends AplicacionBase{
      * Esta funcion consiste en enviar los datos de una subcategoria en especifico
      * @author Carlos Silva
      * @param _id corresponde al id de la subcategoria
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir
@@ -361,6 +355,14 @@ public class SubcategoriaServicio extends AplicacionBase{
 
     }
 
+        /**
+         * Esta funcion consiste en obtener las subcategoria por categoria
+         * @author Gabriel Romero
+         * @param _id corresponde al id de la categoria
+         * @return retorna una Response con un estado de respuesta http indicando si la operacion
+         *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+         *         en formato JSON con los siguiente atributos: codigo, estado y subcategoriasByCategoria
+         */
         @GET
         @Path( "/by/categoria/{id}" )
         public Response getSubcategoriasByCategoriaId(@PathParam("id") long  _id)

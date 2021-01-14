@@ -32,7 +32,6 @@ public class AdminServicio {
      * en especifico y que ya se le asigno una encuesta
      * @author Carlos Silva
      * @param _id corresponde al id del admin
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -106,7 +105,6 @@ public class AdminServicio {
      * en especifico y que no se le a asignado una encuesta
      * @author Carlos Silva
      * @param _id corresponde al id del admin
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -187,7 +185,6 @@ public class AdminServicio {
      * Esta funcion consiste en cambiar el estado de un estudio a inactivo
      * @author Carlos Silva
      * @param _id corresponde al id del estudio
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -231,7 +228,6 @@ public class AdminServicio {
      * @param _id2 corresponde al id del estudio
      * @param encuestaDto corresponde al objeto de la capa web que contiene los nuevos datos
      * que se van a ingresar y las listas de participantes y preguntas
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -351,8 +347,7 @@ public class AdminServicio {
      * simple o multiple ingresar nuevas opciones para ellas
      * @author Carlos Silva
      * @param preguntaDto corresponde al objeto de la capa web que contiene los nuevos datos
-     * que se van a ingresar y la lista de opnciones que se le puede asigbar
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * que se van a ingresar y la lista de opnciones que se le puede asignar
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -437,8 +432,7 @@ public class AdminServicio {
      * Esta funcion consiste en enviar los datos de los participantes que tiene un estudio
      * @author Carlos Silva
      * @param _id corresponde al del estudio
-     * que se van a ingresar y la lista de opnciones que se le puede asigbar
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * que se van a ingresar y la lista de opnciones que se le puede asignar
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -498,8 +492,7 @@ public class AdminServicio {
      * Esta funcion consiste en enviar los datos de un estudio en especifico
      * @author Carlos Silva
      * @param _id corresponde al del estudio
-     * que se van a ingresar y la lista de opnciones que se le puede asigbar
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * que se van a ingresar y la lista de opnciones que se le puede asignar
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -564,8 +557,7 @@ public class AdminServicio {
      * Esta funcion consiste en enviar los datos de las preguntas que estan relacionadas a una categoria
      * @author Carlos Silva
      * @param _id corresponde al de la categoria
-     * que se van a ingresar y la lista de opnciones que se le puede asigbar
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
+     * que se van a ingresar y la lista de opnciones que se le puede asignar
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -650,7 +642,6 @@ public class AdminServicio {
      * @author Carlos Silva
      * @param _id corresponde al del estudio
      * que se van a ingresar y la lista de opnciones que se le puede asigbar
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
@@ -658,7 +649,7 @@ public class AdminServicio {
      */
     @GET
     @Path("/sugerencia-participacion/{id}")
-    public Response add_Participacion(@PathParam("id")  long _id) throws Exception {
+    public Response add_Participacion(@PathParam("id")  long _id){
         JsonObject data;
         JsonArrayBuilder builder = Json.createArrayBuilder();
         JsonArrayBuilder aprobado =Json.createArrayBuilder();

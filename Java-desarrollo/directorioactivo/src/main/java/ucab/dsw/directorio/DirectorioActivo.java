@@ -234,7 +234,6 @@ public class DirectorioActivo
     * Esta funcion consiste autenticar las credenciales de un usuario 
     * @author Gabriel Romero
     * @param user corresponde al objeto de la capa web que contiene los datos que se desean autenticar (usuario/correo y contraseña)
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna un long. Devuelve 0 si las credenciales son incorrectas y devuelve 1 en caso de ser correctas.
     */
     public long userAuthentication(UsuarioLdapDto user)
@@ -271,7 +270,6 @@ public class DirectorioActivo
     * Esta funcion consiste validar las credenciales de un usuario con el servidor LDAP
     * @author Gabriel Romero
     * @param user corresponde al objeto que contiene los datos a validar (usuario/correo y contraseña)
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna un boolean. Devuelve true si el userContext es distinto de nulo, lo que indica 
     * que las credenciales son validas y devuelve false en caso de ser incorrectas.
     */
@@ -302,7 +300,6 @@ public class DirectorioActivo
     * Esta funcion consiste en obtener el rol del usuario LDAP
     * @author Gabriel Romero 
     * @param user corresponde al objeto que contiene los datos basicos del usuario
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna un String, que corresponde con al rol
     */
     public String getEntryRole(UsuarioLdapDto user)
@@ -348,7 +345,6 @@ public class DirectorioActivo
     * Esta funcion consiste en obtener el uid del usuario LDAP
     * @author Gabriel Romero 
     * @param user corresponde al objeto que contiene los datos basicos del usuario
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna un String, que corresponde con el uid
     */
     public String getEntryUid(UsuarioLdapDto user)
@@ -396,7 +392,6 @@ public class DirectorioActivo
      * @author Jesus Requena
      * @param user precargado con el correo electronico del usuario a buscar en el ldap
      * @return String con el nombre de usuario o cadena vacia en caso de no encontrarlo
-     * @throws Exception en caso de no lograr la conexion con el Directorio activo
      */
     public String getUserFromMail(UsuarioLdapDto user) {
         String usuario = "";
@@ -432,7 +427,6 @@ public class DirectorioActivo
      * @author Jesus Requena
      * @param user precargado con el nombre de usuario a modificar en el Directorio Activo
      * @param newPass que almacena la nueva contraseña a insertar
-     * @throws Exception en caso de no lograr la conexion con el Directorio activo
      */
     public void reSetPass(UsuarioLdapDto user, String newPass) {
         try {
@@ -456,7 +450,6 @@ public class DirectorioActivo
      * @author Jesus Requena
      * @param user precargado con el nombre de ususario a buscar en el ldap
      * @return String con el nombre de usuario o cadena vacia en caso de no encontrarlo
-     * @throws Exception en caso de no lograr la conexion con el Directorio activo
      */
     public String userExist(UsuarioLdapDto user) {
         String usuario = "";
@@ -490,7 +483,6 @@ public class DirectorioActivo
      * @author Jesus Requena
      * @param user precargado con el correo electronico del usuario a buscar en el ldap
      * @return String con el correo electronico o cadena vacia en caso de no encontrarlo
-     * @throws Exception en caso de no lograr la conexion con el Directorio activo
      */
     public String emailExist(UsuarioLdapDto user) {
         String email = "";
@@ -524,7 +516,6 @@ public class DirectorioActivo
      * @author Jesus Requena
      * @param user precargado con el id del usuario a buscar en el ldap
      * @return String con el nombre de usuario
-     * @throws Exception en caso de no lograr la conexion con el Directorio activo o la modificacion del usaurio
      */
     public String getUserFromUid(UsuarioLdapDto user) {
         String usuario = "";
@@ -559,7 +550,6 @@ public class DirectorioActivo
      * @author Jesus Requena
      * @param user precargado con toda la informacion de un usuario a modificar
      * @param originalCn que incluye el nombre de usuario original en caso de la modificacion del mismo
-     * @throws Exception en caso de no lograr la conexion con el Directorio activo o la modificacion del usaurio
      */
     public void updateUser(UsuarioLdapDto user, String originalCn)
     {
@@ -591,7 +581,6 @@ public class DirectorioActivo
      * @author Jesus Requena
      * @param user precargado con el id del usuario a buscar en el ldap
      * @return String con el correo electronico o cadena vacia en caso de no encontrarlo
-     * @throws Exception en caso de no lograr la conexion con el Directorio activo
      */
     public String getMailFromUid(UsuarioLdapDto user) {
         String mail = "";
@@ -625,7 +614,6 @@ public class DirectorioActivo
      * Método para obtener todos los usuarios del Directorio activo
      * @author Jesus Requena
      * @return ArrayList de usuarios del ldap con sus datos
-     * @throws Exception en caso de no lograr la conexion con el Directorio activo
      */
     public ArrayList<UsuarioLdapDto> getAllUsers(){
 
@@ -668,9 +656,9 @@ public class DirectorioActivo
      * Método para llenar el Directorio activo con los datos de un archivo de texto
      * @author Jesus Requena
      * @param archivo con los datos a cargar en la forma de un string la ruta
-     * @throws Exception en caso de no encontrar el archivo en al ruta e IOException
+     * @throws java.io.IOException Excepcion en caso de encontrar el archivo
      */
-    public void setAllUsersFromFile(String archivo) throws FileNotFoundException, IOException {
+    public void setAllUsersFromFile(String archivo) throws IOException {
         String cadena;
         FileReader f = new FileReader(archivo);
         BufferedReader b = new BufferedReader(f);

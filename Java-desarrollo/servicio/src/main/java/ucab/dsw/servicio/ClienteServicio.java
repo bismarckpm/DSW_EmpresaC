@@ -30,7 +30,6 @@ public class ClienteServicio {
     * Esta funcion consiste en traer los estudios que tiene un cliente
     * @author Gabriel Romero
     * @param _id corresponde al id del cliente
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos) 
@@ -145,7 +144,6 @@ public class ClienteServicio {
     * Esta funcion consiste en obtener el id del cliente
     * @author Gabriel Romero
     * @param _id corresponde al id del usuario
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, cliente_id 
@@ -184,7 +182,6 @@ public class ClienteServicio {
      * Esta funcion consiste en obtener la respuesta de un estudio en especifico
      * @author Carlos Silva
      * @param _id corresponde al id del estudio
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, cliente_id

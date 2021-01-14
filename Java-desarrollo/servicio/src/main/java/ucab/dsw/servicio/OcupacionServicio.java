@@ -27,7 +27,6 @@ public class OcupacionServicio {
     /**
     * Esta funcion consiste en traer todos las ocupaciones disponibles
     * @author Gabriel Romero
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, ocupaciones (array de objetos) 

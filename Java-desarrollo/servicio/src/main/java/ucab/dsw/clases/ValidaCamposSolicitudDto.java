@@ -2,13 +2,24 @@ package ucab.dsw.clases;
 
 import ucab.dsw.dtos.*;
 import ucab.dsw.excepciones.CamposNulosExcepcion;
-
+/**
+ * Una clase que contiene validaciones para la solicitud
+ * @version 1.0, 02/01/2021
+ * @author Gabriel Romero
+ */
 public class ValidaCamposSolicitudDto {
     public boolean response;
 
     public ValidaCamposSolicitudDto() {
     }
 
+    /**
+     * Esta funcion consiste en traer los estudios que tiene un analista
+     * @author Gabriel Romero
+     * @param solicitudEstudioDto corresponde a los datos recibidos de la solicitud
+     * @throws CamposNulosExcepcion Excepcion que controla los campos nulos
+     * @return retorna un boolean. True si la solicitud no presenta campos nulos, caso contrario retorna False
+     */
     public boolean ValidarSolicitudDto(SolicitudEstudioDto solicitudEstudioDto) throws CamposNulosExcepcion {
 
         if(solicitudEstudioDto.getModoencuesta()==null) {
@@ -29,6 +40,12 @@ public class ValidaCamposSolicitudDto {
         return response;
     }
 
+    /**
+     * Esta funcion consiste en validar los campos recibidos del cliente en la solicitud de estudio
+     * @author Gabriel Romero
+     * @param clienteDto corresponde a los datos recibidos del cliente
+     * @return retorna un boolean. True si el cliente no presenta campos nulos, caso contrario retorna False
+     */
     public boolean ValidaClienteDto(ClienteDto clienteDto){
         boolean resul;
 
@@ -46,6 +63,12 @@ public class ValidaCamposSolicitudDto {
         return resul;
     }
 
+    /**
+     * Esta funcion consiste en validar los campos recibidos de la marca en la solicitud de estudio
+     * @author Gabriel Romero
+     * @param marcaDto corresponde a los datos recibidos de la marca
+     * @return retorna un boolean. True si el marca no presenta campos nulos, caso contrario retorna False
+     */
     public boolean ValidaMarcaDto(MarcaDto marcaDto){
 
         boolean resul;
@@ -64,6 +87,12 @@ public class ValidaCamposSolicitudDto {
         return resul;
     }
 
+    /**
+     * Esta funcion consiste en validar los campos recibidos de las caracteristicas demograficas en la solicitud de estudio
+     * @author Gabriel Romero
+     * @param caracteristica_demograficaDto corresponde a los datos recibidos de la caracteristicas demograficas
+     * @return retorna un boolean. True si las caracteristicas no presentan campos nulos, caso contrario retorna False
+     */
     public boolean ValidaCaracteristicaDto(CaracteristicaDemograficaDto caracteristica_demograficaDto){
         boolean resul;
         int cont=0;
@@ -113,7 +142,12 @@ public class ValidaCamposSolicitudDto {
         return resul;
     }
 
-
+    /**
+     * Esta funcion consiste en validar los campos recibidos del nivel academico en la solicitud de estudio
+     * @author Gabriel Romero
+     * @param nivel_academicoDto corresponde a los datos recibidos del nivel academico
+     * @return retorna un boolean. True si el nivel acedemico no presenta campos nulos, caso contrario retorna False
+     */
     public boolean ValidaNivelAcademicoDto(NivelAcademicoDto nivel_academicoDto){
         boolean resul;
 
@@ -131,6 +165,12 @@ public class ValidaCamposSolicitudDto {
         return resul;
     }
 
+    /**
+     * Esta funcion consiste en validar los campos recibidos de la parroquia en la solicitud de estudio
+     * @author Gabriel Romero
+     * @param parroquiaDto corresponde a los datos recibidos de la parroquia
+     * @return retorna un boolean. True si la parroquia no presenta campos nulos, caso contrario retorna False
+     */
     public boolean ValidaParroquiaDto(ParroquiaDto parroquiaDto){
         boolean resul;
 

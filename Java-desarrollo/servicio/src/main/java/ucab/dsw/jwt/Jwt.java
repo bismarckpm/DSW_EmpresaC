@@ -24,7 +24,6 @@ public class Jwt {
     * enviado por las cabeceras de cada peticion, para validar en capa web si el usuario puede realizar o no la operacion.
     * @author Gabriel Romero
     * @param usuarioLdapDto corresponde al objeto de la capa web que contiene los datos a validar (usuario/correo y contraseña)
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, token, rol, user_id

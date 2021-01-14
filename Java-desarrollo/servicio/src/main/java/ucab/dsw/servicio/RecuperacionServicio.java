@@ -28,7 +28,6 @@ public class RecuperacionServicio extends AplicacionBase{
      * despues de verificar la existencia del correo electronico en el Directorio Activo
      * @author Jesus Requena
      * @param usuarioLdapDto precargado con el correo electronico para enviar el mensaje
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return Response que incluye un estado de respuesta http (OK, UNAUTHHORIZED o BAD_REQUEST) para
      *         indicar si exectivamente se pudo completar la solicitud, no se encontró el correo electronico
      *         u ocurrió un fallo en la comunicación.
