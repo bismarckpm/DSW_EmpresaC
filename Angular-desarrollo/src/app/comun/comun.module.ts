@@ -14,11 +14,13 @@
   import { RecuperacionComponent } from './componentes/recuperacion/recuperacion.component';
   import { RegistroComponent } from './componentes/registro/registro.component';
 import { ModalPasswordComponent } from './componentes/aside/modal-password/modal-password.component';
+import { Page404Component } from './componentes/page404/page404.component';
+import { Page401Component } from './componentes/page401/page401.component';
 
 
 
   @NgModule({
-    declarations: [NavbarComponent, FooterComponent, LoginComponent, AsideComponent, RecuperacionComponent, RegistroComponent, ModalPasswordComponent],
+    declarations: [NavbarComponent, FooterComponent, LoginComponent, AsideComponent, RecuperacionComponent, RegistroComponent, ModalPasswordComponent, Page404Component, Page401Component],
     imports: [
   
       MaterialModule,
