@@ -33,6 +33,7 @@ export class AdministrarSubcategoriasComponent implements OnInit,AfterViewInit {
   //public dataSource = new MatTableDataSource<Subcategoria>(ELEMENT_DATA); //solo para probar
   public dataSource = new MatTableDataSource<Subcategoria>(); //solo para probar
   public dialogRef;
+  @ViewChild(MatSort) sort: MatSort;
   constructor(public dialog: MatDialog,private _adminSubcategoriaService:AdministrarSubcategoriasService,private _toastrService: ToastrService,private eventBus: NgEventBus) { }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -53,11 +54,15 @@ export class AdministrarSubcategoriasComponent implements OnInit,AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   init(){

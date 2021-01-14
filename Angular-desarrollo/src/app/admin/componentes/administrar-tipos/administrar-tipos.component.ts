@@ -42,6 +42,7 @@ export class AdministrarTiposComponent implements OnInit, AfterViewInit {
   //dataSource = new MatTableDataSource<Tipo>(ELEMENT_DATA); //Para pruebas sin backend
   dataSource = new MatTableDataSource<Tipo>();
   public dialogRef;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(public dialog: MatDialog,
               private _adminTiposService: AdministrarTiposService,
@@ -69,14 +70,18 @@ export class AdministrarTiposComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-    this.dataSource.filter = filterValue.trim().toLowerCase()
-    
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
+
 
   init(){
     this._toastrService.info('Espero un momento, por favor.','Cargando...');

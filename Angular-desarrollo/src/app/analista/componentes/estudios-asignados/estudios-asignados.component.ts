@@ -22,6 +22,7 @@ export class EstudiosAsignadosComponent implements OnInit {
 
   public analista_id:any;
   public estudios:any[];
+  public estudios_filtered:any[];
   public dialogRef;
 
   constructor(public dialog: MatDialog,private _consultaEstudios:ConsultaEstudiosService,private _toastrService: ToastrService,private eventBus: NgEventBus) { }
@@ -53,6 +54,7 @@ export class EstudiosAsignadosComponent implements OnInit {
       (response)=>{
         console.log(response);
         this.estudios=response.estudios;
+        this.estudios_filtered=this.estudios;
         this._toastrService.success("Exito", "Todas los estudios asignados");
         this.eventBus.cast('fin-progress','chao');
         
@@ -148,6 +150,14 @@ export class EstudiosAsignadosComponent implements OnInit {
     this.dialogRef .afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  estudiosFiltered(estado){   
+    if (estado == 'all') {
+      this.estudios_filtered = this.estudios;
+    }else{
+      this.estudios_filtered = this.estudios.filter( estudio => estudio.estado === estado);
+    }
   }
 
   go(id){

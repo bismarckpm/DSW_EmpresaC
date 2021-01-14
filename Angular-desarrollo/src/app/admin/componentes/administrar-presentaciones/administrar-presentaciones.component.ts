@@ -44,6 +44,7 @@ export class AdministrarPresentacionesComponent implements OnInit, AfterViewInit
   //dataSource = new MatTableDataSource<Presentacion>(ELEMENT_DATA); //Para pruebas sin backend
   dataSource = new MatTableDataSource<Presentacion>();
   public dialogRef;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(public dialog: MatDialog,
               private _adminPresentacionService:AdministrarPresentacionService,
@@ -71,13 +72,16 @@ export class AdministrarPresentacionesComponent implements OnInit, AfterViewInit
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-    this.dataSource.filter = filterValue.trim().toLowerCase()
     
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   init(){
