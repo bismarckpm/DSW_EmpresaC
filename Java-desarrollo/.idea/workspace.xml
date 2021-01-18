@@ -23,77 +23,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87c6d671-881a-45a8-ab00-e16a3b9c4375" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/logica/fabrica/Fabrica.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/servicio_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/servicio_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.corrupted.20201213-122320.reason.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.corrupted.20201213-122320.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.corrupted.20201214-015849.reason.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.corrupted.20201214-015849.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf/storage_v2/_src_/schema/bases1.r6THrA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf/storage_v2/_src_/schema/database_name.z9arsA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf/storage_v2/_src_/schema/loteria.VjUdFQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf/storage_v2/_src_/schema/loteria3.nXWJjg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf/storage_v2/_src_/schema/loteria_2.iUOlQg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf/storage_v2/_src_/schema/mydb.Kl8zAA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf/storage_v2/_src_/schema/queremos_graduarnos.HJXQxw.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf/storage_v2/_src_/schema/sakila.oXLGyQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a25dfe-2f46-462b-a38e-9e0d2fb6e1cf/storage_v2/_src_/schema/world.khvBBg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/890fc744-face-476e-b37e-51eb297ab6f1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/890fc744-face-476e-b37e-51eb297ab6f1/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/java/ucab/dsw/accesodatos/DaoHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/directorioactivo/src/main/java/ucab/dsw/directorio/DirectorioActivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/directorioactivo/src/main/java/ucab/dsw/directorio/DirectorioActivo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/logica/comandos/java/ucab/dsw/comandos/PruebaComando.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/logica/fabricas/java/ucab/dsw/fabricas/PruebaFabrica.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/clases/ValidaCamposSolicitudDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/clases/ValidaCamposSolicitudDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/jwt/Jwt.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/jwt/Jwt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/AdminServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/AdminServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/AnalistaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/AnalistaServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/AplicacionBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/AplicacionBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/CategoriaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/CategoriaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/logica/fabrica/Fabrica.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/fabrica/Fabrica.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CategoriaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CategoriaServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CiudadServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CiudadServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/ClienteServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/ClienteServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/EncuestadoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/EncuestadoServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/EstadoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/EstadoServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/LoginServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/LoginServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/MarcaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/MarcaServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/MetodoConexionServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/MetodoConexionServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/NivelAcademicoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/NivelAcademicoServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/OcupacionServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/OcupacionServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PaisServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PaisServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/ParroquiaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/ParroquiaServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PresentacionServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PresentacionServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/RecuperacionServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/RecuperacionServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/RegistroServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/RegistroServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SolicitudEstudioServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SolicitudEstudioServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SubcategoriaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SubcategoriaServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/TipoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/TipoServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/UsuarioServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/UsuarioServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/AdminServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/AdminServicioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/AnalistaServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/AnalistaServicioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/CategoriaServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/CategoriaServicioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/ClienteServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/ClienteServicioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/DirectorioActivoServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/DirectorioActivoServicioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/EncuestadoServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/EncuestadoServicioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/LugarServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/LugarServicioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/MarcaServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/MarcaServicioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/NivelAcademicoServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/NivelAcademicoServicioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/PresentacionServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/PresentacionServicioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/PruebaServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/PruebaServicioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/SolicitudEstudioServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/SolicitudEstudioServicioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/SubcategoriasServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/SubcategoriasServicioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/TipoServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/TipoServicioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/UsuarioServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/UsuarioServicioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/CategoriaServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/CategoriaServicioTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,13 +72,17 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="ucab.dsw" />
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.CategoriaServicioTest">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -151,7 +96,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LugarServicioTest.getEstados" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CategoriaServicioTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <extension name="coverage">
         <pattern>
@@ -160,8 +105,71 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ucab.dsw.test" />
-      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.LugarServicioTest" />
-      <option name="METHOD_NAME" value="getEstados" />
+      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.CategoriaServicioTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CategoriaServicioTest.AddCategoria" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ucab.dsw.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ucab.dsw.test" />
+      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.CategoriaServicioTest" />
+      <option name="METHOD_NAME" value="AddCategoria" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CategoriaServicioTest.activarCategoria" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ucab.dsw.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ucab.dsw.test" />
+      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.CategoriaServicioTest" />
+      <option name="METHOD_NAME" value="activarCategoria" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CategoriaServicioTest.deleteCategoria" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ucab.dsw.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ucab.dsw.test" />
+      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.CategoriaServicioTest" />
+      <option name="METHOD_NAME" value="deleteCategoria" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CategoriaServicioTest.getCategorias" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ucab.dsw.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ucab.dsw.test" />
+      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.CategoriaServicioTest" />
+      <option name="METHOD_NAME" value="getCategorias" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -169,7 +177,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LugarServicioTest.getEstados" />
+        <item itemvalue="JUnit.CategoriaServicioTest" />
+        <item itemvalue="JUnit.CategoriaServicioTest.deleteCategoria" />
+        <item itemvalue="JUnit.CategoriaServicioTest.getCategorias" />
+        <item itemvalue="JUnit.CategoriaServicioTest.AddCategoria" />
+        <item itemvalue="JUnit.CategoriaServicioTest.activarCategoria" />
       </list>
     </recent_temporary>
   </component>
@@ -183,6 +195,11 @@
       <updated>1610519289619</updated>
       <workItem from="1610519291197" duration="1062000" />
       <workItem from="1610637247895" duration="2174000" />
+      <workItem from="1610729493485" duration="55000" />
+      <workItem from="1610850222870" duration="9096000" />
+      <workItem from="1610893432779" duration="3471000" />
+      <workItem from="1610900487437" duration="16155000" />
+      <workItem from="1610923497228" duration="10609000" />
     </task>
     <servers />
   </component>
@@ -202,29 +219,53 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="124" y="69" key="#Project_Structure" timestamp="1610861182284">
+      <screen x="0" y="0" width="1280" height="980" />
+    </state>
+    <state x="124" y="69" key="#Project_Structure/0.0.1280.980@0.0.1280.980" timestamp="1610861182284" />
     <state x="199" y="167" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1610639466327">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
     <state x="199" y="167" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.980@0.0.1280.980" timestamp="1610639466327" />
-    <state x="431" y="379" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1610519959664">
+    <state x="449" y="203" key="#com.intellij.ide.util.MemberChooser" timestamp="1610917600708">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state x="431" y="379" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1280.980@0.0.1280.980" timestamp="1610519959664" />
-    <state width="1238" height="259" key="GridCell.Tab.0.bottom" timestamp="1610640893180">
+    <state x="449" y="203" key="#com.intellij.ide.util.MemberChooser/0.0.1280.980@0.0.1280.980" timestamp="1610917600708" />
+    <state x="158" y="421" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1610852614356">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="259" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1610640893180" />
-    <state width="1238" height="259" key="GridCell.Tab.0.center" timestamp="1610640893180">
+    <state x="158" y="421" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.980@0.0.1280.980" timestamp="1610852614356" />
+    <state x="431" y="362" width="417" height="255" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1610917542372">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="259" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1610640893180" />
-    <state width="1238" height="259" key="GridCell.Tab.0.left" timestamp="1610640893180">
+    <state x="431" y="362" width="417" height="255" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.980@0.0.1280.980" timestamp="1610917542372" />
+    <state x="431" y="379" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1610852439645">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="259" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1610640893180" />
-    <state width="1238" height="259" key="GridCell.Tab.0.right" timestamp="1610640893180">
+    <state x="431" y="379" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1280.980@0.0.1280.980" timestamp="1610852439645" />
+    <state x="374" y="242" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1610935516596">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1238" height="259" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1610640893180" />
+    <state x="374" y="242" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.980@0.0.1280.980" timestamp="1610935516596" />
+    <state width="1238" height="165" key="GridCell.Tab.0.bottom" timestamp="1610936076849">
+      <screen x="0" y="0" width="1280" height="980" />
+    </state>
+    <state width="1238" height="165" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1610936076849" />
+    <state width="1238" height="165" key="GridCell.Tab.0.center" timestamp="1610936076848">
+      <screen x="0" y="0" width="1280" height="980" />
+    </state>
+    <state width="1238" height="165" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1610936076848" />
+    <state width="1238" height="165" key="GridCell.Tab.0.left" timestamp="1610936076848">
+      <screen x="0" y="0" width="1280" height="980" />
+    </state>
+    <state width="1238" height="165" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1610936076848" />
+    <state width="1238" height="165" key="GridCell.Tab.0.right" timestamp="1610936076849">
+      <screen x="0" y="0" width="1280" height="980" />
+    </state>
+    <state width="1238" height="165" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1610936076849" />
+    <state x="69" y="156" key="new project wizard" timestamp="1610853747321">
+      <screen x="0" y="0" width="1280" height="980" />
+    </state>
+    <state x="69" y="156" key="new project wizard/0.0.1280.980@0.0.1280.980" timestamp="1610853747321" />
   </component>
 </project>
