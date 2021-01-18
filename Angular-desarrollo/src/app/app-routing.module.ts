@@ -6,29 +6,36 @@ import {RegistroComponent } from './comun/componentes/registro/registro.componen
 import { Page404Component } from "./comun/componentes/page404/page404.component";
 import { Page401Component } from "./comun/componentes/page401/page401.component";
 
+//Guards
+import { AdminGuard } from "./guards/admin/admin.guard";
+import { AnalistaGuard } from "./guards/analista/analista.guard";
+import { ClienteGuard } from "./guards/cliente/cliente.guard";
+import { EncuestadoGuard } from "./guards/encuestado/encuestado.guard";
+import { RegistroGuard } from "./guards/registro/registro.guard";
+
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full'},
-  {path:'login', component: LoginComponent},
+  { path: '',  redirectTo: '/login', pathMatch: 'full'},
+  {path:'login',canActivate:[RegistroGuard], component: LoginComponent},
   {path:'recuperacion', component: RecuperacionComponent},
-  {path:'registro', component: RegistroComponent},
+  {path:'registro',canActivate:[RegistroGuard], component: RegistroComponent},
   {
-    path:'admin',
+    path:'admin',canActivate:[AdminGuard],
     loadChildren: () => import
     ('./admin/admin.module').then(m => m.AdminModule)
   },
   {
-    path:'analista',
+    path:'analista',canActivate:[AnalistaGuard],
     loadChildren: () => import
     ('./analista/analista.module').then(m => m.AnalistaModule)
   },
   {
-    path:'cliente',
+    path:'cliente',canActivate:[ClienteGuard],
     loadChildren: () => import
     ('./cliente/cliente.module').then(m => m.ClienteModule)
   }, 
   
   {
-    path:'encuestado',
+    path:'encuestado', canActivate:[EncuestadoGuard],
     loadChildren: () => import
     ('./encuestado/encuestado.module').then(m => m.EncuestadoModule)
   },
