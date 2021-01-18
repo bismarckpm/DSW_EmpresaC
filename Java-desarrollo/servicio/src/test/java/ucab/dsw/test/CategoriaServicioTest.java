@@ -1,29 +1,33 @@
 package ucab.dsw.test;
 
+
 import org.junit.Assert;
 import org.junit.Test;
 import ucab.dsw.dtos.CategoriaDto;
-
+import javax.json.JsonObject;
 import javax.ws.rs.core.Response;
+
 
 
 public class CategoriaServicioTest {
 
     @Test
-    public void getCategorias() throws Exception
+    public void getCategorias()
     {
         ucab.dsw.servicio.CategoriaServicio servicio = new ucab.dsw.servicio.CategoriaServicio();
         Response respuesta= servicio.getAllCategorias();
-        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertNotNull(responseDto.get("categorias"));
 
     }
 
     @Test
-    public void getCategoria() throws Exception
+    public void getCategoria()
     {
         ucab.dsw.servicio.CategoriaServicio servicio = new ucab.dsw.servicio.CategoriaServicio();
         Response respuesta= servicio.getCategoria(1);
-        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertNotNull(responseDto.get("categoria"));
     }
 
 
@@ -32,35 +36,36 @@ public class CategoriaServicioTest {
     {
         ucab.dsw.servicio.CategoriaServicio servicio = new ucab.dsw.servicio.CategoriaServicio();
         CategoriaDto categoriaDto=new CategoriaDto();
-        categoriaDto.setNombre("Noddsdsd");
+        categoriaDto.setNombre("Categoria nueva");
         Response respuesta= servicio.addCategoria(categoriaDto);
-        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertNotEquals(0,responseDto.get("categoria_id"));
     }
 
     @Test
-    public void editCategoria() throws Exception {
+    public void editCategoria()  {
         ucab.dsw.servicio.CategoriaServicio servicio = new ucab.dsw.servicio.CategoriaServicio();
         CategoriaDto categoriaDto=new CategoriaDto();
         categoriaDto.setNombre("Navidad");
-        Response respuesta= servicio.editCategoria(36,categoriaDto);
-        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+        Response respuesta= servicio.editCategoria(1,categoriaDto);
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertEquals("\"Navidad\"",responseDto.get("categoria_nombre").toString());
+
     }
 
     @Test
-    public void deleteCategoria() throws Exception {
+    public void deleteCategoria() {
         ucab.dsw.servicio.CategoriaServicio servicio = new ucab.dsw.servicio.CategoriaServicio();
-        CategoriaDto categoriaDto=new CategoriaDto();
         Response respuesta= servicio.deleteCategoria(1);
-        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertEquals("\"inactivo\"",responseDto.get("categoria_estado").toString());
     }
 
     @Test
-    public void activarCategoria() throws Exception {
+    public void activarCategoria()  {
         ucab.dsw.servicio.CategoriaServicio servicio = new ucab.dsw.servicio.CategoriaServicio();
-        CategoriaDto categoriaDto=new CategoriaDto();
         Response respuesta= servicio.activarCategoria(1);
-        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertEquals("\"activo\"",responseDto.get("categoria_estado").toString());
     }
-
-
 }
