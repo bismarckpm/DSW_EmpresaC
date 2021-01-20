@@ -2,7 +2,7 @@ package ucab.dsw.servicio;
 import ucab.dsw.accesodatos.*;
 import ucab.dsw.dtos.*;
 import ucab.dsw.entidades.*;
-import ucab.dsw.logica.comando.categoria.AllCategorialComando;
+import ucab.dsw.logica.comando.categoria.DeleteCategoriaComando;
 import ucab.dsw.logica.fabrica.Fabrica;
 
 import javax.ws.rs.Consumes;
@@ -50,7 +50,7 @@ public class AdminServicio {
 
         try
         {
-            ConsultaEstudios_asignadosComando comando= Fabrica.crearComandoConId(ConsultaEstudios_asignadosComando.class,_id);
+            ConsultaEstudiosAsignadosComando comando= Fabrica.crearComandoConId(ConsultaEstudiosAsignadosComando.class,_id);
             comando.execute();
 
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
@@ -83,7 +83,7 @@ public class AdminServicio {
 
         try
         {
-            ConsultaEstudios_no_asignadosComando comando= Fabrica.crearComandoConId(ConsultaEstudios_no_asignadosComando.class,_id);
+            ConsultaEstudiosNoAsignadosComando comando= Fabrica.crearComandoConId(ConsultaEstudiosNoAsignadosComando.class,_id);
             comando.execute();
 
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
@@ -109,34 +109,28 @@ public class AdminServicio {
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
      *         y mensaje en caso de ocurrir alguna de las excepciones
      */
+
     @DELETE
     @Path("/delete-solicitud/{id}")
     public Response EliminarEstudio(@PathParam("id") long _id) {
-        JsonObject data;
-        SolicitudEstudioDto resultado = new SolicitudEstudioDto();
-        try {
-            DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
-            SolicitudEstudio solicitudEstudio = dao.find(_id, SolicitudEstudio.class);
+        JsonObject resul;
+        try
+        {
+            EliminarEstudioComando comando=Fabrica.crearComandoConId(EliminarEstudioComando.class,_id);
+            comando.execute();
 
-            solicitudEstudio.set_estado("inactivo");
-
-            SolicitudEstudio resul = dao.update(solicitudEstudio);
-            resultado.setId(resul.get_id());
-
-            data = Json.createObjectBuilder()
-                    .add("estado", "success")
-                    .add("codigo", 200).build();
-        } catch (Exception ex) {
-            String problema = ex.getMessage();
-            data = Json.createObjectBuilder()
-                    .add("estado", "exception!!!")
-                    .add("excepcion", ex.getMessage())
-                    .add("codigo", 500).build();
-
-
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         }
-        return Response.status(Response.Status.OK).entity(data).build();
+        catch ( Exception ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","internal_server_error")
+                    .add("mensaje_soporte",ex.getMessage())
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
+        }
     }
     /**
      * Esta funcion consiste en asignarle una encuesta a un estudio creandolo y

@@ -39,8 +39,9 @@ public class AdminServicioTest {
     public void EliminarEstudioTest() throws Exception
     {
         AdminServicio servicio = new AdminServicio();
-        Response resultado = servicio.EliminarEstudio( 1 );
-        Assert.assertNotEquals( resultado, 0 );
+        Response respuesta = servicio.EliminarEstudio( 13 );
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertEquals("\"inactivo\"",responseDto.get("estudio_estado").toString());
     }
 
     @Test

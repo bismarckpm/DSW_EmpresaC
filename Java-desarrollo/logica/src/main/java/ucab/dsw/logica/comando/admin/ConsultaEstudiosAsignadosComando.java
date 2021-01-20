@@ -9,12 +9,12 @@ import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 
-public class ConsultaEstudios_asignadosComando extends BaseComando{
+public class ConsultaEstudiosAsignadosComando extends BaseComando{
 
     public JsonArrayBuilder estudios= Json.createArrayBuilder();
     public long _id;
 
-    public ConsultaEstudios_asignadosComando(long _id){
+    public ConsultaEstudiosAsignadosComando(long _id){
         this._id=_id;
     }
 
