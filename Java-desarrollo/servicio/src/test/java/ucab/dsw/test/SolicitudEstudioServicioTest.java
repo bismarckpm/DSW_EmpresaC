@@ -50,12 +50,12 @@ public class SolicitudEstudioServicioTest {
 
     }
 
-    @Test
+    /*@Test
     public void AddSolicitudSinDatosCompletos() throws Exception
     {
         SolicitudEstudioServicio servicio = new SolicitudEstudioServicio();
 
-        /*--------------Dto--------------*/
+
 
         SolicitudEstudioDto solicitudEstudioDto=new SolicitudEstudioDto();
 
@@ -86,7 +86,7 @@ public class SolicitudEstudioServicioTest {
         Response respuesta= servicio.addSolicitud(solicitudEstudioDto);
         Assert.assertEquals(respuesta.getStatus(),Response.Status.BAD_REQUEST.getStatusCode());
 
-    }
+    }*/
 
     @Test
     public void AddSolicitudCamposNulos() throws Exception {

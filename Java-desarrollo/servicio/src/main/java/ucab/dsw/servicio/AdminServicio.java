@@ -2,6 +2,8 @@ package ucab.dsw.servicio;
 import ucab.dsw.accesodatos.*;
 import ucab.dsw.dtos.*;
 import ucab.dsw.entidades.*;
+import ucab.dsw.logica.comando.categoria.AllCategorialComando;
+import ucab.dsw.logica.fabrica.Fabrica;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -19,6 +21,7 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.ws.rs.core.Response;
 import javax.json.JsonArrayBuilder;
+import ucab.dsw.logica.comando.admin.*;
 
 import javax.ws.rs.*;
 
@@ -31,74 +34,37 @@ public class AdminServicio {
      * Esta funcion consiste en enviar los datos de los estudios que tiene asignado un admin
      * en especifico y que ya se le asigno una encuesta
      * @author Carlos Silva
-     * @param _id corresponde al id del admin
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
      *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
      *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
      *         y mensaje en caso de ocurrir alguna de las excepciones
      */
+
+
+
     @GET
-    @Path("/estudios-asignados/{id}")
-    public Response consultaEstudios_asignados(@PathParam("id") long _id) {
-        JsonObject data;
-        JsonArrayBuilder builder = Json.createArrayBuilder();
-        try {
-            List<SolicitudEstudio> resultado = null;
+    @Path( "/estudios-asignados/{id}" )
+    public Response consultaEstudios_asignados(@PathParam("id") long  _id)
+    {
+        JsonObject resul;
 
-            DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
-            DaoMarca daoMarca = new DaoMarca();
-            DaoSubcategoria daoSubcategoria = new DaoSubcategoria();
-            DaoCategoria daoCategoria = new DaoCategoria();
-            Class<SolicitudEstudio> type = SolicitudEstudio.class;
+        try
+        {
+            ConsultaEstudios_asignadosComando comando= Fabrica.crearComandoConId(ConsultaEstudios_asignadosComando.class,_id);
+            comando.execute();
 
-            resultado = dao.findAll(type);
-            for (SolicitudEstudio obj : resultado) {
-                SolicitudEstudio solicitudEstudio = dao.find(obj.get_id(), SolicitudEstudio.class);
-
-                if (solicitudEstudio.get_usuario2() != null) {
-                    if (solicitudEstudio.get_encuesta() != null && solicitudEstudio.get_usuario2().get_id() == _id && solicitudEstudio.get_estado().equals("en progreso")) {
-                        Marca marca = daoMarca.find(solicitudEstudio.get_marca().get_id(), Marca.class);
-                        Subcategoria subcategoria = daoSubcategoria.find(marca.get_subcategoria().get_id(),Subcategoria.class);
-                        Categoria categoria = daoCategoria.find(subcategoria.get_categoria().get_id(),Categoria.class);
-
-                        JsonObject encuesta = Json.createObjectBuilder().add("Marca", marca.get_nombre())
-                                .add("idcategoria", categoria.get_id())
-                                .add("Categoria", categoria.get_nombre())
-                                .add("idsubcategoria", subcategoria.get_id())
-                                .add("Subcategoria", subcategoria.get_nombre()).build();
-
-                        JsonObject tipo = Json.createObjectBuilder().add("id", solicitudEstudio.get_id())
-                                .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
-                                .add("caracteristicas", encuesta)
-                                .add("estatus",solicitudEstudio.get_estado()).build();
-
-                        builder.add(tipo);
-
-
-                    } else {
-                        System.out.println("");
-                    }
-                }
-
-            }
-
-            data = Json.createObjectBuilder()
-                    .add("estado", "success")
-                    .add("codigo", 200)
-                    .add("estudios", builder).build();
-
-        } catch (Exception ex) {
-            String problema = ex.getMessage();
-            data = Json.createObjectBuilder()
-                    .add("estado", "exception!!!")
-                    .add("excepcion", ex.getMessage())
-                    .add("codigo", 500).build();
-
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         }
-        //builder.build();
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
+        catch ( Exception ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","internal_server_error")
+                    .add("mensaje_soporte",ex.getMessage())
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
+        }
     }
     /**
      * Esta funcion consiste en enviar los datos de los estudios que tiene asignado un admin
@@ -113,73 +79,26 @@ public class AdminServicio {
     @GET
     @Path("/estudios-no-asignados/{id}")
     public Response consultaEstudios_no_asignados(@PathParam("id") long _id) {
-        JsonObject data;
+        JsonObject resul;
 
-        JsonArrayBuilder builder = Json.createArrayBuilder();
+        try
+        {
+            ConsultaEstudios_no_asignadosComando comando= Fabrica.crearComandoConId(ConsultaEstudios_no_asignadosComando.class,_id);
+            comando.execute();
 
-        try {
-            List<SolicitudEstudio> resultado = null;
-
-            DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
-            DaoMarca daoMarca = new DaoMarca();
-            DaoSubcategoria daoSubcategoria = new DaoSubcategoria();
-            DaoCategoria daoCategoria = new DaoCategoria();
-
-            Class<SolicitudEstudio> type = SolicitudEstudio.class;
-
-            resultado = dao.findAll(type);
-            for (SolicitudEstudio obj : resultado) {
-                SolicitudEstudio solicitudEstudio = dao.find(obj.get_id(), SolicitudEstudio.class);
-
-
-                if (solicitudEstudio.get_usuario2() != null) {
-
-                    if (solicitudEstudio.get_encuesta() == null && solicitudEstudio.get_usuario2().get_id() == _id) {
-
-                        Marca marca = daoMarca.find(solicitudEstudio.get_marca().get_id(), Marca.class);  //Este fue el dao.find que falto
-                        Subcategoria subcategoria = daoSubcategoria.find(marca.get_subcategoria().get_id(),Subcategoria.class);
-                        Categoria categoria = daoCategoria.find(subcategoria.get_categoria().get_id(),Categoria.class);
-
-                        JsonObject encuesta = Json.createObjectBuilder().add("Marca", marca.get_nombre())
-                                .add("idcategoria", categoria.get_id())
-                                .add("Categoria", categoria.get_nombre())
-                                .add("idsubcategoria", subcategoria.get_id())
-                                .add("Subcategoria", subcategoria.get_nombre()).build();
-                        JsonObject tipo = Json.createObjectBuilder().add("id", solicitudEstudio.get_id())
-                                .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
-                                .add("estatus", solicitudEstudio.get_estado())
-                                .add("caracteristicas", encuesta)
-                                .build();
-
-                        builder.add(tipo);
-                    }
-                } else {
-                    System.out.println("");
-                }
-
-
-            }
-
-            data = Json.createObjectBuilder()
-                    .add("estado", "success")
-                    .add("codigo", 200)
-                    .add("estudios", builder).build();
-
-        } catch (Exception ex) {
-
-            data = Json.createObjectBuilder()
-                    .add("estado", "exception!!!")
-                    .add("excepcion", ex.getMessage())
-                    .add("codigo", 500).build();
-
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
-
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         }
-        //builder.build();
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
-    }
+        catch ( Exception ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","internal_server_error")
+                    .add("mensaje_soporte",ex.getMessage())
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
+        }
+    }
 
     /**
      * Esta funcion consiste en cambiar el estado de un estudio a inactivo

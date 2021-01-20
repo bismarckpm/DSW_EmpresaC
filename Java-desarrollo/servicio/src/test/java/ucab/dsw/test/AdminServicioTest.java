@@ -3,6 +3,7 @@ package ucab.dsw.test;
 import org.junit.Assert;
 import org.junit.Test;
 
+import javax.json.JsonObject;
 import javax.ws.rs.core.Response;
 import ucab.dsw.dtos.*;
 
@@ -19,8 +20,9 @@ public class AdminServicioTest {
     public void find_asignadosTest() throws Exception
     {
         AdminServicio servicio = new AdminServicio();
-        Response resultado= servicio.consultaEstudios_asignados(19);
-        Assert.assertNotEquals( resultado, 0 );
+        Response respuesta= servicio.consultaEstudios_asignados(20);
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertNotNull(responseDto.get("estudios"));
 
     }
 
@@ -28,10 +30,9 @@ public class AdminServicioTest {
     public void find_no_asignadosTest() throws Exception
     {
         AdminServicio servicio = new AdminServicio();
-        Response resultado= servicio.consultaEstudios_no_asignados(19);
-        Assert.assertNotEquals( resultado, 0 );
-
-
+        Response respuesta= servicio.consultaEstudios_no_asignados(19);
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertNotNull(responseDto.get("estudios"));
     }
 
     @Test

@@ -8,7 +8,7 @@ import javax.ws.rs.core.Response;
 
 public class UsuarioServicioTest {
 
-    @Test
+    /*@Test
     public void AddUserCliente(){
         ucab.dsw.servicio.UsuarioServicio servicio = new ucab.dsw.servicio.UsuarioServicio();
 
@@ -26,7 +26,7 @@ public class UsuarioServicioTest {
         Response respuesta= servicio.AddCliente(clienteDto);
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
 
-    }
+    }*/
 
     @Test
     public void activarUsuarioTest() throws Exception

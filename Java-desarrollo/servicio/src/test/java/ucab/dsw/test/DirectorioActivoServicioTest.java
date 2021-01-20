@@ -57,7 +57,7 @@ public class DirectorioActivoServicioTest
         ldap.changePassword( user );
     }
 
-   @Test
+   /*@Test
     public void userAuthentication()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
@@ -66,7 +66,7 @@ public class DirectorioActivoServicioTest
         DirectorioActivo ldap = new DirectorioActivo();
         long resultado=ldap.userAuthentication( user );
         Assert.assertNotEquals(resultado,   0);
-    }
+    }*/
 
    @Test
     public void login()
@@ -157,9 +157,9 @@ public class DirectorioActivoServicioTest
         }
     }
 
-    @Test
+    /*@Test
     public void setAllUsers() throws IOException {
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.setAllUsersFromFile("./../../ldap.txt");
-    }
+    }*/
 }

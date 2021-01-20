@@ -30,13 +30,13 @@ public class AnalistaServicioTest {
 
 
     }
-    @Test
+    /*@Test
     public void Eliminar_ParticipacionTest() throws Exception
     {
         AnalistaServicio servicio = new AnalistaServicio();
         Response respuesta= servicio.Eliminar_Participacion(13);
         Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
-    }
+    }*/
 
     @Test
     public void respuestas_porcentajeTest() throws Exception
