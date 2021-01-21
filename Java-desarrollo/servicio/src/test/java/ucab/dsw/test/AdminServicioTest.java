@@ -71,28 +71,36 @@ public class AdminServicioTest {
         opcion.add(opcion_Simple_MultipleDto);
         preguntaDto.setOpciones(opcion);
 
-        Response resultado = servicio.addPregunta( preguntaDto);
-        Assert.assertNotEquals( resultado, 1 );
+        Response respuesta = servicio.addPregunta( preguntaDto);
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertNotNull(responseDto.get("pregunta"));
     }
 
     @Test
     public void Participacion_estudioTest() throws Exception
     {
         AdminServicio servicio = new AdminServicio();
-        Response resultado= servicio.Participacion_estudio(5);
-        Assert.assertNotEquals( resultado, 0 );
+        Response respuesta= servicio.Participacion_estudio(5);
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertNotNull(responseDto.get("participantes"));
+    }
 
-
+    @Test
+    public void buscarEstudioTest() throws Exception
+    {
+        AdminServicio servicio = new AdminServicio();
+        Response respuesta= servicio.buscarEstudio(13);
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertNotNull(responseDto.get("estudio"));
     }
 
     @Test
     public void Pregunta_CategoriaTest() throws Exception
     {
         AdminServicio servicio = new AdminServicio();
-        Response resultado= servicio.Preguntas_categoria(1);
-        Assert.assertNotEquals( resultado, 0 );
-
-
+        Response respuesta= servicio.Preguntas_categoria(1);
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertNotNull(responseDto.get("preguntas"));
     }
 
     @Test

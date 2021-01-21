@@ -39,13 +39,15 @@ public class ConsultaEstudiosAsignadosComando extends BaseComando{
                     Subcategoria subcategoria = daoSubcategoria.find(marca.get_subcategoria().get_id(),Subcategoria.class);
                     Categoria categoria = daoCategoria.find(subcategoria.get_categoria().get_id(),Categoria.class);
 
-                    JsonObject encuesta = Json.createObjectBuilder().add("Marca", marca.get_nombre())
+                    JsonObject encuesta = Json.createObjectBuilder()
+                            .add("Marca", marca.get_nombre())
                             .add("idcategoria", categoria.get_id())
                             .add("Categoria", categoria.get_nombre())
                             .add("idsubcategoria", subcategoria.get_id())
                             .add("Subcategoria", subcategoria.get_nombre()).build();
 
-                    JsonObject tipo = Json.createObjectBuilder().add("id", solicitudEstudio.get_id())
+                    JsonObject tipo = Json.createObjectBuilder()
+                            .add("id", solicitudEstudio.get_id())
                             .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
                             .add("caracteristicas", encuesta)
                             .add("estatus",solicitudEstudio.get_estado()).build();

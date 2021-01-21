@@ -2,7 +2,6 @@ package ucab.dsw.servicio;
 import ucab.dsw.accesodatos.*;
 import ucab.dsw.dtos.*;
 import ucab.dsw.entidades.*;
-import ucab.dsw.logica.comando.categoria.DeleteCategoriaComando;
 import ucab.dsw.logica.fabrica.Fabrica;
 
 import javax.ws.rs.Consumes;
@@ -269,76 +268,24 @@ public class AdminServicio {
     @PUT
     @Path("/addPregunta")
     public Response addPregunta(PreguntaDto preguntaDto) {
-        PreguntaDto resultado = new PreguntaDto();
-        JsonObject data;
-        try {
-            DaoPregunta dao = new DaoPregunta();
-            DaoOpcionSimpleMultiple dao2 = new DaoOpcionSimpleMultiple();
-            DaoOpcionSimpleMultiplePregunta dao3 = new DaoOpcionSimpleMultiplePregunta();
-            Pregunta pregunta = new Pregunta();
-            pregunta.set_descripcion(preguntaDto.getDescripcion());
-            pregunta.set_tipopregunta(preguntaDto.getTipopregunta());
-            pregunta.set_estado("activo");
-            if (preguntaDto.getTipopregunta().equals("Rango")) {
-                pregunta.set_valormax(preguntaDto.getValormax());
-                pregunta.set_valormin(preguntaDto.getValormin());
-            }
-            Pregunta resul = dao.insert(pregunta);
-            resultado.setId(resul.get_id());
+        JsonObject resul;
+        try
+        {
+            AddPreguntaComando comando=Fabrica.crearComandoConDto(AddPreguntaComando.class,preguntaDto);
+            comando.execute();
 
-            JsonObject p = Json.createObjectBuilder().add("id", resul.get_id())
-                    .build();
-
-            System.out.println("Id: " + resul.get_id());
-            System.out.println("Descripcion: " + preguntaDto.getDescripcion());
-            System.out.println("Tipo de pregunta: " + preguntaDto.getTipopregunta());
-            if (preguntaDto.getValormax() != 0) {
-                System.out.println("Rango minimo: " + preguntaDto.getValormin());
-                System.out.println("Rango maximo: " + preguntaDto.getValormax());
-            }
-
-
-            if (preguntaDto.getOpciones() != null) {
-
-                List<OpcionSimpleMultipleDto> opcion = preguntaDto.getOpciones();
-
-                for (OpcionSimpleMultipleDto obj : opcion) {
-                    OpcionSimpleMultipleDto resultado2 = new OpcionSimpleMultipleDto();
-                    OpcionSimpleMultiple opcionSimpleMultiple = new OpcionSimpleMultiple();
-                    opcionSimpleMultiple.set_estado("activo");
-                    opcionSimpleMultiple.set_opcion(obj.getOpcion());
-
-                    OpcionSimpleMultiple resul2 = dao2.insert(opcionSimpleMultiple);
-                    resultado2.setId(resul2.get_id());
-
-                    OpcionSimpleMultiplePreguntaDto resultado3 = new OpcionSimpleMultiplePreguntaDto();
-                    OpcionSimpleMultiplePregunta opcion_Simple_Multiple_Pregunta = new OpcionSimpleMultiplePregunta();
-                    opcion_Simple_Multiple_Pregunta.set_opcion_Simple_Multiple_Pregunta(resul2);
-                    opcion_Simple_Multiple_Pregunta.set_pregunta(resul);
-
-                    OpcionSimpleMultiplePregunta resul3 = dao3.insert(opcion_Simple_Multiple_Pregunta);
-                    resultado3.setId(resul3.get_id());
-                }
-            }
-
-            data = Json.createObjectBuilder()
-                    .add("estado", "success")
-                    .add("codigo", 200)
-                    .add("Pregunta", p).build();
-
-
-        } catch (Exception ex) {
-            String problema = ex.getMessage();
-
-            data = Json.createObjectBuilder()
-                    .add("estado", "exception!!!")
-                    .add("excepcion", ex.getMessage())
-                    .add("codigo", 500).build();
-
-
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         }
-        return Response.status(Response.Status.OK).entity(data).build();
+        catch ( Exception ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","internal_server_error")
+                    .add("mensaje_soporte",ex.getMessage())
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
+        }
     }
 
     /**
@@ -354,52 +301,24 @@ public class AdminServicio {
     @GET
     @Path("/estudios-participacion/{id}")
     public Response Participacion_estudio(@PathParam("id") long _id) {
-        JsonObject data;
-        JsonArrayBuilder builder = Json.createArrayBuilder();
-        try {
-            List<Participacion> resultado = null;
+        JsonObject resul;
+        try
+        {
+            ParticipacionEstudioComando comando=Fabrica.crearComandoConId(ParticipacionEstudioComando.class,_id);
+            comando.execute();
 
-            DaoParticipacion dao = new DaoParticipacion();
-            DaoEncuestado daoEncuestado = new DaoEncuestado();
-            Class<Participacion> type = Participacion.class;
-
-            resultado = dao.findAll(type);
-            for (Participacion obj : resultado) {
-                Participacion participacion = dao.find(obj.get_id(), Participacion.class);
-                Encuestado encuestado = daoEncuestado.find(participacion.get_encuestado().get_id(),Encuestado.class);
-
-                if (obj.get_solicitudestudio().get_id() == _id) {
-
-                    JsonObject p = Json.createObjectBuilder().add("id", participacion.get_id())
-                            .add("Nombre", encuestado.get_nombre())
-                            .add("Estado", participacion.get_estado()).build();
-
-                    builder.add(p);
-
-                } else {
-                    System.out.println("");
-                }
-            }
-
-            data = Json.createObjectBuilder()
-                    .add("estado", "success")
-                    .add("codigo", 200)
-                    .add("Participantes", builder).build();
-
-
-        } catch (Exception ex) {
-            String problema = ex.getMessage();
-
-            data = Json.createObjectBuilder()
-                    .add("estado", "exception!!!")
-                    .add("excepcion", ex.getMessage())
-                    .add("codigo", 500).build();
-
-
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         }
-        //builder.build();
-        return Response.status(Response.Status.OK).entity(data).build();
+        catch ( Exception ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","internal_server_error")
+                    .add("mensaje_soporte",ex.getMessage())
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
+        }
     }
     /**
      * Esta funcion consiste en enviar los datos de un estudio en especifico
@@ -414,56 +333,24 @@ public class AdminServicio {
     @GET
     @Path("/estudio/{id}")
     public Response buscarEstudio(@PathParam("id") long _id) {
-        JsonObject data;
-        JsonObject builder;
-        try {
-            SolicitudEstudio obj = null;
+        JsonObject resul;
+        try
+        {
+            BuscarEstudioComando comando=Fabrica.crearComandoConId(BuscarEstudioComando.class,_id);
+            comando.execute();
 
-            DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
-            DaoMarca daoMarca = new DaoMarca();
-            DaoSubcategoria daoSubcategoria = new DaoSubcategoria ();
-            DaoCategoria daoCategoria = new DaoCategoria();
-
-            Class<SolicitudEstudio> type = SolicitudEstudio.class;
-
-            obj = dao.find(_id, type);
-
-            Marca marca = daoMarca.find(obj.get_marca().get_id(), Marca.class);
-            Subcategoria subcategoria = daoSubcategoria.find(marca.get_subcategoria().get_id(),Subcategoria.class);
-            Categoria categoria = daoCategoria.find(subcategoria.get_categoria().get_id(),Categoria.class);
-
-            JsonObject encuesta = Json.createObjectBuilder().add("Marca", marca.get_nombre())
-                    .add("Categoria", categoria.get_nombre())
-                    .add("idcategoria", categoria.get_id())
-                    .add("idMarca", marca.get_id())
-                    .add("idsubcategoria", subcategoria.get_id())
-                    .add("Subcategoria", subcategoria.get_nombre()).build();
-            JsonObject tipo = Json.createObjectBuilder().add("id", obj.get_id())
-                    .add("fecha", obj.get_fecha_inicio().toString())
-                    .add("estatus", obj.get_estado())
-                    .add("caracteristicas", encuesta)
-                    .build();
-
-
-            data = Json.createObjectBuilder()
-                    .add("estado", "success")
-                    .add("codigo", 200)
-                    .add("estudio", tipo).build();
-
-
-        } catch (Exception ex) {
-            String problema = ex.getMessage();
-
-            data = Json.createObjectBuilder()
-                    .add("estado", "exception!!!")
-                    .add("excepcion", ex.getMessage())
-                    .add("codigo", 500).build();
-
-
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         }
-        //builder.build();
-        return Response.status(Response.Status.OK).entity(data).build();
+        catch ( Exception ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","internal_server_error")
+                    .add("mensaje_soporte",ex.getMessage())
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
+        }
     }
 
     /**
@@ -480,74 +367,24 @@ public class AdminServicio {
     @GET
     @Path("/preguntas-categoria/{id}")
     public Response Preguntas_categoria(@PathParam("id") long _id) {
-        JsonObject data;
-        JsonArrayBuilder builder = Json.createArrayBuilder();
-        try {
-            List<PreguntaEncuesta> resultado = null;
-            List<Pregunta> resultado2 = null;
+        JsonObject resul;
+        try
+        {
+            PreguntasCategoriaComando comando=Fabrica.crearComandoConId(PreguntasCategoriaComando.class,_id);
+            comando.execute();
 
-            DaoPregunta daoPregunta = new DaoPregunta();
-            DaoEncuesta daoEncuesta = new DaoEncuesta();
-            DaoMarca daoMarca = new DaoMarca ();
-            DaoPreguntaEncuesta dao = new DaoPreguntaEncuesta();
-            DaoSubcategoria daoSubcategoria = new DaoSubcategoria();
-            DaoCategoria daoCategoria = new DaoCategoria();
-
-            Class<PreguntaEncuesta> type = PreguntaEncuesta.class;
-            Class<Pregunta> type2 = Pregunta.class;
-
-
-
-            resultado = dao.findAll(type);
-            resultado2 = daoPregunta.findAll(type2);
-            for (Pregunta obj2 : resultado2) {
-                int cont = 0;
-                Pregunta pregunta2 = daoPregunta.find(obj2.get_id(), Pregunta.class);
-                for (PreguntaEncuesta obj : resultado) {
-
-                    PreguntaEncuesta preguntaEncuesta = dao.find(obj.get_id(), PreguntaEncuesta.class);
-                    Pregunta pregunta = daoPregunta.find(preguntaEncuesta.get_pregunta().get_id(), Pregunta.class);
-                    Encuesta encuesta = daoEncuesta.find(preguntaEncuesta.get_encuesta().get_id(), Encuesta.class);
-                    Marca marca = daoMarca.find(encuesta.get_marca().get_id(), Marca.class);
-                    Subcategoria subcategoria = daoSubcategoria.find(marca.get_subcategoria().get_id(),Subcategoria.class);
-                    Categoria categoria = daoCategoria.find(subcategoria.get_categoria().get_id(),Categoria.class);
-
-                    if (categoria.get_id() == _id && pregunta.get_id() == pregunta2.get_id()) {
-                        cont=cont+1;
-                    }
-                }
-
-                if (cont !=0 || pregunta2.get_preguntaencuesta().isEmpty()) {
-                    JsonObject p = Json.createObjectBuilder().add("id", pregunta2.get_id())
-                            .add("descripcion", pregunta2.get_descripcion())
-                            .add("tipopregunta", pregunta2.get_tipopregunta())
-                            .build();
-
-
-                    builder.add(p);
-                }
-
-            }
-            data = Json.createObjectBuilder()
-                    .add("estado", "success")
-                    .add("codigo", 200)
-                    .add("Preguntas", builder).build();
-
-
-        } catch (Exception ex) {
-            String problema = ex.getMessage();
-
-            data = Json.createObjectBuilder()
-                    .add("estado", "exception!!!")
-                    .add("excepcion", ex.getMessage())
-                    .add("codigo", 500).build();
-
-
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         }
-        //builder.build();
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
+        catch ( Exception ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","internal_server_error")
+                    .add("mensaje_soporte",ex.getMessage())
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
+        }
     }
     /**
      * Esta funcion consiste en enviar los datos de los posibles participantes de un estudio
