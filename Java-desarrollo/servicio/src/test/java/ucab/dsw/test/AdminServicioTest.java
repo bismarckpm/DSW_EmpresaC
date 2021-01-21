@@ -107,10 +107,9 @@ public class AdminServicioTest {
     public void add_Participacion_test() throws Exception
     {
         AdminServicio servicio = new AdminServicio();
-        Response resultado= servicio.add_Participacion(10);
-        Assert.assertNotEquals( resultado, 0 );
-
-
+        Response respuesta= servicio.add_Participacion(13);
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertNotNull(responseDto.get("participantes"));
     }
 
 }

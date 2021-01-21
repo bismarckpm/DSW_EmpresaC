@@ -32,68 +32,63 @@ public class AdminServicio {
     /**
      * Esta funcion consiste en enviar los datos de los estudios que tiene asignado un admin
      * en especifico y que ya se le asigno una encuesta
-     * @author Carlos Silva
+     *
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
-     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
-     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
-     *         y mensaje en caso de ocurrir alguna de las excepciones
+     * se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     * en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     * y mensaje en caso de ocurrir alguna de las excepciones
+     * @author Carlos Silva
      */
 
 
-
     @GET
-    @Path( "/estudios-asignados/{id}" )
-    public Response consultaEstudios_asignados(@PathParam("id") long  _id)
-    {
+    @Path("/estudios-asignados/{id}")
+    public Response consultaEstudios_asignados(@PathParam("id") long _id) {
         JsonObject resul;
 
-        try
-        {
-            ConsultaEstudiosAsignadosComando comando= Fabrica.crearComandoConId(ConsultaEstudiosAsignadosComando.class,_id);
+        try {
+            ConsultaEstudiosAsignadosComando comando = Fabrica.crearComandoConId(ConsultaEstudiosAsignadosComando.class, _id);
             comando.execute();
 
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-        }
-        catch ( Exception ex )
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
-            resul= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+            resul = Json.createObjectBuilder()
+                    .add("estado", "internal_server_error")
+                    .add("mensaje_soporte", ex.getMessage())
+                    .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
     }
+
     /**
      * Esta funcion consiste en enviar los datos de los estudios que tiene asignado un admin
      * en especifico y que no se le a asignado una encuesta
-     * @author Carlos Silva
+     *
      * @param _id corresponde al id del admin
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
-     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
-     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
-     *         y mensaje en caso de ocurrir alguna de las excepciones
+     * se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     * en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     * y mensaje en caso de ocurrir alguna de las excepciones
+     * @author Carlos Silva
      */
     @GET
     @Path("/estudios-no-asignados/{id}")
     public Response consultaEstudios_no_asignados(@PathParam("id") long _id) {
         JsonObject resul;
 
-        try
-        {
-            ConsultaEstudiosNoAsignadosComando comando= Fabrica.crearComandoConId(ConsultaEstudiosNoAsignadosComando.class,_id);
+        try {
+            ConsultaEstudiosNoAsignadosComando comando = Fabrica.crearComandoConId(ConsultaEstudiosNoAsignadosComando.class, _id);
             comando.execute();
 
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-        }
-        catch ( Exception ex )
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
-            resul= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+            resul = Json.createObjectBuilder()
+                    .add("estado", "internal_server_error")
+                    .add("mensaje_soporte", ex.getMessage())
+                    .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
@@ -101,49 +96,49 @@ public class AdminServicio {
 
     /**
      * Esta funcion consiste en cambiar el estado de un estudio a inactivo
-     * @author Carlos Silva
+     *
      * @param _id corresponde al id del estudio
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
-     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
-     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
-     *         y mensaje en caso de ocurrir alguna de las excepciones
+     * se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     * en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     * y mensaje en caso de ocurrir alguna de las excepciones
+     * @author Carlos Silva
      */
 
     @DELETE
     @Path("/delete-solicitud/{id}")
     public Response EliminarEstudio(@PathParam("id") long _id) {
         JsonObject resul;
-        try
-        {
-            EliminarEstudioComando comando=Fabrica.crearComandoConId(EliminarEstudioComando.class,_id);
+        try {
+            EliminarEstudioComando comando = Fabrica.crearComandoConId(EliminarEstudioComando.class, _id);
             comando.execute();
 
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-        }
-        catch ( Exception ex )
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
-            resul= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+            resul = Json.createObjectBuilder()
+                    .add("estado", "internal_server_error")
+                    .add("mensaje_soporte", ex.getMessage())
+                    .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
     }
+
     /**
      * Esta funcion consiste en asignarle una encuesta a un estudio creandolo y
      * asignandole un analista aleatorio, aparte tambien recibe una lista de preguntas
      * que se le asignan a la encuesta y otra lista de participantes que se le asignaron al estudio
-     * @author Carlos Silva
-     * @param _id corresponde al id de la marca
-     * @param _id2 corresponde al id del estudio
+     *
+     * @param _id         corresponde al id de la marca
+     * @param _id2        corresponde al id del estudio
      * @param encuestaDto corresponde al objeto de la capa web que contiene los nuevos datos
-     * que se van a ingresar y las listas de participantes y preguntas
+     *                    que se van a ingresar y las listas de participantes y preguntas
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
-     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
-     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
-     *         y mensaje en caso de ocurrir alguna de las excepciones
+     * se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     * en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     * y mensaje en caso de ocurrir alguna de las excepciones
+     * @author Carlos Silva
      */
     @PUT
     @Path("/addEncuesta/{id}/{id2}")
@@ -254,35 +249,34 @@ public class AdminServicio {
         }
         return Response.status(Response.Status.OK).entity(data).build();
     }
+
     /**
      * Esta funcion consiste en ingresar nuevas preguntas y si la pregunta es de tipo opcion
      * simple o multiple ingresar nuevas opciones para ellas
-     * @author Carlos Silva
+     *
      * @param preguntaDto corresponde al objeto de la capa web que contiene los nuevos datos
-     * que se van a ingresar y la lista de opnciones que se le puede asignar
+     *                    que se van a ingresar y la lista de opnciones que se le puede asignar
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
-     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
-     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
-     *         y mensaje en caso de ocurrir alguna de las excepciones
+     * se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     * en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     * y mensaje en caso de ocurrir alguna de las excepciones
+     * @author Carlos Silva
      */
     @PUT
     @Path("/addPregunta")
     public Response addPregunta(PreguntaDto preguntaDto) {
         JsonObject resul;
-        try
-        {
-            AddPreguntaComando comando=Fabrica.crearComandoConDto(AddPreguntaComando.class,preguntaDto);
+        try {
+            AddPreguntaComando comando = Fabrica.crearComandoConDto(AddPreguntaComando.class, preguntaDto);
             comando.execute();
 
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-        }
-        catch ( Exception ex )
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
-            resul= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+            resul = Json.createObjectBuilder()
+                    .add("estado", "internal_server_error")
+                    .add("mensaje_soporte", ex.getMessage())
+                    .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
@@ -290,64 +284,61 @@ public class AdminServicio {
 
     /**
      * Esta funcion consiste en enviar los datos de los participantes que tiene un estudio
-     * @author Carlos Silva
+     *
      * @param _id corresponde al del estudio
-     * que se van a ingresar y la lista de opnciones que se le puede asignar
+     *            que se van a ingresar y la lista de opnciones que se le puede asignar
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
-     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
-     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
-     *         y mensaje en caso de ocurrir alguna de las excepciones
+     * se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     * en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     * y mensaje en caso de ocurrir alguna de las excepciones
+     * @author Carlos Silva
      */
     @GET
     @Path("/estudios-participacion/{id}")
     public Response Participacion_estudio(@PathParam("id") long _id) {
         JsonObject resul;
-        try
-        {
-            ParticipacionEstudioComando comando=Fabrica.crearComandoConId(ParticipacionEstudioComando.class,_id);
+        try {
+            ParticipacionEstudioComando comando = Fabrica.crearComandoConId(ParticipacionEstudioComando.class, _id);
             comando.execute();
 
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-        }
-        catch ( Exception ex )
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
-            resul= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+            resul = Json.createObjectBuilder()
+                    .add("estado", "internal_server_error")
+                    .add("mensaje_soporte", ex.getMessage())
+                    .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
     }
+
     /**
      * Esta funcion consiste en enviar los datos de un estudio en especifico
-     * @author Carlos Silva
+     *
      * @param _id corresponde al del estudio
-     * que se van a ingresar y la lista de opnciones que se le puede asignar
+     *            que se van a ingresar y la lista de opnciones que se le puede asignar
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
-     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
-     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
-     *         y mensaje en caso de ocurrir alguna de las excepciones
+     * se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     * en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     * y mensaje en caso de ocurrir alguna de las excepciones
+     * @author Carlos Silva
      */
     @GET
     @Path("/estudio/{id}")
     public Response buscarEstudio(@PathParam("id") long _id) {
         JsonObject resul;
-        try
-        {
-            BuscarEstudioComando comando=Fabrica.crearComandoConId(BuscarEstudioComando.class,_id);
+        try {
+            BuscarEstudioComando comando = Fabrica.crearComandoConId(BuscarEstudioComando.class, _id);
             comando.execute();
 
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-        }
-        catch ( Exception ex )
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
-            resul= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+            resul = Json.createObjectBuilder()
+                    .add("estado", "internal_server_error")
+                    .add("mensaje_soporte", ex.getMessage())
+                    .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
@@ -355,162 +346,65 @@ public class AdminServicio {
 
     /**
      * Esta funcion consiste en enviar los datos de las preguntas que estan relacionadas a una categoria
-     * @author Carlos Silva
+     *
      * @param _id corresponde al de la categoria
-     * que se van a ingresar y la lista de opnciones que se le puede asignar
+     *            que se van a ingresar y la lista de opnciones que se le puede asignar
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
-     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
-     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
-     *         y mensaje en caso de ocurrir alguna de las excepciones
+     * se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     * en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     * y mensaje en caso de ocurrir alguna de las excepciones
+     * @author Carlos Silva
      */
 
     @GET
     @Path("/preguntas-categoria/{id}")
     public Response Preguntas_categoria(@PathParam("id") long _id) {
         JsonObject resul;
-        try
-        {
-            PreguntasCategoriaComando comando=Fabrica.crearComandoConId(PreguntasCategoriaComando.class,_id);
+        try {
+            PreguntasCategoriaComando comando = Fabrica.crearComandoConId(PreguntasCategoriaComando.class, _id);
             comando.execute();
 
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-        }
-        catch ( Exception ex )
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
-            resul= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+            resul = Json.createObjectBuilder()
+                    .add("estado", "internal_server_error")
+                    .add("mensaje_soporte", ex.getMessage())
+                    .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
     }
+
     /**
      * Esta funcion consiste en enviar los datos de los posibles participantes de un estudio
      * verificando sus datos con las caracteristicas demograficas
-     * @author Carlos Silva
+     *
      * @param _id corresponde al del estudio
-     * que se van a ingresar y la lista de opnciones que se le puede asigbar
+     *            que se van a ingresar y la lista de opnciones que se le puede asigbar
      * @return retorna una Response con un estado de respuesta http indicando si la operacion
-     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
-     *         en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
-     *         y mensaje en caso de ocurrir alguna de las excepciones
+     * se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
+     * en formato JSON con los siguiente atributos: codigo, estado, estudios (array de objetos)
+     * y mensaje en caso de ocurrir alguna de las excepciones
+     * @author Carlos Silva
      */
     @GET
     @Path("/sugerencia-participacion/{id}")
-    public Response add_Participacion(@PathParam("id")  long _id){
-        JsonObject data;
-        JsonArrayBuilder builder = Json.createArrayBuilder();
-        JsonArrayBuilder aprobado =Json.createArrayBuilder();
+    public Response add_Participacion(@PathParam("id") long _id) {
+        JsonObject resul;
         try {
-            DaoSolicitudEstudio daoSolicitudEstudio = new DaoSolicitudEstudio();
-            DaoEncuestado daoEncuestado = new DaoEncuestado();
-            DaoHijo daoHijo = new DaoHijo();
-            DaoCaracteristicaDemografica daoCaracteristicaDemografica=new DaoCaracteristicaDemografica();
-            DaoUsuario daoUsuario = new DaoUsuario();
+            AddParticipacionComando comando = Fabrica.crearComandoConId(AddParticipacionComando.class, _id);
+            comando.execute();
 
-            SolicitudEstudio solicitudEstudio = daoSolicitudEstudio.find(_id, SolicitudEstudio.class);
-
-            List<Encuestado> resultado = null;
-            Class<Encuestado> type = Encuestado.class;
-            resultado = daoEncuestado.findAll(type);
-
-            for (Encuestado obj : resultado) {
-                Encuestado encuestado = daoEncuestado.find(obj.get_id(), Encuestado.class);
-                Usuario usuario = daoUsuario.find(encuestado.get_usuario_encuestado().get_id(),Usuario.class);
-                Date fecha = new Date();
-
-                ZoneId defaultZoneId = ZoneId.systemDefault();
-
-                Instant instant = fecha.toInstant();
-
-                LocalDate localDate = instant.atZone(defaultZoneId).toLocalDate();
-
-                ZoneId defaultZoneId2 = ZoneId.systemDefault();
-
-                Instant instant2 = encuestado.get_fecha_nacimiento().toInstant();
-
-                LocalDate localDate2 = instant2.atZone(defaultZoneId2).toLocalDate();
-
-                int edad = Period.between(localDate2, localDate).getYears();
-                int hijos = 0;
-
-                List<Hijo> hijo = null;
-                Class<Hijo> type2 = Hijo.class;
-                hijo = daoHijo.findAll(type2);
-
-                for (Hijo obj2 : hijo) {
-                    if (obj2.get_encuestado_hijo().get_id() == encuestado.get_id()) {
-                        hijos = hijos + 1;
-                    }
-                }
-
-                CaracteristicaDemografica caracteristicaDemografica=daoCaracteristicaDemografica.find(solicitudEstudio.get_caracteristicademografica().get_id(), CaracteristicaDemografica.class);
-
-                    if (caracteristicaDemografica.get_edad_min() <= edad && solicitudEstudio.get_caracteristicademografica().get_edad_max() >= edad) {
-
-                        if (caracteristicaDemografica.get_Parroquia_demografia().get_nombre().equals(encuestado.get_Parroquia_encuestado().get_nombre())) {
-                            int cont =0;
-
-                            if (caracteristicaDemografica.get_nacionalidad().equals(encuestado.get_Parroquia_encuestado().get_ciudad().get_estado().get_pais().get_nacionalidad())) {
-                                cont=cont+1;
-                                aprobado.add(Json.createObjectBuilder()
-                                        .add("cumple_con_la_nacionalidad", encuestado.get_Parroquia_encuestado().get_ciudad().get_estado().get_pais().get_nacionalidad()));
-                            }
-
-                            if (caracteristicaDemografica.get_cantidad_hijos() == hijos) {
-                                cont=cont+1;
-                                aprobado.add(Json.createObjectBuilder()
-                                        .add("cumple_con_la_cantidad_de_hijos", hijos));
-
-                            }
-
-                            if (caracteristicaDemografica.get_genero().equals(encuestado.get_genero())) {
-                                cont=cont+1;
-                                aprobado.add(Json.createObjectBuilder()
-                                        .add("cumple_con_el_genero", encuestado.get_genero()));
-                            }
-
-                            if (caracteristicaDemografica.get_nivel_academico_demografia().get_nombre().equals(encuestado.get_nivel_academico_encuestado().get_nombre())) {
-                                cont=cont+1;
-                                aprobado.add(Json.createObjectBuilder()
-                                        .add("cumple_con_el_nivel_academico", encuestado.get_nivel_academico_encuestado().get_nombre()));
-                            }
-
-                            if (cont>=2){
-
-                                JsonObject p = Json.createObjectBuilder().add("id", encuestado.get_id())
-                                        .add("nombre", encuestado.get_nombre())
-                                        .add("apellido", encuestado.get_apellido())
-                                        .add("username", usuario.get_usuario())
-                                        .add("campos_aprobados", aprobado)
-                                        .build();
-
-                                builder.add(p);
-                            }
-
-                        }
-                    }
-                }
-                data = Json.createObjectBuilder()
-                        .add("estado", "success")
-                        .add("codigo", 200)
-                        .add("Preguntas", builder).build();
-
-
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         } catch (Exception ex) {
-            String problema = ex.getMessage();
+            ex.printStackTrace();
+            resul = Json.createObjectBuilder()
+                    .add("estado", "internal_server_error")
+                    .add("mensaje_soporte", ex.getMessage())
+                    .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
-            data = Json.createObjectBuilder()
-                    .add("estado", "exception!!!")
-                    .add("excepcion", ex.getMessage())
-                    .add("codigo", 500).build();
-
-
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-        //builder.build();
-        return Response.status(Response.Status.OK).entity(data).build();
     }
 }
