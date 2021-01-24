@@ -49,10 +49,10 @@ public class AdminServicioTest {
     {
         AdminServicio servicio = new AdminServicio();
         EncuestaDto encuestaDto = new EncuestaDto();
-        encuestaDto.setNombre( "siva?" );
-
-        Response resultado = servicio.addEncuesta( 3,11,encuestaDto);
-        Assert.assertNotEquals( 0, 1 );
+        encuestaDto.setNombre( "encuesta el mejor chocolate" );
+        Response respuesta = servicio.addEncuesta( 3,13,encuestaDto);
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertNotNull(responseDto.get("encuesta"));
     }
 
     @Test
@@ -62,7 +62,7 @@ public class AdminServicioTest {
         PreguntaDto preguntaDto = new PreguntaDto();
         OpcionSimpleMultipleDto opcion_Simple_MultipleDto= new OpcionSimpleMultipleDto();
 
-        opcion_Simple_MultipleDto.setOpcion("carlos");
+        opcion_Simple_MultipleDto.setOpcion("un poco");
 
         preguntaDto.setDescripcion( "te calma este color?" );
         preguntaDto.setTipopregunta( "Opcion simple" );

@@ -10,16 +10,10 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.ws.rs.core.Response;
-import javax.json.JsonArrayBuilder;
 import ucab.dsw.logica.comando.admin.*;
 
 import javax.ws.rs.*;
@@ -143,111 +137,21 @@ public class AdminServicio {
     @PUT
     @Path("/addEncuesta/{id}/{id2}")
     public Response addEncuesta(@PathParam("id") long _id, @PathParam("id2") long _id2, EncuestaDto encuestaDto) {
-        EncuestaDto resultado = new EncuestaDto();
-        SolicitudEstudioDto resultado3 = new SolicitudEstudioDto();
-        JsonObject data;
-        int analista_random = 0;
-        Usuario analista_elegido = null;
+        JsonObject resul;
         try {
-            DaoEncuesta dao = new DaoEncuesta();
-            DaoPreguntaEncuesta dao2 = new DaoPreguntaEncuesta();
-            DaoParticipacion dao5 = new DaoParticipacion();
+            AddEncuestaComando comando = Fabrica.crearComandoBoth2(AddEncuestaComando.class, _id,_id2,encuestaDto);
+            comando.execute();
 
-            Encuesta encuesta = new Encuesta();
-            encuesta.set_nombre(encuestaDto.getNombre());
-            encuesta.set_estado("activo");
-
-            Marca marca = new Marca(_id);
-            encuesta.set_marca(marca);
-
-            Encuesta resul = dao.insert(encuesta);
-            resultado.setId(resul.get_id());
-
-            DaoSolicitudEstudio dao3 = new DaoSolicitudEstudio();
-            SolicitudEstudio solicitudEstudio = dao3.find(_id2, SolicitudEstudio.class);
-
-            DaoUsuario daoUsuario = new DaoUsuario();
-
-            //PARA PRODUCCIÓN
-            /*List<Usuario> analista= daoUsuario.getAnalistas();
-            analista_random=(int)(Math.random()* analista.size());
-            System.out.println("analista random");
-            System.out.println(analista_random);
-            analista_elegido=analista.get(analista_random);*/
-
-            //PARA DESARROLLO
-            Usuario analista = new Usuario(15);
-            analista = daoUsuario.find(analista.get_id(), Usuario.class);
-            solicitudEstudio.set_usuario(analista);
-
-            solicitudEstudio.set_estado("pendiente");
-            solicitudEstudio.set_encuesta(resul);
-
-            SolicitudEstudio resul3 = dao3.update(solicitudEstudio);
-            resultado3.setId(resul3.get_id());
-
-            if (encuestaDto.getPreguntas() != null) {
-
-                List<PreguntaDto> pregunta = encuestaDto.getPreguntas();
-
-                for (PreguntaDto obj : pregunta) {
-
-                    PreguntaEncuestaDto resultado2 = new PreguntaEncuestaDto();
-                    PreguntaEncuesta preguntaEncuesta = new PreguntaEncuesta();
-                    preguntaEncuesta.set_encuesta(resul);
-                    Pregunta pregunta1 = new Pregunta();
-                    DaoPregunta dao4 = new DaoPregunta();
-                    pregunta1 = dao4.find(obj.getId(), Pregunta.class);
-
-                    preguntaEncuesta.set_pregunta(pregunta1);
-
-                    PreguntaEncuesta resul2 = dao2.insert(preguntaEncuesta);
-                    resultado2.setId(resul2.get_id());
-
-
-                }
-            }
-
-            if (encuestaDto.getEncuestado() != null) {
-
-                List<EncuestadoDto> encuestado = encuestaDto.getEncuestado();
-
-                for (EncuestadoDto obj : encuestado) {
-
-                    ParticipacionDto resultado2 = new ParticipacionDto();
-                    Participacion participacion = new Participacion();
-                    participacion.set_solicitudestudio(solicitudEstudio);
-                    participacion.set_estado("activo");
-                    Encuestado encuestado1 = new Encuestado();
-                    DaoEncuestado dao4 = new DaoEncuestado();
-                    encuestado1 = dao4.find(obj.getId(), Encuestado.class);
-
-                    participacion.set_encuestado(encuestado1);
-
-                    Participacion resul2 = dao5.insert(participacion);
-                    resultado2.setId(resul2.get_id());
-
-
-                }
-            }
-
-
-            data = Json.createObjectBuilder()
-                    .add("estado", "success")
-                    .add("codigo", 200).build();
-
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         } catch (Exception ex) {
-            String problema = ex.getMessage();
+            ex.printStackTrace();
+            resul = Json.createObjectBuilder()
+                    .add("estado", "internal_server_error")
+                    .add("mensaje_soporte", ex.getMessage())
+                    .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
-            data = Json.createObjectBuilder()
-                    .add("estado", "exception!!!")
-                    .add("excepcion", ex.getMessage())
-                    .add("codigo", 500).build();
-
-
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-        return Response.status(Response.Status.OK).entity(data).build();
     }
 
     /**
