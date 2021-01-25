@@ -2,10 +2,9 @@ package ucab.dsw.test;
 
 import org.junit.Assert;
 import org.junit.Test;
-import ucab.dsw.dtos.MarcaDto;
-import ucab.dsw.dtos.SubcategoriaDto;
-import ucab.dsw.dtos.TipoDto;
+import ucab.dsw.dtos.*;
 
+import javax.json.JsonObject;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,8 @@ public class MarcaServicioTest {
     {
         ucab.dsw.servicio.MarcaServicio servicio = new ucab.dsw.servicio.MarcaServicio();
         Response respuesta= servicio.getAllMarcas();
-        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertNotNull(responseDto.get("marcas"));
 
     }
 
@@ -25,7 +25,8 @@ public class MarcaServicioTest {
     {
         ucab.dsw.servicio.MarcaServicio servicio = new ucab.dsw.servicio.MarcaServicio();
         Response respuesta= servicio.getMarca(1);
-        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertNotNull(responseDto.get("marca"));
     }
 
     @Test
@@ -34,9 +35,9 @@ public class MarcaServicioTest {
         ucab.dsw.servicio.MarcaServicio servicio = new ucab.dsw.servicio.MarcaServicio();
         MarcaDto marcaDto=new MarcaDto();;
         List<TipoDto> tiposDto= new ArrayList<>();
-        TipoDto tipoDto=new TipoDto(8);
+        TipoDto tipoDto=new TipoDto(1);
 
-        SubcategoriaDto subcategoriaDto=new SubcategoriaDto(4);
+        SubcategoriaDto subcategoriaDto=new SubcategoriaDto(1);
 
         tiposDto.add(tipoDto);
 
@@ -45,15 +46,17 @@ public class MarcaServicioTest {
         marcaDto.setTipo_Dto(tiposDto);
 
         Response respuesta= servicio.addMarca(marcaDto);
-        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertNotEquals(0,responseDto.get("marca_id"));
     }
 
     @Test
     public void getMarcasBySubcategoriaId() throws Exception
     {
         ucab.dsw.servicio.MarcaServicio servicio = new ucab.dsw.servicio.MarcaServicio();
-        Response respuesta= servicio.getMarcaBySubcategoriaId(4);
-        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+        Response respuesta= servicio.getMarcaBySubcategoriaId(1);
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertNotNull(responseDto.get("marcasBySubcategoria"));
     }
 
     @Test
@@ -61,8 +64,9 @@ public class MarcaServicioTest {
     {
         ucab.dsw.servicio.MarcaServicio servicio = new ucab.dsw.servicio.MarcaServicio();
 
-        Response resultado = servicio.deleteMarca( 1);
-        Assert.assertNotEquals( resultado, 0 );
+        Response respuesta = servicio.deleteMarca( 1);
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertEquals("\"inactivo\"",responseDto.get("estado_marca").toString());
 
     }
     @Test
@@ -70,8 +74,10 @@ public class MarcaServicioTest {
     {
         ucab.dsw.servicio.MarcaServicio servicio = new ucab.dsw.servicio.MarcaServicio();
 
-        Response resultado = servicio.activarMarca( 1);
-        Assert.assertNotEquals( resultado, 0 );
+        Response respuesta = servicio.activarMarca( 1);
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertEquals("\"activo\"",responseDto.get("estado_marca").toString());
 
     }
+
 }

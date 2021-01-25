@@ -8,6 +8,7 @@ import ucab.dsw.dtos.SolicitudEstudioDto;
 import ucab.dsw.excepciones.CamposNulosExcepcion;
 import ucab.dsw.servicio.SolicitudEstudioServicio;
 
+import javax.json.JsonObject;
 import javax.ws.rs.core.Response;
 
 
@@ -25,10 +26,10 @@ public class SolicitudEstudioServicioTest {
 
         CaracteristicaDemograficaDto CaracteristicaDemograficaDto = new CaracteristicaDemograficaDto();
         CaracteristicaDemograficaDto.setEdad_min(15);
-        CaracteristicaDemograficaDto.setEdad_max(60);
+        CaracteristicaDemograficaDto.setEdad_max(80);
         CaracteristicaDemograficaDto.setNivel_socioeconomico("Alta");
-        CaracteristicaDemograficaDto.setNacionalidad("mexicano");
-        CaracteristicaDemograficaDto.setCantidad_hijos(2);
+        CaracteristicaDemograficaDto.setNacionalidad("colombiano");
+        CaracteristicaDemograficaDto.setCantidad_hijos(0);
         CaracteristicaDemograficaDto.setGenero("M");
 
         NivelAcademicoDto nivel_academicoDto=new NivelAcademicoDto(5);
@@ -46,7 +47,8 @@ public class SolicitudEstudioServicioTest {
         solicitudEstudioDto.setClienteDto(clienteDto);
 
         Response respuesta= servicio.addSolicitud(solicitudEstudioDto);
-        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertNotEquals(0,responseDto.get("solicitud_id"));
 
     }
 

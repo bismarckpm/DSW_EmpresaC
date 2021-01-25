@@ -12,6 +12,8 @@ import ucab.dsw.accesodatos.DaoCategoria;
 import ucab.dsw.dtos.SubcategoriaDto;
 import ucab.dsw.entidades.Categoria;
 import ucab.dsw.excepciones.PruebaExcepcion;
+import ucab.dsw.logica.comando.subcategoria.*;
+import ucab.dsw.logica.fabrica.Fabrica;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -45,52 +47,29 @@ public class SubcategoriaServicio extends AplicacionBase{
     @Path( "/all" )
     public Response getAllSubcategorias()
     {
-        JsonObject data;
+        JsonObject resul;
         try
         {
-            DaoSubcategoria dao= new DaoSubcategoria();
-			DaoCategoria daoCategoria= new DaoCategoria();
-			
-            List<Subcategoria> resultado= dao.findAll(Subcategoria.class);
+            AllSubcategoriaComando comando= Fabrica.crear(AllSubcategoriaComando.class);
+            comando.execute();
 
-            JsonArrayBuilder subcategoriaArrayJson= Json.createArrayBuilder();
-
-            for(Subcategoria obj: resultado){
-				
-				Categoria categoria= daoCategoria.find(obj.get_categoria().get_id(),Categoria.class);
-                JsonObject subcategoria = Json.createObjectBuilder().add("id",obj.get_id())
-                                                                    .add("nombre",obj.get_nombre())
-                                                                    .add("categoria_id",categoria.get_id())
-                                                                    .add("categoria",categoria.get_nombre())
-                                                                    .add("estado",obj.get_estado()).build();
-
-                subcategoriaArrayJson.add(subcategoria);
-
-            }
-
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200)
-                    .add("subcategorias",subcategoriaArrayJson).build();
+            System.out.println(comando.getResult());
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
 
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
-            data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
-                    .add("codigo",500).build();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje_soporte",ex.getMessage())
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            System.out.println(data);
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
 
 
         }
-
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
 
     }
     /**
@@ -106,47 +85,35 @@ public class SubcategoriaServicio extends AplicacionBase{
     @Path( "/add" )
     public Response addSubcategoria(SubcategoriaDto subcategoriaDto)
     {
-        JsonObject data;
-        SubcategoriaDto resultado = new SubcategoriaDto();
+        JsonObject resul;
         try
         {
-            DaoSubcategoria daoSubcategoria = new DaoSubcategoria();
-            Subcategoria subcategoria = new Subcategoria();
+            InsertSubcategoriaComando comando=Fabrica.crearComandoConDto(InsertSubcategoriaComando.class,subcategoriaDto);
+            comando.execute();
 
-            Categoria categoria= new Categoria(subcategoriaDto.getCategoriaDto().getId());
+            System.out.println(comando.getResult());
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
-            subcategoria.set_nombre(subcategoriaDto.getNombre());
-            subcategoria.set_categoria(categoria);
-            subcategoria.set_estado("activo");
-
-            Subcategoria resul = daoSubcategoria.insert(subcategoria);
-            resultado.setId( resul.get_id() );
-
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200).build();
         }
         catch (PersistenceException | DatabaseException ex){
-            data= Json.createObjectBuilder()
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje","La subcategoria ya se encuestra registrada")
-                    .add("codigo",500).build();
+                    .add("mensaje_soporte",ex.getMessage())
+                    .add("mensaje","La subcategoria ya se encuestra registrada").build();
 
-            System.out.println(data);
-
-            return Response.status(Response.Status.OK).entity(data).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
-        catch ( PruebaExcepcion ex){
-            data= Json.createObjectBuilder()
+        catch ( Exception ex){
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje",ex.getMessage())
-                    .add("codigo",500).build();
+                    .add("mensaje_soporte",ex.getMessage())
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            System.out.println(data);
-            return Response.status(Response.Status.OK).entity(data).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
 
         }
-        return Response.status(Response.Status.OK).entity(data).build();
     }
     /**
      * Esta funcion consiste en cambiar el estado de una subcategoria a inactivo
@@ -161,43 +128,25 @@ public class SubcategoriaServicio extends AplicacionBase{
     @Path( "/delete/{id}" )
     public Response deleteSubcategoria(@PathParam("id") long  _id)
     {
-        JsonObject data;
-        SubcategoriaDto resultado = new SubcategoriaDto();
+        JsonObject resul;
         try
         {
-            DaoSubcategoria dao = new DaoSubcategoria();
-            Subcategoria subcategoria = dao.find(_id,Subcategoria.class);
-            subcategoria.set_estado("inactivo");
+            DeleteSubcategoriaComando comando=Fabrica.crearComandoConId(DeleteSubcategoriaComando.class,_id);
+            comando.execute();
 
-            Subcategoria resul = dao.update(subcategoria);
-            resultado.setId( resul.get_id() );
-
-            DaoMarca daoMarca = new DaoMarca();
-            List<Marca> marcas =daoMarca.findAll(Marca.class);
-            for(Marca obj: marcas) {
-
-                if (obj.get_subcategoria().get_id() == resul.get_id()){
-                    Marca marca = daoMarca.find(obj.get_id(),Marca.class);
-                    marca.set_estado("inactivo");
-
-                    Marca marcaActualizada = daoMarca.update(marca);
-                }
-            }
-
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200).build();
+            System.out.println(comando.getResult());
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         }
         catch ( Exception ex )
         {
-            data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
-                    .add("codigo",500).build();
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje_soporte",ex.getMessage())
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-        return Response.status(Response.Status.OK).entity(data).build();
     }
     /**
      * Esta funcion consiste en cambiar el estado de una subcategoria a activo
@@ -212,43 +161,25 @@ public class SubcategoriaServicio extends AplicacionBase{
     @Path( "/activar/{id}" )
     public Response activarSubcategoria(@PathParam("id") long  _id)
     {
-        JsonObject data;
-        SubcategoriaDto resultado = new SubcategoriaDto();
+        JsonObject resul;
         try
         {
-            DaoSubcategoria dao = new DaoSubcategoria();
-            Subcategoria subcategoria = dao.find(_id,Subcategoria.class);
-            subcategoria.set_estado("activo");
+            ActivateSubcategoriaComando comando=Fabrica.crearComandoConId(ActivateSubcategoriaComando.class,_id);
+            comando.execute();
 
-            Subcategoria resul = dao.update(subcategoria);
-            resultado.setId( resul.get_id() );
-
-            DaoMarca daoMarca = new DaoMarca();
-            List<Marca> marcas =daoMarca.findAll(Marca.class);
-            for(Marca obj: marcas) {
-
-                if (obj.get_subcategoria().get_id() == resul.get_id()){
-                    Marca marca = daoMarca.find(obj.get_id(),Marca.class);
-                    marca.set_estado("activo");
-
-                    Marca marcaActualizada = daoMarca.update(marca);
-                }
-            }
-
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200).build();
+            System.out.println(comando.getResult());
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         }
         catch ( Exception ex )
         {
-            data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
-                    .add("codigo",500).build();
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje_soporte",ex.getMessage())
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-        return Response.status(Response.Status.OK).entity(data).build();
     }
 
     /**
@@ -265,47 +196,36 @@ public class SubcategoriaServicio extends AplicacionBase{
     @Path( "/edit/{id}" )
     public Response editSubcategoria(@PathParam("id") long _id, SubcategoriaDto subcategoriaDto)
     {
-        JsonObject data;
-        SubcategoriaDto resultado = new SubcategoriaDto();
+        JsonObject resul;
         try
         {
-            DaoSubcategoria dao = new DaoSubcategoria();
-            Subcategoria subcategoria = dao.find(_id,Subcategoria.class);
-            subcategoria.set_nombre(subcategoriaDto.getNombre());
+            UpdateSubcategoriaComando comando=Fabrica.crearComandoBoth(UpdateSubcategoriaComando.class,_id,subcategoriaDto);
+            comando.execute();
 
-            Categoria categoria=new Categoria(subcategoriaDto.getCategoriaDto().getId());
-            subcategoria.set_categoria(categoria);
+            System.out.println(comando.getResult());
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
-
-            Subcategoria resul = dao.update(subcategoria);
-            resultado.setId( resul.get_id() );
-
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200).build();
 
         }
         catch (PersistenceException | DatabaseException ex){
-            data= Json.createObjectBuilder()
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje","La subcategoria ya se encuestra registrada")
-                    .add("codigo",500).build();
+                    .add("mensaje_soporte",ex.getMessage())
+                    .add("mensaje","La subcategoria ya se encuestra registrada").build();
 
-            System.out.println(data);
-
-            return Response.status(Response.Status.OK).entity(data).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
-        catch ( PruebaExcepcion ex){
-            data= Json.createObjectBuilder()
+        catch ( Exception ex){
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje",ex.getMessage())
-                    .add("codigo",500).build();
+                    .add("mensaje_soporte",ex.getMessage())
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            System.out.println(data);
-            return Response.status(Response.Status.OK).entity(data).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
 
         }
-        return Response.status(Response.Status.OK).entity(data).build();
     }
     /**
      * Esta funcion consiste en enviar los datos de una subcategoria en especifico
@@ -320,38 +240,26 @@ public class SubcategoriaServicio extends AplicacionBase{
     @Path( "/{id}" )
     public Response getSubcategoria(@PathParam("id") long  _id)
     {
-        JsonObject data;
-        JsonObject subcategoriaJson;
-        SubcategoriaDto resultado = new SubcategoriaDto();
+        JsonObject resul;
         try
         {
-            DaoSubcategoria dao = new DaoSubcategoria();
-            Subcategoria subcategoria = dao.find(_id,Subcategoria.class);
-            resultado.setId( subcategoria.get_id() );
+            GetSubcategoriaComando comando=Fabrica.crearComandoConId(GetSubcategoriaComando.class,_id);
+            comando.execute();
 
-            subcategoriaJson= Json.createObjectBuilder()
-                                        .add("nombre",subcategoria.get_nombre())
-                                        .add("categoria_id",subcategoria.get_categoria().get_id())
-                                        .add("categoria",subcategoria.get_categoria().get_nombre())
-                                        .add("estado",subcategoria.get_estado()).build();
-
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200)
-                    .add("subcategoria",subcategoriaJson).build();
+            System.out.println(comando.getResult());
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
         }
         catch ( Exception ex )
         {
-            data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
-                    .add("codigo",500).build();
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje_soporte",ex.getMessage())
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
 
     }
 
@@ -367,42 +275,28 @@ public class SubcategoriaServicio extends AplicacionBase{
         @Path( "/by/categoria/{id}" )
         public Response getSubcategoriasByCategoriaId(@PathParam("id") long  _id)
         {
-            JsonObject data;
+            JsonObject resul;
 
             try
             {
-                DaoSubcategoria dao= new DaoSubcategoria();
-                List<Subcategoria> resultado= dao.getSubcategoriasByCategoria(_id);
+                GetSubcategoriaBComando comando=Fabrica.crearComandoConId(GetSubcategoriaBComando.class,_id);
+                comando.execute();
 
-                JsonArrayBuilder subcategoriasByCategoriaId= Json.createArrayBuilder();
-
-                for(Subcategoria obj: resultado){
-
-                    JsonObject marca = Json.createObjectBuilder().add("id",obj.get_id())
-                            .add("nombre",obj.get_nombre()).build();
-
-                    subcategoriasByCategoriaId.add(marca);
-
-                }
-
-                data= Json.createObjectBuilder()
-                        .add("estado","success")
-                        .add("codigo",200)
-                        .add("subcategoriasByCategoria",subcategoriasByCategoriaId).build();
+                System.out.println(comando.getResult());
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
             }
             catch ( Exception ex )
             {
                 ex.printStackTrace();
-                data= Json.createObjectBuilder()
-                        .add("estado","exception!!!")
-                        .add("excepcion",ex.getMessage())
-                        .add("codigo",500).build();
+                resul= Json.createObjectBuilder()
+                        .add("estado","error")
+                        .add("mensaje_soporte",ex.getMessage())
+                        .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-                return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
             }
-            System.out.println(data);
-            return Response.status(Response.Status.OK).entity(data).build();
+
 
         }
 }

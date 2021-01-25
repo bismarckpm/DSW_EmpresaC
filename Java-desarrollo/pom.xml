@@ -25,6 +25,7 @@
         <module>directorioactivo</module>
         <module>logica</module>
         <module>mappers</module>
+        <module>seguridad</module>
     </modules>
 
     <dependencies>
