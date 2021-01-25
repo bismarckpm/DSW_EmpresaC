@@ -23,36 +23,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87c6d671-881a-45a8-ab00-e16a3b9c4375" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/servicio_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/servicio_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/directorioactivo/src/main/java/ucab/dsw/directorio/DirectorioActivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/directorioactivo/src/main/java/ucab/dsw/directorio/DirectorioActivo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/MarcaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/MarcaDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/MarcaTipoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/MarcaTipoDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/SubcategoriaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/SubcategoriaDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/UsuarioDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dtos/src/main/java/ucab/dsw/dtos/UsuarioDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/entidades/src/main/java/ucab/dsw/entidades/Usuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logica/target/logica-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/logica/target/logica-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logica/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/logica/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mappers/target/mappers-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/mappers/target/mappers-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mappers/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/mappers/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/clases/ValidaCamposSolicitudDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/jwt/Jwt.java" beforeDir="false" afterPath="$PROJECT_DIR$/seguridad/src/main/java/ucab/dsw/jwt/Jwt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CategoriaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CategoriaServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/LoginServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/LoginServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/MarcaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/MarcaServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/RecuperacionServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/RecuperacionServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/RegistroServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/RegistroServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SolicitudEstudioServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SolicitudEstudioServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SubcategoriaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SubcategoriaServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/DirectorioActivoServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/DirectorioActivoServicioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/MarcaServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/MarcaServicioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/SolicitudEstudioServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/SolicitudEstudioServicioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/SubcategoriasServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/SubcategoriasServicioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/AnalistaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/AnalistaServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/AnalistaServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/AnalistaServicioTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +68,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/clases" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -104,7 +82,7 @@
       <recent name="C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\Entrega 2\Java-desarrollo\servicio\src\main\java\ucab\dsw\clases" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MarcaServicioTest.editMarca">
+  <component name="RunManager" selected="JUnit.AnalistaServicioTest.preguntas_porcentajeTest">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -116,7 +94,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MarcaServicioTest.editMarca" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AnalistaServicioTest.Eliminar_ParticipacionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <extension name="coverage">
         <pattern>
@@ -125,14 +103,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ucab.dsw.test" />
-      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.MarcaServicioTest" />
-      <option name="METHOD_NAME" value="editMarca" />
+      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.AnalistaServicioTest" />
+      <option name="METHOD_NAME" value="Eliminar_ParticipacionTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SubcategoriasServicioTest.activarSubcategoria" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AnalistaServicioTest.consultaEstudios_telefonoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <extension name="coverage">
         <pattern>
@@ -141,14 +119,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ucab.dsw.test" />
-      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.SubcategoriasServicioTest" />
-      <option name="METHOD_NAME" value="activarSubcategoria" />
+      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.AnalistaServicioTest" />
+      <option name="METHOD_NAME" value="consultaEstudios_telefonoTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SubcategoriasServicioTest.deleteSubcategoria" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AnalistaServicioTest.preguntas_porcentajeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <extension name="coverage">
         <pattern>
@@ -157,14 +135,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ucab.dsw.test" />
-      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.SubcategoriasServicioTest" />
-      <option name="METHOD_NAME" value="deleteSubcategoria" />
+      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.AnalistaServicioTest" />
+      <option name="METHOD_NAME" value="preguntas_porcentajeTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SubcategoriasServicioTest.editSubcategoria" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AnalistaServicioTest.responder_estudio_Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <extension name="coverage">
         <pattern>
@@ -173,14 +151,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ucab.dsw.test" />
-      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.SubcategoriasServicioTest" />
-      <option name="METHOD_NAME" value="editSubcategoria" />
+      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.AnalistaServicioTest" />
+      <option name="METHOD_NAME" value="responder_estudio_Test" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SubcategoriasServicioTest.getSubcategoriasByCategoriaId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AnalistaServicioTest.respuestas_estudio_Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <extension name="coverage">
         <pattern>
@@ -189,8 +167,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ucab.dsw.test" />
-      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.SubcategoriasServicioTest" />
-      <option name="METHOD_NAME" value="getSubcategoriasByCategoriaId" />
+      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.AnalistaServicioTest" />
+      <option name="METHOD_NAME" value="respuestas_estudio_Test" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -198,11 +176,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MarcaServicioTest.editMarca" />
-        <item itemvalue="JUnit.SubcategoriasServicioTest.activarSubcategoria" />
-        <item itemvalue="JUnit.SubcategoriasServicioTest.deleteSubcategoria" />
-        <item itemvalue="JUnit.SubcategoriasServicioTest.editSubcategoria" />
-        <item itemvalue="JUnit.SubcategoriasServicioTest.getSubcategoriasByCategoriaId" />
+        <item itemvalue="JUnit.AnalistaServicioTest.preguntas_porcentajeTest" />
+        <item itemvalue="JUnit.AnalistaServicioTest.respuestas_estudio_Test" />
+        <item itemvalue="JUnit.AnalistaServicioTest.consultaEstudios_telefonoTest" />
+        <item itemvalue="JUnit.AnalistaServicioTest.Eliminar_ParticipacionTest" />
+        <item itemvalue="JUnit.AnalistaServicioTest.responder_estudio_Test" />
       </list>
     </recent_temporary>
   </component>
@@ -224,7 +202,7 @@
       <workItem from="1610981893957" duration="12000" />
       <workItem from="1611285855622" duration="5546000" />
       <workItem from="1611538098033" duration="14517000" />
-      <workItem from="1611586123603" duration="7446000" />
+      <workItem from="1611586123603" duration="17866000" />
     </task>
     <servers />
   </component>
@@ -252,11 +230,11 @@
       <screen x="0" y="0" width="1280" height="980" />
     </state>
     <state x="199" y="167" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.980@0.0.1280.980" timestamp="1610639466327" />
-    <state x="449" y="204" key="#com.intellij.ide.util.MemberChooser" timestamp="1611594487185">
+    <state x="449" y="204" key="#com.intellij.ide.util.MemberChooser" timestamp="1611605486970">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state x="449" y="203" key="#com.intellij.ide.util.MemberChooser/0.0.1280.980@0.0.1280.980" timestamp="1610917600708" />
-    <state x="449" y="204" key="#com.intellij.ide.util.MemberChooser/0.0.1280.984@0.0.1280.984" timestamp="1611594487185" />
+    <state x="449" y="204" key="#com.intellij.ide.util.MemberChooser/0.0.1280.984@0.0.1280.984" timestamp="1611605486970" />
     <state x="158" y="423" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1611548926062">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
@@ -277,26 +255,26 @@
     </state>
     <state x="374" y="242" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.980@0.0.1280.980" timestamp="1610935516596" />
     <state x="374" y="243" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.984@0.0.1280.984" timestamp="1611290707562" />
-    <state width="1236" height="216" key="GridCell.Tab.0.bottom" timestamp="1611594913090">
+    <state width="1236" height="263" key="GridCell.Tab.0.bottom" timestamp="1611610025619">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state width="1238" height="165" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1610936076849" />
-    <state width="1236" height="216" key="GridCell.Tab.0.bottom/0.0.1280.984@0.0.1280.984" timestamp="1611594913090" />
-    <state width="1236" height="216" key="GridCell.Tab.0.center" timestamp="1611594913090">
+    <state width="1236" height="263" key="GridCell.Tab.0.bottom/0.0.1280.984@0.0.1280.984" timestamp="1611610025619" />
+    <state width="1236" height="263" key="GridCell.Tab.0.center" timestamp="1611610025619">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state width="1238" height="165" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1610936076848" />
-    <state width="1236" height="216" key="GridCell.Tab.0.center/0.0.1280.984@0.0.1280.984" timestamp="1611594913090" />
-    <state width="1236" height="216" key="GridCell.Tab.0.left" timestamp="1611594913090">
+    <state width="1236" height="263" key="GridCell.Tab.0.center/0.0.1280.984@0.0.1280.984" timestamp="1611610025619" />
+    <state width="1236" height="263" key="GridCell.Tab.0.left" timestamp="1611610025619">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state width="1238" height="165" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1610936076848" />
-    <state width="1236" height="216" key="GridCell.Tab.0.left/0.0.1280.984@0.0.1280.984" timestamp="1611594913090" />
-    <state width="1236" height="216" key="GridCell.Tab.0.right" timestamp="1611594913090">
+    <state width="1236" height="263" key="GridCell.Tab.0.left/0.0.1280.984@0.0.1280.984" timestamp="1611610025619" />
+    <state width="1236" height="263" key="GridCell.Tab.0.right" timestamp="1611610025619">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state width="1238" height="165" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1610936076849" />
-    <state width="1236" height="216" key="GridCell.Tab.0.right/0.0.1280.984@0.0.1280.984" timestamp="1611594913090" />
+    <state width="1236" height="263" key="GridCell.Tab.0.right/0.0.1280.984@0.0.1280.984" timestamp="1611610025619" />
     <state x="483" y="194" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1611556226769">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
