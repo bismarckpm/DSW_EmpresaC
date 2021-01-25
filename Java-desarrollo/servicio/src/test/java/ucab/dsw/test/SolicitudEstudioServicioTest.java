@@ -57,7 +57,7 @@ public class SolicitudEstudioServicioTest {
     {
         SolicitudEstudioServicio servicio = new SolicitudEstudioServicio();
 
-        /*--------------Dto--------------*/
+
 
         SolicitudEstudioDto solicitudEstudioDto=new SolicitudEstudioDto();
 
