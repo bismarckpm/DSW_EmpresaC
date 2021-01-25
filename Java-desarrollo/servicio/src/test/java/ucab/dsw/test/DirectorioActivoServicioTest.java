@@ -5,12 +5,10 @@ import org.junit.Test;
 import ucab.dsw.directorio.DirectorioActivo;
 import ucab.dsw.directorio.RecuperacionPass;
 import ucab.dsw.dtos.UsuarioLdapDto;
+import ucab.dsw.jwt.Jwt;
 import ucab.dsw.servicio.LoginServicio;
-
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class DirectorioActivoServicioTest
 {
@@ -18,7 +16,7 @@ public class DirectorioActivoServicioTest
     public void createUserLDAP()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
-        user.setCn( "drontsch0" );
+        user.setCn( "MFalcon" );
         user.setSn("apellido");
         user.setTipo_usuario("encuestado");
         user.setNombre("nombre");
@@ -57,7 +55,7 @@ public class DirectorioActivoServicioTest
         ldap.changePassword( user );
     }
 
-   @Test
+    @Test
     public void userAuthentication()
     {
         UsuarioLdapDto user = new UsuarioLdapDto();
@@ -162,4 +160,14 @@ public class DirectorioActivoServicioTest
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.setAllUsersFromFile("./../../ldap.txt");
     }
+
+    @Test
+    public void VerifyToken() throws IOException {
+        String token=Jwt.generarToken(1);
+        boolean flag=Jwt.verificarToken(token);
+        System.out.println(flag);
+
+    }
+
+
 }

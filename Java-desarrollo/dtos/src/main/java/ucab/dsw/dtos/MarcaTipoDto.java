@@ -4,6 +4,14 @@ public class MarcaTipoDto extends BaseDto {
 
     private MarcaDto marcaDro;
 
+    public MarcaTipoDto(long id) throws Exception {
+        super(id);
+    }
+
+    public MarcaTipoDto() {
+
+    }
+
     public MarcaDto getMarcaDto()
     {
         return marcaDro;

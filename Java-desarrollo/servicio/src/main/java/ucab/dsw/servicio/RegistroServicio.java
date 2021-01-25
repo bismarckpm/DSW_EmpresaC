@@ -177,7 +177,7 @@ public class RegistroServicio extends AplicacionBase{
 
                 //ENVIAR TOKEN
                 Jwt jwt=new Jwt();
-                token= jwt.generarToken( nuevoEncuestadoDto.getUsuarioLdap() );
+                token= jwt.generarToken( ID_ENC );
                 data= Json.createObjectBuilder()
                         .add("estado","success")
                         .add("codigo",200)

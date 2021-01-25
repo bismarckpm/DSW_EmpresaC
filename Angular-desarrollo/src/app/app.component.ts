@@ -28,7 +28,6 @@ export class AppComponent implements OnInit{
   }
   
   ngOnInit() {
-
     this.checkLocalStorage();
 
     this.eventBus.on('inicio-progress').subscribe((meta: MetaData) => {

@@ -10,6 +10,7 @@
         <module name="servicio" />
         <module name="excepciones" />
         <module name="logica" />
+        <module name="seguridad" />
         <module name="entidades" />
         <module name="accesodatos" />
         <module name="dtos" />
@@ -25,6 +26,7 @@
       <module name="logica" target="1.8" />
       <module name="mappers" target="1.8" />
       <module name="orm" target="1.8" />
+      <module name="seguridad" target="1.8" />
       <module name="servicio" target="1.8" />
     </bytecodeTargetLevel>
   </component>

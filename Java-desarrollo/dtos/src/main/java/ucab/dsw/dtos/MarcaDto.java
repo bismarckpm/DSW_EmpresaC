@@ -58,4 +58,14 @@ public class MarcaDto extends BaseDto {
     public void setMarcaTipo_Dto(MarcaTipoDto marcaTipoDto) {
         this.marcaTipoDto = marcaTipoDto;
     }
+
+    public String estado;
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 }
