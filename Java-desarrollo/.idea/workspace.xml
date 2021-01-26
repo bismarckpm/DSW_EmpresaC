@@ -23,12 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87c6d671-881a-45a8-ab00-e16a3b9c4375" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/pais/AllPaisComando.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/parroquia/AllParroquiaComando.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/MetodoConexion/AllMetodoConexionComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/MetodoConexion/AllMetodoConexionComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/nivelAcademico/AllNivelAcademicoComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/nivelAcademico/AllNivelAcademicoComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/ocupacion/AllOcupacionComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/ocupacion/AllOcupacionComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PaisServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PaisServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/ParroquiaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/ParroquiaServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/LugarServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/LugarServicioTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -204,7 +201,7 @@
       <workItem from="1611285855622" duration="5546000" />
       <workItem from="1611538098033" duration="14517000" />
       <workItem from="1611586123603" duration="7446000" />
-      <workItem from="1611674765265" duration="14387000" />
+      <workItem from="1611674765265" duration="14817000" />
     </task>
     <servers />
   </component>

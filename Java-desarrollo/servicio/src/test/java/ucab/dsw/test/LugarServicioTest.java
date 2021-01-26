@@ -40,7 +40,9 @@ public class LugarServicioTest {
     {
         ucab.dsw.servicio.ParroquiaServicio servicio = new ucab.dsw.servicio.ParroquiaServicio();
         Response respuesta= servicio.getAllParroquias();
-        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertNotNull(responseDto.get("parroquias"));
+
     }
 
 }
