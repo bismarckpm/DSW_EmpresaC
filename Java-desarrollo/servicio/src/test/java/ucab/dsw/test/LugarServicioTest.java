@@ -13,7 +13,8 @@ public class LugarServicioTest {
     {
         ucab.dsw.servicio.PaisServicio servicio = new ucab.dsw.servicio.PaisServicio();
         Response respuesta= servicio.getAllPaises();
-        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertNotNull(responseDto.get("paises"));
     }
 
    @Test

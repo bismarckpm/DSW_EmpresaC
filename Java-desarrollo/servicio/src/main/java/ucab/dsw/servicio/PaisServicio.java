@@ -2,6 +2,9 @@ package ucab.dsw.servicio;
 
 import ucab.dsw.accesodatos.DaoPais;
 import ucab.dsw.entidades.Pais;
+import ucab.dsw.logica.comando.categoria.AllCategorialComando;
+import ucab.dsw.logica.comando.pais.AllPaisComando;
+import ucab.dsw.logica.fabrica.Fabrica;
 
 
 import javax.json.Json;
@@ -37,46 +40,29 @@ public class PaisServicio {
     @Path( "/all" )
     public Response getAllPaises()
     {
-        JsonObject data;
+        JsonObject resul;
         try
         {
-            DaoPais dao= new DaoPais();
-            List<Pais> resultado= dao.findAll(Pais.class);
+            AllPaisComando comando= Fabrica.crear(AllPaisComando.class);
+            comando.execute();
 
-            JsonArrayBuilder paisesArrayJson= Json.createArrayBuilder();
-
-            for(Pais obj: resultado){
-
-                JsonObject pais = Json.createObjectBuilder().add("id",obj.get_id())
-                                                            .add("nombre",obj.get_nombre()).build();
-
-                paisesArrayJson.add(pais);
-
-            }
-
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200)
-                    .add("paises",paisesArrayJson).build();
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
 
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
-            data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
-                    .add("codigo",500).build();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje_soporte",ex.getMessage())
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            System.out.println(data);
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
 
 
         }
 
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
 
     }
 }

@@ -17,7 +17,7 @@ public class AllOcupacionComando extends BaseComando {
     @Override
     public void execute() {
 
-        DaoOcupacion dao = new DaoOcupacion();
+        DaoOcupacion dao= Fabrica.crear(DaoOcupacion.class);
         List<Ocupacion> resultado = dao.findAll(Ocupacion.class);
 
         for (Ocupacion obj : resultado) {

@@ -16,8 +16,8 @@ public class AllNivelAcademicoComando extends BaseComando {
 
     @Override
     public void execute() {
-
-        DaoNivelAcademico dao = new DaoNivelAcademico();
+        
+        DaoNivelAcademico dao= Fabrica.crear(DaoNivelAcademico.class);
         List<NivelAcademico> resultado = dao.findAll(NivelAcademico.class);
 
         for (NivelAcademico obj : resultado) {

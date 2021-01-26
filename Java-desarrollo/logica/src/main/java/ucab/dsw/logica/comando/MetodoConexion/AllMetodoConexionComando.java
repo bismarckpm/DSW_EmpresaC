@@ -18,7 +18,7 @@ public class AllMetodoConexionComando extends BaseComando {
     @Override
     public void execute() {
 
-        DaoMetodoConexion dao = new DaoMetodoConexion();
+        DaoMetodoConexion dao= Fabrica.crear(DaoMetodoConexion.class);
         List<MetodoConexion> resultado = dao.findAll(MetodoConexion.class);
 
         for (MetodoConexion obj : resultado) {
