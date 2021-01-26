@@ -43,7 +43,7 @@ public class MetodoConexionServicio {
         try {
             AllMetodoConexionComando comando= Fabrica.crear(AllMetodoConexionComando.class);
             comando.execute();
-            
+
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
         } catch (Exception ex) {

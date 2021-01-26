@@ -39,7 +39,7 @@ public class AllMetodoConexionComando extends BaseComando {
         responseDto.objeto=this.metodos;
 
 
-        JsonObject data= Json.createObjectBuilder().add("mensaje","Todas las categorias")
+        JsonObject data= Json.createObjectBuilder().add("mensaje","Todos los metodos de conexion")
                 .add("estado","success")
                 .add("metodos_conexion",metodos).build();
 

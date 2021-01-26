@@ -23,11 +23,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87c6d671-881a-45a8-ab00-e16a3b9c4375" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/MetodoConexion/AllMetodoConexionComando.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/nivelAcademico/AllNivelAcademicoComando.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/MetodoConexionTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/MetodoConexion/AllMetodoConexionComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/MetodoConexion/AllMetodoConexionComando.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/ciudad/AllCiudadesComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/ciudad/AllCiudadesComando.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/estado/AllEstadosComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/estado/AllEstadosComando.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/MetodoConexionServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/MetodoConexionServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/NivelAcademicoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/NivelAcademicoServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/LugarServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/LugarServicioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/NivelAcademicoServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/NivelAcademicoServicioTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +207,7 @@
       <workItem from="1611285855622" duration="5546000" />
       <workItem from="1611538098033" duration="14517000" />
       <workItem from="1611586123603" duration="7446000" />
-      <workItem from="1611674765265" duration="8638000" />
+      <workItem from="1611674765265" duration="9905000" />
     </task>
     <servers />
   </component>

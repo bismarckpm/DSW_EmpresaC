@@ -3,6 +3,7 @@ package ucab.dsw.test;
 import org.junit.Assert;
 import org.junit.Test;
 
+import javax.json.JsonObject;
 import javax.ws.rs.core.Response;
 
 public class LugarServicioTest {
@@ -20,7 +21,8 @@ public class LugarServicioTest {
     {
         ucab.dsw.servicio.EstadoServicio servicio = new ucab.dsw.servicio.EstadoServicio();
         Response respuesta= servicio.getAllEstados();
-        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertNotNull(responseDto.get("estados"));
     }
 
     @Test
@@ -28,7 +30,8 @@ public class LugarServicioTest {
     {
         ucab.dsw.servicio.CiudadServicio servicio = new ucab.dsw.servicio.CiudadServicio();
         Response respuesta= servicio.getAllCiudades();
-        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertNotNull(responseDto.get("ciudades"));
     }
 
     @Test

@@ -41,7 +41,7 @@ public class AllEstadosComando extends BaseComando {
         responseDto.objeto=this.estados;
 
 
-        JsonObject data= Json.createObjectBuilder().add("mensaje","Todas las categorias")
+        JsonObject data= Json.createObjectBuilder().add("mensaje","Todos los estados")
                 .add("estado","success")
                 .add("estados",estados).build();
 
