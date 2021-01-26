@@ -23,13 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87c6d671-881a-45a8-ab00-e16a3b9c4375" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/ciudad/AllCiudadesComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_9_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_9_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_0_9_1.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/estado/AllEstadosComando.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CiudadServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CiudadServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/EstadoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/EstadoServicio.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +200,7 @@
       <workItem from="1611285855622" duration="5546000" />
       <workItem from="1611538098033" duration="14517000" />
       <workItem from="1611586123603" duration="7446000" />
-      <workItem from="1611674765265" duration="6249000" />
+      <workItem from="1611674765265" duration="7369000" />
     </task>
     <servers />
   </component>
