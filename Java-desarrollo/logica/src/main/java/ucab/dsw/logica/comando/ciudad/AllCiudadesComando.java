@@ -46,7 +46,7 @@ public class AllCiudadesComando extends BaseComando {
 
         JsonObject data= Json.createObjectBuilder().add("mensaje","Todas las categorias")
                 .add("estado","success")
-                .add("categorias",ciudades).build();
+                .add("ciudades",ciudades).build();
 
         return data;
     }

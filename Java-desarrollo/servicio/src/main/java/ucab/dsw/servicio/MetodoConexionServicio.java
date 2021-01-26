@@ -2,6 +2,9 @@ package ucab.dsw.servicio;
 
 import ucab.dsw.accesodatos.DaoMetodoConexion;
 import ucab.dsw.entidades.MetodoConexion;
+import ucab.dsw.logica.comando.MetodoConexion.AllMetodoConexionComando;
+import ucab.dsw.logica.comando.ciudad.AllCiudadesComando;
+import ucab.dsw.logica.fabrica.Fabrica;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -36,34 +39,24 @@ public class MetodoConexionServicio {
     @GET
     @Path("/all")
     public Response getAllMetodoConexion() {
-        JsonObject data;
+        JsonObject resul;
         try {
-            DaoMetodoConexion dao = new DaoMetodoConexion();
-            List<MetodoConexion> resultado = dao.findAll(MetodoConexion.class);
-            JsonArrayBuilder metodosConexionArrayJson = Json.createArrayBuilder();
+            AllMetodoConexionComando comando= Fabrica.crear(AllMetodoConexionComando.class);
+            comando.execute();
+            
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
-            for (MetodoConexion obj : resultado) {
-
-                JsonObject metodosConexion = Json.createObjectBuilder().add("id", obj.get_id())
-                        .add("nombre", obj.get_nombre()).build();
-
-                metodosConexionArrayJson.add(metodosConexion);
-            }
-            data = Json.createObjectBuilder()
-                    .add("estado", "success")
-                    .add("codigo", 200)
-                    .add("metodos_conexion", metodosConexionArrayJson).build();
         } catch (Exception ex) {
-            data = Json.createObjectBuilder()
-                    .add("estado", "exception!!!")
-                    .add("excepcion", ex.getMessage())
-                    .add("codigo", 500).build();
 
-            System.out.println(data);
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje_soporte",ex.getMessage())
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
+
     }
 
 
