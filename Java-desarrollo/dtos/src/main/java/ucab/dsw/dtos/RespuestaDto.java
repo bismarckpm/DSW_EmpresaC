@@ -70,4 +70,15 @@ public class RespuestaDto extends BaseDto {
     public void setOpciones(List<OpcionSimpleMultiplePreguntaDto> opciones) {
         this.opciones = opciones;
     }
+
+
+    private String estado;
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 }
