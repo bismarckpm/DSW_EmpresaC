@@ -23,10 +23,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87c6d671-881a-45a8-ab00-e16a3b9c4375" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/parroquia/AllParroquiaComando.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/presentacion/ActivatePresentacionComando.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/presentacion/AllPresentacionComando.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/presentacion/DeletePresentacionComando.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/presentacion/GetPresentacionComando.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/presentacion/InsertPresentacionComando.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/presentacion/UpdatePresentacionComando.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mappers/src/main/java/ucab/dsw/mappers/PresentacionMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mappers/src/main/java/ucab/dsw/mappers/TipoMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/ParroquiaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/ParroquiaServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/LugarServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/LugarServicioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/categoria/GetCategoriaComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/categoria/GetCategoriaComando.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logica/target/classes/ucab/dsw/logica/comando/categoria/GetCategoriaComando.class" beforeDir="false" afterPath="$PROJECT_DIR$/logica/target/classes/ucab/dsw/logica/comando/categoria/GetCategoriaComando.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logica/target/logica-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/logica/target/logica-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logica/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/logica/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mappers/target/mappers-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/mappers/target/mappers-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mappers/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/mappers/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PresentacionServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PresentacionServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/PresentacionServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/PresentacionServicioTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +214,7 @@
       <workItem from="1611285855622" duration="5546000" />
       <workItem from="1611538098033" duration="14517000" />
       <workItem from="1611586123603" duration="7446000" />
-      <workItem from="1611674765265" duration="14817000" />
+      <workItem from="1611674765265" duration="24356000" />
     </task>
     <servers />
   </component>
@@ -254,28 +267,28 @@
     </state>
     <state x="374" y="242" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.980@0.0.1280.980" timestamp="1610935516596" />
     <state x="374" y="243" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.984@0.0.1280.984" timestamp="1611290707562" />
-    <state width="980" height="77" key="GridCell.Tab.0.bottom" timestamp="1611702632970">
+    <state width="980" height="136" key="GridCell.Tab.0.bottom" timestamp="1611717326834">
       <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="980" height="77" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1611702632970" />
+    <state width="980" height="136" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1611717326834" />
     <state width="1238" height="165" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1610936076849" />
     <state width="1236" height="216" key="GridCell.Tab.0.bottom/0.0.1280.984@0.0.1280.984" timestamp="1611594913090" />
-    <state width="980" height="77" key="GridCell.Tab.0.center" timestamp="1611702632970">
+    <state width="980" height="136" key="GridCell.Tab.0.center" timestamp="1611717326834">
       <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="980" height="77" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1611702632970" />
+    <state width="980" height="136" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1611717326834" />
     <state width="1238" height="165" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1610936076848" />
     <state width="1236" height="216" key="GridCell.Tab.0.center/0.0.1280.984@0.0.1280.984" timestamp="1611594913090" />
-    <state width="980" height="77" key="GridCell.Tab.0.left" timestamp="1611702632970">
+    <state width="980" height="136" key="GridCell.Tab.0.left" timestamp="1611717326834">
       <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="980" height="77" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1611702632970" />
+    <state width="980" height="136" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1611717326834" />
     <state width="1238" height="165" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1610936076848" />
     <state width="1236" height="216" key="GridCell.Tab.0.left/0.0.1280.984@0.0.1280.984" timestamp="1611594913090" />
-    <state width="980" height="77" key="GridCell.Tab.0.right" timestamp="1611702632970">
+    <state width="980" height="136" key="GridCell.Tab.0.right" timestamp="1611717326834">
       <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="980" height="77" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1611702632970" />
+    <state width="980" height="136" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1611717326834" />
     <state width="1238" height="165" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1610936076849" />
     <state width="1236" height="216" key="GridCell.Tab.0.right/0.0.1280.984@0.0.1280.984" timestamp="1611594913090" />
     <state x="483" y="194" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1611556226769">
