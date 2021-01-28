@@ -8,8 +8,6 @@ import ucab.dsw.jwt.Jwt;
 import ucab.dsw.logica.comando.recuperacion.RecuperacionComando;
 import ucab.dsw.logica.fabrica.Fabrica;
 
-import javax.json.Json;
-import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;

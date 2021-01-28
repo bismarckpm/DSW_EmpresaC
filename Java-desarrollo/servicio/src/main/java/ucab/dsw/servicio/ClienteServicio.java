@@ -1,6 +1,8 @@
 package ucab.dsw.servicio;
 import ucab.dsw.accesodatos.*;
 import ucab.dsw.entidades.*;
+import ucab.dsw.logica.comando.cliente.*;
+import ucab.dsw.logica.fabrica.Fabrica;
 
 import javax.json.*;
 import javax.json.JsonObject;
@@ -38,106 +40,21 @@ public class ClienteServicio {
     @GET
     @Path("/estudios/{_id}")
     public Response consultaEstudios_Solicitados(@PathParam("_id") long _id) {
-
-        JsonArrayBuilder builder = Json.createArrayBuilder();
-        JsonArrayBuilder builderArrayEncuestado =Json.createArrayBuilder();
-        JsonObject builderObject;
-        JsonObject data;
-
-        DaoSolicitudEstudio dao = new DaoSolicitudEstudio();
-        DaoMarca daoMarca = new DaoMarca();
-        DaoSubcategoria daoSubcategoria = new DaoSubcategoria ();
-        DaoCategoria daoCategoria = new DaoCategoria();
-        DaoParticipacion daoParticipacion=new DaoParticipacion();
-        DaoEncuestado daoEncuestado = new DaoEncuestado();
-        DaoUsuario daoUsuario = new DaoUsuario();
-
-        DaoCaracteristicaDemografica daoCaracteristica_demografica = new DaoCaracteristicaDemografica();
-
+        JsonObject resul;
         try {
-            List<SolicitudEstudio>resultado = dao.getEstudiosByClienteId(_id);
+            ConsultaEstudiosSolicitadosComando comando = Fabrica.crearComandoConId(ConsultaEstudiosSolicitadosComando.class, _id);
+            comando.execute();
 
-            for (SolicitudEstudio obj : resultado) {
-
-                CaracteristicaDemografica caracteristicas= daoCaracteristica_demografica.find(obj.get_caracteristicademografica().get_id(), CaracteristicaDemografica.class);
-
-                builderObject= Json.createObjectBuilder().add("edad_min",caracteristicas.get_edad_min())
-                        .add("edad_max",caracteristicas.get_edad_max())
-                        .add("nivel_socieconomico",caracteristicas.get_nivel_socioeconomico())
-                        .add("nacionalidad",caracteristicas.get_nacionalidad())
-                        .add("cantidad_hijos",caracteristicas.get_cantidad_hijos())
-                        .add("genero",caracteristicas.get_genero())
-                        .add("parroquia",caracteristicas.get_Parroquia_demografia().get_nombre())
-                        .add("estado",caracteristicas.get_Parroquia_demografia().get_ciudad().get_estado().get_nombre())
-                        .add("ciudad",caracteristicas.get_Parroquia_demografia().get_ciudad().get_nombre())
-                        .add("pais",caracteristicas.get_Parroquia_demografia().get_ciudad().get_estado().get_pais().get_nombre())
-                        .add("nivel_academico",caracteristicas.get_nivel_academico_demografia().get_nombre()).build();
-
-
-                List<Participacion> participacion= daoParticipacion.getParticipacionByEstudio(obj.get_id());
-
-                if(participacion!=null){
-
-                    for(Participacion j:participacion){
-                    
-                    Participacion participacion1 = daoParticipacion.find(j.get_id(), Participacion.class);
-                    Encuestado encuestado1 = daoEncuestado.find(j.get_encuestado().get_id(),Encuestado.class);
-                    Usuario usuario1 = daoUsuario.find(encuestado1.get_usuario_encuestado().get_id(),Usuario.class);
-
-                    builderArrayEncuestado.add(Json.createObjectBuilder().add("participacion_id", participacion1.get_id())
-                            .add("doc_id", encuestado1.get_doc_id())
-                            .add("usuario",usuario1.get_usuario())
-                            .add("correo",encuestado1.get_correo())
-                            .add("nombre",encuestado1.get_nombre())
-                            .add("apellido",encuestado1.get_apellido())
-                            .add("estado",participacion1.get_estado()));
-                    }
-
-                }
-                
-                SolicitudEstudio solicitudEstudio = dao.find(obj.get_id(),SolicitudEstudio.class);
-                Marca marca = daoMarca.find(solicitudEstudio.get_marca().get_id(), Marca.class);
-                Subcategoria subcategoria = daoSubcategoria.find(marca.get_subcategoria().get_id(),Subcategoria.class);
-                Categoria categoria = daoCategoria.find(subcategoria.get_categoria().get_id(),Categoria.class);
-
-                String nombre_encuesta = "";
-                if (solicitudEstudio.get_encuesta()==null){
-                    nombre_encuesta = "Encuesta sin nombre";
-                }else{
-                    nombre_encuesta = solicitudEstudio.get_encuesta().get_nombre();
-                }
-
-                builder.add(Json.createObjectBuilder().add("id", solicitudEstudio.get_id())
-                        .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
-                        .add("modo_encuesta",solicitudEstudio.get_modoencuesta())
-                        .add("caracteristica_demografica",builderObject)
-                        .add("marca",marca.get_nombre())
-                        .add("subcategoria",subcategoria.get_nombre())
-                        .add("categoria",categoria.get_nombre())
-                        .add("participacion",builderArrayEncuestado)
-                        .add("nombre_encuesta", nombre_encuesta)
-                        .add("estado", solicitudEstudio.get_estado()));
-            }
-
-
-            data= Json.createObjectBuilder().add("estado","success")
-                    .add("mensaje","Estudios del cliente "+ _id)
-                    .add("codigo",200)
-                    .add("estudios",builder).build();
-        }
-        catch (Exception ex){
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+        } catch (Exception ex) {
             ex.printStackTrace();
-            data= Json.createObjectBuilder()
-                    .add("estado","error")
-                    .add("mensaje",ex.getMessage())
-                    .add("codigo",500).build();
+            resul = Json.createObjectBuilder()
+                    .add("estado", "internal_server_error")
+                    .add("mensaje_soporte", ex.getMessage())
+                    .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
-            System.out.println(data);
-            return Response.status(Response.Status.OK).entity(data).build();
-
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
     }
 
     /**
@@ -149,34 +66,24 @@ public class ClienteServicio {
     *         en formato JSON con los siguiente atributos: codigo, estado, cliente_id 
     *         y mensaje.
     */
-    @GET
+   @GET
     @Path("/get-id/{_id}")
     public Response getClienteId(@PathParam("_id") long _id) {
-
-        JsonObject data;
-
-        DaoCliente dao = new DaoCliente();
+        JsonObject resul;
         try {
+            GetClienteIdComando comando = Fabrica.crearComandoConId(GetClienteIdComando.class, _id);
+            comando.execute();
 
-            Cliente cliente= dao.getClienteId(_id);
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            resul = Json.createObjectBuilder()
+                    .add("estado", "internal_server_error")
+                    .add("mensaje_soporte", ex.getMessage())
+                    .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
-            data= Json.createObjectBuilder().add("estado","success")
-                    .add("mensaje","uid del cliente es: "+ _id)
-                    .add("codigo",200)
-                    .add("cliente_id",cliente.get_id()).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-        catch (Exception ex){
-            data= Json.createObjectBuilder()
-                    .add("estado","error")
-                    .add("mensaje",ex.getMessage())
-                    .add("codigo",500).build();
-
-            System.out.println(data);
-            return Response.status(Response.Status.OK).entity(data).build();
-
-        }
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
     }
     /**
      * Esta funcion consiste en obtener la respuesta de un estudio en especifico
@@ -190,39 +97,21 @@ public class ClienteServicio {
     @GET
     @Path("/respuesta-analista/{id}")
     public Response respuesta_analista(@PathParam("id") long _id) {
-        JsonObject data;
-        JsonArrayBuilder builder = Json.createArrayBuilder();
+        JsonObject resul;
         try {
+            RespuestaAnalistaComando comando = Fabrica.crearComandoConId(RespuestaAnalistaComando.class, _id);
+            comando.execute();
 
-            DaoSolicitudEstudio daoSolicitudEstudio = new DaoSolicitudEstudio();
-            SolicitudEstudio solicitudEstudio=daoSolicitudEstudio.find(_id,SolicitudEstudio.class);
-
-                if (solicitudEstudio.get_resultadoanalista() != null) {
-                    JsonObject p = Json.createObjectBuilder().add("resultado", solicitudEstudio.get_resultadoanalista())
-                            .build();
-                    builder.add(p);
-                }
-
-            data = Json.createObjectBuilder()
-                    .add("estado", "success")
-                    .add("codigo", 200)
-                    .add("Preguntas", builder).build();
-
-
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         } catch (Exception ex) {
-            String problema = ex.getMessage();
+            ex.printStackTrace();
+            resul = Json.createObjectBuilder()
+                    .add("estado", "internal_server_error")
+                    .add("mensaje_soporte", ex.getMessage())
+                    .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
-            data = Json.createObjectBuilder()
-                    .add("estado", "exception!!!")
-                    .add("excepcion", ex.getMessage())
-                    .add("codigo", 500).build();
-
-
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-        //builder.build();
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
     }
 
 }

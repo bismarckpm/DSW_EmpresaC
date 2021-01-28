@@ -26,6 +26,18 @@ public class EncuestaDto extends BaseDto {
         this.nombre = nombre;
     }
 
+    private String estado;
+
+    public String getEstado()
+    {
+        return estado;
+    }
+
+    public void setEstado( String estado )
+    {
+        this.estado = estado;
+    }
+
     private MarcaDto marcaDto;
 
     public MarcaDto getMarcaDto()

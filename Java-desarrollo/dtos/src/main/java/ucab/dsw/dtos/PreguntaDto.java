@@ -16,6 +16,8 @@ public class PreguntaDto extends BaseDto {
 
     private String descripcion;
 
+    private String estado;
+
     private String tipopregunta;
 
 
@@ -56,6 +58,14 @@ public class PreguntaDto extends BaseDto {
 
     public void setTipopregunta(String tipopregunta) {
         this.tipopregunta = tipopregunta;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getDescripcion() {
