@@ -8,6 +8,8 @@ import ucab.dsw.jwt.Jwt;
 import ucab.dsw.logica.comando.recuperacion.RecuperacionComando;
 import ucab.dsw.logica.fabrica.Fabrica;
 
+import javax.json.Json;
+import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -44,7 +46,7 @@ public class RecuperacionServicio extends AplicacionBase{
         }catch ( UsuarioExistenteExcepcion ex ){
             ex.printStackTrace();
             System.out.println(ex.getMensaje());
-            JsonObject data= Json.createObjectBuilder()
+            JsonObject data = Json.createObjectBuilder()
                     .add("estado","unauthorized")
                     .add("mensaje_soporte",ex.getMensaje())
                     .add("mensaje","Usuario no existente").build();
@@ -52,6 +54,7 @@ public class RecuperacionServicio extends AplicacionBase{
             return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
         } catch ( Exception ex ) {
             ex.printStackTrace();
+
             JsonObject data= Json.createObjectBuilder()
                     .add("estado","internal_server_error")
                     .add("mensaje_soporte",ex.getMessage())

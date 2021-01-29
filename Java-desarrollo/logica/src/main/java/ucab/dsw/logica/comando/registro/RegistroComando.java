@@ -5,6 +5,7 @@ import ucab.dsw.directorio.DirectorioActivo;
 import ucab.dsw.dtos.*;
 import ucab.dsw.entidades.*;
 import ucab.dsw.excepciones.UsuarioExistenteExcepcion;
+import ucab.dsw.jwt.Jwt;
 import ucab.dsw.logica.comando.BaseComando;
 import ucab.dsw.logica.fabrica.Fabrica;
 import ucab.dsw.mappers.*;
@@ -109,8 +110,9 @@ public class RegistroComando extends BaseComando {
             OcupacionEncuestado resulO = daoOcupacionEncuestado.insert( ocupacionEncuestado );
         }
 
-        //Jwt jwt=new Jwt();
-        //this.token= jwt.generarToken( nuevoEncuestadoDto.getUsuarioLdap() );
+        Jwt jwt=new Jwt();
+        this.token= jwt.generarToken( Long.parseLong( nuevoEncuestadoDto.getUsuarioLdap().getUid() ) );
+
     }
 
     @Override
