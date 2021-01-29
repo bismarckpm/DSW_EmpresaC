@@ -53,7 +53,6 @@ public class SubcategoriaServicio extends AplicacionBase{
             AllSubcategoriaComando comando= Fabrica.crear(AllSubcategoriaComando.class);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
 

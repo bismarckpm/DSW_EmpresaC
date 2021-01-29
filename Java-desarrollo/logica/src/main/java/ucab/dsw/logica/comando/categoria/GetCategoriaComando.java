@@ -26,7 +26,7 @@ public class GetCategoriaComando extends BaseComando {
     @Override
     public void execute() {
         try{
-            DaoCategoria dao = new DaoCategoria();
+            DaoCategoria dao= Fabrica.crear(DaoCategoria.class);
             Categoria categoria = dao.find(_id,Categoria.class);
             this.categoriaDto= CategoriaMapper.mapEntityToDto(categoria);
 
