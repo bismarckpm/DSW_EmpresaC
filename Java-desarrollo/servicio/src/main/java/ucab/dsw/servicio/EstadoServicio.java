@@ -1,15 +1,10 @@
 package ucab.dsw.servicio;
 
-import ucab.dsw.accesodatos.DaoEstado;
-import ucab.dsw.entidades.Estado;
-import ucab.dsw.logica.comando.ciudad.AllCiudadesComando;
 import ucab.dsw.logica.comando.estado.AllEstadosComando;
 import ucab.dsw.logica.fabrica.Fabrica;
-
 import javax.json.*;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
-import java.util.List;
 
 /**
  * Una clase para la administracion de los estados

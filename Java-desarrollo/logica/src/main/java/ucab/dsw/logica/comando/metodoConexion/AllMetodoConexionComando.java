@@ -1,4 +1,4 @@
-package ucab.dsw.logica.comando.MetodoConexion;
+package ucab.dsw.logica.comando.metodoConexion;
 
 import ucab.dsw.accesodatos.*;
 import ucab.dsw.dtos.ResponseDto;
