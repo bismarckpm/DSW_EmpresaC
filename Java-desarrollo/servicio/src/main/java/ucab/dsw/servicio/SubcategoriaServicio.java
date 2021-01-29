@@ -1,28 +1,15 @@
 package ucab.dsw.servicio;
 
 import org.eclipse.persistence.exceptions.DatabaseException;
-import ucab.dsw.accesodatos.DaoMarca;
-import ucab.dsw.accesodatos.DaoPresentacion;
-import ucab.dsw.dtos.PresentacionDto;
-import ucab.dsw.entidades.Marca;
-import ucab.dsw.entidades.Presentacion;
-import ucab.dsw.entidades.Subcategoria;
-import ucab.dsw.accesodatos.DaoSubcategoria;
-import ucab.dsw.accesodatos.DaoCategoria;
 import ucab.dsw.dtos.SubcategoriaDto;
-import ucab.dsw.entidades.Categoria;
-import ucab.dsw.excepciones.PruebaExcepcion;
 import ucab.dsw.logica.comando.subcategoria.*;
 import ucab.dsw.logica.fabrica.Fabrica;
-
 import javax.json.Json;
-import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.persistence.PersistenceException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 /**
  * Una clase para la administracion completa de las subcategorias de MERCADEOUCAB
@@ -53,7 +40,6 @@ public class SubcategoriaServicio extends AplicacionBase{
             AllSubcategoriaComando comando= Fabrica.crear(AllSubcategoriaComando.class);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
 

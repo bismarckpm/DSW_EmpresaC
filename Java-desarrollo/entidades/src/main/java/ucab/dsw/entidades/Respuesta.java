@@ -30,6 +30,9 @@ public class Respuesta extends EntidadBase{
     @JoinColumn( name = "Participacion_id" )
     private Participacion _participacion;
 
+    @Column( name = "estado" )
+    private String _estado;
+
     @OneToMany( mappedBy = "_respuesta", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
     private List<RespuestaOpcion> _respuestaopcion;
 
@@ -63,6 +66,14 @@ public class Respuesta extends EntidadBase{
 
     public void set_respuestadesarrollo(String _respuestadesarrollo) {
         this._respuestadesarrollo = _respuestadesarrollo;
+    }
+
+    public String get_estado() {
+        return _estado;
+    }
+
+    public void set_estado(String _estado) {
+        this._estado = _estado;
     }
 
     public int get_respuestaboolean() {

@@ -3,6 +3,7 @@ package ucab.dsw.test;
 import org.junit.Assert;
 import org.junit.Test;
 
+import javax.json.JsonObject;
 import javax.ws.rs.core.Response;
 
 public class NivelAcademicoServicioTest {
@@ -12,7 +13,8 @@ public class NivelAcademicoServicioTest {
     {
         ucab.dsw.servicio.NivelAcademicoServicio servicio = new ucab.dsw.servicio.NivelAcademicoServicio();
         Response respuesta= servicio.getAllNivelesAcademicos();
-        Assert.assertEquals(respuesta.getStatus(),Response.Status.OK.getStatusCode());
+        JsonObject responseDto= (JsonObject) respuesta.getEntity();
+        Assert.assertNotNull(responseDto.get("niveles_academicos"));
     }
 
 }

@@ -6,6 +6,7 @@ import ucab.dsw.dtos.PresentacionDto;
 import ucab.dsw.dtos.TipoDto;
 import ucab.dsw.servicio.PresentacionServicio;
 
+import javax.json.JsonObject;
 import javax.ws.rs.core.Response;
 
 
@@ -24,7 +25,9 @@ public class PresentacionServicioTest
         presentacionDto.setTipoDto( tipoDto );
 
         Response resultado = servicio.addPresentacion( presentacionDto);
-        Assert.assertNotEquals( resultado, 1 );
+
+        JsonObject responseDto= (JsonObject) resultado.getEntity();
+        Assert.assertNotEquals(0,responseDto.get("presentacion_id"));
 
     }
 
@@ -39,7 +42,8 @@ public class PresentacionServicioTest
 
 
         Response resultado = servicio.changePresentacion( 5,presentacionDto);
-        Assert.assertNotEquals( resultado, 0 );
+        JsonObject responseDto= (JsonObject) resultado.getEntity();
+        Assert.assertEquals("\"200ml\"",responseDto.get("nombre_presentacion").toString());
 
     }
 
@@ -49,7 +53,8 @@ public class PresentacionServicioTest
         PresentacionServicio servicio = new PresentacionServicio();;
 
         Response resultado = servicio.EliminarPresentacion( 1 );
-        Assert.assertNotEquals( resultado, 0 );
+        JsonObject responseDto= (JsonObject) resultado.getEntity();
+        Assert.assertEquals("\"inactivo\"",responseDto.get("estado_presentacion").toString());
 
     }
     @Test
@@ -58,7 +63,8 @@ public class PresentacionServicioTest
         PresentacionServicio servicio = new PresentacionServicio();;
 
         Response resultado = servicio.ActivarPresentacion( 2 );
-        Assert.assertNotEquals( resultado, 0 );
+        JsonObject responseDto= (JsonObject) resultado.getEntity();
+        Assert.assertEquals("\"activo\"",responseDto.get("estado_presentacion").toString());
 
     }
 
@@ -67,7 +73,8 @@ public class PresentacionServicioTest
     {
         PresentacionServicio servicio = new PresentacionServicio();;
         Response resultado= servicio.findPresentacion(2);
-        Assert.assertNotEquals( resultado, 0 );
+        JsonObject responseDto= (JsonObject) resultado.getEntity();
+        Assert.assertNotNull(responseDto.get("categoria"));
 
 
     }
@@ -76,7 +83,8 @@ public class PresentacionServicioTest
     {
         PresentacionServicio servicio = new PresentacionServicio();;
         Response resultado= servicio.findAllPresentacion();
-        Assert.assertNotEquals( resultado, 0 );
+        JsonObject responseDto= (JsonObject) resultado.getEntity();
+        Assert.assertNotNull(responseDto.get("presentaciones"));
 
 
     }
