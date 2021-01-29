@@ -23,21 +23,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87c6d671-881a-45a8-ab00-e16a3b9c4375" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/tipo/ActivateTipoComando.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/tipo/AllTipoComando.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/tipo/DeleteTipoComando.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/tipo/GetTipoComando.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/tipo/InsertTipoComando.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/tipo/UpdateTipoComando.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/app/admin/Servicios/solicitud-estudio.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/app/admin/Servicios/solicitud-estudio.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/app/admin/componentes/administrar-estudios-progreso/administrar-estudios-progreso.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/app/admin/componentes/administrar-estudios-progreso/administrar-estudios-progreso.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/app/comun/componentes/aside/aside.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/app/comun/componentes/aside/aside.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/app/comun/componentes/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/app/comun/componentes/login/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/app/comun/servicios/login/login.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/app/comun/servicios/login/login.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/urlGlobal.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/urlGlobal.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/target/logica-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/logica/target/logica-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/logica/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mappers/src/main/java/ucab/dsw/mappers/TipoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mappers/src/main/java/ucab/dsw/mappers/TipoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mappers/target/mappers-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/mappers/target/mappers-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mappers/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/mappers/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SubcategoriaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SubcategoriaServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/TipoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/TipoServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/TipoServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/TipoServicioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PruebaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PruebaServicio.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,17 +83,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.MarcaServicioTest.editMarca">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="MarcaServicioTest.editMarca" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <extension name="coverage">
@@ -211,7 +193,9 @@
       <workItem from="1611538098033" duration="14517000" />
       <workItem from="1611586123603" duration="7446000" />
       <workItem from="1611674765265" duration="24979000" />
-      <workItem from="1611785423274" duration="8921000" />
+      <workItem from="1611785423274" duration="9212000" />
+      <workItem from="1611934858024" duration="2544000" />
+      <workItem from="1611944043154" duration="1451000" />
     </task>
     <servers />
   </component>
@@ -264,28 +248,28 @@
     </state>
     <state x="374" y="242" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.980@0.0.1280.980" timestamp="1610935516596" />
     <state x="374" y="243" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.984@0.0.1280.984" timestamp="1611290707562" />
-    <state width="980" height="136" key="GridCell.Tab.0.bottom" timestamp="1611796584202">
+    <state width="980" height="136" key="GridCell.Tab.0.bottom" timestamp="1611942273865">
       <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="980" height="136" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1611796584202" />
+    <state width="980" height="136" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1611942273865" />
     <state width="1238" height="165" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1610936076849" />
     <state width="1236" height="216" key="GridCell.Tab.0.bottom/0.0.1280.984@0.0.1280.984" timestamp="1611594913090" />
-    <state width="980" height="136" key="GridCell.Tab.0.center" timestamp="1611796584201">
+    <state width="980" height="136" key="GridCell.Tab.0.center" timestamp="1611942273864">
       <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="980" height="136" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1611796584201" />
+    <state width="980" height="136" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1611942273864" />
     <state width="1238" height="165" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1610936076848" />
     <state width="1236" height="216" key="GridCell.Tab.0.center/0.0.1280.984@0.0.1280.984" timestamp="1611594913090" />
-    <state width="980" height="136" key="GridCell.Tab.0.left" timestamp="1611796584201">
+    <state width="980" height="136" key="GridCell.Tab.0.left" timestamp="1611942273864">
       <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="980" height="136" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1611796584201" />
+    <state width="980" height="136" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1611942273864" />
     <state width="1238" height="165" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1610936076848" />
     <state width="1236" height="216" key="GridCell.Tab.0.left/0.0.1280.984@0.0.1280.984" timestamp="1611594913090" />
-    <state width="980" height="136" key="GridCell.Tab.0.right" timestamp="1611796584201">
+    <state width="980" height="136" key="GridCell.Tab.0.right" timestamp="1611942273865">
       <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="980" height="136" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1611796584201" />
+    <state width="980" height="136" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1611942273865" />
     <state width="1238" height="165" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1610936076849" />
     <state width="1236" height="216" key="GridCell.Tab.0.right/0.0.1280.984@0.0.1280.984" timestamp="1611594913090" />
     <state x="483" y="194" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1611556226769">
