@@ -42,7 +42,6 @@ public class PaisServicio {
 
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
-
         }
         catch ( Exception ex )
         {
@@ -54,9 +53,6 @@ public class PaisServicio {
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
 
-
         }
-
-
     }
 }

@@ -47,10 +47,6 @@ public class EstadoServicio extends AplicacionBase {
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
 
-
         }
-
-
-
     }
 }

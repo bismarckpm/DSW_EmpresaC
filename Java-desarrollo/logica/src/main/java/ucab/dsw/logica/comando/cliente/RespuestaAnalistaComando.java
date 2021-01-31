@@ -44,7 +44,7 @@ public class RespuestaAnalistaComando extends BaseComando {
         JsonObject data= Json.createObjectBuilder()
                 .add("estado","success")
                 .add("mensaje","Respuesta consultada")
-                .add("respuesta",respuesta).build();
+                .add("Preguntas",respuesta).build();
 
         return data;
     }

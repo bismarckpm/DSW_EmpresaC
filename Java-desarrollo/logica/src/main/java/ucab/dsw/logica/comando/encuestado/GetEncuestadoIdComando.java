@@ -43,7 +43,7 @@ public class GetEncuestadoIdComando extends BaseComando {
         JsonObject data= Json.createObjectBuilder()
                 .add("estado","success")
                 .add("mensaje","id del cliente es: "+ _id)
-                .add("encuestado",encuestadoDto.getId()).build();
+                .add("encuestado_id",encuestadoDto.getId()).build();
 
         return data;
     }

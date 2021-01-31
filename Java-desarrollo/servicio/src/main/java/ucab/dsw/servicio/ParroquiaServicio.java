@@ -42,7 +42,6 @@ public class ParroquiaServicio extends AplicacionBase {
 
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
-
         }
         catch ( Exception ex )
         {
@@ -53,11 +52,6 @@ public class ParroquiaServicio extends AplicacionBase {
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
-
-
         }
-
-
-
     }
 }

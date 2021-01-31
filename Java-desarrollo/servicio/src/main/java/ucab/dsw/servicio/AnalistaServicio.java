@@ -52,10 +52,7 @@ public class AnalistaServicio {
             EstudiosAsignadosComando comando= Fabrica.crearComandoConId(EstudiosAsignadosComando.class,_id);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-
-
 
         }
         catch (Exception ex){
@@ -86,7 +83,6 @@ public class AnalistaServicio {
             EmpezarEstudioComando comando= Fabrica.crearComandoConId(EmpezarEstudioComando.class,_id);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         }
         catch ( Exception ex )
@@ -123,9 +119,7 @@ public class AnalistaServicio {
             DeleteParticipacionComando comando=Fabrica.crearComandoConId(DeleteParticipacionComando.class,_id);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-
 
         }
         catch ( Exception ex )
@@ -158,9 +152,7 @@ public class AnalistaServicio {
             EstudiosTelefonoComando comando= Fabrica.crearComandoConId(EstudiosTelefonoComando.class,_id);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-
 
         }
         catch (Exception ex){
@@ -194,7 +186,6 @@ public class AnalistaServicio {
             ResponderEstudioComando comando= Fabrica.crearComandoConDto(ResponderEstudioComando.class,respuestaAnalistaDto);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         }
         catch ( Exception ex )
@@ -228,7 +219,6 @@ public class AnalistaServicio {
             RespuestasEstudioComando comando= Fabrica.crearComandoConId(RespuestasEstudioComando.class,_id);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
         }
@@ -261,7 +251,6 @@ public class AnalistaServicio {
             RespuestasPorcentajeComando comando= Fabrica.crearComandoConId(RespuestasPorcentajeComando.class,_id);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
         }
@@ -275,6 +264,5 @@ public class AnalistaServicio {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
     }
-
 
 }

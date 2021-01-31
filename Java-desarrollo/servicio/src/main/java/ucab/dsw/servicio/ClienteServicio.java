@@ -109,5 +109,4 @@ public class ClienteServicio {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
     }
-
 }

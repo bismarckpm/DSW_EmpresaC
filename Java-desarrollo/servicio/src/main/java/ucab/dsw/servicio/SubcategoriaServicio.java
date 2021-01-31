@@ -42,7 +42,6 @@ public class SubcategoriaServicio extends AplicacionBase{
 
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
-
         }
         catch ( Exception ex )
         {
@@ -53,8 +52,6 @@ public class SubcategoriaServicio extends AplicacionBase{
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
-
-
         }
 
     }
@@ -77,7 +74,6 @@ public class SubcategoriaServicio extends AplicacionBase{
             InsertSubcategoriaComando comando=Fabrica.crearComandoConDto(InsertSubcategoriaComando.class,subcategoriaDto);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
         }
@@ -120,7 +116,6 @@ public class SubcategoriaServicio extends AplicacionBase{
             DeleteSubcategoriaComando comando=Fabrica.crearComandoConId(DeleteSubcategoriaComando.class,_id);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         }
         catch ( Exception ex )
@@ -153,7 +148,6 @@ public class SubcategoriaServicio extends AplicacionBase{
             ActivateSubcategoriaComando comando=Fabrica.crearComandoConId(ActivateSubcategoriaComando.class,_id);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         }
         catch ( Exception ex )
@@ -188,9 +182,7 @@ public class SubcategoriaServicio extends AplicacionBase{
             UpdateSubcategoriaComando comando=Fabrica.crearComandoBoth(UpdateSubcategoriaComando.class,_id,subcategoriaDto);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-
 
         }
         catch (PersistenceException | DatabaseException ex){
@@ -232,7 +224,6 @@ public class SubcategoriaServicio extends AplicacionBase{
             GetSubcategoriaComando comando=Fabrica.crearComandoConId(GetSubcategoriaComando.class,_id);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
         }
@@ -268,7 +259,6 @@ public class SubcategoriaServicio extends AplicacionBase{
                 GetSubcategoriaBComando comando=Fabrica.crearComandoConId(GetSubcategoriaBComando.class,_id);
                 comando.execute();
 
-                System.out.println(comando.getResult());
                 return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
             }

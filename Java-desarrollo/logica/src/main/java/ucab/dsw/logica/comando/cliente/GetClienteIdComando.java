@@ -42,7 +42,7 @@ public class GetClienteIdComando extends BaseComando {
         JsonObject data= Json.createObjectBuilder()
                 .add("estado","success")
                 .add("mensaje","id del cliente es: "+ _id)
-                .add("cliente",clienteDto.getId()).build();
+                .add("cliente_id",clienteDto.getId()).build();
 
         return data;
     }

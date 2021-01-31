@@ -205,7 +205,6 @@ public class TipoServicio {
             GetTipoComando comando=Fabrica.crearComandoConId(GetTipoComando.class,id);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
         }
@@ -238,9 +237,7 @@ public class TipoServicio {
             AllTipoComando comando= Fabrica.crear(AllTipoComando.class);
             comando.execute();
 
-
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-
 
         }
         catch ( Exception ex )
