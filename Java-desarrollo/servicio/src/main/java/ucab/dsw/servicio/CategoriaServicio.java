@@ -265,7 +265,6 @@ public class CategoriaServicio extends AplicacionBase{
 
         try
         {
-
             GetCategoriaComando comando=Fabrica.crearComandoConId(GetCategoriaComando.class,_id);
             comando.execute();
 

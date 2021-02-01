@@ -98,7 +98,7 @@ public class EncuestaEstudioComando extends BaseComando {
 
         JsonObject data= Json.createObjectBuilder().add("mensaje","Preguntas")
                 .add("estado","success")
-                .add("encuesta",encuesta).build();
+                .add("Preguntas",encuesta).build();
 
         return data;
     }

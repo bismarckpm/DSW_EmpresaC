@@ -77,7 +77,7 @@ public class PreguntasCategoriaComando extends BaseComando {
 
         JsonObject data= Json.createObjectBuilder().add("mensaje","Preguntas por categoria")
                 .add("estado","success")
-                .add("preguntas",preguntas).build();
+                .add("Preguntas",preguntas).build();
 
         return data;
     }

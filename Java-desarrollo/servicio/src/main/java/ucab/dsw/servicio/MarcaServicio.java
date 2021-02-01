@@ -78,7 +78,6 @@ public class MarcaServicio extends AplicacionBase{
             InsertMarcaComando comando= Fabrica.crearComandoConDto(InsertMarcaComando.class,marcaDto);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         }
         catch (PersistenceException | DatabaseException ex){
@@ -120,11 +119,9 @@ public class MarcaServicio extends AplicacionBase{
 
         try
         {
-
             DeleteMarcaComando comando=Fabrica.crearComandoConId(DeleteMarcaComando.class,_id);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         }
         catch ( Exception ex )
@@ -159,7 +156,6 @@ public class MarcaServicio extends AplicacionBase{
             ActivateMarcaComando comando=Fabrica.crearComandoConId(ActivateMarcaComando.class,_id);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         }
         catch ( Exception ex )
@@ -195,7 +191,6 @@ public class MarcaServicio extends AplicacionBase{
             UpdateMarcaComando comando=Fabrica.crearComandoBoth(UpdateMarcaComando.class, _id,marcaDto);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
         }
@@ -232,7 +227,6 @@ public class MarcaServicio extends AplicacionBase{
             GetMarcaComando comando=Fabrica.crearComandoConId(GetMarcaComando.class,_id);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
         }
@@ -246,8 +240,6 @@ public class MarcaServicio extends AplicacionBase{
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-
-
     }
 
     /**
@@ -270,7 +262,6 @@ public class MarcaServicio extends AplicacionBase{
             MarcasBySubComando comando=Fabrica.crearComandoConId(MarcasBySubComando.class,_id);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         }
         catch ( Exception ex )
@@ -283,9 +274,5 @@ public class MarcaServicio extends AplicacionBase{
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-
-
-
     }
-    
 }

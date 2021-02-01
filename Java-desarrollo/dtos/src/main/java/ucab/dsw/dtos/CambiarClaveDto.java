@@ -1,6 +1,6 @@
 package ucab.dsw.dtos;
 
-public class CambiarClaveDto {
+public class CambiarClaveDto extends BaseDto {
     private String user_id;
     private String contrasena_actual;
     private String contrasena_nueva;

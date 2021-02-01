@@ -40,10 +40,8 @@ public class PresentacionServicio {
         try
         {
             InsertPresentacionComando comando=Fabrica.crearComandoConDto(InsertPresentacionComando.class,presentacionDto);
-
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
         }
@@ -88,9 +86,7 @@ public class PresentacionServicio {
             UpdatePresentacionComando comando=Fabrica.crearComandoBoth(UpdatePresentacionComando.class,_id,presentacionDto);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-
 
         }
         catch (PersistenceException | DatabaseException ex){
@@ -133,7 +129,6 @@ public class PresentacionServicio {
             DeletePresentacionComando comando=Fabrica.crearComandoConId(DeletePresentacionComando.class,_id);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         }
         catch ( Exception ex )
@@ -165,12 +160,9 @@ public class PresentacionServicio {
         try
         {
             ActivatePresentacionComando comando=Fabrica.crearComandoConId(ActivatePresentacionComando.class,_id);
-
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-
 
         }
         catch ( Exception ex )
@@ -205,7 +197,6 @@ public class PresentacionServicio {
 
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
-
         }
         catch ( Exception ex )
         {
@@ -237,7 +228,6 @@ public class PresentacionServicio {
 
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
-
         }
         catch ( Exception ex )
         {
@@ -249,6 +239,5 @@ public class PresentacionServicio {
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-
     }
 }

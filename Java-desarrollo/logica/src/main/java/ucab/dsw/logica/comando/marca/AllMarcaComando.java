@@ -18,7 +18,7 @@ import java.util.List;
 
 public class AllMarcaComando extends BaseComando {
 
-    public JsonArrayBuilder marcas= Json.createArrayBuilder();
+    public JsonArrayBuilder marcas = Json.createArrayBuilder();
 
     @Override
     public void execute() {
@@ -30,12 +30,12 @@ public class AllMarcaComando extends BaseComando {
 
         List<Marca> resultado= dao.findAll(Marca.class);
 
-        JsonArrayBuilder tipoArrayJson= Json.createArrayBuilder();
-        JsonArrayBuilder presentacionesArrayJson= Json.createArrayBuilder();
-
         for(Marca obj: resultado){
 
             List<MarcaTipo> marca_tipos=daoMarca_tipo.getAllMarcaTiposByMarca(obj.get_id());
+
+            JsonArrayBuilder tipoArrayJson= Json.createArrayBuilder();
+            JsonArrayBuilder presentacionesArrayJson= Json.createArrayBuilder();
 
             for(MarcaTipo obj2: marca_tipos){
 
