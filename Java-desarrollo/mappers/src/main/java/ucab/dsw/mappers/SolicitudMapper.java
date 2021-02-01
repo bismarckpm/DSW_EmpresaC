@@ -1,10 +1,6 @@
 package ucab.dsw.mappers;
 
-import ucab.dsw.accesodatos.DaoCategoria;
-import ucab.dsw.accesodatos.DaoSolicitudEstudio;
-import ucab.dsw.dtos.CategoriaDto;
 import ucab.dsw.dtos.SolicitudEstudioDto;
-import ucab.dsw.entidades.Categoria;
 import ucab.dsw.entidades.SolicitudEstudio;
 import ucab.dsw.excepciones.PruebaExcepcion;
 

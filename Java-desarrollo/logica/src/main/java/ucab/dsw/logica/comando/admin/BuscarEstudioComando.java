@@ -15,6 +15,7 @@ public class BuscarEstudioComando extends BaseComando {
 
     public JsonArrayBuilder estudio= Json.createArrayBuilder();
     public long _id;
+    public JsonObject tipo;
 
     public BuscarEstudioComando(long _id){
         this._id=_id;
@@ -44,7 +45,7 @@ public class BuscarEstudioComando extends BaseComando {
                 .add("idsubcategoria", subcategoria.get_id())
                 .add("Subcategoria", subcategoria.get_nombre()).build();
 
-        JsonObject tipo = Json.createObjectBuilder().add("id", obj.get_id())
+        tipo = Json.createObjectBuilder().add("id", obj.get_id())
                 .add("fecha", obj.get_fecha_inicio().toString())
                 .add("estatus", obj.get_estado())
                 .add("caracteristicas", encuesta)
@@ -63,7 +64,7 @@ public class BuscarEstudioComando extends BaseComando {
 
         JsonObject data= Json.createObjectBuilder().add("mensaje","Estudio")
                 .add("estado","success")
-                .add("estudio",estudio).build();
+                .add("estudio",tipo).build();
 
         return data;
     }

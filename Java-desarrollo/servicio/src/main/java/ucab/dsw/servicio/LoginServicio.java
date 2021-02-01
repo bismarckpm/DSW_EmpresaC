@@ -4,7 +4,11 @@ import ucab.dsw.accesodatos.DaoUsuario;
 import ucab.dsw.directorio.DirectorioActivo;
 import ucab.dsw.dtos.UsuarioLdapDto;
 import ucab.dsw.entidades.Usuario;
+import ucab.dsw.excepciones.ContrasenaInvalidaExcepcion;
 import ucab.dsw.jwt.Jwt;
+import ucab.dsw.logica.comando.login.LoginLdapComando;
+import ucab.dsw.logica.comando.login.LogoutComando;
+import ucab.dsw.logica.fabrica.Fabrica;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -37,59 +41,47 @@ public class LoginServicio extends AplicacionBase{
     @Path( "/ldap" )
     public Response loginLdap(UsuarioLdapDto usuarioLdapDto)
     {
-        String token="";
-        JsonObject data;
+        try {
+            LoginLdapComando comando = Fabrica.crearComandoConDto(LoginLdapComando.class, usuarioLdapDto);
+            comando.execute();
 
-        try
-        {
-            DirectorioActivo ldap = new DirectorioActivo();
-            DaoUsuario daoUsuario = new DaoUsuario();
-            
-
-            
-            if ( usuarioLdapDto.getCorreoelectronico() != null ){
-                usuarioLdapDto.setCn(ldap.getUserFromMail(usuarioLdapDto));
-            }
-            long resultado=ldap.userAuthentication( usuarioLdapDto );
-
-
-
-            if(resultado==1){
-                Usuario usuario = daoUsuario.find(Long.parseLong(ldap.getEntryUid(usuarioLdapDto)), Usuario.class);
-                if (usuario.get_estado().equals("inactivo")){
-                    data= Json.createObjectBuilder()
-                            .add("estado","Usuario Inactivo")
-                            .add("codigo",401).build();
-                    return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
-                }
-
-
-                Jwt jwt=new Jwt();
-                token= jwt.generarToken(Long.parseLong(ldap.getEntryUid(usuarioLdapDto)));
-                data= Json.createObjectBuilder()
-                                     .add("estado","success")
-                                     .add("codigo",200)
-                                     .add("token",token)
-                                     .add("rol", ldap.getEntryRole(usuarioLdapDto))
-                                     .add("user_id",ldap.getEntryUid(usuarioLdapDto)).build();
-
-                usuario.set_token(token);
-                Usuario resul=daoUsuario.update(usuario);
-
-                System.out.println(data);
-                return Response.status(Response.Status.OK).entity(data).build();
-            }else{
-                data= Json.createObjectBuilder()
-                        .add("estado","Las credenciales no son correctas. Intente de nuevo.")
-                        .add("codigo",401).build();
-                return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
-            }
-        }
-        catch ( Exception ex )
-        {
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+        } catch ( ContrasenaInvalidaExcepcion ex ){
             ex.printStackTrace();
-            System.out.println("Excepcion");
-            return Response.status(Response.Status.BAD_REQUEST).build();
+            System.out.println(ex.getMensaje());
+            JsonObject data= Json.createObjectBuilder()
+                    .add("estado","unauthorized")
+                    .add("mensaje_soporte",ex.getMensaje())
+                    .add("mensaje","Contraseña invalida").build();
+
+            return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
+        } catch ( Exception ex ) {
+            ex.printStackTrace();
+            JsonObject data= Json.createObjectBuilder()
+                    .add("estado","internal_server_error")
+                    .add("mensaje_soporte",ex.getMessage())
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+    }
+
+    @PUT
+    @Path( "/logout/{id}" )
+    public Response logout(@PathParam("id")long  _id){
+        try {
+            LogoutComando comando = Fabrica.crearComandoConId(LogoutComando.class, _id);
+            comando.execute();
+
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+        }catch ( Exception ex ) {
+            ex.printStackTrace();
+            JsonObject data= Json.createObjectBuilder()
+                    .add("estado","internal_server_error")
+                    .add("mensaje_soporte",ex.getMessage())
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
     }
 }

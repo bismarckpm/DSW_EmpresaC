@@ -276,7 +276,7 @@ export class AnadirEncuestadoComponent implements OnInit {
   }
   
   addUsuarioEncuestado(){
-    this.eventBus.cast('inicio-progress','hola');
+    this.eventBus.cast('inicio-progress','chao');
     this.nuevoEncuestado.usuarioLdap.cn = this.registroData.value.usuario;
     this.nuevoEncuestado.usuarioLdap.nombre = this.registroData.value.nombre;
     this.nuevoEncuestado.usuarioLdap.sn = this.registroData.value.apellido;
@@ -300,13 +300,17 @@ export class AnadirEncuestadoComponent implements OnInit {
 
     console.log(this.nuevoEncuestado);
     this._toastrService.info('Espere un momento un momento, por favor', 'Ingresando datos...');
-    this.http.registro( this.nuevoEncuestado ).subscribe( data =>{
-        console.log(data)
-        localStorage.setItem("user_id", data.user_id );
-        localStorage.setItem("rol", data.rol );
-        localStorage.setItem("token", data.token );
-        this.eventBus.cast('inicio-sesion','ok');
-        this.eventBus.cast('fin-progress','chao');
+    this.http.registro( this.nuevoEncuestado ).subscribe( 
+      (response) =>{
+        console.log(response)
+        if(response.estado=='success'){
+          this._toastrService.success("Exito", "Usuario encuestado añadido");
+          this._toastrService.info('Espero un momento, por favor.','Actualizando...');
+          this.eventBus.cast('actualizar-usuario','actualizar');
+        }else{
+          this._toastrService.error("Esta usuario ya se encuentra en el sistema", "Error");
+          this.eventBus.cast('fin-progress','chao');
+        }
       },
       (error)=>{
       console.log(error);

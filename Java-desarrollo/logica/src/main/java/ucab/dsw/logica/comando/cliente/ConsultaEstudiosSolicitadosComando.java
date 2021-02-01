@@ -111,7 +111,7 @@ public class ConsultaEstudiosSolicitadosComando extends BaseComando {
         JsonObject data= Json.createObjectBuilder()
                 .add("estado","success")
                 .add("mensaje","Estudio solicitado")
-                .add("estudio",estudio).build();
+                .add("estudios",estudio).build();
 
         return data;
     }

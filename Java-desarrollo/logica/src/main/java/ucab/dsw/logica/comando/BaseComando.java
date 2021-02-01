@@ -1,13 +1,12 @@
 package ucab.dsw.logica.comando;
 
-import ucab.dsw.dtos.ResponseDto;
-import ucab.dsw.excepciones.PruebaExcepcion;
+import ucab.dsw.excepciones.EmpresaException;
 
 import javax.json.JsonObject;
 
 public abstract class BaseComando {
 
-    public abstract void execute();
+    public abstract void execute() throws EmpresaException;
 
-    public abstract JsonObject getResult();
+    public abstract JsonObject getResult() throws EmpresaException;
 }

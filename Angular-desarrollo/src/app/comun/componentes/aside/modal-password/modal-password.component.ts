@@ -43,7 +43,8 @@ export class ModalPasswordComponent implements OnInit {
 		  }
 		  else{
 			  this._toastrService.error("La contraseña actual no coincide", "Error");
-			  this.eventBus.cast('fin-progress','chao');
+        this.eventBus.cast('fin-progress','chao');
+        this.eventBus.cast('cerrar-modal-password','cerrar');
 		  }
 		  
 

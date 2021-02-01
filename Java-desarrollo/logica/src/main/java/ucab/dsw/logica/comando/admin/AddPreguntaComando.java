@@ -99,7 +99,8 @@ public class AddPreguntaComando extends BaseComando
         JsonObject data= Json.createObjectBuilder()
                 .add("estado","success")
                 .add("mensaje","Pregunta Agregada")
-                .add("pregunta",this.preguntaDto.getId()).build();
+                .add("codigo",200)
+                .add("Pregunta",this.preguntaDto.getId()).build();
 
         return data;
     }

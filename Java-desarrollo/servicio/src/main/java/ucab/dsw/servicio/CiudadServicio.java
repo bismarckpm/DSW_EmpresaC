@@ -1,10 +1,8 @@
 package ucab.dsw.servicio;
 
-import ucab.dsw.accesodatos.DaoCiudad;
-import ucab.dsw.entidades.Ciudad;
-
+import ucab.dsw.logica.comando.ciudad.AllCiudadesComando;
+import ucab.dsw.logica.fabrica.Fabrica;
 import javax.json.Json;
-import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -12,7 +10,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 
 /**
@@ -37,48 +34,24 @@ public class CiudadServicio extends AplicacionBase{
     @Path( "/all" )
     public Response getAllCiudades()
     {
-        JsonObject data;
+        JsonObject resul;
         try
         {
-            DaoCiudad dao= new DaoCiudad();
-            List<Ciudad> resultado= dao.findAll(Ciudad.class);
+            AllCiudadesComando comando= Fabrica.crear(AllCiudadesComando.class);
+            comando.execute();
 
-            JsonArrayBuilder ciudadesArrayJson= Json.createArrayBuilder();
-
-            for(Ciudad obj: resultado){
-
-                JsonObject ciudad = Json.createObjectBuilder().add("id",obj.get_id())
-                                                                .add("nombre",obj.get_nombre())
-                                                                .add("estado_id",obj.get_estado().get_id())
-                                                                .add("pais_id",obj.get_estado().get_pais().get_id()).build();
-
-                ciudadesArrayJson.add(ciudad);
-
-            }
-
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200)
-                    .add("ciudades",ciudadesArrayJson).build();
-
-
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
-            data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
-                    .add("codigo",500).build();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje_soporte",ex.getMessage())
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            System.out.println(data);
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
-
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
 
         }
-
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
-
     }
 }
