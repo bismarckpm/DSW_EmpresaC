@@ -41,7 +41,6 @@ public class MarcaServicio extends AplicacionBase{
             AllMarcaComando comando=Fabrica.crear(AllMarcaComando.class);
             comando.execute();
 
-            System.out.println(comando.getResult());
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
         }
