@@ -27,18 +27,31 @@ export class PreguntaService {
 
   constructor(private http: HttpClient) { }
 
+
+  opcion(){
+    const Ltoken= localStorage.getItem("token")
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'authorization':  Ltoken
+      })
+    };
+    return httpOptions
+  }
+
   getPreguntas(_id): Observable<Respuesta> {
 
-    return this.http.get<Respuesta>(global.url + 'admin/preguntas-categoria/'+_id)
+    return this.http.get<Respuesta>(global.url + 'admin/preguntas-categoria/'+_id, this.opcion())
   }
 
   postPreguntas(objeto:{}): Observable<Respuesta> {
+
   
-    return this.http.put<Respuesta>(global.url+"admin/addPregunta",objeto)
+    return this.http.put<Respuesta>(global.url+"admin/addPregunta",objeto, this.opcion() )
   }
 
   postEncuesta(id1,id2, objeto):Observable<Respuesta>{
-    return this.http.put<Respuesta>(global.url+"admin/addEncuesta/"+id1+"/"+id2,objeto)
+
+    return this.http.put<Respuesta>(global.url+"admin/addEncuesta/"+id1+"/"+id2,objeto , this.opcion())
   }
 
 

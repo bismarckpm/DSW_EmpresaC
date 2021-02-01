@@ -12,6 +12,18 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
+  opcion(){
+    const Ltoken= localStorage.getItem("token")
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'authorization':  Ltoken
+      })
+    };
+
+    return httpOptions
+
+  }
+
   loginLdap( usuario: usuarioLdap): Observable<any> {
     return this.http.post(global.url+'login/ldap', usuario);
   }
@@ -26,4 +38,13 @@ export class LoginService {
   //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
   return this.http.post(global.url+'usuario/change-password',changePasswordDto);
 }
+
+
+verificartoken():Observable<any>{
+
+  //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
+  return this.http.get(global.url+'prueba/seguridad', this.opcion());
+}
+
+
 }

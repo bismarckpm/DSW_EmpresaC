@@ -10,6 +10,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
+
 
 @Path( "/prueba" )
 @Produces( MediaType.APPLICATION_JSON )
@@ -36,6 +39,15 @@ public class PruebaServicio extends AplicacionBase
             String problema = ex.getMessage();
         }
         return  resultado;
+    }
+
+    @GET
+    @Path( "/seguridad" )
+    public Response authenticate(@HeaderParam("authorization") String token) {
+        System.out.println("**************************************************************************");
+        System.out.println(token);
+        System.out.println("**************************************************************************");
+        return Response.ok("token="+token).build();
     }
 
     @GET
