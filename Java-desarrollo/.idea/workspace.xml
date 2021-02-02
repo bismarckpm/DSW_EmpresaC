@@ -23,30 +23,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87c6d671-881a-45a8-ab00-e16a3b9c4375" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/excepciones/src/main/java/ucab/dsw/excepciones/PruebaExcepcion.java" beforeDir="false" afterPath="$PROJECT_DIR$/excepciones/src/main/java/ucab/dsw/excepciones/PruebaExcepcion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/BaseComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/BaseComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/MetodoConexion/AllMetodoConexionComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/metodoConexion/AllMetodoConexionComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/categoria/ActivateCategoriaComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/categoria/ActivateCategoriaComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/categoria/AllCategorialComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/categoria/AllCategorialComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/categoria/DeleteCategoriaComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/categoria/DeleteCategoriaComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/categoria/GetCategoriaComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/categoria/GetCategoriaComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/categoria/InsertCategoriaComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/categoria/InsertCategoriaComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/categoria/UpdateCategoriaComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/categoria/UpdateCategoriaComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CategoriaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CategoriaServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CiudadServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CiudadServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/ClienteServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/ClienteServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/EncuestadoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/EncuestadoServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/EstadoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/EstadoServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/MetodoConexionServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/MetodoConexionServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/NivelAcademicoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/NivelAcademicoServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/OcupacionServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/OcupacionServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PaisServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PaisServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/ParroquiaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/ParroquiaServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PresentacionServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PresentacionServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SubcategoriaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SubcategoriaServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/TipoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/TipoServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logica/target/logica-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/logica/target/logica-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logica/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/logica/target/maven-archiver/pom.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,17 +80,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.AnalistaServicioTest.preguntas_porcentajeTest">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="AnalistaServicioTest.Eliminar_ParticipacionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <extension name="coverage">
@@ -223,6 +192,7 @@
       <workItem from="1611884271627" duration="1212000" />
       <workItem from="1611889221165" duration="356000" />
       <workItem from="1611889930379" duration="8000000" />
+      <workItem from="1612236344429" duration="467000" />
     </task>
     <servers />
   </component>
