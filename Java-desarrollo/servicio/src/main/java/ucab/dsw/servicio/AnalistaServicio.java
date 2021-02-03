@@ -1,10 +1,10 @@
 package ucab.dsw.servicio;
-import ucab.dsw.accesodatos.*;
+
 import ucab.dsw.dtos.*;
-import ucab.dsw.entidades.*;
+import ucab.dsw.excepciones.EmpresaException;
+import ucab.dsw.jwt.Jwt;
 import ucab.dsw.logica.comando.analista.*;
 import ucab.dsw.logica.fabrica.Fabrica;
-
 import javax.json.*;
 import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
@@ -13,10 +13,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.Date;
-import java.util.List;
 import javax.ws.rs.core.Response;
-
 import javax.ws.rs.*;
 
 
@@ -44,22 +41,44 @@ public class AnalistaServicio {
     */
     @GET
     @Path("/estudios/{_id}")
-    public Response consultaEstudios_asignados(@PathParam("_id") long _id) {
+    public Response consultaEstudios_asignados(@HeaderParam("authorization") String token,@PathParam("_id") long _id) {
 
         JsonObject resul;
 
         try {
-            EstudiosAsignadosComando comando= Fabrica.crearComandoConId(EstudiosAsignadosComando.class,_id);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                EstudiosAsignadosComando comando= Fabrica.crearComandoConId(EstudiosAsignadosComando.class,_id);
+                comando.execute();
 
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
 
         }
-        catch (Exception ex){
+        catch ( EmpresaException ex )
+        {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
+        }
+        catch ( Exception ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-AN01")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -77,24 +96,45 @@ public class AnalistaServicio {
 
     @PUT
     @Path( "/empezar-estudio/{id}" )
-    public Response Empezar_estudio(@PathParam("id") long  _id )
+    public Response Empezar_estudio(@HeaderParam("authorization") String token,@PathParam("id") long  _id )
     {
+        JsonObject resul;
         try {
-            EmpezarEstudioComando comando= Fabrica.crearComandoConId(EmpezarEstudioComando.class,_id);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                EmpezarEstudioComando comando= Fabrica.crearComandoConId(EmpezarEstudioComando.class,_id);
+                comando.execute();
 
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
-            JsonObject resul= Json.createObjectBuilder()
+            resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-AN02")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
-
         }
 
 
@@ -112,22 +152,44 @@ public class AnalistaServicio {
 
     @PUT
     @Path( "/eliminar-participacion/{id}" )
-    public Response Eliminar_Participacion(@PathParam("id") long  _id )
+    public Response Eliminar_Participacion(@HeaderParam("authorization") String token,@PathParam("id") long  _id )
     {
+        JsonObject resul;
         try
         {
-            DeleteParticipacionComando comando=Fabrica.crearComandoConId(DeleteParticipacionComando.class,_id);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                DeleteParticipacionComando comando=Fabrica.crearComandoConId(DeleteParticipacionComando.class,_id);
+                comando.execute();
 
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
+
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
-            JsonObject resul= Json.createObjectBuilder()
+            resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-AN03")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -146,24 +208,47 @@ public class AnalistaServicio {
     */
     @GET
     @Path("/estudios-telefono/{_id}")
-    public Response consultaEstudios_telefono(@PathParam("_id") long _id) {
+    public Response consultaEstudios_telefono(@HeaderParam("authorization") String token,@PathParam("_id") long _id) {
+
+        JsonObject resul;
 
         try {
-            EstudiosTelefonoComando comando= Fabrica.crearComandoConId(EstudiosTelefonoComando.class,_id);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                EstudiosTelefonoComando comando= Fabrica.crearComandoConId(EstudiosTelefonoComando.class,_id);
+                comando.execute();
 
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
 
         }
-        catch (Exception ex){
+        catch ( EmpresaException ex )
+        {
             ex.printStackTrace();
-            JsonObject resul= Json.createObjectBuilder()
+            resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
+        }
+        catch ( Exception ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-AN04")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
-
         }
     }
 
@@ -179,21 +264,43 @@ public class AnalistaServicio {
 
     @PUT
     @Path( "/responder-solicitud" )
-    public Response ResponderEstudio( RespuestaAnalistaDto respuestaAnalistaDto)
+    public Response ResponderEstudio( @HeaderParam("authorization") String token,RespuestaAnalistaDto respuestaAnalistaDto)
     {
+        JsonObject resul;
         try
         {
-            ResponderEstudioComando comando= Fabrica.crearComandoConDto(ResponderEstudioComando.class,respuestaAnalistaDto);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                ResponderEstudioComando comando= Fabrica.crearComandoConDto(ResponderEstudioComando.class,respuestaAnalistaDto);
+                comando.execute();
 
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
-            JsonObject resul= Json.createObjectBuilder()
+            resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-AN05")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -212,21 +319,42 @@ public class AnalistaServicio {
 
     @GET
     @Path( "/respuestas-estudio/{id}" )
-    public Response respuestas_estudio(@PathParam("id")long  _id)
+    public Response respuestas_estudio(@HeaderParam("authorization") String token,@PathParam("id")long  _id)
     {
+        JsonObject resul;
         try {
 
-            RespuestasEstudioComando comando= Fabrica.crearComandoConId(RespuestasEstudioComando.class,_id);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                RespuestasEstudioComando comando= Fabrica.crearComandoConId(RespuestasEstudioComando.class,_id);
+                comando.execute();
 
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
         }
-        catch (Exception ex){
+        catch ( EmpresaException ex )
+        {
             ex.printStackTrace();
-            JsonObject resul= Json.createObjectBuilder()
+            resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
+        }
+        catch ( Exception ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-AN06")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -245,20 +373,43 @@ public class AnalistaServicio {
 
     @GET
     @Path( "/graficos-estudio/{id}" )
-    public Response respuestas_porcentaje(@PathParam("id")long  _id)
+    public Response respuestas_porcentaje(@HeaderParam("authorization") String token,@PathParam("id")long  _id)
     {
+        JsonObject resul;
         try {
-            RespuestasPorcentajeComando comando= Fabrica.crearComandoConId(RespuestasPorcentajeComando.class,_id);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                RespuestasPorcentajeComando comando= Fabrica.crearComandoConId(RespuestasPorcentajeComando.class,_id);
+                comando.execute();
 
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
 
         }
-        catch (Exception ex){
+        catch ( EmpresaException ex )
+        {
             ex.printStackTrace();
-            JsonObject resul= Json.createObjectBuilder()
+            resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
+        }
+        catch ( Exception ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-AN07")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();

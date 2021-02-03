@@ -3,6 +3,7 @@ package ucab.dsw.logica.comando.analista;
 import ucab.dsw.accesodatos.DaoSolicitudEstudio;
 import ucab.dsw.dtos.SolicitudEstudioDto;
 import ucab.dsw.entidades.SolicitudEstudio;
+import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.logica.comando.BaseComando;
 import ucab.dsw.logica.fabrica.Fabrica;
 
@@ -28,13 +29,18 @@ public class EmpezarEstudioComando extends BaseComando {
     }
 
     @Override
-    public JsonObject getResult() {
+    public JsonObject getResult() throws EmpresaException {
 
-        JsonObject data= Json.createObjectBuilder()
-                            .add("estado","success")
-                            .add("mensaje","El estudio ha empezado")
-                            .add("estado_estudio",estado).build();
+        try {
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado", "success")
+                    .add("mensaje", "El estudio ha empezado")
+                    .add("estado_estudio", estado).build();
 
-        return data;
+            return data;
         }
+        catch (NullPointerException ex){
+            throw new EmpresaException("C-AN02-G-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
+        }
+    }
 }

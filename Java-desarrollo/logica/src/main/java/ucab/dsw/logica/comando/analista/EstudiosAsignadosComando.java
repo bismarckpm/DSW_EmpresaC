@@ -2,6 +2,7 @@ package ucab.dsw.logica.comando.analista;
 
 import ucab.dsw.accesodatos.*;
 import ucab.dsw.entidades.*;
+import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.logica.comando.BaseComando;
 import ucab.dsw.logica.fabrica.Fabrica;
 
@@ -20,78 +21,90 @@ public class EstudiosAsignadosComando extends BaseComando {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws EmpresaException {
 
-        DaoSolicitudEstudio dao = Fabrica.crear(DaoSolicitudEstudio.class);
-        DaoMarca daoMarca = Fabrica.crear(DaoMarca.class);
-        DaoSubcategoria daoSubcategoria = Fabrica.crear(DaoSubcategoria.class);
-        DaoCategoria daoCategoria = Fabrica.crear(DaoCategoria.class);
-        DaoParticipacion daoParticipacion=Fabrica.crear(DaoParticipacion.class);
-        DaoCaracteristicaDemografica daoCaracteristica_demografica = Fabrica.crear(DaoCaracteristicaDemografica.class);
+        try {
 
-
-        List<SolicitudEstudio> resultado = dao.getEstudiosByAnalista(_id);
-
-        for (SolicitudEstudio obj : resultado) {
-
-            JsonArrayBuilder builderArrayEncuestado =Json.createArrayBuilder();
-            JsonObject builderObject;
-
-            CaracteristicaDemografica caracteristicas= daoCaracteristica_demografica.find(obj.get_caracteristicademografica().get_id(), CaracteristicaDemografica.class);
-            builderObject=this.caracteristicas(caracteristicas);
-            List<Participacion> participacion= daoParticipacion.getParticipacionByEstudio(obj.get_id());
+            DaoSolicitudEstudio dao = Fabrica.crear(DaoSolicitudEstudio.class);
+            DaoMarca daoMarca = Fabrica.crear(DaoMarca.class);
+            DaoSubcategoria daoSubcategoria = Fabrica.crear(DaoSubcategoria.class);
+            DaoCategoria daoCategoria = Fabrica.crear(DaoCategoria.class);
+            DaoParticipacion daoParticipacion = Fabrica.crear(DaoParticipacion.class);
+            DaoCaracteristicaDemografica daoCaracteristica_demografica = Fabrica.crear(DaoCaracteristicaDemografica.class);
 
 
-            if(participacion!=null){
-                for(Participacion j:participacion){
+            List<SolicitudEstudio> resultado = dao.getEstudiosByAnalista(_id);
 
-                    builderArrayEncuestado.add(this.encuestado(j));
+            for (SolicitudEstudio obj : resultado) {
+
+                JsonArrayBuilder builderArrayEncuestado = Json.createArrayBuilder();
+                JsonObject builderObject;
+
+                CaracteristicaDemografica caracteristicas = daoCaracteristica_demografica.find(obj.get_caracteristicademografica().get_id(), CaracteristicaDemografica.class);
+                builderObject = this.caracteristicas(caracteristicas);
+                List<Participacion> participacion = daoParticipacion.getParticipacionByEstudio(obj.get_id());
+
+
+                if (participacion != null) {
+                    for (Participacion j : participacion) {
+
+                        builderArrayEncuestado.add(this.encuestado(j));
+                    }
                 }
+
+                String resultadoAnalista = "";
+                SolicitudEstudio solicitudEstudio = dao.find(obj.get_id(), SolicitudEstudio.class);
+                Marca marca = daoMarca.find(solicitudEstudio.get_marca().get_id(), Marca.class);
+                Subcategoria subcategoria = daoSubcategoria.find(marca.get_subcategoria().get_id(), Subcategoria.class);
+                Categoria categoria = daoCategoria.find(subcategoria.get_categoria().get_id(), Categoria.class);
+
+                if (solicitudEstudio.get_resultadoanalista() != null) {
+                    resultadoAnalista = solicitudEstudio.get_resultadoanalista();
+                } else {
+                    resultadoAnalista = "";
+                }
+                String nombre_encuesta = "";
+                if (solicitudEstudio.get_encuesta() == null) {
+                    nombre_encuesta = "Encuesta sin nombre";
+                } else {
+                    nombre_encuesta = solicitudEstudio.get_encuesta().get_nombre();
+                }
+                estudios.add(Json.createObjectBuilder().add("id", solicitudEstudio.get_id())
+                        .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
+                        .add("modo_encuesta", solicitudEstudio.get_modoencuesta())
+                        .add("caracteristica_demografica", builderObject)
+                        .add("marca", marca.get_nombre())
+                        .add("subcategoria", subcategoria.get_nombre())
+                        .add("categoria", categoria.get_nombre())
+                        .add("participacion", builderArrayEncuestado)
+                        .add("resultado", resultadoAnalista)
+                        .add("nombre_encuesta", nombre_encuesta)
+                        .add("estado", solicitudEstudio.get_estado()));
+
+
             }
-
-            String resultadoAnalista="";
-            SolicitudEstudio solicitudEstudio = dao.find(obj.get_id(),SolicitudEstudio.class);
-            Marca marca = daoMarca.find(solicitudEstudio.get_marca().get_id(), Marca.class);
-            Subcategoria subcategoria = daoSubcategoria.find(marca.get_subcategoria().get_id(),Subcategoria.class);
-            Categoria categoria = daoCategoria.find(subcategoria.get_categoria().get_id(),Categoria.class);
-
-            if (solicitudEstudio.get_resultadoanalista() != null){
-                resultadoAnalista = solicitudEstudio.get_resultadoanalista();
-            }else{
-                resultadoAnalista="";
-            }
-            String nombre_encuesta = "";
-            if (solicitudEstudio.get_encuesta()==null){
-                nombre_encuesta = "Encuesta sin nombre";
-            }else{
-                nombre_encuesta = solicitudEstudio.get_encuesta().get_nombre();
-            }
-            estudios.add(Json.createObjectBuilder().add("id", solicitudEstudio.get_id())
-                    .add("fecha", solicitudEstudio.get_fecha_inicio().toString())
-                    .add("modo_encuesta",solicitudEstudio.get_modoencuesta())
-                    .add("caracteristica_demografica",builderObject)
-                    .add("marca",marca.get_nombre())
-                    .add("subcategoria",subcategoria.get_nombre())
-                    .add("categoria",categoria.get_nombre())
-                    .add("participacion",builderArrayEncuestado)
-                    .add("resultado",resultadoAnalista)
-                    .add("nombre_encuesta",nombre_encuesta)
-                    .add("estado", solicitudEstudio.get_estado()));
-
-
+        }
+        catch (NullPointerException ex){
+            throw new EmpresaException("C-AN03-E-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
         }
     }
 
     @Override
-    public JsonObject getResult() {
-        JsonObject data= Json.createObjectBuilder().add("estado","success")
-                                                    .add("mensaje","Estudios del analista "+ _id)
-                                                    .add("estudios",estudios).build();
-        return data;
+    public JsonObject getResult() throws EmpresaException {
+
+        try {
+            JsonObject data = Json.createObjectBuilder().add("estado", "success")
+                    .add("mensaje", "Estudios del analista " + _id)
+                    .add("estudios", estudios).build();
+            return data;
+        }
+        catch (NullPointerException ex){
+            throw new EmpresaException("C-AN03-G-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
+        }
     }
 
 
-    public JsonObject caracteristicas(CaracteristicaDemografica caracteristicas){
+    public JsonObject caracteristicas(CaracteristicaDemografica caracteristicas) throws NullPointerException{
         JsonObject builderObject= Json.createObjectBuilder().add("edad_min",caracteristicas.get_edad_min())
                                                             .add("edad_max",caracteristicas.get_edad_max())
                                                             .add("nivel_socieconomico",caracteristicas.get_nivel_socioeconomico())
@@ -107,7 +120,7 @@ public class EstudiosAsignadosComando extends BaseComando {
         return builderObject;
     }
 
-    public JsonObject encuestado(Participacion j){
+    public JsonObject encuestado(Participacion j)  throws NullPointerException{
 
         DaoParticipacion daoParticipacion= Fabrica.crear(DaoParticipacion.class);
         DaoEncuestado daoEncuestado = Fabrica.crear(DaoEncuestado.class);
