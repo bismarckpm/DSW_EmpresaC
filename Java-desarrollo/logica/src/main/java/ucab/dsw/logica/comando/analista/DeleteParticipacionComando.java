@@ -2,6 +2,7 @@ package ucab.dsw.logica.comando.analista;
 
 import ucab.dsw.accesodatos.DaoParticipacion;
 import ucab.dsw.entidades.Participacion;
+import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.logica.comando.BaseComando;
 import ucab.dsw.logica.fabrica.Fabrica;
 
@@ -27,12 +28,18 @@ public class DeleteParticipacionComando extends BaseComando {
     }
 
     @Override
-    public JsonObject getResult() {
-       JsonObject data= Json.createObjectBuilder()
-                .add("estado","success")
-                .add("mensaje","Participacion finalizada en el estudio")
-                .add("estado_participacion", estado).build();
+    public JsonObject getResult() throws EmpresaException {
 
-       return data;
+        try {
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado", "success")
+                    .add("mensaje", "Participacion finalizada en el estudio")
+                    .add("estado_participacion", estado).build();
+
+            return data;
+        }
+        catch (NullPointerException ex){
+            throw new EmpresaException("C-AN01-G-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
+        }
     }
 }

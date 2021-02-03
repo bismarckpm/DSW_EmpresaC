@@ -5,6 +5,7 @@ import org.junit.Test;
 import ucab.dsw.directorio.DirectorioActivo;
 import ucab.dsw.directorio.RecuperacionPass;
 import ucab.dsw.dtos.UsuarioLdapDto;
+import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.jwt.Jwt;
 import ucab.dsw.servicio.LoginServicio;
 import java.io.IOException;
@@ -159,14 +160,6 @@ public class DirectorioActivoServicioTest
     public void setAllUsers() throws IOException {
         DirectorioActivo ldap = new DirectorioActivo();
         ldap.setAllUsersFromFile("./../../ldap.txt");
-    }
-
-    @Test
-    public void VerifyToken() throws IOException {
-        String token=Jwt.generarToken(1);
-        boolean flag=Jwt.verificarToken(token);
-        System.out.println(flag);
-
     }
 
 

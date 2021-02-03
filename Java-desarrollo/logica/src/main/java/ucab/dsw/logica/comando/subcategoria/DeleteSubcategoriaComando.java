@@ -5,6 +5,7 @@ import ucab.dsw.accesodatos.DaoSubcategoria;
 import ucab.dsw.dtos.SubcategoriaDto;
 import ucab.dsw.entidades.Marca;
 import ucab.dsw.entidades.Subcategoria;
+import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.excepciones.PruebaExcepcion;
 import ucab.dsw.logica.comando.BaseComando;
 import ucab.dsw.logica.fabrica.Fabrica;
@@ -25,7 +26,7 @@ public class DeleteSubcategoriaComando extends BaseComando {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws EmpresaException{
         try {
             DaoSubcategoria dao = Fabrica.crear(DaoSubcategoria.class);
             DaoMarca daoMarca = Fabrica.crear(DaoMarca.class);
@@ -47,20 +48,27 @@ public class DeleteSubcategoriaComando extends BaseComando {
             }
 
             subcategoriaDto= SubcategoriaMapper.mapEntityToDto(resul);
-        } catch (PruebaExcepcion pruebaExcepcion) {
-            pruebaExcepcion.printStackTrace();
+        }
+        catch (PruebaExcepcion ex) {
+            ex.printStackTrace();
+            throw new EmpresaException("C-SUB03-ZERO-ID",ex.getMessage(), "Intento asignar el valor de 0 a un ID");
         }
 
 
     }
 
     @Override
-    public JsonObject getResult() {
-        JsonObject data= Json.createObjectBuilder()
-                            .add("estado","success")
-                            .add("mensaje","Subcategoria inhabilitada correctamente")
-                            .add("estado_subcategoria", subcategoriaDto.getEstado()).build();
+    public JsonObject getResult() throws EmpresaException{
+        try {
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado", "success")
+                    .add("mensaje", "Subcategoria inhabilitada correctamente")
+                    .add("estado_subcategoria", subcategoriaDto.getEstado()).build();
 
-        return data;
+            return data;
+        }
+        catch (NullPointerException ex){
+            throw new EmpresaException("C-SUB03-G-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
+        }
     }
 }

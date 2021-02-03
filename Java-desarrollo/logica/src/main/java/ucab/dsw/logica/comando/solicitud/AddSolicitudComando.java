@@ -4,6 +4,7 @@ import ucab.dsw.accesodatos.*;
 import ucab.dsw.dtos.*;
 import ucab.dsw.entidades.*;
 import ucab.dsw.excepciones.CamposNulosExcepcion;
+import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.logica.comando.BaseComando;
 import ucab.dsw.logica.fabrica.Fabrica;
 import ucab.dsw.mappers.CaracteristicasMapper;
@@ -16,14 +17,14 @@ import java.util.List;
 public class AddSolicitudComando extends BaseComando {
 
     public SolicitudEstudioDto solicitudEstudioDto;
-    public JsonObject data;
+    public long solicitud_id;
 
     public AddSolicitudComando(SolicitudEstudioDto solicitudEstudioDto) {
         this.solicitudEstudioDto = solicitudEstudioDto;
     }
 
     @Override
-    public void execute() {
+    public void execute() throws EmpresaException {
         try{
             int admin_random=0;
             Usuario admin_elegido;
@@ -100,54 +101,32 @@ public class AddSolicitudComando extends BaseComando {
 
                 resul = dao.insert(solicitudEstudio);
             }
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("mensaje","Solicitud creada")
-                    .add("solicitud_id",resul.get_id()).build();
+
+            this.solicitud_id=resul.get_id();
         }
         catch (CamposNulosExcepcion ex )
         {
-            ex.printStackTrace();
-            String mensaje_excepcion = ex.getMessage();     //mensaje del Exception
-
-            if(mensaje_excepcion!=null){
-                mensaje_excepcion="Ha ocurrido una excepcion - Catch en Linea 155 - Solicitud Estudio";
-                data= Json.createObjectBuilder()
-                        .add("estado","exception")
-                        .add("mensaje","Error del servidor. Intente mas tarde.") //mensaje personalizado
-                        .add("excepcion",mensaje_excepcion)
-                        .add("codigo",400).build();
-
-                System.out.println(data);
-            }
-
-
-            if(ex.getMensaje()==null){
-                data= Json.createObjectBuilder()
-                        .add("estado","error")
-                        .add("mensaje","Error del servidor. Intente mas tarde.") //mensaje personalizado
-                        .add("codigo",400).build();
-
-                System.out.println(data);
-            }
-            else{
-                data= Json.createObjectBuilder()
-                        .add("estado","error")
-                        .add("mensaje",ex.getMensaje()) //mensaje personalizado
-                        .add("codigo",400).build();
-
-                System.out.println(data);
-
-            }
-
-
+            throw new EmpresaException("C-SE01-E-NULL-2", ex.getMensaje(), ex.getMensaje());
+        }
+        catch (NullPointerException ex){
+            throw new EmpresaException("C-SE01-E-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
         }
 
     }
 
     @Override
-    public JsonObject getResult() {
-        return data;
+    public JsonObject getResult() throws EmpresaException {
+        try {
+            JsonObject data= Json.createObjectBuilder()
+                                .add("estado","success")
+                                .add("mensaje","Solicitud creada")
+                                .add("solicitud_id",this.solicitud_id).build();
+
+            return data;
+        }
+        catch (NullPointerException ex){
+            throw new EmpresaException("C-SE01-G-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
+        }
     }
 
     /**
@@ -184,7 +163,7 @@ public class AddSolicitudComando extends BaseComando {
         {
             String problema = ex.getMessage();
             System.out.println(problema);
-            return null;
+            return estudio_elegido;
         }
 
         System.out.println("ESTUDIO ELEGIDOO");
@@ -261,13 +240,17 @@ public class AddSolicitudComando extends BaseComando {
      */
     public void ValidarSolicitudDto(SolicitudEstudioDto solicitudEstudioDto) throws CamposNulosExcepcion {
 
-        if(solicitudEstudioDto.getModoencuesta()==null) {
+        System.out.println(!ValidaMarcaDto(solicitudEstudioDto.getMarcaDto()));
+        System.out.println(!ValidaClienteDto(solicitudEstudioDto.getClienteDto()));
+        System.out.println(!ValidaCaracteristicaDto(solicitudEstudioDto.getCaracteristica_DemograficaDto()));
+        System.out.println(solicitudEstudioDto.getModoencuesta().isEmpty());
+
+        if(solicitudEstudioDto.getModoencuesta()==null ) {
             throw new CamposNulosExcepcion("Aun faltan campos por llenar. Revise, por favor");
         }
-
-        if(!this.ValidaMarcaDto(solicitudEstudioDto.getMarcaDto()) && !this.ValidaClienteDto(solicitudEstudioDto.getClienteDto())
-                && !this.ValidaCaracteristicaDto(solicitudEstudioDto.getCaracteristica_DemograficaDto())
-                && solicitudEstudioDto.getModoencuesta().isEmpty()){
+        if(!ValidaMarcaDto(solicitudEstudioDto.getMarcaDto()) || !ValidaClienteDto(solicitudEstudioDto.getClienteDto())
+                || !ValidaCaracteristicaDto(solicitudEstudioDto.getCaracteristica_DemograficaDto())
+                || solicitudEstudioDto.getModoencuesta().isEmpty()){
             throw new CamposNulosExcepcion("Aun faltan campos por llenar. Revise, por favor");
         }
 
@@ -371,7 +354,6 @@ public class AddSolicitudComando extends BaseComando {
         else{
             resul=false;
         }
-
         return resul;
     }
 
@@ -418,7 +400,6 @@ public class AddSolicitudComando extends BaseComando {
         else{
             resul=false;
         }
-
         return resul;
     }
 
