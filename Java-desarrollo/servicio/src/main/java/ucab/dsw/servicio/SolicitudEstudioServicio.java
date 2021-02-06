@@ -1,13 +1,12 @@
 package ucab.dsw.servicio;
 import ucab.dsw.dtos.*;
+import ucab.dsw.excepciones.EmpresaException;
+import ucab.dsw.jwt.Jwt;
 import ucab.dsw.logica.comando.solicitud.AddSolicitudComando;
 import ucab.dsw.logica.fabrica.Fabrica;
 
 import javax.json.JsonObject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.json.Json;
 import javax.ws.rs.core.Response;
@@ -34,28 +33,49 @@ public class SolicitudEstudioServicio {
     */
     @POST
     @Path( "/add" )
-    public Response addSolicitud(SolicitudEstudioDto solicitudEstudioDto)
+    public Response addSolicitud(@HeaderParam("authorization") String token,SolicitudEstudioDto solicitudEstudioDto)
     {
         JsonObject resul;
         try
         {
-            AddSolicitudComando comando= Fabrica.crearComandoConDto(AddSolicitudComando.class, solicitudEstudioDto);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                AddSolicitudComando comando= Fabrica.crearComandoConDto(AddSolicitudComando.class, solicitudEstudioDto);
+                comando.execute();
 
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
 
         }
-        catch(Exception ex){
+        catch ( EmpresaException ex )
+        {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
+        }
+        catch ( Exception ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-SE01")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
 
     }
-
 
 }

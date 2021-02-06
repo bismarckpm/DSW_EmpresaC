@@ -1,10 +1,8 @@
 package ucab.dsw.servicio;
 
-import ucab.dsw.accesodatos.DaoNivelAcademico;
-import ucab.dsw.entidades.NivelAcademico;
-
+import ucab.dsw.logica.comando.nivelAcademico.AllNivelAcademicoComando;
+import ucab.dsw.logica.fabrica.Fabrica;
 import javax.json.Json;
-import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -12,7 +10,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 /**
  * Una clase para la administracion los niveles academicos
@@ -35,40 +32,23 @@ public class NivelAcademicoServicio extends AplicacionBase {
     @GET
     @Path("/all")
     public Response getAllNivelesAcademicos() {
-        JsonObject data;
+        JsonObject resul;
         try {
-            DaoNivelAcademico dao = new DaoNivelAcademico();
-            List<NivelAcademico> resultado = dao.findAll(NivelAcademico.class);
+            AllNivelAcademicoComando comando= Fabrica.crear(AllNivelAcademicoComando.class);
+            comando.execute();
 
-            JsonArrayBuilder categoriaArrayJson = Json.createArrayBuilder();
-
-            for (NivelAcademico obj : resultado) {
-
-                JsonObject categoria = Json.createObjectBuilder().add("id", obj.get_id())
-                        .add("nombre", obj.get_nombre()).build();
-
-                categoriaArrayJson.add(categoria);
-            }
-
-            data = Json.createObjectBuilder()
-                    .add("estado", "success")
-                    .add("codigo", 200)
-                    .add("niveles_academicos", categoriaArrayJson).build();
-
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
         } catch (Exception ex) {
-            data = Json.createObjectBuilder()
-                    .add("estado", "exception!!!")
-                    .add("excepcion", ex.getMessage())
-                    .add("codigo", 500).build();
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("mensaje_soporte",ex.getMessage())
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            System.out.println(data);
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
 
 
         }
-
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
     }
 }

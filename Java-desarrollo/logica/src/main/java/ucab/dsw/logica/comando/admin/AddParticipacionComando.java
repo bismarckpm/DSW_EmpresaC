@@ -110,7 +110,7 @@ public class AddParticipacionComando extends BaseComando {
 
         JsonObject data= Json.createObjectBuilder().add("mensaje","participantes")
                 .add("estado","success")
-                .add("participantes",participante).build();
+                .add("Preguntas",participante).build();
 
         return data;
     }

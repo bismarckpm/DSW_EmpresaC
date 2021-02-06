@@ -2,6 +2,8 @@ package ucab.dsw.servicio;
 
 import org.eclipse.persistence.exceptions.DatabaseException;
 import ucab.dsw.dtos.*;
+import ucab.dsw.excepciones.EmpresaException;
+import ucab.dsw.jwt.Jwt;
 import ucab.dsw.logica.comando.marca.*;
 import ucab.dsw.logica.fabrica.Fabrica;
 
@@ -33,28 +35,47 @@ public class MarcaServicio extends AplicacionBase{
     */
     @GET
     @Path( "/all" )
-    public Response getAllMarcas()
+    public Response getAllMarcas(@HeaderParam("authorization") String token)
     {
         JsonObject resul;
         try
         {
-            AllMarcaComando comando=Fabrica.crear(AllMarcaComando.class);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                AllMarcaComando comando=Fabrica.crear(AllMarcaComando.class);
+                comando.execute();
 
-            System.out.println(comando.getResult());
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
+
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-MA01")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
-
         }
 
     }
@@ -70,37 +91,47 @@ public class MarcaServicio extends AplicacionBase{
     */
     @POST
     @Path( "/add" )
-    public Response addMarca(MarcaDto marcaDto)
+    public Response addMarca(@HeaderParam("authorization") String token,MarcaDto marcaDto)
     {
         JsonObject resul;
 
         try
         {
-            InsertMarcaComando comando= Fabrica.crearComandoConDto(InsertMarcaComando.class,marcaDto);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                InsertMarcaComando comando= Fabrica.crearComandoConDto(InsertMarcaComando.class,marcaDto);
+                comando.execute();
 
-            System.out.println(comando.getResult());
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
         }
-        catch (PersistenceException | DatabaseException ex){
+        catch ( EmpresaException ex )
+        {
             ex.printStackTrace();
-
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","La marca ya se encuestra registrada").build();
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
             return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
-        catch ( Exception ex){
+        catch ( Exception ex )
+        {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-MA02")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
-
         }
     }
 
@@ -115,25 +146,43 @@ public class MarcaServicio extends AplicacionBase{
     */
     @DELETE
     @Path( "/delete/{id}" )
-    public Response deleteMarca(@PathParam("id") long  _id)
+    public Response deleteMarca(@HeaderParam("authorization") String token,@PathParam("id") long  _id)
     {
         JsonObject resul;
 
         try
         {
+            if(Jwt.verificarToken(token)){
+                DeleteMarcaComando comando=Fabrica.crearComandoConId(DeleteMarcaComando.class,_id);
+                comando.execute();
 
-            DeleteMarcaComando comando=Fabrica.crearComandoConId(DeleteMarcaComando.class,_id);
-            comando.execute();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
-            System.out.println(comando.getResult());
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-MA03")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -152,23 +201,42 @@ public class MarcaServicio extends AplicacionBase{
 
     @DELETE
     @Path( "/activar/{id}" )
-    public Response activarMarca(@PathParam("id") long  _id)
+    public Response activarMarca(@HeaderParam("authorization") String token,@PathParam("id") long  _id)
     {
         JsonObject resul;
         try
         {
-            ActivateMarcaComando comando=Fabrica.crearComandoConId(ActivateMarcaComando.class,_id);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                ActivateMarcaComando comando=Fabrica.crearComandoConId(ActivateMarcaComando.class,_id);
+                comando.execute();
 
-            System.out.println(comando.getResult());
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-MA04")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -188,24 +256,42 @@ public class MarcaServicio extends AplicacionBase{
     */
     @PUT
     @Path( "/edit/{id}" )
-    public Response editMarca(@PathParam("id") long _id, MarcaDto marcaDto)
+    public Response editMarca(@HeaderParam("authorization") String token,@PathParam("id") long _id, MarcaDto marcaDto)
     {
         JsonObject resul;
         try
         {
-            UpdateMarcaComando comando=Fabrica.crearComandoBoth(UpdateMarcaComando.class, _id,marcaDto);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                UpdateMarcaComando comando=Fabrica.crearComandoBoth(UpdateMarcaComando.class, _id,marcaDto);
+                comando.execute();
 
-            System.out.println(comando.getResult());
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-MA05")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -224,31 +310,48 @@ public class MarcaServicio extends AplicacionBase{
     */
     @GET
     @Path( "/{id}" )
-    public Response getMarca(@PathParam("id") long  _id)
+    public Response getMarca(@HeaderParam("authorization") String token,@PathParam("id") long  _id)
     {
         JsonObject resul;
 
         try
         {
-            GetMarcaComando comando=Fabrica.crearComandoConId(GetMarcaComando.class,_id);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                GetMarcaComando comando=Fabrica.crearComandoConId(GetMarcaComando.class,_id);
+                comando.execute();
 
-            System.out.println(comando.getResult());
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-MA06")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-
-
     }
 
     /**
@@ -262,31 +365,47 @@ public class MarcaServicio extends AplicacionBase{
     */
     @GET
     @Path( "/by/subcategoria/{id}" )
-    public Response getMarcaBySubcategoriaId(@PathParam("id") long  _id)
+    public Response getMarcaBySubcategoriaId(@HeaderParam("authorization") String token,@PathParam("id") long  _id)
     {
         JsonObject resul;
 
         try
         {
-            MarcasBySubComando comando=Fabrica.crearComandoConId(MarcasBySubComando.class,_id);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                MarcasBySubComando comando=Fabrica.crearComandoConId(MarcasBySubComando.class,_id);
+                comando.execute();
 
-            System.out.println(comando.getResult());
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-MA07")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-
-
-
     }
-    
 }

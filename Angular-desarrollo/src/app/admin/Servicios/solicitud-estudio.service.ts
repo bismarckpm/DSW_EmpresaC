@@ -24,44 +24,51 @@ import { global } from "../../../urlGlobal";
 export class SolicitudEstudioService {
   constructor(private http: HttpClient) { }
 
+  opcion(){
+    const Ltoken= localStorage.getItem("token")
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'authorization':  Ltoken
+      })
+    };
+    return httpOptions
+  }
+
 
   getEstudiosAdministrar(_id): Observable<Respuesta> {
 
-    return this.http.get<Respuesta>(global.url + 'admin/estudios-asignados/'+_id)
+
+    return this.http.get<Respuesta>(global.url + 'admin/estudios-asignados/'+_id, this.opcion())
   }
 
   getEstudiosPendientes(_id): Observable<Respuesta> {
-    
-    
-    return this.http.get<Respuesta>(global.url + 'admin/estudios-no-asignados/'+_id)
+    return this.http.get<Respuesta>(global.url + 'admin/estudios-no-asignados/'+_id, this.opcion())
     // 
   }
 
   DeleteEstudios(id:number): Observable<Respuesta> {
     
-    
-    return this.http.delete<Respuesta>(global.url+ 'admin/delete-solicitud/'+id)
+    return this.http.delete<Respuesta>(global.url+ 'admin/delete-solicitud/'+id, this.opcion())
     // 
   }
 
   getEstudio(id:number): Observable<Respuesta> {
+
     
 
-    return this.http.get<Respuesta>(global.url + 'admin/estudio/'+id)
+    return this.http.get<Respuesta>(global.url + 'admin/estudio/'+id, this.opcion())
     
   }
 
   getParticipantes(id:number): Observable<Respuesta> {
-    // return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000));
 
-    return this.http.get<Respuesta>(global.url + 'admin/estudios-participacion/'+id)
+    return this.http.get<Respuesta>(global.url + 'admin/estudios-participacion/'+id, this.opcion())
     
   }
 
   getEncuestados(id:number): Observable<any> {
-    // return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000));
 
-    return this.http.get<any>(global.url + 'admin/sugerencia-participacion/'+id)
+    return this.http.get<any>(global.url + 'admin/sugerencia-participacion/'+id, this.opcion())
     
   }
 

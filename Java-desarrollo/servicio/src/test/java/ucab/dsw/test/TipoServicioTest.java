@@ -5,6 +5,7 @@ import org.junit.Test;
 import ucab.dsw.dtos.TipoDto;
 import ucab.dsw.servicio.TipoServicio;
 
+import javax.json.JsonObject;
 import javax.ws.rs.core.Response;
 
 
@@ -19,7 +20,8 @@ public class TipoServicioTest
         tipoDto.setNombre( "Polvo" );
 
         Response resultado = servicio.addTipo( tipoDto);
-        Assert.assertNotEquals( resultado, 1 );
+        JsonObject responseDto= (JsonObject) resultado.getEntity();
+        Assert.assertNotEquals(0,responseDto.get("tipo_id"));
 
     }
 
@@ -33,7 +35,8 @@ public class TipoServicioTest
 
 
         Response resultado = servicio.changeTipo( 1,tipoDto);
-        Assert.assertNotEquals( resultado, 0 );
+        JsonObject responseDto= (JsonObject) resultado.getEntity();
+        Assert.assertEquals("\"Polvo\"",responseDto.get("nombre_tipo").toString());
 
     }
 
@@ -43,7 +46,8 @@ public class TipoServicioTest
         TipoServicio servicio = new TipoServicio();;
 
         Response resultado = servicio.EliminarTipo( 1);
-        Assert.assertNotEquals( resultado, 0 );
+        JsonObject responseDto= (JsonObject) resultado.getEntity();
+        Assert.assertEquals("\"inactivo\"",responseDto.get("estado_tipo").toString());
 
     }
 
@@ -53,7 +57,8 @@ public class TipoServicioTest
         TipoServicio servicio = new TipoServicio();;
 
         Response resultado = servicio.ActivarTipo( 1);
-        Assert.assertNotEquals( resultado, 0 );
+        JsonObject responseDto= (JsonObject) resultado.getEntity();
+        Assert.assertEquals("\"activo\"",responseDto.get("estado_tipo").toString());
 
     }
     @Test
@@ -61,7 +66,8 @@ public class TipoServicioTest
     {
         TipoServicio servicio = new TipoServicio();
         Response resultado= servicio.findTipo(2);
-        Assert.assertNotEquals( resultado, 0 );
+        JsonObject responseDto= (JsonObject) resultado.getEntity();
+        Assert.assertNotNull(responseDto.get("categoria"));
 
 
     }
@@ -70,7 +76,8 @@ public class TipoServicioTest
     {
         TipoServicio servicio = new TipoServicio();
         Response resultado= servicio.findAllTipo();
-        Assert.assertNotEquals( resultado, 0 );
+        JsonObject responseDto= (JsonObject) resultado.getEntity();
+        Assert.assertNotNull(responseDto.get("tipos"));
 
 
     }

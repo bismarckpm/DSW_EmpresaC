@@ -8,6 +8,7 @@ import ucab.dsw.dtos.ResponseDto;
 import ucab.dsw.entidades.Categoria;
 import ucab.dsw.entidades.Marca;
 import ucab.dsw.entidades.Subcategoria;
+import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.excepciones.PruebaExcepcion;
 import ucab.dsw.logica.comando.BaseComando;
 import ucab.dsw.logica.fabrica.Fabrica;
@@ -27,7 +28,7 @@ public class DeleteCategoriaComando extends BaseComando {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws EmpresaException {
         try{
             DaoCategoria dao = Fabrica.crear(DaoCategoria.class);
             Categoria categoria = dao.find(this._id,Categoria.class);
@@ -36,25 +37,30 @@ public class DeleteCategoriaComando extends BaseComando {
             this.desactivar_dependencias(resul.get_id());
             this.categoriaDto= CategoriaMapper.mapEntityToDto(resul);
 
-        }catch (PruebaExcepcion pruebaExcepcion) {
-            pruebaExcepcion.printStackTrace();
+        }
+        catch (PruebaExcepcion ex) {
+            ex.printStackTrace();
+            throw new EmpresaException("C-CA03-ZERO-ID",ex.getMessage(), "Intento asignar el valor de 0 a un ID");
         }
 
     }
 
     @Override
-    public JsonObject getResult() {
-        ResponseDto responseDto =Fabrica.crear(ResponseDto.class);
-        responseDto.mensaje="Categoria inhabilitada";
-        responseDto.estado="success";
-        responseDto.objeto=this.categoriaDto.getEstado();
+    public JsonObject getResult() throws EmpresaException {
 
-        JsonObject data= Json.createObjectBuilder()
-                .add("estado","success")
-                .add("mensaje","Categoria inhabilitada")
-                .add("categoria_estado",this.categoriaDto.getEstado()).build();
+        try{
+            JsonObject data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("mensaje","Categoria inhabilitada")
+                    .add("categoria_estado",this.categoriaDto.getEstado()).build();
 
-        return data;
+            return data;
+        }
+        catch (NullPointerException ex){
+            ex.printStackTrace();
+            throw new EmpresaException("C-CA03-G-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
+        }
+
     }
 
     protected void desactivar_dependencias(long categoria_id){

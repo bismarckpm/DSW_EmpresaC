@@ -1,28 +1,15 @@
 package ucab.dsw.servicio;
 
-import org.eclipse.persistence.exceptions.DatabaseException;
-import ucab.dsw.accesodatos.DaoMarca;
-import ucab.dsw.accesodatos.DaoPresentacion;
-import ucab.dsw.dtos.PresentacionDto;
-import ucab.dsw.entidades.Marca;
-import ucab.dsw.entidades.Presentacion;
-import ucab.dsw.entidades.Subcategoria;
-import ucab.dsw.accesodatos.DaoSubcategoria;
-import ucab.dsw.accesodatos.DaoCategoria;
 import ucab.dsw.dtos.SubcategoriaDto;
-import ucab.dsw.entidades.Categoria;
-import ucab.dsw.excepciones.PruebaExcepcion;
+import ucab.dsw.excepciones.EmpresaException;
+import ucab.dsw.jwt.Jwt;
 import ucab.dsw.logica.comando.subcategoria.*;
 import ucab.dsw.logica.fabrica.Fabrica;
-
 import javax.json.Json;
-import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
-import javax.persistence.PersistenceException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 /**
  * Una clase para la administracion completa de las subcategorias de MERCADEOUCAB
@@ -45,30 +32,47 @@ public class SubcategoriaServicio extends AplicacionBase{
     */
     @GET
     @Path( "/all" )
-    public Response getAllSubcategorias()
+    public Response getAllSubcategorias(@HeaderParam("authorization") String token)
     {
         JsonObject resul;
         try
         {
-            AllSubcategoriaComando comando= Fabrica.crear(AllSubcategoriaComando.class);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                AllSubcategoriaComando comando= Fabrica.crear(AllSubcategoriaComando.class);
+                comando.execute();
 
-            System.out.println(comando.getResult());
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
 
 
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-SUB01")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
-
-
         }
 
     }
@@ -83,36 +87,47 @@ public class SubcategoriaServicio extends AplicacionBase{
      */
     @POST
     @Path( "/add" )
-    public Response addSubcategoria(SubcategoriaDto subcategoriaDto)
+    public Response addSubcategoria(@HeaderParam("authorization") String token,SubcategoriaDto subcategoriaDto)
     {
         JsonObject resul;
         try
         {
-            InsertSubcategoriaComando comando=Fabrica.crearComandoConDto(InsertSubcategoriaComando.class,subcategoriaDto);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                InsertSubcategoriaComando comando=Fabrica.crearComandoConDto(InsertSubcategoriaComando.class,subcategoriaDto);
+                comando.execute();
 
-            System.out.println(comando.getResult());
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
 
         }
-        catch (PersistenceException | DatabaseException ex){
+        catch ( EmpresaException ex )
+        {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","La subcategoria ya se encuestra registrada").build();
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
             return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
-        catch ( Exception ex){
+        catch ( Exception ex )
+        {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-SUB02")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
-
         }
     }
     /**
@@ -126,23 +141,43 @@ public class SubcategoriaServicio extends AplicacionBase{
      */
     @DELETE
     @Path( "/delete/{id}" )
-    public Response deleteSubcategoria(@PathParam("id") long  _id)
+    public Response deleteSubcategoria(@HeaderParam("authorization") String token,@PathParam("id") long  _id)
     {
         JsonObject resul;
         try
         {
-            DeleteSubcategoriaComando comando=Fabrica.crearComandoConId(DeleteSubcategoriaComando.class,_id);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                DeleteSubcategoriaComando comando=Fabrica.crearComandoConId(DeleteSubcategoriaComando.class,_id);
+                comando.execute();
 
-            System.out.println(comando.getResult());
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-SUB03")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -159,23 +194,43 @@ public class SubcategoriaServicio extends AplicacionBase{
      */
     @DELETE
     @Path( "/activar/{id}" )
-    public Response activarSubcategoria(@PathParam("id") long  _id)
+    public Response activarSubcategoria(@HeaderParam("authorization") String token,@PathParam("id") long  _id)
     {
         JsonObject resul;
         try
         {
-            ActivateSubcategoriaComando comando=Fabrica.crearComandoConId(ActivateSubcategoriaComando.class,_id);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                ActivateSubcategoriaComando comando=Fabrica.crearComandoConId(ActivateSubcategoriaComando.class,_id);
+                comando.execute();
 
-            System.out.println(comando.getResult());
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-SUB04")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -194,37 +249,47 @@ public class SubcategoriaServicio extends AplicacionBase{
      */
     @PUT
     @Path( "/edit/{id}" )
-    public Response editSubcategoria(@PathParam("id") long _id, SubcategoriaDto subcategoriaDto)
+    public Response editSubcategoria(@HeaderParam("authorization") String token,@PathParam("id") long _id, SubcategoriaDto subcategoriaDto)
     {
         JsonObject resul;
         try
         {
-            UpdateSubcategoriaComando comando=Fabrica.crearComandoBoth(UpdateSubcategoriaComando.class,_id,subcategoriaDto);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                UpdateSubcategoriaComando comando=Fabrica.crearComandoBoth(UpdateSubcategoriaComando.class,_id,subcategoriaDto);
+                comando.execute();
 
-            System.out.println(comando.getResult());
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
 
 
         }
-        catch (PersistenceException | DatabaseException ex){
+        catch ( EmpresaException ex )
+        {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","La subcategoria ya se encuestra registrada").build();
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
             return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
-        catch ( Exception ex){
+        catch ( Exception ex )
+        {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-SUB05")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
-
         }
     }
     /**
@@ -238,24 +303,44 @@ public class SubcategoriaServicio extends AplicacionBase{
      */
     @GET
     @Path( "/{id}" )
-    public Response getSubcategoria(@PathParam("id") long  _id)
+    public Response getSubcategoria(@HeaderParam("authorization") String token,@PathParam("id") long  _id)
     {
         JsonObject resul;
         try
         {
-            GetSubcategoriaComando comando=Fabrica.crearComandoConId(GetSubcategoriaComando.class,_id);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                GetSubcategoriaComando comando=Fabrica.crearComandoConId(GetSubcategoriaComando.class,_id);
+                comando.execute();
 
-            System.out.println(comando.getResult());
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
+
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-SUB06")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -273,25 +358,44 @@ public class SubcategoriaServicio extends AplicacionBase{
          */
         @GET
         @Path( "/by/categoria/{id}" )
-        public Response getSubcategoriasByCategoriaId(@PathParam("id") long  _id)
+        public Response getSubcategoriasByCategoriaId(@HeaderParam("authorization") String token,@PathParam("id") long  _id)
         {
             JsonObject resul;
 
             try
             {
-                GetSubcategoriaBComando comando=Fabrica.crearComandoConId(GetSubcategoriaBComando.class,_id);
-                comando.execute();
+                if(Jwt.verificarToken(token)){
+                    GetSubcategoriaBComando comando=Fabrica.crearComandoConId(GetSubcategoriaBComando.class,_id);
+                    comando.execute();
 
-                System.out.println(comando.getResult());
-                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                    return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                }
+                else{
+                    resul= Json.createObjectBuilder()
+                            .add("estado","unauthorized")
+                            .add("codigo","UNAUTH")
+                            .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
+                    return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+                }
+
+            }
+            catch ( EmpresaException ex )
+            {
+                ex.printStackTrace();
+                resul= Json.createObjectBuilder()
+                        .add("estado","error")
+                        .add("codigo",ex.getCodigo())
+                        .add("mensaje",ex.getMensaje()).build();
+
+                return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
             }
             catch ( Exception ex )
             {
                 ex.printStackTrace();
                 resul= Json.createObjectBuilder()
                         .add("estado","error")
-                        .add("mensaje_soporte",ex.getMessage())
+                        .add("codigo","S-EX-SUB07")
                         .add("mensaje","Ha ocurrido un error con el servidor").build();
 
                 return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();

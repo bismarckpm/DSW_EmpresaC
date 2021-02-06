@@ -8,6 +8,7 @@ import ucab.dsw.entidades.Marca;
 import ucab.dsw.entidades.MarcaTipo;
 import ucab.dsw.entidades.Presentacion;
 import ucab.dsw.entidades.Subcategoria;
+import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.logica.comando.BaseComando;
 import ucab.dsw.logica.fabrica.Fabrica;
 
@@ -18,64 +19,76 @@ import java.util.List;
 
 public class AllMarcaComando extends BaseComando {
 
-    public JsonArrayBuilder marcas= Json.createArrayBuilder();
+    public JsonArrayBuilder marcas = Json.createArrayBuilder();
 
     @Override
-    public void execute() {
+    public void execute() throws EmpresaException{
 
-        DaoMarca dao= Fabrica.crear(DaoMarca.class);
-        DaoSubcategoria daoSubcategoria= Fabrica.crear(DaoSubcategoria.class);
-        DaoPresentacion daoPresentacion=Fabrica.crear(DaoPresentacion.class);
-        DaoMarcaTipo daoMarca_tipo=Fabrica.crear(DaoMarcaTipo.class);
+        try {
 
-        List<Marca> resultado= dao.findAll(Marca.class);
+            DaoMarca dao = Fabrica.crear(DaoMarca.class);
+            DaoSubcategoria daoSubcategoria = Fabrica.crear(DaoSubcategoria.class);
+            DaoPresentacion daoPresentacion = Fabrica.crear(DaoPresentacion.class);
+            DaoMarcaTipo daoMarca_tipo = Fabrica.crear(DaoMarcaTipo.class);
 
-        JsonArrayBuilder tipoArrayJson= Json.createArrayBuilder();
-        JsonArrayBuilder presentacionesArrayJson= Json.createArrayBuilder();
+            List<Marca> resultado = dao.findAll(Marca.class);
 
-        for(Marca obj: resultado){
+            for (Marca obj : resultado) {
 
-            List<MarcaTipo> marca_tipos=daoMarca_tipo.getAllMarcaTiposByMarca(obj.get_id());
+                List<MarcaTipo> marca_tipos = daoMarca_tipo.getAllMarcaTiposByMarca(obj.get_id());
 
-            for(MarcaTipo obj2: marca_tipos){
+                JsonArrayBuilder tipoArrayJson = Json.createArrayBuilder();
+                JsonArrayBuilder presentacionesArrayJson = Json.createArrayBuilder();
 
-                List<Presentacion> presentaciones=daoPresentacion.getAllPresentacionesByTipo(obj2.get_tipo().get_id());
+                for (MarcaTipo obj2 : marca_tipos) {
 
-                for(Presentacion obj3: presentaciones){
-                    JsonObject presentacion = Json.createObjectBuilder().add("presentacion_id",obj3.get_id())
-                            .add("nombre",obj3.get_nombre()).build();
-                    presentacionesArrayJson.add(presentacion);
+                    List<Presentacion> presentaciones = daoPresentacion.getAllPresentacionesByTipo(obj2.get_tipo().get_id());
 
+                    for (Presentacion obj3 : presentaciones) {
+                        JsonObject presentacion = Json.createObjectBuilder().add("presentacion_id", obj3.get_id())
+                                .add("nombre", obj3.get_nombre()).build();
+                        presentacionesArrayJson.add(presentacion);
+
+                    }
+
+                    JsonObject tipo = Json.createObjectBuilder().add("marca_tipo_id", obj2.get_id())
+                            .add("tipo", obj2.get_tipo().get_nombre())
+                            .add("tipo_id", obj2.get_tipo().get_id())
+                            .add("presentaciones", presentacionesArrayJson).build();
+
+                    tipoArrayJson.add(tipo);
                 }
 
-                JsonObject tipo = Json.createObjectBuilder().add("marca_tipo_id",obj2.get_id())
-                        .add("tipo",obj2.get_tipo().get_nombre())
-                        .add("tipo_id",obj2.get_tipo().get_id())
-                        .add("presentaciones",presentacionesArrayJson).build();
+                Subcategoria subcategoria = daoSubcategoria.find(obj.get_subcategoria().get_id(), Subcategoria.class);
+                JsonObject marca = Json.createObjectBuilder().add("id", obj.get_id())
+                        .add("nombre", obj.get_nombre())
+                        .add("subcategoria_id", subcategoria.get_id())
+                        .add("subcategoria", subcategoria.get_nombre())
+                        .add("estado", obj.get_estado())
+                        .add("tipos", tipoArrayJson).build();
 
-                tipoArrayJson.add(tipo);
+                marcas.add(marca);
+
             }
-
-            Subcategoria subcategoria= daoSubcategoria.find(obj.get_subcategoria().get_id(),Subcategoria.class);
-            JsonObject marca = Json.createObjectBuilder().add("id",obj.get_id())
-                    .add("nombre",obj.get_nombre())
-                    .add("subcategoria_id",subcategoria.get_id())
-                    .add("subcategoria",subcategoria.get_nombre())
-                    .add("estado",obj.get_estado())
-                    .add("tipos",tipoArrayJson).build();
-
-            marcas.add(marca);
-
+        }
+        catch (NullPointerException ex){
+            throw new EmpresaException("C-MA02-E-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
         }
     }
 
     @Override
-    public JsonObject getResult() {
-        JsonObject data= Json.createObjectBuilder()
-                            .add("estado","success")
-                            .add("mensaje","Todas las marcas")
-                            .add("marcas",marcas).build();
+    public JsonObject getResult() throws EmpresaException {
 
-        return data;
+        try {
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado", "success")
+                    .add("mensaje", "Todas las marcas")
+                    .add("marcas", marcas).build();
+
+            return data;
+        }
+        catch (NullPointerException ex){
+            throw new EmpresaException("C-MA02-G-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
+        }
     }
 }

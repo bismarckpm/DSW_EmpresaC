@@ -4,6 +4,7 @@ import ucab.dsw.accesodatos.DaoCategoria;
 import ucab.dsw.accesodatos.DaoSubcategoria;
 import ucab.dsw.entidades.Categoria;
 import ucab.dsw.entidades.Subcategoria;
+import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.logica.comando.BaseComando;
 import ucab.dsw.logica.fabrica.Fabrica;
 
@@ -17,33 +18,46 @@ public class AllSubcategoriaComando extends BaseComando {
     public JsonArrayBuilder subcategoriaArrayJson= Json.createArrayBuilder();
 
     @Override
-    public void execute() {
-        DaoSubcategoria dao= Fabrica.crear(DaoSubcategoria.class);
-        DaoCategoria daoCategoria= Fabrica.crear(DaoCategoria.class);
+    public void execute() throws EmpresaException {
 
-        List<Subcategoria> resultado= dao.findAll(Subcategoria.class);
+        try {
+            DaoSubcategoria dao = Fabrica.crear(DaoSubcategoria.class);
+            DaoCategoria daoCategoria = Fabrica.crear(DaoCategoria.class);
 
-        for(Subcategoria obj: resultado){
+            List<Subcategoria> resultado = dao.findAll(Subcategoria.class);
 
-            Categoria categoria= daoCategoria.find(obj.get_categoria().get_id(),Categoria.class);
-            JsonObject subcategoria = Json.createObjectBuilder().add("id",obj.get_id())
-                    .add("nombre",obj.get_nombre())
-                    .add("categoria_id",categoria.get_id())
-                    .add("categoria",categoria.get_nombre())
-                    .add("estado",obj.get_estado()).build();
+            for (Subcategoria obj : resultado) {
 
-            subcategoriaArrayJson.add(subcategoria);
+                Categoria categoria = daoCategoria.find(obj.get_categoria().get_id(), Categoria.class);
+                JsonObject subcategoria = Json.createObjectBuilder().add("id", obj.get_id())
+                        .add("nombre", obj.get_nombre())
+                        .add("categoria_id", categoria.get_id())
+                        .add("categoria", categoria.get_nombre())
+                        .add("estado", obj.get_estado()).build();
 
+                subcategoriaArrayJson.add(subcategoria);
+
+            }
         }
+        catch (NullPointerException ex){
+            throw new EmpresaException("C-SUB02-E-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
+        }
+
     }
 
     @Override
-    public JsonObject getResult() {
-        JsonObject data= Json.createObjectBuilder()
-                .add("estado","success")
-                .add("mensaje","Todas las subcategorias")
-                .add("subcategorias",subcategoriaArrayJson).build();
+    public JsonObject getResult() throws EmpresaException{
 
-        return data;
+        try {
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado", "success")
+                    .add("mensaje", "Todas las subcategorias")
+                    .add("subcategorias", subcategoriaArrayJson).build();
+
+            return data;
+        }
+        catch (NullPointerException ex){
+            throw new EmpresaException("C-SUB02-G-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
+        }
     }
 }

@@ -123,7 +123,7 @@ public class PreguntaEstudioComando extends BaseComando {
 
         JsonObject data= Json.createObjectBuilder().add("mensaje","Preguntas del Estudio")
                 .add("estado","success")
-                .add("preguntas",pregunta_estudio).build();
+                .add("Preguntas",pregunta_estudio).build();
 
         return data;
     }

@@ -1,12 +1,10 @@
 package ucab.dsw.jwt;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.impl.crypto.MacProvider;
 import ucab.dsw.accesodatos.DaoUsuario;
 import ucab.dsw.entidades.Usuario;
+import ucab.dsw.excepciones.EmpresaException;
 
 import java.security.Key;
 import java.util.Date;
@@ -69,9 +67,13 @@ public class Jwt {
             }
 
 
-        }catch(Exception ex){
-            ex.printStackTrace();
-            System.out.println(ex.getMessage());
+        }catch(MalformedJwtException ex){
+            return false;
+        }
+        catch (ExpiredJwtException ex){
+            return false;
+        }
+        catch (SignatureException ex){
             return false;
         }
     }
