@@ -65,7 +65,7 @@ public class ClienteServicio {
             ex.printStackTrace();
             resul = Json.createObjectBuilder()
                     .add("estado", "error")
-                    .add("codigo", "S-EX-CAT04")
+                    .add("codigo", "S-EX-CLI01")
                     .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -112,7 +112,7 @@ public class ClienteServicio {
             ex.printStackTrace();
             resul = Json.createObjectBuilder()
                     .add("estado", "error")
-                    .add("codigo", "S-EX-CAT04")
+                    .add("codigo", "S-EX-CLI02")
                     .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -158,7 +158,7 @@ public class ClienteServicio {
             ex.printStackTrace();
             resul = Json.createObjectBuilder()
                     .add("estado", "error")
-                    .add("codigo", "S-EX-CAT04")
+                    .add("codigo", "S-EX-CLI03")
                     .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();

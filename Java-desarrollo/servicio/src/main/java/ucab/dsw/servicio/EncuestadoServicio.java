@@ -62,7 +62,7 @@ public class EncuestadoServicio {
             ex.printStackTrace();
             resul = Json.createObjectBuilder()
                     .add("estado", "error")
-                    .add("codigo", "S-EX-CAT04")
+                    .add("codigo", "S-EX-ENC01")
                     .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -111,7 +111,7 @@ public class EncuestadoServicio {
             ex.printStackTrace();
             resul = Json.createObjectBuilder()
                     .add("estado", "error")
-                    .add("codigo", "S-EX-CAT04")
+                    .add("codigo", "S-EX-ENC02")
                     .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -161,7 +161,7 @@ public class EncuestadoServicio {
             ex.printStackTrace();
             resul = Json.createObjectBuilder()
                     .add("estado", "error")
-                    .add("codigo", "S-EX-CAT04")
+                    .add("codigo", "S-EX-ENC03")
                     .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -209,7 +209,7 @@ public class EncuestadoServicio {
             ex.printStackTrace();
             resul = Json.createObjectBuilder()
                     .add("estado", "error")
-                    .add("codigo", "S-EX-CAT04")
+                    .add("codigo", "S-EX-ENC04")
                     .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -259,7 +259,7 @@ public class EncuestadoServicio {
             ex.printStackTrace();
             resul = Json.createObjectBuilder()
                     .add("estado", "error")
-                    .add("codigo", "S-EX-CAT04")
+                    .add("codigo", "S-EX-ENC05")
                     .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -308,7 +308,7 @@ public class EncuestadoServicio {
             ex.printStackTrace();
             resul = Json.createObjectBuilder()
                     .add("estado", "error")
-                    .add("codigo", "S-EX-CAT04")
+                    .add("codigo", "S-EX-ENC06")
                     .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();

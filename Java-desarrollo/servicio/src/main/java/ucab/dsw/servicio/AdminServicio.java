@@ -67,7 +67,7 @@ public class AdminServicio {
             ex.printStackTrace();
             resul = Json.createObjectBuilder()
                     .add("estado", "error")
-                    .add("codigo", "S-EX-CAT01")
+                    .add("codigo", "S-EX-ADM01")
                     .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -117,7 +117,7 @@ public class AdminServicio {
             ex.printStackTrace();
             resul = Json.createObjectBuilder()
                     .add("estado", "error")
-                    .add("codigo", "S-EX-CAT04")
+                    .add("codigo", "S-EX-ADM02")
                     .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -166,7 +166,7 @@ public class AdminServicio {
             ex.printStackTrace();
             resul = Json.createObjectBuilder()
                     .add("estado", "error")
-                    .add("codigo", "S-EX-CAT04")
+                    .add("codigo", "S-EX-ADM03")
                     .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -218,7 +218,7 @@ public class AdminServicio {
             ex.printStackTrace();
             resul = Json.createObjectBuilder()
                     .add("estado", "error")
-                    .add("codigo", "S-EX-CAT04")
+                    .add("codigo", "S-EX-ADM04")
                     .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -268,7 +268,7 @@ public class AdminServicio {
             ex.printStackTrace();
             resul = Json.createObjectBuilder()
                     .add("estado", "error")
-                    .add("codigo", "S-EX-CAT04")
+                    .add("codigo", "S-EX-ADM05")
                     .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -317,7 +317,7 @@ public class AdminServicio {
             ex.printStackTrace();
             resul = Json.createObjectBuilder()
                     .add("estado", "error")
-                    .add("codigo", "S-EX-CAT04")
+                    .add("codigo", "S-EX-ADM07")
                     .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -366,7 +366,7 @@ public class AdminServicio {
             ex.printStackTrace();
             resul = Json.createObjectBuilder()
                     .add("estado", "error")
-                    .add("codigo", "S-EX-CAT04")
+                    .add("codigo", "S-EX-ADM08")
                     .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -416,7 +416,7 @@ public class AdminServicio {
             ex.printStackTrace();
             resul = Json.createObjectBuilder()
                     .add("estado", "error")
-                    .add("codigo", "S-EX-CAT04")
+                    .add("codigo", "S-EX-ADM09")
                     .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -466,7 +466,7 @@ public class AdminServicio {
             ex.printStackTrace();
             resul = Json.createObjectBuilder()
                     .add("estado", "error")
-                    .add("codigo", "S-EX-CAT04")
+                    .add("codigo", "S-EX-ADM10")
                     .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
