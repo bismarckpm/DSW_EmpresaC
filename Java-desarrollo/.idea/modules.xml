@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/logica/logica.iml" filepath="$PROJECT_DIR$/logica/logica.iml" />
       <module fileurl="file://$PROJECT_DIR$/mappers/mappers.iml" filepath="$PROJECT_DIR$/mappers/mappers.iml" />
       <module fileurl="file://$PROJECT_DIR$/orm.iml" filepath="$PROJECT_DIR$/orm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/seguridad/seguridad.iml" filepath="$PROJECT_DIR$/seguridad/seguridad.iml" />
       <module fileurl="file://$PROJECT_DIR$/servicio/servicio.iml" filepath="$PROJECT_DIR$/servicio/servicio.iml" />
     </modules>
   </component>

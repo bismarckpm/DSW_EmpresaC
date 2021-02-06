@@ -51,7 +51,7 @@ public class CategoriaServicio extends AplicacionBase{
         {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
+                    .add("estado","error")
                     .add("mensaje_soporte",ex.getMessage())
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
@@ -87,7 +87,7 @@ public class CategoriaServicio extends AplicacionBase{
             ex.printStackTrace();
 
             resul= Json.createObjectBuilder()
-                    .add("estado","bad_request")
+                    .add("estado","error")
                     .add("mensaje_soporte",ex.getMessage())
                     .add("mensaje","La categoria ya se encuestra registrada").build();
 
@@ -97,7 +97,7 @@ public class CategoriaServicio extends AplicacionBase{
         catch (Exception ex){
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
+                    .add("estado","error")
                     .add("mensaje_soporte",ex.getMessage())
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
@@ -134,7 +134,7 @@ public class CategoriaServicio extends AplicacionBase{
         {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
+                    .add("estado","error")
                     .add("mensaje_soporte",ex.getMessage())
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
@@ -167,7 +167,7 @@ public class CategoriaServicio extends AplicacionBase{
         {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
+                    .add("estado","error")
                     .add("mensaje_soporte",ex.getMessage())
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
@@ -203,7 +203,7 @@ public class CategoriaServicio extends AplicacionBase{
 
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
-                    .add("estado","bad_request")
+                    .add("estado","error")
                     .add("mensaje_soporte",ex.getMessage())
                     .add("mensaje","La categoria ya se encuestra registrada").build();
 
@@ -213,7 +213,7 @@ public class CategoriaServicio extends AplicacionBase{
         catch (Exception ex){
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
+                    .add("estado","error")
                     .add("mensaje_soporte",ex.getMessage())
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
@@ -249,7 +249,7 @@ public class CategoriaServicio extends AplicacionBase{
         {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
+                    .add("estado","error")
                     .add("mensaje_soporte",ex.getMessage())
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 

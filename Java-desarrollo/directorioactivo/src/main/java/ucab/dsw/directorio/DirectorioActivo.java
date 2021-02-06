@@ -349,7 +349,7 @@ public class DirectorioActivo
     */
     public String getEntryUid(UsuarioLdapDto user)
     {
-        String role="";
+        String uid="";
         try
         {
             connectLDAP( _user, _password );
@@ -365,7 +365,7 @@ public class DirectorioActivo
                     SearchResult res = ( SearchResult ) results.next();
                     Attributes atbs = res.getAttributes();
                     Attribute atb = atbs.get( "uid" );
-                    role = ( String ) atb.get();
+                    uid = ( String ) atb.get();
                 }
             }
             else
@@ -382,8 +382,8 @@ public class DirectorioActivo
         {
             disconnectLDAP();
         }
-        System.out.println(role);
-        return role;
+        System.out.println(uid);
+        return uid;
     }
 
 

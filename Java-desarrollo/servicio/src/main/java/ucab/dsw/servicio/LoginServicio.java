@@ -65,13 +65,16 @@ public class LoginServicio extends AplicacionBase{
 
 
                 Jwt jwt=new Jwt();
-                token= jwt.generarToken(usuarioLdapDto);
+                token= jwt.generarToken(Long.parseLong(ldap.getEntryUid(usuarioLdapDto)));
                 data= Json.createObjectBuilder()
                                      .add("estado","success")
                                      .add("codigo",200)
                                      .add("token",token)
                                      .add("rol", ldap.getEntryRole(usuarioLdapDto))
                                      .add("user_id",ldap.getEntryUid(usuarioLdapDto)).build();
+
+                usuario.set_token(token);
+                Usuario resul=daoUsuario.update(usuario);
 
                 System.out.println(data);
                 return Response.status(Response.Status.OK).entity(data).build();

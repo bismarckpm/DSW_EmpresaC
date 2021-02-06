@@ -52,4 +52,14 @@ public class UsuarioDto extends BaseDto
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
+
+    public String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 }
