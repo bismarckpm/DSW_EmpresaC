@@ -3,6 +3,7 @@ package ucab.dsw.logica.comando.presentacion;
 import ucab.dsw.accesodatos.*;
 import ucab.dsw.dtos.ResponseDto;
 import ucab.dsw.entidades.*;
+import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.logica.comando.BaseComando;
 import ucab.dsw.logica.fabrica.Fabrica;
 
@@ -15,41 +16,53 @@ public class AllPresentacionComando extends BaseComando {
     public JsonArrayBuilder presentaciones= Json.createArrayBuilder();
 
     @Override
-    public void execute() {
+    public void execute() throws EmpresaException {
 
-        DaoPresentacion dao= Fabrica.crear(DaoPresentacion.class);
-        DaoTipo daoTipo= Fabrica.crear(DaoTipo.class);
+        try{
 
-        List<Presentacion> resultado= dao.findAll(Presentacion.class);
+            DaoPresentacion dao= Fabrica.crear(DaoPresentacion.class);
+            DaoTipo daoTipo= Fabrica.crear(DaoTipo.class);
 
-        for(Presentacion obj: resultado) {
+            List<Presentacion> resultado= dao.findAll(Presentacion.class);
 
-            Tipo tipo=daoTipo.find(obj.get_tipo().get_id(),Tipo.class);
+            for(Presentacion obj: resultado) {
 
-            JsonObject p = Json.createObjectBuilder().add("id",obj.get_id())
-                    .add("nombre",obj.get_nombre())
-                    .add("tipo",tipo.get_nombre())
-                    .add("tipo_id",tipo.get_id())
-                    .add("estado",obj.get_estado()).build();
+                Tipo tipo=daoTipo.find(obj.get_tipo().get_id(),Tipo.class);
 
-            presentaciones.add(p);
+                JsonObject p = Json.createObjectBuilder().add("id",obj.get_id())
+                        .add("nombre",obj.get_nombre())
+                        .add("tipo",tipo.get_nombre())
+                        .add("tipo_id",tipo.get_id())
+                        .add("estado",obj.get_estado()).build();
 
+                presentaciones.add(p);
+
+            }
+        }
+        catch (NullPointerException ex){
+            throw new EmpresaException("C-PRE02-E-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
         }
 
     }
 
     @Override
-    public JsonObject getResult() {
-        ResponseDto responseDto =Fabrica.crear(ResponseDto.class);
-        responseDto.mensaje="Todas las presentaciones";
-        responseDto.estado="success";
-        responseDto.objeto=this.presentaciones;
+    public JsonObject getResult() throws EmpresaException {
+
+        try{
+            ResponseDto responseDto =Fabrica.crear(ResponseDto.class);
+            responseDto.mensaje="Todas las presentaciones";
+            responseDto.estado="success";
+            responseDto.objeto=this.presentaciones;
 
 
-        JsonObject data= Json.createObjectBuilder().add("mensaje","Todas las presentaciones")
-                .add("estado","success")
-                .add("presentaciones",presentaciones).build();
+            JsonObject data= Json.createObjectBuilder().add("mensaje","Todas las presentaciones")
+                    .add("estado","success")
+                    .add("presentaciones",presentaciones).build();
 
-        return data;
+            return data;
+        }
+        catch (NullPointerException ex){
+            throw new EmpresaException("C-PRE02-G-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
+        }
     }
 }
