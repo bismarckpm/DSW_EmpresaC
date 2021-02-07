@@ -23,42 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87c6d671-881a-45a8-ab00-e16a3b9c4375" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/app/comun/servicios/login/login.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/app/comun/servicios/login/login.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/ciudad/AllCiudadesComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/ciudad/AllCiudadesComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/estado/AllEstadosComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/estado/AllEstadosComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/metodoConexion/AllMetodoConexionComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/metodoConexion/AllMetodoConexionComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/nivelAcademico/AllNivelAcademicoComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/nivelAcademico/AllNivelAcademicoComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/ocupacion/AllOcupacionComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/ocupacion/AllOcupacionComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/pais/AllPaisComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/pais/AllPaisComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/parroquia/AllParroquiaComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/parroquia/AllParroquiaComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/presentacion/ActivatePresentacionComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/presentacion/ActivatePresentacionComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/presentacion/AllPresentacionComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/presentacion/AllPresentacionComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/presentacion/DeletePresentacionComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/presentacion/DeletePresentacionComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/presentacion/GetPresentacionComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/presentacion/GetPresentacionComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/presentacion/InsertPresentacionComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/presentacion/InsertPresentacionComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/presentacion/UpdatePresentacionComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/presentacion/UpdatePresentacionComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/tipo/ActivateTipoComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/tipo/ActivateTipoComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/tipo/AllTipoComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/tipo/AllTipoComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/tipo/DeleteTipoComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/tipo/DeleteTipoComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/tipo/GetTipoComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/tipo/GetTipoComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/tipo/InsertTipoComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/tipo/InsertTipoComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/tipo/UpdateTipoComando.java" beforeDir="false" afterPath="$PROJECT_DIR$/logica/src/main/java/ucab/dsw/logica/comando/tipo/UpdateTipoComando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CiudadServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/CiudadServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/EstadoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/EstadoServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/MetodoConexionServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/MetodoConexionServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/NivelAcademicoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/NivelAcademicoServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/OcupacionServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/OcupacionServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PaisServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PaisServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/ParroquiaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/ParroquiaServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PresentacionServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/PresentacionServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/TipoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/TipoServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/LugarServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/LugarServicioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/MetodoConexionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/MetodoConexionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/NivelAcademicoServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/NivelAcademicoServicioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/OcupacionServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/OcupacionServicioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/PresentacionServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/PresentacionServicioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/TipoServicioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/ucab/dsw/test/TipoServicioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,19 +79,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.SolicitudEstudioServicioTest.AddSolicitud">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="AnalistaServicioTest.empezarEstudioTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
       <extension name="coverage">
@@ -239,7 +193,8 @@
       <workItem from="1611889930379" duration="8000000" />
       <workItem from="1612236344429" duration="467000" />
       <workItem from="1612318092807" duration="11762000" />
-      <workItem from="1612546272700" duration="13686000" />
+      <workItem from="1612546272700" duration="13795000" />
+      <workItem from="1612713935539" duration="3249000" />
     </task>
     <servers />
   </component>
@@ -292,28 +247,28 @@
     </state>
     <state x="374" y="242" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.980@0.0.1280.980" timestamp="1610935516596" />
     <state x="374" y="243" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.984@0.0.1280.984" timestamp="1611290707562" />
-    <state width="980" height="136" key="GridCell.Tab.0.bottom" timestamp="1612571504994">
+    <state width="980" height="136" key="GridCell.Tab.0.bottom" timestamp="1612716686377">
       <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="980" height="136" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1612571504994" />
+    <state width="980" height="136" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1612716686377" />
     <state width="1238" height="165" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1610936076849" />
     <state width="1236" height="150" key="GridCell.Tab.0.bottom/0.0.1280.984@0.0.1280.984" timestamp="1612332732362" />
-    <state width="980" height="136" key="GridCell.Tab.0.center" timestamp="1612571504994">
+    <state width="980" height="136" key="GridCell.Tab.0.center" timestamp="1612716686377">
       <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="980" height="136" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1612571504994" />
+    <state width="980" height="136" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1612716686377" />
     <state width="1238" height="165" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1610936076848" />
     <state width="1236" height="150" key="GridCell.Tab.0.center/0.0.1280.984@0.0.1280.984" timestamp="1612332732362" />
-    <state width="980" height="136" key="GridCell.Tab.0.left" timestamp="1612571504993">
+    <state width="980" height="136" key="GridCell.Tab.0.left" timestamp="1612716686377">
       <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="980" height="136" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1612571504993" />
+    <state width="980" height="136" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1612716686377" />
     <state width="1238" height="165" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1610936076848" />
     <state width="1236" height="150" key="GridCell.Tab.0.left/0.0.1280.984@0.0.1280.984" timestamp="1612332732362" />
-    <state width="980" height="136" key="GridCell.Tab.0.right" timestamp="1612571504994">
+    <state width="980" height="136" key="GridCell.Tab.0.right" timestamp="1612716686377">
       <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="980" height="136" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1612571504994" />
+    <state width="980" height="136" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1612716686377" />
     <state width="1238" height="165" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1610936076849" />
     <state width="1236" height="150" key="GridCell.Tab.0.right/0.0.1280.984@0.0.1280.984" timestamp="1612332732362" />
     <state x="483" y="194" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1611556226769">

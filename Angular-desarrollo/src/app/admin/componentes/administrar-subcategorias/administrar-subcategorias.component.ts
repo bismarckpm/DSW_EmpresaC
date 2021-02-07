@@ -11,6 +11,8 @@ import { MetaData } from 'ng-event-bus/lib/meta-data';
 import { EliminarSubcategoriaComponent } from './eliminar-subcategoria/eliminar-subcategoria.component';
 import { ModifSubcategoriaComponent } from '../../componentes/administrar-subcategorias/modif-subcategoria/modif-subcategoria.component';
 
+import { LoginService } from "../../../comun/servicios/login/login.service";
+
 export interface Subcategoria {
   id: number;
   nombre: string;
@@ -34,7 +36,11 @@ export class AdministrarSubcategoriasComponent implements OnInit,AfterViewInit {
   public dataSource = new MatTableDataSource<Subcategoria>(); //solo para probar
   public dialogRef;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(public dialog: MatDialog,private _adminSubcategoriaService:AdministrarSubcategoriasService,private _toastrService: ToastrService,private eventBus: NgEventBus) { }
+  constructor(public dialog: MatDialog,
+    private _adminSubcategoriaService:AdministrarSubcategoriasService,
+    private _toastrService: ToastrService,
+    private eventBus: NgEventBus,
+    private loginService:LoginService) { }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   ngOnInit(): void {
@@ -81,9 +87,17 @@ export class AdministrarSubcategoriasComponent implements OnInit,AfterViewInit {
         this.eventBus.cast('fin-progress','chao');
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
       });
   }
 
@@ -128,9 +142,18 @@ export class AdministrarSubcategoriasComponent implements OnInit,AfterViewInit {
         this.getAllSubcategorias();
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
+        
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
       });
   }
 

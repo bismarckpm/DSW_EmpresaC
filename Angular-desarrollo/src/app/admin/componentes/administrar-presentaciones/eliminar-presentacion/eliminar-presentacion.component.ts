@@ -4,6 +4,8 @@ import { NgEventBus } from 'ng-event-bus';
 import { ToastrService } from 'ngx-toastr';
 import { AdministrarPresentacionService } from 'src/app/admin/Servicios/administrar-presentacion/administrar-presentacion.service';
 
+import { LoginService } from "../../../../comun/servicios/login/login.service";
+
 @Component({
   selector: 'app-eliminar-presentacion',
   templateUrl: './eliminar-presentacion.component.html',
@@ -17,7 +19,8 @@ export class EliminarPresentacionComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: any,
               private _adminPresentacionService:AdministrarPresentacionService,
               private _toastrService: ToastrService,
-              private eventBus: NgEventBus
+              private eventBus: NgEventBus,
+              private loginService:LoginService
   ) {}
 
   ngOnInit(): void {
@@ -42,10 +45,17 @@ export class EliminarPresentacionComponent implements OnInit {
 
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
-        this.eventBus.cast('cerrar-presentacion-add','cerrar');
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
       });
 
   }

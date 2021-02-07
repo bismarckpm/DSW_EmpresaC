@@ -21,6 +21,7 @@ import { Estudio } from "../../../Entidades/estudio";
 //Servicio 
 import { SolicitudEstudioService } from "../../Servicios/solicitud-estudio.service";
 import { PreguntaService } from "../../Servicios/pregunta.service";
+import { LoginService } from "../../../comun/servicios/login/login.service";
 
 
 @Component({
@@ -52,7 +53,8 @@ export class AsignarEncuestaComponent implements OnInit {
     private fb: FormBuilder,
     private preguntaServicio:PreguntaService,
     private _toastrService: ToastrService,
-    private eventBus: NgEventBus) { 
+    private eventBus: NgEventBus,
+    private loginService:LoginService) { 
       
       
       this.preguntasSeleccionadas=[];
@@ -82,10 +84,18 @@ export class AsignarEncuestaComponent implements OnInit {
         this._toastrService.success("Exito", "toda la informacion del estudio");
         this.eventBus.cast('fin-progress','chao');
 
-      }, err=>{
-        console.log(err)
-        this._toastrService.error("Ops! Hubo un problema.", "Al cargar los participantes.");
-        this.eventBus.cast('fin-progress','chao');
+      }, error=>{
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
 
       })
 
@@ -103,19 +113,35 @@ export class AsignarEncuestaComponent implements OnInit {
 
 
       },
-      err=>{
-        console.log(err)
-        this._toastrService.error("Ops! Hubo un problema.", "Error al cargar las preguntas.");
-        this.eventBus.cast('fin-progress','chao');
+      error=>{
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
       }
       )
 
 
       
-        },err=>{
-          console.log(err)
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
+        },error=>{
+          if(error.error.estado=="unauthorized"){
+            this.eventBus.cast('fin-progress','chao');
+            this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+            this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+    
+          }
+          else{
+            console.log(error);
+            this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+            this.eventBus.cast('fin-progress','chao');
+          }
       });
 
 

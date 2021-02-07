@@ -11,6 +11,8 @@ import { MetaData } from 'ng-event-bus/lib/meta-data';
 import { ModificarCategoriaComponent } from './modificar-categoria/modificar-categoria.component';
 import { EliminarCategoriaComponent } from './eliminar-categoria/eliminar-categoria.component';
 
+import { LoginService } from "../../../comun/servicios/login/login.service";
+import { Router } from '@angular/router';
 
 export interface Categoria {
   id: number;
@@ -47,7 +49,9 @@ export class AdministrarCategoriaComponent implements OnInit, AfterViewInit {
   constructor(public dialog: MatDialog,
               private _adminCategoriaService:AdministrarCategoriasService,
               private _toastrService: ToastrService,
-              private eventBus: NgEventBus
+              private eventBus: NgEventBus,
+              private loginService:LoginService,
+              private router:Router
   ) { }
 
   
@@ -99,9 +103,17 @@ export class AdministrarCategoriaComponent implements OnInit, AfterViewInit {
         this.eventBus.cast('fin-progress','chao');
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
       });
   }
 

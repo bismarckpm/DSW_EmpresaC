@@ -15,6 +15,8 @@ import { Estudio } from "../../../Entidades/estudio";
 
 //servicios
 import { ConsultaEstudiosService } from "../../servicios/consulta-estudios/consulta-estudios.service";
+import { LoginService } from "../../../comun/servicios/login/login.service";
+
 
 @Component({
   selector: 'app-encuesta-telefonica',
@@ -40,7 +42,8 @@ export class EncuestaTelefonicaComponent implements OnInit {
     private eventBus: NgEventBus,
     private route: ActivatedRoute,
     private servicio:ConsultaEstudiosService,
-    private location: Location) { }
+    private location: Location,
+    private loginService:LoginService) { }
 
   ngOnInit(): void {
     this.opciones=[];
@@ -57,20 +60,38 @@ export class EncuestaTelefonicaComponent implements OnInit {
       this.eventBus.cast('fin-progress','chao');
       this.crearFormulario();
 
-    },err=>{
+    },error=>{
 
-      this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-      this.eventBus.cast('fin-progress','chao');
+      if(error.error.estado=="unauthorized"){
+        this.eventBus.cast('fin-progress','chao');
+        this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+        this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+
+      }
+      else{
+        console.log(error);
+        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        this.eventBus.cast('fin-progress','chao');
+      }
     })
 
     this.servicio.getEstudio(this.estudio_id).subscribe(x=>{
       this.estudio=x.estudio;
       this._toastrService.success("Exito", "Informacion del estudio");
 
-    },err=>{
+    },error=>{
 
-      this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-      this.eventBus.cast('fin-progress','chao');
+      if(error.error.estado=="unauthorized"){
+        this.eventBus.cast('fin-progress','chao');
+        this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+        this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+
+      }
+      else{
+        console.log(error);
+        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        this.eventBus.cast('fin-progress','chao');
+      }
     })
 
   }
@@ -291,10 +312,19 @@ export class EncuestaTelefonicaComponent implements OnInit {
 
         this.stepper.next();
 
-      },err=>{
+      },error=>{
 
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
         
         
       })
