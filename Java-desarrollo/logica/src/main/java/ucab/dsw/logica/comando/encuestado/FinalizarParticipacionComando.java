@@ -2,12 +2,11 @@ package ucab.dsw.logica.comando.encuestado;
 
 import ucab.dsw.accesodatos.*;
 import ucab.dsw.dtos.ParticipacionDto;
-import ucab.dsw.dtos.ResponseDto;
 import ucab.dsw.dtos.SolicitudEstudioDto;
 import ucab.dsw.entidades.*;
+import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.excepciones.PruebaExcepcion;
 import ucab.dsw.logica.comando.BaseComando;
-import ucab.dsw.logica.fabrica.Fabrica;
 import ucab.dsw.mappers.ParticipacionMapper;
 import ucab.dsw.mappers.SolicitudMapper;
 
@@ -30,7 +29,7 @@ public class FinalizarParticipacionComando extends BaseComando {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws EmpresaException{
         try{
             int restantes=0;
             DaoSolicitudEstudio daoSolicitudEstudio = new DaoSolicitudEstudio();
@@ -61,24 +60,22 @@ public class FinalizarParticipacionComando extends BaseComando {
                 SolicitudEstudio resul = daoSolicitudEstudio.update(solicitudEstudio);
                 this.solicitudEstudioDto= SolicitudMapper.mapEntityToDto(resul);
             }
-        }catch (
-        PruebaExcepcion pruebaExcepcion) {
-            pruebaExcepcion.printStackTrace();
+        } catch (PruebaExcepcion ex) {
+            ex.printStackTrace();
+            throw new EmpresaException("C-ENC05-ZERO-ID", ex.getMessage(), "Intento asignar el valor de 0 a un ID");
         }
     }
     @Override
-    public JsonObject getResult() {
-        ResponseDto responseDto = Fabrica.crear(ResponseDto.class);
-        responseDto.mensaje="Finalizado";
-        responseDto.estado="success";
-        responseDto.objeto=this.participacionDto.getEstado();
+    public JsonObject getResult() throws EmpresaException{
+        try{
+            JsonObject data= Json.createObjectBuilder().add("mensaje","Finalizado")
+                    .add("estado","success")
+                    .add("participacion_estado",participacionDto.getEstado()).build();
 
-
-        JsonObject data= Json.createObjectBuilder().add("mensaje","Finalizado")
-                .add("estado","success")
-                .add("participacion_estado",participacionDto.getEstado()).build();
-
-        return data;
+            return data;
+        } catch (NullPointerException ex) {
+            ex.printStackTrace();
+            throw new EmpresaException("C-ENC05-G-NULL", "Ha ocurrido un error en los JsonObject - Cause: Null key/pair", "Error. Intente mas tarde.");
+        }
     }
-
 }

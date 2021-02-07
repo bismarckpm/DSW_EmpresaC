@@ -36,7 +36,7 @@ public class ClienteServicio {
     */
     @GET
     @Path("/estudios/{_id}")
-    public Response consultaEstudios_Solicitados(@PathParam("_id") long _id) {
+    public Response consultaEstudios_Solicitados(@HeaderParam("authorization") String token,@PathParam("_id") long _id) {
         JsonObject resul;
         try {
             if(Jwt.verificarToken(token)){
@@ -83,7 +83,7 @@ public class ClienteServicio {
     */
    @GET
     @Path("/get-id/{_id}")
-    public Response getClienteId(@PathParam("_id") long _id) {
+    public Response getClienteId(@HeaderParam("authorization") String token,@PathParam("_id") long _id) {
         JsonObject resul;
         try {
             if(Jwt.verificarToken(token)){
@@ -129,7 +129,7 @@ public class ClienteServicio {
      */
     @GET
     @Path("/respuesta-analista/{id}")
-    public Response respuesta_analista(@PathParam("id") long _id) {
+    public Response respuesta_analista(@HeaderParam("authorization") String token,@PathParam("id") long _id) {
         JsonObject resul;
         try {
             if(Jwt.verificarToken(token)){

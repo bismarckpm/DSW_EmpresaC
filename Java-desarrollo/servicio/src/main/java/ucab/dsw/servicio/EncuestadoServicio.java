@@ -32,7 +32,7 @@ public class EncuestadoServicio {
      */
     @GET
     @Path( "/estudios-asignados/{id}" )
-    public Response consultaEstudios_asignados(@PathParam("id")long  _id){
+    public Response consultaEstudios_asignados(@HeaderParam("authorization") String token,@PathParam("id")long  _id){
     JsonObject resul;
 
         try {
@@ -81,7 +81,7 @@ public class EncuestadoServicio {
      */
     @GET
     @Path( "/encuesta-estudio/{id}" )
-    public Response encuesta_estudio(@PathParam("id")long  _id){
+    public Response encuesta_estudio(@HeaderParam("authorization") String token,@PathParam("id")long  _id){
     JsonObject resul;
 
         try {
@@ -131,7 +131,7 @@ public class EncuestadoServicio {
      */
     @PUT
     @Path( "/Respuesta/{id}/{id2}/{id3}" )
-    public Response addRespuesta(@PathParam("id") long  _id,@PathParam("id2") long  _id2,@PathParam("id3") long  _id3,RespuestaDto respuestaDto) {
+    public Response addRespuesta(@HeaderParam("authorization") String token,@PathParam("id") long  _id,@PathParam("id2") long  _id2,@PathParam("id3") long  _id3,RespuestaDto respuestaDto) {
 
         JsonObject resul;
         try {
@@ -179,7 +179,7 @@ public class EncuestadoServicio {
      */
     @GET
     @Path( "/pregunta-estudio/{id}/{id2}" )
-    public Response pregunta_estudio(@PathParam("id")long  _id,@PathParam("id2")long  _id2){
+    public Response pregunta_estudio(@HeaderParam("authorization") String token,@PathParam("id")long  _id,@PathParam("id2")long  _id2){
         JsonObject resul;
 
         try {
@@ -229,7 +229,7 @@ public class EncuestadoServicio {
      */
     @DELETE
     @Path( "/finalizar/{id}/{id2}" )
-    public Response finalizarParticipacion(@PathParam("id") long  _id,@PathParam("id2")long  _id2){
+    public Response finalizarParticipacion(@HeaderParam("authorization") String token,@PathParam("id") long  _id,@PathParam("id2")long  _id2){
         JsonObject resul;
 
         try {
@@ -278,7 +278,7 @@ public class EncuestadoServicio {
     */
     @GET
     @Path("/get-id/{_id}")
-    public Response getEncuestadoId(@PathParam("_id") long _id) {
+    public Response getEncuestadoId(@HeaderParam("authorization") String token,@PathParam("_id") long _id) {
         JsonObject resul;
 
         try {
