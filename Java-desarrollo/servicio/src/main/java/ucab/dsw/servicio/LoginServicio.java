@@ -1,11 +1,7 @@
 package ucab.dsw.servicio;
 
-import ucab.dsw.accesodatos.DaoUsuario;
-import ucab.dsw.directorio.DirectorioActivo;
 import ucab.dsw.dtos.UsuarioLdapDto;
-import ucab.dsw.entidades.Usuario;
-import ucab.dsw.excepciones.ContrasenaInvalidaExcepcion;
-import ucab.dsw.jwt.Jwt;
+import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.logica.comando.login.LoginLdapComando;
 import ucab.dsw.logica.comando.login.LogoutComando;
 import ucab.dsw.logica.fabrica.Fabrica;
@@ -46,20 +42,19 @@ public class LoginServicio extends AplicacionBase{
             comando.execute();
 
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-        } catch ( ContrasenaInvalidaExcepcion ex ){
+        } catch ( EmpresaException ex ) {
             ex.printStackTrace();
-            System.out.println(ex.getMensaje());
-            JsonObject data= Json.createObjectBuilder()
-                    .add("estado","unauthorized")
-                    .add("mensaje_soporte",ex.getMensaje())
-                    .add("mensaje","Contraseña invalida").build();
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
-            return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         } catch ( Exception ex ) {
             ex.printStackTrace();
-            JsonObject data= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-LO01")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
@@ -74,11 +69,19 @@ public class LoginServicio extends AplicacionBase{
             comando.execute();
 
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-        }catch ( Exception ex ) {
+        } catch ( EmpresaException ex ) {
+            ex.printStackTrace();
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        } catch ( Exception ex ) {
             ex.printStackTrace();
             JsonObject data= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("estado","error")
+                    .add("codigo","S-EX-LO02")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.BAD_REQUEST).entity(data).build();

@@ -41,7 +41,7 @@ public class InsertCategoriaComando extends BaseComando {
         }
         catch (PersistenceException | DatabaseException ex){
             ex.printStackTrace();
-            throw new EmpresaException("C-CA05-DUP",ex.getMessage(), "La categoria ya se encuestra registrada");
+            throw new EmpresaException("C-CA05-DUP",ex.getMessage(), "La categoria ya se encuentra registrada");
         }
     }
 

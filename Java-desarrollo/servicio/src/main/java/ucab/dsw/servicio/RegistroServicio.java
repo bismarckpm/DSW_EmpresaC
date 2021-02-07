@@ -3,6 +3,7 @@ package ucab.dsw.servicio;
 import org.eclipse.persistence.exceptions.DatabaseException;
 import ucab.dsw.accesodatos.*;
 import ucab.dsw.dtos.*;
+import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.excepciones.UsuarioExistenteExcepcion;
 import ucab.dsw.jwt.Jwt;
 import ucab.dsw.logica.comando.registro.RegistroComando;
@@ -47,29 +48,19 @@ public class RegistroServicio extends AplicacionBase{
 
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
-        } catch ( UsuarioExistenteExcepcion ex ){
+        } catch ( EmpresaException ex ) {
             ex.printStackTrace();
-            System.out.println(ex.getMensaje());
-            JsonObject data= Json.createObjectBuilder()
-                    .add("estado","unauthorized")
-                    .add("mensaje_soporte",ex.getMensaje())
-                    .add("mensaje","Usuario existente").build();
-
-            return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
-        } catch (PersistenceException | DatabaseException ex){
             JsonObject data= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje","El usuario ya se encuestra registrado")
-                    .add("codigo",500).build();
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
-            System.out.println(data);
-
-            return Response.status(Response.Status.OK).entity(data).build();
-        }catch ( Exception ex ) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        } catch ( Exception ex ) {
             ex.printStackTrace();
-            JsonObject data= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-RG01")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(data).build();
         }

@@ -1,13 +1,16 @@
 package ucab.dsw.test;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import ucab.dsw.accesodatos.DaoNivelAcademico;
 import ucab.dsw.accesodatos.DaoParroquia;
 import ucab.dsw.dtos.*;
 import ucab.dsw.entidades.NivelAcademico;
 import ucab.dsw.entidades.Parroquia;
+import ucab.dsw.entidades.Usuario;
 import ucab.dsw.excepciones.PruebaExcepcion;
+import ucab.dsw.jwt.Jwt;
 import ucab.dsw.logica.fabrica.Fabrica;
 import ucab.dsw.servicio.UsuarioServicio;
 
@@ -15,6 +18,17 @@ import javax.json.JsonObject;
 import javax.ws.rs.core.Response;
 
 public class UsuarioServicioTest {
+
+    public String token;
+
+    @Before
+    public void colocarToken(){
+        ucab.dsw.accesodatos.DaoUsuario dao=new ucab.dsw.accesodatos.DaoUsuario();
+        Usuario usuario=dao.find((long) 1,Usuario.class);
+        this.token= Jwt.generarToken(1);
+        usuario.set_token(this.token);
+        Usuario resul= dao.update(usuario);
+    }
 
     @Test
     public void AddCliente(){
@@ -34,7 +48,7 @@ public class UsuarioServicioTest {
         clienteDto.setNombre_empresa("EmpresaTest");
         clienteDto.setUsuarioLdapDto(usuarioLdapDto);
 
-        Response respuesta = servicio.AddCliente(clienteDto);
+        Response respuesta = servicio.AddCliente(this.token, clienteDto);
         JsonObject response= (JsonObject) respuesta.getEntity();
         Assert.assertEquals("\"AddClienteTest\"", response.get("clienteUser").toString() );
     }
@@ -81,7 +95,7 @@ public class UsuarioServicioTest {
         nuevoEncuestadoDto.setTelefono(telefonoDtos);
         nuevoEncuestadoDto.setOcupacion(ocupacionDtos);
         
-        Response respuesta = servicio.AddEncuestado(nuevoEncuestadoDto);
+        Response respuesta = servicio.AddEncuestado(this.token, nuevoEncuestadoDto);
         JsonObject response= (JsonObject) respuesta.getEntity();
         Assert.assertEquals("\"AddEncuestadoTest\"", response.get("encuestadoUser").toString() );
     }
@@ -105,7 +119,7 @@ public class UsuarioServicioTest {
         nuevoUsuarioDto.setUsuarioLdapDto(usuarioLdapDto);
         nuevoUsuarioDto.setUsuarioDto(usuarioDto);
 
-        Response respuesta = servicio.AddAdmin(nuevoUsuarioDto);
+        Response respuesta = servicio.AddAdmin(this.token, nuevoUsuarioDto);
         JsonObject response= (JsonObject) respuesta.getEntity();
         Assert.assertEquals("\"AddAdminTest\"", response.get("adminUser").toString() );
     }
@@ -129,7 +143,7 @@ public class UsuarioServicioTest {
         nuevoUsuarioDto.setUsuarioLdapDto(usuarioLdapDto);
         nuevoUsuarioDto.setUsuarioDto(usuarioDto);
 
-        Response respuesta = servicio.AddAnalista(nuevoUsuarioDto);
+        Response respuesta = servicio.AddAnalista(this.token, nuevoUsuarioDto);
         JsonObject response= (JsonObject) respuesta.getEntity();
         Assert.assertEquals("\"AddAnalistaTest\"", response.get("analistaUser").toString() );
     }
@@ -138,7 +152,7 @@ public class UsuarioServicioTest {
     public void activarUsuario(){
         ucab.dsw.servicio.UsuarioServicio servicio = new ucab.dsw.servicio.UsuarioServicio();
 
-        Response respuesta= servicio.activarUsuario(25);
+        Response respuesta= servicio.activarUsuario(this.token, 25);
         JsonObject response= (JsonObject) respuesta.getEntity();
         Assert.assertEquals("\"activo\"",response.get("estado_user").toString());
     }
@@ -162,7 +176,7 @@ public class UsuarioServicioTest {
         nuevoUsuarioDto.setUsuarioLdapDto(usuarioLdapDto);
         nuevoUsuarioDto.setUsuarioDto(usuarioDto);
 
-        Response respuesta = servicio.AddAdmin(nuevoUsuarioDto);
+        Response respuesta = servicio.AddAdmin(this.token, nuevoUsuarioDto);
         JsonObject response= (JsonObject) respuesta.getEntity();
         Assert.assertEquals("\"ChangeAdminTest\"", response.get("adminUser").toString() );
     }
@@ -185,7 +199,7 @@ public class UsuarioServicioTest {
         clienteDto.setNombre_empresa("EmpresaTest");
         clienteDto.setUsuarioLdapDto(usuarioLdapDto);
 
-        Response respuesta = servicio.changeCliente(6,clienteDto);
+        Response respuesta = servicio.changeCliente(this.token, 6,clienteDto);
         JsonObject response= (JsonObject) respuesta.getEntity();
         Assert.assertEquals("\"ChangeClienteTest\"", response.get("clienteUser").toString() );
 
@@ -195,7 +209,7 @@ public class UsuarioServicioTest {
     public void findAllUsers(){
         ucab.dsw.servicio.UsuarioServicio servicio = new ucab.dsw.servicio.UsuarioServicio();
 
-        Response respuesta= servicio.findAllUsers();
+        Response respuesta= servicio.findAllUsers(this.token);
         JsonObject responseDto= (JsonObject) respuesta.getEntity();
         Assert.assertNotNull(responseDto.get("usuarios"));
     }
@@ -204,7 +218,7 @@ public class UsuarioServicioTest {
     public void findCliente(){
         ucab.dsw.servicio.UsuarioServicio servicio = new ucab.dsw.servicio.UsuarioServicio();
 
-        Response respuesta= servicio.findCliente(5);
+        Response respuesta= servicio.findCliente(this.token, 5);
         JsonObject responseDto = (JsonObject) respuesta.getEntity();
         Assert.assertNotNull(responseDto.get("cliente"));
     }
@@ -214,7 +228,7 @@ public class UsuarioServicioTest {
         ucab.dsw.servicio.UsuarioServicio servicio = new ucab.dsw.servicio.UsuarioServicio();
         UsuarioDto usuarioDto = new UsuarioDto();
 
-        Response respuesta= servicio.deleteUser(26,usuarioDto);
+        Response respuesta= servicio.deleteUser(this.token, 26,usuarioDto);
         JsonObject responseDto= (JsonObject) respuesta.getEntity();
         Assert.assertEquals("\"inactivo\"",responseDto.get("estado_user").toString());
     }

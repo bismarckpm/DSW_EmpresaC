@@ -2,24 +2,20 @@ package ucab.dsw.servicio;
 
 import org.eclipse.persistence.exceptions.DatabaseException;
 
-import ucab.dsw.directorio.DirectorioActivo;
-import ucab.dsw.accesodatos.*;
 import ucab.dsw.dtos.*;
-import ucab.dsw.entidades.*;
 import ucab.dsw.excepciones.ContrasenaInvalidaExcepcion;
+import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.excepciones.UsuarioExistenteExcepcion;
+import ucab.dsw.jwt.Jwt;
 import ucab.dsw.logica.comando.usuario.*;
 import ucab.dsw.logica.fabrica.Fabrica;
 
 import javax.json.Json;
-import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.persistence.PersistenceException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Clase para la gestion del usuarios desde el panel del aministrador
@@ -29,6 +25,145 @@ import java.util.List;
 @Produces( MediaType.APPLICATION_JSON )
 @Consumes( MediaType.APPLICATION_JSON )
 public class UsuarioServicio extends AplicacionBase {
+
+    /**
+     * Metodo para activar cuenta a un usuario
+     * @author Jesus Requena
+     * @param _id representa el id del usuario que se necesita activar
+     * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
+     *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
+     *         La respuesta posee adjunta un json que incluye (estado, codigo y/o mensaje)
+     */
+
+    @DELETE
+    @Path( "/activar/{id}" )
+    public Response activarUsuario(@HeaderParam("authorization") String token, @PathParam("id") long  _id)
+    {
+        try  {
+            if(Jwt.verificarToken(token)){
+                ActivarUsuarioComando comando = Fabrica.crearComandoConId(ActivarUsuarioComando.class ,_id);
+                comando.execute();
+
+                return Response.status(Response.Status.OK).entity( comando.getResult() ).build();
+            } else {
+                JsonObject data = Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
+            }
+        } catch ( EmpresaException ex ) {
+            ex.printStackTrace();
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+
+        } catch ( Exception ex ){
+            ex.printStackTrace();
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-US01")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(data).build();
+        }
+    }
+
+    /**
+     * Metodo para añadrir un nuevo administrador
+     * despues de verificar que no existen coincidencias con el registro en la base de datos
+     * @author Jesus Requena
+     * @param nuevoUsuarioDto precargado con el conjunto de datos a ingresar en el registro
+     * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
+     *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
+     *         La respuesta posee adjunta un json que incluye (estado codigo y mensaje)
+     */
+    @POST
+    @Path( "/add/admin" )
+    public Response AddAdmin(@HeaderParam("authorization") String token, NuevoUsuarioDto nuevoUsuarioDto) {
+        try {
+            if(Jwt.verificarToken(token)){
+                AddAdminComando comando = Fabrica.crearComandoConDto(AddAdminComando.class, nuevoUsuarioDto);
+                comando.execute();
+
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            } else {
+                JsonObject data = Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
+            }
+        } catch ( EmpresaException ex ) {
+            ex.printStackTrace();
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+
+        } catch ( Exception ex ){
+            ex.printStackTrace();
+            JsonObject data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-US02")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(data).build();
+        }
+    }
+
+    /**
+     * Metodo para añadrir un nuevo analista
+     * despues de verificar que no existen coincidencias con el registro en la base de datos
+     * @author Jesus Requena
+     * @param nuevoUsuarioDto precargado con el conjunto de datos a ingresar en el registro
+     * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
+     *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
+     *         La respuesta posee adjunta un json que incluye (estado codigo y mensaje)
+     */
+    @POST
+    @Path( "/add/analista" )
+    public Response AddAnalista(@HeaderParam("authorization") String token, NuevoUsuarioDto nuevoUsuarioDto) {
+        try {
+            if(Jwt.verificarToken(token)){
+                AddAnalistaComando comando = Fabrica.crearComandoConDto(AddAnalistaComando.class, nuevoUsuarioDto);
+                comando.execute();
+
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            } else {
+                JsonObject data = Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
+            }
+        } catch ( EmpresaException ex ) {
+            ex.printStackTrace();
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+
+        } catch ( Exception ex ){
+            ex.printStackTrace();
+            JsonObject data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-US03")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(data).build();
+        }
+    }
 
     /**
      * Metodo para añadrir un nuevo cliente
@@ -41,28 +176,36 @@ public class UsuarioServicio extends AplicacionBase {
      */
     @POST
     @Path( "/add/cliente" )
-    public Response AddCliente(ClienteDto clienteDto)
+    public Response AddCliente(@HeaderParam("authorization") String token, ClienteDto clienteDto)
     {
-        try
-        {
-            AddClienteComando comando = Fabrica.crearComandoConDto(AddClienteComando.class,clienteDto);
-            comando.execute();
+        try {
+            if(Jwt.verificarToken(token)){
+                AddClienteComando comando = Fabrica.crearComandoConDto(AddClienteComando.class,clienteDto);
+                comando.execute();
 
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-        } catch (PersistenceException | DatabaseException ex){
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            } else {
+                JsonObject data = Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
+            }
+        } catch ( EmpresaException ex ) {
             ex.printStackTrace();
-            JsonObject data= Json.createObjectBuilder()
-                    .add("estado","bad_request")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","El cliente ya se encuestra registrado").build();
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
             return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
-        }
-        catch ( Exception ex){
+
+        } catch ( Exception ex ){
             ex.printStackTrace();
             JsonObject data= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("estado","error")
+                    .add("codigo","S-EX-US04")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(data).build();
@@ -81,192 +224,40 @@ public class UsuarioServicio extends AplicacionBase {
      */
     @POST
     @Path( "/add/encuestado" )
-    public Response AddEncuestado( NuevoEncuestadoDto nuevoEncuestadoDto ){
+    public Response AddEncuestado(@HeaderParam("authorization") String token, NuevoEncuestadoDto nuevoEncuestadoDto ){
         try {
-            AddEncuestadoComando comando = Fabrica.crearComandoConDto(AddEncuestadoComando.class, nuevoEncuestadoDto);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                AddEncuestadoComando comando = Fabrica.crearComandoConDto(AddEncuestadoComando.class, nuevoEncuestadoDto);
+                comando.execute();
 
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            } else {
+                JsonObject data = Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
-        } catch ( UsuarioExistenteExcepcion ex ){
-            ex.printStackTrace();
-            System.out.println(ex.getMensaje());
-            JsonObject data= Json.createObjectBuilder()
-                    .add("estado","unauthorized")
-                    .add("mensaje_soporte",ex.getMensaje())
-                    .add("mensaje","Usuario existente").build();
-
-            return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
-        } catch (PersistenceException | DatabaseException ex){
-            ex.printStackTrace();
-            JsonObject data= Json.createObjectBuilder()
-                    .add("estado","bad_request")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","El encuestado ya se encuestra registrado").build();
-
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
-        }
-        catch ( Exception ex){
-            ex.printStackTrace();
-            JsonObject data= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","Ha ocurrido un error con el servidor").build();
-
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(data).build();
-        }
-    }
-
-
-    /**
-     * Metodo para añadrir un nuevo administrador
-     * despues de verificar que no existen coincidencias con el registro en la base de datos
-     * @author Jesus Requena
-     * @param nuevoUsuarioDto precargado con el conjunto de datos a ingresar en el registro
-     * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
-     *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
-     *         La respuesta posee adjunta un json que incluye (estado codigo y mensaje)
-     */
-    @POST
-    @Path( "/add/admin" )
-    public Response AddAdmin(NuevoUsuarioDto nuevoUsuarioDto) {
-        try {
-            AddAdminComando comando = Fabrica.crearComandoConDto(AddAdminComando.class, nuevoUsuarioDto);
-            comando.execute();
-
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-
-        } catch (PersistenceException | DatabaseException ex){
-            ex.printStackTrace();
-            JsonObject data= Json.createObjectBuilder()
-                    .add("estado","bad_request")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","El administrador ya se encuestra registrado").build();
-
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
-        }
-        catch ( Exception ex){
-            ex.printStackTrace();
-            JsonObject data= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","Ha ocurrido un error con el servidor").build();
-
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(data).build();
-        }
-    }
-
-    /**
-     * Metodo para añadrir un nuevo analista
-     * despues de verificar que no existen coincidencias con el registro en la base de datos
-     * @author Jesus Requena
-     * @param nuevoUsuarioDto precargado con el conjunto de datos a ingresar en el registro
-     * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
-     *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
-     *         La respuesta posee adjunta un json que incluye (estado codigo y mensaje)
-     */
-    @POST
-    @Path( "/add/analista" )
-    public Response AddAnalista(NuevoUsuarioDto nuevoUsuarioDto) {
-        try {
-            AddAnalistaComando comando = Fabrica.crearComandoConDto(AddAnalistaComando.class, nuevoUsuarioDto);
-            comando.execute();
-
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-
-        } catch (PersistenceException | DatabaseException ex){
-            ex.printStackTrace();
-            JsonObject data= Json.createObjectBuilder()
-                    .add("estado","bad_request")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","El cliente ya se encuestra registrado").build();
-
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
-        }
-        catch ( Exception ex){
-            ex.printStackTrace();
-            JsonObject data= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","Ha ocurrido un error con el servidor").build();
-
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(data).build();
-        }
-    }
-
-    /**
-     * Metodo para modificar la contraseña de un usuario existente despues de verificar la contraseña actual
-     * @author Jesus Requena
-     * @param cambiarClaveDto el cual incluye el usuario a modificar, la conrtraseña actual y la nueva
-     * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
-     *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
-     *         La respuesta posee adjunta un json que incluye (estado y codigo)
-     */
-    @POST
-    @Path( "/change-password" )
-    public Response ChangePassword(CambiarClaveDto cambiarClaveDto) {
-
-        try {
-            ChangePasswordComando comando = Fabrica.crearComandoConDto(ChangePasswordComando.class, cambiarClaveDto);
-            comando.execute();
-
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-
-        } catch ( ContrasenaInvalidaExcepcion ex ){
-            ex.printStackTrace();
-            System.out.println(ex.getMensaje());
-
-            JsonObject data= Json.createObjectBuilder()
-                    .add("estado","unauthorized")
-                    .add("mensaje_soporte",ex.getMensaje())
-                    .add("mensaje","Contraseña invalida").build();
-
-            return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
-        } catch ( Exception ex ){
-            ex.printStackTrace();
-            System.out.println(ex.getMessage());
-            JsonObject data= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","Ha ocurrido un error con el servidor").build();
-
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(data).build();
-        }
-
-    }
-
-
-    /**
-     * Metodo para activar cuenta a un usuario
-     * @author Jesus Requena
-     * @param _id representa el id del usuario que se necesita activar
-     * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
-     *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
-     *         La respuesta posee adjunta un json que incluye (estado, codigo y/o mensaje)
-     */
-
-    @DELETE
-    @Path( "/activar/{id}" )
-    public Response activarUsuario(@PathParam("id") long  _id)
-    {
-        try  {
-            ActivarUsuarioComando comando = Fabrica.crearComandoConId(ActivarUsuarioComando.class ,_id);
-            comando.execute();
-
-            return Response.status(Response.Status.OK).entity( comando.getResult() ).build();
-
-        } catch ( Exception ex ){
+                return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
+            }
+        } catch ( EmpresaException ex ) {
             ex.printStackTrace();
             JsonObject data = Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+
+        } catch ( Exception ex ){
+            ex.printStackTrace();
+            JsonObject data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-US05")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(data).build();
         }
-
     }
-
 
     /**
      * Metodo para editar los datos de un usuario administrador
@@ -279,37 +270,36 @@ public class UsuarioServicio extends AplicacionBase {
      */
     @PUT
     @Path( "/edit/{id}" )
-    public Response changeAdmin(@PathParam("id")long  _id, UsuarioLdapDto usuarioLdapDto) {
+    public Response changeAdmin(@HeaderParam("authorization") String token, @PathParam("id")long  _id, UsuarioLdapDto usuarioLdapDto) {
 
         try {
-            ChangeAdminComando comando = Fabrica.crearComandoBoth(ChangeAdminComando.class, _id, usuarioLdapDto );
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                ChangeAdminComando comando = Fabrica.crearComandoBoth(ChangeAdminComando.class, _id, usuarioLdapDto );
+                comando.execute();
 
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            } else {
+                JsonObject data = Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
-        } catch ( UsuarioExistenteExcepcion ex ){
+                return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
+            }
+        } catch ( EmpresaException ex ) {
             ex.printStackTrace();
-            System.out.println(ex.getMensaje());
-            JsonObject data= Json.createObjectBuilder()
-                    .add("estado","unauthorized")
-                    .add("mensaje_soporte",ex.getMensaje())
-                    .add("mensaje","Usuario existente").build();
-
-            return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
-        }  catch (PersistenceException | DatabaseException ex){
-            ex.printStackTrace();
-            JsonObject data= Json.createObjectBuilder()
-                    .add("estado","bad_request")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","El administrador ya se encuestra registrado").build();
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
             return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
-        }
-        catch ( Exception ex){
+
+        } catch ( Exception ex ){
             ex.printStackTrace();
             JsonObject data= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("estado","error")
+                    .add("codigo","S-EX-US06")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(data).build();
@@ -327,29 +317,35 @@ public class UsuarioServicio extends AplicacionBase {
      */
     @PUT
     @Path( "/cliente/edit/{id}" )
-    public Response changeCliente(@PathParam("id")long  _id, ClienteDto clienteDto)
-    {
-
+    public Response changeCliente(@HeaderParam("authorization") String token, @PathParam("id")long  _id, ClienteDto clienteDto) {
         try {
-            ChangeClienteComando comando = Fabrica.crearComandoBoth(ChangeClienteComando.class, _id, clienteDto);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                ChangeClienteComando comando = Fabrica.crearComandoBoth(ChangeClienteComando.class, _id, clienteDto);
+                comando.execute();
 
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            } else {
+                JsonObject data = Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
-        } catch (PersistenceException | DatabaseException ex){
+                return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
+            }
+        } catch ( EmpresaException ex ) {
             ex.printStackTrace();
-            JsonObject data= Json.createObjectBuilder()
-                    .add("estado","bad_request")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","El cliente ya se encuestra registrado").build();
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
             return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
-        }
-        catch ( Exception ex){
+
+        } catch ( Exception ex ){
             ex.printStackTrace();
             JsonObject data= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("estado","error")
+                    .add("codigo","S-EX-US07")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(data).build();
@@ -357,57 +353,46 @@ public class UsuarioServicio extends AplicacionBase {
     }
 
     /**
-     * Metodo para obtener a todos los usuarios registrados en el Directorio Activo
+     * Metodo para modificar la contraseña de un usuario existente despues de verificar la contraseña actual
      * @author Jesus Requena
+     * @param cambiarClaveDto el cual incluye el usuario a modificar, la conrtraseña actual y la nueva
      * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
      *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
-     *         La respuesta posee adjunta un json que incluye (estado codigo, mensaje
-     *         y el arreglo con todos los usuarios y sus respectivos datos)
+     *         La respuesta posee adjunta un json que incluye (estado y codigo)
      */
-    @GET
-    @Path( "/all" )
-    public Response findAllUsers(){
+    @POST
+    @Path( "/change-password" )
+    public Response ChangePassword(@HeaderParam("authorization") String token, CambiarClaveDto cambiarClaveDto) {
+
         try {
-            FindAllUsersComando comando = Fabrica.crear(FindAllUsersComando.class);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                ChangePasswordComando comando = Fabrica.crearComandoConDto(ChangePasswordComando.class, cambiarClaveDto);
+                comando.execute();
 
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-        } catch ( Exception ex){
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            } else {
+                JsonObject data = Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
+            }
+        } catch ( EmpresaException ex ) {
             ex.printStackTrace();
-            JsonObject data= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(data).build();
-        }
-    }
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
 
-
-    /**
-     * Metodo para obtener a un cliente a partir de su id y retornar sus datos
-     * @author Jesus Requena
-     * @param _id con el id del cliente solicitado
-     * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
-     *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
-     *         La respuesta posee adjunta un json que incluye (estado, codigo
-     *         y los datos del cliente)
-     */
-    @GET
-    @Path( "/get-cliente/{id}" )
-    public Response findCliente(@PathParam("id")long  _id){
-        try {
-
-            FindClienteComando comando = Fabrica.crearComandoConId(FindClienteComando.class, _id);
-            comando.execute();
-
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-
-        } catch ( Exception ex){
+        } catch ( Exception ex ){
             ex.printStackTrace();
+            System.out.println(ex.getMessage());
             JsonObject data= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("estado","error")
+                    .add("codigo","S-EX-US08")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(data).build();
@@ -425,34 +410,130 @@ public class UsuarioServicio extends AplicacionBase {
      */
     @PUT
     @Path( "/delete/{id}" )
-    public Response deleteUser(@PathParam("id")long  _id, UsuarioDto usuarioDto)
-    {
-        JsonObject data;
+    public Response deleteUser(@HeaderParam("authorization") String token, @PathParam("id")long  _id, UsuarioDto usuarioDto) {
 
         try {
-            DeleteUserComando comando = Fabrica.crearComandoBoth(DeleteUserComando.class, _id, usuarioDto);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                DeleteUserComando comando = Fabrica.crearComandoBoth(DeleteUserComando.class, _id, usuarioDto);
+                comando.execute();
 
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            } else {
+                JsonObject data = Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
-        } catch (PersistenceException | DatabaseException ex){
+                return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
+            }
+        } catch ( EmpresaException ex ) {
             ex.printStackTrace();
-            data= Json.createObjectBuilder()
-                    .add("estado","bad_request")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","Usuario no encontrado").build();
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
             return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
-        }
-        catch ( Exception ex){
+
+        } catch ( Exception ex ){
             ex.printStackTrace();
-            data= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
+            JsonObject data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-US09")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(data).build();
         }
     }
-    
+
+    /**
+     * Metodo para obtener a todos los usuarios registrados en el Directorio Activo
+     * @author Jesus Requena
+     * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
+     *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
+     *         La respuesta posee adjunta un json que incluye (estado codigo, mensaje
+     *         y el arreglo con todos los usuarios y sus respectivos datos)
+     */
+    @GET
+    @Path( "/all" )
+    public Response findAllUsers(@HeaderParam("authorization") String token){
+        try {
+            if(Jwt.verificarToken(token)){
+                FindAllUsersComando comando = Fabrica.crear(FindAllUsersComando.class);
+                comando.execute();
+
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            } else {
+                JsonObject data = Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
+            }
+        } catch ( EmpresaException ex ) {
+            ex.printStackTrace();
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+
+        } catch ( Exception ex ){
+            ex.printStackTrace();
+            JsonObject data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-US10")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(data).build();
+        }
+    }
+
+    /**
+     * Metodo para obtener a un cliente a partir de su id y retornar sus datos
+     * @author Jesus Requena
+     * @param _id con el id del cliente solicitado
+     * @return Response que incluye un estado de respuesta http (OK o BAD_REQUEST) para indicar si exectivamente
+     *         se pudo completar la solicitud o si ocurrió un fallo en la comunicación.
+     *         La respuesta posee adjunta un json que incluye (estado, codigo
+     *         y los datos del cliente)
+     */
+    @GET
+    @Path( "/get-cliente/{id}" )
+    public Response findCliente(@HeaderParam("authorization") String token, @PathParam("id")long  _id){
+        try {
+            if(Jwt.verificarToken(token)){
+                FindClienteComando comando = Fabrica.crearComandoConId(FindClienteComando.class, _id);
+                comando.execute();
+
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            } else {
+                JsonObject data = Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
+            }
+        } catch ( EmpresaException ex ) {
+            ex.printStackTrace();
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+
+        } catch ( Exception ex ){
+            ex.printStackTrace();
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-US11")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(data).build();
+        }
+    }
 }
