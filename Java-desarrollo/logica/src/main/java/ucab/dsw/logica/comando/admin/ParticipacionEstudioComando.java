@@ -3,6 +3,7 @@ package ucab.dsw.logica.comando.admin;
 import ucab.dsw.accesodatos.*;
 import ucab.dsw.dtos.ResponseDto;
 import ucab.dsw.entidades.*;
+import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.logica.comando.BaseComando;
 import ucab.dsw.logica.fabrica.Fabrica;
 
@@ -21,44 +22,47 @@ public class ParticipacionEstudioComando extends BaseComando {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws EmpresaException{
+        try{
+            DaoParticipacion dao = new DaoParticipacion();
+            DaoEncuestado daoEncuestado = new DaoEncuestado();
+            List<Participacion> resultado = null;
+            Class<Participacion> type = Participacion.class;
 
-        DaoParticipacion dao = new DaoParticipacion();
-        DaoEncuestado daoEncuestado = new DaoEncuestado();
-        List<Participacion> resultado = null;
-        Class<Participacion> type = Participacion.class;
+            resultado = dao.findAll(type);
+            for (Participacion obj : resultado) {
+                Participacion participacion = dao.find(obj.get_id(), Participacion.class);
+                Encuestado encuestado = daoEncuestado.find(participacion.get_encuestado().get_id(),Encuestado.class);
 
-        resultado = dao.findAll(type);
-        for (Participacion obj : resultado) {
-            Participacion participacion = dao.find(obj.get_id(), Participacion.class);
-            Encuestado encuestado = daoEncuestado.find(participacion.get_encuestado().get_id(),Encuestado.class);
+                if (participacion.get_solicitudestudio().get_id() == _id) {
 
-            if (participacion.get_solicitudestudio().get_id() == _id) {
+                    JsonObject p = Json.createObjectBuilder()
+                            .add("id", participacion.get_id())
+                            .add("Nombre", encuestado.get_nombre())
+                            .add("Estado", participacion.get_estado()).build();
 
-                JsonObject p = Json.createObjectBuilder()
-                        .add("id", participacion.get_id())
-                        .add("Nombre", encuestado.get_nombre())
-                        .add("Estado", participacion.get_estado()).build();
+                    participantes.add(p);
 
-                participantes.add(p);
-
+                }
             }
         }
-
+            catch (NullPointerException ex){
+            throw new EmpresaException("C-ADM06-E-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
+        }
     }
 
     @Override
-    public JsonObject getResult() {
-        ResponseDto responseDto = Fabrica.crear(ResponseDto.class);
-        responseDto.mensaje="Participantes";
-        responseDto.estado="success";
-        responseDto.objeto=this.participantes;
+    public JsonObject getResult() throws EmpresaException{
+        try{
+            JsonObject data= Json.createObjectBuilder().add("mensaje","Todos los participantes")
+                    .add("estado","success")
+                    .add("Participantes",participantes).build();
 
-
-        JsonObject data= Json.createObjectBuilder().add("mensaje","Todos los participantes")
-                .add("estado","success")
-                .add("Participantes",participantes).build();
-
-        return data;
+            return data;
+        }
+            catch (NullPointerException ex){
+            throw new EmpresaException("C-ADM06-G-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
+        }
     }
+
 }
