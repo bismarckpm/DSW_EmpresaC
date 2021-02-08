@@ -12,6 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.*;
+import ucab.dsw.jwt.Jwt;
 
 /**
  * Una clase que contiene un conjunto de metodos y/o funciones correspondiente al cliente

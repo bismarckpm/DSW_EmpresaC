@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.ws.rs.core.Response;
-
+import ucab.dsw.jwt.Jwt;
 import javax.ws.rs.*;
 
 @Path( "/encuestado" )

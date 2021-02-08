@@ -4,12 +4,12 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-;
 import javax.json.JsonObject;
 import javax.ws.rs.core.Response;
 import ucab.dsw.dtos.*;
 import ucab.dsw.entidades.Usuario;
 import ucab.dsw.servicio.EncuestadoServicio;
+import ucab.dsw.jwt.Jwt;
 
 
 

@@ -10,6 +10,7 @@ import ucab.dsw.servicio.ClienteServicio;
 
 import javax.json.JsonObject;
 import javax.ws.rs.core.Response;
+import ucab.dsw.jwt.Jwt;
 
 
 public class ClienteServicioTest {

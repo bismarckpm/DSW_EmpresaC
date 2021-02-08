@@ -4,7 +4,7 @@ import ucab.dsw.dtos.*;
 import ucab.dsw.entidades.*;
 import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.logica.fabrica.Fabrica;
-
+import ucab.dsw.jwt.Jwt;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
