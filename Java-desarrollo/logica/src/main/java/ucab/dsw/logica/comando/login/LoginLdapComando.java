@@ -5,6 +5,7 @@ import ucab.dsw.directorio.DirectorioActivo;
 import ucab.dsw.dtos.UsuarioLdapDto;
 import ucab.dsw.entidades.Usuario;
 import ucab.dsw.excepciones.ContrasenaInvalidaExcepcion;
+import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.logica.comando.BaseComando;
 import ucab.dsw.jwt.Jwt;
 import ucab.dsw.logica.fabrica.Fabrica;
@@ -23,45 +24,53 @@ public class LoginLdapComando extends BaseComando {
     }
 
     @Override
-    public void execute() throws ContrasenaInvalidaExcepcion {
+    public void execute() throws EmpresaException {
 
-        DirectorioActivo ldap = new DirectorioActivo();
+        try{
+            DirectorioActivo ldap = new DirectorioActivo();
 
-        if ( this.usuarioLdapDto.getCorreoelectronico() != null ){
-            this.usuarioLdapDto.setCn(ldap.getUserFromMail(this.usuarioLdapDto));
-        }
-        long resultado=ldap.userAuthentication( this.usuarioLdapDto );
-
-        if(resultado==1){
-            DaoUsuario daoUsuario = Fabrica.crear(DaoUsuario.class);
-            Usuario usuario = daoUsuario.find(Long.parseLong(ldap.getEntryUid(this.usuarioLdapDto)), Usuario.class);
-
-            if (usuario.get_estado().equals("inactivo")){
-                throw new ContrasenaInvalidaExcepcion("Usuario Inactivo");
+            if (this.usuarioLdapDto.getCorreoelectronico() != null) {
+                this.usuarioLdapDto.setCn(ldap.getUserFromMail(this.usuarioLdapDto));
             }
+            long resultado = ldap.userAuthentication(this.usuarioLdapDto);
 
-            Jwt jwt = new Jwt();
-            this.token= jwt.generarToken(Long.parseLong(ldap.getEntryUid(this.usuarioLdapDto)));
-            usuario.set_token(this.token);
+            if (resultado == 1) {
+                DaoUsuario daoUsuario = Fabrica.crear(DaoUsuario.class);
+                Usuario usuario = daoUsuario.find(Long.parseLong(ldap.getEntryUid(this.usuarioLdapDto)), Usuario.class);
 
-            Usuario resul = daoUsuario.update(usuario);
+                if (usuario.get_estado().equals("inactivo")) {
+                    throw new ContrasenaInvalidaExcepcion("Usuario Inactivo");
+                }
 
-            this.data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200)
-                    .add("token",this.token)
-                    .add("rol", ldap.getEntryRole(this.usuarioLdapDto))
-                    .add("user_id",ldap.getEntryUid(this.usuarioLdapDto)).build();
+                Jwt jwt = new Jwt();
+                this.token = jwt.generarToken(Long.parseLong(ldap.getEntryUid(this.usuarioLdapDto)));
+                usuario.set_token(this.token);
 
-        }else{
-            throw new ContrasenaInvalidaExcepcion("Las credenciales no son correctas. Intente de nuevo.");
+                Usuario resul = daoUsuario.update(usuario);
+
+                this.data = Json.createObjectBuilder()
+                        .add("estado", "success")
+                        .add("codigo", 200)
+                        .add("token", this.token)
+                        .add("rol", ldap.getEntryRole(this.usuarioLdapDto))
+                        .add("user_id", ldap.getEntryUid(this.usuarioLdapDto)).build();
+
+            } else {
+                throw new ContrasenaInvalidaExcepcion("Las credenciales no son correctas. Intente de nuevo.");
+            }
+        } catch (ContrasenaInvalidaExcepcion ex){
+            ex.printStackTrace();
+            throw new EmpresaException("C-LO01-E-CIE",ex.getMessage(), "Las credenciales no son correctas.");
         }
-
     }
 
     @Override
-    public JsonObject getResult() {
-
-        return this.data;
+    public JsonObject getResult() throws EmpresaException {
+        try {
+            return this.data;
+        } catch (NullPointerException ex){
+            ex.printStackTrace();
+            throw new EmpresaException("C-LO01-G-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
+        }
     }
 }

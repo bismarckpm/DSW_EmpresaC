@@ -3,6 +3,7 @@ package ucab.dsw.logica.comando.ocupacion;
 import ucab.dsw.accesodatos.*;
 import ucab.dsw.dtos.ResponseDto;
 import ucab.dsw.entidades.*;
+import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.logica.comando.BaseComando;
 import ucab.dsw.logica.fabrica.Fabrica;
 
@@ -15,34 +16,47 @@ public class AllOcupacionComando extends BaseComando {
     public JsonArrayBuilder ocupaciones= Json.createArrayBuilder();
 
     @Override
-    public void execute() {
+    public void execute() throws EmpresaException {
 
-        DaoOcupacion dao= Fabrica.crear(DaoOcupacion.class);
-        List<Ocupacion> resultado = dao.findAll(Ocupacion.class);
+        try{
 
-        for (Ocupacion obj : resultado) {
+            DaoOcupacion dao= Fabrica.crear(DaoOcupacion.class);
+            List<Ocupacion> resultado = dao.findAll(Ocupacion.class);
 
-            JsonObject ocupacion = Json.createObjectBuilder().add("id", obj.get_id())
-                    .add("nombre", obj.get_nombre()).build();
+            for (Ocupacion obj : resultado) {
 
-            ocupaciones.add(ocupacion);
+                JsonObject ocupacion = Json.createObjectBuilder().add("id", obj.get_id())
+                        .add("nombre", obj.get_nombre()).build();
+
+                ocupaciones.add(ocupacion);
+            }
+        }
+        catch (NullPointerException ex){
+            throw new EmpresaException("C-OC01-E-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
         }
 
     }
 
     @Override
-    public JsonObject getResult() {
-        ResponseDto responseDto =Fabrica.crear(ResponseDto.class);
-        responseDto.mensaje="Todas las ocupaciones";
-        responseDto.estado="success";
-        responseDto.objeto=this.ocupaciones;
+    public JsonObject getResult() throws EmpresaException {
+
+        try{
+            ResponseDto responseDto =Fabrica.crear(ResponseDto.class);
+            responseDto.mensaje="Todas las ocupaciones";
+            responseDto.estado="success";
+            responseDto.objeto=this.ocupaciones;
 
 
-        JsonObject data= Json.createObjectBuilder().add("mensaje","Todas las ocupaciones")
-                .add("estado","success")
-                .add("ocupaciones",ocupaciones).build();
+            JsonObject data= Json.createObjectBuilder().add("mensaje","Todas las ocupaciones")
+                    .add("estado","success")
+                    .add("ocupaciones",ocupaciones).build();
 
-        return data;
+            return data;
+        }
+        catch (NullPointerException ex){
+            throw new EmpresaException("C-OC01-G-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
+        }
+
     }
 
 }

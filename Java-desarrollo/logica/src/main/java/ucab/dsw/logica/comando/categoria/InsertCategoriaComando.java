@@ -3,7 +3,6 @@ package ucab.dsw.logica.comando.categoria;
 import org.eclipse.persistence.exceptions.DatabaseException;
 import ucab.dsw.accesodatos.DaoCategoria;
 import ucab.dsw.dtos.CategoriaDto;
-import ucab.dsw.dtos.ResponseDto;
 import ucab.dsw.entidades.Categoria;
 import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.excepciones.PruebaExcepcion;
@@ -14,7 +13,6 @@ import ucab.dsw.mappers.CategoriaMapper;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.persistence.PersistenceException;
-import javax.ws.rs.core.Response;
 
 
 public class InsertCategoriaComando extends BaseComando {
@@ -41,7 +39,7 @@ public class InsertCategoriaComando extends BaseComando {
         }
         catch (PersistenceException | DatabaseException ex){
             ex.printStackTrace();
-            throw new EmpresaException("C-CA05-DUP",ex.getMessage(), "La categoria ya se encuestra registrada");
+            throw new EmpresaException("C-CA05-DUP",ex.getMessage(), "La categoria ya se encuentra registrada");
         }
     }
 

@@ -7,6 +7,8 @@ import { NuevoUsuarioDto } from 'src/app/Entidades/nuevoUsuarioDto';
 import { usuario } from 'src/app/Entidades/usuario';
 import { usuarioLdap } from 'src/app/Entidades/usuarioLDAP';
 
+import { LoginService } from "../../../../../comun/servicios/login/login.service";
+
 @Component({
   selector: 'app-anadir-admin-analista',
   templateUrl: './anadir-admin-analista.component.html',
@@ -28,6 +30,7 @@ export class AnadirAdminAnalistaComponent implements OnInit {
               private _adminUsuarioService:AdministrarUsuariosService,
               private _toastrService: ToastrService,
               private eventBus: NgEventBus,
+              private loginService:LoginService
   ) { }
 
   ngOnInit(): void {
@@ -66,10 +69,19 @@ export class AnadirAdminAnalistaComponent implements OnInit {
 
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
+
         this.eventBus.cast('cerrar-usuario-add','cerrar');
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
       });
   }
 

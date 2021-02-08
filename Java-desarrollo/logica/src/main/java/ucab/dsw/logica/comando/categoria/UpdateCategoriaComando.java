@@ -35,7 +35,7 @@ public class UpdateCategoriaComando extends BaseComando {
         }
         catch (PersistenceException | DatabaseException ex){
             ex.printStackTrace();
-            throw new EmpresaException("C-CA06-DUP",ex.getMessage(), "La categoria ya se encuestra registrada");
+            throw new EmpresaException("C-CA06-DUP",ex.getMessage(), "La categoria ya se encuentra registrada");
         }
         catch (PruebaExcepcion ex) {
             ex.printStackTrace();

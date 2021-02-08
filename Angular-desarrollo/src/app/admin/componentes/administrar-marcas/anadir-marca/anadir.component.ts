@@ -8,6 +8,8 @@ import { AdministrarSubcategoriasService } from 'src/app/admin/Servicios/adminis
 import {AdministrarTiposService} from 'src/app/admin/Servicios/administrar-tipos/administrar-tipos.service';
 import { SubcategoriaDto } from 'src/app/Entidades/subcategoriaDto';
 
+import { LoginService } from "../../../../comun/servicios/login/login.service";
+
 @Component({
   selector: 'app-anadir',
   templateUrl: './anadir.component.html',
@@ -31,7 +33,8 @@ export class AnadirMarcaComponent implements OnInit {
               private _toastrService: ToastrService,
               private eventBus: NgEventBus,
               private _adminSubcategoriaService:AdministrarSubcategoriasService,
-              private _adminTiposService:AdministrarTiposService
+              private _adminTiposService:AdministrarTiposService,
+              private loginService:LoginService
   ) { }
 
   ngOnInit(): void {
@@ -76,10 +79,17 @@ export class AnadirMarcaComponent implements OnInit {
         }
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
-        this.eventBus.cast('cerrar-marca-add','cerrar');
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
       });
   }
 
@@ -92,8 +102,17 @@ export class AnadirMarcaComponent implements OnInit {
         this.subcategorias_filtered=this.subcategorias.filter( subcategoria => subcategoria.estado === 'activo');
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
       });
   }
 
@@ -106,8 +125,17 @@ export class AnadirMarcaComponent implements OnInit {
         this.tipos_filtered=this.tipos.filter( tipo => tipo.estado === 'activo');
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
       });
   }
 

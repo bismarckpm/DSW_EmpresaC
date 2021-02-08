@@ -1,5 +1,6 @@
 package ucab.dsw.servicio;
 
+import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.logica.comando.cliente.*;
 import ucab.dsw.logica.fabrica.Fabrica;
 import javax.json.*;
@@ -11,6 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.*;
+import ucab.dsw.jwt.Jwt;
 
 /**
  * Una clase que contiene un conjunto de metodos y/o funciones correspondiente al cliente
@@ -35,18 +37,36 @@ public class ClienteServicio {
     */
     @GET
     @Path("/estudios/{_id}")
-    public Response consultaEstudios_Solicitados(@PathParam("_id") long _id) {
+    public Response consultaEstudios_Solicitados(@HeaderParam("authorization") String token,@PathParam("_id") long _id) {
         JsonObject resul;
         try {
+            if(Jwt.verificarToken(token)){
             ConsultaEstudiosSolicitadosComando comando = Fabrica.crearComandoConId(ConsultaEstudiosSolicitadosComando.class, _id);
             comando.execute();
 
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            } else {
+                resul = Json.createObjectBuilder()
+                        .add("estado", "unauthorized")
+                        .add("codigo", "UNAUTH")
+                        .add("mensaje", "No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
+        } catch (EmpresaException ex) {
+            ex.printStackTrace();
+            resul = Json.createObjectBuilder()
+                    .add("estado", "error")
+                    .add("codigo", ex.getCodigo())
+                    .add("mensaje", ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         } catch (Exception ex) {
             ex.printStackTrace();
             resul = Json.createObjectBuilder()
-                    .add("estado", "internal_server_error")
-                    .add("mensaje_soporte", ex.getMessage())
+                    .add("estado", "error")
+                    .add("codigo", "S-EX-CLI01")
                     .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -64,23 +84,41 @@ public class ClienteServicio {
     */
    @GET
     @Path("/get-id/{_id}")
-    public Response getClienteId(@PathParam("_id") long _id) {
+    public Response getClienteId(@HeaderParam("authorization") String token,@PathParam("_id") long _id) {
         JsonObject resul;
         try {
+            if(Jwt.verificarToken(token)){
             GetClienteIdComando comando = Fabrica.crearComandoConId(GetClienteIdComando.class, _id);
             comando.execute();
 
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            } else {
+                resul = Json.createObjectBuilder()
+                        .add("estado", "unauthorized")
+                        .add("codigo", "UNAUTH")
+                        .add("mensaje", "No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
+        } catch (EmpresaException ex) {
+            ex.printStackTrace();
+            resul = Json.createObjectBuilder()
+                    .add("estado", "error")
+                    .add("codigo", ex.getCodigo())
+                    .add("mensaje", ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         } catch (Exception ex) {
             ex.printStackTrace();
             resul = Json.createObjectBuilder()
-                    .add("estado", "internal_server_error")
-                    .add("mensaje_soporte", ex.getMessage())
+                    .add("estado", "error")
+                    .add("codigo", "S-EX-CLI02")
                     .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-    }
+   }
     /**
      * Esta funcion consiste en obtener la respuesta de un estudio en especifico
      * @author Carlos Silva
@@ -92,18 +130,36 @@ public class ClienteServicio {
      */
     @GET
     @Path("/respuesta-analista/{id}")
-    public Response respuesta_analista(@PathParam("id") long _id) {
+    public Response respuesta_analista(@HeaderParam("authorization") String token,@PathParam("id") long _id) {
         JsonObject resul;
         try {
+            if(Jwt.verificarToken(token)){
             RespuestaAnalistaComando comando = Fabrica.crearComandoConId(RespuestaAnalistaComando.class, _id);
             comando.execute();
 
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            } else {
+                resul = Json.createObjectBuilder()
+                        .add("estado", "unauthorized")
+                        .add("codigo", "UNAUTH")
+                        .add("mensaje", "No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
+        } catch (EmpresaException ex) {
+            ex.printStackTrace();
+            resul = Json.createObjectBuilder()
+                    .add("estado", "error")
+                    .add("codigo", ex.getCodigo())
+                    .add("mensaje", ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         } catch (Exception ex) {
             ex.printStackTrace();
             resul = Json.createObjectBuilder()
-                    .add("estado", "internal_server_error")
-                    .add("mensaje_soporte", ex.getMessage())
+                    .add("estado", "error")
+                    .add("codigo", "S-EX-CLI03")
                     .add("mensaje", "Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();

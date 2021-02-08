@@ -5,6 +5,7 @@ import { Estudio } from "../../../../Entidades/estudio";
 
 // servicios 
 import { EstudiosService } from "../../../servicios/estudios.service";
+import { LoginService } from "../../../../comun/servicios/login/login.service";
 
 import { NgEventBus } from 'ng-event-bus';
 import { ToastrService } from 'ngx-toastr';
@@ -21,7 +22,8 @@ export class EncuestasPendientesComponent implements OnInit {
 
   constructor(private servicioEstudio:EstudiosService,
     private _toastrService: ToastrService,
-    private eventBus: NgEventBus) { }
+    private eventBus: NgEventBus,
+    private loginService:LoginService) { }
 
   ngOnInit(): void {
     this.init();
@@ -39,9 +41,18 @@ export class EncuestasPendientesComponent implements OnInit {
       this._toastrService.success("Exito", "Todas los estudios pendientes");
       this.eventBus.cast('fin-progress','chao');
     },
-    err=>{
-      this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-      this.eventBus.cast('fin-progress','chao');
+    error=>{
+      if(error.error.estado=="unauthorized"){
+        this.eventBus.cast('fin-progress','chao');
+        this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+        this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+
+      }
+      else{
+        console.log(error);
+        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        this.eventBus.cast('fin-progress','chao');
+      }
 
     })
   }
@@ -56,8 +67,17 @@ export class EncuestasPendientesComponent implements OnInit {
         this.getEstudiosPendientes();
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
       });
   }
 

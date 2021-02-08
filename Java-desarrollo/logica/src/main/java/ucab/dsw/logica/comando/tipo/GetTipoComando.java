@@ -4,6 +4,8 @@ package ucab.dsw.logica.comando.tipo;
 import ucab.dsw.accesodatos.DaoTipo;
 import ucab.dsw.dtos.*;
 import ucab.dsw.entidades.*;
+import ucab.dsw.excepciones.EmpresaException;
+import ucab.dsw.excepciones.PruebaExcepcion;
 import ucab.dsw.logica.comando.BaseComando;
 
 import javax.json.Json;
@@ -19,26 +21,40 @@ public class GetTipoComando extends BaseComando {
     }
 
     @Override
-    public void execute() {
-        DaoTipo dao = new DaoTipo();
-        Tipo tipo = dao.find(_id,Tipo.class);
+    public void execute() throws EmpresaException {
 
-        tipoJson= Json.createObjectBuilder().add("id",tipo.get_id() )
-                .add("nombre",tipo.get_nombre()).build();
+        try{
+            DaoTipo dao = new DaoTipo();
+            Tipo tipo = dao.find(_id,Tipo.class);
 
-        if (tipo.get_estado() != null){
-            System.out.println("estado: " + tipo.get_estado());
+            tipoJson= Json.createObjectBuilder().add("id",tipo.get_id() )
+                    .add("nombre",tipo.get_nombre()).build();
+
+            if (tipo.get_estado() != null){
+                System.out.println("estado: " + tipo.get_estado());
+            }
         }
+        catch (NullPointerException ex){
+            ex.printStackTrace();
+            throw new EmpresaException("C-TI04-E-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
+        }
+
 
 
     }
 
     @Override
-    public JsonObject getResult() {
-        JsonObject data= Json.createObjectBuilder()
-                .add("estado","success")
-                .add("mensaje","Tipo consultada")
-                .add("categoria",tipoJson).build();
-        return data;
+    public JsonObject getResult() throws EmpresaException {
+        try{
+            JsonObject data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("mensaje","Tipo consultada")
+                    .add("categoria",tipoJson).build();
+            return data;
+        }
+        catch (NullPointerException ex){
+            ex.printStackTrace();
+            throw new EmpresaException("C-TI04-G-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
+        }
     }
 }

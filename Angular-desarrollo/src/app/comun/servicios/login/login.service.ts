@@ -34,17 +34,28 @@ export class LoginService {
   }
   */
 
- changePassword(changePasswordDto):Observable<any>{
+  changePassword(changePasswordDto):Observable<any>{
   //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
   return this.http.post(global.url+'usuario/change-password',changePasswordDto);
-}
+  }
 
 
-verificartoken():Observable<any>{
+  verificartoken():Observable<any>{
 
   //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
   return this.http.get(global.url+'prueba/seguridad', this.opcion());
-}
+  }
+
+  logOut():Observable<any>{
+    console.log("logout")
+    const id= localStorage.getItem("user_id")
+
+    localStorage.removeItem("user_id")
+    localStorage.removeItem("rol")
+    localStorage.removeItem("token")
+
+    return this.http.delete(global.url+'login/logout/'+id);
+  }
 
 
 }

@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 
 //servicio
 import { ConsultaEstudiosService } from "../../../servicios/consulta-estudios/consulta-estudios.service";
-
+import { LoginService } from "../../../../comun/servicios/login/login.service";
 
 export interface SolicitudEstudio {
   id:number;
@@ -27,7 +27,8 @@ export class ResultadosComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: SolicitudEstudio,private fb: FormBuilder,
     private _toastrService: ToastrService,
     private eventBus: NgEventBus,
-    private servicio:ConsultaEstudiosService) {}
+    private servicio:ConsultaEstudiosService,
+    private loginService:LoginService) {}
 
   ngOnInit(): void {
     this.Crearformulario()
@@ -55,10 +56,19 @@ export class ResultadosComponent implements OnInit {
       this.servicio.darResultados(objeto).subscribe(x=>{
         this._toastrService.success("Exito", "Resultado agregado");
         this.eventBus.cast('actualizar','hola');
-      },err=>{
-        console.log(err)
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
+      },error=>{
+        
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
       })
 
     }

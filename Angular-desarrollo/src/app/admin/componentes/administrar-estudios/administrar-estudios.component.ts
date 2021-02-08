@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SolicitudEstudioService } from "../../Servicios/solicitud-estudio.service";
+import { LoginService } from "../../../comun/servicios/login/login.service";
 
 import { NgEventBus } from 'ng-event-bus';
 import { ToastrService } from 'ngx-toastr';
@@ -8,10 +9,13 @@ import { ToastrService } from 'ngx-toastr';
 import { SolicitudEstudio } from "../../../Entidades/solicitudEstudio";
 import { Estudio } from "../../../Entidades/estudio";
 
+
+
 @Component({
   selector: 'admin-administrar-estudios',
   templateUrl: './administrar-estudios.component.html',
   styleUrls: ['./administrar-estudios.component.css']
+
 })
 export class AdministrarEstudiosComponent implements OnInit {
   estudios:Estudio[];
@@ -19,7 +23,8 @@ export class AdministrarEstudiosComponent implements OnInit {
 
   constructor(private solicitudservice:SolicitudEstudioService,
     private _toastrService: ToastrService,
-    private eventBus: NgEventBus) { }
+    private eventBus: NgEventBus,
+    private loginService:LoginService) { }
 
   ngOnInit(): void {
     this.init();
@@ -28,10 +33,19 @@ export class AdministrarEstudiosComponent implements OnInit {
       this._toastrService.success("Exito", "Todas los estudios asignados");
       this.eventBus.cast('fin-progress','chao');
       this.estudios=e.estudios;console.log(e)},
-      err=>{
-        console.log(err)
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
+      error=>{
+
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
 
       })
   }

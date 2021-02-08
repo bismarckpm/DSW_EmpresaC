@@ -3,6 +3,7 @@ package ucab.dsw.servicio;
 import ucab.dsw.directorio.DirectorioActivo;
 import ucab.dsw.directorio.RecuperacionPass;
 import ucab.dsw.dtos.UsuarioLdapDto;
+import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.excepciones.UsuarioExistenteExcepcion;
 import ucab.dsw.jwt.Jwt;
 import ucab.dsw.logica.comando.recuperacion.RecuperacionComando;
@@ -43,24 +44,23 @@ public class RecuperacionServicio extends AplicacionBase{
             comando.execute();
 
             return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-        }catch ( UsuarioExistenteExcepcion ex ){
+        } catch ( EmpresaException ex ) {
             ex.printStackTrace();
-            System.out.println(ex.getMensaje());
             JsonObject data = Json.createObjectBuilder()
-                    .add("estado","unauthorized")
-                    .add("mensaje_soporte",ex.getMensaje())
-                    .add("mensaje","Usuario no existente").build();
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
-            return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         } catch ( Exception ex ) {
             ex.printStackTrace();
 
-            JsonObject data= Json.createObjectBuilder()
-                    .add("estado","internal_server_error")
-                    .add("mensaje_soporte",ex.getMessage())
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-RC01")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
+
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(data).build();
         }
-
     }
 }

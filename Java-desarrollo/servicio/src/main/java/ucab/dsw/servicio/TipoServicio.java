@@ -2,6 +2,8 @@ package ucab.dsw.servicio;
 
 import org.eclipse.persistence.exceptions.DatabaseException;
 import ucab.dsw.dtos.*;
+import ucab.dsw.excepciones.EmpresaException;
+import ucab.dsw.jwt.Jwt;
 import ucab.dsw.logica.comando.tipo.*;
 import ucab.dsw.logica.fabrica.Fabrica;
 import javax.persistence.PersistenceException;
@@ -33,17 +35,27 @@ public class TipoServicio {
 
     @POST
     @Path( "/add-tipo" )
-    public Response addTipo(TipoDto tipoDto)
+    public Response addTipo(@HeaderParam("authorization") String token, TipoDto tipoDto)
     {
         TipoDto resultado = new TipoDto();
         JsonObject resul;
         try
         {
-            InsertTipoComando comando=Fabrica.crearComandoConDto(InsertTipoComando.class,tipoDto);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                InsertTipoComando comando=Fabrica.crearComandoConDto(InsertTipoComando.class,tipoDto);
+                comando.execute();
 
-            System.out.println(comando.getResult());
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                System.out.println(comando.getResult());
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
 
         }
         catch (PersistenceException | DatabaseException ex){
@@ -55,11 +67,21 @@ public class TipoServicio {
 
             return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
+        }
         catch ( Exception ex){
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-TI01")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -79,26 +101,36 @@ public class TipoServicio {
      */
     @PUT
     @Path( "/channge-tipo/{id}" )
-    public Response changeTipo(@PathParam("id")long  _id,TipoDto tipoDto)
+    public Response changeTipo(@HeaderParam("authorization") String token, @PathParam("id")long  _id,TipoDto tipoDto)
     {
-        TipoDto resultado = new TipoDto();
+
         JsonObject resul;
         try
         {
-            UpdateTipoComando comando=Fabrica.crearComandoBoth(UpdateTipoComando.class,_id,tipoDto);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                UpdateTipoComando comando=Fabrica.crearComandoBoth(UpdateTipoComando.class,_id,tipoDto);
+                comando.execute();
 
-            System.out.println(comando.getResult());
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                System.out.println(comando.getResult());
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
 
         }
-        catch (PersistenceException | DatabaseException ex){
+        catch ( EmpresaException ex )
+        {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
-                    .add("mensaje","El tipo ya se encuestra registrada").build();
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
             return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
@@ -106,7 +138,7 @@ public class TipoServicio {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-TIP02")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -125,24 +157,44 @@ public class TipoServicio {
      */
     @DELETE
     @Path( "/delete-tipo/{id}" )
-    public Response EliminarTipo( @PathParam("id")long  _id )
+    public Response EliminarTipo(@HeaderParam("authorization") String token, @PathParam("id")long  _id )
     {
         JsonObject resul;
         try
         {
-            DeleteTipoComando comando=Fabrica.crearComandoConId(DeleteTipoComando.class,_id);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                DeleteTipoComando comando=Fabrica.crearComandoConId(DeleteTipoComando.class,_id);
+                comando.execute();
 
-            System.out.println(comando.getResult());
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                System.out.println(comando.getResult());
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-TI03")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -161,25 +213,45 @@ public class TipoServicio {
      */
     @DELETE
     @Path( "/activar-tipo/{id}" )
-    public Response ActivarTipo( @PathParam("id")long  _id )
+    public Response ActivarTipo(@HeaderParam("authorization") String token, @PathParam("id")long  _id )
     {
         JsonObject resul;
 
         try
         {
-            ActivateTipoComando comando=Fabrica.crearComandoConId(ActivateTipoComando.class,_id);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                ActivateTipoComando comando=Fabrica.crearComandoConId(ActivateTipoComando.class,_id);
+                comando.execute();
 
-            System.out.println(comando.getResult());
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                System.out.println(comando.getResult());
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-TIP04")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -198,22 +270,42 @@ public class TipoServicio {
      */
     @GET
     @Path( "/find-tipo/{id}" )
-    public Response findTipo(@PathParam("id") long id )
+    public Response findTipo(@HeaderParam("authorization") String token, @PathParam("id") long id )
     {
         JsonObject resul;
         try {
-            GetTipoComando comando=Fabrica.crearComandoConId(GetTipoComando.class,id);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                GetTipoComando comando=Fabrica.crearComandoConId(GetTipoComando.class,id);
+                comando.execute();
 
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-TIP05")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
@@ -230,22 +322,42 @@ public class TipoServicio {
      */
     @GET
     @Path( "/findall-tipos" )
-    public Response findAllTipo( )
+    public Response findAllTipo(@HeaderParam("authorization") String token )
     {
         JsonObject resul;
         try {
-            AllTipoComando comando= Fabrica.crear(AllTipoComando.class);
-            comando.execute();
+            if(Jwt.verificarToken(token)){
+                AllTipoComando comando= Fabrica.crear(AllTipoComando.class);
+                comando.execute();
 
-            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje_soporte",ex.getMessage())
+                    .add("codigo","S-EX-TIP06")
                     .add("mensaje","Ha ocurrido un error con el servidor").build();
 
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();

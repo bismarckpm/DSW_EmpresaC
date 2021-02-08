@@ -1,8 +1,10 @@
 package ucab.dsw.logica.comando.encuestado;
 
+import org.eclipse.persistence.exceptions.DatabaseException;
 import ucab.dsw.accesodatos.*;
 import ucab.dsw.dtos.*;
 import ucab.dsw.entidades.*;
+import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.excepciones.PruebaExcepcion;
 import ucab.dsw.logica.comando.BaseComando;
 import ucab.dsw.logica.fabrica.Fabrica;
@@ -11,6 +13,7 @@ import ucab.dsw.mappers.*;
 
 import javax.json.Json;
 import javax.json.JsonObject;
+import javax.persistence.PersistenceException;
 import java.util.List;
 
 public class AddRespuestaComando extends BaseComando {
@@ -28,7 +31,7 @@ public class AddRespuestaComando extends BaseComando {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws EmpresaException{
         try{
             DaoRespuesta daoRespuesta = new DaoRespuesta();
             DaoPreguntaEncuesta daoPreguntaEncuesta= new DaoPreguntaEncuesta();
@@ -75,24 +78,30 @@ public class AddRespuestaComando extends BaseComando {
 
                 }
             }
-        }catch (PruebaExcepcion pruebaExcepcion) {
-            pruebaExcepcion.printStackTrace();
         }
-
+        catch (PruebaExcepcion ex) {
+            ex.printStackTrace();
+            throw new EmpresaException("C-ENC03-ZERO-ID",ex.getMessage(), "Intento asignar el valor de 0 a un ID");
+        }
+        catch (PersistenceException | DatabaseException ex){
+            ex.printStackTrace();
+            throw new EmpresaException("C-ENC03-DUP",ex.getMessage(), "La Respuesta ya se encuestra registrada");
+        }
     }
 
     @Override
-    public JsonObject getResult() {
-        ResponseDto responseDto = Fabrica.crear(ResponseDto.class);
-        responseDto.mensaje="Pregunta Respondida";
-        responseDto.estado="success";
-        responseDto.objeto=this.respuestaDto.getId();
+    public JsonObject getResult() throws EmpresaException{
+        try{
+            JsonObject data= Json.createObjectBuilder()
+                    .add("estado","success")
+                    .add("mensaje","Pregunta Respondida")
+                    .add("respuesta",this.respuestaDto.getId()).build();
 
-        JsonObject data= Json.createObjectBuilder()
-                .add("estado","success")
-                .add("mensaje","Pregunta Respondida")
-                .add("respuesta",this.respuestaDto.getId()).build();
-
-        return data;
+            return data;
+        }
+        catch (NullPointerException ex){
+            ex.printStackTrace();
+            throw new EmpresaException("C-ENC03-G-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
+        }
     }
 }

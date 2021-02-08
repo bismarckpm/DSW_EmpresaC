@@ -2,6 +2,7 @@ package ucab.dsw.logica.comando.login;
 
 import ucab.dsw.accesodatos.DaoUsuario;
 import ucab.dsw.entidades.Usuario;
+import ucab.dsw.excepciones.EmpresaException;
 import ucab.dsw.logica.comando.BaseComando;
 import ucab.dsw.logica.fabrica.Fabrica;
 
@@ -26,11 +27,16 @@ public class LogoutComando extends BaseComando {
     }
 
     @Override
-    public JsonObject getResult() {
-        this.data= Json.createObjectBuilder()
-                .add("estado","success")
-                .build();
+    public JsonObject getResult() throws EmpresaException{
+        try{
+            this.data = Json.createObjectBuilder()
+                    .add("estado", "success")
+                    .build();
 
-        return this.data;
+            return this.data;
+        } catch (NullPointerException ex){
+            ex.printStackTrace();
+            throw new EmpresaException("C-LO02-G-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
+        }
     }
 }
