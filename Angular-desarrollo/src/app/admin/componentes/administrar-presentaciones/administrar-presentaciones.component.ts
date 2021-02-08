@@ -11,6 +11,8 @@ import { ModificarPresentacionComponent } from './modificar-presentacion/modific
 import { EliminarPresentacionComponent } from './eliminar-presentacion/eliminar-presentacion.component';
 import { AdministrarPresentacionService } from '../../Servicios/administrar-presentacion/administrar-presentacion.service';
 
+import { LoginService } from "../../../comun/servicios/login/login.service";
+
 
 export interface Presentacion {
   id: number;
@@ -49,7 +51,8 @@ export class AdministrarPresentacionesComponent implements OnInit, AfterViewInit
   constructor(public dialog: MatDialog,
               private _adminPresentacionService:AdministrarPresentacionService,
               private _toastrService: ToastrService,
-              private eventBus: NgEventBus
+              private eventBus: NgEventBus,
+              private loginService:LoginService
   ) { }
 
   
@@ -101,9 +104,17 @@ export class AdministrarPresentacionesComponent implements OnInit, AfterViewInit
         this.eventBus.cast('fin-progress','chao');
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
       });
   }
 
@@ -148,9 +159,17 @@ export class AdministrarPresentacionesComponent implements OnInit, AfterViewInit
         this.getAllPresentaciones();
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
       });
   }
 }

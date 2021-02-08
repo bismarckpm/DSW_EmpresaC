@@ -9,6 +9,7 @@ import { Pregunta } from "../../../../Entidades/pregunta";
 
 // Servicios
 import { PreguntaService } from "../../../Servicios/pregunta.service";
+import { LoginService } from "../../../../comun/servicios/login/login.service";
 
 @Component({
   selector: 'app-contenedor-pregunta-nueva',
@@ -44,7 +45,8 @@ export class ContenedorPreguntaNuevaComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private preguntaServicio:PreguntaService,
     private _toastrService: ToastrService,
-    private eventBus: NgEventBus) {
+    private eventBus: NgEventBus,
+    private loginService:LoginService) {
     this.pregunta= new Pregunta;
     this.opciones=[];
    }
@@ -171,11 +173,20 @@ export class ContenedorPreguntaNuevaComponent implements OnInit {
 
 
 
-      },err=>{
+      },error=>{
         res=0;
         pre={};
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
       })
       
     }

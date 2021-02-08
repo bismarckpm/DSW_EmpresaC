@@ -4,6 +4,8 @@ import { NgEventBus } from 'ng-event-bus';
 import { ToastrService } from 'ngx-toastr';
 import { ConsultaEstudiosService } from 'src/app/analista/servicios/consulta-estudios/consulta-estudios.service';
 
+import { LoginService } from "../../../../comun/servicios/login/login.service";
+
 @Component({
   selector: 'app-graficos',
   templateUrl: './graficos.component.html',
@@ -36,7 +38,8 @@ export class GraficosComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _consultaEstudios:ConsultaEstudiosService,
     private _toastrService: ToastrService,
-    private eventBus: NgEventBus) {}
+    private eventBus: NgEventBus,
+    private loginService:LoginService) {}
 
   ngOnInit(): void {
     this.init();
@@ -59,13 +62,17 @@ export class GraficosComponent implements OnInit {
         
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
-
-        /*setTimeout(()=>{
-          this.preguntas=JSON; 
-        },2000);*/                //para probar sin backend 
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
         
       });
   }

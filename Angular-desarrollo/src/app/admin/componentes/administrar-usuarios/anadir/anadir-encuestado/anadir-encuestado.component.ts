@@ -16,6 +16,8 @@ import { Router } from '@angular/router';
 import { NivelAcademicoDto } from 'src/app/Entidades/nivelAcademicoDto';
 import { ParroquiaDto } from 'src/app/Entidades/parroquiaDto';
 
+import { LoginService } from "../../../../../comun/servicios/login/login.service";
+
 @Component({
   selector: 'app-anadir-encuestado',
   templateUrl: './anadir-encuestado.component.html',
@@ -45,7 +47,8 @@ export class AnadirEncuestadoComponent implements OnInit {
   public estado_id:any;
   public ciudad_id:any;
   
-  constructor( private http: RegistroService, private _toastrService: ToastrService, private eventBus: NgEventBus,public router: Router, public fb: FormBuilder) {
+  constructor( private http: RegistroService,
+    private loginService:LoginService, private _toastrService: ToastrService, private eventBus: NgEventBus,public router: Router, public fb: FormBuilder) {
     this.registroData = this.crearFormGroup();
     this.nuevoEncuestado = new nuevoEncuestado(new usuarioLdap() ,new encuestado(new NivelAcademicoDto(),new ParroquiaDto) );
         
@@ -164,8 +167,15 @@ export class AnadirEncuestadoComponent implements OnInit {
         //this._toastrService.success("Exito", "Todas las paises");
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        if(error.error.estado=="unauthorized"){
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        }
       });
   }
 
@@ -177,8 +187,15 @@ export class AnadirEncuestadoComponent implements OnInit {
         //this._toastrService.success("Exito", "Todas las estados");
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        if(error.error.estado=="unauthorized"){
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        }
       });
   }
 
@@ -190,8 +207,15 @@ export class AnadirEncuestadoComponent implements OnInit {
         //this._toastrService.success("Exito", "Todas las ciudades");
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        if(error.error.estado=="unauthorized"){
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        }
       });
   }
 
@@ -203,8 +227,15 @@ export class AnadirEncuestadoComponent implements OnInit {
         //this._toastrService.success("Exito", "Todas las parroquias");
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        if(error.error.estado=="unauthorized"){
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        }
       });
   }
 
@@ -216,8 +247,15 @@ export class AnadirEncuestadoComponent implements OnInit {
         //this._toastrService.success("Exito", "Todas los niveles academicos");
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        if(error.error.estado=="unauthorized"){
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        }
       });
   }
 
@@ -229,8 +267,15 @@ export class AnadirEncuestadoComponent implements OnInit {
         //this._toastrService.success("Exito", "Todas los metodos de conexion");
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        if(error.error.estado=="unauthorized"){
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        }
       });
   }
 
@@ -242,8 +287,15 @@ export class AnadirEncuestadoComponent implements OnInit {
         //this._toastrService.success("Exito", "Todas las ocupaciones");
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        if(error.error.estado=="unauthorized"){
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        }
       });
   }
 

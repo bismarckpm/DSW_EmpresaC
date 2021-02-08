@@ -61,7 +61,7 @@ public class LoginServicio extends AplicacionBase{
         }
     }
 
-    @PUT
+    @DELETE
     @Path( "/logout/{id}" )
     public Response logout(@PathParam("id")long  _id){
         try {
