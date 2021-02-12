@@ -96,10 +96,9 @@ public class PresentacionServicioTest
     public void findAllPresentacionTest() throws Exception
     {
         PresentacionServicio servicio = new PresentacionServicio();;
-        Response resultado= servicio.findAllPresentacion(this.token);
+        Response resultado= servicio.findAllPresentacion();
         JsonObject responseDto= (JsonObject) resultado.getEntity();
         Assert.assertNotNull(responseDto.get("presentaciones"));
-
 
     }
 }

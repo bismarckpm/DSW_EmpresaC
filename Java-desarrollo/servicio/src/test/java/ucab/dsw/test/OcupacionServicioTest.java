@@ -28,7 +28,7 @@ public class OcupacionServicioTest {
     {
 
         ucab.dsw.servicio.OcupacionServicio servicio = new ucab.dsw.servicio.OcupacionServicio();
-        Response respuesta= servicio.getAllOcupaciones(this.token);
+        Response respuesta= servicio.getAllOcupaciones();
         JsonObject responseDto= (JsonObject) respuesta.getEntity();
         Assert.assertNotNull(responseDto.get("ocupaciones"));
 

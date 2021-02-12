@@ -322,24 +322,14 @@ public class TipoServicio {
      */
     @GET
     @Path( "/findall-tipos" )
-    public Response findAllTipo(@HeaderParam("authorization") String token )
+    public Response findAllTipo()
     {
         JsonObject resul;
         try {
-            if(Jwt.verificarToken(token)){
-                AllTipoComando comando= Fabrica.crear(AllTipoComando.class);
-                comando.execute();
+            AllTipoComando comando= Fabrica.crear(AllTipoComando.class);
+            comando.execute();
 
-                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-            }
-            else{
-                resul= Json.createObjectBuilder()
-                        .add("estado","unauthorized")
-                        .add("codigo","UNAUTH")
-                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
-
-                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
-            }
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
         }
         catch ( EmpresaException ex )

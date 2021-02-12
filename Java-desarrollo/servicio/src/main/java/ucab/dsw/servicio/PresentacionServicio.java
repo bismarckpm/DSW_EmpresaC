@@ -303,24 +303,15 @@ public class PresentacionServicio {
      */
     @GET
     @Path( "/findall-presentaciones" )
-    public Response findAllPresentacion(@HeaderParam("authorization") String token)
+    public Response findAllPresentacion()
     {
         JsonObject resul;
         try {
-            if(Jwt.verificarToken(token)){
-                AllPresentacionComando comando= Fabrica.crear(AllPresentacionComando.class);
-                comando.execute();
 
-                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-            }
-            else{
-                resul= Json.createObjectBuilder()
-                        .add("estado","unauthorized")
-                        .add("codigo","UNAUTH")
-                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+            AllPresentacionComando comando= Fabrica.crear(AllPresentacionComando.class);
+            comando.execute();
 
-                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
-            }
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
         }
         catch ( EmpresaException ex )

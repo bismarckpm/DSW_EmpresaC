@@ -29,7 +29,7 @@ public class MarcaServicioTest {
     public void getMarcas() throws Exception
     {
         ucab.dsw.servicio.MarcaServicio servicio = new ucab.dsw.servicio.MarcaServicio();
-        Response respuesta= servicio.getAllMarcas(this.token);
+        Response respuesta= servicio.getAllMarcas();
         JsonObject responseDto= (JsonObject) respuesta.getEntity();
         System.out.println(responseDto);
         Assert.assertNotNull(responseDto.get("marcas"));

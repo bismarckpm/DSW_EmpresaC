@@ -27,7 +27,7 @@ public class MetodoConexionTest {
     {
 
         ucab.dsw.servicio.MetodoConexionServicio servicio = new ucab.dsw.servicio.MetodoConexionServicio();
-        Response respuesta= servicio.getAllMetodoConexion(this.token);
+        Response respuesta= servicio.getAllMetodoConexion();
         JsonObject responseDto= (JsonObject) respuesta.getEntity();
         Assert.assertNotNull(responseDto.get("metodos_conexion"));
 

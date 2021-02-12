@@ -38,7 +38,7 @@ public class DirectorioActivo
     private DirContext _ldapContext;
     private String _url = "ldap://127.0.0.1:10389";
     private String _connType =  "simple";
-    private String _directory =  "ou=users,o=pruebaucab";
+    private String _directory =  "ou=users,o=empresac";
     private String _userDirectory =  "cn=%s";
     private String _user =  "admin";
     private String _password =  "secret";
@@ -280,7 +280,7 @@ public class DirectorioActivo
             environment.put( Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory" );
             environment.put( Context.PROVIDER_URL, _url );
             environment.put( Context.SECURITY_AUTHENTICATION, _connType );
-            environment.put( Context.SECURITY_PRINCIPAL, String.format( "cn=%s,ou=users,o=pruebaucab", user.getCn() ) );
+            environment.put( Context.SECURITY_PRINCIPAL, String.format( "cn=%s,ou=users,o=empresac", user.getCn() ) );
             environment.put( Context.SECURITY_CREDENTIALS, user.getContrasena());
             DirContext userContext = new InitialDirContext( environment );
 

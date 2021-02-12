@@ -29,7 +29,7 @@ public class SubcategoriasServicioTest {
     public void getSubcategorias() throws Exception
     {
         ucab.dsw.servicio.SubcategoriaServicio servicio = new ucab.dsw.servicio.SubcategoriaServicio();
-        Response respuesta= servicio.getAllSubcategorias(this.token);
+        Response respuesta= servicio.getAllSubcategorias();
         JsonObject responseDto= (JsonObject) respuesta.getEntity();
         System.out.println(responseDto);
         Assert.assertNotNull(responseDto.get("subcategorias"));

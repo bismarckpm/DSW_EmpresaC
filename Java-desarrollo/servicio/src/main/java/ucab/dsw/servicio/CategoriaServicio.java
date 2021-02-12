@@ -35,26 +35,17 @@ public class CategoriaServicio extends AplicacionBase{
     */
     @GET
     @Path( "/all" )
-    public Response getAllCategorias(@HeaderParam("authorization") String token)
+    public Response getAllCategorias()
     {
         JsonObject resul;
 
         try
         {
-            if(Jwt.verificarToken(token)){
-                AllCategorialComando comando= Fabrica.crear(AllCategorialComando.class);
-                comando.execute();
+            AllCategorialComando comando= Fabrica.crear(AllCategorialComando.class);
+            comando.execute();
 
-                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-            }
-            else{
-                resul= Json.createObjectBuilder()
-                        .add("estado","unauthorized")
-                        .add("codigo","UNAUTH")
-                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
-                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
-            }
         }
         catch ( EmpresaException ex )
         {

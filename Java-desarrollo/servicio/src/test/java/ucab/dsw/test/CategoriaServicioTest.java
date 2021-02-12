@@ -31,7 +31,7 @@ public class CategoriaServicioTest {
     public void getCategorias()
     {
         ucab.dsw.servicio.CategoriaServicio servicio = new ucab.dsw.servicio.CategoriaServicio();
-        Response respuesta= servicio.getAllCategorias(this.token);
+        Response respuesta= servicio.getAllCategorias();
         JsonObject responseDto= (JsonObject) respuesta.getEntity();
         System.out.println(responseDto);
         Assert.assertNotNull(responseDto.get("categorias"));

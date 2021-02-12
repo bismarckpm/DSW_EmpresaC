@@ -26,7 +26,7 @@ public class NivelAcademicoServicioTest {
     public void getNivelesAcademicos() throws Exception
     {
         ucab.dsw.servicio.NivelAcademicoServicio servicio = new ucab.dsw.servicio.NivelAcademicoServicio();
-        Response respuesta= servicio.getAllNivelesAcademicos(this.token);
+        Response respuesta= servicio.getAllNivelesAcademicos();
         JsonObject responseDto= (JsonObject) respuesta.getEntity();
         Assert.assertNotNull(responseDto.get("niveles_academicos"));
     }

@@ -30,23 +30,13 @@ public class NivelAcademicoServicio extends AplicacionBase {
     */
     @GET
     @Path("/all")
-    public Response getAllNivelesAcademicos(@HeaderParam("authorization") String token) {
+    public Response getAllNivelesAcademicos() {
         JsonObject resul;
         try {
-            if(Jwt.verificarToken(token)){
-                AllNivelAcademicoComando comando= Fabrica.crear(AllNivelAcademicoComando.class);
-                comando.execute();
+            AllNivelAcademicoComando comando= Fabrica.crear(AllNivelAcademicoComando.class);
+            comando.execute();
 
-                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-            }
-            else{
-                resul= Json.createObjectBuilder()
-                        .add("estado","unauthorized")
-                        .add("codigo","UNAUTH")
-                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
-
-                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
-            }
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
         }
         catch ( EmpresaException ex )

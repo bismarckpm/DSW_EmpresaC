@@ -30,25 +30,14 @@ public class OcupacionServicio {
     */
     @GET
     @Path("/all")
-    public Response getAllOcupaciones(@HeaderParam("authorization") String token) {
+    public Response getAllOcupaciones() {
         JsonObject resul;
         try {
 
-            if(Jwt.verificarToken(token)){
-                AllOcupacionComando comando= Fabrica.crear(AllOcupacionComando.class);
-                comando.execute();
+            AllOcupacionComando comando= Fabrica.crear(AllOcupacionComando.class);
+            comando.execute();
 
-                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-
-            }
-            else{
-                resul= Json.createObjectBuilder()
-                        .add("estado","unauthorized")
-                        .add("codigo","UNAUTH")
-                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
-
-                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
-            }
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
         }
         catch ( EmpresaException ex )

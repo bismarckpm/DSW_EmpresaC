@@ -25,7 +25,7 @@ public class LugarServicioTest {
     public void getPaises() throws Exception
     {
         ucab.dsw.servicio.PaisServicio servicio = new ucab.dsw.servicio.PaisServicio();
-        Response respuesta= servicio.getAllPaises(this.token);
+        Response respuesta= servicio.getAllPaises();
         JsonObject responseDto= (JsonObject) respuesta.getEntity();
         Assert.assertNotNull(responseDto.get("paises"));
     }
@@ -43,7 +43,7 @@ public class LugarServicioTest {
     public void getCiudades() throws Exception
     {
         ucab.dsw.servicio.CiudadServicio servicio = new ucab.dsw.servicio.CiudadServicio();
-        Response respuesta= servicio.getAllCiudades(this.token);
+        Response respuesta= servicio.getAllCiudades();
         JsonObject responseDto= (JsonObject) respuesta.getEntity();
         Assert.assertNotNull(responseDto.get("ciudades"));
     }
@@ -52,7 +52,7 @@ public class LugarServicioTest {
     public void getPorroquias() throws Exception
     {
         ucab.dsw.servicio.ParroquiaServicio servicio = new ucab.dsw.servicio.ParroquiaServicio();
-        Response respuesta= servicio.getAllParroquias(this.token);
+        Response respuesta= servicio.getAllParroquias();
         JsonObject responseDto= (JsonObject) respuesta.getEntity();
         Assert.assertNotNull(responseDto.get("parroquias"));
 

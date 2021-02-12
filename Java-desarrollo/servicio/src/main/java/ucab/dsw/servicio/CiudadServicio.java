@@ -32,29 +32,17 @@ public class CiudadServicio extends AplicacionBase{
     */
     @GET
     @Path( "/all" )
-    public Response getAllCiudades(@HeaderParam("authorization") String token)
+    public Response getAllCiudades()
     {
         JsonObject resul;
         try
         {
-            if(Jwt.verificarToken(token)) {
-                AllCiudadesComando comando = Fabrica.crear(AllCiudadesComando.class);
-                comando.execute();
+            AllCiudadesComando comando = Fabrica.crear(AllCiudadesComando.class);
+            comando.execute();
 
-                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-            }
-            else{
-                resul= Json.createObjectBuilder()
-                        .add("estado","unauthorized")
-                        .add("codigo","UNAUTH")
-                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
-                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
-
-            }
-        }
-        catch ( EmpresaException ex )
-        {
+        } catch ( EmpresaException ex ) {
             ex.printStackTrace();
             resul= Json.createObjectBuilder()
                     .add("estado","error")

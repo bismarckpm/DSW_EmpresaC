@@ -31,22 +31,11 @@ public class EstadoServicio extends AplicacionBase {
     public Response getAllEstados(@HeaderParam("authorization") String token)
     {
         JsonObject resul;
-        try
-        {
-            if(Jwt.verificarToken(token)) {
-                AllEstadosComando comando = Fabrica.crear(AllEstadosComando.class);
-                comando.execute();
+        try {
+            AllEstadosComando comando = Fabrica.crear(AllEstadosComando.class);
+            comando.execute();
 
-                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-            }
-            else{
-                resul= Json.createObjectBuilder()
-                        .add("estado","unauthorized")
-                        .add("codigo","UNAUTH")
-                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
-
-                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
-            }
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
         }
         catch ( EmpresaException ex )
         {

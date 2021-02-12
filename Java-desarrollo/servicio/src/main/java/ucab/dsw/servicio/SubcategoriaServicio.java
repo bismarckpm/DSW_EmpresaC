@@ -32,26 +32,14 @@ public class SubcategoriaServicio extends AplicacionBase{
     */
     @GET
     @Path( "/all" )
-    public Response getAllSubcategorias(@HeaderParam("authorization") String token)
+    public Response getAllSubcategorias()
     {
         JsonObject resul;
-        try
-        {
-            if(Jwt.verificarToken(token)){
-                AllSubcategoriaComando comando= Fabrica.crear(AllSubcategoriaComando.class);
-                comando.execute();
+        try {
+            AllSubcategoriaComando comando= Fabrica.crear(AllSubcategoriaComando.class);
+            comando.execute();
 
-                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-            }
-            else{
-                resul= Json.createObjectBuilder()
-                        .add("estado","unauthorized")
-                        .add("codigo","UNAUTH")
-                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
-
-                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
-            }
-
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
         }
         catch ( EmpresaException ex )

@@ -88,10 +88,9 @@ public class TipoServicioTest
     public void findAllTipoTest() throws Exception
     {
         TipoServicio servicio = new TipoServicio();
-        Response resultado= servicio.findAllTipo(this.token);
+        Response resultado= servicio.findAllTipo();
         JsonObject responseDto= (JsonObject) resultado.getEntity();
         Assert.assertNotNull(responseDto.get("tipos"));
-
 
     }
 }

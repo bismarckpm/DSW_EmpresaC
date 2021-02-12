@@ -32,25 +32,14 @@ public class MetodoConexionServicio {
     */
     @GET
     @Path("/all")
-    public Response getAllMetodoConexion(@HeaderParam("authorization") String token) {
+    public Response getAllMetodoConexion() {
         JsonObject resul;
         try {
-            if(Jwt.verificarToken(token)){
-                AllMetodoConexionComando comando= Fabrica.crear(AllMetodoConexionComando.class);
-                comando.execute();
+            AllMetodoConexionComando comando= Fabrica.crear(AllMetodoConexionComando.class);
+            comando.execute();
 
-                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
-
-            }
-            else{
-                resul= Json.createObjectBuilder()
-                        .add("estado","unauthorized")
-                        .add("codigo","UNAUTH")
-                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
-
-                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
-            }
-
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                
         }
         catch ( EmpresaException ex )
         {
