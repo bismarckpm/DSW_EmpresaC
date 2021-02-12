@@ -366,9 +366,10 @@ export class AnadirEncuestadoComponent implements OnInit {
       },
       (error)=>{
       console.log(error);
-      if(error.status == 401 ){
-        this._toastrService.success("Intente de nuevo","Correo o email duplicado");
-      }else{
+      if(error.error.mensaje){
+        this._toastrService.error("Ops! Hubo un problema.", error.error.mensaje)
+      }
+      else{
         this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
       }
       this.eventBus.cast('fin-progress','chao');  
