@@ -27,9 +27,10 @@ export class AsideComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkLocalStorage();
+    /*
     this.loginservice.verificartoken().subscribe(x=>{
       console.log(x)
-    })
+    })*/
 
     this.eventBus.on('cerrar-modal-password').subscribe((meta: MetaData) => {
       console.log(meta.data); // will receive 'started' only
