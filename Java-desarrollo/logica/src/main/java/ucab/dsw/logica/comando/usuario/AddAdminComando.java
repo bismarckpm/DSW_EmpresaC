@@ -21,7 +21,6 @@ public class AddAdminComando extends BaseComando {
 
     public AddAdminComando(NuevoUsuarioDto nuevoUsuarioDto) {
         this.nuevoUsuarioDto = nuevoUsuarioDto;
-        this.nuevoUsuarioDto.getUsuarioLdapDto().setTipo_usuario("admin");
     }
 
     @Override
@@ -29,7 +28,7 @@ public class AddAdminComando extends BaseComando {
         try {
             //INSERT USUARIO
             DaoUsuario daoUsuario = Fabrica.crear(DaoUsuario.class);
-            Usuario usuario = UsuarioMapper.mapUsernameToEntityInsert(nuevoUsuarioDto.getUsuarioDto().getUsuario(), "admin");
+            Usuario usuario = UsuarioMapper.mapUsernameToEntityInsert(nuevoUsuarioDto.getUsuarioDto().getUsuario(), this.nuevoUsuarioDto.getUsuarioLdapDto().getTipo_usuario() );
             Usuario resulU = daoUsuario.insert(usuario);
             this.ID_USER = resulU.get_id();
 
@@ -41,7 +40,7 @@ public class AddAdminComando extends BaseComando {
             ldap.addEntryToLdap(nuevoUsuarioDto.getUsuarioLdapDto());
         } catch (PersistenceException | DatabaseException ex){
             ex.printStackTrace();
-            throw new EmpresaException("C-US02-E-DUP",ex.getMessage(), "El admin ya se encuentra registrado");
+            throw new EmpresaException("C-US02-E-DUP",ex.getMessage(), "El usuario ya se encuentra registrado");
         }
     }
 
@@ -50,7 +49,7 @@ public class AddAdminComando extends BaseComando {
         try {
             JsonObject data = Json.createObjectBuilder()
                     .add("estado", "success")
-                    .add("mensaje", "Administrador añadido")
+                    .add("mensaje", "Usuario añadido")
                     .add("adminUser", this.nuevoUsuarioDto.getUsuarioDto().getUsuario()).build();
 
             return data;
@@ -58,6 +57,5 @@ public class AddAdminComando extends BaseComando {
             ex.printStackTrace();
             throw new EmpresaException("C-US02-G-NULL","Ha ocurrido un error en los JsonObject - Cause: Null key/pair","Error. Intente mas tarde.");
         }
-
     }
 }

@@ -19,7 +19,6 @@ import javax.persistence.PersistenceException;
 
 public class AddClienteComando extends BaseComando {
 
-    public JsonObject data;
     public ClienteDto clienteDto;
 
     public AddClienteComando(ClienteDto clienteDto) {
@@ -58,7 +57,7 @@ public class AddClienteComando extends BaseComando {
             JsonObject data = Json.createObjectBuilder()
                     .add("estado", "success")
                     .add("mensaje", "Cliente añadido")
-                    .add("clienteUser", this.clienteDto.getUsuarioDto().getUsuario()).build();
+                    .add("clienteUser", this.clienteDto.getUsuarioLdapDto().getCn()).build();
 
             return data;
         } catch (NullPointerException ex){
