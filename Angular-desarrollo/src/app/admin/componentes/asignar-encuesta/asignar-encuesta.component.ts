@@ -265,10 +265,24 @@ export class AsignarEncuestaComponent implements OnInit {
           
 
 
-        },err=>{
-          console.log(err)
-          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-          this.eventBus.cast('fin-progress','chao');
+        },error=>{
+          console.log(error)
+          if(error.error.estado=="unauthorized"){
+            this.eventBus.cast('fin-progress','chao');
+            this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+            this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+    
+          }
+          else{
+            console.log(error);
+            if(error.error.mensaje){
+              this._toastrService.error("Ops! Hubo un problema.", error.error.mensaje)
+            }
+            else{
+              this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+            }
+            this.eventBus.cast('fin-progress','chao');
+          }
         })
 
 

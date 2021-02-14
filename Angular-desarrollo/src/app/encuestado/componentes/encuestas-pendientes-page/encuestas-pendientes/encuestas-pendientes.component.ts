@@ -50,7 +50,12 @@ export class EncuestasPendientesComponent implements OnInit {
       }
       else{
         console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        if(error.error.mensaje){
+          this._toastrService.error("Ops! Hubo un problema.", error.error.mensaje)
+        }
+        else{
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        }
         this.eventBus.cast('fin-progress','chao');
       }
 
@@ -75,7 +80,12 @@ export class EncuestasPendientesComponent implements OnInit {
         }
         else{
           console.log(error);
-          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          if(error.error.mensaje){
+            this._toastrService.error("Ops! Hubo un problema.", error.error.mensaje)
+          }
+          else{
+            this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          }
           this.eventBus.cast('fin-progress','chao');
         }
       });
