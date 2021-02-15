@@ -50,7 +50,6 @@ public class AddPreguntaComando extends BaseComando
                 pregunta.set_valormin(preguntaDto.getValormin());
             }
             Pregunta resul = dao.insert(pregunta);
-            this.preguntaDto = PreguntaMapper.mapEntityToDto(resul);
 
             p = Json.createObjectBuilder().add("id", resul.get_id())
                     .build();

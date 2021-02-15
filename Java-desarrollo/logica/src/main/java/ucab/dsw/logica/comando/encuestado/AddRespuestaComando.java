@@ -58,10 +58,7 @@ public class AddRespuestaComando extends BaseComando {
             respuesta.set_respuestadesarrollo(respuestaDto.getRespuestadesarrollo());
             respuesta.set_respuestaboolean(respuestaDto.getRespuestaboolean());
 
-
-
             Respuesta resul = daoRespuesta.insert( respuesta);
-            this.respuestaDto= RespuestaMapper.mapEntityToDto(resul);
 
             if (respuestaDto.getOpciones()!=null) {
                 List<OpcionSimpleMultiplePreguntaDto> opciones = respuestaDto.getOpciones();

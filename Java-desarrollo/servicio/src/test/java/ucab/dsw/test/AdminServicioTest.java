@@ -92,7 +92,7 @@ public class AdminServicioTest {
         Response respuesta = servicio.addPregunta( this.token,preguntaDto);
         JsonObject responseDto= (JsonObject) respuesta.getEntity();
         System.out.println(responseDto);
-        Assert.assertNotNull(responseDto.get("pregunta"));
+        Assert.assertNotNull(responseDto.get("Pregunta"));
     }
 
     @Test
