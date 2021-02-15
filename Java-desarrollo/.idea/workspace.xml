@@ -23,9 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87c6d671-881a-45a8-ab00-e16a3b9c4375" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/app/comun/servicios/login/login.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/app/comun/servicios/login/login.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/urlGlobal.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/urlGlobal.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,19 +78,14 @@
       <recent name="C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\Entrega 2\Java-desarrollo\servicio\src\main\java\ucab\dsw\clases" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SolicitudEstudioServicioTest.AddSolicitud">
-    <configuration name="AnalistaServicioTest.empezarEstudioTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="servicio" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ucab.dsw.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ucab.dsw.test" />
-      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.AnalistaServicioTest" />
-      <option name="METHOD_NAME" value="empezarEstudioTest" />
-      <option name="TEST_OBJECT" value="method" />
+  <component name="RunManager" selected="JUnit.DirectorioActivoServicioTest.setAllUsers">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -122,6 +117,22 @@
       <option name="PACKAGE_NAME" value="ucab.dsw.test" />
       <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.DirectorioActivoServicioTest" />
       <option name="METHOD_NAME" value="VerifyToken" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DirectorioActivoServicioTest.setAllUsers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ucab.dsw.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ucab.dsw.test" />
+      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.DirectorioActivoServicioTest" />
+      <option name="METHOD_NAME" value="setAllUsers" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -161,11 +172,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DirectorioActivoServicioTest.setAllUsers" />
         <item itemvalue="JUnit.SolicitudEstudioServicioTest.AddSolicitud" />
         <item itemvalue="JUnit.MarcaServicioTest.getMarcas" />
         <item itemvalue="JUnit.CategoriaServicioTest.getCategorias" />
         <item itemvalue="JUnit.DirectorioActivoServicioTest.VerifyToken" />
-        <item itemvalue="JUnit.AnalistaServicioTest.empezarEstudioTest" />
       </list>
     </recent_temporary>
   </component>
@@ -195,6 +206,7 @@
       <workItem from="1612318092807" duration="11762000" />
       <workItem from="1612546272700" duration="13795000" />
       <workItem from="1612713935539" duration="3249000" />
+      <workItem from="1613336242360" duration="1119000" />
     </task>
     <servers />
   </component>
@@ -247,30 +259,30 @@
     </state>
     <state x="374" y="242" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.980@0.0.1280.980" timestamp="1610935516596" />
     <state x="374" y="243" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.984@0.0.1280.984" timestamp="1611290707562" />
-    <state width="980" height="136" key="GridCell.Tab.0.bottom" timestamp="1612716686377">
-      <screen x="0" y="0" width="1024" height="728" />
+    <state width="1236" height="150" key="GridCell.Tab.0.bottom" timestamp="1613337416281">
+      <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state width="980" height="136" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1612716686377" />
     <state width="1238" height="165" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1610936076849" />
-    <state width="1236" height="150" key="GridCell.Tab.0.bottom/0.0.1280.984@0.0.1280.984" timestamp="1612332732362" />
-    <state width="980" height="136" key="GridCell.Tab.0.center" timestamp="1612716686377">
-      <screen x="0" y="0" width="1024" height="728" />
+    <state width="1236" height="150" key="GridCell.Tab.0.bottom/0.0.1280.984@0.0.1280.984" timestamp="1613337416281" />
+    <state width="1236" height="150" key="GridCell.Tab.0.center" timestamp="1613337416281">
+      <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state width="980" height="136" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1612716686377" />
     <state width="1238" height="165" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1610936076848" />
-    <state width="1236" height="150" key="GridCell.Tab.0.center/0.0.1280.984@0.0.1280.984" timestamp="1612332732362" />
-    <state width="980" height="136" key="GridCell.Tab.0.left" timestamp="1612716686377">
-      <screen x="0" y="0" width="1024" height="728" />
+    <state width="1236" height="150" key="GridCell.Tab.0.center/0.0.1280.984@0.0.1280.984" timestamp="1613337416281" />
+    <state width="1236" height="150" key="GridCell.Tab.0.left" timestamp="1613337416281">
+      <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state width="980" height="136" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1612716686377" />
     <state width="1238" height="165" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1610936076848" />
-    <state width="1236" height="150" key="GridCell.Tab.0.left/0.0.1280.984@0.0.1280.984" timestamp="1612332732362" />
-    <state width="980" height="136" key="GridCell.Tab.0.right" timestamp="1612716686377">
-      <screen x="0" y="0" width="1024" height="728" />
+    <state width="1236" height="150" key="GridCell.Tab.0.left/0.0.1280.984@0.0.1280.984" timestamp="1613337416281" />
+    <state width="1236" height="150" key="GridCell.Tab.0.right" timestamp="1613337416281">
+      <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state width="980" height="136" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1612716686377" />
     <state width="1238" height="165" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1610936076849" />
-    <state width="1236" height="150" key="GridCell.Tab.0.right/0.0.1280.984@0.0.1280.984" timestamp="1612332732362" />
+    <state width="1236" height="150" key="GridCell.Tab.0.right/0.0.1280.984@0.0.1280.984" timestamp="1613337416281" />
     <state x="483" y="194" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1611556226769">
       <screen x="0" y="0" width="1280" height="984" />
     </state>

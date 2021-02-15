@@ -29,6 +29,7 @@ public class AddPreguntaComando extends BaseComando
     public PreguntaDto preguntaDto;
     public OpcionSimpleMultipleDto OpcionSimpleMultipleDto;
     public OpcionSimpleMultiplePreguntaDto OpcionSimpleMultiplePreguntaDto;
+	public JsonObject p=Json.createObjectBuilder().build();
 
     public AddPreguntaComando(PreguntaDto preguntadto) {
         this.preguntaDto = preguntadto;
@@ -51,7 +52,7 @@ public class AddPreguntaComando extends BaseComando
             Pregunta resul = dao.insert(pregunta);
             this.preguntaDto = PreguntaMapper.mapEntityToDto(resul);
 
-            JsonObject p = Json.createObjectBuilder().add("id", resul.get_id())
+            p = Json.createObjectBuilder().add("id", resul.get_id())
                     .build();
 
             System.out.println("Id: " + resul.get_id());
@@ -101,7 +102,7 @@ public class AddPreguntaComando extends BaseComando
                     .add("estado", "success")
                     .add("mensaje", "Pregunta Agregada")
                     .add("codigo", 200)
-                    .add("Pregunta", this.preguntaDto.getId()).build();
+                    .add("Pregunta", p).build();
 
             return data;
           }
