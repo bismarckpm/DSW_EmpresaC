@@ -6,4 +6,8 @@ Java-desarrollo/dtos/target/*
 Java-desarrollo/entidades/target/*
 Java-desarrollo/excepciones/target/*
 Java-desarrollo/servicio/target/*
+Java-desarrollo/logica/target/*
+Java-desarrollo/mappers/target/*
+Java-desarrollo/seguridad/target/*
+Java-desarrollo/accesodatos/src/main/resources/*
 Angular-desarrollo/src/urlGlobal.ts

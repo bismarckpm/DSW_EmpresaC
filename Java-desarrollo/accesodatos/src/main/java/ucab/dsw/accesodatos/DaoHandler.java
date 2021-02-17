@@ -41,7 +41,7 @@ public class DaoHandler
     }
 
     /**
-     * @return
+     * @return the _em
      */
     public EntityManager getSession()
     {
@@ -95,7 +95,7 @@ public class DaoHandler
     }
 
     /**
-     * @return
+     * @return the _et
      */
     public Object beginTransaction()
     {
@@ -140,16 +140,13 @@ public class DaoHandler
     }
 
     /**
-     * @return
+     * @return the _isTransaction
      */
     public boolean isTransaction()
     {
         return _isTransaction;
     }
 
-    /**
-     * @param transaction
-     */
     public void setTransaction( boolean transaction )
     {
         _isTransaction = transaction;

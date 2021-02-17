@@ -3,7 +3,11 @@ package ucab.dsw.servicio;
 import ucab.dsw.directorio.DirectorioActivo;
 import ucab.dsw.directorio.RecuperacionPass;
 import ucab.dsw.dtos.UsuarioLdapDto;
+import ucab.dsw.excepciones.EmpresaException;
+import ucab.dsw.excepciones.UsuarioExistenteExcepcion;
 import ucab.dsw.jwt.Jwt;
+import ucab.dsw.logica.comando.recuperacion.RecuperacionComando;
+import ucab.dsw.logica.fabrica.Fabrica;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -28,7 +32,6 @@ public class RecuperacionServicio extends AplicacionBase{
      * despues de verificar la existencia del correo electronico en el Directorio Activo
      * @author Jesus Requena
      * @param usuarioLdapDto precargado con el correo electronico para enviar el mensaje
-     * @throws Exception si ocurre cualquier excepcion general no controlada previamente
      * @return Response que incluye un estado de respuesta http (OK, UNAUTHHORIZED o BAD_REQUEST) para
      *         indicar si exectivamente se pudo completar la solicitud, no se encontró el correo electronico
      *         u ocurrió un fallo en la comunicación.
@@ -37,23 +40,27 @@ public class RecuperacionServicio extends AplicacionBase{
     @Path( "/recuperacion" )
     public Response recuperacion(UsuarioLdapDto usuarioLdapDto) {
         try {
-            DirectorioActivo ldap = new DirectorioActivo();
-            RecuperacionPass rec = new RecuperacionPass();
-            String newPass = rec.newPass();
-            String user = ldap.getUserFromMail(usuarioLdapDto);
+            RecuperacionComando comando = Fabrica.crearComandoConDto(RecuperacionComando.class, usuarioLdapDto);
+            comando.execute();
 
-            if(!user.equals("")){
-                usuarioLdapDto.setCn(user);
-                ldap.reSetPass(usuarioLdapDto,newPass);
-                rec.recuperar(usuarioLdapDto.getCorreoelectronico(), newPass);
-                return Response.status(Response.Status.OK).build();
-            }else{
-                return Response.status(Response.Status.UNAUTHORIZED).build();
-            }
-        }catch ( Exception ex ) {
-            System.out.println("Excepcion");
-            return Response.status(Response.Status.BAD_REQUEST).build();
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+        } catch ( EmpresaException ex ) {
+            ex.printStackTrace();
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        } catch ( Exception ex ) {
+            ex.printStackTrace();
+
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-RC01")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(data).build();
         }
-
     }
 }

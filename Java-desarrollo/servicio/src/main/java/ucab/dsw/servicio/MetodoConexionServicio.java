@@ -1,22 +1,15 @@
 package ucab.dsw.servicio;
 
-import ucab.dsw.accesodatos.DaoMetodo_Conexion;
-import ucab.dsw.accesodatos.DaoNivel_Academico;
-import ucab.dsw.accesodatos.DaoOcupacion;
-import ucab.dsw.entidades.Metodo_conexion;
-import ucab.dsw.entidades.Nivel_Academico;
-import ucab.dsw.entidades.Ocupacion;
 
+import ucab.dsw.excepciones.EmpresaException;
+import ucab.dsw.jwt.Jwt;
+import ucab.dsw.logica.comando.metodoConexion.AllMetodoConexionComando;
+import ucab.dsw.logica.fabrica.Fabrica;
 import javax.json.Json;
-import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 /**
  * Una clase para la administracion los metodos de conexion
@@ -32,7 +25,6 @@ public class MetodoConexionServicio {
     /**
     * Esta funcion consiste en traer todos los metodos de conexion disponibles
     * @author Jesus Requena
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, metodos_conexion (array de objetos) 
@@ -41,34 +33,35 @@ public class MetodoConexionServicio {
     @GET
     @Path("/all")
     public Response getAllMetodoConexion() {
-        JsonObject data;
+        JsonObject resul;
         try {
-            DaoMetodo_Conexion dao = new DaoMetodo_Conexion();
-            List<Metodo_conexion> resultado = dao.findAll(Metodo_conexion.class);
-            JsonArrayBuilder metodosConexionArrayJson = Json.createArrayBuilder();
+            AllMetodoConexionComando comando= Fabrica.crear(AllMetodoConexionComando.class);
+            comando.execute();
 
-            for (Metodo_conexion obj : resultado) {
-
-                JsonObject metodosConexion = Json.createObjectBuilder().add("id", obj.get_id())
-                        .add("nombre", obj.get_nombre()).build();
-
-                metodosConexionArrayJson.add(metodosConexion);
-            }
-            data = Json.createObjectBuilder()
-                    .add("estado", "success")
-                    .add("codigo", 200)
-                    .add("metodos_conexion", metodosConexionArrayJson).build();
-        } catch (Exception ex) {
-            data = Json.createObjectBuilder()
-                    .add("estado", "exception!!!")
-                    .add("excepcion", ex.getMessage())
-                    .add("codigo", 500).build();
-
-            System.out.println(data);
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+                
         }
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
+        }
+        catch (Exception ex) {
+
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-MET01")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
+        }
+
     }
 
 

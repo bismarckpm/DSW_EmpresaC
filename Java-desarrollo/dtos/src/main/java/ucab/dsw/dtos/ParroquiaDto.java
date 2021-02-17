@@ -1,6 +1,6 @@
 package ucab.dsw.dtos;
 
-public class ParroquiaDto extends DtoBase
+public class ParroquiaDto extends BaseDto
 {
     private String nombre;
 

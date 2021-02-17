@@ -1,6 +1,6 @@
 package ucab.dsw.dtos;
 
-public class UsuarioLdapDto extends DtoBase
+public class UsuarioLdapDto extends BaseDto
 {
     private String cn;
     private String sn;

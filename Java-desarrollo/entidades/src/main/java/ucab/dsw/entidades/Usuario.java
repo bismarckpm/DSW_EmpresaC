@@ -117,4 +117,15 @@ public class Usuario extends EntidadBase
     {
 
     }
+
+    @Column( name = "token" )
+    private String _token;
+
+    public String get_token() {
+        return _token;
+    }
+
+    public void set_token(String _token) {
+        this._token = _token;
+    }
 }

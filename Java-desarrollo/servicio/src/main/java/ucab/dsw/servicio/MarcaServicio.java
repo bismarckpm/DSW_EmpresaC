@@ -1,20 +1,18 @@
 package ucab.dsw.servicio;
 
 import org.eclipse.persistence.exceptions.DatabaseException;
-import ucab.dsw.accesodatos.*;
 import ucab.dsw.dtos.*;
-import ucab.dsw.entidades.*;
-import ucab.dsw.excepciones.PruebaExcepcion;
+import ucab.dsw.excepciones.EmpresaException;
+import ucab.dsw.jwt.Jwt;
+import ucab.dsw.logica.comando.marca.*;
+import ucab.dsw.logica.fabrica.Fabrica;
 
 import javax.json.Json;
-import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.persistence.PersistenceException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Una clase para la administracion completa de las marcas de MERCADEOUCAB
@@ -26,11 +24,10 @@ import java.util.List;
 @Produces( MediaType.APPLICATION_JSON )
 @Consumes( MediaType.APPLICATION_JSON )
 public class MarcaServicio extends AplicacionBase{
-    
+
     /**
     * Esta funcion consiste el traer todas las marcas disponibles
     * @author Gabriel Romero
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, marcas (array de objetos) 
@@ -40,89 +37,41 @@ public class MarcaServicio extends AplicacionBase{
     @Path( "/all" )
     public Response getAllMarcas()
     {
-        JsonObject data;
+        JsonObject resul;
         try
         {
-			
-            DaoMarca dao= new DaoMarca();
-			DaoSubcategoria daoSubcategoria= new DaoSubcategoria();
-			DaoPresentacion daoPresentacion=new DaoPresentacion();
-			DaoMarca_Tipo daoMarca_tipo=new DaoMarca_Tipo();
-			
-            List<Marca> resultado= dao.findAll(Marca.class);
-			
-            JsonArrayBuilder marcaArrayJson= Json.createArrayBuilder();
-			JsonArrayBuilder tipoArrayJson= Json.createArrayBuilder();
-			JsonArrayBuilder presentacionesArrayJson= Json.createArrayBuilder();
+            AllMarcaComando comando=Fabrica.crear(AllMarcaComando.class);
+            comando.execute();
 
-            for(Marca obj: resultado){
-				
-				List<Marca_Tipo> marca_tipos=daoMarca_tipo.getAllMarcaTiposByMarca(obj.get_id());
-				
-				for(Marca_Tipo obj2: marca_tipos){
-														 
-						List<Presentacion> presentaciones=daoPresentacion.getAllPresentacionesByTipo(obj2.get_tipo().get_id());
-						
-						for(Presentacion obj3: presentaciones){
-								JsonObject presentacion = Json.createObjectBuilder().add("presentacion_id",obj3.get_id())
-																					 .add("nombre",obj3.get_nombre()).build();
-								presentacionesArrayJson.add(presentacion);
-								
-						}		
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
-						 JsonObject tipo = Json.createObjectBuilder().add("marca_tipo_id",obj2.get_id())
-																 .add("tipo",obj2.get_tipo().get_nombre())
-																 .add("tipo_id",obj2.get_tipo().get_id())
-																 .add("presentaciones",presentacionesArrayJson).build();
-					
-					tipoArrayJson.add(tipo);
-				}
-				
-				Subcategoria subcategoria= daoSubcategoria.find(obj.get_subcategoria().get_id(),Subcategoria.class);
-                JsonObject marca = Json.createObjectBuilder().add("id",obj.get_id())
-                                                             .add("nombre",obj.get_nombre())
-                                                             .add("subcategoria_id",subcategoria.get_id())
-                                                             .add("subcategoria",subcategoria.get_nombre())
-                                                             .add("estado",obj.get_estado())
-															 .add("tipos",tipoArrayJson).build();
-
-                marcaArrayJson.add(marca);
-
-            }
-
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200)
-                    .add("marcas",marcaArrayJson).build();
-
-
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
-            data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
-                    .add("codigo",500).build();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-MA01")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            System.out.println(data);
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
-
-
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
 
     }
 
     /**
     * Esta funcion consiste en insertar una nueva marca
     * @author Gabriel Romero
-    * @param marcaDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar 
-    * @throws PersistenceException si se inserta una marca duplicada
-    * @throws DatabaseException    si existe algun problema con la conexion con el servidor de base de datos
-    * @throws Excepcion      si ocurre cualquier excepcion general no controlada previamente
+    * @param marcaDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir
@@ -130,68 +79,54 @@ public class MarcaServicio extends AplicacionBase{
     */
     @POST
     @Path( "/add" )
-    public Response addMarca(MarcaDto marcaDto)
+    public Response addMarca(@HeaderParam("authorization") String token,MarcaDto marcaDto)
     {
-        JsonObject data;
-        MarcaDto resultado = new MarcaDto();
+        JsonObject resul;
+
         try
         {
-            DaoMarca DaoMarca = new DaoMarca();
-            DaoMarca_Tipo daoMarca_tipo= new DaoMarca_Tipo();
-			DaoTipo daoTipo= new DaoTipo();
-			
-            Marca marca= new Marca();
-            Subcategoria subcategoria = new Subcategoria(marcaDto.getSubcategoriaDto().getId());
-            
+            if(Jwt.verificarToken(token)){
+                InsertMarcaComando comando= Fabrica.crearComandoConDto(InsertMarcaComando.class,marcaDto);
+                comando.execute();
 
-            marca.set_nombre(marcaDto.getNombre());
-            marca.set_subcategoria(subcategoria);
-            marca.set_estado("activo");
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
-            Marca resul = DaoMarca.insert(marca);
-
-            for(TipoDto obj: marcaDto.getTipo_Dto()){
-				
-				Marca_Tipo marca_tipo=new Marca_Tipo();
-				Tipo tipo= daoTipo.find(obj.getId(),Tipo.class);
-				marca_tipo.set_tipo(tipo);
-				marca_tipo.set_marca(resul);
-
-                Marca_Tipo resul2 = daoMarca_tipo.insert(marca_tipo);
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
             }
 
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200).build();
         }
-        catch (PersistenceException | DatabaseException ex){
-            data= Json.createObjectBuilder()
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje","La marca ya se encuestra registrada")
-                    .add("codigo",500).build();
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
-            System.out.println(data);
-
-            return Response.status(Response.Status.OK).entity(data).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
-        catch ( Exception ex){
-            data= Json.createObjectBuilder()
+        catch ( Exception ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
                     .add("estado","error")
-					.add("mensaje",ex.getMessage())
-                    .add("codigo",500).build();
+                    .add("codigo","S-EX-MA02")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            System.out.println(data);
-            return Response.status(Response.Status.OK).entity(data).build();
-
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-        return Response.status(Response.Status.OK).entity(data).build();
     }
 
     /**
     * Esta funcion consiste en inhabilitar una marca. Quedaran inhabilitadas para futuros estudios.
     * @author Gabriel Romero
     * @param _id corresponde al id de la marca
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir 
@@ -199,42 +134,53 @@ public class MarcaServicio extends AplicacionBase{
     */
     @DELETE
     @Path( "/delete/{id}" )
-    public Response deleteMarca(@PathParam("id") long  _id)
+    public Response deleteMarca(@HeaderParam("authorization") String token,@PathParam("id") long  _id)
     {
-        JsonObject data;
-        MarcaDto resultado = new MarcaDto();
+        JsonObject resul;
+
         try
         {
-            DaoMarca dao = new DaoMarca();
-            Marca marca = dao.find(_id,Marca.class);
-            marca.set_estado("inactivo");
+            if(Jwt.verificarToken(token)){
+                DeleteMarcaComando comando=Fabrica.crearComandoConId(DeleteMarcaComando.class,_id);
+                comando.execute();
 
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
-            Marca resul = dao.update(marca);
-            resultado.setId( resul.get_id() );
-
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
-            data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
-                    .add("codigo",500).build();
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-MA03")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-        return Response.status(Response.Status.OK).entity(data).build();
     }
 
     /**
     * Esta funcion consiste en habilitar nuevamente una marca previamente inhabilitada
     * @author Carlos Silva
     * @param _id corresponde al id de la marca
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir 
@@ -243,35 +189,46 @@ public class MarcaServicio extends AplicacionBase{
 
     @DELETE
     @Path( "/activar/{id}" )
-    public Response activarMarca(@PathParam("id") long  _id)
+    public Response activarMarca(@HeaderParam("authorization") String token,@PathParam("id") long  _id)
     {
-        JsonObject data;
-        MarcaDto resultado = new MarcaDto();
+        JsonObject resul;
         try
         {
-            DaoMarca dao = new DaoMarca();
-            Marca marca = dao.find(_id,Marca.class);
-            marca.set_estado("activo");
+            if(Jwt.verificarToken(token)){
+                ActivateMarcaComando comando=Fabrica.crearComandoConId(ActivateMarcaComando.class,_id);
+                comando.execute();
 
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
-            Marca resul = dao.update(marca);
-            resultado.setId( resul.get_id() );
-
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
-            data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
-                    .add("codigo",500).build();
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-MA04")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-        return Response.status(Response.Status.OK).entity(data).build();
     }
 
 
@@ -280,9 +237,6 @@ public class MarcaServicio extends AplicacionBase{
     * @author Gabriel Romero
     * @param _id corresponde al id de la marca
     * @param marcaDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean actualizar
-    * @throws PersistenceException si se inserta una marca duplicada
-    * @throws DatabaseException    si existe algun problema con la conexion con el servidor de base de datos
-    * @throws Exception      si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir 
@@ -290,57 +244,53 @@ public class MarcaServicio extends AplicacionBase{
     */
     @PUT
     @Path( "/edit/{id}" )
-    public Response editMarca(@PathParam("id") long _id, MarcaDto marcaDto)
+    public Response editMarca(@HeaderParam("authorization") String token,@PathParam("id") long _id, MarcaDto marcaDto)
     {
-        JsonObject data;
-        MarcaDto resultado = new MarcaDto();
+        JsonObject resul;
         try
         {
-            DaoMarca dao = new DaoMarca();
-			DaoMarca_Tipo daoMarca_tipo= new DaoMarca_Tipo();
-			DaoTipo daoTipo= new DaoTipo();
-			DaoSubcategoria daoSubcategoria=new DaoSubcategoria();
-			
-            Marca marca = dao.find(_id,Marca.class);
-			Subcategoria subcategoria = daoSubcategoria.find(marcaDto.getSubcategoriaDto().getId(),Subcategoria.class);
-            Marca_Tipo marca_tipo=daoMarca_tipo.find(marcaDto.getMarcaTipo_Dto().getId(),Marca_Tipo.class);
+            if(Jwt.verificarToken(token)){
+                UpdateMarcaComando comando=Fabrica.crearComandoBoth(UpdateMarcaComando.class, _id,marcaDto);
+                comando.execute();
 
-            for(TipoDto obj: marcaDto.getTipo_Dto()){
-
-				Tipo tipo= daoTipo.find(obj.getId(),Tipo.class);
-				marca_tipo.set_tipo(tipo);
-                Marca_Tipo resul2 = daoMarca_tipo.update(marca_tipo);
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
             }
-            
-            daoMarca_tipo.update(marca_tipo);
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
-			marca.set_subcategoria(subcategoria);
-            marca.set_nombre(marcaDto.getNombre());
-            Marca resul = dao.update(marca);
-            resultado.setId( resul.get_id() );
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200).build();
-
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
-            data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
-                    .add("codigo",500).build();
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-MA05")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-        return Response.status(Response.Status.OK).entity(data).build();
+
     }
 
     /**
     * Esta funcion consiste obtener una marca
     * @author Gabriel Romero
     * @param _id corresponde al id de la marca
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, marca y mensaje en caso de ocurrir 
@@ -348,46 +298,54 @@ public class MarcaServicio extends AplicacionBase{
     */
     @GET
     @Path( "/{id}" )
-    public Response getMarca(@PathParam("id") long  _id)
+    public Response getMarca(@HeaderParam("authorization") String token,@PathParam("id") long  _id)
     {
-        JsonObject data;
-        JsonObject marcaJson;
-        MarcaDto resultado = new MarcaDto();
+        JsonObject resul;
+
         try
         {
-            DaoMarca dao = new DaoMarca();
-            Marca marca = dao.find(_id,Marca.class);
-            resultado.setId( marca.get_id() );
+            if(Jwt.verificarToken(token)){
+                GetMarcaComando comando=Fabrica.crearComandoConId(GetMarcaComando.class,_id);
+                comando.execute();
 
-            marcaJson= Json.createObjectBuilder()
-                    .add("nombre",marca.get_nombre()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200)
-                    .add("marca",marcaJson).build();
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
 
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
-            data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
-                    .add("codigo",500).build();
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-MA06")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
-
-
     }
 
     /**
     * Esta funcion consiste obtener una marcas por subcategoria
     * @author Gabriel Romero
     * @param _id corresponde al id de la subcategoria
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, marcasBySubcategoria y mensaje en caso de ocurrir 
@@ -395,44 +353,47 @@ public class MarcaServicio extends AplicacionBase{
     */
     @GET
     @Path( "/by/subcategoria/{id}" )
-    public Response getMarcaBySubcategoriaId(@PathParam("id") long  _id)
+    public Response getMarcaBySubcategoriaId(@HeaderParam("authorization") String token,@PathParam("id") long  _id)
     {
-        JsonObject data;
+        JsonObject resul;
 
         try
         {
-            DaoMarca dao= new DaoMarca();
-            List<Marca> resultado= dao.getMarcasBySubcategoria(_id);
+            if(Jwt.verificarToken(token)){
+                MarcasBySubComando comando=Fabrica.crearComandoConId(MarcasBySubComando.class,_id);
+                comando.execute();
 
-            JsonArrayBuilder marcasByCategoriaIdJson= Json.createArrayBuilder();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
-            for(Marca obj: resultado){
-
-                JsonObject marca = Json.createObjectBuilder().add("id",obj.get_id())
-                                                             .add("nombre",obj.get_nombre()).build();
-
-                marcasByCategoriaIdJson.add(marca);
-
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
             }
 
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200)
-                    .add("marcasBySubcategoria",marcasByCategoriaIdJson).build();
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
-            data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
-                    .add("codigo",500).build();
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-MA07")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
-
     }
-    
 }

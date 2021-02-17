@@ -6,7 +6,7 @@ import {NgProgressRef} from 'ngx-progressbar';
 import { ToastrService } from 'ngx-toastr';
 import { NgEventBus } from 'ng-event-bus';
 import { Router } from '@angular/router';
-
+import { LoginService } from './comun/servicios/login/login.service';
 
 
 @Component({
@@ -23,12 +23,11 @@ export class AppComponent implements OnInit{
   public rol:any;
   public user_id:any;
 
-  constructor(private route: Router,private progress: NgProgress, private _http:HttpClient, private _toastrService: ToastrService,private eventBus: NgEventBus) {
+  constructor(private route: Router,private progress: NgProgress, private _http:HttpClient, private _toastrService: ToastrService,private eventBus: NgEventBus, private http: LoginService) {
     this.progressRef = this.progress.ref('myProgress');
   }
   
   ngOnInit() {
-
     this.checkLocalStorage();
 
     this.eventBus.on('inicio-progress').subscribe((meta: MetaData) => {
@@ -48,6 +47,7 @@ export class AppComponent implements OnInit{
     });
 
     this.eventBus.on('cerrar-sesion').subscribe((meta: MetaData) => {
+      this.http.logOut().subscribe();
       console.log(meta.data); // will receive 'started' only
       this.cleanLocalstorage();
     });

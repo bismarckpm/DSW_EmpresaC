@@ -11,6 +11,8 @@ import { MetaData } from 'ng-event-bus/lib/meta-data';
 import { ModificarCategoriaComponent } from './modificar-categoria/modificar-categoria.component';
 import { EliminarCategoriaComponent } from './eliminar-categoria/eliminar-categoria.component';
 
+import { LoginService } from "../../../comun/servicios/login/login.service";
+import { Router } from '@angular/router';
 
 export interface Categoria {
   id: number;
@@ -42,11 +44,14 @@ export class AdministrarCategoriaComponent implements OnInit, AfterViewInit {
   //dataSource = new MatTableDataSource<Categoria>(ELEMENT_DATA); //Para pruebas sin backend
   dataSource = new MatTableDataSource<Categoria>();
   public dialogRef;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(public dialog: MatDialog,
               private _adminCategoriaService:AdministrarCategoriasService,
               private _toastrService: ToastrService,
-              private eventBus: NgEventBus
+              private eventBus: NgEventBus,
+              private loginService:LoginService,
+              private router:Router
   ) { }
 
   
@@ -69,13 +74,16 @@ export class AdministrarCategoriaComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-    this.dataSource.filter = filterValue.trim().toLowerCase()
     
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   init(){
@@ -95,9 +103,17 @@ export class AdministrarCategoriaComponent implements OnInit, AfterViewInit {
         this.eventBus.cast('fin-progress','chao');
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
       });
   }
 

@@ -2,7 +2,7 @@ package ucab.dsw.dtos;
 
 import java.util.List;
 
-public class EncuestaDto extends DtoBase{
+public class EncuestaDto extends BaseDto {
 
 
     public EncuestaDto()
@@ -24,6 +24,18 @@ public class EncuestaDto extends DtoBase{
     public void setNombre( String nombre )
     {
         this.nombre = nombre;
+    }
+
+    private String estado;
+
+    public String getEstado()
+    {
+        return estado;
+    }
+
+    public void setEstado( String estado )
+    {
+        this.estado = estado;
     }
 
     private MarcaDto marcaDto;

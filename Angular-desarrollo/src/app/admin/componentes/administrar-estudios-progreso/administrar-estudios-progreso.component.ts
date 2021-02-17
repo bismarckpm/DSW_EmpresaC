@@ -6,8 +6,10 @@ import { ToastrService } from 'ngx-toastr';
 import { SolicitudEstudio } from "../../../Entidades/solicitudEstudio";
 import { Respuesta } from "../../../Entidades/respuesta";
 import { Estudio } from "../../../Entidades/estudio";
+
 //Servicios
 import { SolicitudEstudioService } from "../../Servicios/solicitud-estudio.service";
+import { LoginService } from "../../../comun/servicios/login/login.service";
 
 @Component({
   selector: 'app-administrar-estudios-progreso',
@@ -20,7 +22,8 @@ export class AdministrarEstudiosProgresoComponent implements OnInit {
 
   constructor(private solicitudServicio:SolicitudEstudioService,
     private _toastrService: ToastrService,
-    private eventBus: NgEventBus) { }
+    private eventBus: NgEventBus,
+    private loginService:LoginService) { }
 
   ngOnInit(): void {
     this.init();
@@ -32,9 +35,18 @@ export class AdministrarEstudiosProgresoComponent implements OnInit {
       this.eventBus.cast('fin-progress','chao');
     
     },
-    err=>{
-      this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-      this.eventBus.cast('fin-progress','chao');
+    error=>{
+      if(error.error.estado=="unauthorized"){
+        this.eventBus.cast('fin-progress','chao');
+        this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+        this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+
+      }
+      else{
+        console.log(error);
+        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        this.eventBus.cast('fin-progress','chao');
+      }
     });
 
 

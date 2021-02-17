@@ -64,7 +64,7 @@ public class ValidaCamposSolicitudDto {
         return resul;
     }
 
-    public boolean ValidaCaracteristicaDto(Caracteristica_DemograficaDto caracteristica_demograficaDto){
+    public boolean ValidaCaracteristicaDto(CaracteristicaDemograficaDto caracteristica_demograficaDto){
         boolean resul;
         int cont=0;
 
@@ -114,7 +114,7 @@ public class ValidaCamposSolicitudDto {
     }
 
 
-    public boolean ValidaNivelAcademicoDto(Nivel_AcademicoDto nivel_academicoDto){
+    public boolean ValidaNivelAcademicoDto(NivelAcademicoDto nivel_academicoDto){
         boolean resul;
 
         if(nivel_academicoDto!=null){

@@ -1,6 +1,6 @@
 package ucab.dsw.dtos;
 
-public class ParticipacionDto extends DtoBase{
+public class ParticipacionDto extends BaseDto {
 
 
     private String estado;

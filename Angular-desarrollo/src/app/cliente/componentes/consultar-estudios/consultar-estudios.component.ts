@@ -12,6 +12,8 @@ import { ConsultarEstudiosService } from '../../servicios/consultar-estudios/con
 import { SolicitudEstudiosService } from '../../servicios/solicitud_estudios/solicitud-estudios.service';
 import { ResultadosAnalistaComponent } from './resultados-analista/resultados-analista.component';
 
+import { LoginService } from "../../../comun/servicios/login/login.service";
+
 @Component({
   selector: 'app-consultar-estudios',
   templateUrl: './consultar-estudios.component.html',
@@ -22,13 +24,16 @@ export class ConsultarEstudiosComponent implements OnInit {
   public cliente_id;
   public user_id;
   public estudios:any[];
+  public estudios_filtered:any[];
+
   public dialogRef;
 
   constructor(public dialog: MatDialog,
               private _consultaEstudios:ConsultarEstudiosService,
               private _toastrService: ToastrService,
               private eventBus: NgEventBus,
-              private _solicitudService:SolicitudEstudiosService) { }
+              private _solicitudService:SolicitudEstudiosService,
+              private loginService:LoginService) { }
 
   ngOnInit(): void {
     this.init();
@@ -50,13 +55,22 @@ export class ConsultarEstudiosComponent implements OnInit {
       (response)=>{
         console.log(response);
         this.estudios=response.estudios;
+        this.estudios_filtered = this.estudios;
         this._toastrService.success("Exito", "Todas los estudios solicitados");
         this.eventBus.cast('fin-progress','chao');
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
       });
   }
 
@@ -70,8 +84,16 @@ export class ConsultarEstudiosComponent implements OnInit {
         this.getAllEstudios();
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        }
       });
   }
   
@@ -147,4 +169,11 @@ export class ConsultarEstudiosComponent implements OnInit {
     });
   }
   
+  estudiosFiltered(estado){   
+    if (estado == 'all') {
+      this.estudios_filtered = this.estudios;
+    }else{
+      this.estudios_filtered = this.estudios.filter( estudio => estudio.estado === estado);
+    }
+  }
 }

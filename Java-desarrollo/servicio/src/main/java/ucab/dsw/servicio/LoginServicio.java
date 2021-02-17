@@ -1,10 +1,10 @@
 package ucab.dsw.servicio;
 
-import ucab.dsw.accesodatos.DaoUsuario;
-import ucab.dsw.directorio.DirectorioActivo;
 import ucab.dsw.dtos.UsuarioLdapDto;
-import ucab.dsw.entidades.Usuario;
-import ucab.dsw.jwt.Jwt;
+import ucab.dsw.excepciones.EmpresaException;
+import ucab.dsw.logica.comando.login.LoginLdapComando;
+import ucab.dsw.logica.comando.login.LogoutComando;
+import ucab.dsw.logica.fabrica.Fabrica;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -28,7 +28,6 @@ public class LoginServicio extends AplicacionBase{
     * de esta manera, proporcionar el acceso a las diferentes opciones segun el rol. 
     * @author Gabriel Romero
     * @param usuarioLdapDto corresponde al objeto de la capa web que contiene los datos a validar (usuario/correo y contraseña)
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, token, rol, user_id
@@ -38,56 +37,54 @@ public class LoginServicio extends AplicacionBase{
     @Path( "/ldap" )
     public Response loginLdap(UsuarioLdapDto usuarioLdapDto)
     {
-        String token="";
-        JsonObject data;
+        try {
+            LoginLdapComando comando = Fabrica.crearComandoConDto(LoginLdapComando.class, usuarioLdapDto);
+            comando.execute();
 
-        try
-        {
-            DirectorioActivo ldap = new DirectorioActivo();
-            DaoUsuario daoUsuario = new DaoUsuario();
-            
-
-            
-            if ( usuarioLdapDto.getCorreoelectronico() != null ){
-                usuarioLdapDto.setCn(ldap.getUserFromMail(usuarioLdapDto));
-            }
-            long resultado=ldap.userAuthentication( usuarioLdapDto );
-
-
-
-            if(resultado==1){
-                Usuario usuario = daoUsuario.find(Long.parseLong(ldap.getEntryUid(usuarioLdapDto)), Usuario.class);
-                if (usuario.get_estado().equals("inactivo")){
-                    data= Json.createObjectBuilder()
-                            .add("estado","Usuario Inactivo")
-                            .add("codigo",401).build();
-                    return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
-                }
-
-
-                Jwt jwt=new Jwt();
-                token= jwt.generarToken(usuarioLdapDto);
-                data= Json.createObjectBuilder()
-                                     .add("estado","success")
-                                     .add("codigo",200)
-                                     .add("token",token)
-                                     .add("rol", ldap.getEntryRole(usuarioLdapDto))
-                                     .add("user_id",ldap.getEntryUid(usuarioLdapDto)).build();
-
-                System.out.println(data);
-                return Response.status(Response.Status.OK).entity(data).build();
-            }else{
-                data= Json.createObjectBuilder()
-                        .add("estado","Las credenciales no son correctas. Intente de nuevo.")
-                        .add("codigo",401).build();
-                return Response.status(Response.Status.UNAUTHORIZED).entity(data).build();
-            }
-        }
-        catch ( Exception ex )
-        {
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+        } catch ( EmpresaException ex ) {
             ex.printStackTrace();
-            System.out.println("Excepcion");
-            return Response.status(Response.Status.BAD_REQUEST).build();
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        } catch ( Exception ex ) {
+            ex.printStackTrace();
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-LO01")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        }
+    }
+
+    @DELETE
+    @Path( "/logout/{id}" )
+    public Response logout(@PathParam("id")long  _id){
+        try {
+            LogoutComando comando = Fabrica.crearComandoConId(LogoutComando.class, _id);
+            comando.execute();
+
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+        } catch ( EmpresaException ex ) {
+            ex.printStackTrace();
+            JsonObject data = Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+        } catch ( Exception ex ) {
+            ex.printStackTrace();
+            JsonObject data= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-LO02")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
         }
     }
 }

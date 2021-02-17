@@ -12,6 +12,10 @@ import { AnadirClienteComponent } from './anadir/anadir-cliente/anadir-cliente.c
 import { EliminarUsuarioComponent } from './eliminar/eliminar-usuario/eliminar-usuario.component';
 import { ModificarComponent } from './modificar/modificar/modificar.component';
 import { ModificarClienteComponent } from './modificar/modificar-cliente/modificar-cliente.component';
+import { AnadirEncuestadoComponent } from './anadir/anadir-encuestado/anadir-encuestado.component';
+
+import { LoginService } from "../../../comun/servicios/login/login.service";
+
 @Component({
   selector: 'app-administrar-usuarios',
   templateUrl: './administrar-usuarios.component.html',
@@ -27,7 +31,8 @@ export class AdministrarUsuariosComponent implements OnInit,AfterViewInit {
   constructor(public dialog: MatDialog,
     private _adminUsuarioService:AdministrarUsuariosService,
     private _toastrService: ToastrService,
-    private eventBus: NgEventBus
+    private eventBus: NgEventBus,
+    private loginService:LoginService
   ) { }
 
 
@@ -77,9 +82,17 @@ export class AdministrarUsuariosComponent implements OnInit,AfterViewInit {
         this.eventBus.cast('fin-progress','chao');
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
       });
   }
 
@@ -97,6 +110,16 @@ export class AdministrarUsuariosComponent implements OnInit,AfterViewInit {
   openDialogCliente(): void {
     this.dialogRef = this.dialog.open(AnadirClienteComponent, {
       width: '500px'
+    });
+
+    this.dialogRef .afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  openDialogEncuestado(): void {
+    this.dialogRef = this.dialog.open(AnadirEncuestadoComponent, {
+      width: '900px'
     });
 
     this.dialogRef .afterClosed().subscribe(result => {
@@ -145,9 +168,17 @@ export class AdministrarUsuariosComponent implements OnInit,AfterViewInit {
         this.getAllUsuarios()
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          this.eventBus.cast('fin-progress','chao');
+        }
       });
   }
 }

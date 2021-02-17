@@ -5,6 +5,9 @@ import { AdministrarPresentacionService } from 'src/app/admin/Servicios/administ
 import { PresentacionDto } from 'src/app/Entidades/presentacionDto';
 import { TipoDto } from 'src/app/Entidades/TipoDto';
 import { AdministrarTiposService } from '../../../Servicios/administrar-tipos/administrar-tipos.service';
+
+import { LoginService } from "../../../../comun/servicios/login/login.service";
+
 @Component({
   selector: 'app-anadir-presentacion',
   templateUrl: './anadir-presentacion.component.html',
@@ -22,7 +25,8 @@ export class AnadirPresentacionComponent implements OnInit {
   constructor(private _adminTipoService:AdministrarTiposService,
               private _adminPresentacionService: AdministrarPresentacionService,
               private _toastrService: ToastrService,
-              private eventBus: NgEventBus
+              private eventBus: NgEventBus,
+              private loginService:LoginService
   ) { }
   
 
@@ -61,10 +65,25 @@ export class AnadirPresentacionComponent implements OnInit {
 
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
-        this.eventBus.cast('cerrar-presentacion-add','cerrar');
+
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this.eventBus.cast('cerrar-presentacion-add','cerrar');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          if(error.error.mensaje){
+            this._toastrService.error("Ops! Hubo un problema.", error.error.mensaje)
+          }
+          else{
+            this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          }
+          this.eventBus.cast('fin-progress','chao');
+          this.eventBus.cast('cerrar-presentacion-add','cerrar');
+        }
       });
   }
 
@@ -77,8 +96,15 @@ export class AnadirPresentacionComponent implements OnInit {
         this.tipos_filtered=this.tipos.filter( tipo => tipo.estado === 'activo');
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        if(error.error.estado=="unauthorized"){
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+        }
       });
   }
 

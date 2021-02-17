@@ -1,28 +1,16 @@
 package ucab.dsw.servicio;
-import org.eclipse.persistence.exceptions.DatabaseException;
-import ucab.dsw.accesodatos.DaoCategoria;
-import ucab.dsw.accesodatos.DaoMarca;
-import ucab.dsw.accesodatos.DaoPresentacion;
-import ucab.dsw.accesodatos.DaoSubcategoria;
-import ucab.dsw.dtos.CategoriaDto;
 
-import ucab.dsw.dtos.MarcaDto;
-import ucab.dsw.dtos.PresentacionDto;
-import ucab.dsw.dtos.SubcategoriaDto;
-import ucab.dsw.entidades.Categoria;
-import ucab.dsw.entidades.Marca;
-import ucab.dsw.entidades.Presentacion;
-import ucab.dsw.entidades.Subcategoria;
-import ucab.dsw.excepciones.PruebaExcepcion;
-
+import ucab.dsw.dtos.*;
+import ucab.dsw.excepciones.EmpresaException;
+import ucab.dsw.jwt.Jwt;
+import ucab.dsw.logica.comando.categoria.*;
+import ucab.dsw.logica.fabrica.Fabrica;
 import javax.json.Json;
-import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
-import javax.persistence.PersistenceException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
+
 
 
 /**
@@ -40,7 +28,6 @@ public class CategoriaServicio extends AplicacionBase{
     /**
     * Esta funcion consiste el traer todas las categorias disponibles
     * @author Gabriel Romero
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, categorias (array de objetos) 
@@ -50,101 +37,94 @@ public class CategoriaServicio extends AplicacionBase{
     @Path( "/all" )
     public Response getAllCategorias()
     {
-        JsonObject data;
+        JsonObject resul;
+
         try
         {
-                DaoCategoria dao= new DaoCategoria();
-                List<Categoria> resultado= dao.findAll(Categoria.class);
+            AllCategorialComando comando= Fabrica.crear(AllCategorialComando.class);
+            comando.execute();
 
-                JsonArrayBuilder categoriaArrayJson= Json.createArrayBuilder();
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
-                for(Categoria obj: resultado){
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
-                    JsonObject categoria = Json.createObjectBuilder().add("id",obj.get_id())
-                                                                     .add("nombre",obj.get_nombre())
-                                                                     .add("estado",obj.get_estado()).build();
-
-                    categoriaArrayJson.add(categoria);
-
-                }
-
-                data= Json.createObjectBuilder()
-                        .add("estado","success")
-                        .add("codigo",200)
-                        .add("categorias",categoriaArrayJson).build();
-
-
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
-            data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
-                    .add("codigo",500).build();
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-CAT01")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            System.out.println(data);
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
-
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
-
     }
 
     /**
     * Esta funcion consiste en insertar una nueva categoria
     * @author Gabriel Romero
-    * @param categoriaDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar 
-    * @throws PersistenceException si se inserta una categoria duplicada
-    * @throws DatabaseException    si existe algun problema con la conexion con el servidor de base de datos
-    * @throws PruebaExcepcion      si ocurre cualquier excepcion general no controlada previamente
-    * @return retorna una Response con un estado de respuesta http indicando si la operacion 
-    *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
+    * @param categoriaDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean insertar
+    * @return retorna una Response con un estado de respuesta http indicando si la operacion
+    *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto
     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir
     *         alguna de las excepciones
     */
     @POST
     @Path( "/add" )
-    public Response addCategoria(CategoriaDto categoriaDto)
+    public Response addCategoria(@HeaderParam("authorization") String token,CategoriaDto categoriaDto)
     {
-        JsonObject data;
-        CategoriaDto resultado = new CategoriaDto();
+        JsonObject resul;
+
         try
         {
-            DaoCategoria dao = new DaoCategoria();
-            Categoria categoria = new Categoria();
-            categoria.set_nombre(categoriaDto.getNombre());
-            categoria.set_estado("activo");
-            Categoria resul = dao.insert( categoria );
-            resultado.setId( resul.get_id() );
+            if(Jwt.verificarToken(token)){
 
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200).build();
+                InsertCategoriaComando comando=Fabrica.crearComandoConDto(InsertCategoriaComando.class,categoriaDto);
+                comando.execute();
+
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
+
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
+
         }
-        catch (PersistenceException | DatabaseException ex){
-            data= Json.createObjectBuilder()
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje","La categoria ya se encuestra registrada")
-                    .add("codigo",500).build();
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
-            System.out.println(data);
-
-            return Response.status(Response.Status.OK).entity(data).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
-        catch ( PruebaExcepcion ex){
-            data= Json.createObjectBuilder()
+        catch ( Exception ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje",ex.getMessage())
-                    .add("codigo",500).build();
+                    .add("codigo","S-EX-CAT02")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            System.out.println(data);
-            return Response.status(Response.Status.OK).entity(data).build();
-
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
+
     }
 
 
@@ -153,7 +133,6 @@ public class CategoriaServicio extends AplicacionBase{
     * y asimismo, las marcas de esas subcategorias. Quedaran inhabilitadas para futuros estudios.
     * @author Gabriel Romero
     * @param _id corresponde al id de la categoria
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir 
@@ -162,96 +141,53 @@ public class CategoriaServicio extends AplicacionBase{
 
     @DELETE
     @Path( "/delete/{id}" )
-    public Response deleteCategoria(@PathParam("id") long  _id)
+    public Response deleteCategoria(@HeaderParam("authorization") String token,@PathParam("id") long  _id)
     {
-        JsonObject data;
-        CategoriaDto resultado = new CategoriaDto();
+        JsonObject resul;
         try
         {
-            DaoCategoria dao = new DaoCategoria();
-            Categoria categoria = dao.find(_id,Categoria.class);
+            if(Jwt.verificarToken(token)){
+                DeleteCategoriaComando comando=Fabrica.crearComandoConId(DeleteCategoriaComando.class,_id);
+                comando.execute();
 
-            categoria.set_estado("inactivo");
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
-            Categoria resul = dao.update(categoria);
-            resultado.setId( resul.get_id() );
-
-            List<Subcategoria> resultado2= null;
-            Class<Subcategoria> type = Subcategoria.class;
-
-            DaoSubcategoria dao2 = new DaoSubcategoria();
-            resultado2 = dao2.findAll( type );
-            for(Subcategoria obj: resultado2) {
-
-                if (obj.get_categoria().get_id() == resul.get_id()){
-                    DaoSubcategoria dao3 = new DaoSubcategoria();
-                    SubcategoriaDto resultado3 = new SubcategoriaDto();
-                    Subcategoria subcategoria = dao3.find(obj.get_id(), Subcategoria.class);
-
-                    subcategoria.set_estado("inactivo");
-
-                    Subcategoria resul2 = dao3.update(subcategoria);
-                    resultado3.setId( resul2.get_id() );
-
-                    DaoMarca daoMarca = new DaoMarca();
-                    List<Marca> marcas =daoMarca.findAll(Marca.class);
-                    for(Marca obj2: marcas) {
-                        if (obj2.get_subcategoria().get_id() == resul2.get_id()){
-                            Marca marca = daoMarca.find(obj2.get_id(),Marca.class);
-                            marca.set_estado("inactivo");
-
-                            Marca marcaActualizada = daoMarca.update(marca);
-                        }
-                    }
-                }
-
-
-
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
             }
 
-            List<Marca> resultado4= null;
-            Class<Marca> type2 = Marca.class;
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
-            DaoMarca dao4 = new DaoMarca();
-            resultado4 = dao4.findAll( type2 );
-            for(Marca obj: resultado4) {
-
-                if (obj.get_subcategoria().get_categoria().get_id() == resul.get_id()){
-                    DaoMarca dao5 = new DaoMarca();
-                    MarcaDto resultado5 = new MarcaDto();
-                    Marca marca = dao5.find(obj.get_id(), Marca.class);
-
-                    marca.set_estado("inactivo");
-
-                    Marca resul3 = dao5.update(marca);
-                    resultado5.setId( resul3.get_id() );
-                }
-
-
-
-            }
-
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
-            data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
-                    .add("codigo",500).build();
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-CAT03")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-        return Response.status(Response.Status.OK).entity(data).build();
     }
 
     /**
     * Esta funcion consiste en habilitar nuevamente una categoria previamente inhabilitada
     * @author Carlos Silva
     * @param _id corresponde al id de la categoria
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir 
@@ -259,78 +195,47 @@ public class CategoriaServicio extends AplicacionBase{
     */
     @DELETE
     @Path( "/activar/{id}" )
-    public Response activarCategoria(@PathParam("id") long  _id)
+    public Response activarCategoria(@HeaderParam("authorization") String token,@PathParam("id") long  _id)
     {
-        JsonObject data;
-        CategoriaDto resultado = new CategoriaDto();
+        JsonObject resul;
         try
         {
-            DaoCategoria dao = new DaoCategoria();
-            Categoria categoria = dao.find(_id,Categoria.class);
+            if(Jwt.verificarToken(token)){
+                ActivateCategoriaComando comando=Fabrica.crearComandoConId(ActivateCategoriaComando.class,_id);
+                comando.execute();
 
-            categoria.set_estado("activo");
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
-            Categoria resul = dao.update(categoria);
-            resultado.setId( resul.get_id() );
-
-            List<Subcategoria> resultado2= null;
-            Class<Subcategoria> type = Subcategoria.class;
-
-            DaoSubcategoria dao2 = new DaoSubcategoria();
-            resultado2 = dao2.findAll( type );
-            for(Subcategoria obj: resultado2) {
-
-                if (obj.get_categoria().get_id() == resul.get_id()){
-                    DaoSubcategoria dao3 = new DaoSubcategoria();
-                    SubcategoriaDto resultado3 = new SubcategoriaDto();
-                    Subcategoria subcategoria = dao3.find(obj.get_id(), Subcategoria.class);
-
-                    subcategoria.set_estado("activo");
-
-                    Subcategoria resul2 = dao3.update(subcategoria);
-                    resultado3.setId( resul2.get_id() );
-                }
-
-
-
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
             }
 
-            List<Marca> resultado4= null;
-            Class<Marca> type2 = Marca.class;
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
-            DaoMarca dao4 = new DaoMarca();
-            resultado4 = dao4.findAll( type2 );
-            for(Marca obj: resultado4) {
-
-                if (obj.get_subcategoria().get_categoria().get_id() == resul.get_id()){
-                    DaoMarca dao5 = new DaoMarca();
-                    MarcaDto resultado5 = new MarcaDto();
-                    Marca marca = dao5.find(obj.get_id(), Marca.class);
-
-                    marca.set_estado("activo");
-
-                    Marca resul3 = dao5.update(marca);
-                    resultado5.setId( resul3.get_id() );
-                }
-
-
-
-            }
-
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
-            data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
-                    .add("codigo",500).build();
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-CAT04")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-        return Response.status(Response.Status.OK).entity(data).build();
     }
 
     /**
@@ -338,9 +243,6 @@ public class CategoriaServicio extends AplicacionBase{
     * @author Gabriel Romero
     * @param _id corresponde al id de la categoria
     * @param categoriaDto corresponde al objeto de la capa web que contiene los nuevos datos que se desean actualizar
-    * @throws PersistenceException si se inserta una categoria duplicada
-    * @throws DatabaseException    si existe algun problema con la conexion con el servidor de base de datos
-    * @throws PruebaExcepcion      si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado y mensaje en caso de ocurrir 
@@ -348,52 +250,55 @@ public class CategoriaServicio extends AplicacionBase{
     */
     @PUT
     @Path( "/edit/{id}" )
-    public Response editCategoria(@PathParam("id") long _id, CategoriaDto categoriaDto)
+    public Response editCategoria(@HeaderParam("authorization") String token,@PathParam("id") long _id, CategoriaDto categoriaDto)
     {
-        JsonObject data;
-        CategoriaDto resultado = new CategoriaDto();
+        JsonObject resul;
+
         try
         {
-            DaoCategoria dao = new DaoCategoria();
-            Categoria categoria = dao.find(_id,Categoria.class);
-            categoria.set_nombre(categoriaDto.getNombre());
+            if(Jwt.verificarToken(token)){
+                UpdateCategoriaComando comando=Fabrica.crearComandoBoth(UpdateCategoriaComando.class,_id,categoriaDto);
+                comando.execute();
 
-            Categoria resul = dao.update(categoria);
-            resultado.setId( resul.get_id() );
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200).build();
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
+
 
         }
-        catch (PersistenceException | DatabaseException ex){
-            data= Json.createObjectBuilder()
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje","La categoria ya se encuestra registrada")
-                    .add("codigo",500).build();
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
-            System.out.println(data);
-            return Response.status(Response.Status.OK).entity(data).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
-        catch ( PruebaExcepcion ex){
-            data= Json.createObjectBuilder()
+        catch ( Exception ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
                     .add("estado","error")
-                    .add("mensaje",ex.getMessage())
-                    .add("codigo",500).build();
+                    .add("codigo","S-EX-CAT05")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            System.out.println(data);
-            return Response.status(Response.Status.OK).entity(data).build();
-
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
     }
 
     /**
     * Esta funcion consiste obtener una categoria
     * @author Gabriel Romero
     * @param _id corresponde al id de la categoria
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, categoria y mensaje en caso de ocurrir 
@@ -401,39 +306,49 @@ public class CategoriaServicio extends AplicacionBase{
     */
     @GET
     @Path( "/{id}" )
-    public Response getCategoria(@PathParam("id") long  _id)
+    public Response getCategoria(@HeaderParam("authorization") String token,@PathParam("id") long  _id)
     {
-        JsonObject data;
-        JsonObject categoriaJson;
-        CategoriaDto resultado = new CategoriaDto();
+        JsonObject resul;
+
         try
         {
-            DaoCategoria dao = new DaoCategoria();
-            Categoria categoria = dao.find(_id,Categoria.class);
-            resultado.setId( categoria.get_id() );
+            if(Jwt.verificarToken(token)){
+                GetCategoriaComando comando=Fabrica.crearComandoConId(GetCategoriaComando.class,_id);
+                comando.execute();
 
-            categoriaJson= Json.createObjectBuilder()
-                               .add("nombre",categoria.get_nombre())
-                               .add("estado",categoria.get_estado()).build();
+                return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+            }
+            else{
+                resul= Json.createObjectBuilder()
+                        .add("estado","unauthorized")
+                        .add("codigo","UNAUTH")
+                        .add("mensaje","No se encuentra autenticado. Inicie sesión").build();
 
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200)
-                    .add("categoria",categoriaJson).build();
+                return Response.status(Response.Status.UNAUTHORIZED).entity(resul).build();
+            }
 
+
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
-            data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
-                    .add("codigo",500).build();
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-CAT06")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
         }
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
-
 
     }
 }

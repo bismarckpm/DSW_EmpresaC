@@ -4,6 +4,7 @@ import { NgEventBus } from 'ng-event-bus';
 import { ToastrService } from 'ngx-toastr';
 import { AdministrarSubcategoriasService } from 'src/app/admin/Servicios/administrar-subcategorias/administrar-subcategorias.service';
 
+import { LoginService } from "../../../../comun/servicios/login/login.service";
 
 @Component({
   selector: 'app-eliminar-subcategoria',
@@ -18,7 +19,8 @@ export class EliminarSubcategoriaComponent implements OnInit {
             @Inject(MAT_DIALOG_DATA) public data: any,
             private _adminSubcategoriasService:AdministrarSubcategoriasService,
             private _toastrService: ToastrService,
-            private eventBus: NgEventBus
+            private eventBus: NgEventBus,
+            private loginService:LoginService
   ) {}
 
   ngOnInit(): void {
@@ -47,10 +49,24 @@ export class EliminarSubcategoriaComponent implements OnInit {
 
       },
       (error)=>{
-        console.log(error);
-        this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
-        this.eventBus.cast('fin-progress','chao');
         this.eventBus.cast('cerrar-subcategoria-add','cerrar');
+
+        if(error.error.estado=="unauthorized"){
+          this.eventBus.cast('fin-progress','chao');
+          this._toastrService.error("Ops! Hubo un problema.", "La sesion expiro.");
+          this.loginService.logOut().subscribe(x=>{window.location.reload()}, err=>{window.location.reload()});
+  
+        }
+        else{
+          console.log(error);
+          if(error.error.mensaje){
+            this._toastrService.error("Ops! Hubo un problema.", error.error.mensaje)
+          }
+          else{
+            this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
+          }
+          this.eventBus.cast('fin-progress','chao');
+        }
       });
 
   }

@@ -22,7 +22,7 @@ public class Tipo extends EntidadBase{
     private List<Presentacion> _presentacion;
 
     @OneToMany( mappedBy = "_tipo", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST )
-    private List<Marca_Tipo> _marcatipos;
+    private List<MarcaTipo> _marcatipos;
 
     public String get_nombre() {
         return _nombre;

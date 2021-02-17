@@ -1,6 +1,6 @@
 package ucab.dsw.dtos;
 
-public class UsuarioDto extends DtoBase
+public class UsuarioDto extends BaseDto
 {
     public UsuarioDto()
     {
@@ -51,5 +51,15 @@ public class UsuarioDto extends DtoBase
 
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
+    }
+
+    public String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

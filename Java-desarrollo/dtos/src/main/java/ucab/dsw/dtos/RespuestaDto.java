@@ -3,7 +3,7 @@ package ucab.dsw.dtos;
 
 import java.util.List;
 
-public class RespuestaDto extends DtoBase{
+public class RespuestaDto extends BaseDto {
 
 
     private int respuestaboolean;
@@ -49,25 +49,36 @@ public class RespuestaDto extends DtoBase{
         this.participacionDto = participacionDto;
     }
 
-    private Pregunta_EncuestaDto pregunta_EncuestaDto;
+    private PreguntaEncuestaDto pregunta_EncuestaDto;
 
-    public Pregunta_EncuestaDto getPregunta_EncuestaDto()
+    public PreguntaEncuestaDto getPregunta_EncuestaDto()
     {
         return pregunta_EncuestaDto;
     }
 
-    public void setPregunta_EncuestaDto( Pregunta_EncuestaDto pregunta_EncuestaDto )
+    public void setPregunta_EncuestaDto( PreguntaEncuestaDto pregunta_EncuestaDto )
     {
         this.pregunta_EncuestaDto = pregunta_EncuestaDto;
     }
 
-    private List<Opcion_Simple_Multiple_PreguntaDto> opciones;
+    private List<OpcionSimpleMultiplePreguntaDto> opciones;
 
-    public List<Opcion_Simple_Multiple_PreguntaDto> getOpciones() {
+    public List<OpcionSimpleMultiplePreguntaDto> getOpciones() {
         return opciones;
     }
 
-    public void setOpciones(List<Opcion_Simple_Multiple_PreguntaDto> opciones) {
+    public void setOpciones(List<OpcionSimpleMultiplePreguntaDto> opciones) {
         this.opciones = opciones;
+    }
+
+
+    private String estado;
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

@@ -2,7 +2,17 @@
     <div class="row justify-content-md-center">
         <h1> Estudios Asignados </h1>
     </div>
-
+    <div class="row justify-content-md-center">
+        <mat-form-field >
+            <mat-select #mode value="all" (selectionChange)="estudiosFiltered($event.value)">
+            <mat-option value="all">Todos los estudios</mat-option>
+            <mat-option value="en progreso">Estudios en progreso</mat-option>
+            <mat-option value="finalizado">Estudios finalizados</mat-option>
+            <mat-option value="pendiente">Estudios pendientes</mat-option>
+            <mat-option value="por asignar">Estudios por asignar</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
     <div class="estudio-cards">
 
         <!--PARA PROBAR
@@ -55,7 +65,7 @@
         </mat-card>-->
 
         <!--PARA EL BACKEND-->
-        <mat-card class="example-card" *ngFor="let estudio of estudios">
+        <mat-card class="example-card" *ngFor="let estudio of estudios_filtered">
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
                 <mat-card-title>Marca: {{estudio.marca}}</mat-card-title>

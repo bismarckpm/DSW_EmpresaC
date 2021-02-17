@@ -12,6 +12,18 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
+  opcion(){
+    const Ltoken= localStorage.getItem("token")
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'authorization':  Ltoken
+      })
+    };
+
+    return httpOptions
+
+  }
+
   loginLdap( usuario: usuarioLdap): Observable<any> {
     return this.http.post(global.url+'login/ldap', usuario);
   }
@@ -22,8 +34,28 @@ export class LoginService {
   }
   */
 
- changePassword(changePasswordDto):Observable<any>{
+  changePassword(changePasswordDto):Observable<any>{
   //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
-  return this.http.post(global.url+'usuario/change-password',changePasswordDto);
-}
+  return this.http.post(global.url+'usuario/change-password',changePasswordDto, this.opcion());
+  }
+
+
+  verificartoken():Observable<any>{
+
+  //let headers=new HttpHeaders().set('content-Type','application/x-www-form-urlencoded');
+  return this.http.get(global.url+'prueba/seguridad', this.opcion());
+  }
+
+  logOut():Observable<any>{
+    console.log("logout")
+    const id= localStorage.getItem("user_id")
+
+    localStorage.removeItem("user_id")
+    localStorage.removeItem("rol")
+    localStorage.removeItem("token")
+
+    return this.http.delete(global.url+'login/logout/'+id);
+  }
+
+
 }

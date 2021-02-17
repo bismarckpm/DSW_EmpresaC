@@ -31,7 +31,7 @@ public class RecuperacionPass{
             Session session = Session.getDefaultInstance(props);
 
             String correoRemitente = "mercadeoucab.recuperacion@gmail.com";
-            String passwordRemitente = "Ucab2020!";
+            String passwordRemitente = "pakciuongqixgeqt";
             String correoReceptor = email;
             String asunto = "Recuperacion de contraseña - MercadeoUCAB";
             String mensaje = "<br>Ha solicitado una recuperación de su contraseña para MercadeoUCAB<br>Inicie sesión " +

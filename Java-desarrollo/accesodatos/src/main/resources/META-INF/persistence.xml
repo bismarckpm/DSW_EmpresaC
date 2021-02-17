@@ -9,21 +9,21 @@
         <class>ucab.dsw.entidades.Estado</class>
         <class>ucab.dsw.entidades.Ciudad</class>
         <class>ucab.dsw.entidades.Parroquia</class>
-        <class>ucab.dsw.entidades.Nivel_Academico</class>
+        <class>ucab.dsw.entidades.NivelAcademico</class>
         <class>ucab.dsw.entidades.Encuestado</class>
         <class>ucab.dsw.entidades.Telefono</class>
         <class>ucab.dsw.entidades.Hijo</class>
         <class>ucab.dsw.entidades.Ocupacion</class>
-        <class>ucab.dsw.entidades.Ocupacion_Encuestado</class>
-        <class>ucab.dsw.entidades.Metodo_conexion</class>
-        <class>ucab.dsw.entidades.Metodo_Conexion_Encuestado</class>
-        <class>ucab.dsw.entidades.Caracteristica_Demografica</class>
+        <class>ucab.dsw.entidades.OcupacionEncuestado</class>
+        <class>ucab.dsw.entidades.MetodoConexion</class>
+        <class>ucab.dsw.entidades.MetodoConexionEncuestado</class>
+        <class>ucab.dsw.entidades.CaracteristicaDemografica</class>
         <class>ucab.dsw.entidades.Categoria</class>
         <class>ucab.dsw.entidades.Subcategoria</class>
         <class>ucab.dsw.entidades.Marca</class>
         <class>ucab.dsw.entidades.Presentacion</class>
         <class>ucab.dsw.entidades.Tipo</class>
-        <class>ucab.dsw.entidades.Marca_Tipo</class>
+        <class>ucab.dsw.entidades.MarcaTipo</class>
         <class>ucab.dsw.entidades.Pregunta</class>
         <class>ucab.dsw.entidades.PreguntaEncuesta</class>
         <class>ucab.dsw.entidades.OpcionSimpleMultiple</class>
@@ -31,14 +31,14 @@
         <class>ucab.dsw.entidades.RespuestaOpcion</class>
         <class>ucab.dsw.entidades.Participacion</class>
         <class>ucab.dsw.entidades.SolicitudEstudio</class>
-        <class>ucab.dsw.entidades.Opcion_Simple_Multiple_Pregunta</class>
+        <class>ucab.dsw.entidades.OpcionSimpleMultiplePregunta</class>
         <class>ucab.dsw.entidades.Encuesta</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/desarrollo_bd?serverTimezone=UTC"/>
-            <property name="javax.persistence.jdbc.password" value="Master"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/empresac?serverTimezone=UTC"/>
+            <property name="javax.persistence.jdbc.password" value="admin"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="eclipselink.logging.level" value="FINE"/>
         </properties>

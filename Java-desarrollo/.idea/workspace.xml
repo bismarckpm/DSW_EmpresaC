@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ArtifactsWorkspaceSettings">
-    <artifacts-to-build>
-      <artifact name="servicio:war" />
-    </artifacts-to-build>
-  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
@@ -24,19 +19,13 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </select>
+    <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90d40db4-ad8c-4243-a03c-37ef11dcf5a8" name="Default Changelist" comment="">
+    <list default="true" id="87c6d671-881a-45a8-ab00-e16a3b9c4375" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Angular-desarrollo/src/urlGlobal.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular-desarrollo/src/urlGlobal.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/accesodatos/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SolicitudServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/servicio/SolicitudServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicio/src/test/java/SolicitudEstudioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicio/src/test/java/SolicitudEstudioTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,199 +52,161 @@
   <component name="MavenRunner">
     <option name="skipTests" value="true" />
   </component>
-  <component name="ProjectId" id="1lkHgJhvjHg8fkjPkWsVaSgFQnZ" />
+  <component name="ProjectId" id="1n0ForMTwbexOGxdOsYWwm0AFEE" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/servicio/src/main/java/ucab/dsw/clases" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="JUnit.SolicitudEstudioTest.AddSolicitud">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+      <recent name="ucab.dsw" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Gabriel\Desktop\Gabriel\UCAB\Semestre Virtual 2\Desarrollo\Proyecto\Entrega 2\Java-desarrollo\servicio\src\main\java\ucab\dsw\clases" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.DirectorioActivoServicioTest.setAllUsers">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WildFly" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss 21.0.0.Final" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/MercadeoUcab-1.0-SNAPSHOT/" />
-      <option name="UPDATING_POLICY" value="restart-server" />
-      <deployment>
-        <artifact name="servicio:war">
-          <settings />
-        </artifact>
-      </deployment>
-      <server-settings>
-        <option name="SERVER" />
-        <option name="BINDING_SET_NAME" value="" />
-        <option name="DOMAIN" value="false" />
-        <option name="SERVER_GROUP" value="main-server-group" />
-        <option name="USERNAME" value="" />
-        <option name="CREDENTIAL_ALIAS" />
-      </server-settings>
-      <predefined_log_file enabled="true" id="JBoss" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="63738" />
-      </RunnerSettings>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <method v="2">
-        <option name="Make" enabled="true" />
-        <option name="BuildArtifacts" enabled="true">
-          <artifact name="servicio:war" />
-        </option>
-      </method>
-    </configuration>
-    <configuration name="SolicitudEstudioTest.AddSolicitud" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CategoriaServicioTest.getCategorias" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="servicio" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SolicitudEstudioTest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ucab.dsw.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ucab.dsw.test" />
+      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.CategoriaServicioTest" />
+      <option name="METHOD_NAME" value="getCategorias" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DirectorioActivoServicioTest.VerifyToken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ucab.dsw.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ucab.dsw.test" />
+      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.DirectorioActivoServicioTest" />
+      <option name="METHOD_NAME" value="VerifyToken" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DirectorioActivoServicioTest.setAllUsers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ucab.dsw.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ucab.dsw.test" />
+      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.DirectorioActivoServicioTest" />
+      <option name="METHOD_NAME" value="setAllUsers" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MarcaServicioTest.getMarcas" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ucab.dsw.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ucab.dsw.test" />
+      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.MarcaServicioTest" />
+      <option name="METHOD_NAME" value="getMarcas" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SolicitudEstudioServicioTest.AddSolicitud" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ucab.dsw.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ucab.dsw.test" />
+      <option name="MAIN_CLASS_NAME" value="ucab.dsw.test.SolicitudEstudioServicioTest" />
       <option name="METHOD_NAME" value="AddSolicitud" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SolicitudEstudioTest.AddSolicitudCamposNulos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="servicio" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SolicitudEstudioTest" />
-      <option name="METHOD_NAME" value="AddSolicitudCamposNulos" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SolicitudEstudioTest.AddSolicitudCamposNulosYVacios" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="servicio" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SolicitudEstudioTest" />
-      <option name="METHOD_NAME" value="AddSolicitudCamposNulosYVacios" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SolicitudEstudioTest.AddSolicitudSinDatosCompletos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="servicio" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SolicitudEstudioTest" />
-      <option name="METHOD_NAME" value="AddSolicitudSinDatosCompletos" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="metodos_admin_Test.Pregunta_CategoriaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="servicio" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="metodos_admin_Test" />
-      <option name="METHOD_NAME" value="Pregunta_CategoriaTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="JBoss Server.WildFly" />
-      <item itemvalue="JUnit.metodos_admin_Test.Pregunta_CategoriaTest" />
-      <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitud" />
-      <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitudCamposNulos" />
-      <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitudCamposNulosYVacios" />
-      <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitudSinDatosCompletos" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitud" />
-        <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitudSinDatosCompletos" />
-        <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitudCamposNulosYVacios" />
-        <item itemvalue="JUnit.SolicitudEstudioTest.AddSolicitudCamposNulos" />
-        <item itemvalue="JUnit.metodos_admin_Test.Pregunta_CategoriaTest" />
+        <item itemvalue="JUnit.DirectorioActivoServicioTest.setAllUsers" />
+        <item itemvalue="JUnit.SolicitudEstudioServicioTest.AddSolicitud" />
+        <item itemvalue="JUnit.MarcaServicioTest.getMarcas" />
+        <item itemvalue="JUnit.CategoriaServicioTest.getCategorias" />
+        <item itemvalue="JUnit.DirectorioActivoServicioTest.VerifyToken" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="90d40db4-ad8c-4243-a03c-37ef11dcf5a8" name="Default Changelist" comment="" />
-      <created>1607968660988</created>
+      <changelist id="87c6d671-881a-45a8-ab00-e16a3b9c4375" name="Default Changelist" comment="" />
+      <created>1610519289619</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1607968660988</updated>
-      <workItem from="1607968678066" duration="1000000" />
-      <workItem from="1608134504426" duration="801000" />
-      <workItem from="1608139970412" duration="1434000" />
-      <workItem from="1608143299811" duration="2068000" />
-      <workItem from="1608248702688" duration="56000" />
-      <workItem from="1608336084003" duration="1367000" />
-      <workItem from="1608346674995" duration="1748000" />
-      <workItem from="1608508005224" duration="677000" />
-      <workItem from="1608598671498" duration="473000" />
-      <workItem from="1609108482329" duration="1574000" />
-      <workItem from="1609689727799" duration="909000" />
-      <workItem from="1609690979650" duration="1668000" />
-      <workItem from="1609773902805" duration="8973000" />
+      <updated>1610519289619</updated>
+      <workItem from="1610519291197" duration="1062000" />
+      <workItem from="1610637247895" duration="2174000" />
+      <workItem from="1610729493485" duration="55000" />
+      <workItem from="1610850222870" duration="9096000" />
+      <workItem from="1610893432779" duration="3471000" />
+      <workItem from="1610900487437" duration="16155000" />
+      <workItem from="1610923497228" duration="10609000" />
+      <workItem from="1610981893957" duration="12000" />
+      <workItem from="1611285855622" duration="5546000" />
+      <workItem from="1611538098033" duration="14517000" />
+      <workItem from="1611586123603" duration="18103000" />
+      <workItem from="1611884271627" duration="1212000" />
+      <workItem from="1611889221165" duration="356000" />
+      <workItem from="1611889930379" duration="8000000" />
+      <workItem from="1612236344429" duration="467000" />
+      <workItem from="1612318092807" duration="11762000" />
+      <workItem from="1612546272700" duration="13795000" />
+      <workItem from="1612713935539" duration="3249000" />
+      <workItem from="1613336242360" duration="1119000" />
     </task>
     <servers />
   </component>
@@ -267,62 +218,91 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="CUSTOM_BOOLEAN_PROPERTIES">
-                <map>
-                  <entry key="Show.Git.Branches" value="true" />
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list />
-          </value>
-        </entry>
-        <entry key="User">
-          <value>
-            <list />
+            <State />
           </value>
         </entry>
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <ignored-roots>
-      <path value="$PROJECT_DIR$" />
-    </ignored-roots>
-  </component>
   <component name="WindowStateProjectService">
-    <state x="449" y="210" key="#com.intellij.ide.util.MemberChooser" timestamp="1609780123753">
+    <state x="124" y="69" key="#Project_Structure" timestamp="1610861182284">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state x="449" y="210" key="#com.intellij.ide.util.MemberChooser/0.0.1280.980@0.0.1280.980" timestamp="1609780123753" />
-    <state width="1230" height="269" key="GridCell.Tab.0.bottom" timestamp="1609785134105">
+    <state x="124" y="69" key="#Project_Structure/0.0.1280.980@0.0.1280.980" timestamp="1610861182284" />
+    <state x="199" y="167" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1610639466327">
       <screen x="0" y="0" width="1280" height="980" />
     </state>
-    <state width="1230" height="269" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1609785134105" />
-    <state width="1230" height="269" key="GridCell.Tab.0.center" timestamp="1609785134105">
-      <screen x="0" y="0" width="1280" height="980" />
+    <state x="199" y="167" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.980@0.0.1280.980" timestamp="1610639466327" />
+    <state x="470" y="350" key="#com.intellij.ide.util.MemberChooser" timestamp="1611894715492">
+      <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state width="1230" height="269" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1609785134105" />
-    <state width="1230" height="269" key="GridCell.Tab.0.left" timestamp="1609785134105">
-      <screen x="0" y="0" width="1280" height="980" />
+    <state x="449" y="203" key="#com.intellij.ide.util.MemberChooser/0.0.1280.980@0.0.1280.980" timestamp="1610917600708" />
+    <state x="470" y="350" key="#com.intellij.ide.util.MemberChooser/0.0.1280.984@0.0.1280.984" timestamp="1611894715492" />
+    <state x="158" y="423" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1611548926062">
+      <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state width="1230" height="269" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1609785134105" />
-    <state width="1230" height="269" key="GridCell.Tab.0.right" timestamp="1609785134105">
-      <screen x="0" y="0" width="1280" height="980" />
+    <state x="158" y="421" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.980@0.0.1280.980" timestamp="1610852614356" />
+    <state x="158" y="423" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.984@0.0.1280.984" timestamp="1611548926062" />
+    <state x="431" y="363" width="433" height="272" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1611891917676">
+      <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state width="1230" height="269" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1609785134105" />
-    <state x="236" y="227" key="Vcs.Push.Dialog.v2" timestamp="1608349656721">
-      <screen x="0" y="0" width="1280" height="980" />
+    <state x="431" y="362" width="417" height="255" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.980@0.0.1280.980" timestamp="1610917542372" />
+    <state x="431" y="363" width="433" height="272" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.984@0.0.1280.984" timestamp="1611891917676" />
+    <state x="431" y="381" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1611548939560">
+      <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="236" y="227" key="Vcs.Push.Dialog.v2/0.0.1280.980@0.0.1280.980" timestamp="1608349656721" />
+    <state x="431" y="379" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1280.980@0.0.1280.980" timestamp="1610852439645" />
+    <state x="431" y="381" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1280.984@0.0.1280.984" timestamp="1611548939560" />
+    <state x="374" y="243" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1611290707562">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="374" y="242" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.980@0.0.1280.980" timestamp="1610935516596" />
+    <state x="374" y="243" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.984@0.0.1280.984" timestamp="1611290707562" />
+    <state width="1236" height="150" key="GridCell.Tab.0.bottom" timestamp="1613337416281">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state width="980" height="136" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1612716686377" />
+    <state width="1238" height="165" key="GridCell.Tab.0.bottom/0.0.1280.980@0.0.1280.980" timestamp="1610936076849" />
+    <state width="1236" height="150" key="GridCell.Tab.0.bottom/0.0.1280.984@0.0.1280.984" timestamp="1613337416281" />
+    <state width="1236" height="150" key="GridCell.Tab.0.center" timestamp="1613337416281">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state width="980" height="136" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1612716686377" />
+    <state width="1238" height="165" key="GridCell.Tab.0.center/0.0.1280.980@0.0.1280.980" timestamp="1610936076848" />
+    <state width="1236" height="150" key="GridCell.Tab.0.center/0.0.1280.984@0.0.1280.984" timestamp="1613337416281" />
+    <state width="1236" height="150" key="GridCell.Tab.0.left" timestamp="1613337416281">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state width="980" height="136" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1612716686377" />
+    <state width="1238" height="165" key="GridCell.Tab.0.left/0.0.1280.980@0.0.1280.980" timestamp="1610936076848" />
+    <state width="1236" height="150" key="GridCell.Tab.0.left/0.0.1280.984@0.0.1280.984" timestamp="1613337416281" />
+    <state width="1236" height="150" key="GridCell.Tab.0.right" timestamp="1613337416281">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state width="980" height="136" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1612716686377" />
+    <state width="1238" height="165" key="GridCell.Tab.0.right/0.0.1280.980@0.0.1280.980" timestamp="1610936076849" />
+    <state width="1236" height="150" key="GridCell.Tab.0.right/0.0.1280.984@0.0.1280.984" timestamp="1613337416281" />
+    <state x="483" y="194" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1611556226769">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="483" y="194" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1280.984@0.0.1280.984" timestamp="1611556226769" />
+    <state x="457" y="405" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1611897771213">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="457" y="405" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.984@0.0.1280.984" timestamp="1611897771213" />
+    <state x="45" y="157" key="new project wizard" timestamp="1611548654959">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="69" y="156" key="new project wizard/0.0.1280.980@0.0.1280.980" timestamp="1610853747321" />
+    <state x="45" y="157" key="new project wizard/0.0.1280.984@0.0.1280.984" timestamp="1611548654959" />
+    <state x="296" y="221" key="run.anything.popup" timestamp="1612240726620">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="296" y="221" key="run.anything.popup/0.0.1280.984@0.0.1280.984" timestamp="1612240726620" />
+    <state x="303" y="211" width="672" height="678" key="search.everywhere.popup" timestamp="1611542243410">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="303" y="211" width="672" height="678" key="search.everywhere.popup/0.0.1280.984@0.0.1280.984" timestamp="1611542243410" />
   </component>
 </project>

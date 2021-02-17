@@ -1,6 +1,6 @@
 package ucab.dsw.dtos;
 
-public class OcupacionDto extends DtoBase{
+public class OcupacionDto extends BaseDto {
 
     private String nombre;
 

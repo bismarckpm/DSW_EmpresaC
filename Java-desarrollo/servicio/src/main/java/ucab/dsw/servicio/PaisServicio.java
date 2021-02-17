@@ -1,19 +1,15 @@
 package ucab.dsw.servicio;
 
-import ucab.dsw.accesodatos.DaoPais;
-import ucab.dsw.entidades.Pais;
 
-
+import ucab.dsw.excepciones.EmpresaException;
+import ucab.dsw.jwt.Jwt;
+import ucab.dsw.logica.comando.pais.AllPaisComando;
+import ucab.dsw.logica.fabrica.Fabrica;
 import javax.json.Json;
-import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 /**
  * Una clase para la administracion de los paises
@@ -28,7 +24,6 @@ public class PaisServicio {
     /**
     * Esta funcion consiste el traer todas los paises disponibles
     * @author Gabriel Romero
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, paises (array de objetos) 
@@ -38,46 +33,34 @@ public class PaisServicio {
     @Path( "/all" )
     public Response getAllPaises()
     {
-        JsonObject data;
-        try
+        JsonObject resul;
+        try {
+            AllPaisComando comando= Fabrica.crear(AllPaisComando.class);
+            comando.execute();
+
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
+
+        }
+        catch ( EmpresaException ex )
         {
-            DaoPais dao= new DaoPais();
-            List<Pais> resultado= dao.findAll(Pais.class);
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
-            JsonArrayBuilder paisesArrayJson= Json.createArrayBuilder();
-
-            for(Pais obj: resultado){
-
-                JsonObject pais = Json.createObjectBuilder().add("id",obj.get_id())
-                                                            .add("nombre",obj.get_nombre()).build();
-
-                paisesArrayJson.add(pais);
-
-            }
-
-            data= Json.createObjectBuilder()
-                    .add("estado","success")
-                    .add("codigo",200)
-                    .add("paises",paisesArrayJson).build();
-
-
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
         }
         catch ( Exception ex )
         {
             ex.printStackTrace();
-            data= Json.createObjectBuilder()
-                    .add("estado","exception!!!")
-                    .add("excepcion",ex.getMessage())
-                    .add("codigo",500).build();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-PAI01")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-            System.out.println(data);
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
-
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
 
         }
-
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
-
     }
 }

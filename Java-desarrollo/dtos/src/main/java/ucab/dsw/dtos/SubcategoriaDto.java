@@ -1,6 +1,6 @@
 package ucab.dsw.dtos;
 
-public class SubcategoriaDto extends DtoBase{
+public class SubcategoriaDto extends BaseDto {
 
     private String nombre;
 
@@ -31,5 +31,15 @@ public class SubcategoriaDto extends DtoBase{
     }
 
     public SubcategoriaDto() {
+    }
+
+    public String estado;
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

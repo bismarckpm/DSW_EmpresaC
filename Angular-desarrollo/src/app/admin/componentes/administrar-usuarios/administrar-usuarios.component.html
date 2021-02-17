@@ -22,7 +22,7 @@
             </ng-container>
 
             <ng-container matColumnDef="tipo_usuario">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header  style="background-color:#ffc400;text-align: center;"> Rol</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#ffc400;text-align: center;"> Rol</th>
                 <td mat-cell *matCellDef="let element"> {{element.tipo_usuario}} </td>
             </ng-container>
 
@@ -89,7 +89,7 @@
               <mat-icon>supervisor_account</mat-icon>
               <span>Cliente</span>
             </button>
-            <button mat-menu-item>
+            <button mat-menu-item (click)="openDialogEncuestado()">
                 <mat-icon>recent_actors</mat-icon>
                 <span>Encuestado</span>
               </button>

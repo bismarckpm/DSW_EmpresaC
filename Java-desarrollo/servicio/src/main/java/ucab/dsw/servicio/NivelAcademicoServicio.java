@@ -1,18 +1,14 @@
 package ucab.dsw.servicio;
 
-import ucab.dsw.accesodatos.DaoNivel_Academico;
-import ucab.dsw.entidades.Nivel_Academico;
-
+import ucab.dsw.excepciones.EmpresaException;
+import ucab.dsw.jwt.Jwt;
+import ucab.dsw.logica.comando.nivelAcademico.AllNivelAcademicoComando;
+import ucab.dsw.logica.fabrica.Fabrica;
 import javax.json.Json;
-import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 /**
  * Una clase para la administracion los niveles academicos
@@ -27,7 +23,6 @@ public class NivelAcademicoServicio extends AplicacionBase {
     /**
     * Esta funcion consiste en traer todos los niveles academicos disponibles
     * @author Gabriel Romero
-    * @throws Exception si ocurre cualquier excepcion general no controlada previamente
     * @return retorna una Response con un estado de respuesta http indicando si la operacion 
     *         se realizo o no correctamente. Ademas, dicho Response contiene una entidad/objeto 
     *         en formato JSON con los siguiente atributos: codigo, estado, niveles_academicos (array de objetos) 
@@ -36,40 +31,34 @@ public class NivelAcademicoServicio extends AplicacionBase {
     @GET
     @Path("/all")
     public Response getAllNivelesAcademicos() {
-        JsonObject data;
+        JsonObject resul;
         try {
-            DaoNivel_Academico dao = new DaoNivel_Academico();
-            List<Nivel_Academico> resultado = dao.findAll(Nivel_Academico.class);
+            AllNivelAcademicoComando comando= Fabrica.crear(AllNivelAcademicoComando.class);
+            comando.execute();
 
-            JsonArrayBuilder categoriaArrayJson = Json.createArrayBuilder();
+            return Response.status(Response.Status.OK).entity(comando.getResult()).build();
 
-            for (Nivel_Academico obj : resultado) {
+        }
+        catch ( EmpresaException ex )
+        {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo",ex.getCodigo())
+                    .add("mensaje",ex.getMensaje()).build();
 
-                JsonObject categoria = Json.createObjectBuilder().add("id", obj.get_id())
-                        .add("nombre", obj.get_nombre()).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(resul).build();
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            resul= Json.createObjectBuilder()
+                    .add("estado","error")
+                    .add("codigo","S-EX-NAC01")
+                    .add("mensaje","Ha ocurrido un error con el servidor").build();
 
-                categoriaArrayJson.add(categoria);
-            }
-
-            data = Json.createObjectBuilder()
-                    .add("estado", "success")
-                    .add("codigo", 200)
-                    .add("niveles_academicos", categoriaArrayJson).build();
-
-
-        } catch (Exception ex) {
-            data = Json.createObjectBuilder()
-                    .add("estado", "exception!!!")
-                    .add("excepcion", ex.getMessage())
-                    .add("codigo", 500).build();
-
-            System.out.println(data);
-            return Response.status(Response.Status.BAD_REQUEST).entity(data).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(resul).build();
 
 
         }
-
-        System.out.println(data);
-        return Response.status(Response.Status.OK).entity(data).build();
     }
 }

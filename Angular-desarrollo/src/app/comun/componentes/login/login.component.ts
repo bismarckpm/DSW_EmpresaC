@@ -30,8 +30,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { 
-    
+  ngOnInit(): void {
+  
   }
 
   iniciarSesion(){
@@ -63,9 +63,10 @@ export class LoginComponent implements OnInit {
     (error)=>{
       console.log(error);
 
-      if(error.status == 401 ){
-        this._toastrService.error("Intente de nuevo", "Credenciales incorrectas! o Usuario inactivo");
-      }else{
+      if(error.error.mensaje){
+        this._toastrService.error("Ops! Hubo un problema.", error.error.mensaje)
+      }
+      else{
         this._toastrService.error("Ops! Hubo un problema.", "Error del servidor. Intente mas tarde.");
       }
       this.eventBus.cast('fin-progress','chao');  
